@@ -334,7 +334,17 @@ public sealed class StorageModule : IEngineModule
             try
             {
                 if (!Within(Path.Combine(store, id), item.QuarantinePath) || !Within(TempRoot(), item.Target.Path)) throw new EngineException("SCOPE_NOT_ALLOWED", "Recovery scope changed.");
-                if (!File.Exists(item.QuarantinePath)) { receipt.Items[i] = item with { State = "unresolved", Reason = "RECOVERY_FILE_MISSING" }; continue; }
+                if (!File.Exists(item.QuarantinePath))
+                {
+                    if (item.State == "restoring" && File.Exists(item.Target.Path))
+                    {
+                        using var original = StorageSafeFile.OpenRead(item.Target.Path);
+                        await ValidateTarget(item.Target, TempRoot(), original, ct);
+                        receipt.Items[i] = item with { State = "restored", Reason = "INTERRUPTED_RESTORE_RECONCILED" };
+                    }
+                    else receipt.Items[i] = item with { State = "unresolved", Reason = "RECOVERY_FILE_MISSING" };
+                    continue;
+                }
                 if (File.Exists(item.Target.Path) || Directory.Exists(item.Target.Path)) throw new EngineException("RESTORE_CONFLICT", "The original path is occupied. Recovery data was retained.");
                 StorageSafeFile.ValidateAncestors(Path.GetDirectoryName(item.Target.Path)!);
                 using var file = StorageSafeFile.OpenForMove(item.QuarantinePath);
