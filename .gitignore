@@ -28,3 +28,4 @@ artifacts/
 *.dll
 *.pdb
 **/.DS_Store
+website/public/coverage.json
