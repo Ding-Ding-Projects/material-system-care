@@ -6,7 +6,7 @@ function Get-ContentHash([string]$Path) {
 }
 function Resolve-BuildVersion($Manifest) {
  $version=if($env:BUILD_VERSION) { $env:BUILD_VERSION } else { $Manifest.version }
- if($version -notmatch '^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$') { throw 'BUILD_VERSION must be a three-part numeric SemVer version for Squirrel.Windows 2.0.1' }
+ if($version -notmatch '\A(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\z') { throw 'BUILD_VERSION must be a three-part numeric SemVer version for Squirrel.Windows 2.0.1' }
  foreach($part in $version.Split('.')) {
   [uint32]$component=0
   if(![uint32]::TryParse($part,[ref]$component) -or $component -gt 65535) { throw 'Every BUILD_VERSION component must be between 0 and 65535 for Windows version resources' }
