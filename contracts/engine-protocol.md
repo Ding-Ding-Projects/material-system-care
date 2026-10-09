@@ -8,7 +8,7 @@ Success: `{"version":1,"id":"opaque-request-id","ok":true,"result":{}}`.
 
 Failure: `{"version":1,"id":"opaque-request-id","ok":false,"error":{"code":"stable-code","message":"safe explanation"}}`.
 
-Maximum line length is 4 MiB. Validate request versions, method names, object parameters, bounded strings, paths, and operation-specific values before acting. Every request supports cancellation through the connection lifetime and server shutdown. Long operations run away from the UI thread. Indeterminate progress stays indeterminate until a measured result exists.
+Maximum request and response JSON length is 4 MiB in UTF-8, excluding the line terminator. The connection-owned parser uses 16 KiB chunks and retains subsequent lines. Success serialization independently enforces the response bound; an oversized result returns `RESULT_TOO_LARGE`, so clients can narrow scope or request individual records. Aggregate settings and history queries also stop before accumulating excessive data. Validate request versions, method names, object parameters, bounded strings, paths, and operation-specific values before acting. Every request supports cancellation through the connection lifetime and server shutdown. Long operations run away from the UI thread. Indeterminate progress stays indeterminate until a measured result exists.
 
 ## Module interface
 
@@ -22,7 +22,7 @@ public interface IEngineModule {
 }
 ```
 
-`EngineContext` exposes `string DataRoot`, `bool IsElevated`, `Task RecordAsync(string operation, object details, CancellationToken ct)`, and `Task<object?> ReadSettingAsync(string key, CancellationToken ct)`. Modules must not share mutable static request state. Foundation code registers modules explicitly. Additional methods must be documented and communicated before integration.
+`EngineContext` exposes `string DataRoot`, `bool IsElevated`, `Task RecordAsync(string operation, object details, CancellationToken ct)`, and `Task<object?> ReadSettingAsync(string key, CancellationToken ct)`. Modules must not share mutable static request state. `Program.ModuleInventory` explicitly registers five module types and 35 allowed methods. It drives construction, dispatch ownership and `engine.ping.capabilities`; arbitrary assembly/plugin discovery is not supported. Additional methods must enter that inventory and its consistency regression before integration.
 
 ## Initial methods
 
