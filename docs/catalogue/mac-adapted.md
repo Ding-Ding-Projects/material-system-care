@@ -6,15 +6,15 @@ Intended workspace: **Storage**. Configuration is local and operations follow th
 
 | ID | Required capability | Current status | Limit or next requirement |
 | --- | --- | --- | --- |
-| `mac-adapted.01` | System junk review | unimplemented | Only the useful Windows 11 behavior is in scope. No macOS, Android, companion application or cross-device administration is planned. |
+| `mac-adapted.01` | System junk review | unverified | Only aged current-user temporary files in a server-issued recoverable plan; no browser privacy sweep, system-wide disk cleaner or all-user cleanup. |
 | `mac-adapted.02` | Threat scan handoff | unimplemented | Only the useful Windows 11 behavior is in scope. No macOS, Android, companion application or cross-device administration is planned. |
-| `mac-adapted.03` | Large file review | unimplemented | Only the useful Windows 11 behavior is in scope. No macOS, Android, companion application or cross-device administration is planned. |
-| `mac-adapted.04` | Duplicate finder | unimplemented | Only the useful Windows 11 behavior is in scope. No macOS, Android, companion application or cross-device administration is planned. |
-| `mac-adapted.05` | Startup review | unimplemented | Only the useful Windows 11 behavior is in scope. No macOS, Android, companion application or cross-device administration is planned. |
-| `mac-adapted.06` | Application uninstall | unimplemented | Only the useful Windows 11 behavior is in scope. No macOS, Android, companion application or cross-device administration is planned. |
-| `mac-adapted.07` | Memory pressure review | unimplemented | Only the useful Windows 11 behavior is in scope. No macOS, Android, companion application or cross-device administration is planned. |
+| `mac-adapted.03` | Large file review | unverified | Largest 100 files within a bounded selected-root scan; no deletion or complete all-drive inventory. |
+| `mac-adapted.04` | Duplicate finder | unverified | Bounded selected-folder SHA-256 plus byte-comparison groups; read-only, no automatic duplicate deletion. |
+| `mac-adapted.05` | Startup review | unverified | Current-user HKCU Run string entries only, with original-state journal; no machine entries, startup-folder mutation or scheduler management. |
+| `mac-adapted.06` | Application uninstall | unverified | Exact WinGet ID only with consent; no automatic mapping from registry/AppX records, leftover cleanup or full Uninstaller parity. |
+| `mac-adapted.07` | Memory pressure review | unverified | Process working-set and cumulative CPU records plus same-user interactive graceful-close request. No forced termination, RAM recycling, service mutation or boost guarantee. |
 | `mac-adapted.08` | Photo duplicate review | unimplemented | Only the useful Windows 11 behavior is in scope. No macOS, Android, companion application or cross-device administration is planned. |
-| `mac-adapted.09` | Disk usage map | unimplemented | Only the useful Windows 11 behavior is in scope. No macOS, Android, companion application or cross-device administration is planned. |
+| `mac-adapted.09` | Disk usage map | unimplemented | Supporting process or storage measurements do not implement memory recommendations or a visual disk map. |
 
 ## Configuration and safety
 

@@ -7,13 +7,13 @@ Intended workspace: **Security**. Configuration is local and operations follow t
 | ID | Required capability | Current status | Limit or next requirement |
 | --- | --- | --- | --- |
 | `amc-adapted.01` | Combined maintenance plan | unimplemented | Only the useful Windows 11 behavior is in scope. No macOS, Android, companion application or cross-device administration is planned. |
-| `amc-adapted.02` | Resource pressure review | unimplemented | Only the useful Windows 11 behavior is in scope. No macOS, Android, companion application or cross-device administration is planned. |
+| `amc-adapted.02` | Resource pressure review | unverified | Process working-set and cumulative CPU records plus same-user interactive graceful-close request. No forced termination, RAM recycling, service mutation or boost guarantee. |
 | `amc-adapted.03` | Antivirus handoff | unimplemented | Only the useful Windows 11 behavior is in scope. No macOS, Android, companion application or cross-device administration is planned. |
 | `amc-adapted.04` | Payment risk guidance | unimplemented | Only the useful Windows 11 behavior is in scope. No macOS, Android, companion application or cross-device administration is planned. |
 | `amc-adapted.05` | Phishing warnings | unimplemented | Only the useful Windows 11 behavior is in scope. No macOS, Android, companion application or cross-device administration is planned. |
 | `amc-adapted.06` | Browsing risk review | unimplemented | Only the useful Windows 11 behavior is in scope. No macOS, Android, companion application or cross-device administration is planned. |
 | `amc-adapted.07` | Local security configuration | unimplemented | Only the useful Windows 11 behavior is in scope. No macOS, Android, companion application or cross-device administration is planned. |
-| `amc-adapted.08` | Application management | unimplemented | Only the useful Windows 11 behavior is in scope. No macOS, Android, companion application or cross-device administration is planned. |
+| `amc-adapted.08` | Application management | unverified | Registry and current-user AppX inventory only. Registry IDs are not WinGet IDs; AppX removal is unavailable. |
 | `amc-adapted.09` | Battery report | unimplemented | Only the useful Windows 11 behavior is in scope. No macOS, Android, companion application or cross-device administration is planned. |
 | `amc-adapted.10` | Private file vault | unimplemented | Only the useful Windows 11 behavior is in scope. No macOS, Android, companion application or cross-device administration is planned. |
 | `amc-adapted.11` | Application permission advisor | unimplemented | Only the useful Windows 11 behavior is in scope. No macOS, Android, companion application or cross-device administration is planned. |

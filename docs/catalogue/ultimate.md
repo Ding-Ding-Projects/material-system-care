@@ -6,12 +6,12 @@ Intended workspace: **Security**. Configuration is local and operations follow t
 
 | ID | Required capability | Current status | Limit or next requirement |
 | --- | --- | --- | --- |
-| `ultimate.01` | Quick antivirus scan | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
-| `ultimate.02` | Full antivirus scan | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
+| `ultimate.01` | Quick antivirus scan | unverified | Explicit confirmed/elevated Defender quick or full scan only. Fixtures prove consent/elevation refusal, not live scanning or IObit/Bitdefender detection parity. |
+| `ultimate.02` | Full antivirus scan | unverified | Explicit confirmed/elevated Defender quick or full scan only. Fixtures prove consent/elevation refusal, not live scanning or IObit/Bitdefender detection parity. |
 | `ultimate.03` | Custom antivirus scan | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `ultimate.04` | Explorer scan handoff | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
-| `ultimate.05` | Definition freshness | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
-| `ultimate.06` | Real-time antivirus status | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
+| `ultimate.05` | Definition freshness | unverified | Reports Defender definition and real-time state; no vendor database updater or independent enforcement. |
+| `ultimate.06` | Real-time antivirus status | unverified | Reports Defender definition and real-time state; no vendor database updater or independent enforcement. |
 | `ultimate.07` | Quarantine review | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `ultimate.08` | Threat exclusions | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `ultimate.09` | Scan report export | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |

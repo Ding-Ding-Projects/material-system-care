@@ -6,8 +6,8 @@ Intended workspace: **Applications**. Configuration is local and operations foll
 
 | ID | Required capability | Current status | Limit or next requirement |
 | --- | --- | --- | --- |
-| `updater.01` | Installed version scan | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
-| `updater.02` | Selected application update | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
+| `updater.01` | Installed version scan | unverified | Returns WinGet text output without guessed package records; no normalized per-application update model or vendor database. |
+| `updater.02` | Selected application update | unverified | Exact user-supplied WinGet package ID with consent; fixtures validate identifiers and consent, not actual installation. Current UI registry records cannot supply package IDs. |
 | `updater.03` | Batch application updates | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `updater.04` | Resumable downloads | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `updater.05` | Pre-update restore point | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |

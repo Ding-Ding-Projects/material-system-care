@@ -7,14 +7,14 @@ Intended workspace: **Performance**. Configuration is local and operations follo
 | ID | Required capability | Current status | Limit or next requirement |
 | --- | --- | --- | --- |
 | `asc-speed.01` | Boost profiles | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
-| `asc-speed.02` | Startup entries | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
+| `asc-speed.02` | Startup entries | unverified | Current-user HKCU Run string entries only, with original-state journal; no machine entries, startup-folder mutation or scheduler management. |
 | `asc-speed.03` | Browser startup review | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `asc-speed.04` | Scheduled task review | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
-| `asc-speed.05` | Service review | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
+| `asc-speed.05` | Service review | unverified | Read-only service inventory; no service stop, disable, profile or boost operation. |
 | `asc-speed.06` | Driver handoff | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `asc-speed.07` | Extension handoff | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `asc-speed.08` | Live resource monitor | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
-| `asc-speed.09` | Memory recommendations | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
+| `asc-speed.09` | Memory recommendations | unimplemented | Supporting process or storage measurements do not implement memory recommendations or a visual disk map. |
 
 ## Configuration and safety
 

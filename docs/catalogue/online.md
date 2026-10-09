@@ -16,7 +16,7 @@ Intended workspace: **Tools**. Configuration is local and operations follow the 
 | `online.08` | Gamepad Tester | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `online.09` | Battery Test | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `online.10` | Sens Converter | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
-| `online.11` | eDPI Calculator | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
+| `online.11` | eDPI Calculator | unverified | Validated DPI × sensitivity arithmetic exists in engine; current desktop Tools does not expose this calculator. |
 | `online.12` | Keyboard Latency Test | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `online.13` | Unlock PDF | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `online.14` | Metadata Remover | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
@@ -30,7 +30,7 @@ Intended workspace: **Tools**. Configuration is local and operations follow the 
 | `online.22` | Keyboard Test | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `online.23` | Online Mic Test | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `online.24` | Online Webcam Test | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
-| `online.25` | Online Password Generator | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
+| `online.25` | Online Password Generator | unverified | Cryptographic local generation only; no stored-password reading, password manager or cloud service. UI generation remains uncaptured. |
 | `online.26` | Internet Speed Test | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 
 ## Configuration and safety

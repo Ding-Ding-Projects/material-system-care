@@ -10,11 +10,11 @@ Intended workspace: **Drivers**. Configuration is local and operations follow th
 | `drivers.02` | Missing device drivers | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `drivers.03` | Faulty device diagnostics | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `drivers.04` | Game component inventory | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
-| `drivers.05` | Selected driver updates | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
+| `drivers.05` | Selected driver updates | unverified | Accepts a user-selected signed local INF and respects Windows ranking. No online OEM catalogue, newer-version discovery, UI installation action or verified device change. |
 | `drivers.06` | Batch driver updates | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `drivers.07` | Resumable package download | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `drivers.08` | Restore point creation | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
-| `drivers.09` | Driver backup | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
+| `drivers.09` | Driver backup | unverified | PnPUtil export of a selected driver-store package to a new directory. Fixtures exercise refusal before mutation, not a real backup/restore round trip. |
 | `drivers.10` | Driver restore | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `drivers.11` | Driver rollback | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `drivers.12` | Driver removal | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
@@ -27,7 +27,7 @@ Intended workspace: **Drivers**. Configuration is local and operations follow th
 | `drivers.19` | Display troubleshooting | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `drivers.20` | Missing game components | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `drivers.21` | Incompatible drivers | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
-| `drivers.22` | Hardware information | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
+| `drivers.22` | Hardware information | unverified | Logical processor count, operating-system description, physical-memory state and drive capacities only; no complete motherboard, GPU, sensor or device inventory. |
 | `drivers.23` | Boost profile handoff | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `drivers.24` | Scan priority | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `drivers.25` | Update exclusions | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |

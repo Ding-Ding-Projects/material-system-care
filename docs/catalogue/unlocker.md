@@ -6,7 +6,7 @@ Intended workspace: **Files**. Configuration is local and operations follow the 
 
 | ID | Required capability | Current status | Limit or next requirement |
 | --- | --- | --- | --- |
-| `unlocker.01` | Lock owner diagnostics | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
+| `unlocker.01` | Lock owner diagnostics | unverified | Restart Manager diagnostic reports affected processes; no handle closure, complete handle inventory or unlock mutation. No desktop action is currently linked. |
 | `unlocker.02` | Cooperative file release | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `unlocker.03` | Unlock and delete | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `unlocker.04` | Unlock and rename | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |

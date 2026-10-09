@@ -10,7 +10,7 @@ The structural tests validate the first claim. They intentionally do not turn th
 
 ## Fixed expectations
 
-`tests/coverage/expected-capabilities.json` lists required capability IDs independently of the ledger. `tests/coverage/expected-universal.json` separately hand-enumerates all 104 canonical contract identifiers under public wording, with 69 surface contracts across 26 explicitly named planned surfaces. `surface-completeness.json` therefore holds 1,794 independent surface/contract rows plus 35 delivery requirements. A removed feature cannot disappear merely because runtime discovery no longer finds it. Update these reviewed baselines only for an explicit scope decision and preserve the decision in documentation.
+`tests/coverage/expected-capabilities.json` lists required capability IDs independently of the ledger. `tests/coverage/expected-universal.json` separately hand-enumerates all 104 canonical contract identifiers under public wording, with 69 surface contracts across 27 explicitly named surfaces. `surface-completeness.json` therefore holds 1,863 independent surface/contract rows plus 35 delivery requirements. A removed feature cannot disappear merely because runtime discovery no longer finds it. Update these reviewed baselines only for an explicit scope decision and preserve the decision in documentation.
 
 Surface inventory entries are declared requirements, not evidence that all these routes already exist. Splitting a page or adding a dialog requires a new explicit surface entry and its complete contract rows. The public website cannot borrow desktop evidence, and settings cannot borrow evidence from Home.
 

@@ -6,7 +6,7 @@ Intended workspace: **Applications**. Configuration is local and operations foll
 
 | ID | Required capability | Current status | Limit or next requirement |
 | --- | --- | --- | --- |
-| `uninstaller.01` | Installed application inventory | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
+| `uninstaller.01` | Installed application inventory | unverified | Registry and current-user AppX inventory only. Registry IDs are not WinGet IDs; AppX removal is unavailable. |
 | `uninstaller.02` | Batch uninstall | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `uninstaller.03` | Bundle detection | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `uninstaller.04` | Installation change journal | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
@@ -16,7 +16,7 @@ Intended workspace: **Applications**. Configuration is local and operations foll
 | `uninstaller.08` | Leftover review | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `uninstaller.09` | Uninstall history | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `uninstaller.10` | Application list export | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
-| `uninstaller.11` | Outdated software review | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
+| `uninstaller.11` | Outdated software review | unverified | Returns WinGet text output without guessed package records; no normalized per-application update model or vendor database. |
 | `uninstaller.12` | Redundant application data | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `uninstaller.13` | Application hibernation | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `uninstaller.14` | Permission review | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |

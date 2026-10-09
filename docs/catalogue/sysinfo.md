@@ -6,12 +6,12 @@ Intended workspace: **System**. Configuration is local and operations follow the
 
 | ID | Required capability | Current status | Limit or next requirement |
 | --- | --- | --- | --- |
-| `sysinfo.01` | Hardware inventory | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
-| `sysinfo.02` | Operating system details | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
+| `sysinfo.01` | Hardware inventory | unverified | Logical processor count, operating-system description, physical-memory state and drive capacities only; no complete motherboard, GPU, sensor or device inventory. |
+| `sysinfo.02` | Operating system details | unverified | Operating-system description, live physical-memory usage and drive capacities; no historical telemetry, throughput or sensor dashboard. |
 | `sysinfo.03` | CPU monitoring | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `sysinfo.04` | GPU monitoring | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
-| `sysinfo.05` | Memory monitoring | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
-| `sysinfo.06` | Disk monitoring | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
+| `sysinfo.05` | Memory monitoring | unverified | Operating-system description, live physical-memory usage and drive capacities; no historical telemetry, throughput or sensor dashboard. |
+| `sysinfo.06` | Disk monitoring | unverified | Operating-system description, live physical-memory usage and drive capacities; no historical telemetry, throughput or sensor dashboard. |
 | `sysinfo.07` | Temperature telemetry | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `sysinfo.08` | Hardware alerts | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `sysinfo.09` | System report export | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |

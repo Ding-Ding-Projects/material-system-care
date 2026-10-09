@@ -202,7 +202,8 @@
     "website.home",
     "website.features",
     "website.downloads",
-    "website.settings"
+    "website.settings",
+    "desktop.startup"
   ],
   "notApplicableDelivery": {
     "postman-collections": "The engine protocol uses a local named pipe, not an HTTP API. Add collections if an HTTP provider API is introduced.",
