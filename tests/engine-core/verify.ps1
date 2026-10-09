@@ -25,7 +25,27 @@ try {
     if ($unknown.ok -or $unknown.error.code -ne 'METHOD_NOT_FOUND') { throw 'Unknown operation validation failed.' }
     $snapshot = Invoke-Engine 'system.snapshot' @{}
     if (!$snapshot.ok -or $snapshot.result.cpu.logicalProcessors -lt 1 -or $snapshot.result.memory.totalBytes -lt 1) { throw 'Live measurement failed.' }
-    Write-Output 'PASS: engine core protocol, persistence, history, sensitive-data validation, and live measurements.'
+    $start = [Diagnostics.ProcessStartInfo]::new($Engine)
+    $start.UseShellExecute = $false
+    $start.CreateNoWindow = $true
+    $start.Arguments = '--data-root "' + $fixture + '"'
+    $server = [Diagnostics.Process]::Start($start)
+    try {
+        $sid = [Security.Principal.WindowsIdentity]::GetCurrent().User.Value
+        $pipe = [IO.Pipes.NamedPipeClientStream]::new('.', ('MaterialSystemCare.' + $sid), [IO.Pipes.PipeDirection]::InOut, [IO.Pipes.PipeOptions]::Asynchronous)
+        try {
+            $pipe.Connect(10000)
+            $writer = [IO.StreamWriter]::new($pipe, [Text.UTF8Encoding]::new($false), 1024, $true)
+            $reader = [IO.StreamReader]::new($pipe, [Text.UTF8Encoding]::new($false), $false, 1024, $true)
+            $writer.AutoFlush = $true
+            $writer.WriteLine('{"version":1,"id":"pipe-fixture","method":"engine.ping","params":{}}')
+            $readTask = $reader.ReadLineAsync()
+            if (!$readTask.Wait(10000)) { throw 'Named pipe response timed out.' }
+            $response = $readTask.GetAwaiter().GetResult() | ConvertFrom-Json
+            if (!$response.ok -or $response.id -ne 'pipe-fixture') { throw 'Named pipe roundtrip failed.' }
+        } finally { if ($reader) { $reader.Dispose() }; if ($writer) { $writer.Dispose() }; $pipe.Dispose() }
+    } finally { if (!$server.HasExited) { $server.Kill(); $server.WaitForExit() }; $server.Dispose() }
+    Write-Output 'PASS: 8 engine core groups covering protocol, persistence, history, sensitive-data validation, live measurements, and named pipe transport.'
 } finally {
     if (Test-Path -LiteralPath $fixture) { Remove-Item -LiteralPath $fixture -Recurse -Force }
 }
