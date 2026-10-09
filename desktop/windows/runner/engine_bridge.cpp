@@ -2,10 +2,31 @@
 #include <flutter/json_message_codec.h>
 #include <flutter/standard_method_codec.h>
 #include <sddl.h>
+#include <shobjidl.h>
 #include <array>
 #include <stdexcept>
 
 namespace {
+void Pick(HWND owner, bool directory, std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result) {
+ IFileOpenDialog* dialog=nullptr;
+ HRESULT initialized=CoInitializeEx(nullptr,COINIT_APARTMENTTHREADED);
+ HRESULT status=CoCreateInstance(CLSID_FileOpenDialog,nullptr,CLSCTX_INPROC_SERVER,IID_PPV_ARGS(&dialog));
+ if(FAILED(status)) { result->Error("PICKER_UNAVAILABLE","Native selection dialog is unavailable"); if(SUCCEEDED(initialized)) CoUninitialize(); return; }
+ DWORD options=0; dialog->GetOptions(&options); dialog->SetOptions(options|FOS_FORCEFILESYSTEM|FOS_PATHMUSTEXIST|(directory?FOS_PICKFOLDERS:FOS_FILEMUSTEXIST));
+ status=dialog->Show(owner);
+ if(status==HRESULT_FROM_WIN32(ERROR_CANCELLED)) result->Success();
+ else if(FAILED(status)) result->Error("PICKER_FAILED","Native selection dialog could not complete");
+ else {
+  IShellItem* item=nullptr; PWSTR path=nullptr;
+  if(SUCCEEDED(dialog->GetResult(&item)) && SUCCEEDED(item->GetDisplayName(SIGDN_FILESYSPATH,&path))) {
+   int count=WideCharToMultiByte(CP_UTF8,0,path,-1,nullptr,0,nullptr,nullptr); std::string value(static_cast<size_t>(count),0);
+   WideCharToMultiByte(CP_UTF8,0,path,-1,value.data(),count,nullptr,nullptr); value.pop_back();
+   result->Success(flutter::EncodableValue(value)); CoTaskMemFree(path);
+  } else result->Error("PICKER_FAILED","Selected path is unavailable");
+  if(item) item->Release();
+ }
+ dialog->Release(); if(SUCCEEDED(initialized)) CoUninitialize();
+}
 constexpr size_t kLimit = 4 * 1024 * 1024;
 std::wstring CurrentPipe() {
  HANDLE token=nullptr;
@@ -61,6 +82,7 @@ EngineBridge::EngineBridge(flutter::BinaryMessenger* messenger, HWND window):win
  }
  channel_=std::make_unique<flutter::MethodChannel<flutter::EncodableValue>>(messenger,"material_system_care/engine",&flutter::StandardMethodCodec::GetInstance());
  channel_->SetMethodCallHandler([this](const auto& call, auto result) {
+  if(call.method_name()=="pickFile" || call.method_name()=="pickDirectory") { Pick(window_,call.method_name()=="pickDirectory",std::move(result)); return; }
   if(call.method_name()!="invoke") { result->NotImplemented(); return; }
   const auto* map=call.arguments() ? std::get_if<flutter::EncodableMap>(call.arguments()) : nullptr;
   if(!map) { result->Error("INVALID_ARGUMENT","Expected request map"); return; }
