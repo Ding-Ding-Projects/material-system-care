@@ -17,7 +17,7 @@ function Assert-PackageOutputs([string]$Directory,[string]$Version) {
  try { $actual=([BitConverter]::ToString($algorithm.ComputeHash($stream))).Replace('-','') } finally { $stream.Dispose(); $algorithm.Dispose() }
  if($actual -ne $expectedHash) { throw 'Squirrel release package hash differs from metadata' }
 }
-function Publish-PackageOutputs([string]$Output,$Attempt,[string]$Version) {
+function Publish-PackageOutputs([string]$Output,$Attempt,[string]$Version,[scriptblock]$BeforeFinalRename=$null) {
  Assert-PackageOutputs $Attempt.releases $Version
  $base=[IO.Path]::GetFullPath($Output).TrimEnd('\','/')
  $canonical=Join-Path $base 'releases'; $stage=Join-Path $base ('promotion-'+$Attempt.id); $archive=Join-Path $base ('history\releases-'+$Attempt.id)
@@ -25,10 +25,23 @@ function Publish-PackageOutputs([string]$Output,$Attempt,[string]$Version) {
  New-Item -ItemType Directory -Path $stage | Out-Null
  foreach($name in @('Setup.exe','RELEASES',"MaterialSystemCare-$Version-full.nupkg")) { Copy-Item -LiteralPath (Join-Path $Attempt.releases $name) -Destination (Join-Path $stage $name) }
  Assert-PackageOutputs $stage $Version
- $preserved=$false
+ $expected=@{}
+ foreach($name in @('Setup.exe','RELEASES',"MaterialSystemCare-$Version-full.nupkg")) { $expected[$name]=Get-ContentHash (Join-Path $Attempt.releases $name) }
+ $lock=$null
  try {
-  if(Test-Path $canonical) { New-Item -ItemType Directory -Force (Split-Path $archive) | Out-Null; Move-Item -LiteralPath $canonical -Destination $archive; $preserved=$true }
-  Move-Item -LiteralPath $stage -Destination $canonical
- } catch { if($preserved -and !(Test-Path $canonical)) { Move-Item -LiteralPath $archive -Destination $canonical }; throw }
+  $lock=[IO.File]::Open((Join-Path $base 'promotion.lock'),[IO.FileMode]::OpenOrCreate,[IO.FileAccess]::ReadWrite,[IO.FileShare]::None)
+ } catch { throw 'Another packaging attempt owns canonical promotion; this attempt remains preserved' }
+ $preserved=$false; $installed=$false
+ try {
+  if(Test-Path $canonical) { New-Item -ItemType Directory -Force (Split-Path $archive) | Out-Null; [IO.Directory]::Move($canonical,$archive); $preserved=$true }
+  if($BeforeFinalRename) { & $BeforeFinalRename }
+  [IO.Directory]::Move($stage,$canonical); $installed=$true
+  Assert-PackageOutputs $canonical $Version
+  foreach($name in $expected.Keys) { if((Get-ContentHash (Join-Path $canonical $name)) -ne $expected[$name]) { throw 'Canonical package differs from the validated attempt' } }
+ } catch {
+  if($installed -and (Test-Path $canonical)) { [IO.Directory]::Move($canonical,(Join-Path $base ('failed-promotion-'+$Attempt.id))) }
+  if($preserved -and !(Test-Path $canonical)) { [IO.Directory]::Move($archive,$canonical) }
+  throw
+ } finally { $lock.Dispose() }
  return $canonical
 }

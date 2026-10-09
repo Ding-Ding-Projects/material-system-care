@@ -1,5 +1,6 @@
 $ErrorActionPreference='Stop'
 . "$PSScriptRoot\package-attempt.ps1"
+. "$PSScriptRoot\integrity.ps1"
 $root=Split-Path $PSScriptRoot
 $output=Join-Path $root ('artifacts\package-isolation-'+[guid]::NewGuid().ToString('N'))
 New-Item -ItemType Directory -Force "$output\releases" | Out-Null
@@ -36,4 +37,20 @@ FixtureOutputs $second '0.8.1'
 $rejected=$false
 try { Publish-PackageOutputs $output $second '0.8.1' | Out-Null } catch { $rejected=$true }
 Check ($rejected) 'A package hash mismatch was promoted'
+$third=New-PackageAttempt $output '0.8.1'; FixtureOutputs $third '0.8.1'
+[IO.File]::WriteAllBytes((Join-Path $third.releases 'Setup.exe'),[byte[]](77,90,2))
+$before=Get-ContentHash (Join-Path $canonical 'Setup.exe')
+$lock=[IO.File]::Open((Join-Path $output 'promotion.lock'),[IO.FileMode]::OpenOrCreate,[IO.FileAccess]::ReadWrite,[IO.FileShare]::None)
+$rejected=$false
+try { try { Publish-PackageOutputs $output $third '0.8.1' | Out-Null } catch { $rejected=$true } } finally { $lock.Dispose() }
+Check ($rejected -and (Get-ContentHash (Join-Path $canonical 'Setup.exe')) -eq $before -and (Test-Path (Join-Path $third.releases 'Setup.exe'))) 'Contention changed canonical outputs or lost the distinct-byte attempt'
+$fourth=New-PackageAttempt $output '0.8.1'; FixtureOutputs $fourth '0.8.1'
+[IO.File]::WriteAllBytes((Join-Path $fourth.releases 'Setup.exe'),[byte[]](77,90,3))
+$rejected=$false
+try { Publish-PackageOutputs $output $fourth '0.8.1' { throw 'Injected final rename failure' } | Out-Null } catch { $rejected=$true }
+Check ($rejected -and (Get-ContentHash (Join-Path $canonical 'Setup.exe')) -eq $before) 'Failed promotion did not restore prior canonical bytes'
+$fifth=New-PackageAttempt $output '0.8.1'; FixtureOutputs $fifth '0.8.1'
+[IO.File]::WriteAllBytes((Join-Path $fifth.releases 'Setup.exe'),[byte[]](77,90,4))
+Publish-PackageOutputs $output $fifth '0.8.1' | Out-Null
+Check ((Get-ContentHash (Join-Path $canonical 'Setup.exe')) -eq (Get-ContentHash (Join-Path $fifth.releases 'Setup.exe'))) 'Canonical verification returned another same-version attempt'
 Write-Host "Package attempt isolation: $script:checks passed (synthetic file fixtures, no installer execution)"
