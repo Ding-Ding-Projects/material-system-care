@@ -22,7 +22,7 @@ public sealed class SystemModule : IEngineModule
                 await context.SaveSettingAsync(key.GetString()!, value, cancellationToken); return new { saved = true };
             case "history.list":
                 var limit = 100;
-                if (parameters.TryGetProperty("limit", out var requested) && (!requested.TryGetInt32(out limit) || limit is < 1 or > 1000)) throw new EngineException("INVALID_LIMIT", "History limit must be between 1 and 1000.");
+                if (parameters.TryGetProperty("limit", out var requested) && (requested.ValueKind != JsonValueKind.Number || !requested.TryGetInt32(out limit) || limit is < 1 or > 1000)) throw new EngineException("INVALID_LIMIT", "History limit must be between 1 and 1000.");
                 return new { records = await context.ReadHistoryAsync(limit, cancellationToken), order = "newest-first" };
             default:
                 var memory = new MemoryStatus { Length = (uint)Marshal.SizeOf<MemoryStatus>() };
