@@ -43,7 +43,7 @@ public sealed class StorageModule : IEngineModule
     private static int Number(JsonElement p, string name, int fallback, int min, int max)
     {
         if (!p.TryGetProperty(name, out var value)) return fallback;
-        if (!value.TryGetInt32(out int n) || n < min || n > max) throw new EngineException("INVALID_ARGUMENT", $"{name} is outside its allowed range.");
+        if (value.ValueKind != JsonValueKind.Number || !value.TryGetInt32(out int n) || n < min || n > max) throw new EngineException("INVALID_ARGUMENT", $"{name} is outside its allowed range.");
         return n;
     }
     private static void Confirm(JsonElement p)
@@ -239,7 +239,7 @@ public sealed class StorageModule : IEngineModule
     {
         if (!OperatingSystem.IsWindows()) throw new EngineException("PLATFORM_UNSUPPORTED", "Temporary-file cleanup requires Windows.");
         string root = TempRoot();
-        if (p.TryGetProperty("path", out var selected) && !string.Equals(Path.GetFullPath(selected.GetString() ?? ""), root, StringComparison.OrdinalIgnoreCase))
+        if (p.TryGetProperty("path", out _) && !string.Equals(Path.GetFullPath(Text(p, "path")), root, StringComparison.OrdinalIgnoreCase))
             throw new EngineException("SCOPE_NOT_ALLOWED", "Cleanup accepts only the supported current-user temporary directory.");
         int days = Number(p, "minimumAgeDays", 7, 1, 365);
         var scan = await Task.Run(() => Walk(root, Number(p, "maxEntries", 10000, 1, 20000), ct), ct);
@@ -282,7 +282,7 @@ public sealed class StorageModule : IEngineModule
         string id = Id(p, "planId"), store = Store(c);
         using var operationLock = new FileStream(Path.Combine(store, id + ".lock"), FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
         var plan = await Load<Plan>(Path.Combine(store, id + ".plan.json"), ct);
-        if (plan.Id != id || plan.Targets.Count > 20000 || plan.MinimumAgeDays < 1 || plan.MinimumAgeDays > 365 || plan.CreatedUtc.AddDays(1) < DateTime.UtcNow || !string.Equals(plan.Root, TempRoot(), StringComparison.OrdinalIgnoreCase))
+        if (plan.Id != id || plan.Targets == null || plan.Targets.Count > 1000 || plan.MinimumAgeDays < 1 || plan.MinimumAgeDays > 365 || plan.CreatedUtc.AddDays(1) < DateTime.UtcNow || !string.Equals(plan.Root, TempRoot(), StringComparison.OrdinalIgnoreCase))
             throw new EngineException("PLAN_EXPIRED", "The plan is expired or its approved scope changed. Scan again.");
         string receiptPath = Path.Combine(store, id + ".receipt.json");
         if (File.Exists(receiptPath))
@@ -324,7 +324,7 @@ public sealed class StorageModule : IEngineModule
         using var operationLock = new FileStream(Path.Combine(store, id + ".lock"), FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
         string path = Path.Combine(store, id + ".receipt.json");
         var receipt = await Load<Receipt>(path, ct);
-        if (receipt.Id != id || receipt.Items.Count > 20000) throw new EngineException("INVALID_PLAN", "Invalid recovery record.");
+        if (receipt.Id != id || receipt.Items == null || receipt.Items.Count > 1000) throw new EngineException("INVALID_PLAN", "Invalid recovery record.");
         for (int i = 0; i < receipt.Items.Count; i++)
         {
             if (ct.IsCancellationRequested) break;
