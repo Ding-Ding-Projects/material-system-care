@@ -41,6 +41,8 @@ Final local candidate `fca93588af594290c97612253861d0db05b5c565` passed `build-i
 
 Installer creation and payload integrity are verified locally. Installation, uninstall, update lifecycle and fresh-machine behavior are not verified. No production release has been published. Later documentation-only commits retain this exact producer identity rather than relabelling the build.
 
+Hosted run `37871588366` compiled all targets but Squirrel rejected its four-part `0.1.8.1` version. An exact local root-entrypoint reproduction established the same strict-SemVer exception. The workflow now selects `0.<run_number>.<run_attempt>`, with early full-string, ASCII, leading-zero and 16-bit component validation. Eleven focused version checks passed. Producer receipts now contain the selected version, the desktop prefers that value, and four focused provenance checks passed. The corrected hosted run is pending; its terminal result belongs in issue #1 and discussion #2 without changing this source-bound record.
+
 The wiki clone endpoint returned `Repository not found`, despite wiki being enabled. GitHub Projects discovery lacks `read:project` scope and is skipped. Documentation, issue #1 and discussion #2 retain the factual handoff. Runtime status enrollment is unavailable without its configured ingest credential. No external status delivery is claimed.
 
 ## Next actions

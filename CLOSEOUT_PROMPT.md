@@ -14,4 +14,6 @@ The final integrated candidate fca93588af594290c97612253861d0db05b5c565 passed b
 
 Next: verify the default-branch remote build, continue the 234 unimplemented requirements and remaining universal controls, and obtain the explicitly pending runtime evidence when the permitted route is available. Keep the installer out of production downloads until release readiness is genuinely established. Preserve every task branch/worktree until remote proof, ownership, archive and ancestry requirements permit cleanup. Never delete unfinished work.
 
+Hosted run 37871588366 exposed Squirrel's strict three-part SemVer requirement. The four-part failure was reproduced through the root entrypoint. The corrected workflow uses 0.<run_number>.<run_attempt>, rejects invalid versions early, retains packager diagnostics and records the selected version in both producer receipts. The desktop reads that actual receipt version. Eleven version validation and four provenance checks passed. Verify the corrected local and hosted packaging result; do not treat the previous failed hosted run as green.
+
 Current source is preserved on implementation branches. The record is written before its own commit; the conversation adds the final commit and remote proof. No active goal was created. Do not claim the overall suite complete.
