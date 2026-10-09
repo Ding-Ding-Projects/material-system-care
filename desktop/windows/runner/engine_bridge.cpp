@@ -1,12 +1,31 @@
 #include "engine_bridge.h"
-#include <flutter/json_message_codec.h>
 #include <flutter/standard_method_codec.h>
 #include <sddl.h>
 #include <shobjidl.h>
 #include <array>
 #include <stdexcept>
+#include <sstream>
+#include <iomanip>
+#include <cmath>
 
 namespace {
+std::string Quote(const std::string& text) {
+ std::string out="\""; const char* hex="0123456789abcdef";
+ for(unsigned char c:text) { if(c=='"' || c=='\\') { out+='\\'; out+=static_cast<char>(c); } else if(c<32) { out+="\\u00"; out+=hex[c>>4]; out+=hex[c&15]; } else out+=static_cast<char>(c); }
+ return out+'"';
+}
+std::string Json(const flutter::EncodableValue& value,int depth=0) {
+ if(depth>32) throw std::runtime_error("Request nesting exceeds limit");
+ if(value.IsNull()) return "null";
+ if(auto p=std::get_if<bool>(&value)) return *p?"true":"false";
+ if(auto p=std::get_if<int32_t>(&value)) return std::to_string(*p);
+ if(auto p=std::get_if<int64_t>(&value)) return std::to_string(*p);
+ if(auto p=std::get_if<double>(&value)) { if(!std::isfinite(*p)) throw std::runtime_error("Non-finite request number"); std::ostringstream stream; stream<<std::setprecision(17)<<*p; return stream.str(); }
+ if(auto p=std::get_if<std::string>(&value)) return Quote(*p);
+ if(auto p=std::get_if<flutter::EncodableList>(&value)) { std::string out="["; for(const auto& item:*p) { if(out.size()>1) out+=','; out+=Json(item,depth+1); } return out+']'; }
+ if(auto p=std::get_if<flutter::EncodableMap>(&value)) { std::string out="{"; for(const auto& item:*p) { auto key=std::get_if<std::string>(&item.first); if(!key) throw std::runtime_error("Request object keys must be strings"); if(out.size()>1) out+=','; out+=Quote(*key)+':'+Json(item.second,depth+1); } return out+'}'; }
+ throw std::runtime_error("Unsupported request value");
+}
 void Pick(HWND owner, bool directory, const flutter::EncodableValue* arguments, std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result) {
  IFileOpenDialog* dialog=nullptr;
  HRESULT initialized=CoInitializeEx(nullptr,COINIT_APARTMENTTHREADED);
@@ -109,9 +128,9 @@ EngineBridge::EngineBridge(flutter::BinaryMessenger* messenger, HWND window):win
   const auto* name=method==map->end()?nullptr:std::get_if<std::string>(&method->second);
   if(!name || name->empty() || name->size()>128 || name->find_first_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789._")!=std::string::npos || params==map->end() || !std::holds_alternative<flutter::EncodableMap>(params->second)) { result->Error("INVALID_ARGUMENT","Invalid method or parameters"); return; }
   flutter::EncodableMap request{{flutter::EncodableValue("version"),flutter::EncodableValue(1)},{flutter::EncodableValue("id"),flutter::EncodableValue("desktop")},{flutter::EncodableValue("method"),method->second},{flutter::EncodableValue("params"),params->second}};
-  auto encoded=flutter::JsonMessageCodec::GetInstance().EncodeMessage(flutter::EncodableValue(request));
-  if(!encoded || encoded->size()>kLimit) { result->Error("INVALID_ARGUMENT","Request exceeds limit"); return; }
-  std::string text(encoded->begin(),encoded->end());
+  std::string text;
+  try { text=Json(flutter::EncodableValue(request)); } catch(const std::exception& e) { result->Error("INVALID_ARGUMENT",e.what()); return; }
+  if(text.size()>kLimit) { result->Error("INVALID_ARGUMENT","Request exceeds limit"); return; }
   auto done=std::make_shared<std::atomic<bool>>(false);
   std::thread worker([this,text=std::move(text),result=std::move(result),done]() mutable {
    auto reply=std::make_unique<Reply>(); reply->result=std::move(result);
