@@ -1,5 +1,6 @@
 $ErrorActionPreference='Stop'
 . "$PSScriptRoot\integrity.ps1"
+. "$PSScriptRoot\package-attempt.ps1"
 $root=Split-Path $PSScriptRoot
 $m=Get-Content "$root\build-manifest.json" -Raw | ConvertFrom-Json
 $version=Resolve-BuildVersion $m
@@ -29,16 +30,17 @@ foreach($pair in @(@('build-receipt.json',$m.executable),@('engine\build-receipt
 }
 $out=Join-Path $root 'artifacts\installer'
 New-Item -ItemType Directory -Force $out | Out-Null
-$spec=Join-Path $out 'MaterialSystemCare.nuspec'
+$attempt=New-PackageAttempt $out $version
+$spec=Join-Path $attempt.input 'MaterialSystemCare.nuspec'
 $escaped=[Security.SecurityElement]::Escape($payload)
 @"
 <?xml version="1.0"?>
 <package><metadata><id>MaterialSystemCare</id><version>$version</version><authors>Material System Care contributors</authors><description>Independent local Windows maintenance workspace.</description><title>Material System Care</title></metadata><files><file src="$escaped\**\*" target="lib\net45" /></files></package>
 "@ | Set-Content $spec -Encoding UTF8
-& "$cache\nuget.exe" pack $spec -OutputDirectory $out -NoPackageAnalysis
+& "$cache\nuget.exe" pack $spec -OutputDirectory $attempt.input -NoPackageAnalysis
 if ($LASTEXITCODE) { throw "NuGet pack exit $LASTEXITCODE" }
-$squirrelArguments=@('--releasify',('"{0}"' -f "$out\MaterialSystemCare.$version.nupkg"),'--releaseDir',('"{0}"' -f "$out\releases"),'--no-msi')
-$diagnostics=Join-Path $out 'diagnostics'
+$squirrelArguments=@('--releasify',('"{0}"' -f "$($attempt.input)\MaterialSystemCare.$version.nupkg"),'--releaseDir',('"{0}"' -f $attempt.releases),'--no-msi')
+$diagnostics=$attempt.diagnostics
 New-Item -ItemType Directory -Force $diagnostics | Out-Null
 $started=[DateTime]::UtcNow
 try {
@@ -46,6 +48,8 @@ try {
 } finally {
  $releasifyLog=Join-Path $cache 'squirrel\tools\Squirrel-Releasify.log'
  if((Test-Path $releasifyLog) -and (Get-Item $releasifyLog).LastWriteTimeUtc -ge $started) { Copy-Item $releasifyLog "$diagnostics\squirrel-releasify.log" -Force }
+ New-Item -ItemType Directory -Force "$out\diagnostics" | Out-Null
+ Copy-Item -LiteralPath $diagnostics -Destination (Join-Path "$out\diagnostics" $attempt.id) -Recurse
 }
 if ($null -eq $squirrel.ExitCode) { throw 'Squirrel releasify did not provide a process exit result' }
 if ($squirrel.ExitCode -ne 0) {
@@ -53,8 +57,9 @@ if ($squirrel.ExitCode -ne 0) {
  throw "Squirrel releasify exit $($squirrel.ExitCode); diagnostics retained under artifacts/installer/diagnostics"
 }
 Assert-SourceBinding $root $binding
+$releases=Publish-PackageOutputs $out $attempt $version
 foreach ($required in @('Setup.exe','RELEASES',"MaterialSystemCare-$version-full.nupkg")) {
- $path=Join-Path "$out\releases" $required
+ $path=Join-Path $releases $required
  if (!(Test-Path $path) -or (Get-Item $path).Length -eq 0) { throw "Missing Squirrel output: $required" }
  Write-Host "$required SHA-256 $(Get-ContentHash $path)"
 }
