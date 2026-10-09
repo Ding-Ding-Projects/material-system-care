@@ -1,4 +1,5 @@
 $ErrorActionPreference = 'Stop'
+. "$PSScriptRoot\integrity.ps1"
 $root = Split-Path $PSScriptRoot
 Set-Location $root
 $silent = $env:SILENT -eq '1' -or $args -contains '/s' -or $args -contains '--silent'
@@ -16,7 +17,7 @@ try {
   if ($LASTEXITCODE) { throw "Engine build exit $LASTEXITCODE" }
   $engineExecutable=Join-Path $out 'engine\MaterialSystemCare.Engine.exe'
   if (!(Test-Path $engineExecutable)) { throw 'Published engine executable is missing' }
-  @{source=(& git rev-parse HEAD);manifestSha256=(Get-FileHash build-manifest.json).Hash;executableSha256=(Get-FileHash $engineExecutable).Hash;builtUtc=[DateTime]::UtcNow.ToString('o')} | ConvertTo-Json | Set-Content "$out\engine\build-receipt.json"
+  @{source=(& git rev-parse HEAD);manifestSha256=(Get-ContentHash "$root\build-manifest.json");executableSha256=(Get-ContentHash $engineExecutable);builtUtc=[DateTime]::UtcNow.ToString('o')} | ConvertTo-Json | Set-Content "$out\engine\build-receipt.json"
   if ($args -contains '--verify-engine') {
    foreach ($project in @('tests/engine-core/EngineFixtures.csproj','tests/utilities/Utilities.Tests.csproj','tests/storage/Storage.Tests.csproj','tests/protection/ProtectionFixtures.csproj')) {
     & dotnet run --project $project -c Release
@@ -38,7 +39,7 @@ try {
  if ($target -in @('all','desktop')) {
   $exe=Join-Path $out $m.executable
   if (!(Test-Path $exe)) { throw "Missing executable: $exe" }
-  @{source=(& git rev-parse HEAD);manifestSha256=(Get-FileHash build-manifest.json).Hash;executableSha256=(Get-FileHash $exe).Hash;builtUtc=[DateTime]::UtcNow.ToString('o')} | ConvertTo-Json | Set-Content "$out\build-receipt.json"
+  @{source=(& git rev-parse HEAD);manifestSha256=(Get-ContentHash "$root\build-manifest.json");executableSha256=(Get-ContentHash $exe);builtUtc=[DateTime]::UtcNow.ToString('o')} | ConvertTo-Json | Set-Content "$out\build-receipt.json"
   if (!$silent -and !$run) { $run=(Read-Host 'Build complete. Run application? [y/N]') -eq 'y' }
   if ($run) { Start-Process $exe }
  }

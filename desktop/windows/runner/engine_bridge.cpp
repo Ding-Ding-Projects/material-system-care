@@ -1,12 +1,31 @@
 #include "engine_bridge.h"
-#include <flutter/json_message_codec.h>
 #include <flutter/standard_method_codec.h>
 #include <sddl.h>
 #include <shobjidl.h>
 #include <array>
 #include <stdexcept>
+#include <sstream>
+#include <iomanip>
+#include <cmath>
 
 namespace {
+std::string Quote(const std::string& text) {
+ std::string out="\""; const char* hex="0123456789abcdef";
+ for(unsigned char c:text) { if(c=='"' || c=='\\') { out+='\\'; out+=static_cast<char>(c); } else if(c<32) { out+="\\u00"; out+=hex[c>>4]; out+=hex[c&15]; } else out+=static_cast<char>(c); }
+ return out+'"';
+}
+std::string Json(const flutter::EncodableValue& value,int depth=0) {
+ if(depth>32) throw std::runtime_error("Request nesting exceeds limit");
+ if(value.IsNull()) return "null";
+ if(auto p=std::get_if<bool>(&value)) return *p?"true":"false";
+ if(auto p=std::get_if<int32_t>(&value)) return std::to_string(*p);
+ if(auto p=std::get_if<int64_t>(&value)) return std::to_string(*p);
+ if(auto p=std::get_if<double>(&value)) { if(!std::isfinite(*p)) throw std::runtime_error("Non-finite request number"); std::ostringstream stream; stream<<std::setprecision(17)<<*p; return stream.str(); }
+ if(auto p=std::get_if<std::string>(&value)) return Quote(*p);
+ if(auto p=std::get_if<flutter::EncodableList>(&value)) { std::string out="["; for(const auto& item:*p) { if(out.size()>1) out+=','; out+=Json(item,depth+1); } return out+']'; }
+ if(auto p=std::get_if<flutter::EncodableMap>(&value)) { std::string out="{"; for(const auto& item:*p) { auto key=std::get_if<std::string>(&item.first); if(!key) throw std::runtime_error("Request object keys must be strings"); if(out.size()>1) out+=','; out+=Quote(*key)+':'+Json(item.second,depth+1); } return out+'}'; }
+ throw std::runtime_error("Unsupported request value");
+}
 void Pick(HWND owner, bool directory, const flutter::EncodableValue* arguments, std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result) {
  IFileOpenDialog* dialog=nullptr;
  HRESULT initialized=CoInitializeEx(nullptr,COINIT_APARTMENTTHREADED);
@@ -89,31 +108,38 @@ EngineBridge::EngineBridge(flutter::BinaryMessenger* messenger, HWND window):win
  if(GetFileAttributesW(engine.c_str())!=INVALID_FILE_ATTRIBUTES) {
   STARTUPINFOW startup{}; startup.cb=sizeof(startup); PROCESS_INFORMATION process{};
   std::wstring command=L"\""+engine+L"\"";
-  if(CreateProcessW(engine.c_str(),command.data(),nullptr,nullptr,FALSE,CREATE_NO_WINDOW,nullptr,base.c_str(),&startup,&process)) {
-   CloseHandle(process.hThread); process_=process.hProcess;
+  if(CreateProcessW(engine.c_str(),command.data(),nullptr,nullptr,FALSE,CREATE_NO_WINDOW|CREATE_SUSPENDED,nullptr,base.c_str(),&startup,&process)) {
+   process_=process.hProcess;
    job_=CreateJobObjectW(nullptr,nullptr); JOBOBJECT_EXTENDED_LIMIT_INFORMATION limits{}; limits.BasicLimitInformation.LimitFlags=JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE;
-   if(job_ && SetInformationJobObject(job_,JobObjectExtendedLimitInformation,&limits,sizeof(limits))) AssignProcessToJobObject(job_,process_);
+   if(job_ && SetInformationJobObject(job_,JobObjectExtendedLimitInformation,&limits,sizeof(limits)) && AssignProcessToJobObject(job_,process_)) ResumeThread(process.hThread);
+   else TerminateProcess(process_,1);
+   CloseHandle(process.hThread);
   }
  }
  channel_=std::make_unique<flutter::MethodChannel<flutter::EncodableValue>>(messenger,"material_system_care/engine",&flutter::StandardMethodCodec::GetInstance());
  channel_->SetMethodCallHandler([this](const auto& call, auto result) {
   if(call.method_name()=="pickFile" || call.method_name()=="pickDirectory") { Pick(window_,call.method_name()=="pickDirectory",call.arguments(),std::move(result)); return; }
   if(call.method_name()!="invoke") { result->NotImplemented(); return; }
+  for(auto it=workers_.begin();it!=workers_.end();) { if(*it->done) { it->thread.join(); it=workers_.erase(it); } else ++it; }
+  if(workers_.size()>=16) { result->Error("ENGINE_BUSY","Too many active engine operations"); return; }
   const auto* map=call.arguments() ? std::get_if<flutter::EncodableMap>(call.arguments()) : nullptr;
   if(!map) { result->Error("INVALID_ARGUMENT","Expected request map"); return; }
   auto method=map->find(flutter::EncodableValue("method")); auto params=map->find(flutter::EncodableValue("params"));
   const auto* name=method==map->end()?nullptr:std::get_if<std::string>(&method->second);
   if(!name || name->empty() || name->size()>128 || name->find_first_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789._")!=std::string::npos || params==map->end() || !std::holds_alternative<flutter::EncodableMap>(params->second)) { result->Error("INVALID_ARGUMENT","Invalid method or parameters"); return; }
   flutter::EncodableMap request{{flutter::EncodableValue("version"),flutter::EncodableValue(1)},{flutter::EncodableValue("id"),flutter::EncodableValue("desktop")},{flutter::EncodableValue("method"),method->second},{flutter::EncodableValue("params"),params->second}};
-  auto encoded=flutter::JsonMessageCodec::GetInstance().EncodeMessage(flutter::EncodableValue(request));
-  if(!encoded || encoded->size()>kLimit) { result->Error("INVALID_ARGUMENT","Request exceeds limit"); return; }
-  std::string text(encoded->begin(),encoded->end());
-  workers_.emplace_back([this,text=std::move(text),result=std::move(result)]() mutable {
+  std::string text;
+  try { text=Json(flutter::EncodableValue(request)); } catch(const std::exception& e) { result->Error("INVALID_ARGUMENT",e.what()); return; }
+  if(text.size()>kLimit) { result->Error("INVALID_ARGUMENT","Request exceeds limit"); return; }
+  auto done=std::make_shared<std::atomic<bool>>(false);
+  std::thread worker([this,text=std::move(text),result=std::move(result),done]() mutable {
    auto reply=std::make_unique<Reply>(); reply->result=std::move(result);
    try { reply->text=Exchange(pipe_,text); } catch(const std::exception& e) { reply->error=e.what(); }
    { std::lock_guard<std::mutex> lock(mutex_); replies_.push_back(std::move(reply)); }
    if(!stopping_) PostMessageW(window_,kCompletion,0,0);
+   *done=true;
   });
+  workers_.push_back(Worker{std::move(worker),done});
  });
 }
 void EngineBridge::Complete() {
@@ -123,6 +149,6 @@ void EngineBridge::Complete() {
 EngineBridge::~EngineBridge() {
  stopping_=true; channel_->SetMethodCallHandler(nullptr);
  if(job_) CloseHandle(job_);
- for(auto& worker:workers_) if(worker.joinable()) worker.join();
+ for(auto& worker:workers_) if(worker.thread.joinable()) worker.thread.join();
  Complete(); if(process_) CloseHandle(process_);
 }
