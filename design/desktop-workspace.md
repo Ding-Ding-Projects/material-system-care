@@ -28,3 +28,17 @@ Framework controls retain official hover, focus, press and disabled state layers
 ## Verification tuples
 
 Minimum client area 800 × 600; normal 1280 × 900. Each route must be captured in English, Cantonese and bilingual; light and dark; 100%, 125%, 150% and 200%. Pending, empty, populated, selected, confirmation, unavailable and recovery states need real built captures. No capture or visual parity verdict exists in this source-only handoff.
+
+## Localized rendering and provenance
+
+Product-owned workflow text uses localization.dart for English, Cantonese and bilingual. Literal identifiers, file paths, external errors and factual record values remain verbatim beside localized labels. Version is engine.ping.manifest.version. Updated-at is only engine.ping.buildReceipt.builtUtc, converted to local date/time with seconds and timezone. Missing or invalid provenance is unavailable, never a launch clock.
+
+## Action/state motion inventory
+
+Official Material controls own hover, focus, press, selected and disabled state layers. Workspace enter/exit uses AnimatedSwitcher250ms. Tool editor expansion uses AnimatedSize200ms ease-out-cubic. OperationMotion uses bounded fade/size220ms enter and160ms exit for working/success/error-recovery. Dialog enter/exit/cancel uses Material routes. Floating snackbars use Material appearance/dismissal. Native pickers use operating-system-owned motion. All durations settle at zero under user or operating-system reduced motion; no idle animation loops exist. Indeterminate progress exists only during an actual engine request.
+
+## Live appearance and notifications
+
+Root consumers apply continuous ARGB seed, light/dark theme, density and text scale80%..200%. Settings provides numeric ARGB and alpha/R/G/B sliders. Notification settings affect success/progress visibility; errors remain reviewable. A bounded current-session drawer stores100 operation-name/outcome summaries without user input. It is not persistent notification storage; engine operation history remains separate. Native narration/sound playback is explicitly unavailable.
+
+Eight focused Flutter tests and analyzer pass. Real integrated capture, display-scale layout, bilingual dialogs, keyboard focus and native picker proof remain pending. Tests do not substitute for runtime evidence.
