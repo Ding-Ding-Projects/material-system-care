@@ -8,8 +8,8 @@ $installer = $args -contains '--installer'
 $target = 'all'
 foreach ($arg in $args) { if ($arg -match '^--target=(engine|desktop|site|all)$') { $target=$Matches[1] } }
 try {
- $binding=Get-SourceBinding $root
  & "$PSScriptRoot\bootstrap.ps1" @args
+ $binding=Get-SourceBinding $root
  $m = Get-Content build-manifest.json -Raw | ConvertFrom-Json
  $out = Join-Path $root $m.outputDirectory
  New-Item -ItemType Directory -Force $out | Out-Null
