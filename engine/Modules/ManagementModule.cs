@@ -53,7 +53,7 @@ public sealed class ManagementModule : IEngineModule
 public static class ManagementPolicy
 {
     public static bool ProtectedProcess(string name) => new[] { "system", "registry", "smss", "csrss", "wininit", "winlogon", "services", "lsass", "svchost", "dwm", "explorer", "sihost", "taskhostw", "conhost", "WindowsTerminal", "cmd", "powershell", "pwsh", "codex", "MaterialSystemCare.Engine", "material_system_care", "shutdown", "logoff" }.Contains(name, StringComparer.OrdinalIgnoreCase);
-    public static bool ValidPackageId(string id) => id.Length is > 0 and <= 256 && Regex.IsMatch(id, "^[A-Za-z0-9][A-Za-z0-9._+-]*$", RegexOptions.CultureInvariant);
+    public static bool ValidPackageId(string id) => id.Length is > 0 and <= 256 && Regex.IsMatch(id, @"\A[A-Za-z0-9][A-Za-z0-9._+-]*\z", RegexOptions.CultureInvariant);
     public static string[] PackageArguments(bool upgrade, string id)
     {
         if (!ValidPackageId(id)) throw new ArgumentException("Invalid package identifier.");
