@@ -312,7 +312,7 @@ public sealed class StorageModule : IEngineModule
                 receipt.Items[index] = new(t, destination, "quarantined", null);
             }
             catch (OperationCanceledException) { receipt.Items[index] = new(t, destination, "skipped", "cancelled"); }
-            catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or EngineException) { receipt.Items[index] = new(t, destination, "skipped", ex is EngineException ee ? ee.Code : "FILE_UNAVAILABLE"); }
+            catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or EngineException) { receipt.Items[index] = new(t, destination, "skipped", ex is EngineException ee ? ee.Code : ex.InnerException is System.ComponentModel.Win32Exception native ? "FILE_UNAVAILABLE_WIN32_" + native.NativeErrorCode : "FILE_UNAVAILABLE"); }
             await SaveAtomic(receiptPath, receipt);
         }
         await c.RecordAsync("cleanup.apply", new { receiptId = id, moved = receipt.Items.Count(x => x.State == "quarantined"), planned = plan.Targets.Count }, CancellationToken.None);

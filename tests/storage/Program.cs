@@ -39,6 +39,7 @@ try
     string planId = scanned.GetProperty("planId").GetString()!;
     await File.WriteAllTextAsync(changed, "modified");
     var applied = await Call("cleanup.apply", new { planId, confirmed = true });
+    foreach (var item in applied.GetProperty("items").EnumerateArray()) Console.WriteLine("Fixture cleanup state: " + item.GetProperty("state").GetString() + "; reason: " + item.GetProperty("reason").ToString());
     Check(!File.Exists(old) && File.Exists(changed) && File.Exists(recent) && applied.GetProperty("partial").GetBoolean(), "changed target skipped and eligible target quarantined");
     await File.WriteAllTextAsync(old, "new occupant");
     var conflict = await Call("cleanup.restore", new { receiptId = planId, confirmed = true });
