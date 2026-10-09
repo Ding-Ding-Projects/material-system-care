@@ -27,7 +27,7 @@ public sealed class EngineContext
         DataRoot = Path.GetFullPath(dataRoot ?? Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MaterialSystemCare"));
         Directory.CreateDirectory(DataRoot);
         using var identity = WindowsIdentity.GetCurrent();
-        IsElevated = new WindowsPrincipal(identity).IsInRole(WindowsBuiltInRole.Administrator);
+        IsElevated = !IsFixture && new WindowsPrincipal(identity).IsInRole(WindowsBuiltInRole.Administrator);
         connectionString = new SqliteConnectionStringBuilder { DataSource = Path.Combine(DataRoot, "records.db"), Mode = SqliteOpenMode.ReadWriteCreate }.ToString();
         using var db = Open();
         using var migration = db.CreateCommand();
