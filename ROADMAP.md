@@ -8,6 +8,7 @@
 - [x] Verify the local engine foundation against fixture data and a real source-bound named pipe.
 - [x] Compile the initial native Flutter desktop and Material Web presentation through root entrypoints.
 - [ ] Verify the final integrated source after the independent review repairs.
+- [x] Build integrated candidate `fca93588af594290c97612253861d0db05b5c565` and independently verify its 209 packaged payload files.
 
 ## Working suite
 
@@ -21,6 +22,8 @@
 
 - [ ] Verify the built desktop and its motion, accessibility, scaling, and failure states.
 - [ ] Build and verify the genuine Squirrel.Windows installer and update path.
+- [x] Produce the genuine unsigned Squirrel.Windows installer, full package and RELEASES manifest locally.
+- [ ] Verify actual installation, uninstall and update behavior through the approved runtime route.
 - [ ] Publish the Material website with real captures and verified downloads.
 - [x] Publish the development documentation and capability explorer; verify public delivery and exact About homepage.
 - [ ] Add genuine current screenshots and verified installer downloads when their separate evidence is available.

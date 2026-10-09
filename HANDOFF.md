@@ -29,7 +29,17 @@ The maintainer explicitly retained the strict hidden capture route after its HTT
 
 The website is public at https://material-system-care.azureteal8.chatgpt.site. Deployment `appgdep_6ac84608e6e4819190c8a83fc5589588` succeeded from source snapshot `e890ea1078c595af87ba3738840500ce71200a34`. Anonymous HTTP returned 200 for the home page and linked script/style assets; coverage contained 295 entries. The release manifest remains development with no installer URL. Repository homepage readback matches the live URL exactly.
 
-The first integrated installer attempt passed engine fixtures and bundle negative checks, then failed in Flutter assembly with MSB8066. The earlier hosted build failed its unchanged-source check after generated line endings changed. `.gitattributes` now preserves those three generated files as LF; a diagnostic rebuild remains required. No production release has been published.
+The first integrated installer attempt passed engine fixtures and bundle negative checks, then failed in Flutter assembly with MSB8066. The subsequent verbose root desktop build passed with zero compiler warnings/errors. The earlier hosted build failed its unchanged-source check after generated line endings changed; exact LF attributes now prevent that false source drift.
+
+Final local candidate `fca93588af594290c97612253861d0db05b5c565` passed `build-installer.bat /s`, including engine, desktop, website, compiled Squirrel awareness resource, bundle manifests and packaging. The package's 209 payload files were independently read from the full nupkg and checked against their recorded lengths and SHA-256 values. Both embedded producer receipts matched that candidate. The Squirrel completion race was repaired by waiting for its actual exit code before checking outputs.
+
+| Local output | Bytes | SHA-256 |
+| --- | ---: | --- |
+| Setup.exe | 48,533,504 | `85049f61b08c5ed847feb102b8b0843a167d722483d80134a33a2ff8244d9ca3` |
+| MaterialSystemCare-0.1.0-full.nupkg | 47,821,303 | `37946378ac4ae367b1a570260498166200981e505c24b0e884c3bc4f5e77c4ed` |
+| RELEASES | 88 | `dce6f670b624d1a1f39bed578074208afb2b68564f6e966083f5232fb0fc892f` |
+
+Installer creation and payload integrity are verified locally. Installation, uninstall, update lifecycle and fresh-machine behavior are not verified. No production release has been published. Later documentation-only commits retain this exact producer identity rather than relabelling the build.
 
 The wiki clone endpoint returned `Repository not found`, despite wiki being enabled. GitHub Projects discovery lacks `read:project` scope and is skipped. Documentation, issue #1 and discussion #2 retain the factual handoff. Runtime status enrollment is unavailable without its configured ingest credential. No external status delivery is claimed.
 
