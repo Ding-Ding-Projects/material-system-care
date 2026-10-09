@@ -14,7 +14,7 @@ try
     await File.WriteAllTextAsync(Path.Combine(selected, "c.txt"), "other data");
     var context = new EngineContext(data);
     var module = (StorageModule)Activator.CreateInstance(typeof(StorageModule), System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic, null, [temp], null)!;
-    async Task<JsonElement> Call(string method, object parameters) => JsonSerializer.SerializeToElement(await module.HandleAsync(method, JsonSerializer.SerializeToElement(parameters), context, CancellationToken.None));
+    async Task<JsonElement> Call(string method, object parameters) => JsonSerializer.SerializeToElement(await module.HandleAsync(method, JsonSerializer.SerializeToElement(parameters), context, CancellationToken.None), MaterialSystemCare.Engine.Program.JsonOptions);
     void Check(bool result, string name) { if (!result) throw new Exception(name); Console.WriteLine("PASS " + name); passed++; }
     async Task Reject(string method, object parameters, string code)
     {
