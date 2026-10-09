@@ -6,7 +6,7 @@ $silent = $env:SILENT -eq '1' -or $args -contains '/s' -or $args -contains '--si
 $run = $env:RUN_AFTER_BUILD -eq '1' -or $args -contains '/run' -or $args -contains '--run'
 $installer = $args -contains '--installer'
 $target = 'all'
-foreach ($arg in $args) { if ($arg -match '^--target=(engine|desktop|site|all)$') { $target=$Matches[1] } }
+foreach ($arg in $args) { if ($arg -match '^--target=(engine|desktop|site|native|all)$') { $target=$Matches[1] } }
 try {
  & "$PSScriptRoot\bootstrap.ps1" @args
  $binding=Get-SourceBinding $root
@@ -18,6 +18,14 @@ try {
  $buildNumber=if($versionParts.Count -eq 4) { $versionParts[3] } else { '0' }
  $out = Join-Path $root $m.outputDirectory
  New-Item -ItemType Directory -Force $out | Out-Null
+ if($target -eq 'native' -or $args -contains '--verify-native') {
+  & cmake -S "$PSScriptRoot\native-fixture" -B "$root\artifacts\native-fixture"
+  if($LASTEXITCODE) { throw 'Native fixture configuration failed' }
+  & cmake --build "$root\artifacts\native-fixture" --config Release
+  if($LASTEXITCODE) { throw 'Native fixture compilation failed' }
+  & "$root\artifacts\native-fixture\Release\native_transport_fixture.exe"
+  if($LASTEXITCODE) { throw 'Native fixture verification failed' }
+ }
  if ($target -in @('all','engine')) {
   & dotnet publish $m.engineProject -c Release -r win-x64 --self-contained true "-p:Version=$version" -o "$out\engine"
   if ($LASTEXITCODE) { throw "Engine build exit $LASTEXITCODE" }
