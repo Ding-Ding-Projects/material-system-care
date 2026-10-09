@@ -22,6 +22,8 @@ foreach($pair in @(@('build-receipt.json',$m.executable),@('engine\build-receipt
  $receipt=Get-Content (Join-Path $payload $pair[0]) -Raw | ConvertFrom-Json
  foreach($key in @('source','sourceTree','indexTree','manifestSha256')) { if($receipt.$key -ne $binding[$key]) { throw "Package receipt does not match current source: $($pair[0]) $key" } }
  if($receipt.executableSha256 -ne (Get-ContentHash (Join-Path $payload $pair[1]))) { throw 'Package executable changed after build receipt' }
+ $bundleRoot=if($pair[0] -like 'engine*') { Join-Path $payload 'engine' } else { $payload }
+ Assert-BundleManifest $bundleRoot $receipt.bundleSha256
 }
 $version=if ($env:BUILD_VERSION) { $env:BUILD_VERSION } else { $m.version }
 if ($version -notmatch '^\d+\.\d+\.\d+(\.\d+)?$') { throw 'BUILD_VERSION must be a numeric NuGet version' }

@@ -4,6 +4,35 @@ function Get-ContentHash([string]$Path) {
  try { ([BitConverter]::ToString($algorithm.ComputeHash($stream))).Replace('-','').ToLowerInvariant() }
  finally { $algorithm.Dispose(); $stream.Dispose() }
 }
+function Get-BundleManifest([string]$Directory) {
+ $base=[IO.Path]::GetFullPath($Directory).TrimEnd('\','/')
+ $paths=[string[]]@(Get-ChildItem -LiteralPath $base -Recurse -File | ForEach-Object { $_.FullName.Substring($base.Length+1).Replace('\','/') })
+ [Array]::Sort($paths,[StringComparer]::Ordinal)
+ $files=@(); $projection=[Text.StringBuilder]::new()
+ foreach($relative in $paths) {
+  if($relative -in @('build-receipt.json','bundle-manifest.json','engine/build-receipt.json','engine/bundle-manifest.json')) { continue }
+  $file=Get-Item -LiteralPath (Join-Path $base $relative)
+  for($parent=$file;$parent -and $parent.FullName.Length -ge $base.Length;) { if(($parent.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0) { throw 'Reparse points cannot enter a produced bundle' }; $parent=if($parent -is [IO.DirectoryInfo]) { $parent.Parent } else { $parent.Directory } }
+  $hash=Get-ContentHash $file.FullName
+  $files+=@([ordered]@{path=$relative;bytes=$file.Length;sha256=$hash})
+  [void]$projection.Append($relative).Append([char]0).Append($file.Length.ToString([Globalization.CultureInfo]::InvariantCulture)).Append([char]0).Append($hash).Append("`n")
+ }
+ $algorithm=[Security.Cryptography.SHA256]::Create()
+ try { $digest=([BitConverter]::ToString($algorithm.ComputeHash([Text.Encoding]::UTF8.GetBytes($projection.ToString())))).Replace('-','').ToLowerInvariant() } finally { $algorithm.Dispose() }
+ return [ordered]@{schemaVersion=1;bundleSha256=$digest;files=$files}
+}
+function Write-BundleManifest([string]$Directory) {
+ $manifest=Get-BundleManifest $Directory
+ $manifest | ConvertTo-Json -Depth 6 | Set-Content (Join-Path $Directory 'bundle-manifest.json')
+ return $manifest.bundleSha256
+}
+function Assert-BundleManifest([string]$Directory,[string]$Expected) {
+ $recorded=Get-Content (Join-Path $Directory 'bundle-manifest.json') -Raw | ConvertFrom-Json
+ $actual=Get-BundleManifest $Directory
+ if($recorded.schemaVersion -ne 1 -or $recorded.bundleSha256 -ne $Expected -or $actual.bundleSha256 -ne $Expected) { throw 'Bundle contents changed after production receipt' }
+ if(@($recorded.files).Count -ne @($actual.files).Count) { throw 'Bundle manifest omits produced files' }
+ for($i=0;$i -lt @($actual.files).Count;$i++) { foreach($key in @('path','bytes','sha256')) { if($recorded.files[$i].$key -ne $actual.files[$i][$key]) { throw 'Bundle manifest entries differ from produced files' } } }
+}
 function Get-SourceBinding([string]$Root) {
  $dirty=& git -C $Root status --porcelain
  if ($LASTEXITCODE -ne 0) { throw 'Cannot read source status' }
