@@ -1,0 +1,1817 @@
+{
+  "inventoryVersion": "2026-10-08.1",
+  "families": {
+    "asc-care": [
+      "asc-care.01",
+      "asc-care.02",
+      "asc-care.03",
+      "asc-care.04",
+      "asc-care.05",
+      "asc-care.06",
+      "asc-care.07",
+      "asc-care.08",
+      "asc-care.09",
+      "asc-care.10",
+      "asc-care.11",
+      "asc-care.12",
+      "asc-care.13",
+      "asc-care.14",
+      "asc-care.15",
+      "asc-care.16",
+      "asc-care.17",
+      "asc-care.18",
+      "asc-care.19",
+      "asc-care.20"
+    ],
+    "asc-speed": [
+      "asc-speed.01",
+      "asc-speed.02",
+      "asc-speed.03",
+      "asc-speed.04",
+      "asc-speed.05",
+      "asc-speed.06",
+      "asc-speed.07",
+      "asc-speed.08",
+      "asc-speed.09"
+    ],
+    "asc-protect": [
+      "asc-protect.01",
+      "asc-protect.02",
+      "asc-protect.03",
+      "asc-protect.04",
+      "asc-protect.05",
+      "asc-protect.06",
+      "asc-protect.07",
+      "asc-protect.08",
+      "asc-protect.09"
+    ],
+    "asc-toolbox": [
+      "asc-toolbox.01",
+      "asc-toolbox.02",
+      "asc-toolbox.03",
+      "asc-toolbox.04",
+      "asc-toolbox.05",
+      "asc-toolbox.06",
+      "asc-toolbox.07",
+      "asc-toolbox.08",
+      "asc-toolbox.09",
+      "asc-toolbox.10",
+      "asc-toolbox.11",
+      "asc-toolbox.12",
+      "asc-toolbox.13",
+      "asc-toolbox.14",
+      "asc-toolbox.15",
+      "asc-toolbox.16",
+      "asc-toolbox.17",
+      "asc-toolbox.18",
+      "asc-toolbox.19",
+      "asc-toolbox.20",
+      "asc-toolbox.21",
+      "asc-toolbox.22",
+      "asc-toolbox.23",
+      "asc-toolbox.24"
+    ],
+    "ultimate": [
+      "ultimate.01",
+      "ultimate.02",
+      "ultimate.03",
+      "ultimate.04",
+      "ultimate.05",
+      "ultimate.06",
+      "ultimate.07",
+      "ultimate.08",
+      "ultimate.09",
+      "ultimate.10"
+    ],
+    "drivers": [
+      "drivers.01",
+      "drivers.02",
+      "drivers.03",
+      "drivers.04",
+      "drivers.05",
+      "drivers.06",
+      "drivers.07",
+      "drivers.08",
+      "drivers.09",
+      "drivers.10",
+      "drivers.11",
+      "drivers.12",
+      "drivers.13",
+      "drivers.14",
+      "drivers.15",
+      "drivers.16",
+      "drivers.17",
+      "drivers.18",
+      "drivers.19",
+      "drivers.20",
+      "drivers.21",
+      "drivers.22",
+      "drivers.23",
+      "drivers.24",
+      "drivers.25"
+    ],
+    "malware": [
+      "malware.01",
+      "malware.02",
+      "malware.03",
+      "malware.04",
+      "malware.05",
+      "malware.06",
+      "malware.07",
+      "malware.08",
+      "malware.09",
+      "malware.10",
+      "malware.11",
+      "malware.12",
+      "malware.13",
+      "malware.14",
+      "malware.15",
+      "malware.16",
+      "malware.17",
+      "malware.18",
+      "malware.19",
+      "malware.20",
+      "malware.21",
+      "malware.22",
+      "malware.23",
+      "malware.24",
+      "malware.25",
+      "malware.26",
+      "malware.27",
+      "malware.28",
+      "malware.29",
+      "malware.30"
+    ],
+    "uninstaller": [
+      "uninstaller.01",
+      "uninstaller.02",
+      "uninstaller.03",
+      "uninstaller.04",
+      "uninstaller.05",
+      "uninstaller.06",
+      "uninstaller.07",
+      "uninstaller.08",
+      "uninstaller.09",
+      "uninstaller.10",
+      "uninstaller.11",
+      "uninstaller.12",
+      "uninstaller.13",
+      "uninstaller.14",
+      "uninstaller.15",
+      "uninstaller.16",
+      "uninstaller.17",
+      "uninstaller.18",
+      "uninstaller.19",
+      "uninstaller.20",
+      "uninstaller.21",
+      "uninstaller.22",
+      "uninstaller.23",
+      "uninstaller.24",
+      "uninstaller.25",
+      "uninstaller.26",
+      "uninstaller.27",
+      "uninstaller.28",
+      "uninstaller.29",
+      "uninstaller.30",
+      "uninstaller.31",
+      "uninstaller.32"
+    ],
+    "updater": [
+      "updater.01",
+      "updater.02",
+      "updater.03",
+      "updater.04",
+      "updater.05",
+      "updater.06",
+      "updater.07",
+      "updater.08",
+      "updater.09",
+      "updater.10"
+    ],
+    "sysinfo": [
+      "sysinfo.01",
+      "sysinfo.02",
+      "sysinfo.03",
+      "sysinfo.04",
+      "sysinfo.05",
+      "sysinfo.06",
+      "sysinfo.07",
+      "sysinfo.08",
+      "sysinfo.09"
+    ],
+    "folder": [
+      "folder.01",
+      "folder.02",
+      "folder.03",
+      "folder.04",
+      "folder.05",
+      "folder.06",
+      "folder.07",
+      "folder.08"
+    ],
+    "defrag": [
+      "defrag.01",
+      "defrag.02",
+      "defrag.03",
+      "defrag.04",
+      "defrag.05",
+      "defrag.06",
+      "defrag.07",
+      "defrag.08",
+      "defrag.09",
+      "defrag.10",
+      "defrag.11",
+      "defrag.12",
+      "defrag.13",
+      "defrag.14",
+      "defrag.15",
+      "defrag.16",
+      "defrag.17",
+      "defrag.18",
+      "defrag.19",
+      "defrag.20",
+      "defrag.21",
+      "defrag.22",
+      "defrag.23"
+    ],
+    "undelete": [
+      "undelete.01",
+      "undelete.02",
+      "undelete.03",
+      "undelete.04",
+      "undelete.05",
+      "undelete.06"
+    ],
+    "unlocker": [
+      "unlocker.01",
+      "unlocker.02",
+      "unlocker.03",
+      "unlocker.04",
+      "unlocker.05",
+      "unlocker.06",
+      "unlocker.07"
+    ],
+    "password": [
+      "password.01",
+      "password.02",
+      "password.03",
+      "password.04"
+    ],
+    "start": [
+      "start.01",
+      "start.02",
+      "start.03",
+      "start.04",
+      "start.05",
+      "start.06",
+      "start.07",
+      "start.08",
+      "start.09",
+      "start.10"
+    ],
+    "metro": [
+      "metro.01",
+      "metro.02",
+      "metro.03",
+      "metro.04",
+      "metro.05",
+      "metro.06",
+      "metro.07",
+      "metro.08"
+    ],
+    "mac-adapted": [
+      "mac-adapted.01",
+      "mac-adapted.02",
+      "mac-adapted.03",
+      "mac-adapted.04",
+      "mac-adapted.05",
+      "mac-adapted.06",
+      "mac-adapted.07",
+      "mac-adapted.08",
+      "mac-adapted.09"
+    ],
+    "amc-adapted": [
+      "amc-adapted.01",
+      "amc-adapted.02",
+      "amc-adapted.03",
+      "amc-adapted.04",
+      "amc-adapted.05",
+      "amc-adapted.06",
+      "amc-adapted.07",
+      "amc-adapted.08",
+      "amc-adapted.09",
+      "amc-adapted.10",
+      "amc-adapted.11",
+      "amc-adapted.12",
+      "amc-adapted.13",
+      "amc-adapted.14",
+      "amc-adapted.15",
+      "amc-adapted.16"
+    ],
+    "online": [
+      "online.01",
+      "online.02",
+      "online.03",
+      "online.04",
+      "online.05",
+      "online.06",
+      "online.07",
+      "online.08",
+      "online.09",
+      "online.10",
+      "online.11",
+      "online.12",
+      "online.13",
+      "online.14",
+      "online.15",
+      "online.16",
+      "online.17",
+      "online.18",
+      "online.19",
+      "online.20",
+      "online.21",
+      "online.22",
+      "online.23",
+      "online.24",
+      "online.25",
+      "online.26"
+    ]
+  },
+  "definitions": {
+    "asc-care.01": {
+      "referenceCapability": "Privacy traces",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-care.02": {
+      "referenceCapability": "Temporary files",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-care.03": {
+      "referenceCapability": "Broken shortcuts",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-care.04": {
+      "referenceCapability": "Registry review",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-care.05": {
+      "referenceCapability": "System settings review",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-care.06": {
+      "referenceCapability": "Network diagnostics",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-care.07": {
+      "referenceCapability": "Registry compaction",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "outside-release-boundary"
+    },
+    "asc-care.08": {
+      "referenceCapability": "Disk optimization",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-care.09": {
+      "referenceCapability": "Antivirus status",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-care.10": {
+      "referenceCapability": "Firewall status",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-care.11": {
+      "referenceCapability": "Device health",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-care.12": {
+      "referenceCapability": "Application health",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-care.13": {
+      "referenceCapability": "Spyware scan",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-care.14": {
+      "referenceCapability": "Security configuration",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-care.15": {
+      "referenceCapability": "Windows patches",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-care.16": {
+      "referenceCapability": "Disk integrity",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-care.17": {
+      "referenceCapability": "Manual scan selection",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-care.18": {
+      "referenceCapability": "Adaptive scan recommendations",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-care.19": {
+      "referenceCapability": "Scan exclusions",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-care.20": {
+      "referenceCapability": "Recovery history",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-speed.01": {
+      "referenceCapability": "Boost profiles",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-speed.02": {
+      "referenceCapability": "Startup entries",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-speed.03": {
+      "referenceCapability": "Browser startup review",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-speed.04": {
+      "referenceCapability": "Scheduled task review",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-speed.05": {
+      "referenceCapability": "Service review",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-speed.06": {
+      "referenceCapability": "Driver handoff",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-speed.07": {
+      "referenceCapability": "Extension handoff",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-speed.08": {
+      "referenceCapability": "Live resource monitor",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-speed.09": {
+      "referenceCapability": "Memory recommendations",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-protect.01": {
+      "referenceCapability": "Protected file vault",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-protect.02": {
+      "referenceCapability": "Sensitive-data access review",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-protect.03": {
+      "referenceCapability": "Browser fingerprint controls",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-protect.04": {
+      "referenceCapability": "Tracking-data cleanup",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-protect.05": {
+      "referenceCapability": "Email risk warnings",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-protect.06": {
+      "referenceCapability": "Advertisement filtering",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-protect.07": {
+      "referenceCapability": "URL reputation",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-protect.08": {
+      "referenceCapability": "Homepage change alerts",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-protect.09": {
+      "referenceCapability": "Security settings handoff",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-toolbox.01": {
+      "referenceCapability": "Smart RAM",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-toolbox.02": {
+      "referenceCapability": "Internet Booster",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-toolbox.03": {
+      "referenceCapability": "Program Deactivator",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-toolbox.04": {
+      "referenceCapability": "MyWin10",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "adaptation-required"
+    },
+    "asc-toolbox.05": {
+      "referenceCapability": "Registry Defrag",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "outside-release-boundary"
+    },
+    "asc-toolbox.06": {
+      "referenceCapability": "System Information",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-toolbox.07": {
+      "referenceCapability": "Auto Shutdown",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "outside-release-boundary"
+    },
+    "asc-toolbox.08": {
+      "referenceCapability": "Portable Version",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-toolbox.09": {
+      "referenceCapability": "Win Fix",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-toolbox.10": {
+      "referenceCapability": "FaceID",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-toolbox.11": {
+      "referenceCapability": "Context Menu Manager",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-toolbox.12": {
+      "referenceCapability": "Disk Doctor",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-toolbox.13": {
+      "referenceCapability": "System Control",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-toolbox.14": {
+      "referenceCapability": "Undelete",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-toolbox.15": {
+      "referenceCapability": "DNS Protector",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-toolbox.16": {
+      "referenceCapability": "Default Program",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-toolbox.17": {
+      "referenceCapability": "Registry Cleaner",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-toolbox.18": {
+      "referenceCapability": "Disk Cleaner",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-toolbox.19": {
+      "referenceCapability": "File Shredder",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-toolbox.20": {
+      "referenceCapability": "Empty Folder Scanner",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-toolbox.21": {
+      "referenceCapability": "Shortcut Fixer",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-toolbox.22": {
+      "referenceCapability": "Cloned File Scanner",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-toolbox.23": {
+      "referenceCapability": "Large File Finder",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "asc-toolbox.24": {
+      "referenceCapability": "Process Manager",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "ultimate.01": {
+      "referenceCapability": "Quick antivirus scan",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-ultimate-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "ultimate.02": {
+      "referenceCapability": "Full antivirus scan",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-ultimate-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "ultimate.03": {
+      "referenceCapability": "Custom antivirus scan",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-ultimate-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "ultimate.04": {
+      "referenceCapability": "Explorer scan handoff",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-ultimate-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "ultimate.05": {
+      "referenceCapability": "Definition freshness",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-ultimate-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "ultimate.06": {
+      "referenceCapability": "Real-time antivirus status",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-ultimate-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "ultimate.07": {
+      "referenceCapability": "Quarantine review",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-ultimate-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "ultimate.08": {
+      "referenceCapability": "Threat exclusions",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-ultimate-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "ultimate.09": {
+      "referenceCapability": "Scan report export",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-ultimate-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "ultimate.10": {
+      "referenceCapability": "Antivirus engine integration",
+      "officialSource": "https://www.iobit.com/product-manuals/asc-ultimate-help/",
+      "scope": "engine-unavailable"
+    },
+    "drivers.01": {
+      "referenceCapability": "Outdated driver discovery",
+      "officialSource": "https://www.iobit.com/product-manuals/db-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "drivers.02": {
+      "referenceCapability": "Missing device drivers",
+      "officialSource": "https://www.iobit.com/product-manuals/db-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "drivers.03": {
+      "referenceCapability": "Faulty device diagnostics",
+      "officialSource": "https://www.iobit.com/product-manuals/db-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "drivers.04": {
+      "referenceCapability": "Game component inventory",
+      "officialSource": "https://www.iobit.com/product-manuals/db-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "drivers.05": {
+      "referenceCapability": "Selected driver updates",
+      "officialSource": "https://www.iobit.com/product-manuals/db-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "drivers.06": {
+      "referenceCapability": "Batch driver updates",
+      "officialSource": "https://www.iobit.com/product-manuals/db-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "drivers.07": {
+      "referenceCapability": "Resumable package download",
+      "officialSource": "https://www.iobit.com/product-manuals/db-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "drivers.08": {
+      "referenceCapability": "Restore point creation",
+      "officialSource": "https://www.iobit.com/product-manuals/db-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "drivers.09": {
+      "referenceCapability": "Driver backup",
+      "officialSource": "https://www.iobit.com/product-manuals/db-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "drivers.10": {
+      "referenceCapability": "Driver restore",
+      "officialSource": "https://www.iobit.com/product-manuals/db-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "drivers.11": {
+      "referenceCapability": "Driver rollback",
+      "officialSource": "https://www.iobit.com/product-manuals/db-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "drivers.12": {
+      "referenceCapability": "Driver removal",
+      "officialSource": "https://www.iobit.com/product-manuals/db-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "drivers.13": {
+      "referenceCapability": "Offline driver packages",
+      "officialSource": "https://www.iobit.com/product-manuals/db-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "drivers.14": {
+      "referenceCapability": "Idle update scheduling",
+      "officialSource": "https://www.iobit.com/product-manuals/db-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "drivers.15": {
+      "referenceCapability": "Audio troubleshooting",
+      "officialSource": "https://www.iobit.com/product-manuals/db-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "drivers.16": {
+      "referenceCapability": "Device problem codes",
+      "officialSource": "https://www.iobit.com/product-manuals/db-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "drivers.17": {
+      "referenceCapability": "Disconnected device review",
+      "officialSource": "https://www.iobit.com/product-manuals/db-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "drivers.18": {
+      "referenceCapability": "Network troubleshooting",
+      "officialSource": "https://www.iobit.com/product-manuals/db-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "drivers.19": {
+      "referenceCapability": "Display troubleshooting",
+      "officialSource": "https://www.iobit.com/product-manuals/db-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "drivers.20": {
+      "referenceCapability": "Missing game components",
+      "officialSource": "https://www.iobit.com/product-manuals/db-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "drivers.21": {
+      "referenceCapability": "Incompatible drivers",
+      "officialSource": "https://www.iobit.com/product-manuals/db-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "drivers.22": {
+      "referenceCapability": "Hardware information",
+      "officialSource": "https://www.iobit.com/product-manuals/db-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "drivers.23": {
+      "referenceCapability": "Boost profile handoff",
+      "officialSource": "https://www.iobit.com/product-manuals/db-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "drivers.24": {
+      "referenceCapability": "Scan priority",
+      "officialSource": "https://www.iobit.com/product-manuals/db-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "drivers.25": {
+      "referenceCapability": "Update exclusions",
+      "officialSource": "https://www.iobit.com/product-manuals/db-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "malware.01": {
+      "referenceCapability": "Smart threat scan",
+      "officialSource": "https://www.iobit.com/product-manuals/imf-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "malware.02": {
+      "referenceCapability": "Full threat scan",
+      "officialSource": "https://www.iobit.com/product-manuals/imf-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "malware.03": {
+      "referenceCapability": "Custom threat scan",
+      "officialSource": "https://www.iobit.com/product-manuals/imf-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "malware.04": {
+      "referenceCapability": "Explorer threat scan",
+      "officialSource": "https://www.iobit.com/product-manuals/imf-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "malware.05": {
+      "referenceCapability": "Scheduled threat scan",
+      "officialSource": "https://www.iobit.com/product-manuals/imf-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "malware.06": {
+      "referenceCapability": "Threat database updates",
+      "officialSource": "https://www.iobit.com/product-manuals/imf-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "malware.07": {
+      "referenceCapability": "Threat quarantine",
+      "officialSource": "https://www.iobit.com/product-manuals/imf-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "malware.08": {
+      "referenceCapability": "Threat ignore list",
+      "officialSource": "https://www.iobit.com/product-manuals/imf-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "malware.09": {
+      "referenceCapability": "False-positive reporting",
+      "officialSource": "https://www.iobit.com/product-manuals/imf-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "malware.10": {
+      "referenceCapability": "Browser homepage monitoring",
+      "officialSource": "https://www.iobit.com/product-manuals/imf-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "malware.11": {
+      "referenceCapability": "Tracking-data review",
+      "officialSource": "https://www.iobit.com/product-manuals/imf-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "malware.12": {
+      "referenceCapability": "Downloaded-file scanning",
+      "officialSource": "https://www.iobit.com/product-manuals/imf-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "malware.13": {
+      "referenceCapability": "DNS configuration monitoring",
+      "officialSource": "https://www.iobit.com/product-manuals/imf-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "malware.14": {
+      "referenceCapability": "URL warnings",
+      "officialSource": "https://www.iobit.com/product-manuals/imf-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "malware.15": {
+      "referenceCapability": "Advertisement controls",
+      "officialSource": "https://www.iobit.com/product-manuals/imf-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "malware.16": {
+      "referenceCapability": "Email warnings",
+      "officialSource": "https://www.iobit.com/product-manuals/imf-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "malware.17": {
+      "referenceCapability": "Network threat monitoring",
+      "officialSource": "https://www.iobit.com/product-manuals/imf-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "malware.18": {
+      "referenceCapability": "File execution monitoring",
+      "officialSource": "https://www.iobit.com/product-manuals/imf-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "malware.19": {
+      "referenceCapability": "Startup monitoring",
+      "officialSource": "https://www.iobit.com/product-manuals/imf-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "malware.20": {
+      "referenceCapability": "Process threat monitoring",
+      "officialSource": "https://www.iobit.com/product-manuals/imf-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "malware.21": {
+      "referenceCapability": "Boot-record protection",
+      "officialSource": "https://www.iobit.com/product-manuals/imf-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "malware.22": {
+      "referenceCapability": "Camera access monitoring",
+      "officialSource": "https://www.iobit.com/product-manuals/imf-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "malware.23": {
+      "referenceCapability": "USB threat monitoring",
+      "officialSource": "https://www.iobit.com/product-manuals/imf-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "malware.24": {
+      "referenceCapability": "Behavior monitoring",
+      "officialSource": "https://www.iobit.com/product-manuals/imf-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "malware.25": {
+      "referenceCapability": "Browser password protection",
+      "officialSource": "https://www.iobit.com/product-manuals/imf-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "malware.26": {
+      "referenceCapability": "Ransomware protection",
+      "officialSource": "https://www.iobit.com/product-manuals/imf-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "malware.27": {
+      "referenceCapability": "Protected data safe box",
+      "officialSource": "https://www.iobit.com/product-manuals/imf-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "malware.28": {
+      "referenceCapability": "IObit engine integration",
+      "officialSource": "https://www.iobit.com/product-manuals/imf-help/",
+      "scope": "engine-unavailable"
+    },
+    "malware.29": {
+      "referenceCapability": "Bitdefender engine integration",
+      "officialSource": "https://www.iobit.com/product-manuals/imf-help/",
+      "scope": "engine-unavailable"
+    },
+    "malware.30": {
+      "referenceCapability": "Protection history",
+      "officialSource": "https://www.iobit.com/product-manuals/imf-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "uninstaller.01": {
+      "referenceCapability": "Installed application inventory",
+      "officialSource": "https://www.iobit.com/product-manuals/iu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "uninstaller.02": {
+      "referenceCapability": "Batch uninstall",
+      "officialSource": "https://www.iobit.com/product-manuals/iu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "uninstaller.03": {
+      "referenceCapability": "Bundle detection",
+      "officialSource": "https://www.iobit.com/product-manuals/iu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "uninstaller.04": {
+      "referenceCapability": "Installation change journal",
+      "officialSource": "https://www.iobit.com/product-manuals/iu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "uninstaller.05": {
+      "referenceCapability": "Large application filter",
+      "officialSource": "https://www.iobit.com/product-manuals/iu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "uninstaller.06": {
+      "referenceCapability": "Infrequent application filter",
+      "officialSource": "https://www.iobit.com/product-manuals/iu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "uninstaller.07": {
+      "referenceCapability": "Application repair",
+      "officialSource": "https://www.iobit.com/product-manuals/iu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "uninstaller.08": {
+      "referenceCapability": "Leftover review",
+      "officialSource": "https://www.iobit.com/product-manuals/iu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "uninstaller.09": {
+      "referenceCapability": "Uninstall history",
+      "officialSource": "https://www.iobit.com/product-manuals/iu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "uninstaller.10": {
+      "referenceCapability": "Application list export",
+      "officialSource": "https://www.iobit.com/product-manuals/iu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "uninstaller.11": {
+      "referenceCapability": "Outdated software review",
+      "officialSource": "https://www.iobit.com/product-manuals/iu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "uninstaller.12": {
+      "referenceCapability": "Redundant application data",
+      "officialSource": "https://www.iobit.com/product-manuals/iu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "uninstaller.13": {
+      "referenceCapability": "Application hibernation",
+      "officialSource": "https://www.iobit.com/product-manuals/iu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "uninstaller.14": {
+      "referenceCapability": "Permission review",
+      "officialSource": "https://www.iobit.com/product-manuals/iu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "uninstaller.15": {
+      "referenceCapability": "Notification review",
+      "officialSource": "https://www.iobit.com/product-manuals/iu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "uninstaller.16": {
+      "referenceCapability": "Broken uninstall recovery",
+      "officialSource": "https://www.iobit.com/product-manuals/iu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "uninstaller.17": {
+      "referenceCapability": "Installer file review",
+      "officialSource": "https://www.iobit.com/product-manuals/iu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "uninstaller.18": {
+      "referenceCapability": "Malicious extension review",
+      "officialSource": "https://www.iobit.com/product-manuals/iu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "uninstaller.19": {
+      "referenceCapability": "Browser extension inventory",
+      "officialSource": "https://www.iobit.com/product-manuals/iu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "uninstaller.20": {
+      "referenceCapability": "Extension removal handoff",
+      "officialSource": "https://www.iobit.com/product-manuals/iu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "uninstaller.21": {
+      "referenceCapability": "Extension ratings",
+      "officialSource": "https://www.iobit.com/product-manuals/iu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "uninstaller.22": {
+      "referenceCapability": "Packaged application removal",
+      "officialSource": "https://www.iobit.com/product-manuals/iu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "uninstaller.23": {
+      "referenceCapability": "Packaged application ratings",
+      "officialSource": "https://www.iobit.com/product-manuals/iu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "uninstaller.24": {
+      "referenceCapability": "Automatic install monitoring",
+      "officialSource": "https://www.iobit.com/product-manuals/iu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "uninstaller.25": {
+      "referenceCapability": "Manual install monitoring",
+      "officialSource": "https://www.iobit.com/product-manuals/iu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "uninstaller.26": {
+      "referenceCapability": "Window-target uninstall",
+      "officialSource": "https://www.iobit.com/product-manuals/iu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "uninstaller.27": {
+      "referenceCapability": "Force uninstall review",
+      "officialSource": "https://www.iobit.com/product-manuals/iu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "uninstaller.28": {
+      "referenceCapability": "Stubborn program review",
+      "officialSource": "https://www.iobit.com/product-manuals/iu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "uninstaller.29": {
+      "referenceCapability": "File shredding",
+      "officialSource": "https://www.iobit.com/product-manuals/iu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "uninstaller.30": {
+      "referenceCapability": "Application relocation",
+      "officialSource": "https://www.iobit.com/product-manuals/iu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "uninstaller.31": {
+      "referenceCapability": "Bloatware review",
+      "officialSource": "https://www.iobit.com/product-manuals/iu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "uninstaller.32": {
+      "referenceCapability": "Windows update removal",
+      "officialSource": "https://www.iobit.com/product-manuals/iu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "updater.01": {
+      "referenceCapability": "Installed version scan",
+      "officialSource": "https://www.iobit.com/product-manuals/isu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "updater.02": {
+      "referenceCapability": "Selected application update",
+      "officialSource": "https://www.iobit.com/product-manuals/isu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "updater.03": {
+      "referenceCapability": "Batch application updates",
+      "officialSource": "https://www.iobit.com/product-manuals/isu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "updater.04": {
+      "referenceCapability": "Resumable downloads",
+      "officialSource": "https://www.iobit.com/product-manuals/isu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "updater.05": {
+      "referenceCapability": "Pre-update restore point",
+      "officialSource": "https://www.iobit.com/product-manuals/isu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "updater.06": {
+      "referenceCapability": "Per-application automatic updates",
+      "officialSource": "https://www.iobit.com/product-manuals/isu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "updater.07": {
+      "referenceCapability": "Ignored updates",
+      "officialSource": "https://www.iobit.com/product-manuals/isu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "updater.08": {
+      "referenceCapability": "Application recommendations",
+      "officialSource": "https://www.iobit.com/product-manuals/isu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "updater.09": {
+      "referenceCapability": "Selected application installation",
+      "officialSource": "https://www.iobit.com/product-manuals/isu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "updater.10": {
+      "referenceCapability": "System restore handoff",
+      "officialSource": "https://www.iobit.com/product-manuals/isu-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "sysinfo.01": {
+      "referenceCapability": "Hardware inventory",
+      "officialSource": "https://www.iobit.com/en/system-information.php",
+      "scope": "windows-11-equivalent"
+    },
+    "sysinfo.02": {
+      "referenceCapability": "Operating system details",
+      "officialSource": "https://www.iobit.com/en/system-information.php",
+      "scope": "windows-11-equivalent"
+    },
+    "sysinfo.03": {
+      "referenceCapability": "CPU monitoring",
+      "officialSource": "https://www.iobit.com/en/system-information.php",
+      "scope": "windows-11-equivalent"
+    },
+    "sysinfo.04": {
+      "referenceCapability": "GPU monitoring",
+      "officialSource": "https://www.iobit.com/en/system-information.php",
+      "scope": "windows-11-equivalent"
+    },
+    "sysinfo.05": {
+      "referenceCapability": "Memory monitoring",
+      "officialSource": "https://www.iobit.com/en/system-information.php",
+      "scope": "windows-11-equivalent"
+    },
+    "sysinfo.06": {
+      "referenceCapability": "Disk monitoring",
+      "officialSource": "https://www.iobit.com/en/system-information.php",
+      "scope": "windows-11-equivalent"
+    },
+    "sysinfo.07": {
+      "referenceCapability": "Temperature telemetry",
+      "officialSource": "https://www.iobit.com/en/system-information.php",
+      "scope": "windows-11-equivalent"
+    },
+    "sysinfo.08": {
+      "referenceCapability": "Hardware alerts",
+      "officialSource": "https://www.iobit.com/en/system-information.php",
+      "scope": "windows-11-equivalent"
+    },
+    "sysinfo.09": {
+      "referenceCapability": "System report export",
+      "officialSource": "https://www.iobit.com/en/system-information.php",
+      "scope": "windows-11-equivalent"
+    },
+    "folder.01": {
+      "referenceCapability": "Local vault password",
+      "officialSource": "https://www.iobit.com/product-manuals/pf-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "folder.02": {
+      "referenceCapability": "Password change",
+      "officialSource": "https://www.iobit.com/product-manuals/pf-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "folder.03": {
+      "referenceCapability": "Hidden file presentation",
+      "officialSource": "https://www.iobit.com/product-manuals/pf-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "folder.04": {
+      "referenceCapability": "Read protection",
+      "officialSource": "https://www.iobit.com/product-manuals/pf-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "folder.05": {
+      "referenceCapability": "Write protection",
+      "officialSource": "https://www.iobit.com/product-manuals/pf-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "folder.06": {
+      "referenceCapability": "Add protected files",
+      "officialSource": "https://www.iobit.com/product-manuals/pf-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "folder.07": {
+      "referenceCapability": "Protection exclusions",
+      "officialSource": "https://www.iobit.com/product-manuals/pf-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "folder.08": {
+      "referenceCapability": "Open protected files",
+      "officialSource": "https://www.iobit.com/product-manuals/pf-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "defrag.01": {
+      "referenceCapability": "Volume analysis",
+      "officialSource": "https://www.iobit.com/product-manuals/sd-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "defrag.02": {
+      "referenceCapability": "Automatic method selection",
+      "officialSource": "https://www.iobit.com/product-manuals/sd-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "defrag.03": {
+      "referenceCapability": "Fast HDD optimization",
+      "officialSource": "https://www.iobit.com/product-manuals/sd-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "defrag.04": {
+      "referenceCapability": "HDD data optimization",
+      "officialSource": "https://www.iobit.com/product-manuals/sd-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "defrag.05": {
+      "referenceCapability": "Large file optimization",
+      "officialSource": "https://www.iobit.com/product-manuals/sd-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "defrag.06": {
+      "referenceCapability": "Free-space consolidation",
+      "officialSource": "https://www.iobit.com/product-manuals/sd-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "defrag.07": {
+      "referenceCapability": "File prioritization",
+      "officialSource": "https://www.iobit.com/product-manuals/sd-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "defrag.08": {
+      "referenceCapability": "Idle optimization",
+      "officialSource": "https://www.iobit.com/product-manuals/sd-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "defrag.09": {
+      "referenceCapability": "Scheduled optimization",
+      "officialSource": "https://www.iobit.com/product-manuals/sd-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "defrag.10": {
+      "referenceCapability": "SSD trim",
+      "officialSource": "https://www.iobit.com/product-manuals/sd-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "defrag.11": {
+      "referenceCapability": "Mixed-media optimization",
+      "officialSource": "https://www.iobit.com/product-manuals/sd-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "defrag.12": {
+      "referenceCapability": "Volume type detection",
+      "officialSource": "https://www.iobit.com/product-manuals/sd-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "defrag.13": {
+      "referenceCapability": "Packaged application optimization",
+      "officialSource": "https://www.iobit.com/product-manuals/sd-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "defrag.14": {
+      "referenceCapability": "Selected file optimization",
+      "officialSource": "https://www.iobit.com/product-manuals/sd-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "defrag.15": {
+      "referenceCapability": "Pause and resume",
+      "officialSource": "https://www.iobit.com/product-manuals/sd-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "defrag.16": {
+      "referenceCapability": "Operation report",
+      "officialSource": "https://www.iobit.com/product-manuals/sd-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "defrag.17": {
+      "referenceCapability": "Drive health",
+      "officialSource": "https://www.iobit.com/product-manuals/sd-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "defrag.18": {
+      "referenceCapability": "Game file optimization",
+      "officialSource": "https://www.iobit.com/product-manuals/sd-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "defrag.19": {
+      "referenceCapability": "Boot-time pagefile optimization",
+      "officialSource": "https://www.iobit.com/product-manuals/sd-help/",
+      "scope": "outside-release-boundary"
+    },
+    "defrag.20": {
+      "referenceCapability": "Boot-time MFT optimization",
+      "officialSource": "https://www.iobit.com/product-manuals/sd-help/",
+      "scope": "outside-release-boundary"
+    },
+    "defrag.21": {
+      "referenceCapability": "Boot-time system file optimization",
+      "officialSource": "https://www.iobit.com/product-manuals/sd-help/",
+      "scope": "outside-release-boundary"
+    },
+    "defrag.22": {
+      "referenceCapability": "Boot-time registry optimization",
+      "officialSource": "https://www.iobit.com/product-manuals/sd-help/",
+      "scope": "outside-release-boundary"
+    },
+    "defrag.23": {
+      "referenceCapability": "Boot-time selected file optimization",
+      "officialSource": "https://www.iobit.com/product-manuals/sd-help/",
+      "scope": "outside-release-boundary"
+    },
+    "undelete.01": {
+      "referenceCapability": "Deleted file discovery",
+      "officialSource": "https://www.iobit.com/en/iobitundelete.php",
+      "scope": "windows-11-equivalent"
+    },
+    "undelete.02": {
+      "referenceCapability": "Targeted recovery scan",
+      "officialSource": "https://www.iobit.com/en/iobitundelete.php",
+      "scope": "windows-11-equivalent"
+    },
+    "undelete.03": {
+      "referenceCapability": "Deep recovery scan",
+      "officialSource": "https://www.iobit.com/en/iobitundelete.php",
+      "scope": "windows-11-equivalent"
+    },
+    "undelete.04": {
+      "referenceCapability": "Recoverability estimate",
+      "officialSource": "https://www.iobit.com/en/iobitundelete.php",
+      "scope": "windows-11-equivalent"
+    },
+    "undelete.05": {
+      "referenceCapability": "Selected file recovery",
+      "officialSource": "https://www.iobit.com/en/iobitundelete.php",
+      "scope": "windows-11-equivalent"
+    },
+    "undelete.06": {
+      "referenceCapability": "External drive recovery",
+      "officialSource": "https://www.iobit.com/en/iobitundelete.php",
+      "scope": "windows-11-equivalent"
+    },
+    "unlocker.01": {
+      "referenceCapability": "Lock owner diagnostics",
+      "officialSource": "https://www.iobit.com/product-manuals/unlocker-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "unlocker.02": {
+      "referenceCapability": "Cooperative file release",
+      "officialSource": "https://www.iobit.com/product-manuals/unlocker-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "unlocker.03": {
+      "referenceCapability": "Unlock and delete",
+      "officialSource": "https://www.iobit.com/product-manuals/unlocker-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "unlocker.04": {
+      "referenceCapability": "Unlock and rename",
+      "officialSource": "https://www.iobit.com/product-manuals/unlocker-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "unlocker.05": {
+      "referenceCapability": "Unlock and move",
+      "officialSource": "https://www.iobit.com/product-manuals/unlocker-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "unlocker.06": {
+      "referenceCapability": "Unlock and copy",
+      "officialSource": "https://www.iobit.com/product-manuals/unlocker-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "unlocker.07": {
+      "referenceCapability": "Forced process termination",
+      "officialSource": "https://www.iobit.com/product-manuals/unlocker-help/",
+      "scope": "outside-release-boundary"
+    },
+    "password.01": {
+      "referenceCapability": "Cryptographic password generation",
+      "officialSource": "https://www.iobit.com/en/passwordgenerator.php",
+      "scope": "windows-11-equivalent"
+    },
+    "password.02": {
+      "referenceCapability": "Password character policy",
+      "officialSource": "https://www.iobit.com/en/passwordgenerator.php",
+      "scope": "windows-11-equivalent"
+    },
+    "password.03": {
+      "referenceCapability": "Password strength explanation",
+      "officialSource": "https://www.iobit.com/en/passwordgenerator.php",
+      "scope": "windows-11-equivalent"
+    },
+    "password.04": {
+      "referenceCapability": "Local generated-secret storage",
+      "officialSource": "https://www.iobit.com/en/passwordgenerator.php",
+      "scope": "windows-11-equivalent"
+    },
+    "start.01": {
+      "referenceCapability": "Application launcher",
+      "officialSource": "https://www.iobit.com/product-manuals/sm8-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "start.02": {
+      "referenceCapability": "File and application search",
+      "officialSource": "https://www.iobit.com/product-manuals/sm8-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "start.03": {
+      "referenceCapability": "Pinned applications",
+      "officialSource": "https://www.iobit.com/product-manuals/sm8-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "start.04": {
+      "referenceCapability": "Launcher groups",
+      "officialSource": "https://www.iobit.com/product-manuals/sm8-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "start.05": {
+      "referenceCapability": "Custom launcher icon",
+      "officialSource": "https://www.iobit.com/product-manuals/sm8-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "start.06": {
+      "referenceCapability": "Launcher style",
+      "officialSource": "https://www.iobit.com/product-manuals/sm8-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "start.07": {
+      "referenceCapability": "Contextual application actions",
+      "officialSource": "https://www.iobit.com/product-manuals/sm8-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "start.08": {
+      "referenceCapability": "Taskbar customization",
+      "officialSource": "https://www.iobit.com/product-manuals/sm8-help/",
+      "scope": "adaptation-required"
+    },
+    "start.09": {
+      "referenceCapability": "Legacy shell replacement",
+      "officialSource": "https://www.iobit.com/product-manuals/sm8-help/",
+      "scope": "outside-release-boundary"
+    },
+    "start.10": {
+      "referenceCapability": "Power menu handoff",
+      "officialSource": "https://www.iobit.com/product-manuals/sm8-help/",
+      "scope": "windows-11-equivalent"
+    },
+    "metro.01": {
+      "referenceCapability": "Tile dashboard",
+      "officialSource": "https://www.iobit.com/en/iobit-winmetro.php",
+      "scope": "windows-11-equivalent"
+    },
+    "metro.02": {
+      "referenceCapability": "Weather tile provider",
+      "officialSource": "https://www.iobit.com/en/iobit-winmetro.php",
+      "scope": "windows-11-equivalent"
+    },
+    "metro.03": {
+      "referenceCapability": "Calendar tile",
+      "officialSource": "https://www.iobit.com/en/iobit-winmetro.php",
+      "scope": "windows-11-equivalent"
+    },
+    "metro.04": {
+      "referenceCapability": "Photo tile",
+      "officialSource": "https://www.iobit.com/en/iobit-winmetro.php",
+      "scope": "windows-11-equivalent"
+    },
+    "metro.05": {
+      "referenceCapability": "News tile provider",
+      "officialSource": "https://www.iobit.com/en/iobit-winmetro.php",
+      "scope": "windows-11-equivalent"
+    },
+    "metro.06": {
+      "referenceCapability": "Application tiles",
+      "officialSource": "https://www.iobit.com/en/iobit-winmetro.php",
+      "scope": "windows-11-equivalent"
+    },
+    "metro.07": {
+      "referenceCapability": "Desktop switch handoff",
+      "officialSource": "https://www.iobit.com/en/iobit-winmetro.php",
+      "scope": "windows-11-equivalent"
+    },
+    "metro.08": {
+      "referenceCapability": "Legacy Metro shell replacement",
+      "officialSource": "https://www.iobit.com/en/iobit-winmetro.php",
+      "scope": "outside-release-boundary"
+    },
+    "mac-adapted.01": {
+      "referenceCapability": "System junk review",
+      "officialSource": "https://www.macbooster.net/",
+      "scope": "windows-11-adaptation"
+    },
+    "mac-adapted.02": {
+      "referenceCapability": "Threat scan handoff",
+      "officialSource": "https://www.macbooster.net/",
+      "scope": "windows-11-adaptation"
+    },
+    "mac-adapted.03": {
+      "referenceCapability": "Large file review",
+      "officialSource": "https://www.macbooster.net/",
+      "scope": "windows-11-adaptation"
+    },
+    "mac-adapted.04": {
+      "referenceCapability": "Duplicate finder",
+      "officialSource": "https://www.macbooster.net/",
+      "scope": "windows-11-adaptation"
+    },
+    "mac-adapted.05": {
+      "referenceCapability": "Startup review",
+      "officialSource": "https://www.macbooster.net/",
+      "scope": "windows-11-adaptation"
+    },
+    "mac-adapted.06": {
+      "referenceCapability": "Application uninstall",
+      "officialSource": "https://www.macbooster.net/",
+      "scope": "windows-11-adaptation"
+    },
+    "mac-adapted.07": {
+      "referenceCapability": "Memory pressure review",
+      "officialSource": "https://www.macbooster.net/",
+      "scope": "windows-11-adaptation"
+    },
+    "mac-adapted.08": {
+      "referenceCapability": "Photo duplicate review",
+      "officialSource": "https://www.macbooster.net/",
+      "scope": "windows-11-adaptation"
+    },
+    "mac-adapted.09": {
+      "referenceCapability": "Disk usage map",
+      "officialSource": "https://www.macbooster.net/",
+      "scope": "windows-11-adaptation"
+    },
+    "amc-adapted.01": {
+      "referenceCapability": "Combined maintenance plan",
+      "officialSource": "https://www.iobit.com/product-manuals/amc-help/",
+      "scope": "windows-11-adaptation"
+    },
+    "amc-adapted.02": {
+      "referenceCapability": "Resource pressure review",
+      "officialSource": "https://www.iobit.com/product-manuals/amc-help/",
+      "scope": "windows-11-adaptation"
+    },
+    "amc-adapted.03": {
+      "referenceCapability": "Antivirus handoff",
+      "officialSource": "https://www.iobit.com/product-manuals/amc-help/",
+      "scope": "windows-11-adaptation"
+    },
+    "amc-adapted.04": {
+      "referenceCapability": "Payment risk guidance",
+      "officialSource": "https://www.iobit.com/product-manuals/amc-help/",
+      "scope": "windows-11-adaptation"
+    },
+    "amc-adapted.05": {
+      "referenceCapability": "Phishing warnings",
+      "officialSource": "https://www.iobit.com/product-manuals/amc-help/",
+      "scope": "windows-11-adaptation"
+    },
+    "amc-adapted.06": {
+      "referenceCapability": "Browsing risk review",
+      "officialSource": "https://www.iobit.com/product-manuals/amc-help/",
+      "scope": "windows-11-adaptation"
+    },
+    "amc-adapted.07": {
+      "referenceCapability": "Local security configuration",
+      "officialSource": "https://www.iobit.com/product-manuals/amc-help/",
+      "scope": "windows-11-adaptation"
+    },
+    "amc-adapted.08": {
+      "referenceCapability": "Application management",
+      "officialSource": "https://www.iobit.com/product-manuals/amc-help/",
+      "scope": "windows-11-adaptation"
+    },
+    "amc-adapted.09": {
+      "referenceCapability": "Battery report",
+      "officialSource": "https://www.iobit.com/product-manuals/amc-help/",
+      "scope": "windows-11-adaptation"
+    },
+    "amc-adapted.10": {
+      "referenceCapability": "Private file vault",
+      "officialSource": "https://www.iobit.com/product-manuals/amc-help/",
+      "scope": "windows-11-adaptation"
+    },
+    "amc-adapted.11": {
+      "referenceCapability": "Application permission advisor",
+      "officialSource": "https://www.iobit.com/product-manuals/amc-help/",
+      "scope": "windows-11-adaptation"
+    },
+    "amc-adapted.12": {
+      "referenceCapability": "Game launch profile",
+      "officialSource": "https://www.iobit.com/product-manuals/amc-help/",
+      "scope": "windows-11-adaptation"
+    },
+    "amc-adapted.13": {
+      "referenceCapability": "Desktop widgets",
+      "officialSource": "https://www.iobit.com/product-manuals/amc-help/",
+      "scope": "windows-11-adaptation"
+    },
+    "amc-adapted.14": {
+      "referenceCapability": "Remote anti-theft",
+      "officialSource": "https://www.iobit.com/product-manuals/amc-help/",
+      "scope": "outside-release-boundary"
+    },
+    "amc-adapted.15": {
+      "referenceCapability": "Call and SMS blocking",
+      "officialSource": "https://www.iobit.com/product-manuals/amc-help/",
+      "scope": "outside-release-boundary"
+    },
+    "amc-adapted.16": {
+      "referenceCapability": "Android package management",
+      "officialSource": "https://www.iobit.com/product-manuals/amc-help/",
+      "scope": "outside-release-boundary"
+    },
+    "online.01": {
+      "referenceCapability": "Can I Run It",
+      "officialSource": "https://www.iobit.com/en/can-i-run-it.php",
+      "scope": "windows-11-equivalent"
+    },
+    "online.02": {
+      "referenceCapability": "Bottleneck Calculator",
+      "officialSource": "https://www.iobit.com/en/bottleneck-calculator.php",
+      "scope": "windows-11-equivalent"
+    },
+    "online.03": {
+      "referenceCapability": "Power Supply Calculator",
+      "officialSource": "https://www.iobit.com/en/power-supply-calculator.php",
+      "scope": "windows-11-equivalent"
+    },
+    "online.04": {
+      "referenceCapability": "FPS Calculator",
+      "officialSource": "https://www.iobit.com/en/fps-calculator.php",
+      "scope": "windows-11-equivalent"
+    },
+    "online.05": {
+      "referenceCapability": "Rate My PC",
+      "officialSource": "https://www.iobit.com/en/rate-my-pc.php",
+      "scope": "windows-11-equivalent"
+    },
+    "online.06": {
+      "referenceCapability": "Reaction Time Test",
+      "officialSource": "https://www.iobit.com/en/reaction-time-test.php",
+      "scope": "windows-11-equivalent"
+    },
+    "online.07": {
+      "referenceCapability": "Email Leak Checker",
+      "officialSource": "https://www.iobit.com/en/have-i-been-pwned.php",
+      "scope": "windows-11-equivalent"
+    },
+    "online.08": {
+      "referenceCapability": "Gamepad Tester",
+      "officialSource": "https://www.iobit.com/en/gamepad-tester.php",
+      "scope": "windows-11-equivalent"
+    },
+    "online.09": {
+      "referenceCapability": "Battery Test",
+      "officialSource": "https://www.iobit.com/en/battery-test.php",
+      "scope": "windows-11-equivalent"
+    },
+    "online.10": {
+      "referenceCapability": "Sens Converter",
+      "officialSource": "https://www.iobit.com/en/sens-converter.php",
+      "scope": "windows-11-equivalent"
+    },
+    "online.11": {
+      "referenceCapability": "eDPI Calculator",
+      "officialSource": "https://www.iobit.com/en/edpi-calculator.php",
+      "scope": "windows-11-equivalent"
+    },
+    "online.12": {
+      "referenceCapability": "Keyboard Latency Test",
+      "officialSource": "https://www.iobit.com/en/keyboard-latency-test.php",
+      "scope": "windows-11-equivalent"
+    },
+    "online.13": {
+      "referenceCapability": "Unlock PDF",
+      "officialSource": "https://www.iobit.com/en/unlock-pdf.php",
+      "scope": "windows-11-equivalent"
+    },
+    "online.14": {
+      "referenceCapability": "Metadata Remover",
+      "officialSource": "https://www.iobit.com/en/metadata-remover.php",
+      "scope": "windows-11-equivalent"
+    },
+    "online.15": {
+      "referenceCapability": "PC Stress Test",
+      "officialSource": "https://www.iobit.com/en/pc-stress-test.php",
+      "scope": "windows-11-equivalent"
+    },
+    "online.16": {
+      "referenceCapability": "AI Photo Editor",
+      "officialSource": "https://www.iobit.com/en/ai-photo-editor-free.php",
+      "scope": "windows-11-equivalent"
+    },
+    "online.17": {
+      "referenceCapability": "AI Math Solver",
+      "officialSource": "https://www.iobit.com/en/ai-math-solver.php",
+      "scope": "windows-11-equivalent"
+    },
+    "online.18": {
+      "referenceCapability": "AI Photo Enhancer",
+      "officialSource": "https://www.iobit.com/en/ai-photo-enhancer.php",
+      "scope": "windows-11-equivalent"
+    },
+    "online.19": {
+      "referenceCapability": "AI Video Enhancer",
+      "officialSource": "https://www.iobit.com/en/ai-video-enhancer.php",
+      "scope": "windows-11-equivalent"
+    },
+    "online.20": {
+      "referenceCapability": "Background Remover",
+      "officialSource": "https://www.iobit.com/en/ai-background-remover.php",
+      "scope": "windows-11-equivalent"
+    },
+    "online.21": {
+      "referenceCapability": "Sound Test",
+      "officialSource": "https://www.iobit.com/en/sound-test.php",
+      "scope": "windows-11-equivalent"
+    },
+    "online.22": {
+      "referenceCapability": "Keyboard Test",
+      "officialSource": "https://www.iobit.com/en/keyboard-test.php",
+      "scope": "windows-11-equivalent"
+    },
+    "online.23": {
+      "referenceCapability": "Online Mic Test",
+      "officialSource": "https://www.iobit.com/en/mic-test.php",
+      "scope": "windows-11-equivalent"
+    },
+    "online.24": {
+      "referenceCapability": "Online Webcam Test",
+      "officialSource": "https://www.iobit.com/en/webcam-test.php",
+      "scope": "windows-11-equivalent"
+    },
+    "online.25": {
+      "referenceCapability": "Online Password Generator",
+      "officialSource": "https://www.iobit.com/en/online-password-generator.php",
+      "scope": "windows-11-equivalent"
+    },
+    "online.26": {
+      "referenceCapability": "Internet Speed Test",
+      "officialSource": "https://www.iobit.com/en/iobit-speed-test.php",
+      "scope": "windows-11-equivalent"
+    }
+  }
+}
