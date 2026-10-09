@@ -6,4 +6,4 @@ The package includes the native desktop, Flutter resources, and `engine/Material
 
 Squirrel 2.0.1 and NuGet 6.14.0 downloads use pinned SHA-256 checks. The installer is unsigned and can trigger unknown-publisher or SmartScreen warnings. A successful package build is not an installation or update verification receipt.
 
-The release workflow builds and packages on Windows and runs no tests or lint. Each successful run publishes a distinct version. This prioritizes delivery: a release may come from source whose local tests would fail.
+The release workflow builds and packages on Windows and runs no tests or lint. Pushes and ordinary manual dispatches retain build outputs without publishing a production release. Publication requires a manual dispatch on `main`, an explicit publication choice, the exact verified candidate SHA, and complete hashed capability evidence in `release-readiness.json`. Its initial unverified entries deliberately prevent unfinished production activation. Evidence validation does not run tests or replace runtime verification.

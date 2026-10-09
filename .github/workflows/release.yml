@@ -2,6 +2,15 @@ name: Windows build and release
 on:
   push:
   workflow_dispatch:
+    inputs:
+      publish_release:
+        description: Publish the explicitly verified main candidate
+        type: boolean
+        default: false
+      candidate_sha:
+        description: Exact verified main commit SHA required for publication
+        type: string
+        required: false
 permissions:
   contents: write
 jobs:
@@ -20,11 +29,16 @@ jobs:
         shell: cmd
         run: build-installer.bat /s
       - name: Publish unique release
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.publish_release && github.ref == 'refs/heads/main' }}
         shell: pwsh
+        env:
+          SELECTED_CANDIDATE: ${{ inputs.candidate_sha }}
         run: |
+          & ./scripts/check-release-readiness.ps1 -Candidate $env:SELECTED_CANDIDATE
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
           $end=[DateTime]::UtcNow
           $elapsed=$end-[DateTime]::Parse($env:WORKFLOW_STARTED)
-          $notes="Unsigned Squirrel.Windows installer. Unknown-publisher and SmartScreen warnings may appear.`n`nWorkflow started: $env:WORKFLOW_STARTED`nWorkflow completed: $($end.ToString('o'))`nWorkflow duration: $($elapsed.ToString('hh\:mm\:ss'))`n`nThis workflow builds and packages. It runs no tests or lint."
+          $notes="Unsigned Squirrel.Windows installer. Unknown-publisher and SmartScreen warnings may appear.`n`nWorkflow started: $env:WORKFLOW_STARTED`nWorkflow completed: $($end.ToString('o'))`nWorkflow duration: $($elapsed.ToString('hh\:mm\:ss'))`n`nThis workflow builds and packages. It runs no tests or lint. Publication requires explicit selection of this verified main candidate and its recorded capability evidence."
           $notes | Set-Content release-notes.txt
           gh release create "v$env:BUILD_VERSION" artifacts/installer/releases/Setup.exe artifacts/installer/releases/RELEASES artifacts/installer/releases/*-full.nupkg --title "Material System Care $env:BUILD_VERSION" --notes-file release-notes.txt
           if ($LASTEXITCODE) { exit $LASTEXITCODE }
