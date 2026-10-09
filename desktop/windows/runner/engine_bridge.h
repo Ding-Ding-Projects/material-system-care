@@ -20,7 +20,8 @@ class EngineBridge {
   HANDLE job_ = nullptr;
   std::atomic<bool> stopping_{false};
   std::unique_ptr<flutter::MethodChannel<flutter::EncodableValue>> channel_;
-  std::vector<std::thread> workers_;
+  struct Worker { std::thread thread; std::shared_ptr<std::atomic<bool>> done; };
+  std::vector<Worker> workers_;
   std::mutex mutex_;
   std::vector<std::unique_ptr<Reply>> replies_;
   std::wstring pipe_;
