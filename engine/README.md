@@ -1,0 +1,11 @@
+# Local engine
+
+The .NET 10 engine accepts protocol version 1 JSON lines through the current-user-only `MaterialSystemCare.<SID>` named pipe. Up to 16 clients run concurrently. Every input line is limited to 4 MiB of strict UTF-8, JSON depth is limited to 32, and responses use camelCase envelopes. Parameterless implementations of `IEngineModule` are discovered from the engine assembly. Modules throw `EngineException(code, safeMessage)` for stable public error codes. Unexpected exceptions return a generic explanation without paths or exception details.
+
+`engine.ping` returns the packaged build manifest, protocol version, fixture-data-root flag and core capabilities. Missing provenance remains null. `system.snapshot` reports actual current CPU count, operating-system architecture, physical-memory measurements through `GlobalMemoryStatusEx`, and readable volumes. A fixture data root changes persistence only, and the snapshot labels measurements as live machine data.
+
+`settings.get` accepts an optional key, otherwise returns all settings. `settings.save` accepts key and value. General storage rejects sensitive keys and nested credential fields. Dedicated credential or personal-vocabulary storage is not implemented by this engine foundation. `history.list` accepts a limit from 1 to 1000 and returns records newest first. SQLite uses WAL, full synchronization and bounded busy waiting. Settings saves record their key only; operation records recursively remove sensitive field names.
+
+The default data root is local application data under `MaterialSystemCare`. `--data-root <directory>` explicitly marks fixture persistence. `--stdio` uses standard input/output JSON lines. `--request-file <path>` reads one bounded request from a fixture file. These modes expose the same fixed module operations and cannot invoke arbitrary commands. Run `tests/engine-core/verify.ps1 -Engine <built-engine-path>` after the root `build.bat` engine build succeeds. The test uses its own temporary data root and launches only read-only machine measurements plus fixture settings writes.
+
+Transport cancellation covers shutdown and reads. A bounded read-ahead detects pipe disconnects while a module runs and cancels its connection token. Modules must observe that token during long operations. Standard-input end-of-file permits the last fixture request to finish.
