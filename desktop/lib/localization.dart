@@ -1,0 +1,200 @@
+import 'package:flutter/material.dart';
+
+class CopyScope extends InheritedWidget {
+  const CopyScope({super.key, required this.preferences, required super.child});
+  final Map<String, dynamic> preferences;
+  static Map<String, dynamic> of(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<CopyScope>()?.preferences ??
+      {};
+  @override
+  bool updateShouldNotify(CopyScope oldWidget) =>
+      oldWidget.preferences != preferences;
+}
+
+const translations = <String, String>{
+  'Material System Care': 'Material System Care',
+  'Overview': '總覽',
+  'Storage': '儲存空間',
+  'Apps': '應用程式',
+  'Startup': '開機項目',
+  'Protection': '保護',
+  'Drivers': '驅動程式',
+  'Tools': '工具',
+  'Activity': '操作記錄',
+  'Settings': '設定',
+  'Help': '說明',
+  'Refresh workspace': '重新整理工作區',
+  'Workspace': '工作區',
+  'Refresh records': '重新讀取記錄',
+  'Analyze folder': '分析資料夾',
+  'Scan recoverable cleanup': '掃描可還原清理項目',
+  'Find exact duplicates': '尋找完全相同檔案',
+  'Check available updates': '檢查可用更新',
+  'Quick scan': '快速掃描',
+  'Recovery history': '還原記錄',
+  'Choose folder': '選擇資料夾',
+  'Apply reviewed cleanup plan': '套用已檢閱清理方案',
+  'Folder to analyze': '要分析的資料夾',
+  'Enter a local folder. Analysis does not remove files.': '輸入本機資料夾。分析不會移除檔案。',
+  'Filter these records': '篩選這些記錄',
+  'Regular expression builder': '正則表達式建立工具',
+  'Use regular expression': '使用正則表達式',
+  'Contains text': '包含文字',
+  'Starts with': '開頭是',
+  'Ends with': '結尾是',
+  'Digits': '數字',
+  'One of': '其中一項',
+  'Invalid regular expression': '正則表達式無效',
+  'Waiting for measured engine result': '正在等待引擎實際結果',
+  'Operation unavailable': '操作暫時無法使用',
+  'Retry': '重試',
+  'Reading local records…': '正在讀取本機記錄…',
+  'No measured result yet. Start an operation above.': '尚未有實際結果，請先在上方開始操作。',
+  'No matching records.': '沒有符合的記錄。',
+  'Record actions': '記錄操作',
+  'Uninstall selected app': '解除安裝所選程式',
+  'Upgrade selected app': '更新所選程式',
+  'Change selected startup entry': '變更所選開機項目',
+  'Export selected driver': '匯出所選驅動程式',
+  'Restore selected cleanup': '還原所選清理項目',
+  'Actions use the selected record only': '操作只處理所選記錄',
+  'Review selected action': '檢閱所選操作',
+  'Cancel': '取消',
+  'Confirm selected action': '確認所選操作',
+  'Start quick security scan?': '開始快速安全掃描？',
+  'Windows security will scan the local computer. Security settings remain enabled.':
+      'Windows 安全性會掃描本機。安全設定會保持啟用。',
+  'Move approved temporary files to recovery?': '將核准的暫存檔案移到還原儲存區？',
+  'The engine will revalidate this cleanup plan and move eligible aged temporary files into recoverable storage. Documents are excluded.':
+      '引擎會重新驗證清理方案，將合資格舊暫存檔案移到可還原儲存區，不包括文件。',
+  'File hash': '檔案雜湊',
+  'Convert file': '轉換檔案',
+  'Password': '密碼',
+  'Network': '網絡',
+  'Source file path': '來源檔案路徑',
+  'Destination file path': '輸出檔案路徑',
+  'Existing files are never silently overwritten.': '不會在未提示下覆寫現有檔案。',
+  'Conversion': '轉換格式',
+  'Format JSON': '格式化 JSON',
+  'Compact JSON': '壓縮 JSON',
+  'Convert text to UTF-8': '將文字轉為 UTF-8',
+  'Generated locally. Passwords are not added to history or copied automatically.':
+      '於本機產生。密碼不會加入記錄或自動複製。',
+  'Calculate SHA-256': '計算 SHA-256',
+  'Convert to new file': '轉換為新檔案',
+  'Generate password': '產生密碼',
+  'Run network checks': '執行網絡檢查',
+  'Local maintenance guide': '本機維護指南',
+  'Safe cleanup and recovery': '安全清理與還原',
+  'Analyze first, review selected files, and apply only a server-issued cleanup plan. Recovery history restores eligible moved files. No automatic document deletion is offered.':
+      '先分析及檢閱所選檔案，只套用引擎發出的清理方案。還原記錄可還原合資格已移動檔案。不提供自動刪除文件。',
+  'Apps, startup and drivers': '程式、開機項目與驅動程式',
+  'Select real records before changing them. Operations requiring administrator access report that requirement. Unsupported vendor capabilities remain unavailable.':
+      '變更前先選擇實際記錄。需要管理員權限的操作會清楚說明。不支援的供應商功能會保持不可用。',
+  'Privacy and operation history': '私隱與操作記錄',
+  'Settings and operation receipts stay in local application data. Credentials and personal vocabulary are excluded from diagnostic exports and general history.':
+      '設定及操作收據留在本機應用程式資料。憑證及個人用詞不會加入診斷匯出或一般記錄。',
+  'Keyboard and appearance': '鍵盤與外觀',
+  'Use Tab to move between controls, Space to select records, and Enter to activate focused actions. Settings provides language, theme and reduced-motion controls.':
+      '使用 Tab 移動焦點、空白鍵選擇記錄，Enter 啟動目前操作。設定提供語言、主題及減少動態效果選項。',
+  'Version': '版本',
+  'Updated at': '更新時間',
+  'build metadata unavailable': '無法取得建置資料',
+  'provenance unavailable': '無法取得來源證明',
+  'Measurements below come from the local engine. No scan has permission to change files.':
+      '以下數據由本機引擎取得。掃描不會修改檔案。',
+  'Operation completed': '操作已完成',
+  'Operation could not complete': '操作未能完成',
+  'Result received from local engine': '已收到本機引擎結果',
+  'Inspect the exact engine details below.': '請檢閱下方引擎的實際詳細資料。',
+  'Operation': '操作',
+  'Target': '目標',
+  'Only this selected target will be sent to the local engine.':
+      '只會將這個所選目標交給本機引擎。',
+  'Selected record': '所選記錄',
+  'Record': '記錄',
+  'records': '項記錄',
+  'selected': '已選取',
+  'characters': '個字元',
+  'completed': '已完成',
+  'started': '已開始',
+  'available': '可用',
+  'enabled': '已啟用',
+  'unavailableReason': '不可用原因',
+  'reason': '原因',
+  'message': '訊息',
+  'exitCode': '結束代碼',
+  'measurementSource': '量度來源',
+  'measuredAt': '量度時間',
+  'totalBytes': '總位元組',
+  'freeBytes': '可用位元組',
+  'fileCount': '檔案數量',
+  'mutationPerformed': '已修改資料',
+  'permanentDeletion': '永久刪除',
+  'partial': '部分完成',
+  'cancelled': '已取消',
+  'restored': '已還原',
+  'quarantined': '已移至還原區',
+  'skipped': '已略過',
+  'conflicts': '衝突',
+  'name': '名稱',
+  'version': '版本',
+  'publisher': '發行者',
+  'scope': '範圍',
+  'source': '來源',
+  'canUninstall': '可解除安裝',
+  'canChange': '可變更',
+  'provider': '提供者',
+  'className': '類別',
+  'originalName': '原始名稱',
+  'signer': '簽署者',
+  'ready': '準備就緒',
+  'format': '格式',
+  'memory': '記憶體',
+  'cpu': '處理器',
+  'os': '作業系統',
+  'description': '描述',
+  'architecture': '架構',
+  'logicalProcessors': '邏輯處理器',
+  'loadPercent': '負載百分比',
+  'availableBytes': '可用位元組',
+  'true': '是',
+  'false': '否',
+  'null': '未提供',
+  'Notifications': '通知',
+  'Close': '關閉',
+  'No notifications yet.': '尚未有通知。',
+  'The local engine is not connected. Start the installed application with its engine available, then retry.':
+      '本機引擎未連接。請開啟已安裝的程式並確認引擎可用，然後重試。',
+};
+
+String localize(BuildContext context, String text) {
+  final prefs = CopyScope.of(context);
+  final language = prefs['language'] ?? 'en';
+  String translated = translations[text] ?? text;
+  var result = language == 'yue'
+      ? translated
+      : language == 'both' && translated != text
+      ? '$text\n$translated'
+      : text;
+  final mappings = prefs['privateVocabulary'];
+  if (mappings is Map && mappings.isNotEmpty) {
+    final keys = mappings.keys.whereType<String>().toList()
+      ..sort((a, b) => b.length.compareTo(a.length));
+    result = result.replaceAllMapped(
+      RegExp(keys.map(RegExp.escape).join('|')),
+      (m) => mappings[m[0]] as String,
+    );
+  }
+  return result;
+}
+
+class UiText extends StatelessWidget {
+  const UiText(this.data, {super.key, this.style, this.textAlign});
+  final String data;
+  final TextStyle? style;
+  final TextAlign? textAlign;
+  @override
+  Widget build(BuildContext context) =>
+      Text(localize(context, data), style: style, textAlign: textAlign);
+}

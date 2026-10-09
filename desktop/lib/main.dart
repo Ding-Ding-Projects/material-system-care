@@ -3,8 +3,12 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'settings.dart';
+import 'localization.dart';
+import 'notifications.dart';
+import 'provenance.dart';
+import 'motion.dart';
 
-void main() => runApp(const CareApp());
+void main() => runApp(CareApp());
 
 class Engine {
   static const channel = MethodChannel('material_system_care/engine');
@@ -65,6 +69,17 @@ class _CareAppState extends State<CareApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Material System Care',
+      builder: (context, child) => MediaQuery(
+        data: MediaQuery.of(context).copyWith(
+          textScaler: TextScaler.linear(
+            (settings['textScale'] as num? ?? 1).toDouble().clamp(0.8, 2),
+          ),
+          disableAnimations:
+              settings['reducedMotion'] == true ||
+              MediaQuery.disableAnimationsOf(context),
+        ),
+        child: child!,
+      ),
       themeMode: mode == 'dark'
           ? ThemeMode.dark
           : mode == 'light'
@@ -84,15 +99,18 @@ class _CareAppState extends State<CareApp> {
           brightness: Brightness.dark,
         ),
       ),
-      home: Workspace(
-        settings: settings,
-        changed: (value) => setState(() => settings = value),
+      home: CopyScope(
+        preferences: settings,
+        child: Workspace(
+          settings: settings,
+          changed: (value) => setState(() => settings = value),
+        ),
       ),
     );
   }
 }
 
-const destinations = [
+final destinations = [
   'Overview',
   'Storage',
   'Apps',
@@ -104,7 +122,7 @@ const destinations = [
   'Settings',
   'Help',
 ];
-const cantonese = [
+final cantonese = [
   '總覽',
   '儲存空間',
   '應用程式',
@@ -116,7 +134,7 @@ const cantonese = [
   '設定',
   '說明',
 ];
-const destinationIcons = [
+final destinationIcons = [
   Icons.monitor_heart_outlined,
   Icons.storage_outlined,
   Icons.apps_outlined,
@@ -132,36 +150,40 @@ const destinationIcons = [
 class Workspace extends StatefulWidget {
   final Map<String, dynamic> settings;
   final ValueChanged<Map<String, dynamic>> changed;
-  const Workspace({super.key, required this.settings, required this.changed});
+  Workspace({super.key, required this.settings, required this.changed});
   @override
   State<Workspace> createState() => _WorkspaceState();
 }
 
 class _WorkspaceState extends State<Workspace> {
   int selected = 0;
-  String name(int i) => widget.settings['language'] == 'yue'
-      ? cantonese[i]
-      : widget.settings['language'] == 'both'
-      ? '${destinations[i]} · ${cantonese[i]}'
-      : destinations[i];
+  String name(int i) => localize(context, destinations[i]);
   @override
   Widget build(BuildContext context) {
     final reduced =
         widget.settings['reducedMotion'] == true ||
         MediaQuery.disableAnimationsOf(context);
     return Scaffold(
+      endDrawer: NotificationPanel(),
       appBar: AppBar(
-        title: const Text('Material System Care'),
+        title: UiText('Material System Care'),
         actions: [
-          IconButton(
-            tooltip: 'Refresh workspace',
-            onPressed: () => setState(() {}),
-            icon: const Icon(Icons.refresh),
+          Builder(
+            builder: (context) => IconButton(
+              tooltip: localize(context, 'Notifications'),
+              onPressed: () => Scaffold.of(context).openEndDrawer(),
+              icon: Icon(Icons.notifications_outlined),
+            ),
           ),
           IconButton(
-            tooltip: 'Help',
+            tooltip: localize(context, 'Refresh workspace'),
+            onPressed: () => setState(() {}),
+            icon: Icon(Icons.refresh),
+          ),
+          IconButton(
+            tooltip: localize(context, 'Help'),
             onPressed: () => setState(() => selected = 9),
-            icon: const Icon(Icons.help_outline),
+            icon: Icon(Icons.help_outline),
           ),
         ],
       ),
@@ -181,22 +203,20 @@ class _WorkspaceState extends State<Workspace> {
                   ),
                 ),
               ),
-            if (bounds.maxWidth >= 700) const VerticalDivider(width: 1),
+            if (bounds.maxWidth >= 700) VerticalDivider(width: 1),
             Expanded(
               child: AnimatedSwitcher(
-                duration: reduced
-                    ? Duration.zero
-                    : const Duration(milliseconds: 250),
+                duration: reduced ? Duration.zero : Duration(milliseconds: 250),
                 child: Padding(
                   key: ValueKey(selected),
-                  padding: const EdgeInsets.all(24),
+                  padding: EdgeInsets.all(24),
                   child: selected == 8
                       ? SettingsPanel(
                           invoke: Engine.invoke,
                           onChanged: widget.changed,
                         )
                       : selected == 9
-                      ? const HelpPanel()
+                      ? HelpPanel()
                       : WorkflowPage(index: selected, title: name(selected)),
                 ),
               ),
@@ -208,8 +228,8 @@ class _WorkspaceState extends State<Workspace> {
           ? SafeArea(
               child: DropdownButtonFormField<int>(
                 initialValue: selected,
-                decoration: const InputDecoration(
-                  labelText: 'Workspace',
+                decoration: InputDecoration(
+                  labelText: localize(context, 'Workspace'),
                   border: OutlineInputBorder(),
                 ),
                 items: List.generate(
@@ -227,7 +247,7 @@ class _WorkspaceState extends State<Workspace> {
 class WorkflowPage extends StatefulWidget {
   final int index;
   final String title;
-  const WorkflowPage({super.key, required this.index, required this.title});
+  WorkflowPage({super.key, required this.index, required this.title});
   @override
   State<WorkflowPage> createState() => _WorkflowPageState();
 }
@@ -288,6 +308,8 @@ class _WorkflowPageState extends State<WorkflowPage> {
           data = result;
           chosen.clear();
         });
+      if (mounted && method != null)
+        notifyOperation(context, 'success', method);
     } catch (e) {
       if (mounted)
         setState(
@@ -295,6 +317,7 @@ class _WorkflowPageState extends State<WorkflowPage> {
               ? 'The local engine is not connected. Start the installed application with its engine available, then retry.'
               : e.toString(),
         );
+      if (mounted && method != null) notifyOperation(context, 'error', method);
     } finally {
       if (mounted) setState(() => busy = false);
     }
@@ -333,16 +356,22 @@ class _WorkflowPageState extends State<WorkflowPage> {
       await showDialog<bool>(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text(title),
-          content: SingleChildScrollView(child: Text(detail)),
+          title: UiText(title),
+          content: SingleChildScrollView(
+            child: SelectableText(
+              translations.containsKey(detail)
+                  ? localize(context, detail)
+                  : detail,
+            ),
+          ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context, false),
-              child: const Text('Cancel'),
+              child: UiText('Cancel'),
             ),
             FilledButton(
               onPressed: () => Navigator.pop(context, true),
-              child: const Text('Confirm selected action'),
+              child: UiText('Confirm selected action'),
             ),
           ],
         ),
@@ -362,7 +391,7 @@ class _WorkflowPageState extends State<WorkflowPage> {
     }
     if (!await confirm(
       'Review selected action',
-      'Operation: $method\nTarget: ${row['name'] ?? row['path'] ?? row['id'] ?? 'Selected record'}\nOnly this selected target will be sent to the local engine.',
+      '${localize(context, "Operation")}: $method\n${localize(context, "Target")}: ${row['name'] ?? row['path'] ?? row['id'] ?? localize(context, "Selected record")}\n${localize(context, "Only this selected target will be sent to the local engine.")}',
     ))
       return;
     await load(method, {
@@ -373,9 +402,8 @@ class _WorkflowPageState extends State<WorkflowPage> {
     });
   }
 
-  String value(dynamic v) => v is Map || v is List
-      ? const JsonEncoder.withIndent('  ').convert(v)
-      : '$v';
+  String value(dynamic v) =>
+      v is Map || v is List ? JsonEncoder.withIndent('  ').convert(v) : '$v';
   @override
   Widget build(BuildContext context) {
     final records = rows;
@@ -396,12 +424,10 @@ class _WorkflowPageState extends State<WorkflowPage> {
         Text(widget.title, style: Theme.of(context).textTheme.headlineMedium),
         if (widget.index == 0)
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            child: Text(
-              'Version: ${provenance?["manifest"]?["version"] ?? "build metadata unavailable"} · Updated at: provenance unavailable\nMeasurements below come from the local engine. No scan has permission to change files.',
-            ),
+            padding: EdgeInsets.symmetric(vertical: 8),
+            child: BuildProvenance(ping: provenance),
           ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         Wrap(
           spacing: 8,
           runSpacing: 8,
@@ -413,28 +439,28 @@ class _WorkflowPageState extends State<WorkflowPage> {
                   : () => widget.index == 1
                         ? load('storage.analyze', {'path': input.text})
                         : load(),
-              icon: const Icon(Icons.refresh),
-              label: Text(
+              icon: Icon(Icons.refresh),
+              label: UiText(
                 widget.index == 1 ? 'Analyze folder' : 'Refresh records',
               ),
             ),
             if (widget.index == 0)
               OutlinedButton.icon(
                 onPressed: busy ? null : () => load('cleanup.scan', {}),
-                icon: const Icon(Icons.manage_search),
-                label: const Text('Scan recoverable cleanup'),
+                icon: Icon(Icons.manage_search),
+                label: UiText('Scan recoverable cleanup'),
               ),
             if (widget.index == 1)
               OutlinedButton(
                 onPressed: busy
                     ? null
                     : () => load('storage.duplicates', {'path': input.text}),
-                child: const Text('Find exact duplicates'),
+                child: UiText('Find exact duplicates'),
               ),
             if (widget.index == 2)
               OutlinedButton(
                 onPressed: busy ? null : () => load('apps.updates'),
-                child: const Text('Check available updates'),
+                child: UiText('Check available updates'),
               ),
             if (widget.index == 4)
               FilledButton.tonal(
@@ -450,12 +476,12 @@ class _WorkflowPageState extends State<WorkflowPage> {
                             'confirmed': true,
                           });
                       },
-                child: const Text('Quick scan'),
+                child: UiText('Quick scan'),
               ),
             if (widget.index == 1)
               OutlinedButton(
                 onPressed: busy ? null : () => load('cleanup.history'),
-                child: const Text('Recovery history'),
+                child: UiText('Recovery history'),
               ),
             if (widget.index == 1)
               OutlinedButton.icon(
@@ -466,8 +492,8 @@ class _WorkflowPageState extends State<WorkflowPage> {
                             .invokeMethod<String>('pickDirectory', {});
                         if (folder != null) setState(() => input.text = folder);
                       },
-                icon: const Icon(Icons.folder_open),
-                label: const Text('Choose folder'),
+                icon: Icon(Icons.folder_open),
+                label: UiText('Choose folder'),
               ),
             if (data?['planId'] != null && data?['mutationPerformed'] == false)
               FilledButton.tonal(
@@ -483,30 +509,39 @@ class _WorkflowPageState extends State<WorkflowPage> {
                             'confirmed': true,
                           });
                       },
-                child: const Text('Apply reviewed cleanup plan'),
+                child: UiText('Apply reviewed cleanup plan'),
               ),
           ],
         ),
         if (widget.index == 1)
           Padding(
-            padding: const EdgeInsets.only(top: 12),
+            padding: EdgeInsets.only(top: 12),
             child: TextField(
               controller: input,
-              decoration: const InputDecoration(
-                labelText: 'Folder to analyze',
+              decoration: InputDecoration(
+                labelText: localize(context, 'Folder to analyze'),
                 hintText: r'C:\Users\Public',
-                helperText:
-                    'Enter a local folder. Analysis does not remove files.',
+                helperText: localize(
+                  context,
+                  'Enter a local folder. Analysis does not remove files.',
+                ),
                 border: OutlineInputBorder(),
               ),
             ),
           ),
-        if (widget.index == 6) ToolsEditor(onRun: load, busy: busy),
-        const SizedBox(height: 16),
+        if (widget.index == 6)
+          AnimatedSize(
+            duration: MediaQuery.disableAnimationsOf(context)
+                ? Duration.zero
+                : Duration(milliseconds: 200),
+            curve: Curves.easeOutCubic,
+            child: ToolsEditor(onRun: load, busy: busy),
+          ),
+        SizedBox(height: 16),
         SearchBar(
           controller: search,
-          hintText: 'Filter these records',
-          leading: const Icon(Icons.search),
+          hintText: localize(context, 'Filter these records'),
+          leading: Icon(Icons.search),
           onChanged: (v) => setState(() {
             query = v;
             try {
@@ -519,16 +554,16 @@ class _WorkflowPageState extends State<WorkflowPage> {
           trailing: [
             MenuAnchor(
               builder: (context, controller, child) => IconButton(
-                tooltip: 'Regular expression builder',
+                tooltip: localize(context, 'Regular expression builder'),
                 onPressed: () =>
                     controller.isOpen ? controller.close() : controller.open(),
-                icon: const Icon(Icons.data_object),
+                icon: Icon(Icons.data_object),
               ),
               menuChildren: [
                 CheckboxMenuButton(
                   value: regex,
                   onChanged: (v) => setState(() => regex = v ?? false),
-                  child: const Text('Use regular expression'),
+                  child: UiText('Use regular expression'),
                 ),
                 ...{
                   'Contains text': '.*text.*',
@@ -545,7 +580,7 @@ class _WorkflowPageState extends State<WorkflowPage> {
                         regex = true;
                       });
                     },
-                    child: Text(e.key),
+                    child: UiText(e.key),
                   ),
                 ),
               ],
@@ -553,44 +588,60 @@ class _WorkflowPageState extends State<WorkflowPage> {
           ],
         ),
         if (patternError != null)
-          Text(
+          UiText(
             patternError!,
             style: TextStyle(color: Theme.of(context).colorScheme.error),
           ),
-        const SizedBox(height: 12),
+        SizedBox(height: 12),
         if (busy)
-          const LinearProgressIndicator(
-            semanticsLabel: 'Waiting for measured engine result',
+          LinearProgressIndicator(
+            semanticsLabel: localize(
+              context,
+              'Waiting for measured engine result',
+            ),
           ),
+        OperationMotion(
+          state: busy
+              ? 'working'
+              : failure != null
+              ? 'error'
+              : data != null
+              ? 'success'
+              : 'idle',
+        ),
         if (failure != null)
           Material(
             color: Theme.of(context).colorScheme.errorContainer,
             borderRadius: BorderRadius.circular(16),
             child: ListTile(
-              leading: const Icon(Icons.error_outline),
-              title: const Text('Operation unavailable'),
-              subtitle: Text(failure!),
+              leading: Icon(Icons.error_outline),
+              title: UiText('Operation unavailable'),
+              subtitle: SelectableText(
+                translations.containsKey(failure)
+                    ? localize(context, failure!)
+                    : failure!,
+              ),
               trailing: TextButton(
                 onPressed: busy ? null : load,
-                child: const Text('Retry'),
+                child: UiText('Retry'),
               ),
             ),
           ),
         Expanded(
           child: data == null
               ? Center(
-                  child: Text(
+                  child: UiText(
                     busy
                         ? 'Reading local records…'
                         : 'No measured result yet. Start an operation above.',
                   ),
                 )
               : filtered.isEmpty
-              ? const Center(child: Text('No matching records.'))
+              ? Center(child: UiText('No matching records.'))
               : Scrollbar(
                   child: ListView.separated(
                     itemCount: filtered.length,
-                    separatorBuilder: (_, __) => const Divider(height: 1),
+                    separatorBuilder: (_, __) => Divider(height: 1),
                     itemBuilder: (context, i) {
                       final entry = filtered[i];
                       final row = entry.value;
@@ -610,47 +661,54 @@ class _WorkflowPageState extends State<WorkflowPage> {
                           else
                             chosen.remove(entry.key);
                         }),
-                        title: Text(title),
+                        title: Text(
+                          row.containsKey('property')
+                              ? localize(context, title)
+                              : title,
+                        ),
                         subtitle: SelectableText(
                           row.entries
                               .where((e) => e.key != 'name')
-                              .map((e) => '${e.key}: ${value(e.value)}')
+                              .map(
+                                (e) =>
+                                    '${localize(context, e.key)}: ${e.value is bool || e.value == null ? localize(context, value(e.value)) : value(e.value)}',
+                              )
                               .join('\n'),
                         ),
                         secondary: PopupMenuButton<String>(
-                          tooltip: 'Record actions',
+                          tooltip: localize(context, 'Record actions'),
                           onSelected: (method) => rowAction(method, row),
                           itemBuilder: (_) => [
                             if (widget.index == 2 && row['packageId'] is String)
-                              const PopupMenuItem(
+                              PopupMenuItem(
                                 value: 'apps.uninstall',
-                                child: Text('Uninstall selected app'),
+                                child: UiText('Uninstall selected app'),
                               ),
                             if (widget.index == 2 && row['packageId'] is String)
-                              const PopupMenuItem(
+                              PopupMenuItem(
                                 value: 'apps.upgrade',
-                                child: Text('Upgrade selected app'),
+                                child: UiText('Upgrade selected app'),
                               ),
                             if (widget.index == 3)
-                              const PopupMenuItem(
+                              PopupMenuItem(
                                 value: 'startup.set',
-                                child: Text('Change selected startup entry'),
+                                child: UiText('Change selected startup entry'),
                               ),
                             if (widget.index == 5)
-                              const PopupMenuItem(
+                              PopupMenuItem(
                                 value: 'drivers.export',
-                                child: Text('Export selected driver'),
+                                child: UiText('Export selected driver'),
                               ),
                             if (widget.index == 1 &&
                                 (row.containsKey('receiptId') ||
                                     row.containsKey('planId')))
-                              const PopupMenuItem(
+                              PopupMenuItem(
                                 value: 'cleanup.restore',
-                                child: Text('Restore selected cleanup'),
+                                child: UiText('Restore selected cleanup'),
                               ),
-                            const PopupMenuItem(
+                            PopupMenuItem(
                               enabled: false,
-                              child: Text(
+                              child: UiText(
                                 'Actions use the selected record only',
                               ),
                             ),
@@ -662,7 +720,7 @@ class _WorkflowPageState extends State<WorkflowPage> {
                 ),
         ),
         Text(
-          '${filtered.length} records · ${chosen.length} selected',
+          '${filtered.length} ${localize(context, "records")} · ${chosen.length} ${localize(context, "selected")}',
           style: Theme.of(context).textTheme.labelMedium,
         ),
       ],
@@ -673,7 +731,7 @@ class _WorkflowPageState extends State<WorkflowPage> {
 class ToolsEditor extends StatefulWidget {
   final Future<void> Function([String?, Map<String, dynamic>?]) onRun;
   final bool busy;
-  const ToolsEditor({super.key, required this.onRun, required this.busy});
+  ToolsEditor({super.key, required this.onRun, required this.busy});
   @override
   State<ToolsEditor> createState() => _ToolsEditorState();
 }
@@ -693,69 +751,74 @@ class _ToolsEditorState extends State<ToolsEditor> {
 
   @override
   Widget build(BuildContext context) => Padding(
-    padding: const EdgeInsets.only(top: 12),
+    padding: EdgeInsets.only(top: 12),
     child: Column(
       children: [
         SegmentedButton<int>(
-          segments: const [
+          segments: [
             ButtonSegment(
               value: 0,
-              label: Text('File hash'),
+              label: UiText('File hash'),
               icon: Icon(Icons.fingerprint),
             ),
             ButtonSegment(
               value: 1,
-              label: Text('Convert file'),
+              label: UiText('Convert file'),
               icon: Icon(Icons.transform),
             ),
             ButtonSegment(
               value: 2,
-              label: Text('Password'),
+              label: UiText('Password'),
               icon: Icon(Icons.key),
             ),
             ButtonSegment(
               value: 3,
-              label: Text('Network'),
+              label: UiText('Network'),
               icon: Icon(Icons.network_check),
             ),
           ],
           selected: {tool},
           onSelectionChanged: (v) => setState(() => tool = v.first),
         ),
-        const SizedBox(height: 12),
+        SizedBox(height: 12),
         if (tool < 2)
           TextField(
             controller: path,
-            decoration: const InputDecoration(
-              labelText: 'Source file path',
+            decoration: InputDecoration(
+              labelText: localize(context, 'Source file path'),
               border: OutlineInputBorder(),
             ),
           ),
         if (tool == 1)
           TextField(
             controller: destination,
-            decoration: const InputDecoration(
-              labelText: 'Destination file path',
-              helperText: 'Existing files are never silently overwritten.',
+            decoration: InputDecoration(
+              labelText: localize(context, 'Destination file path'),
+              helperText: localize(
+                context,
+                'Existing files are never silently overwritten.',
+              ),
               border: OutlineInputBorder(),
             ),
           ),
         if (tool == 1)
           DropdownButtonFormField<String>(
             initialValue: format,
-            decoration: const InputDecoration(labelText: 'Conversion'),
-            items: const [
+            decoration: InputDecoration(
+              labelText: localize(context, 'Conversion'),
+            ),
+            items: [
               DropdownMenuItem(
                 value: 'json-pretty',
-                child: Text('Format JSON'),
+                child: UiText('Format JSON'),
               ),
               DropdownMenuItem(
                 value: 'json-compact',
-                child: Text('Compact JSON'),
+                child: UiText('Compact JSON'),
               ),
               DropdownMenuItem(
                 value: 'utf-8',
-                child: Text('Convert text to UTF-8'),
+                child: UiText('Convert text to UTF-8'),
               ),
             ],
             onChanged: (v) => setState(() => format = v!),
@@ -770,7 +833,7 @@ class _ToolsEditorState extends State<ToolsEditor> {
             onChanged: (v) => setState(() => length = v),
           ),
         if (tool == 2)
-          const Text(
+          UiText(
             'Generated locally. Passwords are not added to history or copied automatically.',
           ),
         Align(
@@ -798,7 +861,7 @@ class _ToolsEditorState extends State<ToolsEditor> {
                         ? {'length': length.round()}
                         : {},
                   ),
-            child: Text(
+            child: UiText(
               [
                 'Calculate SHA-256',
                 'Convert to new file',
@@ -814,49 +877,49 @@ class _ToolsEditorState extends State<ToolsEditor> {
 }
 
 class HelpPanel extends StatelessWidget {
-  const HelpPanel({super.key});
+  HelpPanel({super.key});
   @override
   Widget build(BuildContext context) => ListView(
     children: [
-      Text(
+      UiText(
         'Local maintenance guide',
         style: Theme.of(context).textTheme.headlineMedium,
       ),
-      const ExpansionTile(
-        title: Text('Safe cleanup and recovery'),
+      ExpansionTile(
+        title: UiText('Safe cleanup and recovery'),
         children: [
           ListTile(
-            title: Text(
+            title: UiText(
               'Analyze first, review selected files, and apply only a server-issued cleanup plan. Recovery history restores eligible moved files. No automatic document deletion is offered.',
             ),
           ),
         ],
       ),
-      const ExpansionTile(
-        title: Text('Apps, startup and drivers'),
+      ExpansionTile(
+        title: UiText('Apps, startup and drivers'),
         children: [
           ListTile(
-            title: Text(
+            title: UiText(
               'Select real records before changing them. Operations requiring administrator access report that requirement. Unsupported vendor capabilities remain unavailable.',
             ),
           ),
         ],
       ),
-      const ExpansionTile(
-        title: Text('Privacy and operation history'),
+      ExpansionTile(
+        title: UiText('Privacy and operation history'),
         children: [
           ListTile(
-            title: Text(
+            title: UiText(
               'Settings and operation receipts stay in local application data. Credentials and personal vocabulary are excluded from diagnostic exports and general history.',
             ),
           ),
         ],
       ),
-      const ExpansionTile(
-        title: Text('Keyboard and appearance'),
+      ExpansionTile(
+        title: UiText('Keyboard and appearance'),
         children: [
           ListTile(
-            title: Text(
+            title: UiText(
               'Use Tab to move between controls, Space to select records, and Enter to activate focused actions. Settings provides language, theme and reduced-motion controls.',
             ),
           ),
