@@ -32,6 +32,7 @@ public sealed class StorageModule : IEngineModule
         catch (UnauthorizedAccessException) { throw new EngineException("ACCESS_DENIED", "The selected location is not accessible."); }
         catch (IOException) { throw new EngineException("STORAGE_IO", "The storage operation could not complete. Existing recovery records were retained."); }
         catch (JsonException) { throw new EngineException("INVALID_PLAN", "The recovery record is invalid."); }
+        catch (ArgumentException) { throw new EngineException("INVALID_ARGUMENT", "A storage argument or persisted value is invalid."); }
     }
 
     private static string Text(JsonElement p, string name)
@@ -282,7 +283,7 @@ public sealed class StorageModule : IEngineModule
         string id = Id(p, "planId"), store = Store(c);
         using var operationLock = new FileStream(Path.Combine(store, id + ".lock"), FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
         var plan = await Load<Plan>(Path.Combine(store, id + ".plan.json"), ct);
-        if (plan.Id != id || plan.Targets == null || plan.Targets.Count > 1000 || plan.MinimumAgeDays < 1 || plan.MinimumAgeDays > 365 || plan.CreatedUtc.AddDays(1) < DateTime.UtcNow || !string.Equals(plan.Root, TempRoot(), StringComparison.OrdinalIgnoreCase))
+        if (plan.Id != id || plan.Targets == null || plan.Targets.Any(x => x == null) || plan.Targets.Count > 1000 || plan.MinimumAgeDays < 1 || plan.MinimumAgeDays > 365 || plan.CreatedUtc > DateTime.UtcNow || plan.CreatedUtc < DateTime.UtcNow.AddDays(-1) || !string.Equals(plan.Root, TempRoot(), StringComparison.OrdinalIgnoreCase))
             throw new EngineException("PLAN_EXPIRED", "The plan is expired or its approved scope changed. Scan again.");
         string receiptPath = Path.Combine(store, id + ".receipt.json");
         if (File.Exists(receiptPath))
@@ -324,7 +325,7 @@ public sealed class StorageModule : IEngineModule
         using var operationLock = new FileStream(Path.Combine(store, id + ".lock"), FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
         string path = Path.Combine(store, id + ".receipt.json");
         var receipt = await Load<Receipt>(path, ct);
-        if (receipt.Id != id || receipt.Items == null || receipt.Items.Count > 1000) throw new EngineException("INVALID_PLAN", "Invalid recovery record.");
+        if (receipt.Id != id || receipt.Items == null || receipt.Items.Any(x => x == null || x.Target == null) || receipt.Items.Count > 1000) throw new EngineException("INVALID_PLAN", "Invalid recovery record.");
         for (int i = 0; i < receipt.Items.Count; i++)
         {
             if (ct.IsCancellationRequested) break;
@@ -361,6 +362,7 @@ public sealed class StorageModule : IEngineModule
             try
             {
                 var r = await Load<Receipt>(file, ct);
+                if (r.Items == null || r.Items.Any(x => x == null)) throw new EngineException("INVALID_PLAN", "Invalid recovery record.");
                 items.Add(new { id = r.Id, planId = r.PlanId, createdUtc = r.CreatedUtc, itemCount = r.Items.Count,
                     quarantined = r.Items.Count(x => x.State == "quarantined"), restored = r.Items.Count(x => x.State == "restored"),
                     conflicts = r.Items.Count(x => x.State is "conflict" or "pending" or "restoring" or "unresolved"), skipped = r.Items.Count(x => x.State == "skipped") });
