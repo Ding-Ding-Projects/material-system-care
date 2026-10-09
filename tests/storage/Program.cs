@@ -13,7 +13,7 @@ try
     await File.WriteAllTextAsync(Path.Combine(selected, "b.txt"), "same bytes");
     await File.WriteAllTextAsync(Path.Combine(selected, "c.txt"), "other data");
     var context = new EngineContext(data);
-    var module = new StorageModule(temp);
+    var module = (StorageModule)Activator.CreateInstance(typeof(StorageModule), System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic, null, [temp], null)!;
     async Task<JsonElement> Call(string method, object parameters) => JsonSerializer.SerializeToElement(await module.HandleAsync(method, JsonSerializer.SerializeToElement(parameters), context, CancellationToken.None));
     void Check(bool result, string name) { if (!result) throw new Exception(name); Console.WriteLine("PASS " + name); passed++; }
     async Task Reject(string method, object parameters, string code)
@@ -67,19 +67,7 @@ try
 }
 finally
 {
+    Microsoft.Data.Sqlite.SqliteConnection.ClearAllPools();
     // This randomly named directory is created and owned exclusively by this process.
     if (Path.GetFileName(sandbox).StartsWith("MaterialSystemCare-storage-fixture-", StringComparison.Ordinal)) Directory.Delete(sandbox, true);
-}
-
-namespace MaterialSystemCare.Engine
-{
-    public interface IEngineModule { bool CanHandle(string method); Task<object?> HandleAsync(string method, JsonElement parameters, EngineContext context, CancellationToken cancellationToken); }
-    public sealed class EngineException(string code, string message) : Exception(message) { public string Code { get; } = code; }
-    public sealed class EngineContext(string dataRoot)
-    {
-        public string DataRoot { get; } = dataRoot;
-        public bool IsElevated => false;
-        public Task RecordAsync(string operation, object details, CancellationToken ct) => Task.CompletedTask;
-        public Task<object?> ReadSettingAsync(string key, CancellationToken ct) => Task.FromResult<object?>(null);
-    }
 }
