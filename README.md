@@ -4,7 +4,7 @@ A Windows 11 x64 maintenance and diagnostics workspace built with Flutter, .NET 
 
 **Development status:** implementation is in progress. No production installer or complete feature-parity claim is available yet.
 
-[Public documentation and capability explorer](https://material-system-care.azureteal8.chatgpt.site)
+[Public documentation and capability explorer](https://ding-ding-projects.github.io/material-system-care/)
 
 The suite combines computer health, storage analysis, application management, security integration, drivers, diagnostics, and local utilities. Operations present real targets, clear effects, and recovery information. The public website is maintained separately from the desktop workspace.
 
@@ -38,3 +38,9 @@ This list describes source behavior. It does not establish complete reference-pr
 ## Status and distribution
 
 Source and the documentation website are public. Anonymous homepage delivery, its linked assets and the 295-entry coverage data have been verified. The repository About homepage points to the exact deployed URL. Installer downloads remain unavailable until release verification is complete. This project is independently implemented and is not affiliated with IObit.
+
+## GitHub Pages hosting
+
+The public documentation is deployed from `website/dist` to https://ding-ding-projects.github.io/material-system-care/ by `.github/workflows/pages.yml`. The workflow invokes the root `build.bat /s --target=site` entrypoint, uses the existing pinned toolchain bootstrap, uploads the static output, and deploys with the Pages environment. It runs no tests or lint.
+
+Relative Vite assets, metadata fetches, and the logo resolve beneath the project path. The canonical URL, sitemap, and crawler declaration use the GitHub Pages URL. The previous external deployment is historical and does not satisfy the hosting requirement. Verify the live home page, asset responses, deployment commit, and repository homepage before claiming delivery. Browser screenshots and the full desktop release remain separately unverified.

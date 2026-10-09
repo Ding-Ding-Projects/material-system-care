@@ -1,0 +1,49 @@
+name: Publish documentation
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'website/**'
+      - 'contracts/**'
+      - 'scripts/build.ps1'
+      - 'scripts/bootstrap.ps1'
+      - 'build.bat'
+      - 'build-manifest.json'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: windows-2025
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    env:
+      GH_TOKEN: ${{ secrets.RELEASE_TOKEN || secrets.ORG_TOKEN || secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build static documentation
+        shell: cmd
+        run: build.bat /s --target=site
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: website/dist
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
+      - name: Retain static output
+        if: always()
+        continue-on-error: true
+        uses: actions/upload-artifact@v4
+        with:
+          name: documentation-build
+          path: website/dist
+          if-no-files-found: warn
+          retention-days: 7

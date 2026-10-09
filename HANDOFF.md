@@ -66,3 +66,7 @@ The wiki clone endpoint returned `Repository not found`, despite wiki being enab
 1. Read the final default-branch hosted build result and its exact source binding.
 2. Continue remaining implementation requirements without marking absent runtime evidence complete.
 3. When the permitted capture route is available, run the full built interaction matrix and installer/update verification before release publication.
+
+## GitHub Pages migration
+
+Source and deployment configuration prepared. Live deployment, repository homepage readback, and runtime captures remain pending. The local Lowlevel compatibility HTTP endpoint was restored on loopback. Flutter window captures were blank; Edge rejected the previous host with ERR_SSL_VERSION_OR_CIPHER_MISMATCH. Neither capture is accepted product evidence.

@@ -29,3 +29,8 @@
 - [x] Publish the development documentation and capability explorer; verify public delivery and exact About homepage.
 - [ ] Add genuine current screenshots and verified installer downloads when their separate evidence is available.
 - [ ] Verify the repository homepage, documentation, release evidence, and final handoff.
+
+## GitHub Pages delivery
+
+- [ ] Deploy the project-path-compatible static output to GitHub Pages and verify the live home page, assets, deployment source, and About homepage.
+- [ ] Capture genuine current desktop and public documentation screens through the restored isolated Lowlevel route.
