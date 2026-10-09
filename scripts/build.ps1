@@ -24,8 +24,11 @@ try {
   if($LASTEXITCODE) { throw 'Native fixture configuration failed' }
   & cmake --build "$root\artifacts\native-fixture" --config Release
   if($LASTEXITCODE) { throw 'Native fixture compilation failed' }
-  & "$root\artifacts\native-fixture\Release\native_transport_fixture.exe"
-  if($LASTEXITCODE) { throw 'Native fixture verification failed' }
+  Assert-SquirrelAware "$root\artifacts\native-fixture\Release\native_transport_fixture.exe"
+  if($args -notcontains '--resource-only') {
+   & "$root\artifacts\native-fixture\Release\native_transport_fixture.exe"
+   if($LASTEXITCODE) { throw 'Native fixture verification failed' }
+  }
  }
  if ($target -in @('all','engine')) {
   & dotnet publish $m.engineProject -c Release -r win-x64 --self-contained true "-p:Version=$version" -o "$out\engine"
