@@ -8,11 +8,28 @@ The suite combines computer health, storage analysis, application management, se
 
 ## Build
 
-The supported build entrypoint will be `build.bat --run`; installer production will use `build-installer.bat`. Their implementation and fresh-machine verification are tracked in the roadmap.
+Run `build.bat /s` to build the engine, desktop, and website without launching the interface. Run `build-installer.bat /s` to produce the unsigned Squirrel.Windows package. `build.bat --run` explicitly launches the desktop after a successful build.
+
+The entrypoints discover existing tools and obtain missing supported dependencies. They require committed source, bind receipts to the source tree and executable hashes, and propagate failed child commands. Existing-host build success is not fresh-machine installation proof. See [packaging and bootstrap limits](packaging/README.md).
+
+## Implemented development workflows
+
+The current source provides a working foundation, with these operation families:
+
+- Real system, volume, installed-application, startup, process, service, driver and security inventory.
+- Bounded folder analysis, exact duplicate detection, age-limited temporary-file plans, recoverable quarantine and conflict-preserving restoration.
+- Confirmed current-user startup changes and graceful process-close requests. Package operations require a genuine supported package identifier.
+- Supported security scanning and driver operations with explicit elevation requirements. These have not been exercised against this host's security or drivers.
+- Selected-file hashing, strict text and JSON conversion, password generation, network diagnostics and opt-in local provider access.
+- Flutter Material workspaces, local appearance preferences, an operation history, contextual confirmations and honest unavailable states.
+
+This list describes source behavior. It does not establish complete reference-product parity, runtime visual verification, or production readiness. The [versioned capability ledger](contracts/capabilities.json) retains all 295 requirements, their sources and their individual implementation states. See the [verification handoff](HANDOFF.md) for exact tested revisions and remaining gaps.
 
 ## Project records
 
 - [Architecture and local protocol](contracts/engine-protocol.md)
+- [Feature documentation](docs/features/README.md)
+- [Reference catalogue and coverage](docs/catalogue/README.md)
 - [Roadmap](ROADMAP.md)
 - [Handoff](HANDOFF.md)
 
