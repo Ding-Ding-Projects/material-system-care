@@ -58,32 +58,54 @@ internal static class StorageSafeFile
     {
         string parent = Path.GetDirectoryName(Path.GetFullPath(destination))!;
         ValidateAncestors(parent);
-        // A directory handle prevents its replacement between validation and rename.
-        using var directory = CreateFileW(parent, 0x80, 3, IntPtr.Zero, 3, 0x02200000, IntPtr.Zero);
-        if (directory.IsInvalid) throw new IOException("Unable to lock recovery destination.");
-        if (!GetFileInformationByHandle(directory, out var info) || (info.Attributes & 0x400) != 0) throw new EngineException("REPARSE_NOT_ALLOWED", "The destination is a reparse point.");
-        var resolved = new StringBuilder(32768);
-        uint resolvedLength = GetFinalPathNameByHandleW(directory, resolved, (uint)resolved.Capacity, 0);
-        string resolvedParent = resolved.ToString();
-        if (resolvedParent.StartsWith(@"\\?\UNC\", StringComparison.OrdinalIgnoreCase)) resolvedParent = @"\\" + resolvedParent[8..];
-        else if (resolvedParent.StartsWith(@"\\?\", StringComparison.Ordinal)) resolvedParent = resolvedParent[4..];
-        if (resolvedLength == 0 || resolvedLength >= resolved.Capacity || !string.Equals(parent, resolvedParent, StringComparison.OrdinalIgnoreCase))
-            throw new EngineException("TARGET_CHANGED", "The recovery destination changed.");
-        byte[] filename = Encoding.Unicode.GetBytes(Path.GetFileName(destination));
+        // Lock every destination ancestor against rename/deletion before validating
+        // their final handle paths. The Win32 rename API uses an absolute name.
+        using var locked = new DestinationLocks(parent);
+        byte[] filename = Encoding.Unicode.GetBytes(Path.GetFullPath(destination));
         int rootOffset = IntPtr.Size == 8 ? 8 : 4;
         int lengthOffset = rootOffset + IntPtr.Size;
         int nameOffset = lengthOffset + 4;
-        IntPtr buffer = Marshal.AllocHGlobal(nameOffset + filename.Length);
+        IntPtr buffer = Marshal.AllocHGlobal(nameOffset + filename.Length + 2);
         try
         {
             for (int i = 0; i < nameOffset; i++) Marshal.WriteByte(buffer, i, 0);
-            Marshal.WriteIntPtr(buffer, rootOffset, directory.DangerousGetHandle());
             Marshal.WriteInt32(buffer, lengthOffset, filename.Length);
             Marshal.Copy(filename, 0, buffer + nameOffset, filename.Length);
-            if (!SetFileInformationByHandle(source.SafeFileHandle, 3, buffer, (uint)(nameOffset + filename.Length)))
+            Marshal.WriteInt16(buffer, nameOffset + filename.Length, 0);
+            if (!SetFileInformationByHandle(source.SafeFileHandle, 3, buffer, (uint)(nameOffset + filename.Length + 2)))
                 throw new IOException("The same-volume recovery move failed; the original file is retained.", new Win32Exception(Marshal.GetLastWin32Error()));
         }
         finally { Marshal.FreeHGlobal(buffer); }
+    }
+    private sealed class DestinationLocks : IDisposable
+    {
+        private readonly List<(string Path, SafeFileHandle Handle)> handles = [];
+        public DestinationLocks(string parent)
+        {
+            try
+            {
+                for (string? path = parent; path != null; path = Path.GetDirectoryName(path))
+                {
+                    var handle = CreateFileW(path, 0x80, 3, IntPtr.Zero, 3, 0x02200000, IntPtr.Zero);
+                    if (handle.IsInvalid) { handle.Dispose(); throw new IOException("Unable to lock a recovery ancestor.", new Win32Exception(Marshal.GetLastWin32Error())); }
+                    handles.Add((path, handle));
+                }
+                foreach (var item in handles)
+                {
+                    if (!GetFileInformationByHandle(item.Handle, out var info) || (info.Attributes & 0x400) != 0)
+                        throw new EngineException("REPARSE_NOT_ALLOWED", "A recovery ancestor is a reparse point.");
+                    var resolved = new StringBuilder(32768);
+                    uint length = GetFinalPathNameByHandleW(item.Handle, resolved, (uint)resolved.Capacity, 0);
+                    string final = resolved.ToString();
+                    if (final.StartsWith(@"\\?\UNC\", StringComparison.OrdinalIgnoreCase)) final = @"\\" + final[8..];
+                    else if (final.StartsWith(@"\\?\", StringComparison.Ordinal)) final = final[4..];
+                    if (length == 0 || length >= resolved.Capacity || !string.Equals(item.Path.TrimEnd('\\'), final.TrimEnd('\\'), StringComparison.OrdinalIgnoreCase))
+                        throw new EngineException("TARGET_CHANGED", "A recovery ancestor changed.");
+                }
+            }
+            catch { Dispose(); throw; }
+        }
+        public void Dispose() { foreach (var item in handles) item.Handle.Dispose(); handles.Clear(); }
     }
     [StructLayout(LayoutKind.Sequential)]
     private struct FileInformation
