@@ -1,0 +1,13 @@
+import {LitElement,html,nothing} from 'lit';
+import {matchInWorker} from './search.mjs';
+/** Field-owned search and anchored regex composition, with isolated ephemeral state. */
+export class LocalSearch extends LitElement {
+ static properties={items:{attribute:false},translate:{attribute:false},query:{state:true},regex:{state:true},flags:{state:true},results:{state:true},state:{state:true}};
+ items=[];translate=(pair)=>pair[0];query='';regex=false;flags='iu';results=[];state='';generation=0;timer=0;
+ createRenderRoot(){return this;}
+ disconnectedCallback(){clearTimeout(this.timer);this.generation++;super.disconnectedCallback();}
+ updated(changed){if(changed.has('items')&&JSON.stringify(changed.get('items'))!==JSON.stringify(this.items))this.search();}
+ search(){const generation=++this.generation;clearTimeout(this.timer);const publish=indices=>{if(generation!==this.generation)return;this.results=indices;this.state='';this.dispatchEvent(new CustomEvent('matches',{detail:indices,bubbles:true}));};if(!this.regex){publish(this.items.map((text,index)=>text.toLowerCase().includes(this.query.toLowerCase())?index:-1).filter(index=>index>=0));return;}this.state='running';this.timer=setTimeout(async()=>{try{publish(await matchInWorker(this.query,this.flags,this.items));}catch{if(generation===this.generation){this.results=[];this.state='invalid';this.dispatchEvent(new CustomEvent('matches',{detail:[],bubbles:true}));}}},180);}
+ render(){const t=this.translate;return html`<section class="local-search"><div class="ledger-controls"><md-outlined-text-field label=${t(['Search this panel','搜尋此面板'])} .value=${this.query} @input=${e=>{this.query=e.target.value;this.search();}}></md-outlined-text-field><md-outlined-button @click=${()=>{this.regex=!this.regex;this.search();}}>${t(this.regex?['Close regex builder','關閉正規表示式工具']:['Regex builder','正規表示式工具'])}</md-outlined-button></div>${this.regex?html`<div class="regex-editor"><md-outlined-text-field label=${t(['Flags: i, m, s, u','旗標：i、m、s、u'])} .value=${this.flags} @input=${e=>{this.flags=e.target.value;this.search();}}></md-outlined-text-field><p>${t(['JavaScript regex, 256 characters, 150 ms deadline. Invalid or timed-out patterns return no matches.','JavaScript 正規表示式，上限 256 字元，限時 150 毫秒。無效或逾時表示式唔會有結果。'])}</p>${['^','$','.*','\\d+','(one|two)'].map(pattern=>html`<md-outlined-button @click=${()=>{this.query+=pattern;this.search();}}>${pattern}</md-outlined-button>`)}</div>`:nothing}<p role="status">${this.state==='invalid'?t(['Invalid or timed-out pattern.','表示式無效或逾時。']):this.state==='running'?t(['Searching…','搜尋中…']):`${this.results.length} ${t(['matching options','項符合選項'])}`}</p></section>`;}
+}
+customElements.define('msc-local-search',LocalSearch);
