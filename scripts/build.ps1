@@ -11,10 +11,15 @@ try {
  & "$PSScriptRoot\bootstrap.ps1" @args
  $binding=Get-SourceBinding $root
  $m = Get-Content build-manifest.json -Raw | ConvertFrom-Json
+ $version=if($env:BUILD_VERSION) { $env:BUILD_VERSION } else { $m.version }
+ if($version -notmatch '^\d+\.\d+\.\d+(\.\d+)?$') { throw 'BUILD_VERSION must be a numeric version' }
+ $versionParts=$version.Split('.')
+ $buildName=($versionParts[0..2] -join '.')
+ $buildNumber=if($versionParts.Count -eq 4) { $versionParts[3] } else { '0' }
  $out = Join-Path $root $m.outputDirectory
  New-Item -ItemType Directory -Force $out | Out-Null
  if ($target -in @('all','engine')) {
-  & dotnet publish $m.engineProject -c Release -r win-x64 --self-contained true -o "$out\engine"
+  & dotnet publish $m.engineProject -c Release -r win-x64 --self-contained true "-p:Version=$version" -o "$out\engine"
   if ($LASTEXITCODE) { throw "Engine build exit $LASTEXITCODE" }
   $engineExecutable=Join-Path $out 'engine\MaterialSystemCare.Engine.exe'
   if (!(Test-Path $engineExecutable)) { throw 'Published engine executable is missing' }
@@ -32,7 +37,7 @@ try {
  }
  if ($target -in @('all','desktop')) {
   Push-Location $m.desktopPath
-  try { & flutter.bat pub get; if ($LASTEXITCODE) { throw 'Flutter restore failed' }; & flutter.bat build windows --release; if ($LASTEXITCODE) { throw 'Flutter build failed' }; Copy-Item 'build\windows\x64\runner\Release\*' $out -Recurse -Force } finally { Pop-Location }
+  try { & flutter.bat pub get; if ($LASTEXITCODE) { throw 'Flutter restore failed' }; & flutter.bat build windows --release --build-name $buildName --build-number $buildNumber; if ($LASTEXITCODE) { throw 'Flutter build failed' }; Copy-Item 'build\windows\x64\runner\Release\*' $out -Recurse -Force } finally { Pop-Location }
  }
  if ($target -in @('all','site')) {
   Push-Location $m.websitePath
