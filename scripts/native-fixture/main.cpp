@@ -22,7 +22,7 @@ int main() {
   Case(2,500,100,false);
   Case(3,500,3000,false,50);
   Case(4,0,3000,false,0,true);
-  if(engine_transport::DeadlineFor("security.scan")!=3600000 || engine_transport::DeadlineFor("providers.invoke")<=60000 || engine_transport::DeadlineFor("apps.upgrade")<=180000) throw std::runtime_error("Method deadline mismatch");
+  if(engine_transport::DeadlineFor("security.scan")!=3600000 || engine_transport::DeadlineFor("providers.invoke")<=60000 || engine_transport::DeadlineFor("apps.upgrade")<=180000 || engine_transport::DeadlineFor("apps.list")<=180000 || engine_transport::DeadlineFor("files.hash")!=1800000) throw std::runtime_error("Method deadline mismatch");
   std::cout<<"Native transport: 5 passed"<<std::endl; return 0;
  } catch(const std::exception& e) { std::cerr<<e.what()<<std::endl; return 1; }
 }
