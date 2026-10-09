@@ -37,8 +37,10 @@ $escaped=[Security.SecurityElement]::Escape($payload)
 "@ | Set-Content $spec -Encoding UTF8
 & "$cache\nuget.exe" pack $spec -OutputDirectory $out -NoPackageAnalysis
 if ($LASTEXITCODE) { throw "NuGet pack exit $LASTEXITCODE" }
-& "$cache\squirrel\tools\Squirrel.exe" --releasify "$out\MaterialSystemCare.$version.nupkg" --releaseDir "$out\releases" --no-msi
-if ($LASTEXITCODE) { throw "Squirrel releasify exit $LASTEXITCODE" }
+$squirrelArguments=@('--releasify',('"{0}"' -f "$out\MaterialSystemCare.$version.nupkg"),'--releaseDir',('"{0}"' -f "$out\releases"),'--no-msi')
+$squirrel=Start-Process -FilePath "$cache\squirrel\tools\Squirrel.exe" -ArgumentList $squirrelArguments -WindowStyle Hidden -Wait -PassThru
+if ($null -eq $squirrel.ExitCode) { throw 'Squirrel releasify did not provide a process exit result' }
+if ($squirrel.ExitCode -ne 0) { throw "Squirrel releasify exit $($squirrel.ExitCode)" }
 Assert-SourceBinding $root $binding
 foreach ($required in @('Setup.exe','RELEASES',"MaterialSystemCare-$version-full.nupkg")) {
  $path=Join-Path "$out\releases" $required
