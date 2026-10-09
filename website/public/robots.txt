@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://material-system-care.azureteal8.chatgpt.site/sitemap.xml
