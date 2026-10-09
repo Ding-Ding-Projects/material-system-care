@@ -32,7 +32,3 @@ try {
     Console.WriteLine("PASS utilities fixtures: hash, conversion, no-overwrite, invalid JSON, generation, calculator, provider default");
 } finally { Directory.Delete(root, true); }
 
-namespace MaterialSystemCare.Engine {
-    public interface IEngineModule { bool CanHandle(string method); Task<object?> HandleAsync(string method, JsonElement p, EngineContext c, CancellationToken ct); }
-    public sealed class EngineContext(string dataRoot) { public string DataRoot => dataRoot; }
-}
