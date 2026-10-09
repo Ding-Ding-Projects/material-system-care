@@ -2,6 +2,7 @@ $ErrorActionPreference='Stop'
 . "$PSScriptRoot\integrity.ps1"
 $root=Split-Path $PSScriptRoot
 $m=Get-Content "$root\build-manifest.json" -Raw | ConvertFrom-Json
+$binding=Get-SourceBinding $root
 $cache=Join-Path $env:LOCALAPPDATA 'MaterialSystemCare\toolchains'
 function Fetch($url,$path,$sha) {
  if (!(Test-Path $path) -or (Get-ContentHash $path) -ne $sha) {
@@ -16,6 +17,11 @@ Fetch 'https://dist.nuget.org/win-x86-commandline/v6.14.0/nuget.exe' "$cache\nug
 if (!(Test-Path "$cache\squirrel\tools\Squirrel.exe")) { Expand-Archive "$cache\squirrel.2.0.1.zip" "$cache\squirrel" -Force }
 $payload=Join-Path $root $m.outputDirectory
 foreach ($required in @($m.executable,'flutter_windows.dll','data\icudtl.dat','engine\MaterialSystemCare.Engine.exe')) { if (!(Test-Path "$payload\$required")) { throw "Missing package payload: $required" } }
+foreach($pair in @(@('build-receipt.json',$m.executable),@('engine\build-receipt.json','engine\MaterialSystemCare.Engine.exe'))) {
+ $receipt=Get-Content (Join-Path $payload $pair[0]) -Raw | ConvertFrom-Json
+ foreach($key in @('source','sourceTree','indexTree','manifestSha256')) { if($receipt.$key -ne $binding[$key]) { throw "Package receipt does not match current source: $($pair[0]) $key" } }
+ if($receipt.executableSha256 -ne (Get-ContentHash (Join-Path $payload $pair[1]))) { throw 'Package executable changed after build receipt' }
+}
 $version=if ($env:BUILD_VERSION) { $env:BUILD_VERSION } else { $m.version }
 if ($version -notmatch '^\d+\.\d+\.\d+(\.\d+)?$') { throw 'BUILD_VERSION must be a numeric NuGet version' }
 $out=Join-Path $root 'artifacts\installer'
@@ -30,6 +36,7 @@ $escaped=[Security.SecurityElement]::Escape($payload)
 if ($LASTEXITCODE) { throw "NuGet pack exit $LASTEXITCODE" }
 & "$cache\squirrel\tools\Squirrel.exe" --releasify "$out\MaterialSystemCare.$version.nupkg" --releaseDir "$out\releases" --no-msi
 if ($LASTEXITCODE) { throw "Squirrel releasify exit $LASTEXITCODE" }
+Assert-SourceBinding $root $binding
 foreach ($required in @('Setup.exe','RELEASES',"MaterialSystemCare-$version-full.nupkg")) {
  $path=Join-Path "$out\releases" $required
  if (!(Test-Path $path) -or (Get-Item $path).Length -eq 0) { throw "Missing Squirrel output: $required" }
