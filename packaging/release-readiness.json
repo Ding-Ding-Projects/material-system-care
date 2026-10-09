@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "checks": {
+    "capabilities": { "status": "unverified", "evidence": [] },
+    "desktopRuntime": { "status": "unverified", "evidence": [] },
+    "installerLifecycle": { "status": "unverified", "evidence": [] },
+    "privacy": { "status": "unverified", "evidence": [] },
+    "updateLifecycle": { "status": "unverified", "evidence": [] },
+    "freshMachineBootstrap": { "status": "unverified", "evidence": [] },
+    "releasePhoto": { "status": "unverified", "evidence": [] }
+  }
+}
