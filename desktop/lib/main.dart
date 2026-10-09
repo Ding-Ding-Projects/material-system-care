@@ -46,6 +46,7 @@ class CareApp extends StatefulWidget {
 
 class _CareAppState extends State<CareApp> {
   Map<String, dynamic> settings = {};
+  int _settingsRevision = 0;
   @override
   void initState() {
     super.initState();
@@ -53,17 +54,20 @@ class _CareAppState extends State<CareApp> {
   }
 
   Future<void> _restore() async {
+    final revision = _settingsRevision;
     Map<String, String> wording = {};
     try {
       wording = await (widget.wordingCache ?? WordingCache.local()).load();
     } catch (_) {}
-    if (mounted)
+    if (mounted && revision == _settingsRevision)
       setState(() => settings = {...settings, 'privateVocabulary': wording});
     try {
       final saved = await Engine.invoke('settings.get', {
         'key': 'workspacePreferences',
       });
-      if (mounted && !saved.containsKey('items'))
+      if (mounted &&
+          revision == _settingsRevision &&
+          !saved.containsKey('items'))
         setState(() => settings = {...saved, 'privateVocabulary': wording});
     } catch (_) {}
   }
@@ -112,7 +116,11 @@ class _CareAppState extends State<CareApp> {
         preferences: settings,
         child: Workspace(
           settings: settings,
-          changed: (value) => setState(() => settings = value),
+          wordingCache: widget.wordingCache,
+          changed: (value) => setState(() {
+            _settingsRevision++;
+            settings = value;
+          }),
         ),
       ),
     );
@@ -159,7 +167,13 @@ final destinationIcons = [
 class Workspace extends StatefulWidget {
   final Map<String, dynamic> settings;
   final ValueChanged<Map<String, dynamic>> changed;
-  Workspace({super.key, required this.settings, required this.changed});
+  final WordingCache? wordingCache;
+  Workspace({
+    super.key,
+    required this.settings,
+    required this.changed,
+    this.wordingCache,
+  });
   @override
   State<Workspace> createState() => _WorkspaceState();
 }
@@ -221,6 +235,7 @@ class _WorkspaceState extends State<Workspace> {
                   padding: EdgeInsets.all(24),
                   child: selected == 8
                       ? SettingsPanel(
+                          wordingCache: widget.wordingCache,
                           invoke: Engine.invoke,
                           onChanged: widget.changed,
                         )

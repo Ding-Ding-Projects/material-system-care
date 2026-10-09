@@ -1,3 +1,5 @@
+import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -193,4 +195,77 @@ void main() {
       expect(find.text('0 records · 0 selected'), findsOneWidget);
     });
   }
+  for (final replacement in [
+    <String, String>{},
+    <String, String>{'Overview': 'Current summary'},
+  ]) {
+    testWidgets(
+      'DESKTOP-WORDING06 late startup cannot overwrite newer settings ${replacement.isEmpty ? "clear" : "replace"}',
+      (tester) async {
+        tester.view.physicalSize = const Size(1280, 900);
+        tester.view.devicePixelRatio = 1;
+        addTearDown(tester.view.resetPhysicalSize);
+        addTearDown(tester.view.resetDevicePixelRatio);
+        final initial = Completer<Object?>();
+        final panelRead = Completer<Object?>();
+        var reads = 0;
+        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+            .setMockMethodCallHandler(Engine.channel, (call) async {
+              if (call.method == 'invoke' &&
+                  (call.arguments as Map)['method'] == 'settings.get') {
+                reads++;
+                return reads == 1 ? initial.future : panelRead.future;
+              }
+              return jsonEncode({'ok': true, 'result': {}});
+            });
+        addTearDown(
+          () => TestDefaultBinaryMessengerBinding
+              .instance
+              .defaultBinaryMessenger
+              .setMockMethodCallHandler(Engine.channel, null),
+        );
+        await tester.pumpWidget(CareApp(wordingCache: FixtureWordingCache()));
+        await tester.pump();
+        await tester.pump();
+        expect(reads, 1);
+        final workspace = tester.widget<Workspace>(find.byType(Workspace));
+        // Enter the real settings route while the startup read remains pending.
+        await tester.tap(find.text('Settings'));
+        await tester.pump(const Duration(milliseconds: 300));
+        expect(reads, 2);
+        panelRead.complete(
+          jsonEncode({
+            'ok': true,
+            'result': {'theme': 'light', 'language': 'en'},
+          }),
+        );
+        await tester.pumpAndSettle();
+        final panel = tester.widget<SettingsPanel>(find.byType(SettingsPanel));
+        panel.onChanged({
+          'theme': 'dark',
+          'language': 'en',
+          'privateVocabulary': replacement,
+        });
+        await tester.pumpAndSettle();
+        initial.complete(
+          jsonEncode({
+            'ok': true,
+            'result': {'theme': 'light', 'language': 'yue'},
+          }),
+        );
+        await tester.pumpAndSettle();
+        final current = tester.widget<Workspace>(find.byType(Workspace));
+        expect(current.settings['theme'], 'dark');
+        expect(current.settings['language'], 'en');
+        expect(current.settings['privateVocabulary'], replacement);
+        expect(workspace.wordingCache, isA<FixtureWordingCache>());
+      },
+    );
+  }
+}
+
+class FixtureWordingCache extends WordingCache {
+  FixtureWordingCache() : super(File('unused-neutral-fixture'));
+  @override
+  Future<Map<String, String>> load() async => {'Overview': 'Initial summary'};
 }
