@@ -110,6 +110,7 @@ public sealed class UtilitiesModule : IEngineModule
                 await File.WriteAllTextAsync(Path.Combine(context.DataRoot, "utilities-ollama-opt-in.json"), JsonSerializer.Serialize(new { enabled }), ct);
                 return new { provider = "ollama", enabled, storesCredentials = false };
             case "providers.invoke":
+            {
                 Confirm(p);
                 if (Text(p, "provider", 32) != "ollama" || !await Enabled(context, ct)) throw new ArgumentException("Local Ollama must be explicitly enabled first.");
                 using var providerDeadline = CancellationTokenSource.CreateLinkedTokenSource(ct);
@@ -131,6 +132,7 @@ public sealed class UtilitiesModule : IEngineModule
                     using var document = JsonDocument.Parse(memory.ToArray(), new JsonDocumentOptions { MaxDepth = 64 });
                     return new { provider = "ollama", localOnly = true, response = document.RootElement.Clone() };
                 }
+            }
             default: throw new ArgumentException("Unknown utility method.");
         }
     }
@@ -142,5 +144,6 @@ public sealed class UtilitiesModule : IEngineModule
         return doc.RootElement.TryGetProperty("enabled", out var enabled) && enabled.ValueKind == JsonValueKind.True;
     }
 }
+
 
 
