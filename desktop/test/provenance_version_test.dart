@@ -4,6 +4,35 @@ import 'package:material_system_care/localization.dart';
 import 'package:material_system_care/provenance.dart';
 
 void main() {
+  for (final version in ['0.0.0', '65535.65535.65535']) {
+    test('receipt component bounds accept $version', () {
+      expect(
+        buildVersion({
+          'buildReceipt': {'version': version},
+        }),
+        version,
+      );
+    });
+  }
+  for (final version in [
+    '65536.0.0',
+    '0.65536.0',
+    '0.0.65536',
+    '999999999999999999999999999999999999999999999999999999.0.0',
+  ]) {
+    test(
+      'receipt component bounds reject $version without manifest fallback',
+      () {
+        expect(
+          buildVersion({
+            'buildReceipt': {'version': version},
+            'manifest': {'version': '0.1.0'},
+          }),
+          'build metadata unavailable',
+        );
+      },
+    );
+  }
   test('selected receipt version wins over static manifest', () {
     expect(
       buildVersion({
