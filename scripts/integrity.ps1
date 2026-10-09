@@ -18,3 +18,27 @@ function Assert-SourceBinding([string]$Root,$Binding) {
  $current=Get-SourceBinding $Root
  foreach($key in @('source','sourceTree','indexTree','manifestSha256')) { if($current[$key] -ne $Binding[$key]) { throw "Source changed during production: $key" } }
 }
+function Assert-SquirrelAware([string]$Executable) {
+ if(!('MaterialSystemCare.VersionResource' -as [type])) {
+  Add-Type -TypeDefinition @'
+using System;
+using System.Runtime.InteropServices;
+namespace MaterialSystemCare {
+ public static class VersionResource {
+  [DllImport("version.dll", CharSet=CharSet.Unicode)] static extern uint GetFileVersionInfoSize(string path, out uint handle);
+  [DllImport("version.dll", CharSet=CharSet.Unicode)] static extern bool GetFileVersionInfo(string path,uint handle,uint size,byte[] data);
+  [DllImport("version.dll", CharSet=CharSet.Unicode)] static extern bool VerQueryValue(byte[] data,string key,out IntPtr value,out uint length);
+  public static bool IsAware(string path) {
+   uint handle; uint size=GetFileVersionInfoSize(path,out handle);
+   if(size==0 || size>4096) return false;
+   byte[] data=new byte[size]; if(!GetFileVersionInfo(path,0,size,data)) return false;
+   IntPtr value; uint length;
+   return VerQueryValue(data,@"\StringFileInfo\040904B0\SquirrelAwareVersion",out value,out length) && length>0 && Marshal.PtrToStringUni(value)=="1";
+  }
+ }
+}
+'@
+ }
+ if(![MaterialSystemCare.VersionResource]::IsAware($Executable)) { throw 'Built executable lacks the pinned Squirrel 2.0.1 English Unicode awareness resource' }
+ Write-Host 'Squirrel 2.0.1 English Unicode awareness resource: verified'
+}

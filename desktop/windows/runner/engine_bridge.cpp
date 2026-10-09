@@ -82,7 +82,7 @@ EngineBridge::EngineBridge(flutter::BinaryMessenger* messenger, HWND window):win
   STARTUPINFOW startup{}; startup.cb=sizeof(startup); PROCESS_INFORMATION process{};
   std::wstring command=L"\""+engine+L"\"";
   if(CreateProcessW(engine.c_str(),command.data(),nullptr,nullptr,FALSE,CREATE_NO_WINDOW|CREATE_SUSPENDED,nullptr,base.c_str(),&startup,&process)) {
-   process_=process.hProcess;
+   process_=process.hProcess; process_id_=process.dwProcessId;
    job_=CreateJobObjectW(nullptr,nullptr); JOBOBJECT_EXTENDED_LIMIT_INFORMATION limits{}; limits.BasicLimitInformation.LimitFlags=JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE;
    if(job_ && SetInformationJobObject(job_,JobObjectExtendedLimitInformation,&limits,sizeof(limits)) && AssignProcessToJobObject(job_,process_)) ResumeThread(process.hThread);
    else TerminateProcess(process_,1);
@@ -121,7 +121,7 @@ EngineBridge::EngineBridge(flutter::BinaryMessenger* messenger, HWND window):win
   DWORD deadline=engine_transport::DeadlineFor(*name);
   std::thread worker([this,text=std::move(text),result=std::move(result),done,cancelled,deadline]() mutable {
    auto reply=std::make_unique<Reply>(); reply->result=std::move(result);
-   try { reply->text=engine_transport::Exchange(pipe_,text,deadline,*cancelled); } catch(const std::exception& e) { reply->error=e.what(); }
+   try { reply->text=engine_transport::Exchange(pipe_,text,deadline,*cancelled,process_id_); } catch(const std::exception& e) { reply->error=e.what(); }
    { std::lock_guard<std::mutex> lock(mutex_); replies_.push_back(std::move(reply)); }
    if(!stopping_) PostMessageW(window_,kCompletion,0,0);
    *done=true;

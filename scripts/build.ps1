@@ -54,6 +54,7 @@ try {
  if ($target -in @('all','desktop')) {
   $exe=Join-Path $out $m.executable
   if (!(Test-Path $exe)) { throw "Missing executable: $exe" }
+  Assert-SquirrelAware $exe
   Assert-SourceBinding $root $binding
   $desktopReceipt=$binding.Clone(); $desktopReceipt.executableSha256=Get-ContentHash $exe; $desktopReceipt.builtUtc=[DateTime]::UtcNow.ToString('o')
   $desktopReceipt | ConvertTo-Json | Set-Content "$out\build-receipt.json"

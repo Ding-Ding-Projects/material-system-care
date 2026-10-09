@@ -31,15 +31,17 @@ DWORD DeadlineFor(const std::string& method) {
  if(method=="apps.upgrade" || method=="apps.uninstall" || method=="drivers.install" || method=="drivers.export") return 4*60*1000;
  return 60*1000;
 }
-std::string Exchange(const std::wstring& name,std::string request,DWORD duration,const std::atomic<bool>& cancelled) {
+std::string Exchange(const std::wstring& name,std::string request,DWORD duration,const std::atomic<bool>& cancelled,DWORD expectedServer) {
  if(duration==0 || duration>60*60*1000) throw std::runtime_error("Invalid engine operation deadline");
  ULONGLONG deadline=GetTickCount64()+duration;
  HANDLE pipe=INVALID_HANDLE_VALUE;
  for(int attempt=0;attempt<50 && pipe==INVALID_HANDLE_VALUE && !cancelled && Remaining(deadline)>0;++attempt) {
-  pipe=CreateFileW(name.c_str(),GENERIC_READ|GENERIC_WRITE,0,nullptr,OPEN_EXISTING,FILE_FLAG_OVERLAPPED,nullptr);
+  pipe=CreateFileW(name.c_str(),GENERIC_READ|GENERIC_WRITE,0,nullptr,OPEN_EXISTING,FILE_FLAG_OVERLAPPED|SECURITY_SQOS_PRESENT|SECURITY_IDENTIFICATION,nullptr);
   if(pipe==INVALID_HANDLE_VALUE) Sleep(100);
  }
  if(pipe==INVALID_HANDLE_VALUE) throw std::runtime_error(cancelled?"Engine operation cancelled":"Local engine is unavailable");
+ ULONG server=0;
+ if(expectedServer==0 || !GetNamedPipeServerProcessId(pipe,&server) || server!=expectedServer) { CloseHandle(pipe); throw std::runtime_error("Engine pipe is not owned by the launched engine"); }
  request+='\n'; DWORD count=0;
  if(!Transfer(pipe,request.data(),static_cast<DWORD>(request.size()),count,true,deadline,cancelled) || count!=request.size()) { CloseHandle(pipe); throw std::runtime_error(cancelled?"Engine operation cancelled":"Engine operation deadline exceeded or request interrupted"); }
  std::string response; std::array<char,8192> buffer{};

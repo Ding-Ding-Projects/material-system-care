@@ -17,6 +17,7 @@ class EngineBridge {
   struct Reply { std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result; std::string text; std::string error; };
   HWND window_;
   HANDLE process_ = nullptr;
+  DWORD process_id_ = 0;
   HANDLE job_ = nullptr;
   std::atomic<bool> stopping_{false};
   std::unique_ptr<flutter::MethodChannel<flutter::EncodableValue>> channel_;
