@@ -30,5 +30,6 @@ try {
     var providers = await Invoke("providers.list", new { });
     Check(!providers.GetProperty("providers")[0].GetProperty("configured").GetBoolean(), "Provider default off");
     Console.WriteLine("PASS utilities fixtures: hash, conversion, no-overwrite, invalid JSON, generation, calculator, provider default");
-} finally { Directory.Delete(root, true); }
+} finally { Microsoft.Data.Sqlite.SqliteConnection.ClearAllPools(); Directory.Delete(root, true); }
+
 
