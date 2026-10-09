@@ -9,6 +9,14 @@ function Download($url,$path) {
  if ($LASTEXITCODE) { throw "Download failed: $url ($LASTEXITCODE)" }
  Move-Item -Force "$path.partial" $path
 }
+$env:PATH="$cache\git\cmd;$cache\flutter\bin;$cache\dotnet;$cache\node;$env:PATH"
+if (!(Get-Command git -ErrorAction SilentlyContinue)) {
+ $gitArchive=Join-Path $cache 'mingit.zip'
+ Download 'https://github.com/git-for-windows/git/releases/download/v2.56.0.windows.2/MinGit-2.56.0.2-64-bit.zip' $gitArchive
+ if ((Get-ContentHash $gitArchive) -ne 'da35e72aa21c005a5a0d298cfbae110bc1609a815730ea0dde84b01a1b3cd3be') { throw 'MinGit archive SHA-256 mismatch' }
+ Expand-Archive $gitArchive "$cache\git"
+ if (!(Test-Path "$cache\git\cmd\git.exe")) { throw 'MinGit extraction verification failed' }
+}
 $flutter = Join-Path $cache 'flutter\bin\flutter.bat'
 if (!(Test-Path $flutter)) {
  $archive = Join-Path $cache 'flutter.zip'
@@ -24,10 +32,8 @@ $env:PATH = "$cache\flutter\bin;$cache\dotnet;$cache\node;$env:PATH"
 if (!(Get-Command node -ErrorAction SilentlyContinue)) {
  $nodeVersion='26.10.0'
  $nodeArchive=Join-Path $cache 'node.zip'
- $checks=Join-Path $cache 'node-SHASUMS256.txt'
- Download "https://nodejs.org/dist/v$nodeVersion/SHASUMS256.txt" $checks
  Download "https://nodejs.org/dist/v$nodeVersion/node-v$nodeVersion-win-x64.zip" $nodeArchive
- $expected=((Get-Content $checks | Where-Object { $_ -match "  node-v$nodeVersion-win-x64.zip$" }) -split '\s+')[0]
+ $expected='9fef7eca6743a6b910989cd8e78712376b394fcb9b6e1e9c44a0799a287f90c5'
  if (!$expected -or (Get-ContentHash $nodeArchive) -ne $expected) { throw 'Node archive SHA-256 mismatch' }
  $stage=Join-Path $cache ('node-stage-'+[guid]::NewGuid())
  Expand-Archive $nodeArchive $stage
