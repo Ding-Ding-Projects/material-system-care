@@ -1,0 +1,48 @@
+name: Windows build and release
+on:
+  push:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  package:
+    runs-on: windows-2025
+    env:
+      GH_TOKEN: ${{ secrets.RELEASE_TOKEN || secrets.ORG_TOKEN || secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Record start and unique version
+        shell: pwsh
+        run: |
+          "WORKFLOW_STARTED=$([DateTime]::UtcNow.ToString('o'))" >> $env:GITHUB_ENV
+          "BUILD_VERSION=0.1.${{ github.run_number }}.${{ github.run_attempt }}" >> $env:GITHUB_ENV
+      - name: Build and package
+        shell: cmd
+        run: build-installer.bat /s
+      - name: Publish unique release
+        shell: pwsh
+        run: |
+          $end=[DateTime]::UtcNow
+          $elapsed=$end-[DateTime]::Parse($env:WORKFLOW_STARTED)
+          $notes="Unsigned Squirrel.Windows installer. Unknown-publisher and SmartScreen warnings may appear.`n`nWorkflow started: $env:WORKFLOW_STARTED`nWorkflow completed: $($end.ToString('o'))`nWorkflow duration: $($elapsed.ToString('hh\:mm\:ss'))`n`nThis workflow builds and packages. It runs no tests or lint."
+          $notes | Set-Content release-notes.txt
+          gh release create "v$env:BUILD_VERSION" artifacts/installer/releases/Setup.exe artifacts/installer/releases/RELEASES artifacts/installer/releases/*-full.nupkg --title "Material System Care $env:BUILD_VERSION" --notes-file release-notes.txt
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+      - name: Collect safe build evidence
+        if: always()
+        continue-on-error: true
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force artifacts/evidence | Out-Null
+          @{run='${{ github.run_id }}';source='${{ github.sha }}';status='${{ job.status }}';runner='${{ runner.os }}'} | ConvertTo-Json | Set-Content artifacts/evidence/run.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        continue-on-error: true
+        with:
+          name: windows-build-evidence
+          path: |
+            artifacts/installer/releases/
+            artifacts/windows-x64/build-receipt.json
+            artifacts/evidence/
+          if-no-files-found: warn
+          retention-days: 7

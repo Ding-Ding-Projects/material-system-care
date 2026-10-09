@@ -1,0 +1,9 @@
+# Windows release dependency inventory
+
+The `package` job in `workflows/release.yml` invokes only the root `build-installer.bat /s` entrypoint. It needs Windows x64, PowerShell, curl and tar supplied by the supported operating system; Git and the GitHub CLI for source metadata and release publication; Flutter 3.47.7 and its bundled Dart SDK; .NET SDK 10.0.401; Node.js 26.10.0 and npm; Visual C++ Build Tools with the desktop C++ workload and a Windows SDK; Squirrel.Windows 2.0.1; and NuGet 6.14.0.
+
+`scripts/bootstrap.ps1` discovers installed compatible tools, obtains missing portable SDKs in a per-user cache, and checks the Flutter archive against the build manifest's SHA-256. Node 26.10.0 and MinGit 2.56.0.2 archives have fixed SHA-256 values verified against canonical release metadata. Visual C++ setup uses the canonical Microsoft release channel, requests native UAC when installation is necessary, and never initiates a host restart. Silent execution reports an explicit elevation blocker when native build tools are missing. Squirrel and NuGet packaging tools have fixed content hashes in `scripts/package.ps1`.
+
+The Windows runner image is a platform choice, not proof that these tools exist. Bootstrap runs every time. Fresh-machine bootstrap remains unverified until a disposable Windows environment records a cache-miss build and installer run. Existing-machine success proves only that run. Atomic interrupted-activation recovery, full dependency-tamper regressions, and a content-pinned Visual C++ installer remain outstanding.
+
+The job runs no tests, lint, static analysis, or accessibility checks. It builds, packages, publishes a unique release, and collects explicitly safe outputs. Collection and upload run even after earlier failure and cannot change the original job result.
