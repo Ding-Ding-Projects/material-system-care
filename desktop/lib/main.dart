@@ -395,10 +395,10 @@ class _WorkflowPageState extends State<WorkflowPage> {
       children: [
         Text(widget.title, style: Theme.of(context).textTheme.headlineMedium),
         if (widget.index == 0)
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 8),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8),
             child: Text(
-              'Version: build metadata unavailable · Updated at: provenance unavailable\nMeasurements below come from the local engine. No scan has permission to change files.',
+              'Version: ${provenance?["manifest"]?["version"] ?? "build metadata unavailable"} · Updated at: provenance unavailable\nMeasurements below come from the local engine. No scan has permission to change files.',
             ),
           ),
         const SizedBox(height: 16),
@@ -621,12 +621,12 @@ class _WorkflowPageState extends State<WorkflowPage> {
                           tooltip: 'Record actions',
                           onSelected: (method) => rowAction(method, row),
                           itemBuilder: (_) => [
-                            if (widget.index == 2)
+                            if (widget.index == 2 && row['packageId'] is String)
                               const PopupMenuItem(
                                 value: 'apps.uninstall',
                                 child: Text('Uninstall selected app'),
                               ),
-                            if (widget.index == 2)
+                            if (widget.index == 2 && row['packageId'] is String)
                               const PopupMenuItem(
                                 value: 'apps.upgrade',
                                 child: Text('Upgrade selected app'),
