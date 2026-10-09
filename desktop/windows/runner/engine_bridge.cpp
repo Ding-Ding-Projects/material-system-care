@@ -89,16 +89,20 @@ EngineBridge::EngineBridge(flutter::BinaryMessenger* messenger, HWND window):win
  if(GetFileAttributesW(engine.c_str())!=INVALID_FILE_ATTRIBUTES) {
   STARTUPINFOW startup{}; startup.cb=sizeof(startup); PROCESS_INFORMATION process{};
   std::wstring command=L"\""+engine+L"\"";
-  if(CreateProcessW(engine.c_str(),command.data(),nullptr,nullptr,FALSE,CREATE_NO_WINDOW,nullptr,base.c_str(),&startup,&process)) {
-   CloseHandle(process.hThread); process_=process.hProcess;
+  if(CreateProcessW(engine.c_str(),command.data(),nullptr,nullptr,FALSE,CREATE_NO_WINDOW|CREATE_SUSPENDED,nullptr,base.c_str(),&startup,&process)) {
+   process_=process.hProcess;
    job_=CreateJobObjectW(nullptr,nullptr); JOBOBJECT_EXTENDED_LIMIT_INFORMATION limits{}; limits.BasicLimitInformation.LimitFlags=JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE;
-   if(job_ && SetInformationJobObject(job_,JobObjectExtendedLimitInformation,&limits,sizeof(limits))) AssignProcessToJobObject(job_,process_);
+   if(job_ && SetInformationJobObject(job_,JobObjectExtendedLimitInformation,&limits,sizeof(limits)) && AssignProcessToJobObject(job_,process_)) ResumeThread(process.hThread);
+   else TerminateProcess(process_,1);
+   CloseHandle(process.hThread);
   }
  }
  channel_=std::make_unique<flutter::MethodChannel<flutter::EncodableValue>>(messenger,"material_system_care/engine",&flutter::StandardMethodCodec::GetInstance());
  channel_->SetMethodCallHandler([this](const auto& call, auto result) {
   if(call.method_name()=="pickFile" || call.method_name()=="pickDirectory") { Pick(window_,call.method_name()=="pickDirectory",call.arguments(),std::move(result)); return; }
   if(call.method_name()!="invoke") { result->NotImplemented(); return; }
+  for(auto it=workers_.begin();it!=workers_.end();) { if(*it->done) { it->thread.join(); it=workers_.erase(it); } else ++it; }
+  if(workers_.size()>=16) { result->Error("ENGINE_BUSY","Too many active engine operations"); return; }
   const auto* map=call.arguments() ? std::get_if<flutter::EncodableMap>(call.arguments()) : nullptr;
   if(!map) { result->Error("INVALID_ARGUMENT","Expected request map"); return; }
   auto method=map->find(flutter::EncodableValue("method")); auto params=map->find(flutter::EncodableValue("params"));
@@ -108,12 +112,15 @@ EngineBridge::EngineBridge(flutter::BinaryMessenger* messenger, HWND window):win
   auto encoded=flutter::JsonMessageCodec::GetInstance().EncodeMessage(flutter::EncodableValue(request));
   if(!encoded || encoded->size()>kLimit) { result->Error("INVALID_ARGUMENT","Request exceeds limit"); return; }
   std::string text(encoded->begin(),encoded->end());
-  workers_.emplace_back([this,text=std::move(text),result=std::move(result)]() mutable {
+  auto done=std::make_shared<std::atomic<bool>>(false);
+  std::thread worker([this,text=std::move(text),result=std::move(result),done]() mutable {
    auto reply=std::make_unique<Reply>(); reply->result=std::move(result);
    try { reply->text=Exchange(pipe_,text); } catch(const std::exception& e) { reply->error=e.what(); }
    { std::lock_guard<std::mutex> lock(mutex_); replies_.push_back(std::move(reply)); }
    if(!stopping_) PostMessageW(window_,kCompletion,0,0);
+   *done=true;
   });
+  workers_.push_back(Worker{std::move(worker),done});
  });
 }
 void EngineBridge::Complete() {
@@ -123,6 +130,6 @@ void EngineBridge::Complete() {
 EngineBridge::~EngineBridge() {
  stopping_=true; channel_->SetMethodCallHandler(nullptr);
  if(job_) CloseHandle(job_);
- for(auto& worker:workers_) if(worker.joinable()) worker.join();
+ for(auto& worker:workers_) if(worker.thread.joinable()) worker.thread.join();
  Complete(); if(process_) CloseHandle(process_);
 }
