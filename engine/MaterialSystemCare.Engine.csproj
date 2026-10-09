@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net10.0-windows</TargetFramework><ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable><AssemblyName>MaterialSystemCare.Engine</AssemblyName></PropertyGroup>
+  <ItemGroup><PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.0" /></ItemGroup>
+  <ItemGroup><PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="2.1.13" /></ItemGroup>
+  <ItemGroup><None Include="../build-manifest.json" Link="build-manifest.json" CopyToOutputDirectory="PreserveNewest" /></ItemGroup>
+</Project>
