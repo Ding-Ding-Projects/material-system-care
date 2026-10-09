@@ -27,10 +27,10 @@ class BuildProvenance extends StatelessWidget {
         runSpacing: 4,
         children: [
           Text(
-            '${localize(context, 'Version')}: ${localize(context, buildVersion(ping))}',
+            '${localize(context, 'Version')}: ${buildVersion(ping) == "build metadata unavailable" ? localize(context, "build metadata unavailable") : buildVersion(ping)}',
           ),
           Text(
-            '${localize(context, 'Updated at')}: ${localize(context, buildUpdatedAt(ping))}',
+            '${localize(context, 'Updated at')}: ${buildUpdatedAt(ping) == "provenance unavailable" ? localize(context, "provenance unavailable") : buildUpdatedAt(ping)}',
           ),
         ],
       ),

@@ -49,4 +49,3 @@ class OperationMotion extends StatelessWidget {
     );
   }
 }
-

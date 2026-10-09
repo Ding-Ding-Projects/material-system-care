@@ -355,25 +355,28 @@ class _WorkflowPageState extends State<WorkflowPage> {
   Future<bool> confirm(String title, String detail) async =>
       await showDialog<bool>(
         context: context,
-        builder: (context) => AlertDialog(
-          title: UiText(title),
-          content: SingleChildScrollView(
-            child: SelectableText(
-              translations.containsKey(detail)
-                  ? localize(context, detail)
-                  : detail,
+        builder: (context) => CopyScope(
+          preferences: CopyScope.of(this.context),
+          child: AlertDialog(
+            title: UiText(title),
+            content: SingleChildScrollView(
+              child: SelectableText(
+                translations.containsKey(detail)
+                    ? localize(this.context, detail)
+                    : detail,
+              ),
             ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context, false),
+                child: UiText('Cancel'),
+              ),
+              FilledButton(
+                onPressed: () => Navigator.pop(context, true),
+                child: UiText('Confirm selected action'),
+              ),
+            ],
           ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context, false),
-              child: UiText('Cancel'),
-            ),
-            FilledButton(
-              onPressed: () => Navigator.pop(context, true),
-              child: UiText('Confirm selected action'),
-            ),
-          ],
         ),
       ) ??
       false;
