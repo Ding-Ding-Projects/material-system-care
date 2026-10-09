@@ -71,3 +71,45 @@ export function parseVocabularyBytes(bytes) {
 }
 
 export function serialiseVocabulary(vocabulary) { return JSON.stringify(validateVocabulary(vocabulary)); }
+
+export const MAX_RENDERED_WORDING_LENGTH = 16384;
+const matchers = new WeakMap();
+
+/** Literal longest-match replacement reads only original text, never inserted values. */
+export function applyWording(text, entries, limit = MAX_RENDERED_WORDING_LENGTH) {
+  if (typeof text !== 'string' || !Number.isSafeInteger(limit) || limit < 0) throw new Error('Invalid wording boundary.');
+  if (text.length > limit) return text;
+  let root = matchers.get(entries);
+  if (!root) {
+    root = {next:new Map()};
+    for (const [key, replacement] of Object.entries(entries)) {
+      if (!key || typeof replacement !== 'string') continue;
+      let node = root;
+      for (const char of key) {
+        if (!node.next.has(char)) node.next.set(char,{next:new Map()});
+        node = node.next.get(char);
+      }
+      node.replacement = replacement;
+    }
+    matchers.set(entries,root);
+  }
+  const original = Array.from(text);
+  const output = [];
+  let length = 0;
+  for (let index = 0; index < original.length;) {
+    let node = root;
+    let end = index;
+    let replacement;
+    for (let cursor = index; cursor < original.length; cursor++) {
+      node = node.next.get(original[cursor]);
+      if (!node) break;
+      if (node.replacement !== undefined) {end = cursor + 1; replacement = node.replacement;}
+    }
+    const chunk = replacement === undefined ? original[index] : replacement;
+    length += chunk.length;
+    if (length > limit) return text;
+    output.push(chunk);
+    index = replacement === undefined ? index + 1 : end;
+  }
+  return output.join('');
+}

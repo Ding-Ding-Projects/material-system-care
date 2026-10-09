@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "5f8a485653758cd7cb94c41d9a74fb5d836aef3b",
+  "command": "build.bat /s --target=site",
+  "exitCode": 0,
+  "bundle": "website/dist/assets/index-Ch466Tj5.js",
+  "sha256": "611180af9ca910182f2126eca2a354382b830551b52f144796129dad1f2fcb3c",
+  "testCommand": "node --test website/tests/*.test.mjs",
+  "testsPassed": 8,
+  "testsFailed": 0,
+  "runtimeInteraction": "unverified",
+  "screenshots": "pending required cheap Lowlevel route",
+  "release": "development, installer URL null",
+  "statusHub": "not delivered: enrollment credential unavailable"
+}
