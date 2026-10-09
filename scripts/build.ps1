@@ -5,6 +5,7 @@ Set-Location $root
 $silent = $env:SILENT -eq '1' -or $args -contains '/s' -or $args -contains '--silent'
 $run = $env:RUN_AFTER_BUILD -eq '1' -or $args -contains '/run' -or $args -contains '--run'
 $installer = $args -contains '--installer'
+$verboseDesktop = $args -contains '--verbose-desktop'
 $target = 'all'
 foreach ($arg in $args) { if ($arg -match '^--target=(engine|desktop|site|native|bundle|all)$') { $target=$Matches[1] } }
 try {
@@ -49,7 +50,15 @@ try {
  }
  if ($target -in @('all','desktop')) {
   Push-Location $m.desktopPath
-  try { & flutter.bat pub get; if ($LASTEXITCODE) { throw 'Flutter restore failed' }; & flutter.bat build windows --release --build-name $buildName --build-number $buildNumber; if ($LASTEXITCODE) { throw 'Flutter build failed' }; Copy-Item 'build\windows\x64\runner\Release\*' $out -Recurse -Force } finally { Pop-Location }
+  try {
+   & flutter.bat pub get
+   if ($LASTEXITCODE) { throw 'Flutter restore failed' }
+   $flutterArguments=@('build','windows','--release','--build-name',$buildName,'--build-number',$buildNumber)
+   if($verboseDesktop) { $flutterArguments=@('--verbose')+$flutterArguments }
+   & flutter.bat @flutterArguments
+   if ($LASTEXITCODE) { throw 'Flutter build failed' }
+   Copy-Item 'build\windows\x64\runner\Release\*' $out -Recurse -Force
+  } finally { Pop-Location }
  }
  if ($target -in @('all','site')) {
   Push-Location $m.websitePath
