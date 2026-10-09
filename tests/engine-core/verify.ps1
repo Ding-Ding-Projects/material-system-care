@@ -42,7 +42,7 @@ try {
             $readTask = $reader.ReadLineAsync()
             if (!$readTask.Wait(10000)) { throw 'Named pipe response timed out.' }
             $response = $readTask.GetAwaiter().GetResult() | ConvertFrom-Json
-            if (!$response.ok -or $response.id -ne 'pipe-fixture') { throw 'Named pipe roundtrip failed.' }
+            if (!$response.ok -or $response.id -ne 'pipe-fixture' -or !$response.result.fixture -or $response.result.buildReceipt.source -ne $ping.result.buildReceipt.source) { throw 'Named pipe roundtrip or source binding failed.' }
         } finally { if ($reader) { $reader.Dispose() }; if ($writer) { $writer.Dispose() }; $pipe.Dispose() }
     } finally { if (!$server.HasExited) { $server.Kill(); $server.WaitForExit() }; $server.Dispose() }
     Write-Output 'PASS: 8 engine core groups covering protocol, persistence, history, sensitive-data validation, live measurements, and named pipe transport.'
