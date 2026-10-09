@@ -7,13 +7,24 @@ $installer = $args -contains '--installer'
 $target = 'all'
 foreach ($arg in $args) { if ($arg -match '^--target=(engine|desktop|site|all)$') { $target=$Matches[1] } }
 try {
- & "$PSScriptRoot\bootstrap.ps1"
+ & "$PSScriptRoot\bootstrap.ps1" @args
  $m = Get-Content build-manifest.json -Raw | ConvertFrom-Json
  $out = Join-Path $root $m.outputDirectory
  New-Item -ItemType Directory -Force $out | Out-Null
  if ($target -in @('all','engine')) {
   & dotnet publish $m.engineProject -c Release -r win-x64 --self-contained true -o "$out\engine"
   if ($LASTEXITCODE) { throw "Engine build exit $LASTEXITCODE" }
+  $engineExecutable=Join-Path $out 'engine\MaterialSystemCare.Engine.exe'
+  if (!(Test-Path $engineExecutable)) { throw 'Published engine executable is missing' }
+  @{source=(& git rev-parse HEAD);manifestSha256=(Get-FileHash build-manifest.json).Hash;executableSha256=(Get-FileHash $engineExecutable).Hash;builtUtc=[DateTime]::UtcNow.ToString('o')} | ConvertTo-Json | Set-Content "$out\engine\build-receipt.json"
+  if ($args -contains '--verify-engine') {
+   foreach ($project in @('tests/engine-core/EngineFixtures.csproj','tests/utilities/Utilities.Tests.csproj','tests/storage/Storage.Tests.csproj','tests/protection/ProtectionFixtures.csproj')) {
+    & dotnet run --project $project -c Release
+    if ($LASTEXITCODE) { throw "Engine verification failed: $project ($LASTEXITCODE)" }
+   }
+   & "$root\tests\engine-core\verify.ps1" -Engine "$out\engine\MaterialSystemCare.Engine.exe"
+   if ($LASTEXITCODE) { throw 'Engine pipe verification failed' }
+  }
  }
  if ($target -in @('all','desktop')) {
   Push-Location $m.desktopPath

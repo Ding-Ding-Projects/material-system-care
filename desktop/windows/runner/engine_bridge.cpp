@@ -7,12 +7,27 @@
 #include <stdexcept>
 
 namespace {
-void Pick(HWND owner, bool directory, std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result) {
+void Pick(HWND owner, bool directory, const flutter::EncodableValue* arguments, std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result) {
  IFileOpenDialog* dialog=nullptr;
  HRESULT initialized=CoInitializeEx(nullptr,COINIT_APARTMENTTHREADED);
  HRESULT status=CoCreateInstance(CLSID_FileOpenDialog,nullptr,CLSCTX_INPROC_SERVER,IID_PPV_ARGS(&dialog));
  if(FAILED(status)) { result->Error("PICKER_UNAVAILABLE","Native selection dialog is unavailable"); if(SUCCEEDED(initialized)) CoUninitialize(); return; }
  DWORD options=0; dialog->GetOptions(&options); dialog->SetOptions(options|FOS_FORCEFILESYSTEM|FOS_PATHMUSTEXIST|(directory?FOS_PICKFOLDERS:FOS_FILEMUSTEXIST));
+ std::wstring pattern;
+ if(!directory && arguments) {
+  const auto* map=std::get_if<flutter::EncodableMap>(arguments);
+  if(map) { auto found=map->find(flutter::EncodableValue("extensions"));
+   if(found!=map->end()) { const auto* list=std::get_if<flutter::EncodableList>(&found->second);
+    if(list && list->size()<=20) for(const auto& extension:*list) {
+     const auto* value=std::get_if<std::string>(&extension);
+     if(value && !value->empty() && value->size()<=16 && value->find_first_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")==std::string::npos) {
+      if(!pattern.empty()) pattern+=L";"; pattern+=L"*."; pattern.append(value->begin(),value->end());
+     }
+    }
+   }
+  }
+ }
+ if(!pattern.empty()) { COMDLG_FILTERSPEC filter{L"Supported files",pattern.c_str()}; dialog->SetFileTypes(1,&filter); }
  status=dialog->Show(owner);
  if(status==HRESULT_FROM_WIN32(ERROR_CANCELLED)) result->Success();
  else if(FAILED(status)) result->Error("PICKER_FAILED","Native selection dialog could not complete");
@@ -82,7 +97,7 @@ EngineBridge::EngineBridge(flutter::BinaryMessenger* messenger, HWND window):win
  }
  channel_=std::make_unique<flutter::MethodChannel<flutter::EncodableValue>>(messenger,"material_system_care/engine",&flutter::StandardMethodCodec::GetInstance());
  channel_->SetMethodCallHandler([this](const auto& call, auto result) {
-  if(call.method_name()=="pickFile" || call.method_name()=="pickDirectory") { Pick(window_,call.method_name()=="pickDirectory",std::move(result)); return; }
+  if(call.method_name()=="pickFile" || call.method_name()=="pickDirectory") { Pick(window_,call.method_name()=="pickDirectory",call.arguments(),std::move(result)); return; }
   if(call.method_name()!="invoke") { result->NotImplemented(); return; }
   const auto* map=call.arguments() ? std::get_if<flutter::EncodableMap>(call.arguments()) : nullptr;
   if(!map) { result->Error("INVALID_ARGUMENT","Expected request map"); return; }
