@@ -30,9 +30,10 @@ Baseline `2026-10-08.1` contains **295 capability rows**, including exactly 24 A
 ## Status semantics
 
 - `unimplemented`: required behavior lacks reviewed implementation and proof.
+- `unverified`: a linked independent implementation subset exists, but built interaction, captures or full required behavior remains incomplete.
 - `unavailable`: a necessary engine, API or provider is absent. It remains a gap.
 - `excluded`: named behavior is beyond the explicit release boundary, with the reason retained.
-- `verified`: allowed only with exact implementation, test and built evidence references. No row in this baseline is verified.
+- `verified`: allowed only with exact implementation, test and built evidence references. No row in this baseline is verified. [Source mapping and fixture scope](../architecture/fixture-evidence.md) distinguish implemented subsets from reference parity.
 
 ## Ownership and historical boundaries
 

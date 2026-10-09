@@ -48,13 +48,43 @@
         "System.IO; volume APIs; Windows Storage Management; elevation where required"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "Care",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "engine/Modules/StorageModule.cs",
+        "desktop/lib/main.dart"
+      ],
+      "tests": [
+        "tests/storage/Program.cs"
+      ],
       "evidence": [],
-      "documentation": "docs/catalogue/asc-care.md"
+      "documentation": "docs/catalogue/asc-care.md",
+      "implementationCoverage": "partial",
+      "implementedEquivalent": "cleanup.scan / cleanup.apply / cleanup.restore",
+      "remainingGap": "Only aged current-user temporary files in a server-issued recoverable plan; no browser privacy sweep, system-wide disk cleaner or all-user cleanup.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/StorageModule.cs",
+          "role": "implementation",
+          "symbol": "cleanup.scan / cleanup.apply / cleanup.restore"
+        },
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "tests/storage/Program.cs",
+          "role": "test",
+          "symbol": "fixture assertions"
+        },
+        {
+          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "path": "desktop/lib/main.dart",
+          "role": "interface",
+          "symbol": "Storage"
+        }
+      ],
+      "actualNavigation": "Storage",
+      "fixtureSummary": "docs/architecture/fixture-evidence.md"
     },
     {
       "id": "asc-care.03",
@@ -148,13 +178,34 @@
         "System.IO; volume APIs; Windows Storage Management; elevation where required"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "Care",
-      "implementation": [],
+      "implementation": [
+        "engine/Modules/ProtectionModule.cs",
+        "desktop/lib/main.dart"
+      ],
       "tests": [],
       "evidence": [],
-      "documentation": "docs/catalogue/asc-care.md"
+      "documentation": "docs/catalogue/asc-care.md",
+      "implementationCoverage": "partial",
+      "implementedEquivalent": "network.diagnostics",
+      "remainingGap": "Bounded interface, DNS and one ICMP check; no speed measurement or TCP optimization.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/ProtectionModule.cs",
+          "role": "implementation",
+          "symbol": "network.diagnostics"
+        },
+        {
+          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "path": "desktop/lib/main.dart",
+          "role": "interface",
+          "symbol": "Tools"
+        }
+      ],
+      "actualNavigation": "Tools"
     },
     {
       "id": "asc-care.07",
@@ -223,13 +274,34 @@
         "System.IO; volume APIs; Windows Storage Management; elevation where required"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "Care",
-      "implementation": [],
+      "implementation": [
+        "engine/Modules/ProtectionModule.cs",
+        "desktop/lib/main.dart"
+      ],
       "tests": [],
       "evidence": [],
-      "documentation": "docs/catalogue/asc-care.md"
+      "documentation": "docs/catalogue/asc-care.md",
+      "implementationCoverage": "source-linked",
+      "implementedEquivalent": "security.status",
+      "remainingGap": "Reads actual Defender status through supported Windows tooling; no independent antivirus protection engine.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/ProtectionModule.cs",
+          "role": "implementation",
+          "symbol": "security.status"
+        },
+        {
+          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "path": "desktop/lib/main.dart",
+          "role": "interface",
+          "symbol": "Protection"
+        }
+      ],
+      "actualNavigation": "Protection"
     },
     {
       "id": "asc-care.10",
@@ -248,13 +320,34 @@
         "System.IO; volume APIs; Windows Storage Management; elevation where required"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "Care",
-      "implementation": [],
+      "implementation": [
+        "engine/Modules/ProtectionModule.cs",
+        "desktop/lib/main.dart"
+      ],
       "tests": [],
       "evidence": [],
-      "documentation": "docs/catalogue/asc-care.md"
+      "documentation": "docs/catalogue/asc-care.md",
+      "implementationCoverage": "source-linked",
+      "implementedEquivalent": "security.status",
+      "remainingGap": "Reads firewall profiles; does not enable, disable or edit firewall rules.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/ProtectionModule.cs",
+          "role": "implementation",
+          "symbol": "security.status"
+        },
+        {
+          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "path": "desktop/lib/main.dart",
+          "role": "interface",
+          "symbol": "Protection"
+        }
+      ],
+      "actualNavigation": "Protection"
     },
     {
       "id": "asc-care.11",
@@ -298,13 +391,34 @@
         "System.IO; volume APIs; Windows Storage Management; elevation where required"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "Care",
-      "implementation": [],
+      "implementation": [
+        "engine/Modules/ManagementModule.cs",
+        "desktop/lib/main.dart"
+      ],
       "tests": [],
       "evidence": [],
-      "documentation": "docs/catalogue/asc-care.md"
+      "documentation": "docs/catalogue/asc-care.md",
+      "implementationCoverage": "partial",
+      "implementedEquivalent": "apps.updates",
+      "remainingGap": "Returns WinGet text output without guessed package records; no normalized per-application update model or vendor database.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/ManagementModule.cs",
+          "role": "implementation",
+          "symbol": "apps.updates"
+        },
+        {
+          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "path": "desktop/lib/main.dart",
+          "role": "interface",
+          "symbol": "Apps"
+        }
+      ],
+      "actualNavigation": "Apps"
     },
     {
       "id": "asc-care.13",
@@ -498,13 +612,43 @@
         "System.IO; volume APIs; Windows Storage Management; elevation where required"
       ],
       "safetyBoundary": "Read source media only; write recovered files to a different selected volume; never guarantee recovery after TRIM, overwrite or encryption.",
-      "status": "unimplemented",
-      "statusReason": "Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "Care",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "engine/Modules/StorageModule.cs",
+        "desktop/lib/main.dart"
+      ],
+      "tests": [
+        "tests/storage/Program.cs"
+      ],
       "evidence": [],
-      "documentation": "docs/catalogue/asc-care.md"
+      "documentation": "docs/catalogue/asc-care.md",
+      "implementationCoverage": "partial",
+      "implementedEquivalent": "cleanup.history",
+      "remainingGap": "Cleanup receipts only; no registry, driver or arbitrary settings rescue center.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/StorageModule.cs",
+          "role": "implementation",
+          "symbol": "cleanup.history"
+        },
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "tests/storage/Program.cs",
+          "role": "test",
+          "symbol": "fixture assertions"
+        },
+        {
+          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "path": "desktop/lib/main.dart",
+          "role": "interface",
+          "symbol": "Activity"
+        }
+      ],
+      "actualNavigation": "Activity",
+      "fixtureSummary": "docs/architecture/fixture-evidence.md"
     },
     {
       "id": "asc-speed.01",
@@ -546,13 +690,34 @@
         "Supported Windows user-mode APIs"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "Performance",
-      "implementation": [],
+      "implementation": [
+        "engine/Modules/ManagementModule.cs",
+        "desktop/lib/main.dart"
+      ],
       "tests": [],
       "evidence": [],
-      "documentation": "docs/catalogue/asc-speed.md"
+      "documentation": "docs/catalogue/asc-speed.md",
+      "implementationCoverage": "partial",
+      "implementedEquivalent": "startup.list / startup.set",
+      "remainingGap": "Current-user HKCU Run string entries only, with original-state journal; no machine entries, startup-folder mutation or scheduler management.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/ManagementModule.cs",
+          "role": "implementation",
+          "symbol": "startup.list / startup.set"
+        },
+        {
+          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "path": "desktop/lib/main.dart",
+          "role": "interface",
+          "symbol": "Startup"
+        }
+      ],
+      "actualNavigation": "Startup"
     },
     {
       "id": "asc-speed.03",
@@ -618,13 +783,26 @@
         "Supported Windows user-mode APIs"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "Performance",
-      "implementation": [],
+      "implementation": [
+        "engine/Modules/ManagementModule.cs"
+      ],
       "tests": [],
       "evidence": [],
-      "documentation": "docs/catalogue/asc-speed.md"
+      "documentation": "docs/catalogue/asc-speed.md",
+      "implementationCoverage": "partial",
+      "implementedEquivalent": "services.list",
+      "remainingGap": "Read-only service inventory; no service stop, disable, profile or boost operation.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/ManagementModule.cs",
+          "role": "implementation",
+          "symbol": "services.list"
+        }
+      ]
     },
     {
       "id": "asc-speed.06",
@@ -715,7 +893,7 @@
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
       "status": "unimplemented",
-      "statusReason": "Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row.",
+      "statusReason": "Supporting process or storage measurements do not implement memory recommendations or a visual disk map.",
       "intendedPage": "Performance",
       "implementation": [],
       "tests": [],
@@ -1080,13 +1258,43 @@
         "System.IO; volume APIs; Windows Storage Management; elevation where required"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "Toolbox",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "engine/Modules/SystemModule.cs",
+        "desktop/lib/main.dart"
+      ],
+      "tests": [
+        "tests/engine-core/verify.ps1"
+      ],
       "evidence": [],
-      "documentation": "docs/catalogue/asc-toolbox.md"
+      "documentation": "docs/catalogue/asc-toolbox.md",
+      "implementationCoverage": "partial",
+      "implementedEquivalent": "system.snapshot",
+      "remainingGap": "Logical processor count, operating-system description, physical-memory state and drive capacities only; no complete motherboard, GPU, sensor or device inventory.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/SystemModule.cs",
+          "role": "implementation",
+          "symbol": "system.snapshot"
+        },
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "tests/engine-core/verify.ps1",
+          "role": "test",
+          "symbol": "fixture assertions"
+        },
+        {
+          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "path": "desktop/lib/main.dart",
+          "role": "interface",
+          "symbol": "Overview"
+        }
+      ],
+      "actualNavigation": "Overview",
+      "fixtureSummary": "docs/architecture/fixture-evidence.md"
     },
     {
       "id": "asc-toolbox.07",
@@ -1380,13 +1588,43 @@
         "System.IO; volume APIs; Windows Storage Management; elevation where required"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "Toolbox",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "engine/Modules/StorageModule.cs",
+        "desktop/lib/main.dart"
+      ],
+      "tests": [
+        "tests/storage/Program.cs"
+      ],
       "evidence": [],
-      "documentation": "docs/catalogue/asc-toolbox.md"
+      "documentation": "docs/catalogue/asc-toolbox.md",
+      "implementationCoverage": "partial",
+      "implementedEquivalent": "cleanup.scan / cleanup.apply / cleanup.restore",
+      "remainingGap": "Only aged current-user temporary files in a server-issued recoverable plan; no browser privacy sweep, system-wide disk cleaner or all-user cleanup.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/StorageModule.cs",
+          "role": "implementation",
+          "symbol": "cleanup.scan / cleanup.apply / cleanup.restore"
+        },
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "tests/storage/Program.cs",
+          "role": "test",
+          "symbol": "fixture assertions"
+        },
+        {
+          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "path": "desktop/lib/main.dart",
+          "role": "interface",
+          "symbol": "Storage"
+        }
+      ],
+      "actualNavigation": "Storage",
+      "fixtureSummary": "docs/architecture/fixture-evidence.md"
     },
     {
       "id": "asc-toolbox.19",
@@ -1430,13 +1668,43 @@
         "System.IO; volume APIs; Windows Storage Management; elevation where required"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "Toolbox",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "engine/Modules/StorageModule.cs",
+        "desktop/lib/main.dart"
+      ],
+      "tests": [
+        "tests/storage/Program.cs"
+      ],
       "evidence": [],
-      "documentation": "docs/catalogue/asc-toolbox.md"
+      "documentation": "docs/catalogue/asc-toolbox.md",
+      "implementationCoverage": "partial",
+      "implementedEquivalent": "storage.analyze",
+      "remainingGap": "Reports selected-root empty directories; does not delete them.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/StorageModule.cs",
+          "role": "implementation",
+          "symbol": "storage.analyze"
+        },
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "tests/storage/Program.cs",
+          "role": "test",
+          "symbol": "fixture assertions"
+        },
+        {
+          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "path": "desktop/lib/main.dart",
+          "role": "interface",
+          "symbol": "Storage"
+        }
+      ],
+      "actualNavigation": "Storage",
+      "fixtureSummary": "docs/architecture/fixture-evidence.md"
     },
     {
       "id": "asc-toolbox.21",
@@ -1480,13 +1748,43 @@
         "System.IO; volume APIs; Windows Storage Management; elevation where required"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "Toolbox",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "engine/Modules/StorageModule.cs",
+        "desktop/lib/main.dart"
+      ],
+      "tests": [
+        "tests/storage/Program.cs"
+      ],
       "evidence": [],
-      "documentation": "docs/catalogue/asc-toolbox.md"
+      "documentation": "docs/catalogue/asc-toolbox.md",
+      "implementationCoverage": "partial",
+      "implementedEquivalent": "storage.duplicates",
+      "remainingGap": "Bounded selected-folder SHA-256 plus byte-comparison groups; read-only, no automatic duplicate deletion.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/StorageModule.cs",
+          "role": "implementation",
+          "symbol": "storage.duplicates"
+        },
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "tests/storage/Program.cs",
+          "role": "test",
+          "symbol": "fixture assertions"
+        },
+        {
+          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "path": "desktop/lib/main.dart",
+          "role": "interface",
+          "symbol": "Storage"
+        }
+      ],
+      "actualNavigation": "Storage",
+      "fixtureSummary": "docs/architecture/fixture-evidence.md"
     },
     {
       "id": "asc-toolbox.23",
@@ -1505,13 +1803,43 @@
         "System.IO; volume APIs; Windows Storage Management; elevation where required"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "Toolbox",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "engine/Modules/StorageModule.cs",
+        "desktop/lib/main.dart"
+      ],
+      "tests": [
+        "tests/storage/Program.cs"
+      ],
       "evidence": [],
-      "documentation": "docs/catalogue/asc-toolbox.md"
+      "documentation": "docs/catalogue/asc-toolbox.md",
+      "implementationCoverage": "partial",
+      "implementedEquivalent": "storage.analyze",
+      "remainingGap": "Largest 100 files within a bounded selected-root scan; no deletion or complete all-drive inventory.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/StorageModule.cs",
+          "role": "implementation",
+          "symbol": "storage.analyze"
+        },
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "tests/storage/Program.cs",
+          "role": "test",
+          "symbol": "fixture assertions"
+        },
+        {
+          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "path": "desktop/lib/main.dart",
+          "role": "interface",
+          "symbol": "Storage"
+        }
+      ],
+      "actualNavigation": "Storage",
+      "fixtureSummary": "docs/architecture/fixture-evidence.md"
     },
     {
       "id": "asc-toolbox.24",
@@ -1530,13 +1858,35 @@
         "System.IO; volume APIs; Windows Storage Management; elevation where required"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "Toolbox",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "engine/Modules/ManagementModule.cs"
+      ],
+      "tests": [
+        "tests/management/ManagementFixtures.cs"
+      ],
       "evidence": [],
-      "documentation": "docs/catalogue/asc-toolbox.md"
+      "documentation": "docs/catalogue/asc-toolbox.md",
+      "implementationCoverage": "partial",
+      "implementedEquivalent": "processes.list / processes.stop",
+      "remainingGap": "Process working-set and cumulative CPU records plus same-user interactive graceful-close request. No forced termination, RAM recycling, service mutation or boost guarantee.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/ManagementModule.cs",
+          "role": "implementation",
+          "symbol": "processes.list / processes.stop"
+        },
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "tests/management/ManagementFixtures.cs",
+          "role": "test",
+          "symbol": "fixture assertions"
+        }
+      ],
+      "fixtureSummary": "docs/architecture/fixture-evidence.md"
     },
     {
       "id": "ultimate.01",
@@ -1555,13 +1905,43 @@
         "Microsoft Defender / Windows Security supported interfaces; independent engine license if additional scanning is claimed"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "Security",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "engine/Modules/ProtectionModule.cs",
+        "desktop/lib/main.dart"
+      ],
+      "tests": [
+        "tests/protection/Program.cs"
+      ],
       "evidence": [],
-      "documentation": "docs/catalogue/ultimate.md"
+      "documentation": "docs/catalogue/ultimate.md",
+      "implementationCoverage": "partial",
+      "implementedEquivalent": "security.scan",
+      "remainingGap": "Explicit confirmed/elevated Defender quick or full scan only. Fixtures prove consent/elevation refusal, not live scanning or IObit/Bitdefender detection parity.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/ProtectionModule.cs",
+          "role": "implementation",
+          "symbol": "security.scan"
+        },
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "tests/protection/Program.cs",
+          "role": "test",
+          "symbol": "fixture assertions"
+        },
+        {
+          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "path": "desktop/lib/main.dart",
+          "role": "interface",
+          "symbol": "Protection"
+        }
+      ],
+      "actualNavigation": "Protection",
+      "fixtureSummary": "docs/architecture/fixture-evidence.md"
     },
     {
       "id": "ultimate.02",
@@ -1580,13 +1960,43 @@
         "Microsoft Defender / Windows Security supported interfaces; independent engine license if additional scanning is claimed"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "Security",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "engine/Modules/ProtectionModule.cs",
+        "desktop/lib/main.dart"
+      ],
+      "tests": [
+        "tests/protection/Program.cs"
+      ],
       "evidence": [],
-      "documentation": "docs/catalogue/ultimate.md"
+      "documentation": "docs/catalogue/ultimate.md",
+      "implementationCoverage": "partial",
+      "implementedEquivalent": "security.scan",
+      "remainingGap": "Explicit confirmed/elevated Defender quick or full scan only. Fixtures prove consent/elevation refusal, not live scanning or IObit/Bitdefender detection parity.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/ProtectionModule.cs",
+          "role": "implementation",
+          "symbol": "security.scan"
+        },
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "tests/protection/Program.cs",
+          "role": "test",
+          "symbol": "fixture assertions"
+        },
+        {
+          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "path": "desktop/lib/main.dart",
+          "role": "interface",
+          "symbol": "Protection"
+        }
+      ],
+      "actualNavigation": "Protection",
+      "fixtureSummary": "docs/architecture/fixture-evidence.md"
     },
     {
       "id": "ultimate.03",
@@ -1655,13 +2065,34 @@
         "Microsoft Defender / Windows Security supported interfaces; independent engine license if additional scanning is claimed"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "Security",
-      "implementation": [],
+      "implementation": [
+        "engine/Modules/ProtectionModule.cs",
+        "desktop/lib/main.dart"
+      ],
       "tests": [],
       "evidence": [],
-      "documentation": "docs/catalogue/ultimate.md"
+      "documentation": "docs/catalogue/ultimate.md",
+      "implementationCoverage": "partial",
+      "implementedEquivalent": "security.status",
+      "remainingGap": "Reports Defender definition and real-time state; no vendor database updater or independent enforcement.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/ProtectionModule.cs",
+          "role": "implementation",
+          "symbol": "security.status"
+        },
+        {
+          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "path": "desktop/lib/main.dart",
+          "role": "interface",
+          "symbol": "Protection"
+        }
+      ],
+      "actualNavigation": "Protection"
     },
     {
       "id": "ultimate.06",
@@ -1680,13 +2111,34 @@
         "Microsoft Defender / Windows Security supported interfaces; independent engine license if additional scanning is claimed"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "Security",
-      "implementation": [],
+      "implementation": [
+        "engine/Modules/ProtectionModule.cs",
+        "desktop/lib/main.dart"
+      ],
       "tests": [],
       "evidence": [],
-      "documentation": "docs/catalogue/ultimate.md"
+      "documentation": "docs/catalogue/ultimate.md",
+      "implementationCoverage": "partial",
+      "implementedEquivalent": "security.status",
+      "remainingGap": "Reports Defender definition and real-time state; no vendor database updater or independent enforcement.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/ProtectionModule.cs",
+          "role": "implementation",
+          "symbol": "security.status"
+        },
+        {
+          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "path": "desktop/lib/main.dart",
+          "role": "interface",
+          "symbol": "Protection"
+        }
+      ],
+      "actualNavigation": "Protection"
     },
     {
       "id": "ultimate.07",
@@ -1905,13 +2357,35 @@
         "SetupAPI / Configuration Manager / CIM; signed vendor INF packages for installation"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "Drivers",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "engine/Modules/ProtectionModule.cs"
+      ],
+      "tests": [
+        "tests/protection/Program.cs"
+      ],
       "evidence": [],
-      "documentation": "docs/catalogue/drivers.md"
+      "documentation": "docs/catalogue/drivers.md",
+      "implementationCoverage": "partial",
+      "implementedEquivalent": "drivers.install",
+      "remainingGap": "Accepts a user-selected signed local INF and respects Windows ranking. No online OEM catalogue, newer-version discovery, UI installation action or verified device change.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/ProtectionModule.cs",
+          "role": "implementation",
+          "symbol": "drivers.install"
+        },
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "tests/protection/Program.cs",
+          "role": "test",
+          "symbol": "fixture assertions"
+        }
+      ],
+      "fixtureSummary": "docs/architecture/fixture-evidence.md"
     },
     {
       "id": "drivers.06",
@@ -2005,13 +2479,43 @@
         "SetupAPI / Configuration Manager / CIM; signed vendor INF packages for installation"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "Drivers",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "engine/Modules/ProtectionModule.cs",
+        "desktop/lib/main.dart"
+      ],
+      "tests": [
+        "tests/protection/Program.cs"
+      ],
       "evidence": [],
-      "documentation": "docs/catalogue/drivers.md"
+      "documentation": "docs/catalogue/drivers.md",
+      "implementationCoverage": "partial",
+      "implementedEquivalent": "drivers.export",
+      "remainingGap": "PnPUtil export of a selected driver-store package to a new directory. Fixtures exercise refusal before mutation, not a real backup/restore round trip.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/ProtectionModule.cs",
+          "role": "implementation",
+          "symbol": "drivers.export"
+        },
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "tests/protection/Program.cs",
+          "role": "test",
+          "symbol": "fixture assertions"
+        },
+        {
+          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "path": "desktop/lib/main.dart",
+          "role": "interface",
+          "symbol": "Drivers"
+        }
+      ],
+      "actualNavigation": "Drivers",
+      "fixtureSummary": "docs/architecture/fixture-evidence.md"
     },
     {
       "id": "drivers.10",
@@ -2330,13 +2834,43 @@
         "SetupAPI / Configuration Manager / CIM; signed vendor INF packages for installation"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "Drivers",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "engine/Modules/SystemModule.cs",
+        "desktop/lib/main.dart"
+      ],
+      "tests": [
+        "tests/engine-core/verify.ps1"
+      ],
       "evidence": [],
-      "documentation": "docs/catalogue/drivers.md"
+      "documentation": "docs/catalogue/drivers.md",
+      "implementationCoverage": "partial",
+      "implementedEquivalent": "system.snapshot",
+      "remainingGap": "Logical processor count, operating-system description, physical-memory state and drive capacities only; no complete motherboard, GPU, sensor or device inventory.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/SystemModule.cs",
+          "role": "implementation",
+          "symbol": "system.snapshot"
+        },
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "tests/engine-core/verify.ps1",
+          "role": "test",
+          "symbol": "fixture assertions"
+        },
+        {
+          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "path": "desktop/lib/main.dart",
+          "role": "interface",
+          "symbol": "Overview"
+        }
+      ],
+      "actualNavigation": "Overview",
+      "fixtureSummary": "docs/architecture/fixture-evidence.md"
     },
     {
       "id": "drivers.23",
@@ -2430,13 +2964,43 @@
         "Microsoft Defender / Windows Security supported interfaces; independent engine license if additional scanning is claimed"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "Security",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "engine/Modules/ProtectionModule.cs",
+        "desktop/lib/main.dart"
+      ],
+      "tests": [
+        "tests/protection/Program.cs"
+      ],
       "evidence": [],
-      "documentation": "docs/catalogue/malware.md"
+      "documentation": "docs/catalogue/malware.md",
+      "implementationCoverage": "partial",
+      "implementedEquivalent": "security.scan",
+      "remainingGap": "Explicit confirmed/elevated Defender quick or full scan only. Fixtures prove consent/elevation refusal, not live scanning or IObit/Bitdefender detection parity.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/ProtectionModule.cs",
+          "role": "implementation",
+          "symbol": "security.scan"
+        },
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "tests/protection/Program.cs",
+          "role": "test",
+          "symbol": "fixture assertions"
+        },
+        {
+          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "path": "desktop/lib/main.dart",
+          "role": "interface",
+          "symbol": "Protection"
+        }
+      ],
+      "actualNavigation": "Protection",
+      "fixtureSummary": "docs/architecture/fixture-evidence.md"
     },
     {
       "id": "malware.02",
@@ -2455,13 +3019,43 @@
         "Microsoft Defender / Windows Security supported interfaces; independent engine license if additional scanning is claimed"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "Security",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "engine/Modules/ProtectionModule.cs",
+        "desktop/lib/main.dart"
+      ],
+      "tests": [
+        "tests/protection/Program.cs"
+      ],
       "evidence": [],
-      "documentation": "docs/catalogue/malware.md"
+      "documentation": "docs/catalogue/malware.md",
+      "implementationCoverage": "partial",
+      "implementedEquivalent": "security.scan",
+      "remainingGap": "Explicit confirmed/elevated Defender quick or full scan only. Fixtures prove consent/elevation refusal, not live scanning or IObit/Bitdefender detection parity.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/ProtectionModule.cs",
+          "role": "implementation",
+          "symbol": "security.scan"
+        },
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "tests/protection/Program.cs",
+          "role": "test",
+          "symbol": "fixture assertions"
+        },
+        {
+          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "path": "desktop/lib/main.dart",
+          "role": "interface",
+          "symbol": "Protection"
+        }
+      ],
+      "actualNavigation": "Protection",
+      "fixtureSummary": "docs/architecture/fixture-evidence.md"
     },
     {
       "id": "malware.03",
@@ -3180,13 +3774,34 @@
         "Registry uninstall metadata; PackageManager; approved winget executable or signed vendor installer"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "Applications",
-      "implementation": [],
+      "implementation": [
+        "engine/Modules/ManagementModule.cs",
+        "desktop/lib/main.dart"
+      ],
       "tests": [],
       "evidence": [],
-      "documentation": "docs/catalogue/uninstaller.md"
+      "documentation": "docs/catalogue/uninstaller.md",
+      "implementationCoverage": "partial",
+      "implementedEquivalent": "apps.list",
+      "remainingGap": "Registry and current-user AppX inventory only. Registry IDs are not WinGet IDs; AppX removal is unavailable.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/ManagementModule.cs",
+          "role": "implementation",
+          "symbol": "apps.list"
+        },
+        {
+          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "path": "desktop/lib/main.dart",
+          "role": "interface",
+          "symbol": "Apps"
+        }
+      ],
+      "actualNavigation": "Apps"
     },
     {
       "id": "uninstaller.02",
@@ -3430,13 +4045,34 @@
         "Registry uninstall metadata; PackageManager; approved winget executable or signed vendor installer"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "Applications",
-      "implementation": [],
+      "implementation": [
+        "engine/Modules/ManagementModule.cs",
+        "desktop/lib/main.dart"
+      ],
       "tests": [],
       "evidence": [],
-      "documentation": "docs/catalogue/uninstaller.md"
+      "documentation": "docs/catalogue/uninstaller.md",
+      "implementationCoverage": "partial",
+      "implementedEquivalent": "apps.updates",
+      "remainingGap": "Returns WinGet text output without guessed package records; no normalized per-application update model or vendor database.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/ManagementModule.cs",
+          "role": "implementation",
+          "symbol": "apps.updates"
+        },
+        {
+          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "path": "desktop/lib/main.dart",
+          "role": "interface",
+          "symbol": "Apps"
+        }
+      ],
+      "actualNavigation": "Apps"
     },
     {
       "id": "uninstaller.12",
@@ -3980,13 +4616,34 @@
         "Registry uninstall metadata; PackageManager; approved winget executable or signed vendor installer"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "Applications",
-      "implementation": [],
+      "implementation": [
+        "engine/Modules/ManagementModule.cs",
+        "desktop/lib/main.dart"
+      ],
       "tests": [],
       "evidence": [],
-      "documentation": "docs/catalogue/updater.md"
+      "documentation": "docs/catalogue/updater.md",
+      "implementationCoverage": "partial",
+      "implementedEquivalent": "apps.updates",
+      "remainingGap": "Returns WinGet text output without guessed package records; no normalized per-application update model or vendor database.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/ManagementModule.cs",
+          "role": "implementation",
+          "symbol": "apps.updates"
+        },
+        {
+          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "path": "desktop/lib/main.dart",
+          "role": "interface",
+          "symbol": "Apps"
+        }
+      ],
+      "actualNavigation": "Apps"
     },
     {
       "id": "updater.02",
@@ -4005,13 +4662,43 @@
         "Registry uninstall metadata; PackageManager; approved winget executable or signed vendor installer"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "Applications",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "engine/Modules/ManagementModule.cs",
+        "desktop/lib/main.dart"
+      ],
+      "tests": [
+        "tests/management/ManagementFixtures.cs"
+      ],
       "evidence": [],
-      "documentation": "docs/catalogue/updater.md"
+      "documentation": "docs/catalogue/updater.md",
+      "implementationCoverage": "partial",
+      "implementedEquivalent": "apps.upgrade",
+      "remainingGap": "Exact user-supplied WinGet package ID with consent; fixtures validate identifiers and consent, not actual installation. Current UI registry records cannot supply package IDs.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/ManagementModule.cs",
+          "role": "implementation",
+          "symbol": "apps.upgrade"
+        },
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "tests/management/ManagementFixtures.cs",
+          "role": "test",
+          "symbol": "fixture assertions"
+        },
+        {
+          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "path": "desktop/lib/main.dart",
+          "role": "interface",
+          "symbol": "Apps"
+        }
+      ],
+      "actualNavigation": "Apps",
+      "fixtureSummary": "docs/architecture/fixture-evidence.md"
     },
     {
       "id": "updater.03",
@@ -4230,13 +4917,43 @@
         "SetupAPI / Configuration Manager / CIM; signed vendor INF packages for installation"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "System",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "engine/Modules/SystemModule.cs",
+        "desktop/lib/main.dart"
+      ],
+      "tests": [
+        "tests/engine-core/verify.ps1"
+      ],
       "evidence": [],
-      "documentation": "docs/catalogue/sysinfo.md"
+      "documentation": "docs/catalogue/sysinfo.md",
+      "implementationCoverage": "partial",
+      "implementedEquivalent": "system.snapshot",
+      "remainingGap": "Logical processor count, operating-system description, physical-memory state and drive capacities only; no complete motherboard, GPU, sensor or device inventory.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/SystemModule.cs",
+          "role": "implementation",
+          "symbol": "system.snapshot"
+        },
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "tests/engine-core/verify.ps1",
+          "role": "test",
+          "symbol": "fixture assertions"
+        },
+        {
+          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "path": "desktop/lib/main.dart",
+          "role": "interface",
+          "symbol": "Overview"
+        }
+      ],
+      "actualNavigation": "Overview",
+      "fixtureSummary": "docs/architecture/fixture-evidence.md"
     },
     {
       "id": "sysinfo.02",
@@ -4255,13 +4972,43 @@
         "SetupAPI / Configuration Manager / CIM; signed vendor INF packages for installation"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "System",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "engine/Modules/SystemModule.cs",
+        "desktop/lib/main.dart"
+      ],
+      "tests": [
+        "tests/engine-core/verify.ps1"
+      ],
       "evidence": [],
-      "documentation": "docs/catalogue/sysinfo.md"
+      "documentation": "docs/catalogue/sysinfo.md",
+      "implementationCoverage": "partial",
+      "implementedEquivalent": "system.snapshot",
+      "remainingGap": "Operating-system description, live physical-memory usage and drive capacities; no historical telemetry, throughput or sensor dashboard.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/SystemModule.cs",
+          "role": "implementation",
+          "symbol": "system.snapshot"
+        },
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "tests/engine-core/verify.ps1",
+          "role": "test",
+          "symbol": "fixture assertions"
+        },
+        {
+          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "path": "desktop/lib/main.dart",
+          "role": "interface",
+          "symbol": "Overview"
+        }
+      ],
+      "actualNavigation": "Overview",
+      "fixtureSummary": "docs/architecture/fixture-evidence.md"
     },
     {
       "id": "sysinfo.03",
@@ -4330,13 +5077,43 @@
         "SetupAPI / Configuration Manager / CIM; signed vendor INF packages for installation"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "System",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "engine/Modules/SystemModule.cs",
+        "desktop/lib/main.dart"
+      ],
+      "tests": [
+        "tests/engine-core/verify.ps1"
+      ],
       "evidence": [],
-      "documentation": "docs/catalogue/sysinfo.md"
+      "documentation": "docs/catalogue/sysinfo.md",
+      "implementationCoverage": "partial",
+      "implementedEquivalent": "system.snapshot",
+      "remainingGap": "Operating-system description, live physical-memory usage and drive capacities; no historical telemetry, throughput or sensor dashboard.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/SystemModule.cs",
+          "role": "implementation",
+          "symbol": "system.snapshot"
+        },
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "tests/engine-core/verify.ps1",
+          "role": "test",
+          "symbol": "fixture assertions"
+        },
+        {
+          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "path": "desktop/lib/main.dart",
+          "role": "interface",
+          "symbol": "Overview"
+        }
+      ],
+      "actualNavigation": "Overview",
+      "fixtureSummary": "docs/architecture/fixture-evidence.md"
     },
     {
       "id": "sysinfo.06",
@@ -4355,13 +5132,43 @@
         "SetupAPI / Configuration Manager / CIM; signed vendor INF packages for installation"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "System",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "engine/Modules/SystemModule.cs",
+        "desktop/lib/main.dart"
+      ],
+      "tests": [
+        "tests/engine-core/verify.ps1"
+      ],
       "evidence": [],
-      "documentation": "docs/catalogue/sysinfo.md"
+      "documentation": "docs/catalogue/sysinfo.md",
+      "implementationCoverage": "partial",
+      "implementedEquivalent": "system.snapshot",
+      "remainingGap": "Operating-system description, live physical-memory usage and drive capacities; no historical telemetry, throughput or sensor dashboard.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/SystemModule.cs",
+          "role": "implementation",
+          "symbol": "system.snapshot"
+        },
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "tests/engine-core/verify.ps1",
+          "role": "test",
+          "symbol": "fixture assertions"
+        },
+        {
+          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "path": "desktop/lib/main.dart",
+          "role": "interface",
+          "symbol": "Overview"
+        }
+      ],
+      "actualNavigation": "Overview",
+      "fixtureSummary": "docs/architecture/fixture-evidence.md"
     },
     {
       "id": "sysinfo.07",
@@ -5376,13 +6183,26 @@
         "Supported Windows user-mode APIs"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "Files",
-      "implementation": [],
+      "implementation": [
+        "engine/Modules/ProtectionModule.cs"
+      ],
       "tests": [],
       "evidence": [],
-      "documentation": "docs/catalogue/unlocker.md"
+      "documentation": "docs/catalogue/unlocker.md",
+      "implementationCoverage": "partial",
+      "implementedEquivalent": "files.lockOwners",
+      "remainingGap": "Restart Manager diagnostic reports affected processes; no handle closure, complete handle inventory or unlock mutation. No desktop action is currently linked.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/ProtectionModule.cs",
+          "role": "implementation",
+          "symbol": "files.lockOwners"
+        }
+      ]
     },
     {
       "id": "unlocker.02",
@@ -5544,13 +6364,43 @@
         "Supported Windows user-mode APIs"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "Privacy",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "engine/Modules/UtilitiesModule.cs",
+        "desktop/lib/main.dart"
+      ],
+      "tests": [
+        "tests/utilities/Program.cs"
+      ],
       "evidence": [],
-      "documentation": "docs/catalogue/password.md"
+      "documentation": "docs/catalogue/password.md",
+      "implementationCoverage": "source-linked",
+      "implementedEquivalent": "password.generate",
+      "remainingGap": "Cryptographic local generation only; no stored-password reading, password manager or cloud service. UI generation remains uncaptured.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/UtilitiesModule.cs",
+          "role": "implementation",
+          "symbol": "password.generate"
+        },
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "tests/utilities/Program.cs",
+          "role": "test",
+          "symbol": "fixture assertions"
+        },
+        {
+          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "path": "desktop/lib/main.dart",
+          "role": "interface",
+          "symbol": "Tools"
+        }
+      ],
+      "actualNavigation": "Tools",
+      "fixtureSummary": "docs/architecture/fixture-evidence.md"
     },
     {
       "id": "password.02",
@@ -5568,13 +6418,43 @@
         "Supported Windows user-mode APIs"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "Privacy",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "engine/Modules/UtilitiesModule.cs",
+        "desktop/lib/main.dart"
+      ],
+      "tests": [
+        "tests/utilities/Program.cs"
+      ],
       "evidence": [],
-      "documentation": "docs/catalogue/password.md"
+      "documentation": "docs/catalogue/password.md",
+      "implementationCoverage": "partial",
+      "implementedEquivalent": "password.generate",
+      "remainingGap": "Length bounds and three alphabet presets; no arbitrary user-defined policy or guarantee of every selected character class.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/UtilitiesModule.cs",
+          "role": "implementation",
+          "symbol": "password.generate"
+        },
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "tests/utilities/Program.cs",
+          "role": "test",
+          "symbol": "fixture assertions"
+        },
+        {
+          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "path": "desktop/lib/main.dart",
+          "role": "interface",
+          "symbol": "Tools"
+        }
+      ],
+      "actualNavigation": "Tools",
+      "fixtureSummary": "docs/architecture/fixture-evidence.md"
     },
     {
       "id": "password.03",
@@ -6073,13 +6953,43 @@
         "System.IO; volume APIs; Windows Storage Management; elevation where required"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Only the useful Windows 11 behavior is in scope. No macOS, Android, companion application or cross-device administration is planned.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "Storage",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "engine/Modules/StorageModule.cs",
+        "desktop/lib/main.dart"
+      ],
+      "tests": [
+        "tests/storage/Program.cs"
+      ],
       "evidence": [],
-      "documentation": "docs/catalogue/mac-adapted.md"
+      "documentation": "docs/catalogue/mac-adapted.md",
+      "implementationCoverage": "partial",
+      "implementedEquivalent": "cleanup.scan / cleanup.apply / cleanup.restore",
+      "remainingGap": "Only aged current-user temporary files in a server-issued recoverable plan; no browser privacy sweep, system-wide disk cleaner or all-user cleanup.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/StorageModule.cs",
+          "role": "implementation",
+          "symbol": "cleanup.scan / cleanup.apply / cleanup.restore"
+        },
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "tests/storage/Program.cs",
+          "role": "test",
+          "symbol": "fixture assertions"
+        },
+        {
+          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "path": "desktop/lib/main.dart",
+          "role": "interface",
+          "symbol": "Storage"
+        }
+      ],
+      "actualNavigation": "Storage",
+      "fixtureSummary": "docs/architecture/fixture-evidence.md"
     },
     {
       "id": "mac-adapted.02",
@@ -6123,13 +7033,43 @@
         "System.IO; volume APIs; Windows Storage Management; elevation where required"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Only the useful Windows 11 behavior is in scope. No macOS, Android, companion application or cross-device administration is planned.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "Storage",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "engine/Modules/StorageModule.cs",
+        "desktop/lib/main.dart"
+      ],
+      "tests": [
+        "tests/storage/Program.cs"
+      ],
       "evidence": [],
-      "documentation": "docs/catalogue/mac-adapted.md"
+      "documentation": "docs/catalogue/mac-adapted.md",
+      "implementationCoverage": "partial",
+      "implementedEquivalent": "storage.analyze",
+      "remainingGap": "Largest 100 files within a bounded selected-root scan; no deletion or complete all-drive inventory.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/StorageModule.cs",
+          "role": "implementation",
+          "symbol": "storage.analyze"
+        },
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "tests/storage/Program.cs",
+          "role": "test",
+          "symbol": "fixture assertions"
+        },
+        {
+          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "path": "desktop/lib/main.dart",
+          "role": "interface",
+          "symbol": "Storage"
+        }
+      ],
+      "actualNavigation": "Storage",
+      "fixtureSummary": "docs/architecture/fixture-evidence.md"
     },
     {
       "id": "mac-adapted.04",
@@ -6148,13 +7088,43 @@
         "System.IO; volume APIs; Windows Storage Management; elevation where required"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Only the useful Windows 11 behavior is in scope. No macOS, Android, companion application or cross-device administration is planned.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "Storage",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "engine/Modules/StorageModule.cs",
+        "desktop/lib/main.dart"
+      ],
+      "tests": [
+        "tests/storage/Program.cs"
+      ],
       "evidence": [],
-      "documentation": "docs/catalogue/mac-adapted.md"
+      "documentation": "docs/catalogue/mac-adapted.md",
+      "implementationCoverage": "partial",
+      "implementedEquivalent": "storage.duplicates",
+      "remainingGap": "Bounded selected-folder SHA-256 plus byte-comparison groups; read-only, no automatic duplicate deletion.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/StorageModule.cs",
+          "role": "implementation",
+          "symbol": "storage.duplicates"
+        },
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "tests/storage/Program.cs",
+          "role": "test",
+          "symbol": "fixture assertions"
+        },
+        {
+          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "path": "desktop/lib/main.dart",
+          "role": "interface",
+          "symbol": "Storage"
+        }
+      ],
+      "actualNavigation": "Storage",
+      "fixtureSummary": "docs/architecture/fixture-evidence.md"
     },
     {
       "id": "mac-adapted.05",
@@ -6173,13 +7143,34 @@
         "System.IO; volume APIs; Windows Storage Management; elevation where required"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Only the useful Windows 11 behavior is in scope. No macOS, Android, companion application or cross-device administration is planned.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "Storage",
-      "implementation": [],
+      "implementation": [
+        "engine/Modules/ManagementModule.cs",
+        "desktop/lib/main.dart"
+      ],
       "tests": [],
       "evidence": [],
-      "documentation": "docs/catalogue/mac-adapted.md"
+      "documentation": "docs/catalogue/mac-adapted.md",
+      "implementationCoverage": "partial",
+      "implementedEquivalent": "startup.list / startup.set",
+      "remainingGap": "Current-user HKCU Run string entries only, with original-state journal; no machine entries, startup-folder mutation or scheduler management.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/ManagementModule.cs",
+          "role": "implementation",
+          "symbol": "startup.list / startup.set"
+        },
+        {
+          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "path": "desktop/lib/main.dart",
+          "role": "interface",
+          "symbol": "Startup"
+        }
+      ],
+      "actualNavigation": "Startup"
     },
     {
       "id": "mac-adapted.06",
@@ -6198,13 +7189,43 @@
         "System.IO; volume APIs; Windows Storage Management; elevation where required"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Only the useful Windows 11 behavior is in scope. No macOS, Android, companion application or cross-device administration is planned.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "Storage",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "engine/Modules/ManagementModule.cs",
+        "desktop/lib/main.dart"
+      ],
+      "tests": [
+        "tests/management/ManagementFixtures.cs"
+      ],
       "evidence": [],
-      "documentation": "docs/catalogue/mac-adapted.md"
+      "documentation": "docs/catalogue/mac-adapted.md",
+      "implementationCoverage": "partial",
+      "implementedEquivalent": "apps.uninstall",
+      "remainingGap": "Exact WinGet ID only with consent; no automatic mapping from registry/AppX records, leftover cleanup or full Uninstaller parity.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/ManagementModule.cs",
+          "role": "implementation",
+          "symbol": "apps.uninstall"
+        },
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "tests/management/ManagementFixtures.cs",
+          "role": "test",
+          "symbol": "fixture assertions"
+        },
+        {
+          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "path": "desktop/lib/main.dart",
+          "role": "interface",
+          "symbol": "Apps"
+        }
+      ],
+      "actualNavigation": "Apps",
+      "fixtureSummary": "docs/architecture/fixture-evidence.md"
     },
     {
       "id": "mac-adapted.07",
@@ -6223,13 +7244,35 @@
         "System.IO; volume APIs; Windows Storage Management; elevation where required"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Only the useful Windows 11 behavior is in scope. No macOS, Android, companion application or cross-device administration is planned.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "Storage",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "engine/Modules/ManagementModule.cs"
+      ],
+      "tests": [
+        "tests/management/ManagementFixtures.cs"
+      ],
       "evidence": [],
-      "documentation": "docs/catalogue/mac-adapted.md"
+      "documentation": "docs/catalogue/mac-adapted.md",
+      "implementationCoverage": "partial",
+      "implementedEquivalent": "processes.list / processes.stop",
+      "remainingGap": "Process working-set and cumulative CPU records plus same-user interactive graceful-close request. No forced termination, RAM recycling, service mutation or boost guarantee.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/ManagementModule.cs",
+          "role": "implementation",
+          "symbol": "processes.list / processes.stop"
+        },
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "tests/management/ManagementFixtures.cs",
+          "role": "test",
+          "symbol": "fixture assertions"
+        }
+      ],
+      "fixtureSummary": "docs/architecture/fixture-evidence.md"
     },
     {
       "id": "mac-adapted.08",
@@ -6274,7 +7317,7 @@
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
       "status": "unimplemented",
-      "statusReason": "Only the useful Windows 11 behavior is in scope. No macOS, Android, companion application or cross-device administration is planned.",
+      "statusReason": "Supporting process or storage measurements do not implement memory recommendations or a visual disk map.",
       "intendedPage": "Storage",
       "implementation": [],
       "tests": [],
@@ -6321,13 +7364,35 @@
         "Supported Windows user-mode APIs"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Only the useful Windows 11 behavior is in scope. No macOS, Android, companion application or cross-device administration is planned.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "Security",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "engine/Modules/ManagementModule.cs"
+      ],
+      "tests": [
+        "tests/management/ManagementFixtures.cs"
+      ],
       "evidence": [],
-      "documentation": "docs/catalogue/amc-adapted.md"
+      "documentation": "docs/catalogue/amc-adapted.md",
+      "implementationCoverage": "partial",
+      "implementedEquivalent": "processes.list / processes.stop",
+      "remainingGap": "Process working-set and cumulative CPU records plus same-user interactive graceful-close request. No forced termination, RAM recycling, service mutation or boost guarantee.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/ManagementModule.cs",
+          "role": "implementation",
+          "symbol": "processes.list / processes.stop"
+        },
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "tests/management/ManagementFixtures.cs",
+          "role": "test",
+          "symbol": "fixture assertions"
+        }
+      ],
+      "fixtureSummary": "docs/architecture/fixture-evidence.md"
     },
     {
       "id": "amc-adapted.03",
@@ -6465,13 +7530,34 @@
         "Supported Windows user-mode APIs"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Only the useful Windows 11 behavior is in scope. No macOS, Android, companion application or cross-device administration is planned.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "Security",
-      "implementation": [],
+      "implementation": [
+        "engine/Modules/ManagementModule.cs",
+        "desktop/lib/main.dart"
+      ],
       "tests": [],
       "evidence": [],
-      "documentation": "docs/catalogue/amc-adapted.md"
+      "documentation": "docs/catalogue/amc-adapted.md",
+      "implementationCoverage": "partial",
+      "implementedEquivalent": "apps.list",
+      "remainingGap": "Registry and current-user AppX inventory only. Registry IDs are not WinGet IDs; AppX removal is unavailable.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/ManagementModule.cs",
+          "role": "implementation",
+          "symbol": "apps.list"
+        },
+        {
+          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "path": "desktop/lib/main.dart",
+          "role": "interface",
+          "symbol": "Apps"
+        }
+      ],
+      "actualNavigation": "Apps"
     },
     {
       "id": "amc-adapted.09",
@@ -6932,13 +8018,35 @@
         "Local Flutter/native equivalent; optional disclosed HTTPS provider only where necessary"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "Tools",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "engine/Modules/UtilitiesModule.cs"
+      ],
+      "tests": [
+        "tests/utilities/Program.cs"
+      ],
       "evidence": [],
-      "documentation": "docs/catalogue/online.md"
+      "documentation": "docs/catalogue/online.md",
+      "implementationCoverage": "source-linked",
+      "implementedEquivalent": "utilities.calculate: edpi",
+      "remainingGap": "Validated DPI \u00d7 sensitivity arithmetic exists in engine; current desktop Tools does not expose this calculator.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/UtilitiesModule.cs",
+          "role": "implementation",
+          "symbol": "utilities.calculate: edpi"
+        },
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "tests/utilities/Program.cs",
+          "role": "test",
+          "symbol": "fixture assertions"
+        }
+      ],
+      "fixtureSummary": "docs/architecture/fixture-evidence.md"
     },
     {
       "id": "online.12",
@@ -7287,13 +8395,43 @@
         "Local Flutter/native equivalent; optional disclosed HTTPS provider only where necessary"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row.",
+      "status": "unverified",
+      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
       "intendedPage": "Tools",
-      "implementation": [],
-      "tests": [],
+      "implementation": [
+        "engine/Modules/UtilitiesModule.cs",
+        "desktop/lib/main.dart"
+      ],
+      "tests": [
+        "tests/utilities/Program.cs"
+      ],
       "evidence": [],
-      "documentation": "docs/catalogue/online.md"
+      "documentation": "docs/catalogue/online.md",
+      "implementationCoverage": "source-linked",
+      "implementedEquivalent": "password.generate",
+      "remainingGap": "Cryptographic local generation only; no stored-password reading, password manager or cloud service. UI generation remains uncaptured.",
+      "sourceBindings": [
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "engine/Modules/UtilitiesModule.cs",
+          "role": "implementation",
+          "symbol": "password.generate"
+        },
+        {
+          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "path": "tests/utilities/Program.cs",
+          "role": "test",
+          "symbol": "fixture assertions"
+        },
+        {
+          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "path": "desktop/lib/main.dart",
+          "role": "interface",
+          "symbol": "Tools"
+        }
+      ],
+      "actualNavigation": "Tools",
+      "fixtureSummary": "docs/architecture/fixture-evidence.md"
     },
     {
       "id": "online.26",
@@ -7320,5 +8458,11 @@
       "evidence": [],
       "documentation": "docs/catalogue/online.md"
     }
-  ]
+  ],
+  "reviewedSourceBaseline": {
+    "engineCommit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+    "desktopCommit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+    "reviewState": "source-review-only; built interaction and captures absent",
+    "fixtureExecution": "Execution counts were reported by the integration owner. The build receipt was independently read; this documentation lane did not rerun engine or Flutter fixtures."
+  }
 }

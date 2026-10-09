@@ -7,17 +7,17 @@ Intended workspace: **Care**. Configuration is local and operations follow the [
 | ID | Required capability | Current status | Limit or next requirement |
 | --- | --- | --- | --- |
 | `asc-care.01` | Privacy traces | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
-| `asc-care.02` | Temporary files | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
+| `asc-care.02` | Temporary files | unverified | Only aged current-user temporary files in a server-issued recoverable plan; no browser privacy sweep, system-wide disk cleaner or all-user cleanup. |
 | `asc-care.03` | Broken shortcuts | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `asc-care.04` | Registry review | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `asc-care.05` | System settings review | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
-| `asc-care.06` | Network diagnostics | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
+| `asc-care.06` | Network diagnostics | unverified | Bounded interface, DNS and one ICMP check; no speed measurement or TCP optimization. |
 | `asc-care.07` | Registry compaction | excluded | Outside the Windows 11 user-mode, no-driver, no-remote-device release boundary or the no-power-action boundary. |
 | `asc-care.08` | Disk optimization | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
-| `asc-care.09` | Antivirus status | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
-| `asc-care.10` | Firewall status | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
+| `asc-care.09` | Antivirus status | unverified | Reads actual Defender status through supported Windows tooling; no independent antivirus protection engine. |
+| `asc-care.10` | Firewall status | unverified | Reads firewall profiles; does not enable, disable or edit firewall rules. |
 | `asc-care.11` | Device health | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
-| `asc-care.12` | Application health | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
+| `asc-care.12` | Application health | unverified | Returns WinGet text output without guessed package records; no normalized per-application update model or vendor database. |
 | `asc-care.13` | Spyware scan | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `asc-care.14` | Security configuration | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `asc-care.15` | Windows patches | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
@@ -25,7 +25,7 @@ Intended workspace: **Care**. Configuration is local and operations follow the [
 | `asc-care.17` | Manual scan selection | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `asc-care.18` | Adaptive scan recommendations | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `asc-care.19` | Scan exclusions | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
-| `asc-care.20` | Recovery history | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
+| `asc-care.20` | Recovery history | unverified | Cleanup receipts only; no registry, driver or arbitrary settings rescue center. |
 
 ## Configuration and safety
 

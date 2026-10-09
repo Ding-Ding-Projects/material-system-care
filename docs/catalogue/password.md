@@ -6,8 +6,8 @@ Intended workspace: **Privacy**. Configuration is local and operations follow th
 
 | ID | Required capability | Current status | Limit or next requirement |
 | --- | --- | --- | --- |
-| `password.01` | Cryptographic password generation | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
-| `password.02` | Password character policy | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
+| `password.01` | Cryptographic password generation | unverified | Cryptographic local generation only; no stored-password reading, password manager or cloud service. UI generation remains uncaptured. |
+| `password.02` | Password character policy | unverified | Length bounds and three alphabet presets; no arbitrary user-defined policy or guarantee of every selected character class. |
 | `password.03` | Password strength explanation | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `password.04` | Local generated-secret storage | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 
