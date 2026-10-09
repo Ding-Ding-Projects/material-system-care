@@ -9,7 +9,11 @@ String buildVersion(Map<String, dynamic>? ping) {
             selected.length <= 64 &&
             RegExp(
               r'^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$',
-            ).hasMatch(selected)
+            ).hasMatch(selected) &&
+            selected.split('.').every((part) {
+              final component = int.tryParse(part);
+              return component != null && component >= 0 && component <= 65535;
+            })
         ? selected
         : 'build metadata unavailable';
   }
