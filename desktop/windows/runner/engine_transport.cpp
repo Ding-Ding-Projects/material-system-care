@@ -26,9 +26,9 @@ bool Transfer(HANDLE pipe,void* buffer,DWORD length,DWORD& count,bool writing,UL
 }
 DWORD DeadlineFor(const std::string& method) {
  if(method=="security.scan") return 60*60*1000;
- if(method=="storage.analyze" || method=="storage.duplicates" || method=="cleanup.scan" || method=="cleanup.apply" || method=="cleanup.restore") return 30*60*1000;
+ if(method=="storage.analyze" || method=="storage.duplicates" || method=="cleanup.scan" || method=="cleanup.apply" || method=="cleanup.restore" || method=="files.hash") return 30*60*1000;
  if(method=="providers.invoke") return 70*1000;
- if(method=="apps.upgrade" || method=="apps.uninstall" || method=="drivers.install" || method=="drivers.export") return 4*60*1000;
+ if(method.rfind("apps.",0)==0 || method.rfind("startup.",0)==0 || method.rfind("services.",0)==0 || method.rfind("drivers.",0)==0 || method=="files.convert") return 4*60*1000;
  return 60*1000;
 }
 std::string Exchange(const std::wstring& name,std::string request,DWORD duration,const std::atomic<bool>& cancelled,DWORD expectedServer) {
