@@ -4,6 +4,8 @@ A Windows 11 x64 maintenance and diagnostics workspace built with Flutter, .NET 
 
 **Development status:** implementation is in progress. No production installer or complete feature-parity claim is available yet.
 
+[Public documentation and capability explorer](https://material-system-care.azureteal8.chatgpt.site)
+
 The suite combines computer health, storage analysis, application management, security integration, drivers, diagnostics, and local utilities. Operations present real targets, clear effects, and recovery information. The public website is maintained separately from the desktop workspace.
 
 ## Build
@@ -35,4 +37,4 @@ This list describes source behavior. It does not establish complete reference-pr
 
 ## Status and distribution
 
-Source is public. Release downloads and the website will be linked only after their deployment has been verified. This project is independently implemented and is not affiliated with IObit.
+Source and the documentation website are public. Anonymous homepage delivery, its linked assets and the 295-entry coverage data have been verified. The repository About homepage points to the exact deployed URL. Installer downloads remain unavailable until release verification is complete. This project is independently implemented and is not affiliated with IObit.

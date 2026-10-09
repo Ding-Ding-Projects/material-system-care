@@ -22,4 +22,6 @@
 - [ ] Verify the built desktop and its motion, accessibility, scaling, and failure states.
 - [ ] Build and verify the genuine Squirrel.Windows installer and update path.
 - [ ] Publish the Material website with real captures and verified downloads.
+- [x] Publish the development documentation and capability explorer; verify public delivery and exact About homepage.
+- [ ] Add genuine current screenshots and verified installer downloads when their separate evidence is available.
 - [ ] Verify the repository homepage, documentation, release evidence, and final handoff.

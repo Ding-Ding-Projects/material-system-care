@@ -19,13 +19,19 @@ These are source-bound intermediate results. They do not transfer automatically 
 
 ## Current review and gaps
 
-Independent review accepted an oversized aggregate-response defect, a long-operation transport deadline defect, incomplete capability discovery, inefficient line framing, an interrupted-restore accounting defect and missing native installer awareness metadata. Repairs and their focused regressions are in progress. A same-user local-record tampering claim was not accepted as a demonstrated security boundary crossing. A journal path-swap hypothesis needs deterministic proof.
+Independent review accepted and repaired an oversized aggregate-response defect, long-operation transport deadlines, incomplete capability discovery, inefficient line framing, interrupted-restore accounting, missing native installer awareness metadata, unbound pipe server identity, unsafe settings retry, delayed startup state, private-cache replacement, factual scalar rendering and platform text scaling. Their focused regressions and targeted independent re-reviews passed. A same-user local-record tampering claim was not accepted as a demonstrated security boundary crossing. A journal path-swap hypothesis needs deterministic proof.
+
+Engine candidate `a700cb31bf81bcfcdd459570b70b02ebdd6cded7` passed 28 integrated checks, 7 utility groups, 18 storage assertions, 19 protection assertions and 8 core groups. Native candidate `06e6716219ed2261c67c2430027a7394a63f16f4` passed five transport checks, including a 31-second reply, cancellation, timeout and wrong-server identity. Resource candidate `cecdf4b` verified the actual compiled English Unicode awareness resource. Desktop candidate `23a60f6` passed 16 widget tests; `e244020` passed two additional delayed-response regressions. These remain distinct from real GUI interaction proof.
 
 Complete catalogue workflows, universal per-surface controls, full language coverage, native optional audio/narration, complete update handling and fresh-environment bootstrap remain unfinished. Release readiness stays unverified.
 
 The maintainer explicitly retained the strict hidden capture route after its HTTP endpoint was unavailable. Therefore runtime screenshots, scaling/motion/accessibility interaction evidence and installer lifecycle proof remain pending. No alternate visual route is authorized. No fabricated or design-only screenshot is presented as runtime evidence.
 
-The website is built locally but publication and repository homepage verification are still pending. No production release has been published. Recovery branches retain partial work; the default branch must receive independently completed, reviewed units.
+The website is public at https://material-system-care.azureteal8.chatgpt.site. Deployment `appgdep_6ac84608e6e4819190c8a83fc5589588` succeeded from source snapshot `e890ea1078c595af87ba3738840500ce71200a34`. Anonymous HTTP returned 200 for the home page and linked script/style assets; coverage contained 295 entries. The release manifest remains development with no installer URL. Repository homepage readback matches the live URL exactly.
+
+The first integrated installer attempt passed engine fixtures and bundle negative checks, then failed in Flutter assembly with MSB8066. The earlier hosted build failed its unchanged-source check after generated line endings changed. `.gitattributes` now preserves those three generated files as LF; a diagnostic rebuild remains required. No production release has been published.
+
+The wiki clone endpoint returned `Repository not found`, despite wiki being enabled. GitHub Projects discovery lacks `read:project` scope and is skipped. Documentation, issue #1 and discussion #2 retain the factual handoff. Runtime status enrollment is unavailable without its configured ingest credential. No external status delivery is claimed.
 
 ## Next actions
 
