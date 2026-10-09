@@ -832,7 +832,7 @@ class _ToolsEditorState extends State<ToolsEditor> {
             min: 12,
             max: 128,
             divisions: 116,
-            label: '${length.round()} characters',
+            label: '${length.round()} ${localize(context,"characters")}',
             onChanged: (v) => setState(() => length = v),
           ),
         if (tool == 2)
