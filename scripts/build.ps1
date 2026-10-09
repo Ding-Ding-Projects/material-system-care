@@ -1,0 +1,35 @@
+$ErrorActionPreference = 'Stop'
+$root = Split-Path $PSScriptRoot
+Set-Location $root
+$silent = $env:SILENT -eq '1' -or $args -contains '/s' -or $args -contains '--silent'
+$run = $env:RUN_AFTER_BUILD -eq '1' -or $args -contains '/run' -or $args -contains '--run'
+$installer = $args -contains '--installer'
+$target = 'all'
+foreach ($arg in $args) { if ($arg -match '^--target=(engine|desktop|site|all)$') { $target=$Matches[1] } }
+try {
+ & "$PSScriptRoot\bootstrap.ps1"
+ $m = Get-Content build-manifest.json -Raw | ConvertFrom-Json
+ $out = Join-Path $root $m.outputDirectory
+ New-Item -ItemType Directory -Force $out | Out-Null
+ if ($target -in @('all','engine')) {
+  & dotnet publish $m.engineProject -c Release -r win-x64 --self-contained true -o "$out\engine"
+  if ($LASTEXITCODE) { throw "Engine build exit $LASTEXITCODE" }
+ }
+ if ($target -in @('all','desktop')) {
+  Push-Location $m.desktopPath
+  try { & flutter.bat pub get; if ($LASTEXITCODE) { throw 'Flutter restore failed' }; & flutter.bat build windows --release; if ($LASTEXITCODE) { throw 'Flutter build failed' }; Copy-Item 'build\windows\x64\runner\Release\*' $out -Recurse -Force } finally { Pop-Location }
+ }
+ if ($target -in @('all','site')) {
+  Push-Location $m.websitePath
+  try { & npm.cmd ci; if ($LASTEXITCODE) { throw 'Website restore failed' }; & npm.cmd run build; if ($LASTEXITCODE) { throw 'Website build failed' } } finally { Pop-Location }
+ }
+ if ($installer) { & "$PSScriptRoot\package.ps1"; if ($LASTEXITCODE) { throw 'Squirrel packaging failed' } }
+ if ($target -in @('all','desktop')) {
+  $exe=Join-Path $out $m.executable
+  if (!(Test-Path $exe)) { throw "Missing executable: $exe" }
+  @{source=(& git rev-parse HEAD);manifestSha256=(Get-FileHash build-manifest.json).Hash;executableSha256=(Get-FileHash $exe).Hash;builtUtc=[DateTime]::UtcNow.ToString('o')} | ConvertTo-Json | Set-Content "$out\build-receipt.json"
+  if (!$silent -and !$run) { $run=(Read-Host 'Build complete. Run application? [y/N]') -eq 'y' }
+  if ($run) { Start-Process $exe }
+ }
+ exit 0
+} catch { Write-Error $_; exit 1 }
