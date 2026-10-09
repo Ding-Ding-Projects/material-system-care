@@ -16,6 +16,7 @@ function Fetch($url,$path,$sha) {
 }
 Fetch 'https://api.nuget.org/v3-flatcontainer/squirrel.windows/2.0.1/squirrel.windows.2.0.1.nupkg' "$cache\squirrel.2.0.1.zip" '923e18abb4fd50b5a4878a39dbcd042ed3f7eb68fc0f82c0955cd5380c921ac7'
 Fetch 'https://dist.nuget.org/win-x86-commandline/v6.14.0/nuget.exe' "$cache\nuget.exe" '92dbed160ddee0f64b901e907439e021211b428e57c089ecc12fc38dcc4bd9a5'
+Fetch 'https://github.com/ip7z/7zip/releases/download/26.04/7z2604-extra.7z' "$cache\7z2604-extra.7z" 'dc4b11d3399db18b063630137145f5585d8f7ac847bf3639bd1185d7d1f7cee0'
 if (!(Test-Path "$cache\squirrel\tools\Squirrel.exe")) { Expand-Archive "$cache\squirrel.2.0.1.zip" "$cache\squirrel" -Force }
 $payload=Join-Path $root $m.outputDirectory
 foreach ($required in @($m.executable,'flutter_windows.dll','data\icudtl.dat','engine\MaterialSystemCare.Engine.exe')) { if (!(Test-Path "$payload\$required")) { throw "Missing package payload: $required" } }
@@ -31,6 +32,18 @@ foreach($pair in @(@('build-receipt.json',$m.executable),@('engine\build-receipt
 $out=Join-Path $root 'artifacts\installer'
 New-Item -ItemType Directory -Force $out | Out-Null
 $attempt=New-PackageAttempt $out $version
+$original=Join-Path $attempt.root 'original-squirrel'
+Expand-Archive "$cache\squirrel.2.0.1.zip" $original
+$tools=Join-Path $attempt.root 'squirrel-tools'
+Copy-Item "$original\tools" $tools -Recurse
+$extra=Join-Path $attempt.root '7zip-extra'
+& "$original\tools\7z.exe" x "$cache\7z2604-extra.7z" "-o$extra" -y
+if($LASTEXITCODE) { throw 'Pinned 7-Zip Extra extraction failed' }
+foreach($entry in @(@('7za.exe','15d4c788c148e3677e2fc1c4a01f191fb6669eba4f6acf8a465f0f1a6f1e1260'),@('7za.dll','e70d353e9a0f2d1755ab0a7a7100060ab1e70e47141c248e968364579a329a94'))) {
+ if((Get-ContentHash "$extra\x64\$($entry[0])") -ne $entry[1]) { throw 'Extracted 7-Zip helper hash mismatch' }
+}
+Copy-Item "$extra\x64\7za.exe" "$tools\7z.exe" -Force
+Copy-Item "$extra\x64\7za.dll" "$tools\7za.dll"
 $spec=Join-Path $attempt.input 'MaterialSystemCare.nuspec'
 $escaped=[Security.SecurityElement]::Escape($payload)
 @"
@@ -39,14 +52,16 @@ $escaped=[Security.SecurityElement]::Escape($payload)
 "@ | Set-Content $spec -Encoding UTF8
 & "$cache\nuget.exe" pack $spec -OutputDirectory $attempt.input -NoPackageAnalysis
 if ($LASTEXITCODE) { throw "NuGet pack exit $LASTEXITCODE" }
+& node "$PSScriptRoot\validate-package.mjs" "$($attempt.input)\MaterialSystemCare.$version.nupkg" $payload $binding.source $version
+if($LASTEXITCODE) { throw 'Raw package archive or payload verification failed' }
 $squirrelArguments=@('--releasify',('"{0}"' -f "$($attempt.input)\MaterialSystemCare.$version.nupkg"),'--releaseDir',('"{0}"' -f $attempt.releases),'--no-msi')
 $diagnostics=$attempt.diagnostics
 New-Item -ItemType Directory -Force $diagnostics | Out-Null
 $started=[DateTime]::UtcNow
 try {
- $squirrel=Start-Process -FilePath "$cache\squirrel\tools\Squirrel.exe" -ArgumentList $squirrelArguments -WindowStyle Hidden -RedirectStandardOutput "$diagnostics\squirrel-stdout.log" -RedirectStandardError "$diagnostics\squirrel-stderr.log" -Wait -PassThru
+ $squirrel=Start-Process -FilePath "$tools\Squirrel.exe" -ArgumentList $squirrelArguments -WindowStyle Hidden -RedirectStandardOutput "$diagnostics\squirrel-stdout.log" -RedirectStandardError "$diagnostics\squirrel-stderr.log" -Wait -PassThru
 } finally {
- $releasifyLog=Join-Path $cache 'squirrel\tools\Squirrel-Releasify.log'
+ $releasifyLog=Join-Path $tools 'Squirrel-Releasify.log'
  if((Test-Path $releasifyLog) -and (Get-Item $releasifyLog).LastWriteTimeUtc -ge $started) { Copy-Item $releasifyLog "$diagnostics\squirrel-releasify.log" -Force }
  New-Item -ItemType Directory -Force "$out\diagnostics" | Out-Null
  Copy-Item -LiteralPath $diagnostics -Destination (Join-Path "$out\diagnostics" $attempt.id) -Recurse
@@ -57,6 +72,8 @@ if ($squirrel.ExitCode -ne 0) {
  throw "Squirrel releasify exit $($squirrel.ExitCode); diagnostics retained under artifacts/installer/diagnostics"
 }
 Assert-SourceBinding $root $binding
+& node "$PSScriptRoot\validate-package.mjs" "$($attempt.releases)\MaterialSystemCare-$version-full.nupkg" $payload $binding.source $version
+if($LASTEXITCODE) { throw 'Full package archive or payload verification failed before promotion' }
 $releases=Publish-PackageOutputs $out $attempt $version
 foreach ($required in @('Setup.exe','RELEASES',"MaterialSystemCare-$version-full.nupkg")) {
  $path=Join-Path $releases $required
