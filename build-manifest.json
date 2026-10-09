@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "version": "0.1.0",
+  "platform": "windows-x64",
+  "frameworks": {"flutter": "3.47.7", "dotnetSdk": "10.0.401", "cppStandard": 20},
+  "flutterArchive": "https://storage.googleapis.com/flutter_infra_release/releases/stable/windows/flutter_windows_3.47.7-stable.zip",
+  "flutterSha256": "c2c875da25a1a1448d18ee4e8f398b2f6fce888b4775d8f9130538e16d826cb4",
+  "desktopPath": "desktop",
+  "engineProject": "engine/MaterialSystemCare.Engine.csproj",
+  "websitePath": "website",
+  "outputDirectory": "artifacts/windows-x64",
+  "executable": "material_system_care.exe"
+}
