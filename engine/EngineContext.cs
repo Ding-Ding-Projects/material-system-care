@@ -74,13 +74,25 @@ public sealed class EngineContext
     public async Task<object> ReadSettingsAsync(CancellationToken ct)
     {
         using var db = Open(); using var command = db.CreateCommand(); command.CommandText = "SELECT key,value FROM settings ORDER BY key";
-        using var reader = await command.ExecuteReaderAsync(ct); var settings = new Dictionary<string, JsonElement>();
-        while (await reader.ReadAsync(ct)) settings[reader.GetString(0)] = JsonSerializer.Deserialize<JsonElement>(reader.GetString(1)); return settings;
+        using var reader = await command.ExecuteReaderAsync(ct); var settings = new Dictionary<string, JsonElement>(); long bytes = 0;
+        while (await reader.ReadAsync(ct)) {
+            var key = reader.GetString(0); var value = reader.GetString(1);
+            bytes += System.Text.Encoding.UTF8.GetByteCount(key) + System.Text.Encoding.UTF8.GetByteCount(value) + 16;
+            if (bytes > Program.MaximumResponseBytes) throw new EngineException("RESULT_TOO_LARGE", "The settings collection exceeds the response limit. Request an individual setting key.");
+            settings[key] = JsonSerializer.Deserialize<JsonElement>(value);
+        }
+        return settings;
     }
     public async Task<object> ReadHistoryAsync(int limit, CancellationToken ct)
     {
         using var db = Open(); using var command = db.CreateCommand(); command.CommandText = "SELECT id,occurred_at,operation,details FROM history ORDER BY id DESC LIMIT $limit"; command.Parameters.AddWithValue("$limit", limit);
-        using var reader = await command.ExecuteReaderAsync(ct); var rows = new List<object>();
-        while (await reader.ReadAsync(ct)) rows.Add(new { id = reader.GetInt64(0), occurredAt = reader.GetString(1), operation = reader.GetString(2), details = JsonSerializer.Deserialize<JsonElement>(reader.GetString(3)) }); return rows;
+        using var reader = await command.ExecuteReaderAsync(ct); var rows = new List<object>(); long bytes = 0;
+        while (await reader.ReadAsync(ct)) {
+            var operation = reader.GetString(2); var details = reader.GetString(3);
+            bytes += System.Text.Encoding.UTF8.GetByteCount(operation) + System.Text.Encoding.UTF8.GetByteCount(details) + 256;
+            if (bytes > Program.MaximumResponseBytes) throw new EngineException("RESULT_TOO_LARGE", "The history collection exceeds the response limit. Request fewer records.");
+            rows.Add(new { id = reader.GetInt64(0), occurredAt = reader.GetString(1), operation, details = JsonSerializer.Deserialize<JsonElement>(details) });
+        }
+        return rows;
     }
 }

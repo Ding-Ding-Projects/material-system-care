@@ -1,5 +1,4 @@
 using System.IO.Pipes;
-using System.Reflection;
 using System.Security.Principal;
 using System.Text;
 using System.Text.Json;
@@ -9,7 +8,17 @@ namespace MaterialSystemCare.Engine;
 public static class Program
 {
     public const int MaximumRequestBytes = 4 * 1024 * 1024;
+    public const int MaximumResponseBytes = 4 * 1024 * 1024;
     public static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web);
+    private static readonly (Type Type, string[] Methods)[] ModuleInventory = [
+        (typeof(SystemModule), ["engine.ping", "system.snapshot", "settings.get", "settings.save", "history.list"]),
+        (typeof(StorageModule), ["storage.analyze", "storage.duplicates", "cleanup.scan", "cleanup.apply", "cleanup.restore", "cleanup.history"]),
+        (typeof(ManagementModule), ["apps.list", "apps.updates", "apps.upgrade", "apps.uninstall", "startup.list", "startup.set", "processes.list", "processes.stop", "services.list"]),
+        (typeof(ProtectionModule), ["security.status", "security.scan", "drivers.list", "drivers.export", "drivers.install", "network.diagnostics", "files.lockOwners"]),
+        (typeof(UtilitiesModule), ["files.hash", "files.convert", "password.generate", "tools.catalogue", "providers.list", "providers.configure", "providers.invoke", "utilities.calculate"])
+    ];
+    public static string[] Capabilities => ModuleInventory.SelectMany(entry => entry.Methods).Order(StringComparer.Ordinal).ToArray();
+    public static IEngineModule[] CreateModules() => ModuleInventory.Select(entry => (IEngineModule)Activator.CreateInstance(entry.Type)!).ToArray();
     public static async Task<int> Main(string[] args)
     {
         using var shutdown = new CancellationTokenSource();
@@ -17,7 +26,7 @@ public static class Program
         try {
             string? Option(string name) { var i = Array.IndexOf(args, name); if (i < 0) return null; if (i + 1 >= args.Length) throw new EngineException("INVALID_ARGUMENT", "An option value is missing."); return args[i + 1]; }
             var context = new EngineContext(Option("--data-root"));
-            var modules = Assembly.GetExecutingAssembly().GetTypes().Where(t => !t.IsAbstract && typeof(IEngineModule).IsAssignableFrom(t) && t.GetConstructor(Type.EmptyTypes) != null).Select(t => (IEngineModule)Activator.CreateInstance(t)!).ToArray();
+            var modules = CreateModules();
             if (Option("--request-file") is { } file) {
                 await using var input = File.OpenRead(file);
                 var request = await ReadLineAsync(input, shutdown.Token);
@@ -39,28 +48,42 @@ public static class Program
         } catch (OperationCanceledException) { return 0; }
         catch { Console.Error.WriteLine("Engine startup failed. Check local storage availability and supported runtime."); return 1; }
     }
-    public static async Task<string?> ReadLineAsync(Stream input, CancellationToken ct)
+    public static Task<string?> ReadLineAsync(Stream input, CancellationToken ct) => new RequestLineReader(input).ReadLineAsync(ct);
+    public sealed class RequestLineReader(Stream input)
     {
-        using var buffer = new MemoryStream(); var one = new byte[1];
-        while (await input.ReadAsync(one, ct) != 0) {
-            if (one[0] == 10) break;
-            if (buffer.Length >= MaximumRequestBytes) throw new EngineException("REQUEST_TOO_LARGE", "The request exceeds 4 MiB.");
-            buffer.WriteByte(one[0]);
+        private readonly byte[] chunk = new byte[16 * 1024];
+        private int offset, count;
+        public async Task<string?> ReadLineAsync(CancellationToken ct)
+        {
+            using var line = new MemoryStream();
+            while (true) {
+                ct.ThrowIfCancellationRequested();
+                if (offset == count) {
+                    count = await input.ReadAsync(chunk, ct); offset = 0;
+                    if (count == 0) break;
+                }
+                var newline = Array.IndexOf(chunk, (byte)10, offset, count - offset);
+                var take = (newline < 0 ? count : newline) - offset;
+                if (take > MaximumRequestBytes - line.Length) throw new EngineException("REQUEST_TOO_LARGE", "The request exceeds 4 MiB.");
+                line.Write(chunk, offset, take); offset += take;
+                if (newline >= 0) { offset++; break; }
+            }
+            if (line.Length == 0) return null;
+            try { return new UTF8Encoding(false, true).GetString(line.GetBuffer(), 0, checked((int)line.Length)).TrimEnd('\r'); }
+            catch (DecoderFallbackException) { throw new EngineException("INVALID_REQUEST", "The request is not valid UTF-8."); }
         }
-        if (buffer.Length == 0) return null;
-        try { return new UTF8Encoding(false, true).GetString(buffer.ToArray()).TrimEnd('\r'); }
-        catch (DecoderFallbackException) { throw new EngineException("INVALID_REQUEST", "The request is not valid UTF-8."); }
     }
     private static async Task ServeAsync(Stream input, Stream output, EngineContext context, IEngineModule[] modules, CancellationToken ct)
     {
         using var connection = CancellationTokenSource.CreateLinkedTokenSource(ct);
-        var pendingRead = ReadLineAsync(input, connection.Token);
+        var reader = new RequestLineReader(input);
+        var pendingRead = reader.ReadLineAsync(connection.Token);
         while (!ct.IsCancellationRequested) {
             string? request;
             try { request = await pendingRead; }
             catch (EngineException e) { await WriteAsync(output, Error(null, e.Code, e.Message), ct); return; }
             if (request == null) return;
-            pendingRead = ReadLineAsync(input, connection.Token);
+            pendingRead = reader.ReadLineAsync(connection.Token);
             if (input is NamedPipeServerStream) {
                 _ = pendingRead.ContinueWith(t => {
                     if (t.IsFaulted || t.IsCanceled || (t.IsCompletedSuccessfully && t.Result == null)) connection.Cancel();
@@ -71,6 +94,19 @@ public static class Program
     }
     private static async Task WriteAsync(Stream output, string response, CancellationToken ct) { await output.WriteAsync(Encoding.UTF8.GetBytes(response + "\n"), ct); await output.FlushAsync(ct); }
     private static string Error(string? id, string code, string message) => JsonSerializer.Serialize(new { version = 1, id, ok = false, error = new { code, message } }, JsonOptions);
+    private sealed class BoundedResponseStream : MemoryStream
+    {
+        private void CheckLength(int count) { if (count > MaximumResponseBytes - Length) throw new EngineException("RESULT_TOO_LARGE", "The result exceeds the 4 MiB response limit. Narrow the requested scope or request an individual record."); }
+        public override void Write(byte[] buffer, int offset, int count) { CheckLength(count); base.Write(buffer, offset, count); }
+        public override void Write(ReadOnlySpan<byte> buffer) { CheckLength(buffer.Length); base.Write(buffer); }
+        public override void WriteByte(byte value) { CheckLength(1); base.WriteByte(value); }
+    }
+    public static string SerializeSuccessResponse(string id, object? result)
+    {
+        using var output = new BoundedResponseStream();
+        JsonSerializer.Serialize(output, new { version = 1, id, ok = true, result }, JsonOptions);
+        return Encoding.UTF8.GetString(output.GetBuffer(), 0, checked((int)output.Length));
+    }
     public static async Task<string> DispatchAsync(string? request, EngineContext context, IEngineModule[] modules, CancellationToken ct)
     {
         string? id = null;
@@ -82,9 +118,11 @@ public static class Program
             if (id == null || !root.TryGetProperty("version", out var version) || version.ValueKind != JsonValueKind.Number || !version.TryGetInt32(out var v) || v != 1 || !root.TryGetProperty("method", out var methodValue) || methodValue.ValueKind != JsonValueKind.String || !root.TryGetProperty("params", out var parameters) || parameters.ValueKind != JsonValueKind.Object) throw new EngineException("INVALID_REQUEST", "Version 1, a bounded id, method, and object parameters are required.");
             var method = methodValue.GetString()!;
             if (method.Length is < 1 or > 128 || method.Any(c => !(char.IsAsciiLetterOrDigit(c) || c is '.' or '_'))) throw new EngineException("INVALID_REQUEST", "The method name is invalid.");
-            var module = modules.FirstOrDefault(m => m.CanHandle(method)) ?? throw new EngineException("METHOD_NOT_FOUND", "The requested capability is not available.");
+            var owner = ModuleInventory.FirstOrDefault(entry => entry.Methods.Contains(method, StringComparer.Ordinal)).Type;
+            var module = owner == null ? null : modules.FirstOrDefault(m => owner.IsInstanceOfType(m) && m.CanHandle(method));
+            if (module == null) throw new EngineException("METHOD_NOT_FOUND", "The requested capability is not available.");
             var result = await module.HandleAsync(method, parameters, context, ct);
-            return JsonSerializer.Serialize(new { version = 1, id, ok = true, result }, JsonOptions);
+            return SerializeSuccessResponse(id, result);
         } catch (EngineException e) { return Error(id, e.Code, e.Message); }
         catch (OperationCanceledException) { return Error(id, "CANCELLED", "The operation was cancelled."); }
         catch (JsonException) { return Error(id, "INVALID_REQUEST", "The request contains invalid JSON."); }
