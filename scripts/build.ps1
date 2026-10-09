@@ -9,14 +9,13 @@ $verboseDesktop = $args -contains '--verbose-desktop'
 $target = 'all'
 foreach ($arg in $args) { if ($arg -match '^--target=(engine|desktop|site|native|bundle|all)$') { $target=$Matches[1] } }
 try {
+ $m = Get-Content build-manifest.json -Raw | ConvertFrom-Json
+ $version=Resolve-BuildVersion $m
  & "$PSScriptRoot\bootstrap.ps1" @args
  $binding=Get-SourceBinding $root
- $m = Get-Content build-manifest.json -Raw | ConvertFrom-Json
- $version=if($env:BUILD_VERSION) { $env:BUILD_VERSION } else { $m.version }
- if($version -notmatch '^\d+\.\d+\.\d+(\.\d+)?$') { throw 'BUILD_VERSION must be a numeric version' }
  $versionParts=$version.Split('.')
  $buildName=($versionParts[0..2] -join '.')
- $buildNumber=if($versionParts.Count -eq 4) { $versionParts[3] } else { '0' }
+ $buildNumber='0'
  $out = Join-Path $root $m.outputDirectory
  New-Item -ItemType Directory -Force $out | Out-Null
  if($target -eq 'bundle' -or $args -contains '--verify-bundle') { & "$PSScriptRoot\verify-bundle.ps1" -OutputRoot "$root\artifacts" }
@@ -37,7 +36,7 @@ try {
   $engineExecutable=Join-Path $out 'engine\MaterialSystemCare.Engine.exe'
   if (!(Test-Path $engineExecutable)) { throw 'Published engine executable is missing' }
   Assert-SourceBinding $root $binding
-  $engineReceipt=$binding.Clone(); $engineReceipt.executableSha256=Get-ContentHash $engineExecutable; $engineReceipt.bundleSha256=Write-BundleManifest "$out\engine"; $engineReceipt.builtUtc=[DateTime]::UtcNow.ToString('o')
+  $engineReceipt=$binding.Clone(); $engineReceipt.version=$version; $engineReceipt.executableSha256=Get-ContentHash $engineExecutable; $engineReceipt.bundleSha256=Write-BundleManifest "$out\engine"; $engineReceipt.builtUtc=[DateTime]::UtcNow.ToString('o')
   $engineReceipt | ConvertTo-Json | Set-Content "$out\engine\build-receipt.json"
   if ($args -contains '--verify-engine') {
    foreach ($project in @('tests/engine-core/EngineFixtures.csproj','tests/utilities/Utilities.Tests.csproj','tests/storage/Storage.Tests.csproj','tests/protection/ProtectionFixtures.csproj')) {
@@ -69,7 +68,7 @@ try {
   if (!(Test-Path $exe)) { throw "Missing executable: $exe" }
   Assert-SquirrelAware $exe
   Assert-SourceBinding $root $binding
-  $desktopReceipt=$binding.Clone(); $desktopReceipt.executableSha256=Get-ContentHash $exe; $desktopReceipt.bundleSha256=Write-BundleManifest $out; $desktopReceipt.builtUtc=[DateTime]::UtcNow.ToString('o')
+  $desktopReceipt=$binding.Clone(); $desktopReceipt.version=$version; $desktopReceipt.executableSha256=Get-ContentHash $exe; $desktopReceipt.bundleSha256=Write-BundleManifest $out; $desktopReceipt.builtUtc=[DateTime]::UtcNow.ToString('o')
   $desktopReceipt | ConvertTo-Json | Set-Content "$out\build-receipt.json"
  }
  Assert-SourceBinding $root $binding

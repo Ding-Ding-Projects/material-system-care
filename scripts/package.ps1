@@ -2,6 +2,7 @@ $ErrorActionPreference='Stop'
 . "$PSScriptRoot\integrity.ps1"
 $root=Split-Path $PSScriptRoot
 $m=Get-Content "$root\build-manifest.json" -Raw | ConvertFrom-Json
+$version=Resolve-BuildVersion $m
 $binding=Get-SourceBinding $root
 $cache=Join-Path $env:LOCALAPPDATA 'MaterialSystemCare\toolchains'
 function Fetch($url,$path,$sha) {
@@ -21,12 +22,11 @@ Assert-SquirrelAware (Join-Path $payload $m.executable)
 foreach($pair in @(@('build-receipt.json',$m.executable),@('engine\build-receipt.json','engine\MaterialSystemCare.Engine.exe'))) {
  $receipt=Get-Content (Join-Path $payload $pair[0]) -Raw | ConvertFrom-Json
  foreach($key in @('source','sourceTree','indexTree','manifestSha256')) { if($receipt.$key -ne $binding[$key]) { throw "Package receipt does not match current source: $($pair[0]) $key" } }
+ if($receipt.version -ne $version) { throw "Package receipt version does not match selected version: $($pair[0])" }
  if($receipt.executableSha256 -ne (Get-ContentHash (Join-Path $payload $pair[1]))) { throw 'Package executable changed after build receipt' }
  $bundleRoot=if($pair[0] -like 'engine*') { Join-Path $payload 'engine' } else { $payload }
  Assert-BundleManifest $bundleRoot $receipt.bundleSha256
 }
-$version=if ($env:BUILD_VERSION) { $env:BUILD_VERSION } else { $m.version }
-if ($version -notmatch '^\d+\.\d+\.\d+(\.\d+)?$') { throw 'BUILD_VERSION must be a numeric NuGet version' }
 $out=Join-Path $root 'artifacts\installer'
 New-Item -ItemType Directory -Force $out | Out-Null
 $spec=Join-Path $out 'MaterialSystemCare.nuspec'
@@ -38,9 +38,20 @@ $escaped=[Security.SecurityElement]::Escape($payload)
 & "$cache\nuget.exe" pack $spec -OutputDirectory $out -NoPackageAnalysis
 if ($LASTEXITCODE) { throw "NuGet pack exit $LASTEXITCODE" }
 $squirrelArguments=@('--releasify',('"{0}"' -f "$out\MaterialSystemCare.$version.nupkg"),'--releaseDir',('"{0}"' -f "$out\releases"),'--no-msi')
-$squirrel=Start-Process -FilePath "$cache\squirrel\tools\Squirrel.exe" -ArgumentList $squirrelArguments -WindowStyle Hidden -Wait -PassThru
+$diagnostics=Join-Path $out 'diagnostics'
+New-Item -ItemType Directory -Force $diagnostics | Out-Null
+$started=[DateTime]::UtcNow
+try {
+ $squirrel=Start-Process -FilePath "$cache\squirrel\tools\Squirrel.exe" -ArgumentList $squirrelArguments -WindowStyle Hidden -RedirectStandardOutput "$diagnostics\squirrel-stdout.log" -RedirectStandardError "$diagnostics\squirrel-stderr.log" -Wait -PassThru
+} finally {
+ $releasifyLog=Join-Path $cache 'squirrel\tools\Squirrel-Releasify.log'
+ if((Test-Path $releasifyLog) -and (Get-Item $releasifyLog).LastWriteTimeUtc -ge $started) { Copy-Item $releasifyLog "$diagnostics\squirrel-releasify.log" -Force }
+}
 if ($null -eq $squirrel.ExitCode) { throw 'Squirrel releasify did not provide a process exit result' }
-if ($squirrel.ExitCode -ne 0) { throw "Squirrel releasify exit $($squirrel.ExitCode)" }
+if ($squirrel.ExitCode -ne 0) {
+ foreach($log in @('squirrel-stderr.log','squirrel-stdout.log','squirrel-releasify.log')) { $path=Join-Path $diagnostics $log; if(Test-Path $path) { Write-Host "Squirrel diagnostic: $log"; Get-Content $path -Tail 40 | Write-Host } }
+ throw "Squirrel releasify exit $($squirrel.ExitCode); diagnostics retained under artifacts/installer/diagnostics"
+}
 Assert-SourceBinding $root $binding
 foreach ($required in @('Setup.exe','RELEASES',"MaterialSystemCare-$version-full.nupkg")) {
  $path=Join-Path "$out\releases" $required

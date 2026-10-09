@@ -24,7 +24,7 @@ jobs:
         shell: pwsh
         run: |
           "WORKFLOW_STARTED=$([DateTime]::UtcNow.ToString('o'))" >> $env:GITHUB_ENV
-          "BUILD_VERSION=0.1.${{ github.run_number }}.${{ github.run_attempt }}" >> $env:GITHUB_ENV
+          "BUILD_VERSION=0.${{ github.run_number }}.${{ github.run_attempt }}" >> $env:GITHUB_ENV
       - name: Build and package
         shell: cmd
         run: build-installer.bat /s
@@ -56,6 +56,7 @@ jobs:
           name: windows-build-evidence
           path: |
             artifacts/installer/releases/
+            artifacts/installer/diagnostics/
             artifacts/windows-x64/build-receipt.json
             artifacts/evidence/
           if-no-files-found: warn
