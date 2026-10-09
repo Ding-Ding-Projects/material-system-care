@@ -12,6 +12,7 @@ public static class Program
     public static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web);
     private static readonly (Type Type, string[] Methods)[] ModuleInventory = [
         (typeof(SystemModule), ["engine.ping", "system.snapshot", "settings.get", "settings.save", "history.list"]),
+        (typeof(CrashDiagnosticsModule), ["diagnostics.crashes", "diagnostics.explainStopCode"]),
         (typeof(StorageModule), ["storage.analyze", "storage.duplicates", "cleanup.scan", "cleanup.apply", "cleanup.restore", "cleanup.history"]),
         (typeof(ManagementModule), ["apps.list", "apps.updates", "apps.upgrade", "apps.uninstall", "startup.list", "startup.set", "processes.list", "processes.stop", "services.list"]),
         (typeof(ProtectionModule), ["security.status", "security.scan", "drivers.list", "drivers.export", "drivers.install", "network.diagnostics", "files.lockOwners"]),

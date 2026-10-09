@@ -12,6 +12,62 @@ class CopyScope extends InheritedWidget {
 }
 
 const translations = <String, String>{
+  "The local engine connection is unavailable.": "本機引擎連線無法使用。",
+  "Crash collection exceeded fifteen seconds. Try a shorter period.":
+      "當機資料收集超過十五秒，請選擇較短期間。",
+  "Crash evidence exceeded the output limit. Choose a shorter period.":
+      "當機證據超過輸出上限，請選擇較短期間。",
+  "Crash event collection requires Windows.": "收集當機事件需要 Windows。",
+  "The local diagnostic request could not complete. Reconnect the engine and try again.":
+      "本機診斷要求未能完成，請重新連接引擎後再試。",
+  "Only the newest 50 matching events are shown. Choose a shorter period to narrow the result.":
+      "只顯示最近 50 項符合條件的事件，請選擇較短期間以縮窄結果。",
+  "A redirected dump directory was not inspected.": "未檢查重新導向的傾印目錄。",
+  "Dump inventory is limited to 100 records.": "傾印清單上限為 100 項記錄。",
+  "Dump metadata is unavailable for this account. No elevation was requested.":
+      "此帳戶無法讀取傾印檔案資料，並未要求提升權限。",
+  "A dump record changed or could not be read. Refresh to try again.":
+      "傾印記錄已更改或無法讀取，請重新整理後再試。",
+  "Blue-screen diagnostics": "藍畫面診斷",
+  "Investigate a crash": "調查當機",
+  "Read local crash events and dump metadata. Dump contents stay untouched. Nothing is uploaded or repaired.":
+      "讀取本機當機事件及傾印檔案資料。不會讀取傾印內容、上傳或進行修復。",
+  "Event lookback": "事件查閱期間",
+  "7 days": "7 日",
+  "30 days": "30 日",
+  "90 days": "90 日",
+  "365 days": "365 日",
+  "Read crash evidence": "讀取當機證據",
+  "Stop code": "停止代碼",
+  "Explain stop code": "解釋停止代碼",
+  "A stop code describes a condition, not a confirmed cause.":
+      "停止代碼描述當時狀況，並不代表已確認原因。",
+  "Crash evidence could not be read. No permissions were changed. Try again or check Event Viewer.":
+      "未能讀取當機證據，權限並無更改。請重試或查看事件檢視器。",
+  "Enter a valid hexadecimal stop code or unsigned decimal number.":
+      "請輸入有效十六進制停止代碼或無符號十進制數字。",
+  "Recorded events": "已記錄事件",
+  "Event times can follow the crash or restart. An unexpected restart alone does not prove a blue screen.":
+      "事件時間可能在當機或重新啟動之後。單憑意外重新啟動不能證明出現過藍畫面。",
+  "No matching events in this period.": "這段期間沒有符合條件的事件。",
+  "This does not rule out a crash. Event records may be unavailable or cleared.":
+      "這不能排除曾經當機，事件記錄可能無法讀取或已被清除。",
+  "Stop code recorded": "已記錄停止代碼",
+  "Crash report without a readable code": "當機報告沒有可讀取代碼",
+  "Unexpected restart": "意外重新啟動",
+  "Time unavailable": "時間不詳",
+  "Event": "事件",
+  "Available dump metadata": "可讀取的傾印檔案資料",
+  "No accessible dump files found.": "找不到可讀取的傾印檔案。",
+  "bytes": "位元組",
+  "Metadata only": "只限檔案資料",
+  "Some dump metadata was unavailable or the inventory reached its limit.":
+      "部分傾印檔案資料無法讀取，或清單已達數量上限。",
+  "Next checks": "下一步檢查",
+  "Compare recent driver, firmware, hardware, and Windows updates. Preserve dump files before changing anything. Use Microsoft WinDbg with matching symbols for deeper analysis.":
+      "核對近期驅動程式、韌體、硬件及 Windows 更新。更改前請保留傾印檔案，並使用 Microsoft WinDbg 及相符符號作深入分析。",
+  "This workspace does not analyze stacks or symbols, identify a culprit driver, change drivers, or restart Windows.":
+      "此工作區不會分析堆疊或符號、判定肇因驅動程式、更改驅動程式或重新啟動 Windows。",
   'Material System Care': 'Material System Care',
   'Overview': '總覽',
   'Storage': '儲存空間',

@@ -13,6 +13,7 @@
 
 ## Working suite
 
+- [ ] Complete blue-screen diagnosis runtime verification: read-only engine and dedicated Tools workspace implemented; focused synthetic checks pass; built screenshots remain pending.
 - [ ] Deliver real health and diagnostics workflows.
 - [ ] Deliver reversible temporary-file maintenance, duplicate analysis, storage inventory, and recovery records.
 - [ ] Deliver application, startup, process, security, and driver workflows using supported APIs.
@@ -32,5 +33,5 @@
 
 ## GitHub Pages delivery
 
-- [ ] Deploy the project-path-compatible static output to GitHub Pages and verify the live home page, assets, deployment source, and About homepage.
+- [x] Deploy the project-path-compatible static output to GitHub Pages and verify the live home page, assets, deployment source, and About homepage at source `66880b5904726afb5f2444950964e8b147d5d929`.
 - [ ] Capture genuine current desktop and public documentation screens through the restored isolated Lowlevel route.

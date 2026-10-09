@@ -39,7 +39,7 @@ try {
   $engineReceipt=$binding.Clone(); $engineReceipt.version=$version; $engineReceipt.executableSha256=Get-ContentHash $engineExecutable; $engineReceipt.bundleSha256=Write-BundleManifest "$out\engine"; $engineReceipt.builtUtc=[DateTime]::UtcNow.ToString('o')
   $engineReceipt | ConvertTo-Json | Set-Content "$out\engine\build-receipt.json"
   if ($args -contains '--verify-engine') {
-   foreach ($project in @('tests/engine-core/EngineFixtures.csproj','tests/utilities/Utilities.Tests.csproj','tests/storage/Storage.Tests.csproj','tests/protection/ProtectionFixtures.csproj')) {
+   foreach ($project in @('tests/engine-core/EngineFixtures.csproj','tests/utilities/Utilities.Tests.csproj','tests/storage/Storage.Tests.csproj','tests/protection/ProtectionFixtures.csproj','tests/crash-diagnostics/CrashFixtures.csproj')) {
     & dotnet run --project $project -c Release
     if ($LASTEXITCODE) { throw "Engine verification failed: $project ($LASTEXITCODE)" }
    }

@@ -25,9 +25,9 @@ Engine candidate `a700cb31bf81bcfcdd459570b70b02ebdd6cded7` passed 28 integrated
 
 Complete catalogue workflows, universal per-surface controls, full language coverage, native optional audio/narration, complete update handling and fresh-environment bootstrap remain unfinished. Release readiness stays unverified.
 
-The maintainer explicitly retained the strict hidden capture route after its HTTP endpoint was unavailable. Therefore runtime screenshots, scaling/motion/accessibility interaction evidence and installer lifecycle proof remain pending. No alternate visual route is authorized. No fabricated or design-only screenshot is presented as runtime evidence.
+The maintainer subsequently authorized bounded repair of supported Lowlevel transports. A task-owned persistent loopback compatibility HTTP/native backend now supports isolated desktop launch, exact process/window discovery and capture. Earlier Flutter captures were blank and are rejected as UI evidence. Desktop scaling/motion/accessibility interaction and installer lifecycle proof remain pending.
 
-The website is public at https://material-system-care.azureteal8.chatgpt.site. Deployment `appgdep_6ac84608e6e4819190c8a83fc5589588` succeeded from source snapshot `e890ea1078c595af87ba3738840500ce71200a34`. Anonymous HTTP returned 200 for the home page and linked script/style assets; coverage contained 295 entries. The release manifest remains development with no installer URL. Repository homepage readback matches the live URL exactly.
+The earlier website was hosted at the historical external deployment. Deployment `appgdep_6ac84608e6e4819190c8a83fc5589588` succeeded from source snapshot `e890ea1078c595af87ba3738840500ce71200a34`. Anonymous HTTP returned 200 for the home page and linked script/style assets; coverage contained 295 entries. The release manifest remains development with no installer URL. Repository homepage readback matches the live URL exactly.
 
 The first integrated installer attempt passed engine fixtures and bundle negative checks, then failed in Flutter assembly with MSB8066. The subsequent verbose root desktop build passed with zero compiler warnings/errors. The earlier hosted build failed its unchanged-source check after generated line endings changed; exact LF attributes now prevent that false source drift.
 
@@ -70,3 +70,9 @@ The wiki clone endpoint returned `Repository not found`, despite wiki being enab
 ## GitHub Pages migration
 
 Source and deployment configuration prepared. Live deployment, repository homepage readback, and runtime captures remain pending. The local Lowlevel compatibility HTTP endpoint was restored on loopback. Flutter window captures were blank; Edge rejected the previous host with ERR_SSL_VERSION_OR_CIPHER_MISMATCH. Neither capture is accepted product evidence.
+
+## Current diagnostics and hosting checkpoint
+
+GitHub Pages is live at https://ding-ding-projects.github.io/material-system-care/. Deployment run 38005854415 succeeded at source `66880b5904726afb5f2444950964e8b147d5d929`. Anonymous homepage, JavaScript, CSS and logo returned HTTP 200; the repository About homepage exactly matched. The Windows build run 38005854482 also completed successfully at that source. Isolated Edge produced genuine desktop and mobile captures; the mobile header needs layout correction before acceptance as completed visual evidence.
+
+The new blue-screen workflow adds two explicit engine methods and a dedicated Tools workspace. Thirty-five synthetic diagnostic assertions, 28 integrated engine groups and eight focused Flutter tests passed on the changed source. This is not yet a compiled candidate or a runtime screenshot verdict. No actual host crash was triggered, no dump contents were read and no driver or power action occurred. The broader suite remains incomplete.

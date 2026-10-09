@@ -23,6 +23,7 @@ The current source provides a working foundation, with these operation families:
 - Confirmed current-user startup changes and graceful process-close requests. Package operations require a genuine supported package identifier.
 - Supported security scanning and driver operations with explicit elevation requirements. These have not been exercised against this host's security or drivers.
 - Selected-file hashing, strict text and JSON conversion, password generation, network diagnostics and opt-in local provider access.
+- [Blue-screen investigation](docs/features/diagnostics/blue-screen.md) with provider-qualified local events, stop-code lookup and dump metadata. No root-cause certainty, dump-content analysis or automatic repair is claimed.
 - Flutter Material workspaces, local appearance preferences, an operation history, contextual confirmations and honest unavailable states.
 
 This list describes source behavior. It does not establish complete reference-product parity, runtime visual verification, or production readiness. The [versioned capability ledger](contracts/capabilities.json) retains all 295 requirements, their sources and their individual implementation states. See the [verification handoff](HANDOFF.md) for exact tested revisions and remaining gaps.

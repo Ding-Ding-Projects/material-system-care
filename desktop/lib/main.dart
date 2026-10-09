@@ -7,6 +7,7 @@ import 'localization.dart';
 import 'notifications.dart';
 import 'provenance.dart';
 import 'motion.dart';
+import 'crash_diagnostics.dart';
 import 'wording_cache.dart';
 
 void main() => runApp(CareApp());
@@ -780,6 +781,22 @@ class _ToolsEditorState extends State<ToolsEditor> {
     padding: EdgeInsets.only(top: 12),
     child: Column(
       children: [
+        Align(
+          alignment: Alignment.centerLeft,
+          child: FilledButton.tonalIcon(
+            onPressed: widget.busy
+                ? null
+                : () => Navigator.of(context).push(
+                    MaterialPageRoute<void>(
+                      builder: (_) =>
+                          CrashDiagnosticsPage(invoke: Engine.invoke),
+                    ),
+                  ),
+            icon: const Icon(Icons.monitor_heart_outlined),
+            label: UiText('Blue-screen diagnostics'),
+          ),
+        ),
+        const SizedBox(height: 12),
         SegmentedButton<int>(
           segments: [
             ButtonSegment(

@@ -22,7 +22,7 @@ public interface IEngineModule {
 }
 ```
 
-`EngineContext` exposes `string DataRoot`, `bool IsElevated`, `Task RecordAsync(string operation, object details, CancellationToken ct)`, and `Task<object?> ReadSettingAsync(string key, CancellationToken ct)`. Modules must not share mutable static request state. `Program.ModuleInventory` explicitly registers five module types and 35 allowed methods. It drives construction, dispatch ownership and `engine.ping.capabilities`; arbitrary assembly/plugin discovery is not supported. Additional methods must enter that inventory and its consistency regression before integration.
+`EngineContext` exposes `string DataRoot`, `bool IsElevated`, `Task RecordAsync(string operation, object details, CancellationToken ct)`, and `Task<object?> ReadSettingAsync(string key, CancellationToken ct)`. Modules must not share mutable static request state. `Program.ModuleInventory` explicitly registers six module types and 37 allowed methods. It drives construction, dispatch ownership and `engine.ping.capabilities`; arbitrary assembly/plugin discovery is not supported. Additional methods must enter that inventory and its consistency regression before integration.
 
 ## Initial methods
 
@@ -41,3 +41,9 @@ Analysis never implies consent to change a computer. Mutating methods require an
 No bulk registry deletion, security disabling, forced process termination, or power/login action is part of automatic maintenance. User-facing operations that require elevation return `ELEVATION_REQUIRED` until the approved broker path is available. External executables use fixed names and argument lists, never a shell command composed from user input.
 
 Settings and history use SQLite below the user's local application data. Private vocabulary data and credentials never enter general history, diagnostic output, screenshots, or exports. A fixture data root may be supplied for automated verification; fixture use must be labelled and cannot masquerade as live machine measurements.
+
+## Crash diagnostics
+
+`diagnostics.crashes` accepts `{days: 30, limit: 50}` with integer ranges 1–365 and 1–100. It returns `collectedAt`, `lookbackDays`, `eventLimit`, `events`, `dumps`, `warnings`, `dumpContentsRead: false`, `uploaded: false`, `rootCauseEstablished: false`, `timeMeaning`, and `limitation`. Event rows contain record ID, recorded UTC time, provider-qualified event ID, evidence kind and optional stop-code explanation. Dump rows contain name, bytes, modification time and `analysis: metadata-only`. No raw event messages, addresses or dump bytes are returned.
+
+`diagnostics.explainStopCode` accepts `{code: "0x0000009F"}` or a decimal string. It returns hexadecimal and decimal values, the known name/category or an explicit unknown result, confidence limitation, next checks and the Microsoft reference URL. It performs no host collection. Neither method mutates the computer, uploads data or persists its response to general history. See [the investigation guide](../docs/features/diagnostics/blue-screen.md).
