@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "e4f0b4f5cd57ed4cb3c53a8f99bc71d7d4785c1d",
+  "command": "build.bat /s --target=site",
+  "exitCode": 0,
+  "bundle": "website/dist/assets/index-DQ7ShN1W.js",
+  "sha256": "ff5bde94d1c77edc3102f93be03d94c8ba88bdbe7c35dc9d671cea95504795de",
+  "testCommand": "node --test website/tests/*.test.mjs",
+  "testsPassed": 5,
+  "testsFailed": 0,
+  "runtimeInteraction": "unverified",
+  "screenshots": "pending required cheap Lowlevel route",
+  "release": "development, installer URL null",
+  "statusHub": "not delivered: enrollment credential unavailable"
+}
