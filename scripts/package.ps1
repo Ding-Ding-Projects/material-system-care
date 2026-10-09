@@ -1,12 +1,13 @@
 $ErrorActionPreference='Stop'
+. "$PSScriptRoot\integrity.ps1"
 $root=Split-Path $PSScriptRoot
 $m=Get-Content "$root\build-manifest.json" -Raw | ConvertFrom-Json
 $cache=Join-Path $env:LOCALAPPDATA 'MaterialSystemCare\toolchains'
 function Fetch($url,$path,$sha) {
- if (!(Test-Path $path) -or (Get-FileHash $path).Hash.ToLowerInvariant() -ne $sha) {
+ if (!(Test-Path $path) -or (Get-ContentHash $path) -ne $sha) {
   & curl.exe -L --fail --retry 3 -o "$path.partial" $url
   if ($LASTEXITCODE) { throw "Download failed: $url" }
-  if ((Get-FileHash "$path.partial").Hash.ToLowerInvariant() -ne $sha) { throw "Hash mismatch: $url" }
+  if ((Get-ContentHash "$path.partial") -ne $sha) { throw "Hash mismatch: $url" }
   Move-Item -Force "$path.partial" $path
  }
 }
@@ -32,6 +33,6 @@ if ($LASTEXITCODE) { throw "Squirrel releasify exit $LASTEXITCODE" }
 foreach ($required in @('Setup.exe','RELEASES',"MaterialSystemCare-$version-full.nupkg")) {
  $path=Join-Path "$out\releases" $required
  if (!(Test-Path $path) -or (Get-Item $path).Length -eq 0) { throw "Missing Squirrel output: $required" }
- Get-FileHash $path -Algorithm SHA256
+ Write-Host "$required SHA-256 $(Get-ContentHash $path)"
 }
 Write-Host 'Squirrel.Windows outputs are unsigned and may trigger unknown-publisher or SmartScreen warnings.'

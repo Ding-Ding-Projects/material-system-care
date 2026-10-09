@@ -1,4 +1,5 @@
 $ErrorActionPreference = 'Stop'
+. "$PSScriptRoot\integrity.ps1"
 $root = Split-Path $PSScriptRoot
 $manifest = Get-Content (Join-Path $root 'build-manifest.json') -Raw | ConvertFrom-Json
 $cache = Join-Path $env:LOCALAPPDATA 'MaterialSystemCare\toolchains'
@@ -12,7 +13,7 @@ $flutter = Join-Path $cache 'flutter\bin\flutter.bat'
 if (!(Test-Path $flutter)) {
  $archive = Join-Path $cache 'flutter.zip'
  if (!(Test-Path $archive)) { Download $manifest.flutterArchive $archive }
- if ((Get-FileHash $archive -Algorithm SHA256).Hash.ToLowerInvariant() -ne $manifest.flutterSha256) { throw 'Flutter archive SHA-256 mismatch' }
+ if ((Get-ContentHash $archive) -ne $manifest.flutterSha256) { throw 'Flutter archive SHA-256 mismatch' }
  $stage = Join-Path $cache ('stage-'+[guid]::NewGuid())
  New-Item -ItemType Directory $stage | Out-Null
  & tar.exe -xf $archive -C $stage
@@ -27,7 +28,7 @@ if (!(Get-Command node -ErrorAction SilentlyContinue)) {
  Download "https://nodejs.org/dist/v$nodeVersion/SHASUMS256.txt" $checks
  Download "https://nodejs.org/dist/v$nodeVersion/node-v$nodeVersion-win-x64.zip" $nodeArchive
  $expected=((Get-Content $checks | Where-Object { $_ -match "  node-v$nodeVersion-win-x64.zip$" }) -split '\s+')[0]
- if (!$expected -or (Get-FileHash $nodeArchive).Hash.ToLowerInvariant() -ne $expected) { throw 'Node archive SHA-256 mismatch' }
+ if (!$expected -or (Get-ContentHash $nodeArchive) -ne $expected) { throw 'Node archive SHA-256 mismatch' }
  $stage=Join-Path $cache ('node-stage-'+[guid]::NewGuid())
  Expand-Archive $nodeArchive $stage
  Move-Item "$stage\node-v$nodeVersion-win-x64" "$cache\node"
