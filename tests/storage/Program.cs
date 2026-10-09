@@ -61,6 +61,7 @@ try
         Directory.Delete(link);
     }
     catch (UnauthorizedAccessException) { Console.WriteLine("UNVERIFIED symbolic-link fixture requires developer mode or privilege"); }
+    catch (IOException ex) when ((ex.HResult & 0xffff) == 1314) { Console.WriteLine("SKIP symbolic-link fixture: ERROR_PRIVILEGE_NOT_HELD (1314); host privilege unchanged"); }
     using var cancelled = new CancellationTokenSource(); cancelled.Cancel();
     try { await module.HandleAsync("storage.analyze", JsonSerializer.SerializeToElement(new { path = selected }), context, cancelled.Token); throw new Exception("Cancellation was ignored"); }
     catch (OperationCanceledException) { Check(true, "cancelled scan"); }
