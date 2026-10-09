@@ -31,7 +31,7 @@ The website is public at https://material-system-care.azureteal8.chatgpt.site. D
 
 The first integrated installer attempt passed engine fixtures and bundle negative checks, then failed in Flutter assembly with MSB8066. The subsequent verbose root desktop build passed with zero compiler warnings/errors. The earlier hosted build failed its unchanged-source check after generated line endings changed; exact LF attributes now prevent that false source drift.
 
-Final local candidate `fca93588af594290c97612253861d0db05b5c565` passed `build-installer.bat /s`, including engine, desktop, website, compiled Squirrel awareness resource, bundle manifests and packaging. The package's 209 payload files were independently read from the full nupkg and checked against their recorded lengths and SHA-256 values. Both embedded producer receipts matched that candidate. The Squirrel completion race was repaired by waiting for its actual exit code before checking outputs.
+Earlier local candidate `fca93588af594290c97612253861d0db05b5c565` passed `build-installer.bat /s`, including engine, desktop, website, compiled Squirrel awareness resource, bundle manifests and packaging. The package's 209 payload files were independently read from the full nupkg and checked against their recorded lengths and SHA-256 values. Both embedded producer receipts matched that candidate. The Squirrel completion race was repaired by waiting for its actual exit code before checking outputs.
 
 | Local output | Bytes | SHA-256 |
 | --- | ---: | --- |
@@ -45,13 +45,24 @@ Hosted run `37871588366` compiled all targets but Squirrel rejected its four-par
 
 Version bounds now match between packaging and desktop provenance, with ten focused desktop cases and independent re-review. Packaging attempts have isolated input, release and diagnostic directories. Exclusive promotion locking, non-nesting directory renames, comparison against the attempt's own bytes, and rollback preserve previous outputs. Eleven synthetic isolation/contention/rollback checks passed and targeted independent re-review found no residual issue in that scope.
 
-Candidate `77f6815a8c4490eae7f18f959fa4423ff8e657e3` completed the exact root installer entrypoint with version `0.8.1`, but independent package verification rejected its full package. Of 218 ZIP entries, `lib/net45/flutter_windows.dll` has CRC metadata `976c718e` while its actual CRC is `83160968`. Its decompressed SHA-256 matches both the raw NuGet input and built file. The corruption is in ZIP metadata produced during releasification. The failed full package has SHA-256 `5b0c017fa21861460b8c3269979c7e4afecbfeb08704252b58df40ce1d2f30e5` and is retained for diagnosis. Entry-point exit zero therefore does not establish installer integrity. Repair and a decisive archive-integrity check before output promotion are in progress.
+Candidate `77f6815a8c4490eae7f18f959fa4423ff8e657e3` completed the exact root installer entrypoint with version `0.8.1`, but independent package verification rejected its full package. Of 218 ZIP entries, `lib/net45/flutter_windows.dll` has CRC metadata `976c718e` while its actual CRC is `83160968`. Its decompressed SHA-256 matches both the raw NuGet input and built file. The corruption is in ZIP metadata produced during releasification. The failed full package has SHA-256 `5b0c017fa21861460b8c3269979c7e4afecbfeb08704252b58df40ce1d2f30e5` and is retained for diagnosis. Entry-point exit zero therefore does not establish installer integrity. The producer correction and successful replacement evidence follow.
+
+Current local producer `b80d9938c1a90cea17eb6a69faa18fb2a257dbf0` passed `build-installer.bat /s` with version `0.8.1`. Each attempt preserves the original Squirrel.Windows 2.0.1 tools and uses a separate copy with the unchanged Squirrel assembly plus a hash-pinned official 7-Zip 26.04 helper. This project-owned helper composition does not modify a finished archive or setup executable. Its independent ZIP validator rejects the exact earlier invalid package and checks CRC, length, all bundle-manifest payload hashes, and both embedded source/version receipts before canonical promotion. Four focused negative/positive cases and independent source review passed.
+
+The final full package passed a second implementation's complete ZIP check: 230 archive entries, 209 recorded payload files, both embedded receipts, and the RELEASES package SHA-1 and byte count. The previous canonical package remains preserved in the packaging history. Installation, update, uninstall and fresh-host behavior remain unverified.
+
+| Current local output | Bytes | SHA-256 |
+| --- | ---: | --- |
+| Setup.exe | 48,532,992 | `a83e99003bf7a68426a4f7d1244c970bca648c6016a4084e4210329bfe402a84` |
+| MaterialSystemCare-0.8.1-full.nupkg | 47,821,020 | `acefef1afb201bf9c76227a34a972d16a0e8da04e9446388cac6c579f26365ef` |
+| RELEASES | 88 | `d6eb08a58d6028816b35a01bab9026074fb983b7b6f4079e594b06d62f9b44bf` |
+
+Hosted verification is separate from this local producer. Read the run tied to the final public main revision and the subsequent terminal-result comments in issue #1 and discussion #2; historical failed runs are not relabelled as successful.
 
 The wiki clone endpoint returned `Repository not found`, despite wiki being enabled. GitHub Projects discovery lacks `read:project` scope and is skipped. Documentation, issue #1 and discussion #2 retain the factual handoff. Runtime status enrollment is unavailable without its configured ingest credential. No external status delivery is claimed.
 
 ## Next actions
 
-1. Resolve the archive CRC metadata defect, verify the integrated package and preserve exact producer receipts.
-2. Verify the default-branch hosted build after the packaging correction.
-3. Continue remaining implementation requirements without marking absent runtime evidence complete.
-4. When the permitted capture route is available, run the full built interaction matrix and installer/update verification before release publication.
+1. Read the final default-branch hosted build result and its exact source binding.
+2. Continue remaining implementation requirements without marking absent runtime evidence complete.
+3. When the permitted capture route is available, run the full built interaction matrix and installer/update verification before release publication.

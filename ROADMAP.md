@@ -9,7 +9,7 @@
 - [x] Compile the initial native Flutter desktop and Material Web presentation through root entrypoints.
 - [ ] Verify the final integrated source after the independent review repairs.
 - [x] Build integrated candidate `fca93588af594290c97612253861d0db05b5c565` and independently verify its 209 packaged payload files.
-- [ ] Verify corrected-version packaging after rejecting a CRC metadata mismatch in candidate `77f6815`.
+- [x] Verify corrected-version packaging at `b80d993`, including 230 ZIP entries, 209 payload files and rejection of the earlier CRC mismatch.
 
 ## Working suite
 

@@ -13,9 +13,10 @@ The initial implementation received independent finder and refutation passes. Ac
 | Website | One-pass literal personal wording, bounded output and isolated regex workers | Eight focused validation/search/replacement tests |
 | Version provenance | Strict three-part producer version and matching unsigned 16-bit component bounds in the desktop | Eleven producer-version checks, ten desktop cases and independent re-review |
 | Package promotion | Isolated attempts, exclusive promotion lock, non-nesting renames, own-attempt byte comparison and rollback | Eleven focused synthetic isolation/contention/rollback checks and independent re-review |
+| Archive integrity | Isolated original Squirrel tools with a pinned current compressor, full ZIP CRC/length and manifest-content validation before promotion | Four focused cases, exact bad-package rejection, independent review, root production at `b80d993`, and a second ZIP implementation verifying 230 entries and 209 payload files |
 
 A same-user local plan-editing candidate was rejected as an automatic security finding because no distinct privilege or integrity boundary crossing was demonstrated. A journal-directory replacement hypothesis remains unproven and requires a controlled native race fixture. These verdicts do not claim that all possible defects are absent.
 
 Real UI interaction, every locale/theme/scale tuple, accessibility behavior, installer lifecycle and fresh-environment proof remain pending. The owner explicitly retained the strict approved hidden route when its endpoint was unavailable.
 
-Independent archive verification rejected the `0.8.1` package from candidate `77f6815`: one ZIP entry has incorrect CRC metadata despite matching payload bytes. This remains a packaging defect under investigation, distinct from the resolved isolation and promotion findings.
+Independent archive verification rejected the `0.8.1` package from candidate `77f6815`: one ZIP entry has incorrect CRC metadata despite matching payload bytes. The exact package remains the negative evidence for the producer correction above. The corrected package is bound to `b80d993`; its success does not relabel the earlier package or establish runtime installation behavior.
