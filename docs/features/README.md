@@ -1,0 +1,9 @@
+# Feature documentation
+
+Product capabilities and universal surface contracts are separate inventories.
+
+- [Capability catalogue](../catalogue/README.md): fixed vendor-reference capability mapping and status.
+- [Architecture](../architecture/README.md): Windows 11 boundaries, implementation evidence, and surface inventory.
+- [Universal contracts](../catalogue/universal/README.md): individually tracked mandatory product and delivery requirements.
+
+Other feature owners may add categorized operational articles here. Each category must index its articles. No catalogue entry or documentation article proves a feature works.
