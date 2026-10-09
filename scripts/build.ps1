@@ -14,6 +14,9 @@ try {
  if ($target -in @('all','engine')) {
   & dotnet publish $m.engineProject -c Release -r win-x64 --self-contained true -o "$out\engine"
   if ($LASTEXITCODE) { throw "Engine build exit $LASTEXITCODE" }
+  $engineExecutable=Join-Path $out 'engine\MaterialSystemCare.Engine.exe'
+  if (!(Test-Path $engineExecutable)) { throw 'Published engine executable is missing' }
+  @{source=(& git rev-parse HEAD);manifestSha256=(Get-FileHash build-manifest.json).Hash;executableSha256=(Get-FileHash $engineExecutable).Hash;builtUtc=[DateTime]::UtcNow.ToString('o')} | ConvertTo-Json | Set-Content "$out\engine\build-receipt.json"
   if ($args -contains '--verify-engine') {
    foreach ($project in @('tests/engine-core/EngineFixtures.csproj','tests/utilities/Utilities.Tests.csproj','tests/storage/Storage.Tests.csproj','tests/protection/ProtectionFixtures.csproj')) {
     & dotnet run --project $project -c Release
