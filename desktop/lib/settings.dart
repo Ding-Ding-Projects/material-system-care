@@ -10,10 +10,12 @@ class SettingsPanel extends StatefulWidget {
     super.key,
     required this.invoke,
     required this.onChanged,
+    this.wordingCache,
   });
   final Future<Map<String, dynamic>> Function(String, Map<String, dynamic>)
   invoke;
   final void Function(Map<String, dynamic>) onChanged;
+  final WordingCache? wordingCache;
   @override
   State<SettingsPanel> createState() => _SettingsPanelState();
 }
@@ -152,15 +154,12 @@ class _SettingsPanelState extends State<SettingsPanel> {
 
   Future<void> _loadVocabulary() async {
     try {
-      final file = _vocabularyCache;
-      if (!await file.exists()) return;
-      if (await file.length() > 1048576)
-        throw const FormatException('File exceeds limit');
-      final loaded = WordingCache.validate(await file.readAsString());
+      final loaded =
+          await (widget.wordingCache ?? WordingCache(_vocabularyCache)).load();
       if (mounted)
         setState(() {
           _vocabulary = loaded;
-          _vocabularyState = 'loaded';
+          _vocabularyState = loaded.isEmpty ? 'empty' : 'loaded';
         });
     } catch (_) {
       if (mounted)
