@@ -16,4 +16,8 @@ Next: verify the default-branch remote build, continue the 234 unimplemented req
 
 Hosted run 37871588366 exposed Squirrel's strict three-part SemVer requirement. The four-part failure was reproduced through the root entrypoint. The corrected workflow uses 0.<run_number>.<run_attempt>, rejects invalid versions early, retains packager diagnostics and records the selected version in both producer receipts. The desktop reads that actual receipt version. Eleven version validation and four provenance checks passed. Verify the corrected local and hosted packaging result; do not treat the previous failed hosted run as green.
 
-Current source is preserved on implementation branches. The record is written before its own commit; the conversation adds the final commit and remote proof. No active goal was created. Do not claim the overall suite complete.
+Version bounds now match between packaging and desktop; ten focused provenance cases passed. Isolated packaging attempts preserve prior inputs and outputs, with an exclusive promotion lock, non-nesting renames, own-attempt hash validation and rollback. Eleven synthetic isolation checks and targeted independent re-review passed.
+
+Candidate 77f6815a8c4490eae7f18f959fa4423ff8e657e3 completed the root installer entrypoint at version 0.8.1, but independent ZIP verification rejected one of 218 entries: flutter_windows.dll CRC metadata is incorrect although decompressed bytes match the raw input and built file. Retain the failed package for diagnosis. Repair the archive producer and add an integrity check before canonical promotion; then verify both local and hosted results. Do not call this package valid based on entrypoint exit zero.
+
+Current source is preserved on implementation branches and integrated into local main. The record is written before its own commit; the conversation adds the final commit and remote proof. No active goal was created. Do not claim the overall suite complete.

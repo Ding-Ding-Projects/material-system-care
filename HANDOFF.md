@@ -43,12 +43,15 @@ Installer creation and payload integrity are verified locally. Installation, uni
 
 Hosted run `37871588366` compiled all targets but Squirrel rejected its four-part `0.1.8.1` version. An exact local root-entrypoint reproduction established the same strict-SemVer exception. The workflow now selects `0.<run_number>.<run_attempt>`, with early full-string, ASCII, leading-zero and 16-bit component validation. Eleven focused version checks passed. Producer receipts now contain the selected version, the desktop prefers that value, and four focused provenance checks passed. The corrected hosted run is pending; its terminal result belongs in issue #1 and discussion #2 without changing this source-bound record.
 
+Version bounds now match between packaging and desktop provenance, with ten focused desktop cases and independent re-review. Packaging attempts have isolated input, release and diagnostic directories. Exclusive promotion locking, non-nesting directory renames, comparison against the attempt's own bytes, and rollback preserve previous outputs. Eleven synthetic isolation/contention/rollback checks passed and targeted independent re-review found no residual issue in that scope.
+
+Candidate `77f6815a8c4490eae7f18f959fa4423ff8e657e3` completed the exact root installer entrypoint with version `0.8.1`, but independent package verification rejected its full package. Of 218 ZIP entries, `lib/net45/flutter_windows.dll` has CRC metadata `976c718e` while its actual CRC is `83160968`. Its decompressed SHA-256 matches both the raw NuGet input and built file. The corruption is in ZIP metadata produced during releasification. The failed full package has SHA-256 `5b0c017fa21861460b8c3269979c7e4afecbfeb08704252b58df40ce1d2f30e5` and is retained for diagnosis. Entry-point exit zero therefore does not establish installer integrity. Repair and a decisive archive-integrity check before output promotion are in progress.
+
 The wiki clone endpoint returned `Repository not found`, despite wiki being enabled. GitHub Projects discovery lacks `read:project` scope and is skipped. Documentation, issue #1 and discussion #2 retain the factual handoff. Runtime status enrollment is unavailable without its configured ingest credential. No external status delivery is claimed.
 
 ## Next actions
 
-1. Finish and independently verify accepted repairs; merge each owned contribution while preserving ancestry.
-2. Rebuild the complete source through the root entrypoints and retain matching receipts.
-3. Publish the public documentation website with truthful development status, verify its URL and update the repository homepage.
-4. Continue remaining implementation requirements without marking absent runtime evidence complete.
-5. When the permitted capture route is available, run the full built interaction matrix and installer/update verification before release publication.
+1. Resolve the archive CRC metadata defect, verify the integrated package and preserve exact producer receipts.
+2. Verify the default-branch hosted build after the packaging correction.
+3. Continue remaining implementation requirements without marking absent runtime evidence complete.
+4. When the permitted capture route is available, run the full built interaction matrix and installer/update verification before release publication.
