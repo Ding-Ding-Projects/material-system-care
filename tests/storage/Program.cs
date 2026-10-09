@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Text.Json.Nodes;
 using MaterialSystemCare.Engine;
 
 string sandbox = Path.Combine(Path.GetTempPath(), "MaterialSystemCare-storage-fixture-" + Guid.NewGuid().ToString("N"));
@@ -51,6 +52,35 @@ try
     Check(File.Exists(old), "replaying an applied plan does not move files again");
     var history = await Call("cleanup.history", new { });
     Check(history.GetProperty("receipts").GetArrayLength() == 1, "persisted recovery history");
+    // Reproduce a successful native restore followed by interruption before its
+    // restored journal update: original identity remains, quarantine is absent.
+    string receiptPath = Path.Combine(data, "cleanup", planId + ".receipt.json");
+    JsonNode crashReceipt = JsonNode.Parse(await File.ReadAllTextAsync(receiptPath))!;
+    JsonNode restoredItem = crashReceipt["items"]!.AsArray().Single(x => x!["target"]!["path"]!.GetValue<string>() == old)!;
+    restoredItem["state"] = "restoring";
+    restoredItem["reason"] = null;
+    await File.WriteAllTextAsync(receiptPath, crashReceipt.ToJsonString());
+    var reconciled = await Call("cleanup.restore", new { receiptId = planId, confirmed = true });
+    JsonElement reconciledItem = reconciled.GetProperty("items").EnumerateArray().Single(x => x.GetProperty("target").GetProperty("path").GetString() == old);
+    Check(!reconciled.GetProperty("partial").GetBoolean() && reconciledItem.GetProperty("state").GetString() == "restored" && reconciledItem.GetProperty("reason").GetString() == "INTERRUPTED_RESTORE_RECONCILED", "interrupted restore reconciles exact original identity and bytes");
+    JsonNode persistedReconciled = JsonNode.Parse(await File.ReadAllTextAsync(receiptPath))!;
+    Check(persistedReconciled["items"]!.AsArray().Single(x => x!["target"]!["path"]!.GetValue<string>() == old)!["state"]!.GetValue<string>() == "restored", "reconciled restore state persisted");
+    await File.WriteAllTextAsync(old, "foreign data");
+    File.SetLastWriteTimeUtc(old, new DateTime(restoredItem["target"]!["modifiedTicks"]!.GetValue<long>(), DateTimeKind.Utc));
+    await File.WriteAllTextAsync(receiptPath, crashReceipt.ToJsonString());
+    var changedContent = await Call("cleanup.restore", new { receiptId = planId, confirmed = true });
+    JsonElement contentItem = changedContent.GetProperty("items").EnumerateArray().Single(x => x.GetProperty("target").GetProperty("path").GetString() == old);
+    Check(contentItem.GetProperty("state").GetString() == "conflict" && contentItem.GetProperty("reason").GetString() == "TARGET_CHANGED" && await File.ReadAllTextAsync(old) == "foreign data", "interrupted restore rejects changed bytes with original identity size and timestamp");
+    // A new same-content file at the original path must not impersonate the
+    // restored file, even when size and timestamps are copied exactly.
+    File.Move(old, Path.Combine(sandbox, "held-original.tmp"));
+    await File.WriteAllTextAsync(old, "recover this");
+    File.SetCreationTimeUtc(old, new DateTime(restoredItem["target"]!["createdTicks"]!.GetValue<long>(), DateTimeKind.Utc));
+    File.SetLastWriteTimeUtc(old, new DateTime(restoredItem["target"]!["modifiedTicks"]!.GetValue<long>(), DateTimeKind.Utc));
+    await File.WriteAllTextAsync(receiptPath, crashReceipt.ToJsonString());
+    var differentOccupant = await Call("cleanup.restore", new { receiptId = planId, confirmed = true });
+    JsonElement occupantItem = differentOccupant.GetProperty("items").EnumerateArray().Single(x => x.GetProperty("target").GetProperty("path").GetString() == old);
+    Check(differentOccupant.GetProperty("partial").GetBoolean() && occupantItem.GetProperty("state").GetString() == "conflict" && occupantItem.GetProperty("reason").GetString() == "TARGET_CHANGED" && await File.ReadAllTextAsync(old) == "recover this", "interrupted restore rejects a different same-content occupant identity");
     string link = Path.Combine(selected, "link");
     try
     {
