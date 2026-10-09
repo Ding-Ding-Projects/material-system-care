@@ -28,6 +28,7 @@ try
     var bounded = await Call("storage.analyze", new { path = selected, maxEntries = 1 });
     Check(bounded.GetProperty("truncated").GetBoolean(), "enumeration entry limit");
     await Reject("storage.analyze", new { path = selected, maxEntries = 0 }, "INVALID_ARGUMENT");
+    await Reject("storage.analyze", new { path = selected, maxEntries = "unbounded" }, "INVALID_ARGUMENT");
     await Reject("cleanup.apply", new { planId = Guid.NewGuid().ToString("N") }, "CONFIRMATION_REQUIRED");
     await Reject("cleanup.scan", new { path = selected }, "SCOPE_NOT_ALLOWED");
     string old = Path.Combine(temp, "old.tmp"), changed = Path.Combine(temp, "changed.tmp"), recent = Path.Combine(temp, "recent.tmp");
