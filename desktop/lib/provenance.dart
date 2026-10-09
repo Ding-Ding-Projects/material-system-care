@@ -1,10 +1,23 @@
 import 'package:flutter/material.dart';
 import 'localization.dart';
 
-String buildVersion(Map<String, dynamic>? ping) =>
-    ping?['manifest'] is Map && ping!['manifest']['version'] is String
-    ? ping['manifest']['version'] as String
-    : 'build metadata unavailable';
+String buildVersion(Map<String, dynamic>? ping) {
+  final receipt = ping?['buildReceipt'];
+  final selected = receipt is Map ? receipt['version'] : null;
+  if (selected != null) {
+    return selected is String &&
+            selected.length <= 64 &&
+            RegExp(
+              r'^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$',
+            ).hasMatch(selected)
+        ? selected
+        : 'build metadata unavailable';
+  }
+  return ping?['manifest'] is Map && ping!['manifest']['version'] is String
+      ? ping['manifest']['version'] as String
+      : 'build metadata unavailable';
+}
+
 String buildUpdatedAt(Map<String, dynamic>? ping) {
   final receipt = ping?['buildReceipt'];
   final raw = receipt is Map ? receipt['builtUtc'] : null;
