@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:convert';
+import 'wording_cache.dart';
 import 'dart:io';
 
 import 'package:flutter/services.dart';
@@ -38,6 +38,7 @@ class _SettingsPanelState extends State<SettingsPanel> {
   Map<String, String> _vocabulary = {};
   String _vocabularyState = 'empty';
   bool _loading = true;
+  bool _loaded = false;
   bool _saving = false;
   bool _picking = false;
   String? _error;
@@ -73,6 +74,10 @@ class _SettingsPanelState extends State<SettingsPanel> {
   }
 
   Future<void> _load() async {
+    setState(() {
+      _loading = true;
+      _error = null;
+    });
     try {
       final response = await widget.invoke('settings.get', {
         'key': 'workspacePreferences',
@@ -88,6 +93,7 @@ class _SettingsPanelState extends State<SettingsPanel> {
       setState(() {
         _values = {..._values, ...Map<String, dynamic>.from(data)};
         _loading = false;
+        _loaded = true;
       });
       await _loadVocabulary();
       widget.onChanged({..._values, 'privateVocabulary': Map.of(_vocabulary)});
@@ -104,6 +110,7 @@ class _SettingsPanelState extends State<SettingsPanel> {
   }
 
   void _change(String key, dynamic value) {
+    if (!_loaded || _loading) return;
     setState(() {
       _values = {..._values, key: value};
       _saving = true;
@@ -143,91 +150,13 @@ class _SettingsPanelState extends State<SettingsPanel> {
     );
   }
 
-  void _checkJsonStructure(String text) {
-    final containers = <int>[];
-    final objectKeys = <Set<String>?>[];
-    for (var i = 0; i < text.length; i++) {
-      final code = text.codeUnitAt(i);
-      if (code == 34) {
-        final start = i;
-        var escaped = false;
-        for (i++; i < text.length; i++) {
-          final next = text.codeUnitAt(i);
-          if (escaped) {
-            escaped = false;
-          } else if (next == 92) {
-            escaped = true;
-          } else if (next == 34) {
-            break;
-          }
-        }
-        if (i >= text.length)
-          throw const FormatException('Unterminated string');
-        var nextIndex = i + 1;
-        while (nextIndex < text.length &&
-            [9, 10, 13, 32].contains(text.codeUnitAt(nextIndex))) {
-          nextIndex++;
-        }
-        if (nextIndex < text.length && text.codeUnitAt(nextIndex) == 58) {
-          if (objectKeys.isEmpty || objectKeys.last == null || i - start > 1540)
-            throw const FormatException('Invalid object key');
-          final key = jsonDecode(text.substring(start, i + 1));
-          if (key is! String || !objectKeys.last!.add(key))
-            throw const FormatException('Duplicate object key');
-        }
-      } else if (code == 123 || code == 91) {
-        containers.add(code);
-        objectKeys.add(code == 123 ? <String>{} : null);
-        if (containers.length > 3)
-          throw const FormatException('Nesting exceeds limit');
-      } else if (code == 125 || code == 93) {
-        if (containers.isEmpty || containers.last != (code == 125 ? 123 : 91))
-          throw const FormatException('Unbalanced structure');
-        containers.removeLast();
-        objectKeys.removeLast();
-      }
-    }
-    if (containers.isNotEmpty)
-      throw const FormatException('Unbalanced structure');
-  }
-
-  Map<String, String> _validateVocabulary(String text) {
-    if (utf8.encode(text).length > 1048576)
-      throw const FormatException('File exceeds limit');
-    _checkJsonStructure(text);
-    final data = jsonDecode(text);
-    if (data is! Map ||
-        data.length != 2 ||
-        data['schemaVersion'] != 1 ||
-        data['entries'] is! Map)
-      throw const FormatException('Unsupported schema');
-    final entries = data['entries'] as Map;
-    if (entries.length > 2048) throw const FormatException('Too many entries');
-    final result = <String, String>{};
-    for (final entry in entries.entries) {
-      if (entry.key is! String || entry.value is! String)
-        throw const FormatException('Invalid entry');
-      final key = entry.key as String;
-      final value = entry.value as String;
-      if (key.isEmpty ||
-          key.length > 256 ||
-          value.isEmpty ||
-          value.length > 1024 ||
-          ['__proto__', 'constructor', 'prototype'].contains(key) ||
-          RegExp(r'[\x00-\x08\x0b\x0c\x0e-\x1f]').hasMatch(key + value))
-        throw const FormatException('Invalid replacement');
-      result[key] = value;
-    }
-    return result;
-  }
-
   Future<void> _loadVocabulary() async {
     try {
       final file = _vocabularyCache;
       if (!await file.exists()) return;
       if (await file.length() > 1048576)
         throw const FormatException('File exceeds limit');
-      final loaded = _validateVocabulary(await file.readAsString());
+      final loaded = WordingCache.validate(await file.readAsString());
       if (mounted)
         setState(() {
           _vocabulary = loaded;
@@ -280,10 +209,7 @@ class _SettingsPanelState extends State<SettingsPanel> {
       if (await selected.length() > 1048576)
         throw const FormatException('File exceeds limit');
       final text = await selected.readAsString();
-      final validated = _validateVocabulary(text);
-      final file = _vocabularyCache;
-      await file.parent.create(recursive: true);
-      await file.writeAsString(text, flush: true);
+      final validated = await WordingCache(_vocabularyCache).replace(text);
       if (!mounted) return;
       setState(() {
         _vocabulary = validated;
@@ -575,8 +501,16 @@ class _SettingsPanelState extends State<SettingsPanel> {
                   children: [
                     Text(_error!),
                     TextButton(
-                      onPressed: () => _change('theme', _values['theme']),
-                      child: Text(_label('Retry saving', '重試儲存')),
+                      onPressed: _loading
+                          ? null
+                          : !_loaded
+                          ? _load
+                          : () => _change('theme', _values['theme']),
+                      child: Text(
+                        !_loaded
+                            ? _label('Retry loading', '重試讀取')
+                            : _label('Retry saving', '重試儲存'),
+                      ),
                     ),
                   ],
                 ),

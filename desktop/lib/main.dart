@@ -7,6 +7,7 @@ import 'localization.dart';
 import 'notifications.dart';
 import 'provenance.dart';
 import 'motion.dart';
+import 'wording_cache.dart';
 
 void main() => runApp(CareApp());
 
@@ -37,7 +38,8 @@ class Engine {
 }
 
 class CareApp extends StatefulWidget {
-  const CareApp({super.key});
+  const CareApp({super.key, this.wordingCache});
+  final WordingCache? wordingCache;
   @override
   State<CareApp> createState() => _CareAppState();
 }
@@ -51,12 +53,18 @@ class _CareAppState extends State<CareApp> {
   }
 
   Future<void> _restore() async {
+    Map<String, String> wording = {};
+    try {
+      wording = await (widget.wordingCache ?? WordingCache.local()).load();
+    } catch (_) {}
+    if (mounted)
+      setState(() => settings = {...settings, 'privateVocabulary': wording});
     try {
       final saved = await Engine.invoke('settings.get', {
         'key': 'workspacePreferences',
       });
       if (mounted && !saved.containsKey('items'))
-        setState(() => settings = saved);
+        setState(() => settings = {...saved, 'privateVocabulary': wording});
     } catch (_) {}
   }
 
@@ -71,7 +79,8 @@ class _CareAppState extends State<CareApp> {
       title: 'Material System Care',
       builder: (context, child) => MediaQuery(
         data: MediaQuery.of(context).copyWith(
-          textScaler: TextScaler.linear(
+          textScaler: ComposedTextScaler(
+            MediaQuery.textScalerOf(context),
             (settings['textScale'] as num? ?? 1).toDouble().clamp(0.8, 2),
           ),
           disableAnimations:
@@ -405,8 +414,7 @@ class _WorkflowPageState extends State<WorkflowPage> {
     });
   }
 
-  String value(dynamic v) =>
-      v is Map || v is List ? JsonEncoder.withIndent('  ').convert(v) : '$v';
+  String value(dynamic v) => factualValue(v);
   @override
   Widget build(BuildContext context) {
     final records = rows;
@@ -421,8 +429,7 @@ class _WorkflowPageState extends State<WorkflowPage> {
         return false;
       }
     }).toList();
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
+    return ListView(
       children: [
         Text(widget.title, style: Theme.of(context).textTheme.headlineMedium),
         if (widget.index == 0)
@@ -630,7 +637,8 @@ class _WorkflowPageState extends State<WorkflowPage> {
               ),
             ),
           ),
-        Expanded(
+        SizedBox(
+          height: 360,
           child: data == null
               ? Center(
                   child: UiText(
@@ -674,7 +682,7 @@ class _WorkflowPageState extends State<WorkflowPage> {
                               .where((e) => e.key != 'name')
                               .map(
                                 (e) =>
-                                    '${localize(context, e.key)}: ${e.value is bool || e.value == null ? localize(context, value(e.value)) : value(e.value)}',
+                                    '${localize(context, e.key)}: ${value(e.value)}',
                               )
                               .join('\n'),
                         ),
@@ -832,7 +840,7 @@ class _ToolsEditorState extends State<ToolsEditor> {
             min: 12,
             max: 128,
             divisions: 116,
-            label: '${length.round()} ${localize(context,"characters")}',
+            label: '${length.round()} ${localize(context, "characters")}',
             onChanged: (v) => setState(() => length = v),
           ),
         if (tool == 2)
@@ -931,3 +939,27 @@ class HelpPanel extends StatelessWidget {
     ],
   );
 }
+
+/// Custom scaling multiplies the platform's final scaled font size, preserving
+/// nonlinear accessibility behavior. A factor of one is an exact pass-through.
+class ComposedTextScaler extends TextScaler {
+  const ComposedTextScaler(this.platform, this.factor);
+  final TextScaler platform;
+  final double factor;
+  @override
+  double scale(double fontSize) => platform.scale(fontSize) * factor;
+  @override
+  double get textScaleFactor => platform.scale(14) / 14 * factor;
+  @override
+  bool operator ==(Object other) =>
+      other is ComposedTextScaler &&
+      other.platform == platform &&
+      other.factor == factor;
+  @override
+  int get hashCode => Object.hash(platform, factor);
+}
+
+/// Factual engine values deliberately bypass localization and personal wording.
+String factualValue(Object? value) => value is Map || value is List
+    ? const JsonEncoder.withIndent('  ').convert(value)
+    : '$value';
