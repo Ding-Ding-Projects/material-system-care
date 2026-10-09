@@ -1,6 +1,6 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {parseVocabularyBytes} from '../src/wording.mjs';
+import {parseVocabularyBytes, applyWording, MAX_RENDERED_WORDING_LENGTH} from '../src/wording.mjs';
 const parse = text => parseVocabularyBytes(new TextEncoder().encode(text));
 test('neutral versioned file validates without stored examples',()=>assert.deepEqual(Object.keys(parse('{"schemaVersion":1,"entries":{}}').entries),[]));
 test('duplicate fields, unsupported versions, unsafe keys and nesting fail closed',()=>{
@@ -24,4 +24,22 @@ test('adversarial backtracking is terminated and size limits reject before evalu
  await assert.rejects(matchInWorker('(a+)+$','u',['a'.repeat(4000)+'!'],80),/deadline/);
  await assert.rejects(matchInWorker('a'.repeat(257),'u',[]),/limits/);
  await assert.rejects(matchInWorker('a','uu',[]),/limits/);
+});
+
+test('wording never cascades into inserted values',()=>{
+ const entries=parse(JSON.stringify({schemaVersion:1,entries:{Overview:'x'.repeat(1000),x:'y'.repeat(1000)}})).entries;
+ assert.equal(applyWording('Overview',entries),'x'.repeat(1000));
+});
+test('wording prefers the longest original match and handles multiple matches',()=>{
+ assert.equal(applyWording('cart cat cart',{cat:'pet',cart:'vehicle',car:'short'}),'vehicle pet vehicle');
+ assert.equal(applyWording('aa aa',{aa:'a',a:'z'}),'a a');
+ assert.equal(applyWording('香港香港',{香港:'Harbour'}),'HarbourHarbour');
+ assert.equal(applyWording('remove keep',{remove:''}),' keep');
+});
+test('oversized transformed text falls back atomically to original text',()=>{
+ const original='a'.repeat(17);
+ assert.equal(applyWording(original,{a:'x'.repeat(1000)}),original);
+ assert.equal(applyWording('ab',{a:'1234',b:'5678'},8),'12345678');
+ assert.equal(applyWording('ab',{a:'1234',b:'56789'},8),'ab');
+ assert.equal(MAX_RENDERED_WORDING_LENGTH,16384);
 });

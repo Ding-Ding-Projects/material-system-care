@@ -2,7 +2,7 @@ import {LitElement, html, nothing} from 'lit';
 import '@material/web/all.js';
 import '@fontsource-variable/inter';
 import '@fontsource/noto-sans-hk/400.css';
-import {parseVocabularyBytes} from './wording.mjs';
+import {parseVocabularyBytes, applyWording} from './wording.mjs';
 import {matchInWorker} from './search.mjs';
 import './style.css';
 import './local-search.mjs';
@@ -28,7 +28,7 @@ class MscSite extends LitElement {
  private keys=(e:KeyboardEvent)=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();this.paletteOpen=!this.paletteOpen;}if(e.key==='Escape'){this.paletteOpen=false;}};
  connectedCallback(){this.querySelector(':scope > .initial-document')?.remove();super.connectedCallback();try{const p=JSON.parse(localStorage.getItem('msc.web.preferences')||'{}');this.theme=['light','dark'].includes(p.theme)?p.theme:'light';this.language=['en','zh','both'].includes(p.language)?p.language:'en';this.reduced=p.reduced===true;const cache=localStorage.getItem('msc.web.wording');if(cache){try{this.wording=parseVocabularyBytes(new TextEncoder().encode(cache)).entries;this.wordingState='loaded';}catch{localStorage.removeItem('msc.web.wording');this.wordingState='invalid';}}}catch{}this.applyAppearance();this.hashHandler();window.addEventListener('hashchange',this.hashHandler);window.addEventListener('keydown',this.keys);void this.load();}
  disconnectedCallback(){window.removeEventListener('hashchange',this.hashHandler);window.removeEventListener('keydown',this.keys);clearTimeout(this.searchTimer);this.generation++;super.disconnectedCallback();}
- t(pair:Pair){const text=this.language==='zh'?pair[1]:this.language==='both'?`${pair[0]} · ${pair[1]}`:pair[0];return Object.entries(this.wording).sort((a,b)=>b[0].length-a[0].length).reduce((value,[key,replacement])=>value.split(key).join(replacement),text);}
+ t(pair:Pair){const text=this.language==='zh'?pair[1]:this.language==='both'?`${pair[0]} · ${pair[1]}`:pair[0];return applyWording(text,this.wording);}
  async load(){try{const [c,r]=await Promise.all([fetch('/coverage.json'),fetch('/release.json')]);if(!c.ok||!r.ok)throw Error();const ledger=await c.json();this.entries=Array.isArray(ledger)?ledger:(ledger.capabilities??ledger.entries??[]);this.release=await r.json();this.loadError=false;if(this.regex)this.updateSearch();}catch{this.loadError=true;}}
  persist(){try{localStorage.setItem('msc.web.preferences',JSON.stringify({theme:this.theme,language:this.language,reduced:this.reduced}));}catch{this.notice='storage';}this.applyAppearance();}
  applyAppearance(){document.documentElement.dataset.theme=this.theme;document.documentElement.dataset.motion=this.reduced?'reduced':'full';document.documentElement.lang=this.language==='zh'?'zh-Hant-HK':'en';}
