@@ -3,6 +3,7 @@
 #include <iostream>
 #include <stdexcept>
 void CaptureWriterChecks();
+void LifecycleChecks();
 void Case(unsigned number,DWORD delay,DWORD deadline,bool expected,DWORD cancelAfter=0,bool wrongServer=false) {
  std::wstring name=L"\\\\.\\pipe\\MaterialSystemCare.NativeFixture."+std::to_wstring(GetCurrentProcessId())+L"."+std::to_wstring(number);
  HANDLE server=CreateNamedPipeW(name.c_str(),PIPE_ACCESS_DUPLEX,PIPE_TYPE_BYTE|PIPE_WAIT|PIPE_REJECT_REMOTE_CLIENTS,1,8192,8192,0,nullptr);
@@ -20,6 +21,7 @@ void Case(unsigned number,DWORD delay,DWORD deadline,bool expected,DWORD cancelA
 int main() {
  try {
   CaptureWriterChecks();
+  LifecycleChecks();
   Case(1,31000,35000,true);
   Case(2,500,100,false);
   Case(3,500,3000,false,50);
