@@ -1,5 +1,13 @@
 # Bilingual screenshot gallery · 雙語畫面集
 
+## Current recovery result · 復原結果
+
+Source: `44dfb7ccf355c4bcd0d148b5d9ffb8ee5c0b6891`. This original 1280 × 1061 painted frame is sequence 28 of the real disposable recovery run. It shows two restored fixture files after the 800 × 600 doubled-bilingual keyboard workflow. Independent checks matched all three original hashes, identities, lengths and modification times; no recovery payload remained. The later larger view remains separate from minimum-size interaction evidence and physical DPI. The full appearance and accessibility matrix is incomplete.
+
+來源版本如上。第 28 張原始畫面顯示兩個已復原測試檔案；之前細尺寸雙語操作已完成覆核、取消同復原。三個原始檔案雜湊、身份、長度同修改時間全部吻合，復原區冇剩餘內容。較大畫面唔代替細尺寸操作、實體 DPI 或完整無障礙證據。
+
+![Two disposable files restored through the bilingual recovery workspace](docs/captures/recovery-restored-files.png)
+
 ## Current driver-store workspace · 驅動程式存放區
 
 Source: `83f6503d88f31fce43bdbc25477599bd3989839c`. This original 800 × 600 idle frame uses doubled bilingual text, dark theme and reduced motion. It shows the explicit collection control before reading host data. Version-2 promotion binds the source, complete retained build evidence, original PNG, observed Flutter hooks, launch and owned teardown. It does not establish native-compositor output, physical DPI, complete accessibility or signer trust.

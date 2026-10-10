@@ -78,6 +78,32 @@
       "reducedMotionRequested": true,
       "capturedAt": "2026-10-10T21:37:01.029845Z",
       "captureMethod": "flutter-repaint-boundary"
+    },
+    {
+      "id": "recovery-restored-files",
+      "active": true,
+      "path": "docs/captures/recovery-restored-files.png",
+      "sourceCommit": "44dfb7ccf355c4bcd0d148b5d9ffb8ee5c0b6891",
+      "artifactSha256": "2dc9e3e912a3a45e55ad8dbc2710136199b333a06410af6a4ed356f45f569afa",
+      "captureSha256": "c7460498564c6c14057d64144cd88ff1325af248559c70a6a20c816c5698b983",
+      "screen": "recovery-history",
+      "state": "restored-two-fixtures-bilingual-text2",
+      "theme": "dark",
+      "viewportWidth": 1280,
+      "viewportHeight": 1061,
+      "scale": 1,
+      "interactionProofId": "restored-public-result",
+      "interactionReceiptSha256": "566dc34dacfe747b4c98b0d1f2077391f51f19b949a20a6736b4d37037900e23",
+      "inspectionStatus": "inspected",
+      "title": [
+        "Recovery: two files restored",
+        "\u5fa9\u539f\uff1a\u5169\u500b\u6a94\u6848\u5df2\u9084\u539f"
+      ],
+      "language": "both",
+      "textScale": 2,
+      "reducedMotionRequested": true,
+      "capturedAt": "2026-10-10T22:10:38.191859Z",
+      "captureMethod": "flutter-repaint-boundary"
     }
   ]
 }

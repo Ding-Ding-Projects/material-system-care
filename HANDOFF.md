@@ -4,6 +4,14 @@ This file retains earlier candidate states as historical evidence. A later sourc
 
 本檔案保留早期候選版本作歷史記錄。後來嘅實際驗證只會取代有明確證據嗰部分，未完成清單仍以路線圖為準，唔會將部分檢查當成整套完成。
 
+## Completed minimum-size disposable restoration
+
+Integrated source `44dfb7ccf355c4bcd0d148b5d9ffb8ee5c0b6891` passed the exact root desktop build after two independent source reviews and 57 focused checks. The original-source negative cases failed to reach the receipt action after thirty Page Down inputs. The repaired 800×600 doubled-bilingual run reached that action through consecutive paging, reviewed both complete recorded paths and states, cancelled without changing any fixture file, reversed the history view after cancellation, and completed a fresh explicit restoration. All three original hashes, file identities, lengths and modification times matched; no recovery payload remained. All owned processes and the desktop closed.
+
+Twelve inspected frames and their supporting hashes are recorded in `docs/verification/recovery-restoration-frames.json`. A separate original 1280×1061 result frame at sequence 28 passed explicit version-2 promotion and shows only the two restored disposable filenames, byte counts and a synthetic receipt ID. The full normal-motion, physical-DPI and accessibility matrix remains incomplete. The wider 295-capability objective and installer lifecycle remain unfinished.
+
+中文：細尺寸雙語流程已真正到達覆核按鈕、完整睇到兩個路徑同記錄狀態，取消後檔案不變，反向翻頁仍然可用，再次明確確認後成功復原。三個原始檔案雜湊、身份、長度同修改時間全部相同，復原區冇剩餘內容，程序及桌面已關閉。較大結果原圖只顯示測試檔案，完整外觀同整套產品仍未完成。
+
 ## Cleanup confirmation acceptance and recovery follow-up
 
 Integrated source `215e6f85dd426e5ef056b896b00f7016cb3b70f9` passed the exact root desktop build and a fresh 800×600 doubled-bilingual run. The cleanup dialog revealed both full selected paths from initial and action-button focus, reversed with Page Up, and cancelled without changing the three original hashes or identities. A fresh complete-path review then moved only the two selected aged files, totaling 96 bytes; the recent file stayed unchanged. Nine inspected frames and 57 supporting hashes passed the local verifier. The receipt-specific recovery entry exposed a separate missing modal paging route, so restoration was cancelled. Both target files remain preserved in recovery. Owned processes and desktop closed. See `docs/verification/cleanup-dialog-repair-observations.json`.

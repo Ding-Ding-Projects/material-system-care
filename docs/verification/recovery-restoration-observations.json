@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "44dfb7ccf355c4bcd0d148b5d9ffb8ee5c0b6891",
+  "minimum": {
+    "width": 800,
+    "height": 600,
+    "textScale": 2,
+    "consecutivePaging": true,
+    "receiptActionReached": true,
+    "bothPathsAndStatesReviewed": true,
+    "cancelPreservedFixture": true,
+    "reversePagingAfterCancel": true,
+    "explicitRestore": true
+  },
+  "language": "both",
+  "theme": "dark",
+  "reducedMotion": true,
+  "restoredFiles": 2,
+  "verifiedOriginalFiles": 3,
+  "originalHashesIdentitiesLengthsAndModificationTimesMatch": true,
+  "recoveryPayloadsRemaining": 0,
+  "publicResult": {
+    "path": "docs/captures/recovery-restored-files.png",
+    "width": 1280,
+    "height": 1061,
+    "sequence": 28
+  },
+  "ownedProcessesAndDesktopClosed": true,
+  "limits": [
+    "The larger final painted frame does not establish minimum-size geometry.",
+    "Normal-motion runtime, physical DPI, native compositor and full accessibility remain unverified.",
+    "Disposable fixture success does not certify arbitrary host-file maintenance."
+  ]
+}

@@ -18,6 +18,12 @@ The client derives cleanup filtering, selection, plan identity and confirmation 
 
 ## Engine behavior
 
+### Verified minimum-size recovery
+
+At source `44dfb7ccf355c4bcd0d148b5d9ffb8ee5c0b6891`, the real 800 × 600 doubled-bilingual workspace reached the receipt action through consecutive paging, reviewed both full recorded paths and states, cancelled without file changes, returned through reverse paging, and completed a fresh explicit restoration. All original bytes, identities, lengths and modification times matched. [The larger final result view](../../captures/recovery-restored-files.png) contains only disposable fixture names. Normal-motion runtime, physical DPI and the full accessibility matrix remain separate requirements.
+
+中文：上述版本已真正驗證細尺寸連續翻頁、完整兩個路徑同狀態、取消而不改檔案、反向翻頁，以及再次明確確認復原。三個原始檔案資料全部吻合。較大結果畫面只顯示即棄測試檔案，唔代表其他動態、實體 DPI 或完整無障礙矩陣完成。
+
 1. Call `cleanup.scan` with `{ "minimumAgeDays": 7, "maxEntries": 10000, "maxHashMiB": 512 }`. Only the current user's `%LOCALAPPDATA%\\Temp` is eligible, and only if it agrees with the operating-system temporary path. A supplied `path` must match that root exactly. The minimum age is 1 through 365 days. The result includes `planId`, exact targets, total bytes, traversal counters, expiration and `mutationPerformed: false`.
 2. Select targets in the displayed plan and review their exact paths. Call `cleanup.apply` with `{ "planId": "32-hex-character-id", "targetIndexes": [0, 2], "confirmed": true }`. Indices refer to the original server-returned `targets` array, not a filtered or sorted display. Missing or empty selection is rejected, as are duplicates, non-integers and out-of-range indices. Earlier clients that omit selection must be updated; omission never silently means the full plan.
 3. Use `cleanup.history` with `{}` to retrieve persisted recovery receipts. Read `cleanup.details` with `{ "receiptId": "32-hex-character-id" }` to review the recorded file paths, sizes and states. The response is marked `recordedOnly:true` and `mutationPerformed:false`, omits internal hashes and recovery locations, and does not establish current file availability. Review includes skipped and already restored items as part of the receipt inventory; it does not promise that every listed file will move. After review and explicit consent, call `cleanup.restore` with `{ "receiptId": "32-hex-character-id", "confirmed": true }`. Unavailable, mismatched or empty details block the desktop restore confirmation. The actual restore still revalidates current file identity/content and destination conflicts.

@@ -1,5 +1,11 @@
 # Material System Care
 
+The recovery workspace now keeps its controls and receipt cards on one keyboard-scrollable surface. A real disposable round trip at 800 × 600 with doubled bilingual text verified complete path review, cancellation, selected-file movement and restoration of original bytes, identities and modification times. This later 1280 × 1061 painted view shows the two restored fixture files; no private paths are visible.
+
+復原介面嘅控制同收據卡片共用一個可鍵盤翻頁嘅頁面。真正 800 × 600、雙語兩倍文字操作已驗證完整路徑覆核、取消、所選檔案移動同原本內容、身份及修改時間復原。以下較大畫面顯示兩個已還原測試檔案，冇包含私人路徑。
+
+![Two disposable files restored through the bilingual recovery workspace](docs/captures/recovery-restored-files.png)
+
 The driver-store workspace now provides an explicit, read-only inventory with selectable package metadata and clear limits on signer information. This genuine 800 × 600 idle view uses doubled bilingual text and reduced motion. The populated host inventory stays private.
 
 驅動程式存放區頁面提供明確、唯讀嘅清單操作，簽署者資料唔等於獨立驗證。以下係真正 800 × 600、兩倍雙語文字待命畫面；本機清單保持私人。
