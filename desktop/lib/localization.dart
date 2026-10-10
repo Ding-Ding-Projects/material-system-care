@@ -12,6 +12,48 @@ class CopyScope extends InheritedWidget {
 }
 
 const translations = <String, String>{
+  'Machine overview': '本機總覽',
+  'Refresh for a point-in-time sample of this machine. No automatic polling or benchmark runs.':
+      '重新整理以取得本機當時嘅數據。唔會自動輪詢或執行效能測試。',
+  'Refresh measurements': '重新整理量度數據',
+  'Machine measurements are unavailable or invalid. Refresh to try again.':
+      '本機量度數據無法提供或無效。請重新整理再試。',
+  'Sample details': '取樣詳情',
+  'Measured at UTC': '量度時間（UTC）',
+  'The sample time is ahead of the display clock.': '取樣時間比顯示時鐘超前。',
+  'Sample age at this render (seconds)': '今次顯示時距離取樣嘅秒數',
+  'Age changes only when this view renders. Refresh to request a new sample; the build updated-at value is separate.':
+      '時間差只會喺呢個畫面重新顯示時更新。重新整理先會要求新取樣，建置更新時間係另一回事。',
+  'Some measurements are unavailable. Available readings remain shown.':
+      '部分量度數據無法提供，仍然顯示可用讀數。',
+  'The reported measurement fields are available.': '回報嘅量度欄位均有資料。',
+  'An isolated data directory is in use. These measurements still come from the live machine.':
+      '目前使用隔離資料目錄，呢啲量度數據仍然來自實際運作中嘅本機。',
+  'Operating system and processors': '作業系統及處理器',
+  'Operating system': '作業系統',
+  'Architecture': '架構',
+  'Logical processors': '邏輯處理器',
+  'Logical processor count is not CPU utilization. No utilization or health score is measured here.':
+      '邏輯處理器數目唔係 CPU 使用率。呢度冇量度使用率或健康分數。',
+  'Physical memory': '實體記憶體',
+  'Physical memory measurements are unavailable.': '實體記憶體量度數據無法提供。',
+  'Reported memory load': '回報嘅記憶體負載',
+  'Total bytes': '總位元組',
+  'Available bytes': '可用位元組',
+  'Used bytes': '已用位元組',
+  'Free bytes': '剩餘位元組',
+  'Drive capacity': '磁碟容量',
+  'Capacity describes this sample, not disk health or recoverable cleanup space.':
+      '容量只描述今次取樣，唔代表磁碟健康或可清理回收空間。',
+  'No drives were reported.': '未有回報磁碟。',
+  'Capacity available': '容量資料可用',
+  'Capacity unavailable': '容量資料無法提供',
+  'File system': '檔案系統',
+  'Used drive capacity': '已用磁碟容量',
+  'This drive reported zero capacity.': '呢個磁碟回報容量為零。',
+  'Drive is not ready.': '磁碟尚未就緒。',
+  'Volume metadata is unavailable.': '磁碟區中繼資料無法提供。',
+  'Volume access is unavailable.': '無法存取磁碟區。',
   'Duplicate analysis': '重複檔案分析',
   'Review exact duplicate files': '檢閱完全相同嘅重複檔案',
   'Read up to 10,000 entries and hash up to 512 MiB in one selected folder. Byte comparison verifies matches. This page never deletes files.':
