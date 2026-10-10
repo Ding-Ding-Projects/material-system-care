@@ -1,5 +1,9 @@
 # Implementation handoff
 
+## Current blue-screen request and evidence refresh
+
+The read-only blue-screen workspace is implemented. Its manual 0x9F path has genuine source-bound painted-result and background-input evidence; a bounded real engine event query also passed separately. Public home and explained image returned HTTP 200 and the image matched retained bytes. Hosted documentation run 38013930022 and Windows build 38013930047 succeeded at b8e0d34de12b442c626b6c5fae020043c47fb810. Native compositor, built event-collection interaction, the full matrix and deeper dump analysis are not established. CLOSEOUT_PROMPT.md now consolidates the current state; older sections below are historical milestones and their then-pending statements do not override newer evidence. No runtime code changed in this refresh.
+
 ## Owned graceful-close evidence
 
 The real process workspace was verified against a disposable owned native window. The inventory and confirmation showed its exact PID and full-precision start identity. Cancelling review left the same identity running. A later inspected confirmation produced the truthful Close requested receipt, followed by independent exact-path absence at 227.455 seconds after fixture launch, before the 300-second self-exit limit. No user application was targeted. The final exit code or receipt of WM_CLOSE was not separately instrumented, so this establishes an inspected request followed by absence before timeout, not universal close behavior. An earlier attempted reopen had no visible dialog and is excluded. Private frames and launch/input/identity/teardown receipts are retained. Both desktop and engine producers, the fixture and the hidden desktop were confirmed closed. The narrow verifier checked 210 bundle files and rejected altered elapsed-time evidence before passing restored evidence. Native compositor, arbitrary unsaved-work behavior and full input/appearance coverage remain unverified.
