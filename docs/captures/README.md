@@ -65,3 +65,9 @@ ID: `diagnostics-bilingual-explained`. A second real run at producer eeaf858395c
 ![Actual bilingual enlarged stop-code result](diagnostics-bilingual-explained.png)
 
 [Source and input receipt](../verification/diagnostics-bilingual-explained.json). SHA-256: `de2c7048bf0a3e3393c41485c1fc4213a3182e8137f584f0d811093b55312af0`. Exact capture time is unavailable. `scripts/verify-diagnostics-bilingual.mjs` validates retained input and byte consistency; it does not replace pixel review.
+
+## Validated diagnostic guidance
+
+![Actual code category, confidence limit, next checks and Microsoft reference](diagnostics-guidance.png)
+
+Producer `5dbf2884901cbbad61a3c763c120b19d997928e8`, English/light, text scale 1, 1264×961. Real 0x9F input produced the full guidance. A subsequent private frame verified successful live collection and visible collection-time meaning. The copy-reference action and individual dump rows were not exercised. Owned processes were absent and the desktop closed. [Receipt](../verification/diagnostics-guidance.json). Verify with `scripts/verify-diagnostics-bilingual.mjs` and fourth argument `guidance`. Exact capture time is unavailable.

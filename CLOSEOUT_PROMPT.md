@@ -1,5 +1,11 @@
 # Continuation handoff
 
+## Rebuilt diagnostic guidance evidence
+
+Root engine and desktop builds passed at 5dbf2884901cbbad61a3c763c120b19d997928e8. A real English/light run verified manual 0x9F lookup, visible code category, confidence limit, four next checks and the fixed Microsoft reference at 1264×961. A subsequent live collection passed the new response validator and displayed collection time and timestamp meaning. Populated frames remain private. The guidance-only frame and 210 bundle files passed the shared evidence verifier; altered input evidence was rejected before restoration passed. Owned processes were absent and the hidden desktop closed. Copy-reference, individual dump rows and the full display/input matrix remain unverified.
+
+Evidence: docs/verification/diagnostics-guidance.json. The website source now references this new image; its deployment is pending. Earlier deployment 38019049831 remains separately verified.
+
 ## Diagnostic response hardening
 
 The desktop validates complete bounded diagnostic responses before accepting them. Malformed event or dump lists, invalid entries, mismatched requested periods, contradictory stop codes, unsupported references and invalid UTC timestamps reject the whole response with a safe message. Unknown fields are not retained. A successful response now exposes the code category, confidence limitation, next checks and an explicitly copied Microsoft reference. Reports show collection time and label dump modification times as file metadata rather than crash times. Fourteen focused checks passed, including 240 title combinations. Removing response validation made the malformed-response widget regression fail; restoring validation passed. New built runtime verification is pending.

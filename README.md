@@ -109,4 +109,8 @@ The complete title and lookback value are visible in this real rebuilt initial v
 
 The [enlarged bilingual stop-code result](docs/captures/diagnostics-bilingual-explained.png) separately verifies manual 0x9F input and its completed explanation at 1264×961. The new minimum-size guide image is publicly deployed; home, script, stylesheet, image and capability data matched the local build. See [delivery proof](docs/verification/inspection-guide-delivery.json).
 
-The diagnostic workspace now validates complete responses before accepting evidence and presents code categories, next checks, a Microsoft reference and explicit collection/modification timestamps. Rebuilt runtime verification of these additions is pending; earlier captures retain their original producer identities.
+The diagnostic workspace now validates complete responses before accepting evidence and presents code categories, next checks, a Microsoft reference and explicit collection/modification timestamps. Rebuilt lookup and live collection passed their narrow runtime checks; copy-reference, individual dump rows and the full matrix remain unverified. Earlier captures retain their original producer identities.
+
+![Current diagnostic guidance from the rebuilt application](docs/captures/diagnostics-guidance.png)
+
+[Current response-validation evidence](docs/verification/diagnostics-guidance.json) binds this real guidance view to producer 5dbf2884901cbbad61a3c763c120b19d997928e8.

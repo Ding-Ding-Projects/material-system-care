@@ -89,3 +89,6 @@
 ## Diagnostic response integrity
 
 - [ ] Validate and present complete diagnostic evidence, next checks and timestamp meaning. Source and 14 focused checks pass; rebuilt runtime verification pending.
+
+- [x] Verify the rebuilt diagnostic lookup guidance and successful live collection under response validation; preserve source-bound evidence.
+- [ ] Verify the reference-copy action, individual dump rows and complete diagnostic input/display matrix.

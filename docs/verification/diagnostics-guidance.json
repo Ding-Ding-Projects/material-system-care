@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "sourceCommit": "5dbf2884901cbbad61a3c763c120b19d997928e8",
+  "bundleSha256": "4fd3026f44555a7318d30ba9d2b8e502d5b1aff5860816d05858e9a8bcf6a7ab",
+  "executableSha256": "466e9e330e4307321ebcd0cc88c2c89b8540ea7c078db2ebbe2178668287b178",
+  "route": "lowlevel-compatibility-http-native-cpp-hidden-desktop-with-native-resize-and-flutter-painted-export",
+  "state": {
+    "screen": "diagnostics",
+    "language": "en",
+    "theme": "light",
+    "textScale": 1,
+    "reducedMotionRequested": false,
+    "width": 1264,
+    "height": 961,
+    "stopCode": "0x9F",
+    "result": "0x0000009F · DRIVER_POWER_STATE_FAILURE"
+  },
+  "capture": {
+    "path": "docs/captures/diagnostics-guidance.png",
+    "sha256": "a3f2b86da4ab136c054242fce634944cee7b1a5f76d30488843d6cf51e141c7e",
+    "bytes": 73361,
+    "capturedAt": null
+  },
+  "interaction": {
+    "explicitStopCodeEntry": true,
+    "explanationCompleted": true,
+    "localEventsCollected": true,
+    "dumpContentsRead": false,
+    "guidanceVisible": true,
+    "collectionTimeVisible": true,
+    "copyReferenceVerified": false
+  },
+  "privacy": {
+    "pixelsInspected": true,
+    "privateDataVisible": false,
+    "visibleDesktopUntouched": true
+  },
+  "teardown": {
+    "ownedOnly": true,
+    "processesAbsent": true,
+    "desktopClosed": true
+  },
+  "files": {
+    "build-receipt.json": "9bc45ed9f4dbc5db472afda613dc0ae95d3639b0b8a96836c1e53873a43fe550",
+    "request.json": "f9187a73bd2f2a86d5924bcf889f46cdb827113c7a2aa5e2d447422bd84b06a4",
+    "launch.json": "245e347e4f43f42408ad3ee97e9db15164ef75d8948204003e3f80086a5582b1",
+    "window.json": "f73a3ea5d231d2194f18058b0fb1d48a135a92aad23987b1c7e70148f768d26e",
+    "children.json": "96999b1db41d7537a690d8434dd9b64748a4c40370ed4b2aa65516747577d064",
+    "input.json": "e30ff1a50c3e0edbc6da6afc6a075ed0b0d63947699f5d563c2eb76cf2a961c1",
+    "before-resize.json": "5b23a647bc8baf1e94547df22a56e39862ca8625422f130cde5be1bc1ddb6722",
+    "resize.json": "73e9ab6bb49bc1fb560fe0594296fdf6c07571c08c84bdb04e262331cdc4a920",
+    "children-expanded.json": "5c9d9f9e39140095277d71f9adcbea00cc5fd960a91d3571d8141fcd7990fd97",
+    "before-collection.json": "689c1a691d60ffedac03ae6afeff7ce6b9dc8ae6fd61aef334761e8cc25d5c92",
+    "window-close.json": "d584937d46f3d5ae56e6c4ee25262b2800e766c8b1d3f2c78dd840b7cea5655e",
+    "teardown.json": "5c15c41cedc17e064bc3f85066635cd9af7fff53a0ad5d946ac7c8ed349c0bcc",
+    "output/diagnostics.png": "f3791f2037cc4aafe56ca6720db54be08db67381b84a0963617c20e3cc3f2217",
+    "output/diagnostics-001.png": "903f665d09ce21177d7742d54653a2765dfd994da2074de3ee4f2ea26a9316e4",
+    "output/diagnostics-002.png": "a3f2b86da4ab136c054242fce634944cee7b1a5f76d30488843d6cf51e141c7e",
+    "output/diagnostics-003.png": "311d04726f993dfbc9a2b0ce35e8480bced8816dece16cec44b42b9328c03e63",
+    "output/diagnostics-004.png": "311d04726f993dfbc9a2b0ce35e8480bced8816dece16cec44b42b9328c03e63"
+  },
+  "limitations": [
+    "Exact capture timestamp unavailable.",
+    "Host-record frames remain private.",
+    "Native compositor, physical DPI and complete keyboard/motion coverage unverified.",
+    "Copy-reference action and individual dump rows were not exercised."
+  ]
+}
