@@ -1,5 +1,10 @@
 # Implementation handoff
 
+## Owned file-use holder fixture
+
+file_use_fixture accepts one absolute drive-letter file path on the task-owned hidden desktop. It creates that file with CREATE_NEW, writes a fixed non-user fixture string and holds an exclusive handle. An existing final file causes startup failure without opening or overwriting it. The caller must prove the parent directory is task-owned and appropriate; the argument check does not prove physical-local storage or exclude parent reparse points. Closing the window or its five-minute timer releases the handle; the created file is retained. It never reads user data, deletes files or performs a host action. This helper is built through build.bat /s --target=native --resource-only and is not part of the production payload. A populated Restart Manager result requires separate actual runtime evidence bound to the helper PID and executable.
+
+
 ## File-use built verification
 
 Root engine verification and desktop builds passed at 003e9cdc499956d68e9ddcba2747866e81fff070. A stale CMake cache selected a removed toolchain location; its generated directory was preserved and the exact root build succeeded after regeneration. Six File use and four process widget checks passed. A fresh isolated run produced an inspected idle frame and an actual owned-fixture query with a truthful advisory empty result. The fixture bytes remained unchanged. The result frame stays private because it contains a local path. Both owned processes and the hidden desktop were confirmed closed. The narrow verifiers checked 210 bundle files and rejected an altered capture hash before restored evidence passed. Native picker interaction, populated owner records and full appearance/input coverage remain unverified.

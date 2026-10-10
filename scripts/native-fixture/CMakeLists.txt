@@ -9,3 +9,8 @@ add_executable(process_close_fixture WIN32 close_window.cpp)
 target_compile_features(process_close_fixture PRIVATE cxx_std_20)
 target_compile_definitions(process_close_fixture PRIVATE NOMINMAX UNICODE _UNICODE)
 target_link_libraries(process_close_fixture PRIVATE user32 gdi32)
+
+add_executable(file_use_fixture WIN32 file_use_window.cpp)
+target_compile_features(file_use_fixture PRIVATE cxx_std_20)
+target_compile_definitions(file_use_fixture PRIVATE NOMINMAX UNICODE _UNICODE)
+target_link_libraries(file_use_fixture PRIVATE user32 gdi32 shell32)
