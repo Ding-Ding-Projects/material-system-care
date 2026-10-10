@@ -1,5 +1,17 @@
 # Implementation handoff
 
+## Resumed keyboard verification
+
+The full suite goal was restored without an explicit budget. The baseline `fafca0e8f908768b6c0e4ff4094fd99575875e0e` passed the root desktop build and produced the bundle used for three real minimum-size keyboard runs. The Lowlevel repair is published at `00365b0e846e3eb031ea58b0c3ca316c2b1349a8`, with the verified sender implementation at `5012390`.
+
+At 800 × 600, bilingual dark theme, text scale 2 and requested reduced motion, Services, Scheduled tasks and Processes now scroll with Page Down and accept text in their lower search fields. This required a transport correction, not a product scrolling change. Nine unchanged painted frames are retained in `docs/captures/keyboard-navigation.json` and displayed in `SCREENSHOTS.md` and the dedicated feature article. All recorded application processes are absent and all three hidden desktops were closed. The observation verifier passed and rejected an intentionally corrupted image hash. Exact frame times, native compositor output, physical DPI, complete focus order, popup behavior and populated-state coverage remain unverified.
+
+A separate `codex/cleanup-fixture` branch is implementing an explicitly opt-in disposable cleanup/recovery launch route. It is not integrated or complete at this handoff. It must isolate both records and temporary targets, use a unique pipe, retain child identity checks, reject unsafe roots and block unrelated host methods before any destructive runtime proof.
+
+The prior public deployment remains the last verified live output until this documentation change is deployed and read back. The full 295-row capability scope and existing exclusions remain unchanged. The retained `implement/desktop-ui` generated-file recovery branch remains preserved.
+
+已恢復完整目標，沒有新增預算上限。三個工作區嘅最小視窗鍵盤捲動及下方搜尋輸入已完成指定驗證；修正位於輸入傳送層，產品捲動邏輯未改。九張原始畫面及來源記錄已保留，原生合成器、實體 DPI、完整焦點次序及彈出狀態仍未驗證。隔離清理與復原測試啟動模式仍在獨立分支開發，完整套件未完成。
+
 ## Complete website articles and bilingual gallery
 
 Forty source-bound bilingual initial viewports are documented in SCREENSHOTS.md and docs/captures/gallery.json. The local verifier checks original byte identity, dimensions and twenty lifecycle receipt sets. The website now has complete article and gallery routes, build-time HTML sanitization, internal article links and prerendered article copies. Twelve website checks passed. Root site build passed. Deployment 38020360091 at c434189d5398365670d8aee4cbe2cc1e9d17fd6a passed; all 688 files matched the retained deployment. Gallery, diagnostic article and prerendered article were inspected at 1440, 390 and 320 pixels. See docs/verification/website-articles-gallery.json. Full theme/scaling/accessibility coverage remains pending. The wiki endpoint reports Repository not found; no wiki synchronization is claimed. New surfaces are registered with full-contract status still unverified.

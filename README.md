@@ -140,3 +140,13 @@ The current process view keeps both label lines visible at doubled text size. Se
 目前程序畫面在雙倍文字大小下仍完整顯示雙語標籤；服務及排程工作畫面與尚待驗證的最小視窗限制，請參閱圖庫。
 
 ![Process workspace with complete bilingual search label](docs/captures/processes-wrapping-labels.png)
+
+### Verified keyboard interaction · 已驗證鍵盤操作
+
+[Minimum-size interaction observations · 最小視窗操作觀察](docs/features/management/keyboard-navigation.md) show Tab traversal, Page Down movement and search input in three real workspaces. These painted frames do not prove native compositor output, physical DPI or full accessibility coverage.
+
+![services keyboard search input, bilingual dark theme at 800 by 600 and doubled text](docs/captures/services-keyboard-search-input.png)
+
+![scheduled-tasks keyboard search input, bilingual dark theme at 800 by 600 and doubled text](docs/captures/scheduled-tasks-keyboard-search-input.png)
+
+![processes keyboard search input, bilingual dark theme at 800 by 600 and doubled text](docs/captures/processes-keyboard-search-input.png)

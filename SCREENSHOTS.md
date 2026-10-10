@@ -194,3 +194,25 @@ The rebuilt service, scheduled-task and process views show complete wrapping sea
 ![scheduled-tasks with complete bilingual labels](docs/captures/scheduled-tasks-wrapping-labels.png)
 
 ![processes with complete bilingual labels](docs/captures/processes-wrapping-labels.png)
+
+## Keyboard interaction observations · 鍵盤操作觀察
+
+Nine additional unchanged frames show initial focus, Page Down and text input at 800 × 600 with doubled bilingual text. Exact capture times are unavailable. [Full observations and limits · 完整觀察及限制](docs/features/management/keyboard-navigation.md).
+
+![services initial-focus, bilingual dark theme at 800 by 600 and doubled text](docs/captures/services-keyboard-initial-focus.png)
+
+![services page-down, bilingual dark theme at 800 by 600 and doubled text](docs/captures/services-keyboard-page-down.png)
+
+![services search-input, bilingual dark theme at 800 by 600 and doubled text](docs/captures/services-keyboard-search-input.png)
+
+![scheduled-tasks initial-focus, bilingual dark theme at 800 by 600 and doubled text](docs/captures/scheduled-tasks-keyboard-initial-focus.png)
+
+![scheduled-tasks page-down, bilingual dark theme at 800 by 600 and doubled text](docs/captures/scheduled-tasks-keyboard-page-down.png)
+
+![scheduled-tasks search-input, bilingual dark theme at 800 by 600 and doubled text](docs/captures/scheduled-tasks-keyboard-search-input.png)
+
+![processes initial-focus, bilingual dark theme at 800 by 600 and doubled text](docs/captures/processes-keyboard-initial-focus.png)
+
+![processes page-down, bilingual dark theme at 800 by 600 and doubled text](docs/captures/processes-keyboard-page-down.png)
+
+![processes search-input, bilingual dark theme at 800 by 600 and doubled text](docs/captures/processes-keyboard-search-input.png)
