@@ -27,6 +27,7 @@ void main(List<String> arguments) {
     exporting
         ? FrameCapture(
             output: capture.single.substring('--capture-frame='.length),
+            onInput: arguments.contains('--capture-on-input'),
             child: app,
           )
         : app,

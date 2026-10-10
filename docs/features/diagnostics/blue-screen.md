@@ -1,5 +1,9 @@
 # Blue-screen investigation
 
+## Explicit interaction-frame export
+
+When launched with `--diagnostics --capture-frame=<absolute-new-png> --capture-on-input`, the real diagnostic workspace exports its initial painted frame and then settled frames following pointer release or key release. Captures are debounced for 800 ms, limited to twenty frames, and use numbered siblings without overwriting existing files. The option injects no results and changes no control behavior. Capture mode uses isolated default preferences. Inspect every resulting frame for private content before sharing it. Painted frames remain distinct from native compositor evidence; a post-input frame establishes behavior only when its visible state proves the intended action and the input receipt binds to the same live process.
+
 Open **Tools → Blue-screen diagnostics**. Choose a lookback period, then select **Read crash evidence**. Collection is explicit and read-only. The separate stop-code field accepts hexadecimal (`0x0000009F`) or unsigned decimal (`159`) without collecting host events.
 
 ## Evidence and interpretation
