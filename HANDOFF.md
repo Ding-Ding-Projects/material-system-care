@@ -1,5 +1,11 @@
 # Implementation handoff
 
+## Current website and compiler checkpoint
+
+Documentation deployment `38083772892` at `a303a5944ee82b3ac64ee06b46b04d97b9dc3f55` succeeded with 173 complete articles. All 723 deployed files matched the retained output. One initial gallery request returned HTTP 503; a single focused retry returned HTTP 200 and the expected SHA-256. Public visibility, workflow deployment from main and the exact About homepage `https://ding-ding-projects.github.io/material-system-care/` were read back. See `docs/verification/cards-live-delivery.json`.
+
+The startup/lifecycle combination was preserved on `codex/startup-ui-checkpoint` at `10ca98919308a406da1bb703bfaa519ac6d9fb08`. Its root desktop build reached an MSVC C1001 internal compiler error in the lifecycle helper's filesystem include. The isolated repair removes that include while preserving bounded path validation. A successful combined build and real startup GUI proof are still required. No installer lifecycle or final release is claimed.
+
 ## Dedicated startup workspace
 
 A dedicated Material 3 startup workspace replaces the generic record menu in normal navigation. It reads on explicit refresh, validates typed records, labels enabled/disabled/conflicting states, provides selectable command details and reviews one named action at a time. Confirmed requests carry only the identifier, desired state, reviewed revision and consent. Invalid refresh removes stale actions; stale mutation refreshes without retry. The isolated `--startup` capture route uses the real workspace without loading personal settings.

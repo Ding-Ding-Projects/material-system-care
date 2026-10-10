@@ -1,5 +1,9 @@
 # Resume Material System Care
 
+Current delivery: deployment 38083772892 at a303a594 delivered 173 complete articles and 723 matching files. One HTTP 503 cleared on a single hash-matching retry. The exact About homepage remains https://ding-ding-projects.github.io/material-system-care/.
+
+Startup/lifecycle source is preserved on codex/startup-ui-checkpoint at 10ca98919308a406da1bb703bfaa519ac6d9fb08. The combined build encountered an MSVC C1001 in the filesystem include. The isolated compiler repair is in progress. Do not call this combined candidate built or shipped until its exact root build succeeds. The prepared startup GUI fixture helpers have not created an entry yet.
+
 ## Dedicated startup workspace
 
 A dedicated Material 3 startup workspace replaces the generic record menu in normal navigation. It reads on explicit refresh, validates typed records, labels enabled/disabled/conflicting states, provides selectable command details and reviews one named action at a time. Confirmed requests carry only the identifier, desired state, reviewed revision and consent. Invalid refresh removes stale actions; stale mutation refreshes without retry. The isolated `--startup` capture route uses the real workspace without loading personal settings.

@@ -1,0 +1,30 @@
+{
+  "initialAudit": {
+    "version": 1,
+    "home": "https://ding-ding-projects.github.io/material-system-care/",
+    "checkedAt": "2026-10-10T20:29:19.62Z",
+    "expectedManifestSha256": "947f70a3af4ce29556979af6856d6bbdf0a1d3a28069f106b75b25406c42c89d",
+    "filesChecked": 723,
+    "failures": [
+      {
+        "path": "gallery/diagnostics-dark-text1-800x600.png",
+        "status": 503,
+        "matched": false
+      }
+    ]
+  },
+  "workflowSource": "main",
+  "sourceCommit": "a303a5944ee82b3ac64ee06b46b04d97b9dc3f55",
+  "completeArticles": 173,
+  "filesChecked": 723,
+  "retry": {
+    "checkedAt": "2026-10-10T20:29:35.7608114Z",
+    "sha256": "4AA93C84F2BF19EC6B1963529CDCC447362967253B13F3DEECDE8DE1F88F77A1",
+    "status": 200,
+    "matched": true
+  },
+  "runId": 38083772892,
+  "version": 1,
+  "matched": true,
+  "homepage": "https://ding-ding-projects.github.io/material-system-care/"
+}
