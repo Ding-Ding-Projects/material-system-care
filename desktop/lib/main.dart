@@ -548,6 +548,37 @@ bool canChangeStartupRecord(Map<String, dynamic> row) {
 }
 
 class _WorkflowPageState extends State<WorkflowPage> {
+  final _recoveryScroll = ScrollController();
+  final _recoveryFocus = FocusNode(debugLabel: 'Recovery history paging');
+  KeyEventResult _recoveryPageKey(FocusNode node, KeyEvent event) {
+    if ((event is! KeyDownEvent && event is! KeyRepeatEvent) ||
+        !_recoveryScroll.hasClients ||
+        FocusManager.instance.primaryFocus?.context
+                ?.findAncestorWidgetOfExactType<EditableText>() !=
+            null)
+      return KeyEventResult.ignored;
+    final key = event.logicalKey;
+    if (key != LogicalKeyboardKey.pageDown && key != LogicalKeyboardKey.pageUp)
+      return KeyEventResult.ignored;
+    final p = _recoveryScroll.position;
+    final target =
+        (p.pixels +
+                p.viewportDimension *
+                    (key == LogicalKeyboardKey.pageDown ? .8 : -.8))
+            .clamp(p.minScrollExtent, p.maxScrollExtent);
+    _recoveryFocus.requestFocus();
+    if (MediaQuery.disableAnimationsOf(context)) {
+      _recoveryScroll.jumpTo(target);
+    } else {
+      _recoveryScroll.animateTo(
+        target,
+        duration: const Duration(milliseconds: 200),
+        curve: Curves.easeOutCubic,
+      );
+    }
+    return KeyEventResult.handled;
+  }
+
   Map<String, dynamic>? data;
   CleanupResult? cleanupResult;
   String? cleanupMethod;
@@ -602,6 +633,8 @@ class _WorkflowPageState extends State<WorkflowPage> {
 
   @override
   void dispose() {
+    _recoveryScroll.dispose();
+    _recoveryFocus.dispose();
     final id = activeReadId;
     if (id != null) Engine.cancel(id).catchError((Object _) => false);
     input.dispose();
@@ -923,328 +956,329 @@ class _WorkflowPageState extends State<WorkflowPage> {
         return false;
       }
     }).toList();
-    return ListView(
-      children: [
-        Text(widget.title, style: Theme.of(context).textTheme.headlineMedium),
-        if (widget.index == 0)
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 8),
-            child: BuildProvenance(ping: provenance),
-          ),
-        SizedBox(height: 16),
-        Wrap(
-          spacing: 8,
-          runSpacing: 8,
-          crossAxisAlignment: WrapCrossAlignment.center,
-          children: [
-            if (busy && activeReadId != null)
-              OutlinedButton.icon(
-                onPressed: cancelRequested ? null : cancelRead,
-                icon: const Icon(Icons.stop_circle_outlined),
-                label: UiText(
-                  cancelRequested ? 'Cancellation requested…' : 'Cancel scan',
-                ),
+    final content = <Widget>[
+      Text(widget.title, style: Theme.of(context).textTheme.headlineMedium),
+      if (widget.index == 0)
+        Padding(
+          padding: EdgeInsets.symmetric(vertical: 8),
+          child: BuildProvenance(ping: provenance),
+        ),
+      SizedBox(height: 16),
+      Wrap(
+        spacing: 8,
+        runSpacing: 8,
+        crossAxisAlignment: WrapCrossAlignment.center,
+        children: [
+          if (busy && activeReadId != null)
+            OutlinedButton.icon(
+              onPressed: cancelRequested ? null : cancelRead,
+              icon: const Icon(Icons.stop_circle_outlined),
+              label: UiText(
+                cancelRequested ? 'Cancellation requested…' : 'Cancel scan',
               ),
-            if (!widget.cleanupFixture)
-              FilledButton.icon(
-                onPressed: busy
-                    ? null
-                    : () => widget.index == 1
-                          ? Navigator.of(context).push(
-                              MaterialPageRoute<void>(
-                                builder: (_) => StorageAnalysisPage(
-                                  invoke:
-                                      (
-                                        method,
-                                        parameters, {
-                                        required requestId,
-                                      }) => Engine.invoke(
-                                        method,
-                                        parameters,
-                                        requestId: requestId,
-                                      ),
-                                  cancel: Engine.cancel,
-                                ),
-                              ),
-                            )
-                          : widget.index == 4
-                          ? Navigator.of(context).push(
-                              MaterialPageRoute<void>(
-                                builder: (_) =>
-                                    ProtectionStatusPage(invoke: Engine.invoke),
-                              ),
-                            )
-                          : load(),
-                icon: Icon(Icons.refresh),
-                label: UiText(
-                  widget.index == 1
-                      ? 'Analyze folder'
-                      : widget.index == 4
-                      ? 'Protection status'
-                      : 'Refresh records',
-                ),
-              ),
-            if (widget.index == 0 || widget.index == 1)
-              OutlinedButton.icon(
-                onPressed: busy
-                    ? null
-                    : () => Navigator.of(context).push(
-                        MaterialPageRoute<void>(
-                          builder: (context) => buildCleanupWorkspace(context),
-                        ),
-                      ),
-                icon: Icon(Icons.manage_search),
-                label: UiText('Scan recoverable cleanup'),
-              ),
-            if (widget.index == 1 && !widget.cleanupFixture)
-              OutlinedButton(
-                onPressed: busy
-                    ? null
-                    : () => Navigator.of(context).push(
-                        MaterialPageRoute<void>(
-                          builder: (_) => DuplicateAnalysisPage(
-                            invoke:
-                                (method, parameters, {required requestId}) =>
-                                    Engine.invoke(
+            ),
+          if (!widget.cleanupFixture)
+            FilledButton.icon(
+              onPressed: busy
+                  ? null
+                  : () => widget.index == 1
+                        ? Navigator.of(context).push(
+                            MaterialPageRoute<void>(
+                              builder: (_) => StorageAnalysisPage(
+                                invoke:
+                                    (
+                                      method,
+                                      parameters, {
+                                      required requestId,
+                                    }) => Engine.invoke(
                                       method,
                                       parameters,
                                       requestId: requestId,
                                     ),
-                            cancel: Engine.cancel,
-                          ),
+                                cancel: Engine.cancel,
+                              ),
+                            ),
+                          )
+                        : widget.index == 4
+                        ? Navigator.of(context).push(
+                            MaterialPageRoute<void>(
+                              builder: (_) =>
+                                  ProtectionStatusPage(invoke: Engine.invoke),
+                            ),
+                          )
+                        : load(),
+              icon: Icon(Icons.refresh),
+              label: UiText(
+                widget.index == 1
+                    ? 'Analyze folder'
+                    : widget.index == 4
+                    ? 'Protection status'
+                    : 'Refresh records',
+              ),
+            ),
+          if (widget.index == 0 || widget.index == 1)
+            OutlinedButton.icon(
+              onPressed: busy
+                  ? null
+                  : () => Navigator.of(context).push(
+                      MaterialPageRoute<void>(
+                        builder: (context) => buildCleanupWorkspace(context),
+                      ),
+                    ),
+              icon: Icon(Icons.manage_search),
+              label: UiText('Scan recoverable cleanup'),
+            ),
+          if (widget.index == 1 && !widget.cleanupFixture)
+            OutlinedButton(
+              onPressed: busy
+                  ? null
+                  : () => Navigator.of(context).push(
+                      MaterialPageRoute<void>(
+                        builder: (_) => DuplicateAnalysisPage(
+                          invoke: (method, parameters, {required requestId}) =>
+                              Engine.invoke(
+                                method,
+                                parameters,
+                                requestId: requestId,
+                              ),
+                          cancel: Engine.cancel,
                         ),
                       ),
-                child: UiText('Find exact duplicates'),
-              ),
-            if (widget.index == 2)
-              OutlinedButton(
-                onPressed: busy ? null : () => load('apps.updates'),
-                child: UiText('Check available updates'),
-              ),
-            if (widget.index == 2)
-              FilledButton.tonalIcon(
-                onPressed: busy
-                    ? null
-                    : () async {
-                        if (await confirm(
-                          'Discover managed packages?',
-                          'WinGet may contact its configured source to match installed packages. No packages will be changed, and new source agreements will not be accepted.',
-                        )) {
-                          await load('apps.managed');
-                        }
-                      },
-                icon: const Icon(Icons.inventory_2_outlined),
-                label: UiText('Discover WinGet packages'),
-              ),
-            if (widget.index == 4)
-              FilledButton.tonal(
-                onPressed: busy
-                    ? null
-                    : () async {
-                        if (await confirm(
-                          'Start quick security scan?',
-                          'Windows security will scan the local computer. Security settings remain enabled.',
-                        ))
-                          load('security.scan', {
-                            'kind': 'quick',
-                            'confirmed': true,
-                          });
-                      },
-                child: UiText('Quick scan'),
-              ),
-            if (widget.index == 1)
-              OutlinedButton(
-                onPressed: busy ? null : () => load('cleanup.history'),
-                child: UiText('Recovery history'),
-              ),
-            if (widget.index == 1 && !widget.cleanupFixture)
-              OutlinedButton.icon(
-                onPressed: busy
-                    ? null
-                    : () async {
-                        final folder = await Engine.channel
-                            .invokeMethod<String>('pickDirectory', {});
-                        if (folder != null) setState(() => input.text = folder);
-                      },
-                icon: Icon(Icons.folder_open),
-                label: UiText('Choose folder'),
-              ),
-            if (cleanupResult?.kind == CleanupKind.scan)
-              FilledButton.tonal(
-                onPressed: busy || chosen.isEmpty
-                    ? null
-                    : () async {
-                        final selected = chosen.toList()..sort();
-                        final plan = cleanupResult!;
-                        if (selected.any(
-                          (index) => index < 0 || index >= plan.files.length,
-                        ))
-                          return;
-                        final planId = plan.planId!;
-                        final detail =
-                            '${localize(context, "Only selected temporary files will move to recovery.")}\n\n${selected.map((i) => plan.files[i].path).join('\n')}';
-                        if (await confirm(
-                          'Move selected temporary files to recovery?',
-                          detail,
-                        ))
-                          load('cleanup.apply', {
-                            'planId': planId,
-                            'targetIndexes': selected,
-                            'confirmed': true,
-                          });
-                      },
-                child: UiText('Apply selected cleanup targets'),
-              ),
-            if (cleanupResult?.kind == CleanupKind.scan)
-              OutlinedButton(
-                onPressed: busy
-                    ? null
-                    : () => setState(
-                        () => chosen.addAll(filtered.map((entry) => entry.key)),
-                      ),
-                child: UiText('Select visible targets'),
-              ),
-            if (chosen.isNotEmpty)
-              TextButton(
-                onPressed: busy ? null : () => setState(chosen.clear),
-                child: UiText('Clear selection'),
-              ),
-          ],
-        ),
-        if (widget.index == 1 && !widget.cleanupFixture)
-          Padding(
-            padding: EdgeInsets.only(top: 12),
-            child: TextField(
-              controller: input,
-              decoration: InputDecoration(
-                labelText: localize(context, 'Folder to analyze'),
-                hintText: r'C:\Users\Public',
-                helperText: localize(
-                  context,
-                  'Enter a local folder. Analysis does not remove files.',
-                ),
-                border: OutlineInputBorder(),
-              ),
+                    ),
+              child: UiText('Find exact duplicates'),
             ),
-          ),
-        if (widget.index == 6)
-          AnimatedSize(
-            duration: MediaQuery.disableAnimationsOf(context)
-                ? Duration.zero
-                : Duration(milliseconds: 200),
-            curve: Curves.easeOutCubic,
-            child: ToolsEditor(onRun: load, busy: busy),
-          ),
-        SizedBox(height: 16),
-        LabeledSearchBar(
-          controller: search,
-          label: localize(context, 'Filter these records'),
-          leading: Icon(Icons.search),
-          onChanged: (v) => setState(() {
-            query = v;
-            try {
-              if (regex) RegExp(v);
-              patternError = null;
-            } catch (e) {
-              patternError = 'Invalid regular expression';
-            }
-          }),
-          trailing: [
-            MenuAnchor(
-              builder: (context, controller, child) => IconButton(
-                tooltip: localize(context, 'Regular expression builder'),
-                onPressed: () =>
-                    controller.isOpen ? controller.close() : controller.open(),
-                icon: Icon(Icons.data_object),
-              ),
-              menuChildren: [
-                CheckboxMenuButton(
-                  value: regex,
-                  onChanged: (v) => setState(() => regex = v ?? false),
-                  child: UiText('Use regular expression'),
-                ),
-                ...{
-                  'Contains text': '.*text.*',
-                  'Starts with': '^text',
-                  'Ends with': r'text$',
-                  'Digits': r'\d+',
-                  'One of': '(first|second)',
-                }.entries.map(
-                  (e) => MenuItemButton(
-                    onPressed: () {
-                      search.text = e.value;
-                      setState(() {
-                        query = e.value;
-                        regex = true;
-                      });
+          if (widget.index == 2)
+            OutlinedButton(
+              onPressed: busy ? null : () => load('apps.updates'),
+              child: UiText('Check available updates'),
+            ),
+          if (widget.index == 2)
+            FilledButton.tonalIcon(
+              onPressed: busy
+                  ? null
+                  : () async {
+                      if (await confirm(
+                        'Discover managed packages?',
+                        'WinGet may contact its configured source to match installed packages. No packages will be changed, and new source agreements will not be accepted.',
+                      )) {
+                        await load('apps.managed');
+                      }
                     },
-                    child: UiText(e.key),
-                  ),
-                ),
-              ],
+              icon: const Icon(Icons.inventory_2_outlined),
+              label: UiText('Discover WinGet packages'),
             ),
-          ],
-        ),
-        if (patternError != null)
-          UiText(
-            patternError!,
-            style: TextStyle(color: Theme.of(context).colorScheme.error),
-          ),
-        SizedBox(height: 12),
-        if (busy)
-          LinearProgressIndicator(
-            semanticsLabel: localize(
-              context,
-              'Waiting for measured engine result',
+          if (widget.index == 4)
+            FilledButton.tonal(
+              onPressed: busy
+                  ? null
+                  : () async {
+                      if (await confirm(
+                        'Start quick security scan?',
+                        'Windows security will scan the local computer. Security settings remain enabled.',
+                      ))
+                        load('security.scan', {
+                          'kind': 'quick',
+                          'confirmed': true,
+                        });
+                    },
+              child: UiText('Quick scan'),
             ),
-          ),
-        OperationMotion(
-          state: busy
-              ? 'working'
-              : scanCancelled
-              ? 'cancelled'
-              : failure != null
-              ? 'error'
-              : data != null
-              ? 'success'
-              : 'idle',
-        ),
-        if (failure != null)
-          Material(
-            color: Theme.of(context).colorScheme.errorContainer,
-            borderRadius: BorderRadius.circular(16),
-            child: ListTile(
-              leading: Icon(Icons.error_outline),
-              title: UiText('Operation unavailable'),
-              subtitle: SelectableText(
-                translations.containsKey(failure)
-                    ? localize(context, failure!)
-                    : failure!,
-              ),
-              trailing: TextButton(
-                onPressed: busy
-                    ? null
-                    : cleanupMethod == null
-                    ? load
-                    : () => load(
-                        cleanupMethod == 'cleanup.scan'
-                            ? 'cleanup.scan'
-                            : 'cleanup.history',
+          if (widget.index == 1)
+            OutlinedButton(
+              onPressed: busy ? null : () => load('cleanup.history'),
+              child: UiText('Recovery history'),
+            ),
+          if (widget.index == 1 && !widget.cleanupFixture)
+            OutlinedButton.icon(
+              onPressed: busy
+                  ? null
+                  : () async {
+                      final folder = await Engine.channel.invokeMethod<String>(
+                        'pickDirectory',
                         {},
-                      ),
-                child: UiText(
-                  cleanupMethod == null || cleanupMethod == 'cleanup.scan'
-                      ? 'Retry'
-                      : 'Review recovery history',
+                      );
+                      if (folder != null) setState(() => input.text = folder);
+                    },
+              icon: Icon(Icons.folder_open),
+              label: UiText('Choose folder'),
+            ),
+          if (cleanupResult?.kind == CleanupKind.scan)
+            FilledButton.tonal(
+              onPressed: busy || chosen.isEmpty
+                  ? null
+                  : () async {
+                      final selected = chosen.toList()..sort();
+                      final plan = cleanupResult!;
+                      if (selected.any(
+                        (index) => index < 0 || index >= plan.files.length,
+                      ))
+                        return;
+                      final planId = plan.planId!;
+                      final detail =
+                          '${localize(context, "Only selected temporary files will move to recovery.")}\n\n${selected.map((i) => plan.files[i].path).join('\n')}';
+                      if (await confirm(
+                        'Move selected temporary files to recovery?',
+                        detail,
+                      ))
+                        load('cleanup.apply', {
+                          'planId': planId,
+                          'targetIndexes': selected,
+                          'confirmed': true,
+                        });
+                    },
+              child: UiText('Apply selected cleanup targets'),
+            ),
+          if (cleanupResult?.kind == CleanupKind.scan)
+            OutlinedButton(
+              onPressed: busy
+                  ? null
+                  : () => setState(
+                      () => chosen.addAll(filtered.map((entry) => entry.key)),
+                    ),
+              child: UiText('Select visible targets'),
+            ),
+          if (chosen.isNotEmpty)
+            TextButton(
+              onPressed: busy ? null : () => setState(chosen.clear),
+              child: UiText('Clear selection'),
+            ),
+        ],
+      ),
+      if (widget.index == 1 && !widget.cleanupFixture)
+        Padding(
+          padding: EdgeInsets.only(top: 12),
+          child: TextField(
+            controller: input,
+            decoration: InputDecoration(
+              labelText: localize(context, 'Folder to analyze'),
+              hintText: r'C:\Users\Public',
+              helperText: localize(
+                context,
+                'Enter a local folder. Analysis does not remove files.',
+              ),
+              border: OutlineInputBorder(),
+            ),
+          ),
+        ),
+      if (widget.index == 6)
+        AnimatedSize(
+          duration: MediaQuery.disableAnimationsOf(context)
+              ? Duration.zero
+              : Duration(milliseconds: 200),
+          curve: Curves.easeOutCubic,
+          child: ToolsEditor(onRun: load, busy: busy),
+        ),
+      SizedBox(height: 16),
+      LabeledSearchBar(
+        controller: search,
+        label: localize(context, 'Filter these records'),
+        leading: Icon(Icons.search),
+        onChanged: (v) => setState(() {
+          query = v;
+          try {
+            if (regex) RegExp(v);
+            patternError = null;
+          } catch (e) {
+            patternError = 'Invalid regular expression';
+          }
+        }),
+        trailing: [
+          MenuAnchor(
+            builder: (context, controller, child) => IconButton(
+              tooltip: localize(context, 'Regular expression builder'),
+              onPressed: () =>
+                  controller.isOpen ? controller.close() : controller.open(),
+              icon: Icon(Icons.data_object),
+            ),
+            menuChildren: [
+              CheckboxMenuButton(
+                value: regex,
+                onChanged: (v) => setState(() => regex = v ?? false),
+                child: UiText('Use regular expression'),
+              ),
+              ...{
+                'Contains text': '.*text.*',
+                'Starts with': '^text',
+                'Ends with': r'text$',
+                'Digits': r'\d+',
+                'One of': '(first|second)',
+              }.entries.map(
+                (e) => MenuItemButton(
+                  onPressed: () {
+                    search.text = e.value;
+                    setState(() {
+                      query = e.value;
+                      regex = true;
+                    });
+                  },
+                  child: UiText(e.key),
                 ),
+              ),
+            ],
+          ),
+        ],
+      ),
+      if (patternError != null)
+        UiText(
+          patternError!,
+          style: TextStyle(color: Theme.of(context).colorScheme.error),
+        ),
+      SizedBox(height: 12),
+      if (busy)
+        LinearProgressIndicator(
+          semanticsLabel: localize(
+            context,
+            'Waiting for measured engine result',
+          ),
+        ),
+      OperationMotion(
+        state: busy
+            ? 'working'
+            : scanCancelled
+            ? 'cancelled'
+            : failure != null
+            ? 'error'
+            : data != null
+            ? 'success'
+            : 'idle',
+      ),
+      if (failure != null)
+        Material(
+          color: Theme.of(context).colorScheme.errorContainer,
+          borderRadius: BorderRadius.circular(16),
+          child: ListTile(
+            leading: Icon(Icons.error_outline),
+            title: UiText('Operation unavailable'),
+            subtitle: SelectableText(
+              translations.containsKey(failure)
+                  ? localize(context, failure!)
+                  : failure!,
+            ),
+            trailing: TextButton(
+              onPressed: busy
+                  ? null
+                  : cleanupMethod == null
+                  ? load
+                  : () => load(
+                      cleanupMethod == 'cleanup.scan'
+                          ? 'cleanup.scan'
+                          : 'cleanup.history',
+                      {},
+                    ),
+              child: UiText(
+                cleanupMethod == null || cleanupMethod == 'cleanup.scan'
+                    ? 'Retry'
+                    : 'Review recovery history',
               ),
             ),
           ),
-        if (widget.index == 2 && data?['limitation'] is String)
-          ListTile(
-            leading: const Icon(Icons.info_outline),
-            title: UiText(data!['limitation'] as String),
-          ),
+        ),
+      if (widget.index == 2 && data?['limitation'] is String)
+        ListTile(
+          leading: const Icon(Icons.info_outline),
+          title: UiText(data!['limitation'] as String),
+        ),
+      if (!widget.recoveryOnly || cleanupResult == null)
         SizedBox(
           height: 360,
           child: cleanupResult != null
@@ -1369,13 +1403,41 @@ class _WorkflowPageState extends State<WorkflowPage> {
                   ),
                 ),
         ),
-        if (cleanupResult == null)
-          Text(
-            '${filtered.length} ${localize(context, "records")} · ${chosen.length} ${localize(context, "selected")}',
-            style: Theme.of(context).textTheme.labelMedium,
-          ),
-      ],
-    );
+      if (cleanupResult == null)
+        Text(
+          '${filtered.length} ${localize(context, "records")} · ${chosen.length} ${localize(context, "selected")}',
+          style: Theme.of(context).textTheme.labelMedium,
+        ),
+    ];
+    final body = widget.recoveryOnly && cleanupResult != null
+        ? CleanupResults(
+            result: cleanupResult!,
+            visibleIndexes: filtered.map((entry) => entry.key).toSet(),
+            selected: chosen,
+            busy: busy,
+            onSelect: (index, selected) => setState(() {
+              if (selected) {
+                chosen.add(index);
+              } else {
+                chosen.remove(index);
+              }
+            }),
+            onRestore: (receiptId) =>
+                rowAction('cleanup.restore', {'receiptId': receiptId}),
+            header: content,
+            controller: _recoveryScroll,
+          )
+        : ListView(
+            controller: widget.recoveryOnly ? _recoveryScroll : null,
+            children: content,
+          );
+    return widget.recoveryOnly
+        ? Focus(
+            focusNode: _recoveryFocus,
+            onKeyEvent: _recoveryPageKey,
+            child: body,
+          )
+        : body;
   }
 }
 
