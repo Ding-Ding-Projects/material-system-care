@@ -79,7 +79,8 @@ void main() {
   test('invalid sequence and reversed diagnostic clock are rejected', () {
     final diagnostics = CaptureDiagnostics(clock: () => time)..install();
     addTearDown(diagnostics.dispose);
-    expect(() => diagnostics.snapshot(20, time), throwsStateError);
+    expect(diagnostics.snapshot(63, time)['sequence'], 63);
+    expect(() => diagnostics.snapshot(64, time), throwsStateError);
     expect(
       () => diagnostics.snapshot(0, time.subtract(const Duration(seconds: 1))),
       throwsStateError,
