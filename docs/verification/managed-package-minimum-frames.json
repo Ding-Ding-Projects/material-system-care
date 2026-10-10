@@ -1,0 +1,216 @@
+{
+  "schemaVersion": 1,
+  "scope": "observed-flutter-hooks-and-bytes",
+  "sourceCommit": "83f6503d88f31fce43bdbc25477599bd3989839c",
+  "buildReceiptSha256": "c9939e4f530e753ee0e652102549387e659100a00d2ea3aaa1cd3e36af155aff",
+  "bundleManifestSha256": "1b44feacb4172c6dac18528e65c22e19e82f989ab94afc301646fa485e45a165",
+  "frames": [
+    {
+      "png": "output/frame.png",
+      "sidecar": "output/frame.png.json",
+      "sha256": "de244bc6e2fabad26ff68f408fcf9110668ccd722b9d18bd55677631b2f18899",
+      "sidecarSha256": "7f17e037d36fcf1fad0ff394203736d124ea1a57242164c1c096677e055fec9a",
+      "sequence": 0
+    },
+    {
+      "png": "output/frame-002.png",
+      "sidecar": "output/frame-002.png.json",
+      "sha256": "16f4d6a885ec4ae375f819114a81e3f8ee8b50230ff96b71bc1eb09097a7affd",
+      "sidecarSha256": "b0d4ccbc92fed413377204efa76dbd33adc34b8a92d93f10ff720685a66889a2",
+      "sequence": 2
+    },
+    {
+      "png": "output/frame-003.png",
+      "sidecar": "output/frame-003.png.json",
+      "sha256": "c41dd1358db7bd29e11af5f991fadae200d5953baaeb734ac44a34eb6cdb756d",
+      "sidecarSha256": "a29e54d99f359312e6f9fb21df91dee4ff84d76f37eae23eda21cb292e2f6049",
+      "sequence": 3
+    },
+    {
+      "png": "output/frame-004.png",
+      "sidecar": "output/frame-004.png.json",
+      "sha256": "b322f13df4ac2a251201d94e0203b40aec16e58e0a4b85863463d816e296a28f",
+      "sidecarSha256": "a6d4ce3a099ea45a8f3c8d651fed7a8da7acd71347a1c1d0e21382170cf5a6ef",
+      "sequence": 4
+    },
+    {
+      "png": "output/frame-005.png",
+      "sidecar": "output/frame-005.png.json",
+      "sha256": "7ce8e258ac4ae4840ee23ccf0e9d978661de3b7e2c3f36b71b39969ef46e5d41",
+      "sidecarSha256": "e46a5643c69c25521be8115c655c784b5b54812473ab4e649409f88d2f6675c6",
+      "sequence": 5
+    },
+    {
+      "png": "output/frame-007.png",
+      "sidecar": "output/frame-007.png.json",
+      "sha256": "9eb92a731a1979d5a09882f232b1822c7eaee097d4af9ea9dff3e7c76384dea2",
+      "sidecarSha256": "52072df86f657678da0ed07088d6fb076acd376421f45544597d47eb14525561",
+      "sequence": 7
+    },
+    {
+      "png": "output/frame-008.png",
+      "sidecar": "output/frame-008.png.json",
+      "sha256": "607d0bc39beb1a2d6abd27c7c008237dca2830cc8b0e5b6c8edc8abe6b3edc93",
+      "sidecarSha256": "f75d3241db71b771e45e1e0505418c7f9d23be0f59c7f5bbff9d5138243aef84",
+      "sequence": 8
+    },
+    {
+      "png": "output/frame-009.png",
+      "sidecar": "output/frame-009.png.json",
+      "sha256": "5edfb6af599786532093b005ed486ad5312e3c4849840e0d0a7564d8ea79a437",
+      "sidecarSha256": "c7ca8b02b2408ebd7408582cd751ddc070cec17e35ee25dbdad3babeecf03ae2",
+      "sequence": 9
+    },
+    {
+      "png": "output/frame-010.png",
+      "sidecar": "output/frame-010.png.json",
+      "sha256": "e08b1be408275654755afff0711afc6c3f5e38841fea88b887535924e22d4fdb",
+      "sidecarSha256": "5af675f95769e438973464a7a45143627d543674acc215e702145567fa94c551",
+      "sequence": 10
+    },
+    {
+      "png": "output/frame-011.png",
+      "sidecar": "output/frame-011.png.json",
+      "sha256": "e08b1be408275654755afff0711afc6c3f5e38841fea88b887535924e22d4fdb",
+      "sidecarSha256": "e20d0e9e923af09549fff1c08b2cdac62ec4d19a37c9ee213463e3145b65c871",
+      "sequence": 11
+    },
+    {
+      "png": "output/frame-012.png",
+      "sidecar": "output/frame-012.png.json",
+      "sha256": "2a2b4004a2ce0f3e5c192449d9532bb46094fafeed83269de641d844584fd7de",
+      "sidecarSha256": "0e11ace021e75ea2bbc8d24296df07a4812ea1f036b54512f738ba71799ec08e",
+      "sequence": 12
+    },
+    {
+      "png": "output/frame-013.png",
+      "sidecar": "output/frame-013.png.json",
+      "sha256": "4d37a4405e9ee1dc9ace2c68474ce74a4d347a2eb5fb0db54589aed177c1e968",
+      "sidecarSha256": "44151104313c8376d4a190681a9c27d88dbad1547d392c8323f2696cb33df5d0",
+      "sequence": 13
+    },
+    {
+      "png": "output/frame-015.png",
+      "sidecar": "output/frame-015.png.json",
+      "sha256": "4d37a4405e9ee1dc9ace2c68474ce74a4d347a2eb5fb0db54589aed177c1e968",
+      "sidecarSha256": "fb00b57decccea0347304666eaf674708ff31cd8609e60c3a3d481020195bf50",
+      "sequence": 15
+    },
+    {
+      "png": "output/frame-017.png",
+      "sidecar": "output/frame-017.png.json",
+      "sha256": "68c0a15b1b6c1d351419d244791676a5928e80ea150d6617f7fab68e8f950873",
+      "sidecarSha256": "dd19b0e8739028f8714ceb9114ea35f6114238a25d2057ad5ddfa1fe6b63b0c9",
+      "sequence": 17
+    },
+    {
+      "png": "output/frame-018.png",
+      "sidecar": "output/frame-018.png.json",
+      "sha256": "c318b6c7681f360fd321c009501b57f0c8993e2e504a020f6158a334d7f4a902",
+      "sidecarSha256": "9407bc64403db4b3a0ca18955276f127dcc34d972a9d0a2a799e3b62f4fc3b13",
+      "sequence": 18
+    }
+  ],
+  "evidence": [
+    {
+      "role": "action",
+      "path": "packages-min-after-wheel.json",
+      "sha256": "59e4275e7a173e86b355ca42ade5bf01050a20f8a58b003aceadb0f7b000a013"
+    },
+    {
+      "role": "action",
+      "path": "packages-min-dialog-focus.json",
+      "sha256": "014d9ca206f40c6ad0b8a29d2471fa376aa5e8a81e2451a24cbd93a96e111a97"
+    },
+    {
+      "role": "action",
+      "path": "packages-min-dialog-page-focused.json",
+      "sha256": "709217bc4b7fb6b538fddfc4e000be39a96d6af5c8397a79305958f4e5f55278"
+    },
+    {
+      "role": "action",
+      "path": "packages-min-dialog-page.json",
+      "sha256": "29c9a243da95ad9681a2567ea0cd5fa1b4865fd541c1156cc726bcb4150aab52"
+    },
+    {
+      "role": "action",
+      "path": "packages-min-dialog-text-focus.json",
+      "sha256": "33530e814588b994321d53317ce53a3a46dce4e9c6dca41c5091cb1000068aba"
+    },
+    {
+      "role": "action",
+      "path": "packages-min-discovery-confirm.json",
+      "sha256": "8229a680499098eaea324382387a2288baaf91ea2b29ecaf5e4b39bcc55b7500"
+    },
+    {
+      "role": "action",
+      "path": "packages-min-discovery-review.json",
+      "sha256": "47c633edf9dc72be2336dccee838b5621e4f6eea51723278266fd4a35dc889f4"
+    },
+    {
+      "role": "action",
+      "path": "packages-min-first-record.json",
+      "sha256": "3955a1690ce1f8cde3d247784aa8e0765de70d2df0324a46270af13260c0ed54"
+    },
+    {
+      "role": "action",
+      "path": "packages-min-focus.json",
+      "sha256": "b9f08b1ea291dbd099c08028e6a559c735151e22c2a8f639f6c573b5fc722d8b"
+    },
+    {
+      "role": "action",
+      "path": "packages-min-page-controls.json",
+      "sha256": "f3d4c8664851314dd2c44dcefc026127fd5e500e766bdcd3910f5fb63b818da1"
+    },
+    {
+      "role": "action",
+      "path": "packages-min-removal-cancel.json",
+      "sha256": "900a38fe27b65a4b19b918aaf678a1ce5290226f5a7e310ee9df091ffe0375a7"
+    },
+    {
+      "role": "action",
+      "path": "packages-min-removal-review.json",
+      "sha256": "4e8e2b0baa2a85c24c27f741a26e0b3376ec24699a3d45fe0fea3f58e52001a3"
+    },
+    {
+      "role": "action",
+      "path": "packages-min-result-forward.json",
+      "sha256": "93f0b7fdfa2a7f37f2022b51073fc262f4a1eb5a6bb774da9b830723342401bc"
+    },
+    {
+      "role": "action",
+      "path": "packages-min-review-controls.json",
+      "sha256": "63fc1602eb5ab9a7a68380bb6b4dc426caf05e97dcac0895d5ce3ea8d9d79bcd"
+    },
+    {
+      "role": "action",
+      "path": "packages-min-source-menu.json",
+      "sha256": "eb02be09e234010b5ac986aa19651b0234be47a0219a10a2a4a42adc1e148bf0"
+    },
+    {
+      "role": "action",
+      "path": "packages-min-source-selected.json",
+      "sha256": "67f06e4958911a2dd1137f07ed9ea283ab47a9d522541db42160bcc967c73552"
+    },
+    {
+      "role": "action",
+      "path": "packages-min-upgrade-cancel.json",
+      "sha256": "346d2468851871cadeb22667fe55e631aed87f4d3ea35aed9ebe4666504b1ddd"
+    },
+    {
+      "role": "action",
+      "path": "packages-min-upgrade-review.json",
+      "sha256": "5365b7b76d918fdaf7689373f24cc0c7cac699874ce72b9b0f6166d311241eea"
+    },
+    {
+      "role": "action",
+      "path": "packages-native-wheel.json",
+      "sha256": "9b26ff4c0cb8502ae853767f879bc40e4e7a2150b0eb4890ba5fdc7a8572e29e"
+    },
+    {
+      "role": "teardown",
+      "path": "teardown.json",
+      "sha256": "023b270698b4442b7b2c8f34c6d956da03c8f4af20da5e4b3a5efc8d61fa2c8a"
+    }
+  ]
+}

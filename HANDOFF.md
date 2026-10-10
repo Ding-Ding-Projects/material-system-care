@@ -4,6 +4,14 @@ This file retains earlier candidate states as historical evidence. A later sourc
 
 本檔案保留早期候選版本作歷史記錄。後來嘅實際驗證只會取代有明確證據嗰部分，未完成清單仍以路線圖為準，唔會將部分檢查當成整套完成。
 
+## Managed-package review and latest delivery
+
+Retained source `83f6503d88f31fce43bdbc25477599bd3989839c` completed real managed-package discovery at normal and 800×600 doubled-bilingual viewports. Both returned 45 matches. The network disclosure, exact-ID upgrade/removal reviews and cancellation were inspected; no package mutation was confirmed. Changing the source cleared the old records. The minimum modal had a confirmed keyboard gap: its lower disclosure was outside the viewport and Page Down did not move it from initial, button or selected-text focus. Repair and fresh acceptance remain pending. Twenty-seven selected frames and thirty-three supporting hashes passed the narrow verifier; both owned process sets and desktops closed. Populated host records stay private. See `docs/verification/managed-package-observations.json`.
+
+Public source `eca8f071d2a98c141c14731b353d371e398c7fa6`, successful run `38088485612`, delivered all 789 matching files, 184 complete articles and 43 gallery images. Exact About homepage and public visibility were read back. This is byte-delivery proof; the earlier browser matrix remains bound to its own source. See `docs/verification/gallery-live-delivery-current.json`.
+
+中文：套件探索兩種尺寸都回報 45 個配對，升級及移除只檢查確認畫面並取消，冇確認更改套件。細尺寸對話框下半段未能用鍵盤捲動，已確認要修正。最新公開文件有 184 篇完整文章及 43 張圖，789 個檔案全部核對一致；呢個係傳送驗證，唔代替新一輪瀏覽器操作測試。
+
 ## Dedicated cleanup workspace integration
 
 Candidate `f1acbabe3a25261ecb7750fbddc745099c7937b1` replaces the generic cleanup command form with typed plan selection, explicit selected-path review, receipt results and recovery navigation on one scroll surface. Fixed scan bounds remain visible. The engine contract is unchanged. Two independent source reviews found and then verified a repair for contradictory partial-result flags. Three handwritten negative cases failed before that repair; all 44 focused checks passed afterward, and the candidate passed the exact root desktop build. Integrated compilation and a new disposable runtime round trip remain pending. Historical cleanup evidence below does not automatically verify this new workspace.

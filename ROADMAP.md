@@ -21,6 +21,9 @@
 
 ## Working suite
 
+- [x] Inspect real managed-package discovery, exact-ID reviews and cancellation at normal and minimum viewports, with 45 reported matches and owned teardown. No package mutation was confirmed.
+- [ ] Repair and verify minimum-size keyboard access to the lower package-review disclosure; complete unavailable-refresh and actual disposable package mutation coverage separately.
+
 - [ ] Verify the newly integrated dedicated cleanup workspace with disposable selected-file and recovery fixtures at normal and minimum doubled-bilingual viewports. Candidate source checks and build passed; older generic-workspace runtime evidence is historical.
 
 - [x] Verify bounded scheduled-task collection, expanded metadata and loaded-record filtering in the real build, retain private result evidence and verify owned teardown.

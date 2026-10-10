@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 1,
+  "scope": "observed-flutter-hooks-and-bytes",
+  "sourceCommit": "83f6503d88f31fce43bdbc25477599bd3989839c",
+  "buildReceiptSha256": "c9939e4f530e753ee0e652102549387e659100a00d2ea3aaa1cd3e36af155aff",
+  "bundleManifestSha256": "1b44feacb4172c6dac18528e65c22e19e82f989ab94afc301646fa485e45a165",
+  "frames": [
+    {
+      "png": "output/frame.png",
+      "sidecar": "output/frame.png.json",
+      "sha256": "618a0e27985b7232df2aee6d3f969d70449e3adbad4813a61cf4aa743293a25e",
+      "sidecarSha256": "a8d8389f993c50a0a6dd1683e0b3686bac6dd1f568b19cba335b6e8746b47767",
+      "sequence": 0
+    },
+    {
+      "png": "output/frame-001.png",
+      "sidecar": "output/frame-001.png.json",
+      "sha256": "b747469c86cbf1c4c25faaa2b2909c719a79f80e36b3e8b97ef9c7eb5bb83d6a",
+      "sidecarSha256": "a9877099b4bac837e35e69280f73654314bc6446ab30bc0303faa277904ac524",
+      "sequence": 1
+    },
+    {
+      "png": "output/frame-002.png",
+      "sidecar": "output/frame-002.png.json",
+      "sha256": "45a3596c297eee9b7253a5b19b0edf8e1f25000b8b8d7172be20064621cdee74",
+      "sidecarSha256": "54be9288d726358f5dc68d3ac118a5b0fa8293b098038765a4f68db5f78ccead",
+      "sequence": 2
+    },
+    {
+      "png": "output/frame-003.png",
+      "sidecar": "output/frame-003.png.json",
+      "sha256": "28865a4464c9830e201b4469675b590619881fea8d9398e0e5453f060d4583c2",
+      "sidecarSha256": "e002818b4b02920033551e8747c01d62d564d0cf20fbdf7c304a2580c99cb192",
+      "sequence": 3
+    },
+    {
+      "png": "output/frame-004.png",
+      "sidecar": "output/frame-004.png.json",
+      "sha256": "c78384528897225ab573a76af9082e33729a7c5ce87423aa5873680e35b3e501",
+      "sidecarSha256": "d31fc2a612c425250a1429591af9bcccdeb8b50b383fab12a4cb3fff0b8c2d3d",
+      "sequence": 4
+    },
+    {
+      "png": "output/frame-005.png",
+      "sidecar": "output/frame-005.png.json",
+      "sha256": "ed06624e9355cdff7bcc603c58233a804ff47bf7dd077f79cd626253a8b84386",
+      "sidecarSha256": "5ca0861153aa571c70f607311275ae5b3bbd486a2c4cfc326dc8b7746e9b0ca6",
+      "sequence": 5
+    },
+    {
+      "png": "output/frame-006.png",
+      "sidecar": "output/frame-006.png.json",
+      "sha256": "c7a4d0ded0030b0203a316a58f425db2d0cc37492c326431711e575685bb6a07",
+      "sidecarSha256": "102ea1f927561192b533e6d0c091a9aedc54d6381722fd6add70f542953db44d",
+      "sequence": 6
+    },
+    {
+      "png": "output/frame-007.png",
+      "sidecar": "output/frame-007.png.json",
+      "sha256": "5fd5f7564c405d1289e7929c62113d14cc55990b7ce3592a0621539b5e36e75b",
+      "sidecarSha256": "c1ce7227b106eed437e148e68464bca28f11de416d50b2da16428410ab9a015a",
+      "sequence": 7
+    },
+    {
+      "png": "output/frame-008.png",
+      "sidecar": "output/frame-008.png.json",
+      "sha256": "43b5ec09646473fdfa67eacb10d591eab3ce8a5ce2dfd27d81f3aecc1b1b462d",
+      "sidecarSha256": "6ed086fec34d3dc5cef0f508ad5841eb6c5c7d9282141dcf0748ae7e9df5d513",
+      "sequence": 8
+    },
+    {
+      "png": "output/frame-010.png",
+      "sidecar": "output/frame-010.png.json",
+      "sha256": "46acc18127685ccd7c81f965e361656b3bef9c5b080a5e4a41bc7c7a12e2f3b5",
+      "sidecarSha256": "14bf5978d7ffa3c398f404e9017f04fdf6f8df6c0395407a8feb1ecb2716cb4c",
+      "sequence": 10
+    },
+    {
+      "png": "output/frame-011.png",
+      "sidecar": "output/frame-011.png.json",
+      "sha256": "eda47497cdf5bd9ddf57350aa3e9161dd18e7ea2653f27ecc22b2f470fff88ba",
+      "sidecarSha256": "471d90df89cbcf7856130493c530e2cb59f08274e87985cbe3fd8083de023345",
+      "sequence": 11
+    },
+    {
+      "png": "output/frame-012.png",
+      "sidecar": "output/frame-012.png.json",
+      "sha256": "b26804e488bf95a8c2d5f8f5088980ddd3c3cb04fae1d62ddb3bba70624b6ab4",
+      "sidecarSha256": "c33555c766c327f65d7f4b18986386dedbdfa4b84550206ef5c0337b502af758",
+      "sequence": 12
+    }
+  ],
+  "evidence": [
+    {
+      "role": "action",
+      "path": "packages-back-to-summary.json",
+      "sha256": "8ea18d3b2e2e1d5283af66e7fbe73035132ba4fea9ffa0b2ca9ec804856c2e29"
+    },
+    {
+      "role": "action",
+      "path": "packages-discover-confirm.json",
+      "sha256": "f0a2b252a03f306f1dc0b25cf881752a799fa6f0d3a14710bd7c0e14ac4d2882"
+    },
+    {
+      "role": "action",
+      "path": "packages-discover-review.json",
+      "sha256": "8cf58cc5ee84f6cdf28076d4c7dce62447447a5773cd79711d0e2d938ac47b4b"
+    },
+    {
+      "role": "action",
+      "path": "packages-discovery-settled.json",
+      "sha256": "56927e6b2718e4c3e30c09292241da17e3cb43f6c4c61b870009f5ddff3b2ccd"
+    },
+    {
+      "role": "action",
+      "path": "packages-removal-cancel.json",
+      "sha256": "6eee438de45f3e1006bc848195b562800a2931f6db8ae18d6d064da2f845519c"
+    },
+    {
+      "role": "action",
+      "path": "packages-removal-review.json",
+      "sha256": "16a0cc1ed4e069855dec4a1610f4fbccc85067b2908a68568d64da4f40adc42a"
+    },
+    {
+      "role": "action",
+      "path": "packages-source-managed.json",
+      "sha256": "f3be2774ee2a498abf6ee985a1f7645508150bb4d81cafd4f288e4cbdef56082"
+    },
+    {
+      "role": "action",
+      "path": "packages-source-menu.json",
+      "sha256": "445c5ee48f4866090f3a64f389a0a65b8b5ee4f573e943a734db746f233bef93"
+    },
+    {
+      "role": "action",
+      "path": "packages-switch-clear.json",
+      "sha256": "3101ffc19c0d44028857d3f3bcb5bee20780acfe29cbe2b81318d9c7bb34c488"
+    },
+    {
+      "role": "action",
+      "path": "packages-switch-review.json",
+      "sha256": "976a36db6d26f1e69087e8fd58a7a444bd499d552cfda68a9aa292765d42d4a7"
+    },
+    {
+      "role": "action",
+      "path": "packages-upgrade-cancel.json",
+      "sha256": "eb274abb43ca15db98383e119faf248cde2adc0bccb476de70f3f79a460db3a1"
+    },
+    {
+      "role": "action",
+      "path": "packages-upgrade-review.json",
+      "sha256": "e138df17754097f3b03fc8afb0ae6fb1a47fc829970c459fc899dbad382f98fa"
+    },
+    {
+      "role": "teardown",
+      "path": "teardown.json",
+      "sha256": "49abf40dfa5f47f92a9560e1ad5c3a601776839549754588eb2d458bdf428105"
+    }
+  ]
+}

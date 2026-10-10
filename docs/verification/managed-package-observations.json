@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "83f6503d88f31fce43bdbc25477599bd3989839c",
+  "route": "persistent Lowlevel HTTP on isolated hidden desktops",
+  "language": "both",
+  "theme": "dark",
+  "reducedMotion": true,
+  "normal": {
+    "width": 1280,
+    "height": 1000,
+    "textScale": 1,
+    "matchedEntries": 45,
+    "observed": [
+      "source selection",
+      "network disclosure",
+      "explicit discovery",
+      "loading",
+      "populated exact-ID records",
+      "upgrade review cancelled",
+      "removal review cancelled",
+      "reverse paging",
+      "source change clears records"
+    ]
+  },
+  "minimum": {
+    "width": 800,
+    "height": 600,
+    "textScale": 2,
+    "matchedEntries": 45,
+    "observed": [
+      "forward paging reaches source controls",
+      "network disclosure fits",
+      "explicit discovery",
+      "populated summary",
+      "forward paging reaches action controls",
+      "upgrade and removal review cancelled"
+    ],
+    "finding": "Lower modal disclosure was outside the viewport and Page Down did not move it from initial, action-button or selected-text focus. Two source reviews confirmed a missing dialog keyboard scroll route. Repair acceptance remains pending."
+  },
+  "packageMutationConfirmed": false,
+  "allOwnedProcessesAndDesktopsClosed": true,
+  "publicPixels": false,
+  "limits": [
+    "No upgrade or uninstall was confirmed. No successful package mutation or rollback is established.",
+    "The minimum review keyboard finding remains open for the later repair.",
+    "The native wheel probe produced no observed movement and is not successful pointer-scroll evidence.",
+    "Physical DPI, native compositor, full accessibility and appearance coverage remain unverified."
+  ]
+}
