@@ -28,6 +28,19 @@ void main() {
                   {'path': r'C:\fixture\chosen.tmp'},
                 ],
               }
+            : method == 'cleanup.apply'
+            ? {
+                'receiptId': 'fixture-plan',
+                'items': [
+                  {
+                    'target': {'path': r'C:\fixture\chosen.tmp', 'size': 12},
+                    'state': 'quarantined',
+                  },
+                ],
+                'partial': false,
+                'cancelled': false,
+                'plannedCount': 1,
+              }
             : {'records': <dynamic>[]},
       };
     });
@@ -44,9 +57,9 @@ void main() {
       find.widgetWithText(FilledButton, 'Apply selected cleanup targets'),
     );
     expect(applyButton().onPressed, isNull);
-      await tester.enterText(find.byType(SearchBar), 'chosen.tmp');
-      await tester.pumpAndSettle();
-    await tester.tap(find.text(r'C:\fixture\chosen.tmp'));
+    await tester.enterText(find.byType(SearchBar), 'chosen.tmp');
+    await tester.pumpAndSettle();
+    await tester.tap(find.widgetWithText(CheckboxListTile, 'chosen.tmp'));
     await tester.pumpAndSettle();
     expect(applyButton().onPressed, isNotNull);
     await tester.tap(find.text('Apply selected cleanup targets'));

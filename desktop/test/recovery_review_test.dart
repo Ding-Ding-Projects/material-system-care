@@ -41,11 +41,24 @@ void main() {
           });
         return {
           'ok': true,
-          'result': {
-            'receipts': [
-              {'id': 'receipt-1', 'planId': 'plan-1'},
-            ],
-          },
+          'result': method == 'cleanup.restore'
+              ? {
+                  'receiptId': 'receipt-1',
+                  'items': [
+                    {
+                      'path': r'C:\fixture\restorable.tmp',
+                      'size': 12,
+                      'state': 'restored',
+                    },
+                  ],
+                  'partial': false,
+                  'cancelled': false,
+                }
+              : {
+                  'receipts': [
+                    {'id': 'receipt-1', 'planId': 'plan-1'},
+                  ],
+                },
         };
       });
       addTearDown(
@@ -60,9 +73,7 @@ void main() {
       await tester.tap(find.text('Recovery history'));
       await tester.pumpAndSettle();
       Future<void> review() async {
-        await tester.tap(find.byTooltip('Record actions'));
-        await tester.pumpAndSettle();
-        await tester.tap(find.text('Restore selected cleanup'));
+        await tester.tap(find.text('Review restoration'));
         await tester.pumpAndSettle();
       }
 
@@ -70,7 +81,7 @@ void main() {
       expect(calls, ['cleanup.history', 'cleanup.details']);
       expect(find.textContaining(r'C:\fixture\restorable.tmp'), findsOneWidget);
       expect(
-        find.textContaining('Recorded state: quarantined'),
+        find.textContaining('Recorded state: In recovery storage'),
         findsOneWidget,
       );
       await tester.tap(find.text('Cancel'));

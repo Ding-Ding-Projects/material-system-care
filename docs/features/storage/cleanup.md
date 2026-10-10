@@ -1,5 +1,13 @@
 # Temporary-file plans and recovery
 
+## Desktop review
+
+Cleanup results use dedicated file and recovery-receipt cards. Summaries show the filename, exact bytes when reported, localized recorded state and reason, and explicit partial/stopped counts. Full original paths remain selectable inside labelled expandable file details. Internal hashes and recovery-storage paths are omitted from the presentation. Unknown states and unavailable values remain explicit rather than becoming success.
+
+Scan checkboxes retain the original server index through filtering. Restoration actions identify one receipt, read its details, and require another explicit confirmation before each attempt, including a conflict retry. An unreadable receipt has no enabled restoration action. Errors offer another scan or recovery-history review instead of automatically repeating a mutation. These are recorded outcomes; live file availability is rechecked by the engine during the requested operation.
+
+## Engine behavior
+
 1. Call `cleanup.scan` with `{ "minimumAgeDays": 7, "maxEntries": 10000, "maxHashMiB": 512 }`. Only the current user's `%LOCALAPPDATA%\\Temp` is eligible, and only if it agrees with the operating-system temporary path. A supplied `path` must match that root exactly. The minimum age is 1 through 365 days. The result includes `planId`, exact targets, total bytes, traversal counters, expiration and `mutationPerformed: false`.
 2. Select targets in the displayed plan and review their exact paths. Call `cleanup.apply` with `{ "planId": "32-hex-character-id", "targetIndexes": [0, 2], "confirmed": true }`. Indices refer to the original server-returned `targets` array, not a filtered or sorted display. Missing or empty selection is rejected, as are duplicates, non-integers and out-of-range indices. Earlier clients that omit selection must be updated; omission never silently means the full plan.
 3. Use `cleanup.history` with `{}` to retrieve persisted recovery receipts. Read `cleanup.details` with `{ "receiptId": "32-hex-character-id" }` to review the recorded file paths, sizes and states. The response is marked `recordedOnly:true` and `mutationPerformed:false`, omits internal hashes and recovery locations, and does not establish current file availability. Review includes skipped and already restored items as part of the receipt inventory; it does not promise that every listed file will move. After review and explicit consent, call `cleanup.restore` with `{ "receiptId": "32-hex-character-id", "confirmed": true }`. Unavailable, mismatched or empty details block the desktop restore confirmation. The actual restore still revalidates current file identity/content and destination conflicts.

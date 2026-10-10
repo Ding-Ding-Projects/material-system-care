@@ -16,6 +16,7 @@ import 'services.dart';
 import 'frame_capture.dart';
 import 'capture_preferences.dart';
 import 'wording_cache.dart';
+import 'cleanup.dart';
 
 void main(List<String> arguments) {
   final cleanupFixtureMode = arguments.any(
@@ -436,6 +437,8 @@ bool canChangeStartupRecord(Map<String, dynamic> row) {
 
 class _WorkflowPageState extends State<WorkflowPage> {
   Map<String, dynamic>? data;
+  CleanupResult? cleanupResult;
+  String? cleanupMethod;
   Map<String, dynamic>? provenance;
   String? failure;
   bool busy = false;
@@ -496,6 +499,9 @@ class _WorkflowPageState extends State<WorkflowPage> {
       cancelRequested = false;
       scanCancelled = false;
       failure = null;
+      cleanupMethod = operation.startsWith('cleanup.') ? operation : null;
+      cleanupResult = null;
+      if (cleanupMethod != null) data = null;
       if (method == 'apps.managed') {
         data = null;
         chosen.clear();
@@ -510,6 +516,9 @@ class _WorkflowPageState extends State<WorkflowPage> {
       if (operation == 'startup.set') {
         result = await Engine.invoke('startup.list', {});
       }
+      final parsedCleanup = cleanupMethod == null
+          ? null
+          : CleanupResult.parse(operation, result);
       if (method == 'apps.managed' && result['available'] != true) {
         throw StateError(
           result['reason']?.toString() ?? 'WinGet discovery is unavailable.',
@@ -518,6 +527,8 @@ class _WorkflowPageState extends State<WorkflowPage> {
       if (mounted)
         setState(() {
           data = result;
+          cleanupResult = parsedCleanup;
+          scanCancelled = parsedCleanup?.cancelled == true;
           failure = null;
           chosen.clear();
         });
@@ -558,6 +569,8 @@ class _WorkflowPageState extends State<WorkflowPage> {
         setState(
           () => failure = e is MissingPluginException
               ? 'The local engine is not connected. Start the installed application with its engine available, then retry.'
+              : e is FormatException && cleanupMethod != null
+              ? 'Cleanup results are invalid. No result was accepted. Review recovery history before retrying.'
               : e.toString(),
         );
       if (mounted && method != null) notifyOperation(context, 'error', method);
@@ -659,6 +672,7 @@ class _WorkflowPageState extends State<WorkflowPage> {
         failure = null;
       });
       Map<String, dynamic> details;
+      CleanupResult reviewed;
       try {
         details = await Engine.invoke('cleanup.details', {
           'receiptId': receiptId,
@@ -666,6 +680,7 @@ class _WorkflowPageState extends State<WorkflowPage> {
         if (details['receiptId'] != receiptId || details['items'] is! List) {
           throw StateError('Recovery details are unavailable.');
         }
+        reviewed = CleanupResult.parse('cleanup.details', details);
       } catch (error) {
         if (mounted) setState(() => failure = error.toString());
         return;
@@ -673,13 +688,13 @@ class _WorkflowPageState extends State<WorkflowPage> {
         if (mounted) setState(() => busy = false);
       }
       if (!mounted) return;
-      final items = details['items'] as List;
+      final items = reviewed.files;
       if (items.isEmpty) {
         setState(() => failure = 'This recovery record contains no files.');
         return;
       }
       final review =
-          '${localize(context, "Review recorded files before restoration. Existing files will not be overwritten; availability is checked during restoration.")}\n\n${items.map((item) => '${item['path']}\n${localize(context, "Recorded state")}: ${item['state']}').join('\n\n')}';
+          '${localize(context, "Review recorded files before restoration. Existing files will not be overwritten; availability is checked during restoration.")}\n\n${items.map((item) => '${item.path}\n${localize(context, "Recorded state")}: ${localize(context, cleanupStateLabel(item.state))}').join('\n\n')}';
       if (await confirm('Review recovery files', review)) {
         await load('cleanup.restore', {
           'receiptId': receiptId,
@@ -743,7 +758,7 @@ class _WorkflowPageState extends State<WorkflowPage> {
     final records = rows;
     final filtered = records.asMap().entries.where((e) {
       if (query.isEmpty) return true;
-      final text = value(e.value);
+      final text = cleanupResult?.searchText(e.key, context) ?? value(e.value);
       try {
         return regex
             ? RegExp(query, caseSensitive: false).hasMatch(text)
@@ -1000,8 +1015,21 @@ class _WorkflowPageState extends State<WorkflowPage> {
                     : failure!,
               ),
               trailing: TextButton(
-                onPressed: busy ? null : load,
-                child: UiText('Retry'),
+                onPressed: busy
+                    ? null
+                    : cleanupMethod == null
+                    ? load
+                    : () => load(
+                        cleanupMethod == 'cleanup.scan'
+                            ? 'cleanup.scan'
+                            : 'cleanup.history',
+                        {},
+                      ),
+                child: UiText(
+                  cleanupMethod == null || cleanupMethod == 'cleanup.scan'
+                      ? 'Retry'
+                      : 'Review recovery history',
+                ),
               ),
             ),
           ),
@@ -1012,7 +1040,23 @@ class _WorkflowPageState extends State<WorkflowPage> {
           ),
         SizedBox(
           height: 360,
-          child: data == null
+          child: cleanupResult != null
+              ? CleanupResults(
+                  result: cleanupResult!,
+                  visibleIndexes: filtered.map((entry) => entry.key).toSet(),
+                  selected: chosen,
+                  busy: busy,
+                  onSelect: (index, selected) => setState(() {
+                    if (selected) {
+                      chosen.add(index);
+                    } else {
+                      chosen.remove(index);
+                    }
+                  }),
+                  onRestore: (receiptId) =>
+                      rowAction('cleanup.restore', {'receiptId': receiptId}),
+                )
+              : data == null
               ? Center(
                   child: UiText(
                     busy
@@ -1118,10 +1162,11 @@ class _WorkflowPageState extends State<WorkflowPage> {
                   ),
                 ),
         ),
-        Text(
-          '${filtered.length} ${localize(context, "records")} · ${chosen.length} ${localize(context, "selected")}',
-          style: Theme.of(context).textTheme.labelMedium,
-        ),
+        if (cleanupResult == null)
+          Text(
+            '${filtered.length} ${localize(context, "records")} · ${chosen.length} ${localize(context, "selected")}',
+            style: Theme.of(context).textTheme.labelMedium,
+          ),
       ],
     );
   }

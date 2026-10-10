@@ -12,6 +12,66 @@ class CopyScope extends InheritedWidget {
 }
 
 const translations = <String, String>{
+  'Selected files': '已選取檔案',
+  'Cleanup plan': '清理計劃',
+  'Recorded cleanup result': '已記錄清理結果',
+  'Only selected files will move to recovery. Nothing has moved yet.':
+      '只有已選取檔案會移到復原區，目前尚未移動任何檔案。',
+  'These are recorded outcomes. Current file availability is checked during restoration.':
+      '以下係已記錄結果，復原時先會檢查檔案目前可用狀態。',
+  'Operation stopped. Completed moves and recovery records were retained.':
+      '操作已停止，已完成移動同復原記錄已保留。',
+  'Some files did not complete. Review each recorded state before retrying.':
+      '部分檔案未完成，重試前請逐項檢視已記錄狀態。',
+  'The scan limit was reached. This plan contains only the reviewed subset.':
+      '已達掃描上限，此計劃只包含已檢視部分。',
+  'Excluded or unavailable entries': '已排除或無法取得的項目',
+  'Recorded receipts': '已記錄復原單',
+  'Recorded files': '已記錄檔案',
+  'Selected files requested': '已要求處理的選取檔案',
+  'Files without a completed result': '尚無完成結果的檔案',
+  'Receipt identifier': '復原單識別碼',
+  'Review restoration': '覆核復原',
+  'No eligible temporary files were found.': '沒有符合條件的暫存檔。',
+  'No recovery receipts were found.': '沒有復原單。',
+  'This result contains no recorded files.': '此結果沒有已記錄檔案。',
+  'No matching cleanup records.': '沒有符合的清理記錄。',
+  'Bytes': '位元組',
+  'File details': '檔案詳情',
+  'Full original path': '完整原始路徑',
+  'Engine reason code': '引擎原因代碼',
+  'Recovery receipt': '復原單',
+  'This recovery record is unavailable. No restoration is confirmed.':
+      '此復原記錄無法取得，尚未確認任何復原。',
+  'Ready for review': '等待覆核',
+  'In recovery storage': '已存於復原區',
+  'Restored': '已復原',
+  'Skipped': '已略過',
+  'Needs attention': '需要處理',
+  'Move not confirmed': '尚未確認移動',
+  'Restore not confirmed': '尚未確認復原',
+  'Unresolved': '尚未解決',
+  'State unavailable': '無法取得狀態',
+  'The file changed after review. Scan again before cleanup.':
+      '檔案喺覆核後有變，清理前請重新掃描。',
+  'The original path is occupied. Recovery data was retained.':
+      '原始路徑已被佔用，復原資料已保留。',
+  'The recovery file changed. It was retained for inspection.':
+      '復原檔案有變，已保留供檢查。',
+  'The recovery file is missing. Restoration is not confirmed.':
+      '復原檔案遺失，尚未確認復原。',
+  'An interrupted restoration was verified against the original file.':
+      '已按原始檔案核實中斷的復原操作。',
+  'The operation stopped before this file completed.': '操作喺此檔案完成前已停止。',
+  'A link or reparse point prevented this operation.': '連結或重新分析點阻止了此操作。',
+  'A file with multiple links was excluded.': '有多個連結的檔案已排除。',
+  'The file is outside the approved cleanup scope.': '檔案不在已核准清理範圍內。',
+  'The file could not be accessed or moved. Recovery records were retained.':
+      '無法存取或移動檔案，復原記錄已保留。',
+  'The engine reported a condition that needs review.': '引擎回報需要覆核的狀況。',
+  'Review recovery history': '檢視復原記錄',
+  'Cleanup results are invalid. No result was accepted. Review recovery history before retrying.':
+      '清理結果格式無效，未接受任何結果。重試前請檢視復原記錄。',
   'Enable selected startup entry': '啟用所選登入啟動項目',
   'Disable selected startup entry': '停用所選登入啟動項目',
   'This startup entry cannot be changed. Refresh its state before continuing.':
