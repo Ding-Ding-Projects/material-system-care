@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'inspection_app_bar.dart';
 import 'labeled_controls.dart';
 import 'localization.dart';
@@ -105,6 +106,36 @@ class PackagesPage extends StatefulWidget {
 }
 
 class _PackagesPageState extends State<PackagesPage> {
+  final _scroll = ScrollController();
+  final _resultsFocus = FocusNode(debugLabel: 'Package results');
+
+  @override
+  void dispose() {
+    _resultsFocus.dispose();
+    _scroll.dispose();
+    super.dispose();
+  }
+
+  KeyEventResult _scrollKey(FocusNode node, KeyEvent event) {
+    if (FocusManager.instance.primaryFocus?.context
+            ?.findAncestorWidgetOfExactType<EditableText>() !=
+        null)
+      return KeyEventResult.ignored;
+    if (event is! KeyDownEvent && event is! KeyRepeatEvent)
+      return KeyEventResult.ignored;
+    if (!_scroll.hasClients) return KeyEventResult.ignored;
+    final position = _scroll.position;
+    final step = position.viewportDimension * 0.8;
+    final key = event.logicalKey;
+    if (key != LogicalKeyboardKey.pageDown && key != LogicalKeyboardKey.pageUp)
+      return KeyEventResult.ignored;
+    _scroll.jumpTo(
+      (position.pixels + (key == LogicalKeyboardKey.pageDown ? step : -step))
+          .clamp(position.minScrollExtent, position.maxScrollExtent),
+    );
+    return KeyEventResult.handled;
+  }
+
   bool managed = false, busy = false, reviewing = false, failed = false;
   String query = '';
   String? message;
@@ -113,6 +144,7 @@ class _PackagesPageState extends State<PackagesPage> {
   int unavailableSources = 0;
 
   Future<bool> review(String title, List<Widget> content) async {
+    final previousFocus = FocusManager.instance.primaryFocus;
     setState(() => reviewing = true);
     final result = await showDialog<bool>(
       context: context,
@@ -142,6 +174,13 @@ class _PackagesPageState extends State<PackagesPage> {
     );
     if (!mounted) return false;
     setState(() => reviewing = false);
+    if (result != true) {
+      if (previousFocus?.context != null && previousFocus!.canRequestFocus) {
+        previousFocus.requestFocus();
+      } else {
+        _resultsFocus.requestFocus();
+      }
+    }
     return result == true;
   }
 
@@ -198,6 +237,7 @@ class _PackagesPageState extends State<PackagesPage> {
         ]))
       return;
     if (!mounted) return;
+    final focusBeforeLoad = FocusManager.instance.primaryFocus;
     setState(() {
       busy = true;
       records = null;
@@ -216,6 +256,11 @@ class _PackagesPageState extends State<PackagesPage> {
             ? 'WinGet discovery is unavailable.'
             : 'Application records are unavailable or invalid. No package change was requested.';
       });
+    if (mounted &&
+        loaded &&
+        identical(FocusManager.instance.primaryFocus, focusBeforeLoad)) {
+      _resultsFocus.requestFocus();
+    }
   }
 
   Future<void> change(PackageRecord record, {required bool upgrade}) async {
@@ -295,186 +340,192 @@ class _PackagesPageState extends State<PackagesPage> {
         alignment: Alignment.topCenter,
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 1100),
-          child: ListView(
-            padding: const EdgeInsets.all(24),
-            children: [
-              UiText(
-                'Review installed applications',
-                style: Theme.of(context).textTheme.headlineMedium,
-              ),
-              const SizedBox(height: 12),
-              const UiText(
-                'General inventory is read-only. Exact WinGet matches provide separately reviewed package actions.',
-              ),
-              const SizedBox(height: 16),
-              LabeledControl(
-                label: localize(context, 'Inventory source'),
-                child: DropdownButtonFormField<bool>(
-                  initialValue: managed,
-                  isExpanded: true,
-                  isDense: false,
-                  itemHeight: null,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                  ),
-                  items: [
-                    DropdownMenuItem(
-                      value: false,
-                      child: const UiText('Installed applications'),
-                    ),
-                    DropdownMenuItem(
-                      value: true,
-                      child: const UiText('WinGet matches'),
-                    ),
-                  ],
-                  onChanged: busy || reviewing
-                      ? null
-                      : (value) => setState(() {
-                          managed = value!;
-                          records = null;
-                          unavailableSources = 0;
-                          unavailableReason = null;
-                          message = null;
-                          failed = false;
-                        }),
+          child: Focus(
+            focusNode: _resultsFocus,
+            onKeyEvent: _scrollKey,
+            child: ListView(
+              controller: _scroll,
+              padding: const EdgeInsets.all(24),
+              children: [
+                UiText(
+                  'Review installed applications',
+                  style: Theme.of(context).textTheme.headlineMedium,
                 ),
-              ),
-              const SizedBox(height: 16),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: FilledButton.icon(
-                  onPressed: busy || reviewing ? null : load,
-                  icon: const Icon(Icons.refresh),
-                  label: UiText(
-                    managed ? 'Discover WinGet packages' : 'Refresh records',
+                const SizedBox(height: 12),
+                const UiText(
+                  'General inventory is read-only. Exact WinGet matches provide separately reviewed package actions.',
+                ),
+                const SizedBox(height: 16),
+                LabeledControl(
+                  label: localize(context, 'Inventory source'),
+                  child: DropdownButtonFormField<bool>(
+                    initialValue: managed,
+                    isExpanded: true,
+                    isDense: false,
+                    itemHeight: null,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                    ),
+                    items: [
+                      DropdownMenuItem(
+                        value: false,
+                        child: const UiText('Installed applications'),
+                      ),
+                      DropdownMenuItem(
+                        value: true,
+                        child: const UiText('WinGet matches'),
+                      ),
+                    ],
+                    onChanged: busy || reviewing
+                        ? null
+                        : (value) => setState(() {
+                            managed = value!;
+                            records = null;
+                            unavailableSources = 0;
+                            unavailableReason = null;
+                            message = null;
+                            failed = false;
+                          }),
                   ),
                 ),
-              ),
-              const SizedBox(height: 16),
-              LabeledSearchBar(
-                label: localize(context, 'Filter application records'),
-                leading: const Icon(Icons.search),
-                onChanged: (value) => setState(() => query = value),
-              ),
-              const SizedBox(height: 16),
-              OperationMotion(
-                state: busy
-                    ? 'working'
-                    : failed
-                    ? 'error'
-                    : records != null
-                    ? 'complete'
-                    : 'idle',
-              ),
-              if (busy) const LinearProgressIndicator(),
-              if (message != null)
-                Semantics(
-                  liveRegion: true,
-                  child: Card(
+                const SizedBox(height: 16),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: FilledButton.icon(
+                    onPressed: busy || reviewing ? null : load,
+                    icon: const Icon(Icons.refresh),
+                    label: UiText(
+                      managed ? 'Discover WinGet packages' : 'Refresh records',
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                LabeledSearchBar(
+                  label: localize(context, 'Filter application records'),
+                  leading: const Icon(Icons.search),
+                  onChanged: (value) => setState(() => query = value),
+                ),
+                const SizedBox(height: 16),
+                OperationMotion(
+                  state: busy
+                      ? 'working'
+                      : failed
+                      ? 'error'
+                      : records != null
+                      ? 'complete'
+                      : 'idle',
+                ),
+                if (busy) const LinearProgressIndicator(),
+                if (message != null)
+                  Semantics(
+                    liveRegion: true,
+                    child: Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: UiText(message!),
+                      ),
+                    ),
+                  ),
+                if (unavailableReason != null)
+                  Card(
                     child: Padding(
                       padding: const EdgeInsets.all(16),
-                      child: UiText(message!),
+                      child: UiText(unavailableReason!),
                     ),
                   ),
-                ),
-              if (unavailableReason != null)
-                Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: UiText(unavailableReason!),
+                if (records == null && message == null && !busy)
+                  const UiText(
+                    'Select an inventory source and refresh to begin. No package changes occur during discovery.',
                   ),
-                ),
-              if (records == null && message == null && !busy)
-                const UiText(
-                  'Select an inventory source and refresh to begin. No package changes occur during discovery.',
-                ),
-              if (unavailableSources > 0)
-                const UiText(
-                  'Some inventory sources could not be read. Displayed records are incomplete.',
-                ),
-              if (managed)
-                const UiText(
-                  'Only installed WinGet matches are listed. Available update versions have not been checked.',
-                ),
-              if (records != null)
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 12),
-                  child: Text(
-                    '${localize(context, 'Matching entries')}: ${shown.length} / ${records!.length}',
+                if (unavailableSources > 0)
+                  const UiText(
+                    'Some inventory sources could not be read. Displayed records are incomplete.',
                   ),
-                ),
-              if (records != null && shown.isEmpty)
-                const UiText(
-                  'No application records match the current filter.',
-                ),
-              for (final record in shown)
-                Card(
-                  key: ValueKey(record.id),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        SelectableText(
-                          record.name,
-                          style: Theme.of(context).textTheme.titleMedium,
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          '${localize(context, 'Installed version')}: ${record.version ?? localize(context, 'Unavailable')}',
-                        ),
-                        if (record.publisher != null)
+                if (managed)
+                  const UiText(
+                    'Only installed WinGet matches are listed. Available update versions have not been checked.',
+                  ),
+                if (records != null)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    child: Text(
+                      '${localize(context, 'Matching entries')}: ${shown.length} / ${records!.length}',
+                    ),
+                  ),
+                if (records != null && shown.isEmpty)
+                  const UiText(
+                    'No application records match the current filter.',
+                  ),
+                for (final record in shown)
+                  Card(
+                    key: ValueKey(record.id),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          SelectableText(
+                            record.name,
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                          const SizedBox(height: 8),
                           Text(
-                            '${localize(context, 'Publisher')}: ${record.publisher}',
+                            '${localize(context, 'Installed version')}: ${record.version ?? localize(context, 'Unavailable')}',
                           ),
-                        UiText(
-                          record.source == 'winget'
-                              ? 'Matched by WinGet'
-                              : record.source == 'appx'
-                              ? 'Current-user packaged application'
-                              : 'Installed application registry',
-                        ),
-                        if (record.scope != null)
-                          UiText(
-                            record.scope == 'user'
-                                ? 'Current user'
-                                : 'All users',
-                          ),
-                        if (record.packageId == null)
-                          const UiText(
-                            'Read-only record. Use a verified WinGet match for package actions.',
-                          ),
-                        if (record.canUpgrade || record.canUninstall)
-                          Padding(
-                            padding: const EdgeInsets.only(top: 12),
-                            child: Wrap(
-                              spacing: 12,
-                              runSpacing: 12,
-                              children: [
-                                if (record.canUpgrade)
-                                  OutlinedButton.icon(
-                                    onPressed: busy || reviewing
-                                        ? null
-                                        : () => change(record, upgrade: true),
-                                    icon: const Icon(Icons.system_update_alt),
-                                    label: const UiText('Review upgrade'),
-                                  ),
-                                if (record.canUninstall)
-                                  OutlinedButton.icon(
-                                    onPressed: busy || reviewing
-                                        ? null
-                                        : () => change(record, upgrade: false),
-                                    icon: const Icon(Icons.delete_outline),
-                                    label: const UiText('Review uninstall'),
-                                  ),
-                              ],
+                          if (record.publisher != null)
+                            Text(
+                              '${localize(context, 'Publisher')}: ${record.publisher}',
                             ),
+                          UiText(
+                            record.source == 'winget'
+                                ? 'Matched by WinGet'
+                                : record.source == 'appx'
+                                ? 'Current-user packaged application'
+                                : 'Installed application registry',
                           ),
-                      ],
+                          if (record.scope != null)
+                            UiText(
+                              record.scope == 'user'
+                                  ? 'Current user'
+                                  : 'All users',
+                            ),
+                          if (record.packageId == null)
+                            const UiText(
+                              'Read-only record. Use a verified WinGet match for package actions.',
+                            ),
+                          if (record.canUpgrade || record.canUninstall)
+                            Padding(
+                              padding: const EdgeInsets.only(top: 12),
+                              child: Wrap(
+                                spacing: 12,
+                                runSpacing: 12,
+                                children: [
+                                  if (record.canUpgrade)
+                                    OutlinedButton.icon(
+                                      onPressed: busy || reviewing
+                                          ? null
+                                          : () => change(record, upgrade: true),
+                                      icon: const Icon(Icons.system_update_alt),
+                                      label: const UiText('Review upgrade'),
+                                    ),
+                                  if (record.canUninstall)
+                                    OutlinedButton.icon(
+                                      onPressed: busy || reviewing
+                                          ? null
+                                          : () =>
+                                                change(record, upgrade: false),
+                                      icon: const Icon(Icons.delete_outline),
+                                      label: const UiText('Review uninstall'),
+                                    ),
+                                ],
+                              ),
+                            ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
