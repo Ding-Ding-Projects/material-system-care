@@ -1,5 +1,9 @@
 # Continuation
 
+## Service review source checkpoint
+
+Tools > Services now exposes existing read-only engine records through explicit refresh, text/state filters and expandable factual metadata. Singleton PowerShell output is normalized; duplicate identities and invalid responses are rejected without stale records. Four focused widget checks passed. Root builds, actual service collection and captures remain pending. No service mutation was added.
+
 ## Live guide verification
 
 The d5a7c6908513baeb7fbe38d1c182c0ff5bd16ca9 documentation deployment 38017920907 succeeded. Public home, guide JavaScript, scheduled-tasks-idle.png and coverage.json matched local build bytes. The About homepage and workflow/main deployment source were read back. Two isolated Edge page captures (1440×1000 desktop and 390×844 emulated mobile, English/light/scale 1) were inspected. Observed console/exception/resource/bad-response/unexpected-origin counts were zero; both body widths stayed within their viewport and 19 interactive accessibility nodes had names. Keyboard paths and the full matrix were not checked. The mobile initial viewport shows navigation, with the article below the fold. Normal window close removed the saved Edge root; subsequent exact-profile, listener and empty-desktop checks passed and the desktop closed. Generic lifecycle cleanup reported UNKNOWN_PROCESS_TREE after root exit, so no full canonical audit claim is made. The isolated guest profile remains retained privately. See docs/verification/site-scheduled-tasks.json. The Windows package run for producer ead6535 completed successfully with publication skipped; the newer d5a7c69 package run 38017920915 also completed successfully. No release publication is claimed.

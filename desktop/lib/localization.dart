@@ -12,6 +12,29 @@ class CopyScope extends InheritedWidget {
 }
 
 const translations = <String, String>{
+  "Services": "服務",
+  "Review local services": "檢視本機服務",
+  "Read service names, current states and configured start types. This workspace never starts, stops or reconfigures a service.":
+      "讀取服務名稱、目前狀態及設定的啟動類型。此工作區不會啟動、停止或重新設定服務。",
+  "Read services": "讀取服務",
+  "Service state": "服務狀態",
+  "All states": "所有狀態",
+  "Running": "執行中",
+  "Stopped": "已停止",
+  "Paused": "已暫停",
+  "Filter loaded services": "篩選已載入服務",
+  "No services collected. Start an explicit read above.": "尚未收集服務，請在上方主動讀取。",
+  "States can change after collection. Start type alone does not establish whether a service is needed or safe to disable.":
+      "收集後狀態可能改變。啟動類型本身不能判定服務是否必需或可安全停用。",
+  "Matching loaded services": "符合的已載入服務",
+  "No matching loaded services.": "沒有符合的已載入服務。",
+  "Service name": "服務名稱",
+  "Configured start type": "設定的啟動類型",
+  "Read-only record. Refresh to obtain current state.": "唯讀記錄，重新讀取可取得目前狀態。",
+  "Service names can contain local product details. Records remain transient and are not uploaded or automatically saved.":
+      "服務名稱可能包含本機產品資料。記錄僅暫存，不會上傳或自動儲存。",
+  "Service inventory is unavailable or invalid. No service was changed.":
+      "服務清單無法取得或格式無效，沒有更改任何服務。",
   "Scheduled tasks": "排程工作",
   "Review scheduled tasks": "檢視排程工作",
   "Inspect tasks visible to this account. This workspace never runs, enables, disables or changes a task.":

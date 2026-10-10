@@ -11,6 +11,7 @@ import 'crash_diagnostics.dart';
 import 'processes.dart';
 import 'file_use.dart';
 import 'scheduled_tasks.dart';
+import 'services.dart';
 import 'frame_capture.dart';
 import 'wording_cache.dart';
 
@@ -22,6 +23,7 @@ void main(List<String> arguments) {
   final processes = arguments.contains('--processes');
   final fileUse = arguments.contains('--file-use');
   final scheduledTasks = arguments.contains('--scheduled-tasks');
+  final services = arguments.contains('--services');
   // Capture mode is explicit, starts at the selected real workspace, and
   // excludes persisted personal settings. It never injects diagnostic results.
   final exporting =
@@ -30,6 +32,7 @@ void main(List<String> arguments) {
             processes,
             fileUse,
             scheduledTasks,
+            services,
           ].where((selected) => selected).length ==
           1 &&
       capture.length == 1;
@@ -38,6 +41,7 @@ void main(List<String> arguments) {
     startProcesses: processes,
     startFileUse: fileUse,
     startScheduledTasks: scheduledTasks,
+    startServices: services,
     isolatedCapture: exporting,
   );
   runApp(
@@ -97,6 +101,7 @@ class CareApp extends StatefulWidget {
     this.startProcesses = false,
     this.startFileUse = false,
     this.startScheduledTasks = false,
+    this.startServices = false,
     this.isolatedCapture = false,
   });
   final WordingCache? wordingCache;
@@ -104,6 +109,7 @@ class CareApp extends StatefulWidget {
   final bool startProcesses;
   final bool startFileUse;
   final bool startScheduledTasks;
+  final bool startServices;
   final bool isolatedCapture;
   @override
   State<CareApp> createState() => _CareAppState();
@@ -187,6 +193,8 @@ class _CareAppState extends State<CareApp> {
             ? FileUsePage(invoke: Engine.invoke)
             : widget.startScheduledTasks
             ? ScheduledTasksPage(invoke: Engine.invoke)
+            : widget.startServices
+            ? ServicesPage(invoke: Engine.invoke)
             : Workspace(
                 settings: settings,
                 wordingCache: widget.wordingCache,
@@ -1077,6 +1085,24 @@ class _ToolsEditorState extends State<ToolsEditor> {
                   ),
             icon: const Icon(Icons.schedule),
             label: const UiText('Scheduled tasks'),
+          ),
+        ),
+        const SizedBox(height: 12),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: FilledButton.tonalIcon(
+            onPressed: widget.busy
+                ? null
+                : () => Navigator.of(context).push(
+                    MaterialPageRoute<void>(
+                      builder: (_) => CopyScope(
+                        preferences: CopyScope.of(context),
+                        child: ServicesPage(invoke: Engine.invoke),
+                      ),
+                    ),
+                  ),
+            icon: const Icon(Icons.miscellaneous_services),
+            label: const UiText('Services'),
           ),
         ),
         const SizedBox(height: 12),

@@ -207,7 +207,8 @@
     "desktop.crash-diagnostics",
     "desktop.processes",
     "desktop.file-use",
-    "desktop.scheduled-tasks"
+    "desktop.scheduled-tasks",
+    "desktop.services"
   ],
   "notApplicableDelivery": {
     "postman-collections": "The engine protocol uses a local named pipe, not an HTTP API. Add collections if an HTTP provider API is introduced.",

@@ -88,3 +88,5 @@ The [scheduled-task frame receipt](docs/captures/scheduled-tasks-idle.json) bind
 ![Live scheduled-task guide at desktop size](docs/captures/site-scheduled-tasks-desktop.png)
 
 The [live guide receipt](docs/verification/site-scheduled-tasks.json) records inspected desktop and [emulated mobile](docs/captures/site-scheduled-tasks-mobile.png) page pixels from the verified public deployment. These are partial page-level observations, not a complete accessibility or layout verdict.
+
+Service review is available under Tools > Services with explicit collection and loaded-record filtering. See [behavior and limits](docs/features/management/services.md). Runtime verification is pending for this new surface.

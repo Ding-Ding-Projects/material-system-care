@@ -27,3 +27,5 @@ All external commands use full fixed paths, no shell, and separate `ArgumentList
 `tests/management/ManagementFixtures.cs` provides adapter fixtures and policy checks, intended for the foundation test runner. No maintenance commands were executed on the development computer. Compilation and integrated runtime evidence remain pending the root build entrypoint and foundation assembly. This module has no HTTP API, so a Postman collection is not applicable.
 
 - [Scheduled-task review](scheduled-tasks.md): bounded, read-only task metadata and interpretation limits.
+
+- [Service review](services.md): explicit read-only inventory, state filters and configured-start metadata.
