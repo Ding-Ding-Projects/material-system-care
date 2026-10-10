@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "6d3695e738b0902390e473f6aaf1fb153c30f106",
+  "frameManifest": "docs/verification/packages-keyboard-frames.json",
+  "viewport": {
+    "width": 800,
+    "height": 600
+  },
+  "language": "both",
+  "theme": "dark",
+  "textScale": 2,
+  "motion": "reduced",
+  "captureMethod": "flutter-repaint-boundary",
+  "matchedRecordCount": 45,
+  "inspectedObservations": {
+    "sourcePopupBilingual": true,
+    "discoveryReviewBilingual": true,
+    "pageDownReachedLaterCards": true,
+    "tabFocusVisibleOnReviewActions": true,
+    "enterOpenedExactSelectedReview": true,
+    "reviewActionsVisible": true,
+    "escapeDismissedReview": false,
+    "explicitCancelReturnedToRecords": true,
+    "pageDownWorkedAfterCancellation": true,
+    "pageUpMovedBackThroughRecords": true
+  },
+  "scopeLimits": [
+    "No package upgrade or uninstall was confirmed.",
+    "An Escape key attempt did not dismiss the confirmation; the explicit Cancel button was used. The historical action filename review-cancelled.json names an attempted key action, not a successful cancellation.",
+    "A rejected unsupported key name produced no input and no capture and is excluded from the successful input inventory.",
+    "The two registered Flutter diagnostic hooks reported zero observations. Browser, native compositor, physical DPI and complete accessibility coverage are not established.",
+    "Raw frames contain local installed-package inventory and remain private.",
+    "The narrow verifier validates source, bytes, timing and hook metadata. Manual review supplies the stated visual observations; supporting action hashes do not certify their semantics."
+  ],
+  "ownedTeardown": {
+    "allBundleExecutablesAbsent": true,
+    "desktopEmpty": true,
+    "desktopClosed": true
+  }
+}

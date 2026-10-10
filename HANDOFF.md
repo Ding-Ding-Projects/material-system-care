@@ -1,12 +1,14 @@
 # Implementation handoff
 
-## Package keyboard repair awaiting live acceptance
+## Verified package keyboard repair
 
-The isolated repair at `1c6b7049f04979de209c87d02c1d787923c4e58d` is integrated into this candidate. The results list now owns a bounded Page Up/Page Down focus target. Discovery completion restores that target only when focus has not moved elsewhere, and cancellation restores an attached previous control or the results target. Normal paging uses a 200 ms eased animation; reduced motion moves immediately. Fifteen package tests and the exact root desktop build passed in the isolated producer. Independent source reviews found no concrete regression in either the focus change or the motion delta. The integrated candidate still needs its own build and real 800×600 keyboard verification.
+The isolated repair at `1c6b7049f04979de209c87d02c1d787923c4e58d` is integrated at `6d3695e738b0902390e473f6aaf1fb153c30f106`, whose exact root desktop build passed. At 800×600, bilingual dark mode, doubled text and reduced motion, real discovery returned 45 matches. Page Down reached later package cards, Tab visibly focused their actions, and Enter opened the exact selected removal review. Its title, identity, version, consequence and both actions were visible. The explicit Cancel button returned to records; Page Down and Page Up then moved through later cards. No upgrade or removal was confirmed. Escape did not dismiss the review and is recorded as an unsuccessful attempt, not cancellation proof.
+
+Fifteen inspected raw frames passed the narrow observed-frame verifier, with source/bundle hashes, timing and zero healthy observations from the two registered Flutter hooks. Eighteen supporting records are hash-bound. All owned bundle executables were absent and the empty hidden desktop closed. Raw inventory frames remain private; this does not establish native-compositor, physical-DPI, full accessibility or the complete motion matrix. See `docs/verification/packages-keyboard-frames.json` and `docs/verification/packages-keyboard-observations.json`. Fifteen focused tests and two independent source reviews cover the bounded focus/paging repair; normal motion is a 200 ms animation and reduced motion is immediate.
 
 The last verified public deployment remains `38084415968` at `f1aeb4a666f8b19ad4bf589dfbbbb902c954f273`: 175 complete articles and 730 matching files, with exact About homepage readback. `docs/verification/startup-live-delivery.json` records that earlier delivery, not this candidate. No installed package was changed and no final release exists.
 
-中文：套件鍵盤修正已合併到候選版本，十五項指定測試及獨立建置通過，來源覆核未發現具體回歸。仍須重新建置合併版本，再以真正 800×600 雙語畫面驗證下方卡片、焦點及取消流程。沒有變更已安裝套件，亦未發佈最終版本。
+中文：合併版本已重新建置。真正 800×600、兩倍雙語文字畫面可用 Page Down 到較後卡片，Tab 顯示操作焦點，Enter 開啟指定移除覆核。明確取消後可繼續上下翻頁；Escape 沒有關閉覆核，因此不作取消證據。十五張原始畫面已核對來源及診斷記錄，程序及隱藏桌面已關閉。沒有變更已安裝套件，完整無障礙及外觀矩陣仍未完成。
 
 ## Observed package frames and remaining keyboard defect
 

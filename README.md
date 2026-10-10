@@ -20,6 +20,8 @@ The dedicated [startup review workspace](docs/features/management/startup-review
 
 A Windows 11 x64 maintenance and diagnostics workspace built with Flutter, .NET 10, and Material Design 3.
 
+The typed [application and package workspace](docs/features/management/managed-packages.md) has bounded real discovery and keyboard-review evidence at 800×600 with doubled bilingual text. Paging reaches later cards, selected review actions accept keyboard activation, and explicit cancellation restores navigation. Its private inventory frames are source-bound; no package upgrade or removal was confirmed.
+
 **Development status:** implementation is in progress. No production installer or complete feature-parity claim is available yet.
 
 [Public documentation and capability explorer](https://ding-ding-projects.github.io/material-system-care/)
