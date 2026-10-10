@@ -1,5 +1,7 @@
 # Local management
 
+- [Text selection commands](selection-commands.md): seven localized default Material toolbar labels.
+
 - [Process inspection](processes.md): exact-identity review and truthful graceful-close receipts.
 
 - [Managed package discovery](managed-packages.md): explicit structured WinGet matches and contextual actions.

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'settings.dart';
 import 'localization.dart';
+import 'selection_localizations.dart';
 import 'labeled_controls.dart';
 import 'notifications.dart';
 import 'provenance.dart';
@@ -192,6 +193,7 @@ class _CareAppState extends State<CareApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Material System Care',
+      localizationsDelegates: [SelectionLocalizationsDelegate(settings)],
       builder: (context, child) => MediaQuery(
         data: MediaQuery.of(context).copyWith(
           textScaler: ComposedTextScaler(

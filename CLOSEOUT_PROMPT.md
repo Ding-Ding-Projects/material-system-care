@@ -4,6 +4,8 @@ Continue the independent Windows 11 x64 suite in Ding-Ding-Projects/material-sys
 
 ## Latest verified unit
 
+Selection-toolbar candidate `638a56000ad88b429c4216c63f192468000e4d8c` passed 21 focused checks, the isolated root desktop build and two source reviews. Integrated build and actual bilingual popup inspection are pending. Seven default labels are covered; other Material strings and system clipboard behavior remain separate. The isolated implementation lane is starting dedicated read-only folder analysis without new engine methods.
+
 The integrated reference-copy feedback source `38804e4` passed the exact root desktop build. Real system-clipboard success/failure remains unverified. A new isolated source unit is implementing only the seven default Flutter text-selection labels through a shared MaterialLocalizations delegate; broader framework/menu localization is not claimed.
 
 Current source integrates `ed7108a2bfdd7c7e9e4515231fc25bfec3ba0322` for local reference-copy rejection feedback. Three mocked clipboard cases plus eleven related diagnostic checks, isolated build and independent review passed. Integrated build remains pending. Actual clipboard success/failure remains unverified; no user clipboard contents were read or changed. Keep that boundary explicit.

@@ -1,5 +1,9 @@
 # Implementation handoff
 
+## Current selection-toolbar integration
+
+Candidate `638a56000ad88b429c4216c63f192468000e4d8c` localizes seven standard Material selection commands through a preference-backed delegate. Twenty-one focused checks, the isolated root desktop build and two independent source reviews passed. The integrated build and real popup inspection remain pending. Explicit custom labels and Flutter callbacks are preserved; other framework strings and actual clipboard operations are outside this limited evidence. Folder analysis is the next isolated implementation unit.
+
 The integrated reference-copy feedback source `38804e4` passed the exact root desktop build. This confirms compilation of the localized catch path, not an actual clipboard operation. The next narrow UI change targets seven official selection-toolbar labels; inherited framework strings remain outside that limited claim.
 
 ## Reference-copy feedback candidate

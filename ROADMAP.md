@@ -153,3 +153,4 @@
 - [ ] Complete package filtering, general installed-inventory interaction, remaining motion/theme/scale tuples and full accessibility verification.
 - [x] Verify real general-inventory display quality, fallback filtering, zero matches and clearing: 741 records retained with four explicit degraded-display warnings.
 - [ ] Complete bilingual text-selection menus and real Ctrl+A shortcut coverage, plus remaining general-inventory appearance/accessibility states.
+- [ ] Verify seven localized standard selection-command labels in the integrated real desktop; source, 21 focused checks and the isolated build passed.
