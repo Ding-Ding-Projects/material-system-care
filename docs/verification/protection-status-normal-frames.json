@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "scope": "observed-flutter-hooks-and-bytes",
+  "sourceCommit": "6803337b701c5be2f945e879ff5449223e84b2c6",
+  "buildReceiptSha256": "cc72f1caa2ee6e9ae478b43aaa2e992ebd023f6e3ba66684b106ca3cd7425f20",
+  "bundleManifestSha256": "8d00644bf49ea5712d92530c349fbe6ba0ba5df948b320e5008d39af0e778148",
+  "frames": [
+    {
+      "png": "output/frame-001.png",
+      "sidecar": "output/frame-001.png.json",
+      "sha256": "011717ce3404ddfea8945983cee6c70f2b0c7958c419f8bf2b365289764d15f4",
+      "sidecarSha256": "0e2c388ab74e642bf9f72379756574026f78479ecdf2c9eb353e439fc0bd9f48",
+      "sequence": 1
+    },
+    {
+      "png": "output/frame-002.png",
+      "sidecar": "output/frame-002.png.json",
+      "sha256": "9a0401132e7ec1740290d2da8069fed009a59c02b98e339700880b42ba4e1885",
+      "sidecarSha256": "dad3832278ab0462e87e6245637d98e999d42b8b2f73d0c4f80d40517e462819",
+      "sequence": 2
+    },
+    {
+      "png": "output/frame-003.png",
+      "sidecar": "output/frame-003.png.json",
+      "sha256": "954adaf7edd4698e02a904055663fb976eb2d674777c72a0ddc84ca6504f945f",
+      "sidecarSha256": "39173c4bbbf18571546d562c965175b314cd5c0e1e466357442c406a21026798",
+      "sequence": 3
+    },
+    {
+      "png": "output/frame-004.png",
+      "sidecar": "output/frame-004.png.json",
+      "sha256": "ae94f622ccb104f1b5f3eb7817f8d5c07d28625d40fc7553602d217f0af6a573",
+      "sidecarSha256": "4916e8980726dcffd99c7d1c397fb15e7139ed0a904132a79d41af5cbbd8314d",
+      "sequence": 4
+    },
+    {
+      "png": "output/frame-005.png",
+      "sidecar": "output/frame-005.png.json",
+      "sha256": "ca4001183ec42cbfbc5f23ae384fd2567a16256136cec27cf7fbdb845fc7d9ea",
+      "sidecarSha256": "87913420d6f81e52b7267fd71fdde29158320a59b59ccf1492096ac2a365482a",
+      "sequence": 5
+    },
+    {
+      "png": "output/frame-006.png",
+      "sidecar": "output/frame-006.png.json",
+      "sha256": "5fc158cbde0664e245e75d250df930b30d8ed1619f67f5affa62f3d80c879c63",
+      "sidecarSha256": "10f45f71e5dba2b6a20beb9c592fd38f3a474c7df839574d9fcfe10890eb6ba4",
+      "sequence": 6
+    },
+    {
+      "png": "output/frame-007.png",
+      "sidecar": "output/frame-007.png.json",
+      "sha256": "12d7e398ab2f7dc4da0d0c9110691098fc89097b46fef1ede1c8cf5c2f2807a4",
+      "sidecarSha256": "47bca591999dd289b5d199720842c7afd8c9914d9a8034b1151b20de211d79c3",
+      "sequence": 7
+    }
+  ],
+  "evidence": [
+    {
+      "role": "action",
+      "path": "protection-domain-expand.json",
+      "sha256": "75e2000ff01addb28e42699bd585193be890198f01aac6fc58399cc35c1e9eaf"
+    },
+    {
+      "role": "action",
+      "path": "protection-firewall-page.json",
+      "sha256": "dd2c0ea8cf3a487f26d2c190f3c819dda7f81d87f6a2ba49de8a20af7acca9fe"
+    },
+    {
+      "role": "action",
+      "path": "protection-initial-focus.json",
+      "sha256": "d0268ea9a516fb5d42c87b654f792292932f5d6edb28449199b3b28647b78725"
+    },
+    {
+      "role": "action",
+      "path": "protection-profile-details.json",
+      "sha256": "8bae880588faba86f0273c18388792f3267fcf54e58ef05090fbc6a587d858cb"
+    },
+    {
+      "role": "action",
+      "path": "protection-provider-details.json",
+      "sha256": "538807a20b3e2887251dda62abddce708feb2a5b90ce2f31e55cd191519a3d2c"
+    },
+    {
+      "role": "action",
+      "path": "protection-read.json",
+      "sha256": "2ef4bda065d5148c24e7c2c2408bc4be46c38a54decb8d9a4d355b2ec7e792ca"
+    },
+    {
+      "role": "action",
+      "path": "protection-result-focus.json",
+      "sha256": "37ef757c74de90d297a3d6d4fa82a1f3c547f802006a39b68252a83e2be41070"
+    },
+    {
+      "role": "teardown",
+      "path": "teardown.json",
+      "sha256": "01fa816e3e03df0aa68bef13a6285e3a40f76632966d29462ba3beb1869a7207"
+    }
+  ]
+}

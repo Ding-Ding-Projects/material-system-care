@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "6803337b701c5be2f945e879ff5449223e84b2c6",
+  "manifests": ["protection-status-normal-frames.json", "protection-status-minimum-frames.json"],
+  "tuples": [{"width": 1280, "height": 1000, "textScale": 1}, {"width": 800, "height": 600, "textScale": 2}],
+  "language": "both",
+  "theme": "dark",
+  "motion": "reduced",
+  "observed": {
+    "idleWithoutAutomaticRead": true,
+    "explicitRefresh": true,
+    "loadingFeedback": true,
+    "completedRead": true,
+    "separateReceiptAndProviderTimes": true,
+    "defenderFieldsAndMissingValues": true,
+    "threeFirewallProfiles": true,
+    "expandedDomainProfile": true,
+    "repeatedMinimumPaging": true,
+    "reverseMinimumPaging": true
+  },
+  "ownedProcessesAbsent": true,
+  "hiddenDesktopsClosed": true,
+  "publicFrames": [],
+  "limits": [
+    "Host protection information remains in private evidence; no populated status image is published.",
+    "This read-only observation does not establish security, antivirus effectiveness, effective firewall filtering or machine health.",
+    "Full keyboard focus order, other themes, normal motion, physical DPI and invalid/unavailable responses retain separate runtime requirements.",
+    "The narrow frame verifier binds source and bytes with two Flutter diagnostic hooks; it does not certify semantic actions, native compositor output or complete accessibility."
+  ]
+}
