@@ -18,6 +18,8 @@ Cancellation requests termination of the owned discovery process tree and observ
 
 ## Verification
 
+The installed client rejected an export path under the application's LocalAppData directory with `0x80070003`. Identical arguments succeeded in the account's temporary directory. Requests therefore use uniquely named temporary directories rather than the maintenance data directory; only their exact output and empty directory are cleanup targets.
+
 Integrated fixtures verify exact-ID projection, unknown update status, omitted custom switches, malformed/duplicate/oversized export rejection, fixture isolation and mutation consent. The Flutter fixture proves that discovery waits for explicit review and that cancelling the selected upgrade review makes no mutation request. No installed package was changed during these checks. Built runtime discovery and visual interaction remain separately tracked in the handoff.
 
 Sources: [Microsoft's export command](https://learn.microsoft.com/en-us/windows/package-manager/winget/export) and [the official package-export schema](https://github.com/microsoft/winget-cli/blob/master/schemas/JSON/packages/packages.schema.2.0.json).

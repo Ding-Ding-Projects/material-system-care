@@ -45,12 +45,15 @@ public static class PackageInventory
 
     private static EngineException Invalid(string message) => new("INVALID_PACKAGE_INVENTORY", message);
 
-    public static async Task<object> CollectAsync(string dataRoot, CancellationToken ct)
+    public static async Task<object> CollectAsync(CancellationToken ct)
     {
         ct.ThrowIfCancellationRequested();
         var executable = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Microsoft", "WindowsApps", "winget.exe");
         if (!File.Exists(executable)) return new { available = false, records = Array.Empty<PackageRecord>(), reason = "WinGet is not installed for the current user." };
-        var folder = Path.Combine(dataRoot, "package-discovery-" + Guid.NewGuid().ToString("N"));
+        // Packaged WinGet cannot reliably address arbitrary LocalAppData
+        // children. The account's temporary directory is the supported scratch
+        // location verified with the installed client.
+        var folder = Path.Combine(Path.GetTempPath(), "MaterialSystemCare-package-discovery-" + Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(folder);
         var output = Path.Combine(folder, "packages.json");
         try {
@@ -110,7 +113,7 @@ public static class PackageInventory
             // Only this request's exact output and empty scratch directory are removed.
             try { if (File.Exists(output)) File.Delete(output); Directory.Delete(folder, false); }
             catch (Exception error) when (error is IOException or UnauthorizedAccessException) {
-                throw new EngineException("DISCOVERY_CLEANUP_INCOMPLETE", "Discovery ended, but its temporary local inventory could not be removed. A copy may remain in this account's application data. No package was changed.");
+                throw new EngineException("DISCOVERY_CLEANUP_INCOMPLETE", "Discovery ended, but its temporary local inventory could not be removed. A copy may remain in this account's temporary directory. No package was changed.");
             }
         }
     }

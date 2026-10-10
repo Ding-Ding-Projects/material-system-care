@@ -21,7 +21,7 @@ public sealed class ManagementModule : IEngineModule
             case "apps.list": return await platform.AppsAsync(cancellationToken);
             case "apps.managed":
                 if (context.IsFixture && platform.GetType() == typeof(ManagementPlatform)) throw new EngineException("LIVE_COLLECTION_DISABLED", "Fixture contexts cannot discover installed host packages.");
-                return await platform.ManagedAppsAsync(context.DataRoot, cancellationToken);
+                return await platform.ManagedAppsAsync(cancellationToken);
             case "apps.updates": return await platform.UpdatesAsync(cancellationToken);
             case "apps.upgrade":
             case "apps.uninstall":
@@ -66,7 +66,7 @@ public static class ManagementPolicy
 
 public class ManagementPlatform
 {
-    public virtual Task<object> ManagedAppsAsync(string dataRoot, CancellationToken ct) => PackageInventory.CollectAsync(dataRoot, ct);
+    public virtual Task<object> ManagedAppsAsync(CancellationToken ct) => PackageInventory.CollectAsync(ct);
     private const string RunKey = @"Software\Microsoft\Windows\CurrentVersion\Run";
     public virtual async Task<object> AppsAsync(CancellationToken ct)
     {
