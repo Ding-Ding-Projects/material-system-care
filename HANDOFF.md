@@ -1,5 +1,9 @@
 # Implementation handoff
 
+## Driver-store runtime acceptance
+
+Integrated source `83f6503d88f31fce43bdbc25477599bd3989839c` passed the exact root desktop build after one MSBuild task-host initialization failure. Its bounded retry completed; Flutter reported a 19.4-second build phase. Sixty-five focused checks and two independent source reviews cover the isolated candidate. Actual explicit collection returned 27 packages at normal and minimum doubled-bilingual viewports, with first-package metadata, receipt meaning, signer limitations, repeated paging and reverse movement inspected. Fourteen selected frames and nineteen supporting hashes passed the narrow verifier. Both owned process sets and desktops closed. One genuine idle frame is published with a version-2 promotion receipt; host records remain private. Complete appearance, physical DPI, keyboard order and unavailable states remain pending.
+
 ## Minimum-size duplicate collection
 
 Retained build `6803337b701c5be2f945e879ff5449223e84b2c6` completed the owned seven-file duplicate fixture at 800×600, doubled bilingual text, dark theme and reduced motion. Root entry, review, confirmation, the correct two-group summary, repeated paging, both expansions and all first-group paths were inspected. Fourteen selected frames and twenty-one supporting hashes passed the narrow verifier. All seven fixture files remained unchanged and owned teardown completed. The twenty-frame cap ended this run at the second group's detail start, leaving full second-group path traversal, reverse paging and pending-read cancellation outside the evidence. See `docs/verification/duplicate-minimum-completion.json`.

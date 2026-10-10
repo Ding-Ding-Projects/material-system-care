@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "83f6503d88f31fce43bdbc25477599bd3989839c",
+  "manifests": ["driver-inventory-normal-frames.json", "driver-inventory-minimum-frames.json"],
+  "tuples": [{"width": 1280, "height": 1000, "textScale": 1}, {"width": 800, "height": 600, "textScale": 2}],
+  "language": "both",
+  "theme": "dark",
+  "motion": "reduced",
+  "observed": {
+    "explicitCollection": true,
+    "reportedPackages": 27,
+    "receiptTimeAndCaveats": true,
+    "firstPackageExpanded": true,
+    "allFirstPackageMetadataReached": true,
+    "repeatedPaging": true,
+    "reversePaging": true
+  },
+  "ownedProcessesAbsent": true,
+  "hiddenDesktopsClosed": true,
+  "publicFrames": ["driver-inventory-idle-minimum"],
+  "limits": [
+    "Reported signer text is not independent signature or trust verification, compatibility proof, device health or update availability.",
+    "Only third-party driver-store records are in scope; this is not a complete device-driver inventory.",
+    "The initial minimum-size click hit explanatory text and performed no collection. The subsequent corrected click and returned 27-record result establish the successful read.",
+    "Populated host records remain private. Other themes, normal motion, physical DPI, full keyboard order and unavailable/malformed response states retain separate requirements.",
+    "The first integrated root build failed during MSBuild task-host initialization. An unchanged exact-entrypoint retry passed. Flutter reported 19.4 seconds for its build phase, not the whole entrypoint."
+  ]
+}

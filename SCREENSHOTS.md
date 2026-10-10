@@ -1,5 +1,13 @@
 # Bilingual screenshot gallery · 雙語畫面集
 
+## Current driver-store workspace · 驅動程式存放區
+
+Source: `83f6503d88f31fce43bdbc25477599bd3989839c`. This original 800 × 600 idle frame uses doubled bilingual text, dark theme and reduced motion. It shows the explicit collection control before reading host data. Version-2 promotion binds the source, complete retained build evidence, original PNG, observed Flutter hooks, launch and owned teardown. It does not establish native-compositor output, physical DPI, complete accessibility or signer trust.
+
+來源版本如上。以下原始待命畫面未有收集本機資料，使用雙語、深色、兩倍文字及減少動態效果。畫面證據唔代表原生合成器、實體 DPI、完整無障礙或簽署信任已經驗證。
+
+![Bilingual driver-store review, minimum-size idle view](docs/captures/driver-inventory-idle-minimum.png)
+
 ## Current machine overview · 本機總覽
 
 Source: `e8e692bb386f9a7eb0cf4746fc3b044822bafd8b`. Both original 800 × 600 painted frames use bilingual dark mode, doubled text and reduced motion. The first shows idle build provenance; Page Down reveals the explicit refresh control in the second. They contain no machine inventory. The version-2 promotion records bind the actual Flutter framework/platform hooks, source, build, original PNG bytes, actions and owned teardown. They do not establish native-compositor output, physical DPI or the full interface matrix. [Exact inventory](docs/verification/painted-frame-inventory.json).

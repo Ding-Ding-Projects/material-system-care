@@ -19,7 +19,7 @@
       "inspectionStatus": "inspected",
       "title": [
         "Machine overview: idle",
-        "本機總覽：待命"
+        "\u672c\u6a5f\u7e3d\u89bd\uff1a\u5f85\u547d"
       ],
       "language": "both",
       "textScale": 2,
@@ -45,12 +45,38 @@
       "inspectionStatus": "inspected",
       "title": [
         "Machine overview: refresh control",
-        "本機總覽：重新整理控制"
+        "\u672c\u6a5f\u7e3d\u89bd\uff1a\u91cd\u65b0\u6574\u7406\u63a7\u5236"
       ],
       "language": "both",
       "textScale": 2,
       "reducedMotionRequested": true,
       "capturedAt": "2026-10-10T21:22:50.451605Z",
+      "captureMethod": "flutter-repaint-boundary"
+    },
+    {
+      "id": "driver-inventory-idle-minimum",
+      "active": true,
+      "path": "docs/captures/driver-inventory-idle-minimum.png",
+      "sourceCommit": "83f6503d88f31fce43bdbc25477599bd3989839c",
+      "artifactSha256": "c7263e421afc104f3f6df0d4ba93b97cddaf7e42d103fcbe799b1d6071f39208",
+      "captureSha256": "701cc47212769f43a219df0b92f28cc6232f5f59e61607a19a47223e724dfd39",
+      "screen": "driver-inventory",
+      "state": "idle-bilingual-text2",
+      "theme": "dark",
+      "viewportWidth": 800,
+      "viewportHeight": 600,
+      "scale": 1,
+      "interactionProofId": "driver-inventory-idle-launch",
+      "interactionReceiptSha256": "d8d97f6100ed72049c95c0de15a2f112da7cec45fba8301eb0656d412a9084a0",
+      "inspectionStatus": "inspected",
+      "title": [
+        "Driver store: idle",
+        "\u9a45\u52d5\u7a0b\u5f0f\u5b58\u653e\u5340\uff1a\u5f85\u547d"
+      ],
+      "language": "both",
+      "textScale": 2,
+      "reducedMotionRequested": true,
+      "capturedAt": "2026-10-10T21:37:01.029845Z",
       "captureMethod": "flutter-repaint-boundary"
     }
   ]

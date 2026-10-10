@@ -1,5 +1,11 @@
 # Material System Care
 
+The driver-store workspace now provides an explicit, read-only inventory with selectable package metadata and clear limits on signer information. This genuine 800 × 600 idle view uses doubled bilingual text and reduced motion. The populated host inventory stays private.
+
+驅動程式存放區頁面提供明確、唯讀嘅清單操作，簽署者資料唔等於獨立驗證。以下係真正 800 × 600、兩倍雙語文字待命畫面；本機清單保持私人。
+
+![Bilingual driver-store review, minimum-size idle view](docs/captures/driver-inventory-idle-minimum.png)
+
 The dedicated machine overview now shows explicit, timestamped memory and drive measurements. These two current minimum-size views show the bilingual idle state and the refresh control before collection, using doubled text and reduced motion. Measured host records remain private. See [the complete screenshot record](SCREENSHOTS.md) for scope and source binding.
 
 ![Bilingual machine overview, minimum size, view 1](docs/captures/overview-minimum-1.png)
