@@ -22,7 +22,7 @@ public interface IEngineModule {
 }
 ```
 
-`EngineContext` exposes `string DataRoot`, `bool IsElevated`, `Task RecordAsync(string operation, object details, CancellationToken ct)`, and `Task<object?> ReadSettingAsync(string key, CancellationToken ct)`. Modules must not share mutable static request state. `Program.ModuleInventory` explicitly registers six module types and 39 allowed methods. It drives construction, dispatch ownership and `engine.ping.capabilities`; arbitrary assembly/plugin discovery is not supported. Additional methods must enter that inventory and its consistency regression before integration.
+`EngineContext` exposes `string DataRoot`, `bool IsElevated`, `Task RecordAsync(string operation, object details, CancellationToken ct)`, and `Task<object?> ReadSettingAsync(string key, CancellationToken ct)`. Modules must not share mutable static request state. `Program.ModuleInventory` explicitly registers six module types and 40 allowed methods. It drives construction, dispatch ownership and `engine.ping.capabilities`; arbitrary assembly/plugin discovery is not supported. Additional methods must enter that inventory and its consistency regression before integration.
 
 ## Initial methods
 
@@ -32,7 +32,7 @@ public interface IEngineModule {
 | --- | --- | --- |
 | Core | `engine.ping`, `system.snapshot`, `settings.get`, `settings.save`, `history.list` | Version/capabilities; CPU, memory and drives; settings object; chronological operation records |
 | Storage | `storage.analyze`, `storage.duplicates`, `cleanup.scan`, `cleanup.apply`, `cleanup.restore`, `cleanup.history`, `cleanup.details` | Real file summaries; exact-match duplicate groups; approved cleanup plan; recovery receipt |
-| Management | `apps.list`, `apps.managed`, `apps.updates`, `apps.upgrade`, `apps.uninstall`, `startup.list`, `startup.set`, `processes.list`, `processes.stop`, `services.list` | Records with stable identifiers, capabilities, and per-operation results |
+| Management | `apps.list`, `apps.managed`, `apps.updates`, `apps.upgrade`, `apps.uninstall`, `startup.list`, `startup.set`, `processes.list`, `processes.stop`, `services.list`, `tasks.list` | Records with stable identifiers, capabilities, and per-operation results |
 | Security and drivers | `security.status`, `security.scan`, `drivers.list`, `drivers.export`, `drivers.install`, `network.diagnostics` | Actual platform state with unavailable reasons; explicit operation receipts |
 | Utilities | `files.hash`, `files.convert`, `password.generate`, `tools.catalogue`, `providers.list`, `providers.configure`, `providers.invoke` | Validated local output or clearly disclosed provider result |
 

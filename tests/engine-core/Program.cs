@@ -44,7 +44,7 @@ try {
     catch (EngineException ex) { Check(ex.Code == "RESULT_TOO_LARGE", "Global response serialization is bounded"); }
     var actualModules = MaterialSystemCare.Engine.Program.CreateModules();
     var advertised = MaterialSystemCare.Engine.Program.Capabilities;
-      Check(actualModules.Length == 6 && advertised.Length == 39 && advertised.Distinct().Count() == advertised.Length, "Explicit module inventory");
+    Check(actualModules.Length == 6 && advertised.Length == 40 && advertised.Contains("tasks.list") && advertised.Distinct().Count() == advertised.Length, "Explicit module inventory");
     Check(advertised.All(method => actualModules.Count(module => module.CanHandle(method)) == 1), "Every advertised method has one real owner");
     Check(!advertised.Contains("host.shutdown") && !advertised.Contains("security.disable"), "Unsupported operations absent");
     using var ping = JsonDocument.Parse(await MaterialSystemCare.Engine.Program.DispatchAsync("{\"version\":1,\"id\":\"inventory\",\"method\":\"engine.ping\",\"params\":{}}", context, actualModules, default));
