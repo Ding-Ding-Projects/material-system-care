@@ -3,7 +3,7 @@
 ## Complete documentation and bilingual gallery
 
 - [x] Capture and inspect forty bilingual initial desktop viewports with source binding, original-byte verification and lifecycle records.
-- [ ] Build, deploy and inspect the complete in-site article reader and forty-image gallery. Source and twelve website checks are ready; runtime verification pending.
+- [x] Build, deploy and inspect the complete in-site article reader and forty-image gallery: 168 article pages, 192 internal links/anchors, 688 deployed files verified; sampled live desktop and narrow views retained.
 - [ ] Import a separate wiki when its endpoint becomes available; currently no accessible wiki source.
 - [ ] Complete modern Material Design 3 visual and clipping verification across all supported surfaces and interactions.
 

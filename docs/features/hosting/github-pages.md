@@ -1,5 +1,22 @@
 # Public documentation deployment
 
+## Verified article and gallery delivery
+
+Deployment `38020360091` published source `c434189d5398365670d8aee4cbe2cc1e9d17fd6a`. All 688 retained deployment files returned matching bytes, including 168 complete article pages and all forty desktop gallery images. The compiled articles contained 192 internal article links and anchors with no missing target. The About homepage was read back as the exact public home URL.
+
+Live isolated Edge checks covered the gallery, the diagnostic article reader and its prerendered URL at 1440×1000, 390×844 and 320×800. The retained representative frames below had no body overflow, relevant console/resource failures or unnamed visible controls. These are sampled light-theme bilingual interface checks, not full theme, scaling, keyboard, motion or accessibility certification. Article text retains its published source language. Browser processes and debugging listeners exited; private profiles remain in the evidence inventory.
+
+![Live bilingual gallery, desktop](../../captures/website-gallery-desktop.png)
+![Live bilingual gallery, narrow viewport](../../captures/website-gallery-minimum.png)
+![Live complete article reader, desktop](../../captures/website-article-desktop.png)
+![Live complete article reader, narrow viewport](../../captures/website-article-minimum.png)
+
+Evidence: [website delivery receipt](../../verification/website-articles-gallery.json). `scripts/verify-website-gallery-evidence.mjs` checks retained image/receipt identities. `scripts/verify-published-docs.mjs` compares every deployed file to an exact retained build; an intentionally mismatched file was rejected. Local versus hosted text line endings differed, so the successful delivery comparison used the exact hosted build rather than silently normalizing hashes.
+
+### 已驗證交付
+
+正式部署的 688 個檔案均與保留的部署輸出一致，包括 168 篇完整文章及四十張桌面圖庫圖片。192 個內部文章連結及錨點均有目標。隔離瀏覽器亦檢查了桌面、390 及 320 像素畫面；這只是部分淺色雙語介面的驗證，並非完整主題、縮放、鍵盤或無障礙認證。文章保留原有語言，Wiki 端點仍未能使用。
+
 ## Complete articles and bilingual gallery
 
 The website has an internal complete-article reader at `#/articles` and a forty-image bilingual gallery at `#/gallery`. The build indexes tracked Markdown, excluding agent instructions and hosting administration files, preserves full article content, sanitizes active HTML, and rewrites relative article links to internal routes. It also emits a prerendered HTML copy of every article. Local documentation images and evidence files are copied from tracked public sources, never private capture directories.

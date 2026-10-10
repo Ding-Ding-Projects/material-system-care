@@ -124,3 +124,11 @@ The diagnostic workspace now validates complete responses before accepting evide
 ![Current diagnostic guidance from the rebuilt application](docs/captures/diagnostics-guidance.png)
 
 [Current response-validation evidence](docs/verification/diagnostics-guidance.json) binds this real guidance view to producer 5dbf2884901cbbad61a3c763c120b19d997928e8.
+
+## Complete documentation website · 完整文件網站
+
+Read [all articles](https://ding-ding-projects.github.io/material-system-care/#/articles) directly on the website. The deployment at `c434189` contained 168 complete articles and a forty-image bilingual desktop gallery; all 688 deployed files matched the retained build. [Verification and limitations](docs/features/hosting/github-pages.md).
+
+![Live bilingual gallery](docs/captures/website-gallery-desktop.png)
+
+網站內可直接閱讀完整文章，毋須跳轉至 GitHub 文件。上述驗證涵蓋指定部署及部分畫面，並非整個維護套件已完成。
