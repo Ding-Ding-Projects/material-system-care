@@ -224,7 +224,11 @@ class CleanupResults extends StatelessWidget {
     required this.busy,
     required this.onSelect,
     required this.onRestore,
+    this.header = const [],
+    this.controller,
   });
+  final List<Widget> header;
+  final ScrollController? controller;
   final CleanupResult result;
   final Set<int> visibleIndexes, selected;
   final bool busy;
@@ -247,7 +251,9 @@ class CleanupResults extends StatelessWidget {
         .toList();
     return ListView(
       key: const ValueKey('cleanup-results-list'),
+      controller: controller,
       children: [
+        ...header,
         Semantics(
           liveRegion: true,
           child: Padding(

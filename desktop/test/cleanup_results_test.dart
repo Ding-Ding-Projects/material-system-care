@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:material_system_care/cleanup.dart';
 import 'package:material_system_care/localization.dart';
 import 'package:material_system_care/main.dart';
+import 'package:material_system_care/cleanup_workspace.dart';
 
 void main() {
   test('method-required flags cannot be omitted or contradicted', () {
@@ -92,12 +93,23 @@ void main() {
         (call) async => {
           'ok': true,
           'result': {
-            'planId': 'plan-1',
+            'planId': 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
             'fixture': true,
+            'root': r'C:\fixture',
+            'category': 'aged-user-temp-files',
+            'minimumAgeDays': 7,
+            'expiresUtc': DateTime.now()
+                .toUtc()
+                .add(const Duration(hours: 1))
+                .toIso8601String(),
+            'totalBytes': 0,
+            'inaccessible': 0,
+            'reparseSkipped': 0,
+            'unavailable': 0,
             'truncated': false,
             'mutationPerformed': false,
             'targets': [
-              {'path': r'C:\fixture\only.tmp'},
+              {'path': r'C:\fixture\only.tmp', 'size': 0},
             ],
             'items': [
               {'path': 'wrong-a'},
@@ -112,7 +124,12 @@ void main() {
       );
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(body: WorkflowPage(index: 1, title: 'Storage')),
+          home: CleanupWorkspace(
+            invoke: Engine.invoke,
+            cancel: Engine.cancel,
+            onRecovery: (_) {},
+            fixture: true,
+          ),
         ),
       );
       await tester.tap(find.text('Scan recoverable cleanup'));
@@ -165,13 +182,24 @@ void main() {
       (call) async => {
         'ok': true,
         'result': {
-          'planId': 'plan-1',
+          'planId': 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
           'mutationPerformed': false,
           'fixture': true,
+          'root': r'C:\fixture',
+          'category': 'aged-user-temp-files',
+          'minimumAgeDays': 7,
+          'expiresUtc': DateTime.now()
+              .toUtc()
+              .add(const Duration(hours: 1))
+              .toIso8601String(),
+          'totalBytes': 0,
+          'inaccessible': 0,
+          'reparseSkipped': 0,
+          'unavailable': 0,
           'truncated': false,
           'targets': [
-            {'path': r'C:\fixture\first.tmp'},
-            {'path': r'C:\fixture\second.tmp'},
+            {'path': r'C:\fixture\first.tmp', 'size': 0},
+            {'path': r'C:\fixture\second.tmp', 'size': 0},
           ],
           'items': [
             {'path': r'C:\unrelated\wrong-first.tmp'},
@@ -183,7 +211,12 @@ void main() {
     addTearDown(() => messenger.setMockMethodCallHandler(Engine.channel, null));
     await tester.pumpWidget(
       MaterialApp(
-        home: Scaffold(body: WorkflowPage(index: 1, title: 'Storage')),
+        home: CleanupWorkspace(
+          invoke: Engine.invoke,
+          cancel: Engine.cancel,
+          onRecovery: (_) {},
+          fixture: true,
+        ),
       ),
     );
     await tester.tap(find.text('Scan recoverable cleanup'));
