@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_system_care/packages.dart';
 import 'package:material_system_care/localization.dart';
+import 'package:material_system_care/main.dart' as care;
 
 Map<String, dynamic> package({bool canUpgrade = true}) => {
   'id': 'winget:Publisher.Tool',
@@ -56,6 +57,58 @@ Future<void> discover(WidgetTester tester) async {
 }
 
 void main() {
+  testWidgets('popup routes retain bilingual and Cantonese preferences', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(1280, 1000);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    for (final language in ['both', 'yue']) {
+      await tester.pumpWidget(const SizedBox());
+      await tester.pumpWidget(
+        care.CareApp(
+          startPackages: true,
+          isolatedCapture: true,
+          capturePreferences: {'language': language, 'reducedMotion': true},
+        ),
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(find.byType(DropdownButtonFormField<bool>));
+      await tester.pumpAndSettle();
+      expect(
+        find.text(
+          language == 'both' ? 'WinGet matches\nWinGet 配對項目' : 'WinGet 配對項目',
+        ),
+        findsOneWidget,
+      );
+      await tester.tap(
+        find.text(
+          language == 'both' ? 'WinGet matches\nWinGet 配對項目' : 'WinGet 配對項目',
+        ),
+      );
+      await tester.pumpAndSettle();
+    }
+  });
+
+  testWidgets('discovery title is bilingual before any network request', (
+    tester,
+  ) async {
+    var calls = 0;
+    await mount(tester, (method, params) async {
+      calls++;
+      return inventory();
+    }, bilingual: true);
+    await selectManaged(tester);
+    await tester.tap(find.textContaining('Discover WinGet packages'));
+    await tester.pumpAndSettle();
+    expect(
+      find.text('Discover WinGet packages?\n探索 WinGet 套件？'),
+      findsOneWidget,
+    );
+    expect(calls, 0);
+  });
+
   test(
     'managed identities and capability fields are validated as one inventory',
     () {

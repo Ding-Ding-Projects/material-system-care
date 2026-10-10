@@ -202,26 +202,29 @@ class _CareAppState extends State<CareApp> {
               settings['reducedMotion'] == true ||
               MediaQuery.disableAnimationsOf(context),
         ),
-        child: widget.cleanupFixture
-            ? Column(
-                children: [
-                  Material(
-                    color: Theme.of(context).colorScheme.tertiaryContainer,
-                    child: const SafeArea(
-                      bottom: false,
-                      child: Padding(
-                        padding: EdgeInsets.all(8),
-                        child: Text(
-                          'Disposable cleanup verification only · 僅供即棄清理驗證',
-                          textAlign: TextAlign.center,
+        child: CopyScope(
+          preferences: settings,
+          child: widget.cleanupFixture
+              ? Column(
+                  children: [
+                    Material(
+                      color: Theme.of(context).colorScheme.tertiaryContainer,
+                      child: const SafeArea(
+                        bottom: false,
+                        child: Padding(
+                          padding: EdgeInsets.all(8),
+                          child: Text(
+                            'Disposable cleanup verification only · 僅供即棄清理驗證',
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Expanded(child: child!),
-                ],
-              )
-            : child!,
+                    Expanded(child: child!),
+                  ],
+                )
+              : child!,
+        ),
       ),
       themeMode: mode == 'dark'
           ? ThemeMode.dark

@@ -1,5 +1,9 @@
 # Implementation handoff
 
+## Package discovery runtime and popup repair
+
+Combined source `bc8274a` passed the root desktop build and 24 focused package/capture tests. Its real 1280×1000 bilingual dark run completed discovery (45 matches), displayed a selected package review and cancelled it without confirming a mutation. The owned process and hidden desktop closed. Actual paired receipts recorded framework/platform observations. The popup route lost language preferences and the discovery title lacked a translation; source repairs pass an open-popup negative/positive regression and 15 focused checks. Rebuild and minimum-size acceptance remain pending.
+
 ## Capture diagnostic integration
 
 Candidate `c4a97a15d24fb50dea014d33f965f083765bbfd1` adds real capture-scoped Flutter framework/platform observers and pairs their bounded metadata with each new PNG receipt. Eleven focused checks, 34 native writer assertions, 24 lifecycle cases and five transport cases passed; exact root native and desktop builds succeeded in the isolated producer. Independent review found no concrete defect. The combined package/capture source still requires its own build and live capture. This records only the two named hooks, not native stderr, engine failures, browser events or every possible crash. Historical images receive no retroactive diagnostic verdict.

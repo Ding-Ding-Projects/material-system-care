@@ -22,6 +22,10 @@ Cancellation requests termination of the owned discovery process tree and observ
 
 ## Verification
 
+The combined desktop at `bc8274a0bdf0ec984ee6cadbf3c01cda52facfc7` completed explicit real discovery with 45 matched packages at the time of the run. A selected package's upgrade review displayed its exact identifier and installed version, and the review was cancelled. No upgrade or uninstall was confirmed. The owned process and hidden desktop were closed. New frame receipts contain observed framework/platform diagnostic intervals; this is not universal native-error coverage.
+
+That run exposed an English-only popup and an untranslated discovery title in bilingual mode. The navigator now inherits the same language preferences and the title has a Cantonese translation. The regression opens the actual popup in bilingual and Cantonese-only modes; the old source failed and the corrected source passed. The corrected built popup and minimum-size interaction still require verification.
+
 The installed client rejected an export path under the application's LocalAppData directory with `0x80070003`. Identical arguments succeeded in the account's temporary directory. Requests therefore use uniquely named temporary directories rather than the maintenance data directory; only their exact output and empty directory are cleanup targets.
 
 Integrated fixtures verify exact-ID projection, unknown update status, omitted custom switches, malformed/duplicate/oversized export rejection, fixture isolation and mutation consent. The Flutter fixture proves that discovery waits for explicit review, cancelling the selected upgrade review makes no mutation request, and an unavailable refresh removes stale actionable rows. A built read-only query returned 45 matches with explicit incomplete-inventory and unchecked-update states, followed by zero remaining request-owned export directories. No installed package was changed during these checks. Source bindings and pending visual interaction are separately tracked in the handoff.

@@ -12,6 +12,7 @@ class CopyScope extends InheritedWidget {
 }
 
 const translations = <String, String>{
+  'Discover WinGet packages?': '探索 WinGet 套件？',
   'WinGet is not installed for the current user.': '目前使用者未安裝 WinGet。',
   'WinGet discovery did not complete. Check its installation, source availability and previously accepted source agreements. No source configuration was changed.':
       'WinGet 探索未完成。請檢查安裝、來源可用性及之前接受嘅來源協議，沒有更改來源設定。',
