@@ -54,6 +54,7 @@ class CleanupPlan {
       final path = normalizeAnalysisPath(file.path).toLowerCase();
       if (!path.startsWith('${normalized.toLowerCase()}\\') ||
           file.bytes == null ||
+          file.bytes! > 512 * 1024 * 1024 ||
           !paths.add(path))
         throw const FormatException('Invalid cleanup target');
       sum += file.bytes!;

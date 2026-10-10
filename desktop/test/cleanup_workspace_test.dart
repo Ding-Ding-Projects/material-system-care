@@ -74,6 +74,16 @@ void main() {
     expect(p.result.files.map((f) => f.index), [0, 1]);
     expect(p.root, r'C:\fixture');
   });
+  test('oversized target counts cannot wrap the plan total', () {
+    final value = scan();
+    value['targets'][0]['size'] = 4611686018427387904;
+    value['targets'][1]['size'] = 4611686018427387904;
+    value['totalBytes'] = -9223372036854775808;
+    expect(
+      () => CleanupPlan.parse(value, fixture: true),
+      throwsFormatException,
+    );
+  });
   final bad = <String, void Function(Map<String, dynamic>)>{
     'fixture mismatch': (v) => v['fixture'] = false,
     'root missing': (v) => v.remove('root'),
