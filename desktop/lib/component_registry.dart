@@ -7,6 +7,8 @@ const materialComponents = <String>{
   'AppBar',
   'NavigationRail',
   'SearchBar',
+  'LabeledSearchBar',
+  'LabeledControl',
   'MenuAnchor',
   'MenuItemButton',
   'CheckboxMenuButton',

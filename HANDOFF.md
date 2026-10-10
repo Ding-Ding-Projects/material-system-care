@@ -243,3 +243,7 @@ Documentation deployment [38007816620](https://github.com/Ding-Ding-Projects/mat
 The completeness inventory now retains 104 canonical contracts across 28 surfaces and 1,932 requirement rows, including the diagnostic workspace. Its 213 negative mutations passed. No incomplete universal contract was marked verified. All task-owned browser/application windows in these runs were closed with identity-checked background messages and absent-process readback; the loopback capture service remains task-owned for continuing verification. The overall suite goal remains active.
 
 The fixed Process Manager ledger row asc-toolbox.24 now links the actual desktop interface, focused checks and bounded runtime evidence. It remains unverified for the remaining matrices.
+
+## Wrapping Material control labels
+
+Registered wrapping labels now accompany official search and selector controls across record, process, service and scheduled-task views. Seventeen focused checks passed, including the existing title matrix. Root build and new runtime captures remain pending.

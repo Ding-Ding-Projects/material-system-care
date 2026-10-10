@@ -105,3 +105,5 @@
 
 - [ ] Publish a substantial reviewed screenshot set in SCREENSHOTS.md and the website, with per-image source and state evidence.
 - [ ] Verify startup review in the built application; three fixture checks pass and no host entry was changed.
+
+- [ ] Verify rebuilt wrapping search and selector labels; 17 focused widget/component checks pass, runtime captures pending.

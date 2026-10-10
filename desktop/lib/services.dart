@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'localization.dart';
+import 'labeled_controls.dart';
 import 'inspection_app_bar.dart';
 import 'motion.dart';
 
@@ -117,29 +118,32 @@ class _ServicesPageState extends State<ServicesPage> {
                   ),
                   SizedBox(
                     width: 220,
-                    child: DropdownButtonFormField<String>(
-                      isExpanded: true,
-                      isDense: false,
-                      itemHeight: null,
-                      initialValue: state,
-                      decoration: InputDecoration(
-                        labelText: localize(context, 'Service state'),
-                        border: const OutlineInputBorder(),
+                    child: LabeledControl(
+                      label: localize(context, 'Service state'),
+                      child: DropdownButtonFormField<String>(
+                        isExpanded: true,
+                        isDense: false,
+                        itemHeight: null,
+                        initialValue: state,
+                        decoration: InputDecoration(
+                          border: const OutlineInputBorder(),
+                        ),
+                        items: ['All states', 'Running', 'Stopped', 'Paused']
+                            .map(
+                              (s) =>
+                                  DropdownMenuItem(value: s, child: UiText(s)),
+                            )
+                            .toList(),
+                        onChanged: (value) => setState(() => state = value!),
                       ),
-                      items: ['All states', 'Running', 'Stopped', 'Paused']
-                          .map(
-                            (s) => DropdownMenuItem(value: s, child: UiText(s)),
-                          )
-                          .toList(),
-                      onChanged: (value) => setState(() => state = value!),
                     ),
                   ),
                 ],
               ),
               const SizedBox(height: 16),
-              SearchBar(
+              LabeledSearchBar(
                 leading: const Icon(Icons.search),
-                hintText: localize(context, 'Filter loaded services'),
+                label: localize(context, 'Filter loaded services'),
                 onChanged: (value) => setState(() => query = value),
               ),
               const SizedBox(height: 16),

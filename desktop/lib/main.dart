@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'settings.dart';
 import 'localization.dart';
+import 'labeled_controls.dart';
 import 'notifications.dart';
 import 'provenance.dart';
 import 'motion.dart';
@@ -843,9 +844,9 @@ class _WorkflowPageState extends State<WorkflowPage> {
             child: ToolsEditor(onRun: load, busy: busy),
           ),
         SizedBox(height: 16),
-        SearchBar(
+        LabeledSearchBar(
           controller: search,
-          hintText: localize(context, 'Filter these records'),
+          label: localize(context, 'Filter these records'),
           leading: Icon(Icons.search),
           onChanged: (v) => setState(() {
             query = v;

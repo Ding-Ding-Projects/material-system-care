@@ -19,3 +19,11 @@ Inspection title height now follows measured localized text at the requested tex
 ## Minimum-size runtime evidence
 
 Root engine and desktop builds passed at eeaf858395cf171291faa31d0d85c3de206fdb4b. Five real idle workspaces were inspected at an 800×600 client area, English/Cantonese bilingual mode, dark theme, text scale 2 and requested reduced motion. All five complete titles are visible. Content extends below the viewport; these frames do not prove the lower controls, popups, full keyboard flow, physical DPI or motion. Background Page Down did not scroll the service view. Exact bundle processes were absent and all five owned desktops closed. The route used compatibility HTTP/native C++ with identity-checked native resizing and unchanged Flutter painted output, not native compositor capture. See docs/verification/inspection-minimum.json.
+
+## Readable control labels
+
+Search controls on record, process, service and scheduled-task workspaces use the official Material SearchBar with a separate wrapping Material label. Service-state and maximum-record selectors also have wrapping labels above the field. Labels remain visible after input and at enlarged text sizes; search and selection behavior is unchanged. These are registered Material compositions, not replacement input widgets.
+
+Thirteen focused checks passed for label geometry at widths 220, 300 and 752 with doubled text, input preservation and the existing three inspection workflows. Four additional component/layout checks passed, including the 240 title combinations. Rebuilt runtime captures of this refinement remain pending.
+
+搜尋及選單標籤會在控制項上方換行，輸入後仍然可見。已通過上述指定測試；這次調整的重新建置畫面仍待驗證，不能當作完整介面認證。

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'localization.dart';
+import 'labeled_controls.dart';
 import 'inspection_app_bar.dart';
 import 'motion.dart';
 
@@ -120,30 +121,32 @@ class _ScheduledTasksPageState extends State<ScheduledTasksPage> {
                 children: [
                   SizedBox(
                     width: 220,
-                    child: DropdownButtonFormField<int>(
-                      isExpanded: true,
-                      isDense: false,
-                      itemHeight: null,
-                      initialValue: limit,
-                      decoration: InputDecoration(
-                        labelText: localize(context, 'Maximum records'),
-                        border: const OutlineInputBorder(),
+                    child: LabeledControl(
+                      label: localize(context, 'Maximum records'),
+                      child: DropdownButtonFormField<int>(
+                        isExpanded: true,
+                        isDense: false,
+                        itemHeight: null,
+                        initialValue: limit,
+                        decoration: InputDecoration(
+                          border: const OutlineInputBorder(),
+                        ),
+                        items: [200, 500, 1000]
+                            .map(
+                              (n) =>
+                                  DropdownMenuItem(value: n, child: Text('$n')),
+                            )
+                            .toList(),
+                        onChanged: busy
+                            ? null
+                            : (value) => setState(() {
+                                limit = value!;
+                                records = null;
+                                error = null;
+                                observedAt = null;
+                                truncated = false;
+                              }),
                       ),
-                      items: [200, 500, 1000]
-                          .map(
-                            (n) =>
-                                DropdownMenuItem(value: n, child: Text('$n')),
-                          )
-                          .toList(),
-                      onChanged: busy
-                          ? null
-                          : (value) => setState(() {
-                              limit = value!;
-                              records = null;
-                              error = null;
-                              observedAt = null;
-                              truncated = false;
-                            }),
                     ),
                   ),
                   FilledButton.icon(
@@ -154,8 +157,8 @@ class _ScheduledTasksPageState extends State<ScheduledTasksPage> {
                 ],
               ),
               const SizedBox(height: 16),
-              SearchBar(
-                hintText: localize(
+              LabeledSearchBar(
+                label: localize(
                   context,
                   'Filter loaded tasks by name, folder or state',
                 ),

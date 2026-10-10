@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'localization.dart';
+import 'labeled_controls.dart';
 import 'inspection_app_bar.dart';
 import 'motion.dart';
 
@@ -170,8 +171,8 @@ class _ProcessesPageState extends State<ProcessesPage> {
             ),
           ),
           const SizedBox(height: 16),
-          SearchBar(
-            hintText: localize(context, 'Filter by process name or PID'),
+          LabeledSearchBar(
+            label: localize(context, 'Filter by process name or PID'),
             leading: const Icon(Icons.search),
             onChanged: (value) => setState(() => query = value),
           ),

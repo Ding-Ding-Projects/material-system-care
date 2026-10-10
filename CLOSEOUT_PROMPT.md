@@ -31,3 +31,7 @@ Use the supported persistent Lowlevel hidden route and isolated profiles. Keep t
 ## 下一步
 
 完整維護套件及全部介面驗證仍未完成。先核對最新主分支及流程狀態，保留現有證據，再修正放大雙語桌面標籤、建置及重新擷取受影響畫面。網站文章和圖庫已完成上述指定驗證，但 Wiki 來源仍未能使用，不能宣稱已同步。
+
+## Current desktop refinement
+
+Separate wrapping Material labels have been added to search fields and the service-state/maximum-record selectors. Seventeen focused tests pass. Build and new source-bound screenshots remain pending. The c434189 Windows build subsequently completed successfully.
