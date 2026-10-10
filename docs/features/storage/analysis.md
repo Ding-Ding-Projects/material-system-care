@@ -9,3 +9,7 @@ Files are opened with writers and deletion excluded. Reparse points, symbolic li
 `INVALID_ARGUMENT`, `PATH_NOT_FOUND`, `ACCESS_DENIED`, `REPARSE_NOT_ALLOWED` and `STORAGE_IO` are narrow operation errors. Individual unreadable files increment counters while the rest of the selected folder can still be analyzed.
 
 Fixture checks live in `tests/storage`. They create their own isolated directory and never operate on user documents.
+
+## Desktop cancellation
+
+Read-only folder analysis, duplicate discovery and temporary-file scans now expose a request-specific Cancel scan control. The spinner remains until the original desktop request finishes; a result that wins the race remains successful. Cancellation ends the desktop wait and asks the engine to stop, but is not an acknowledgement that all engine reads have already stopped. Leaving the workspace also requests cancellation of its active read. Mutation workflows do not receive this control. Three focused Flutter checks passed, including cancellation and completion races, selected cleanup and recovery review. Native compilation and built cancellation interaction remain pending.

@@ -51,3 +51,7 @@ Settings and history use SQLite below the user's local application data. Private
 `diagnostics.explainStopCode` accepts `{code: "0x0000009F"}` or a decimal string. It returns hexadecimal and decimal values, the known name/category or an explicit unknown result, confidence limitation, next checks and the Microsoft reference URL. It performs no host collection. Neither method mutates the computer, uploads data or persists its response to general history. See [the investigation guide](../docs/features/diagnostics/blue-screen.md).
 
 `apps.managed` performs explicit structured WinGet discovery and returns exact matched identifiers with installed versions. It never infers available versions from an export. See [managed package discovery](../docs/features/management/managed-packages.md) for limits and disclosure.
+
+## Desktop request cancellation
+
+The Flutter method channel accepts an explicit request `id` for invocation and a `cancel` call containing that same string. Only `storage.analyze`, `storage.duplicates` and `cleanup.scan` currently expose cancellation in the workspace. Native transport cancellation reports `ENGINE_CANCELLED`; engine envelopes use `CANCELLED`. Neither transport termination nor acceptance of a cancellation request proves that the engine has finished every read. A successful result may win the race and remains successful.

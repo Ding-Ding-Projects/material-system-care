@@ -41,11 +41,15 @@ class NotificationPanel extends StatelessWidget {
                         leading: Icon(
                           items[i].kind == 'error'
                               ? Icons.error_outline
+                              : items[i].kind == 'cancelled'
+                              ? Icons.stop_circle_outlined
                               : Icons.check_circle_outline,
                         ),
                         title: UiText(
                           items[i].kind == 'error'
                               ? 'Operation could not complete'
+                              : items[i].kind == 'cancelled'
+                              ? 'Stopped waiting for scan.'
                               : 'Result received from local engine',
                         ),
                         subtitle: Text(items[i].operation),
@@ -81,6 +85,8 @@ void notifyOperation(BuildContext context, String kind, String operation) {
         child: UiText(
           kind == 'error'
               ? 'Operation could not complete'
+              : kind == 'cancelled'
+              ? 'Stopped waiting for scan.'
               : 'Result received from local engine',
         ),
       ),

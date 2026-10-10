@@ -18,6 +18,8 @@ Run `build.bat /s` to build the engine, desktop, and website without launching t
 
 The entrypoints discover existing tools and obtain missing supported dependencies. They require committed source, bind receipts to the source tree and executable hashes, and propagate failed child commands. Existing-host build success is not fresh-machine installation proof. See [packaging and bootstrap limits](packaging/README.md).
 
+Read-only storage scans support request-specific cancellation. The interface distinguishes stopping its wait from confirmation that the engine has finished, and preserves a completed result that wins the race.
+
 ## Implemented development workflows
 
 The current source provides a working foundation, with these operation families:

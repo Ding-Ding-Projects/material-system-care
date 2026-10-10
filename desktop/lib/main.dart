@@ -36,17 +36,29 @@ void main(List<String> arguments) {
 
 class Engine {
   static const channel = MethodChannel('material_system_care/engine');
+  static int _requestSequence = 0;
+  static String newRequestId() =>
+      'ui-${DateTime.now().microsecondsSinceEpoch}-${++_requestSequence}';
+  static Future<bool> cancel(String requestId) async =>
+      await channel.invokeMethod<bool>('cancel', requestId) ?? false;
   static Future<Map<String, dynamic>> invoke(
     String method,
-    Map<String, dynamic> params,
-  ) async {
+    Map<String, dynamic> params, {
+    String? requestId,
+  }) async {
     final raw = await channel.invokeMethod<Object?>('invoke', {
       'method': method,
       'params': params,
+      if (requestId != null) 'id': requestId,
     });
     final dynamic envelope = raw is String ? jsonDecode(raw) : raw;
     if (envelope is! Map || envelope['ok'] != true) {
       final error = envelope is Map ? envelope['error'] : null;
+      if (error is Map && error['code'] == 'CANCELLED')
+        throw PlatformException(
+          code: 'ENGINE_CANCELLED',
+          message: 'Stopped waiting for scan.',
+        );
       throw StateError(
         error is Map
             ? '${error['code']}: ${error['message']}'
@@ -313,6 +325,14 @@ class _WorkflowPageState extends State<WorkflowPage> {
   Map<String, dynamic>? provenance;
   String? failure;
   bool busy = false;
+  String? activeReadId;
+  bool cancelRequested = false;
+  bool scanCancelled = false;
+  static const cancellableReads = {
+    'storage.analyze',
+    'storage.duplicates',
+    'cleanup.scan',
+  };
   final input = TextEditingController();
   final search = TextEditingController();
   String query = '';
@@ -343,6 +363,8 @@ class _WorkflowPageState extends State<WorkflowPage> {
 
   @override
   void dispose() {
+    final id = activeReadId;
+    if (id != null) Engine.cancel(id).catchError((Object _) => false);
     input.dispose();
     search.dispose();
     super.dispose();
@@ -350,8 +372,15 @@ class _WorkflowPageState extends State<WorkflowPage> {
 
   Future<void> load([String? method, Map<String, dynamic>? params]) async {
     if (busy) return;
+    final operation = method ?? methods[widget.index];
+    final requestId = cancellableReads.contains(operation)
+        ? Engine.newRequestId()
+        : null;
     setState(() {
       busy = true;
+      activeReadId = requestId;
+      cancelRequested = false;
+      scanCancelled = false;
       failure = null;
       if (method == 'apps.managed') {
         data = null;
@@ -360,8 +389,9 @@ class _WorkflowPageState extends State<WorkflowPage> {
     });
     try {
       final result = await Engine.invoke(
-        method ?? methods[widget.index],
+        operation,
         params ?? {},
+        requestId: requestId,
       );
       if (method == 'apps.managed' && result['available'] != true) {
         throw StateError(
@@ -371,11 +401,26 @@ class _WorkflowPageState extends State<WorkflowPage> {
       if (mounted)
         setState(() {
           data = result;
+          failure = null;
           chosen.clear();
         });
       if (mounted && method != null)
         notifyOperation(context, 'success', method);
     } catch (e) {
+      if (e is PlatformException &&
+          e.code == 'ENGINE_CANCELLED' &&
+          requestId != null) {
+        if (mounted) {
+          setState(() {
+            scanCancelled = true;
+            failure = null;
+            data = null;
+            chosen.clear();
+          });
+          notifyOperation(context, 'cancelled', operation);
+        }
+        return;
+      }
       if (mounted)
         setState(
           () => failure = e is MissingPluginException
@@ -384,7 +429,34 @@ class _WorkflowPageState extends State<WorkflowPage> {
         );
       if (mounted && method != null) notifyOperation(context, 'error', method);
     } finally {
-      if (mounted) setState(() => busy = false);
+      if (mounted)
+        setState(() {
+          busy = false;
+          activeReadId = null;
+          cancelRequested = false;
+        });
+    }
+  }
+
+  Future<void> cancelRead() async {
+    final id = activeReadId;
+    if (!busy || id == null || cancelRequested) return;
+    setState(() => cancelRequested = true);
+    try {
+      final accepted = await Engine.cancel(id);
+      if (!accepted && mounted && activeReadId == id)
+        setState(() {
+          cancelRequested = false;
+          failure =
+              'Cancellation was not accepted. The scan may still be running.';
+        });
+    } catch (_) {
+      if (mounted && activeReadId == id)
+        setState(() {
+          cancelRequested = false;
+          failure =
+              'Cancellation was not accepted. The scan may still be running.';
+        });
     }
   }
 
@@ -536,6 +608,14 @@ class _WorkflowPageState extends State<WorkflowPage> {
           runSpacing: 8,
           crossAxisAlignment: WrapCrossAlignment.center,
           children: [
+            if (busy && activeReadId != null)
+              OutlinedButton.icon(
+                onPressed: cancelRequested ? null : cancelRead,
+                icon: const Icon(Icons.stop_circle_outlined),
+                label: UiText(
+                  cancelRequested ? 'Cancellation requested…' : 'Cancel scan',
+                ),
+              ),
             FilledButton.icon(
               onPressed: busy
                   ? null
@@ -740,6 +820,8 @@ class _WorkflowPageState extends State<WorkflowPage> {
         OperationMotion(
           state: busy
               ? 'working'
+              : scanCancelled
+              ? 'cancelled'
               : failure != null
               ? 'error'
               : data != null

@@ -31,11 +31,18 @@ class OperationMotion extends StatelessWidget {
           : ListTile(
               key: ValueKey(state),
               dense: true,
+              subtitle: state == 'cancelled'
+                  ? const UiText(
+                      'The engine was asked to cancel and may still be finishing.',
+                    )
+                  : null,
               leading: Icon(
                 state == 'working'
                     ? Icons.pending_outlined
                     : state == 'error'
                     ? Icons.error_outline
+                    : state == 'cancelled'
+                    ? Icons.stop_circle_outlined
                     : Icons.check_circle_outline,
               ),
               title: UiText(
@@ -43,6 +50,8 @@ class OperationMotion extends StatelessWidget {
                     ? 'Reading local records…'
                     : state == 'error'
                     ? 'Operation could not complete'
+                    : state == 'cancelled'
+                    ? 'Stopped waiting for scan.'
                     : 'Result received from local engine',
               ),
             ),

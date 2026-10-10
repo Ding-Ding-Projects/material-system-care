@@ -13,6 +13,8 @@
 
 ## Working suite
 
+- [ ] Verify read-only scan cancellation in the built workspace: request-specific control, completion-race handling and truthful stop-waiting state are implemented; focused Flutter checks passed.
+
 - [ ] Verify receipt-specific recovery review in the built workspace: metadata-only engine details and confirmation blocking are implemented; 33 storage checks and the focused Flutter review test passed. Real user files were not restored.
 
 - [ ] Verify selected temporary-file maintenance in the built workspace: explicit subset review, server-side selection and replay validation are implemented; 30 storage fixture checks and the filtered-selection Flutter fixture passed. Real user files were not moved.

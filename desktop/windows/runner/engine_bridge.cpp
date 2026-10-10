@@ -156,7 +156,7 @@ EngineBridge::EngineBridge(flutter::BinaryMessenger* messenger, HWND window):win
   DWORD deadline=engine_transport::DeadlineFor(*name);
   std::thread worker([this,text=std::move(text),result=std::move(result),done,cancelled,deadline]() mutable {
    auto reply=std::make_unique<Reply>(); reply->result=std::move(result);
-   try { reply->text=engine_transport::Exchange(pipe_,text,deadline,*cancelled,process_id_); } catch(const std::exception& e) { reply->error=e.what(); }
+   try { reply->text=engine_transport::Exchange(pipe_,text,deadline,*cancelled,process_id_); } catch(const std::exception& e) { reply->error=e.what(); if(*cancelled && reply->error=="Engine operation cancelled") reply->errorCode="ENGINE_CANCELLED"; }
    { std::lock_guard<std::mutex> lock(mutex_); replies_.push_back(std::move(reply)); }
    if(!stopping_) PostMessageW(window_,kCompletion,0,0);
    *done=true;

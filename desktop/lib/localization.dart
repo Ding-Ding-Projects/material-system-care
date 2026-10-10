@@ -12,6 +12,13 @@ class CopyScope extends InheritedWidget {
 }
 
 const translations = <String, String>{
+  'Cancel scan': '取消掃描',
+  'Cancellation requested…': '已要求取消…',
+  'Stopped waiting for scan.': '已停止等候掃描。',
+  'The engine was asked to cancel and may still be finishing.':
+      '已要求引擎取消，佢可能仍然完成緊手上步驟。',
+  'Cancellation was not accepted. The scan may still be running.':
+      '取消要求未獲接受，掃描可能仍然進行中。',
   'Review recovery files': '覆核復原檔案',
   'Recorded state': '已記錄狀態',
   'Recovery details are unavailable.': '未能讀取復原詳情。',

@@ -1,5 +1,9 @@
 # Implementation handoff
 
+## Read-only scan cancellation
+
+Read-only folder analysis, duplicate discovery and temporary-file scans now expose a request-specific Cancel scan control. The spinner remains until the original desktop request finishes; a result that wins the race remains successful. Cancellation ends the desktop wait and asks the engine to stop, but is not an acknowledgement that all engine reads have already stopped. Leaving the workspace also requests cancellation of its active read. Mutation workflows do not receive this control. Three focused Flutter checks passed, including cancellation and completion races, selected cleanup and recovery review. Native compilation and built cancellation interaction remain pending.
+
 ## Recovery file review
 
 The engine now exposes read-only cleanup.details for a validated receipt ID. It returns recorded path, size, state and reason without internal hashes or quarantine locations. The desktop reads matching details before restore confirmation, shows the recorded files, blocks unavailable or empty details, and sends only the reviewed receipt ID with explicit confirmation. Stored state is a snapshot; current availability and destination conflicts remain governed by actual restore-time validation. Skipped/already-restored items can appear in review without being moved again.
