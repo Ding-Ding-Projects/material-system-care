@@ -571,6 +571,13 @@ class _StorageAnalysisPageState extends State<StorageAnalysisPage> {
               for (final file in data.largeFiles)
                 Card(
                   child: ExpansionTile(
+                    expansionAnimationStyle:
+                        MediaQuery.disableAnimationsOf(context)
+                        ? const AnimationStyle(
+                            duration: Duration.zero,
+                            reverseDuration: Duration.zero,
+                          )
+                        : null,
                     title: Text(file.name),
                     subtitle: Text(
                       '${localize(context, 'Bytes')}: ${file.size}',
@@ -606,6 +613,13 @@ class _StorageAnalysisPageState extends State<StorageAnalysisPage> {
               for (final folder in data.emptyFolders)
                 Card(
                   child: ExpansionTile(
+                    expansionAnimationStyle:
+                        MediaQuery.disableAnimationsOf(context)
+                        ? const AnimationStyle(
+                            duration: Duration.zero,
+                            reverseDuration: Duration.zero,
+                          )
+                        : null,
                     title: Text(
                       folder.split(r'\').last.isEmpty
                           ? folder

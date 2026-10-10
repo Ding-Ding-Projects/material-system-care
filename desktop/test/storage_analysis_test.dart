@@ -87,6 +87,59 @@ Future<void> start(WidgetTester tester) async {
 }
 
 void main() {
+  for (final reduced in [true, false]) {
+    for (final row in ['file-0.txt', 'empty-0']) {
+      testWidgets(
+        'row expansion and collapse respect motion for $row reduced=$reduced',
+        (tester) async {
+          await mount(
+            tester,
+            (_, __, {required requestId}) async => response(files: 1),
+            reduced: reduced,
+          );
+          await start(tester);
+          await tester.pumpAndSettle();
+          await tester.tap(find.byTooltip('Close'));
+          await tester.pumpAndSettle();
+          await tester.scrollUntilVisible(
+            find.text(row),
+            250,
+            scrollable: find.byType(Scrollable).first,
+          );
+          final tile = find.ancestor(
+            of: find.text(row),
+            matching: find.byType(ExpansionTile),
+          );
+          final style = tester
+              .widget<ExpansionTile>(tile)
+              .expansionAnimationStyle;
+          if (reduced) {
+            expect(style?.duration, Duration.zero);
+            expect(style?.reverseDuration, Duration.zero);
+          }
+          final collapsed = tester.getSize(tile).height;
+          await tester.tap(find.text(row));
+          await tester.pump();
+          await tester.pump(const Duration(milliseconds: 40));
+          final expanding = tester.getSize(tile).height;
+          await tester.pumpAndSettle();
+          final expanded = tester.getSize(tile).height;
+          expect(expanded, greaterThan(collapsed));
+          expect(expanding, reduced ? expanded : lessThan(expanded));
+          if (!reduced) expect(expanding, greaterThan(collapsed));
+          await tester.ensureVisible(find.text(row));
+          await tester.tap(find.text(row));
+          await tester.pump();
+          await tester.pump(const Duration(milliseconds: 40));
+          final collapsing = tester.getSize(tile).height;
+          await tester.pumpAndSettle();
+          expect(tester.getSize(tile).height, collapsed);
+          expect(collapsing, reduced ? collapsed : greaterThan(collapsed));
+          expect(tester.takeException(), isNull);
+        },
+      );
+    }
+  }
   test(
     'analysis parses bounded read-only results and normalizes selected paths',
     () {
