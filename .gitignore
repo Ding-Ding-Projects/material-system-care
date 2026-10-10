@@ -30,3 +30,7 @@ artifacts/
 *.pdb
 **/.DS_Store
 website/public/coverage.json
+website/public/articles.json
+website/public/gallery.json
+website/public/gallery/
+website/public/source-files/

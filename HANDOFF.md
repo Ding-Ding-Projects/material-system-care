@@ -1,10 +1,16 @@
 # Implementation handoff
 
+## Complete website articles and bilingual gallery
+
+Forty source-bound bilingual initial viewports are documented in SCREENSHOTS.md and docs/captures/gallery.json. The local verifier checks original byte identity, dimensions and twenty lifecycle receipt sets. The website now has complete article and gallery routes, build-time HTML sanitization, internal article links and prerendered article copies. Twelve website checks passed. Root site build and runtime/deployment verification remain pending for this candidate. The wiki endpoint reports Repository not found; no wiki synchronization is claimed. New surfaces are registered with full-contract status still unverified.
+
+The latest visual direction requires a modern official Material Design 3 interface without clipping. The forty existing frames do not prove that whole-product requirement: single-line hints and the full interaction/scale matrix remain incomplete.
+
 ## Startup review and screenshot-gallery direction
 
 Startup record actions now name the enable or disable effect, explain future sign-in behavior and block unavailable or conflicting records. Confirmation sends only the selected id, desired enabled state and explicit consent. Three fixture checks passed for eligibility, cancellation and exact requests. No host startup entry was changed; built interaction remains pending.
 
-The current request also requires a substantial source-bound screenshot gallery in SCREENSHOTS.md and the public website. Capture English, Cantonese and bilingual inspection workspaces in both themes and normal/minimum sizes. Keep host-record frames private. This gallery work is pending.
+The current request also requires a substantial source-bound screenshot gallery in SCREENSHOTS.md and the public website. The latest direction limits the new gallery to bilingual captures. Forty frames across five workspaces, two themes, two text scales and two viewport sizes have been captured and inspected; no host records were collected.
 
 ## Rebuilt diagnostic guidance evidence
 

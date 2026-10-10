@@ -1,5 +1,15 @@
 # Material System Care
 
+## Bilingual screenshot gallery · 雙語畫面圖庫
+
+[Forty reviewed desktop screenshots](SCREENSHOTS.md) · [Website gallery](https://ding-ding-projects.github.io/material-system-care/#/gallery) · [Complete website articles](https://ding-ding-projects.github.io/material-system-care/#/articles)
+
+![Bilingual diagnostics, light theme](docs/captures/gallery/diagnostics-light-text1-1280x900.png)
+
+![Bilingual services, dark theme](docs/captures/gallery/services-dark-text1-1280x900.png)
+
+These are genuine initial viewports from the built desktop, with source and lifecycle receipts. They do not establish complete workflow or layout verification. 以上圖片來自實際桌面建置，保留來源及生命週期記錄，並不代表完整操作或全部版面已通過驗證。
+
 Temporary-file maintenance now requires an explicit selected subset of the scanned plan. Review the exact selected paths before moving them to recovery; unchecked eligible files remain untouched. See [selected cleanup and recovery](docs/features/storage/cleanup.md) for protocol compatibility and replay limits.
 
 Recovery history reads the receipt's recorded file details before asking to restore. Missing details block that action; restoration still checks actual identity, content and occupied destinations before moving anything.
