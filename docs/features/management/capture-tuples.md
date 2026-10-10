@@ -15,3 +15,7 @@ Root engine and desktop builds passed at 5921f9005cc878ff6ef5753d71b27f8d748f057
 ## Adaptive inspection titles
 
 Inspection title height now follows measured localized text at the requested text scale, using the official AppBar component. Service, scheduled-task and blue-screen selectors use expanded width and intrinsic item height. The original service title fixture measured top -9; the repaired suite passes 240 title combinations (five workspaces, two sizes, three languages, two themes, four text scales) and the selected-value regression. These are widget checks; final rebuilt minimum-size pixels remain pending. A prior real intermediate frame verified the service selector repair while retaining the title defect.
+
+## Minimum-size runtime evidence
+
+Root engine and desktop builds passed at eeaf858395cf171291faa31d0d85c3de206fdb4b. Five real idle workspaces were inspected at an 800×600 client area, English/Cantonese bilingual mode, dark theme, text scale 2 and requested reduced motion. All five complete titles are visible. Content extends below the viewport; these frames do not prove the lower controls, popups, full keyboard flow, physical DPI or motion. Background Page Down did not scroll the service view. Exact bundle processes were absent and all five owned desktops closed. The route used compatibility HTTP/native C++ with identity-checked native resizing and unchanged Flutter painted output, not native compositor capture. See docs/verification/inspection-minimum.json.

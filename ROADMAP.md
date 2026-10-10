@@ -77,3 +77,8 @@
 - [ ] Verify the rebuilt bilingual service-state selector at the exact minimum 800x600 client area and text scale 2; the focused overflow regression passes.
 
 - [ ] Verify adaptive inspection titles in the rebuilt minimum-size bilingual view. The 240-combination widget title suite and selector regression pass.
+
+## Inspection layout verification
+
+- [x] Verify five rebuilt initial viewports at 800×600, bilingual dark theme and doubled text, with complete titles and owned teardown.
+- [ ] Verify lower controls, popup states, keyboard scrolling and the full physical-DPI matrix; initial frames do not establish these.

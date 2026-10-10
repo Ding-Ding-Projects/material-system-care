@@ -1,16 +1,20 @@
 # Continuation
 
+## Minimum-size runtime evidence
+
+Root engine and desktop builds passed at eeaf858395cf171291faa31d0d85c3de206fdb4b. Five real idle workspaces were inspected at an 800×600 client area, English/Cantonese bilingual mode, dark theme, text scale 2 and requested reduced motion. All five complete titles are visible. Content extends below the viewport; these frames do not prove the lower controls, popups, full keyboard flow, physical DPI or motion. Background Page Down did not scroll the service view. Exact bundle processes were absent and all five owned desktops closed. The route used compatibility HTTP/native C++ with identity-checked native resizing and unchanged Flutter painted output, not native compositor capture. See docs/verification/inspection-minimum.json.
+
 ## Inspection layout repair verification
 
-Inspection title height now follows measured localized text at the requested text scale, using the official AppBar component. Service, scheduled-task and blue-screen selectors use expanded width and intrinsic item height. The original service title fixture measured top -9; the repaired suite passes 240 title combinations (five workspaces, two sizes, three languages, two themes, four text scales) and the selected-value regression. These are widget checks; final rebuilt minimum-size pixels remain pending. A prior real intermediate frame verified the service selector repair while retaining the title defect.
+Inspection title height now follows measured localized text at the requested text scale, using the official AppBar component. Service, scheduled-task and blue-screen selectors use expanded width and intrinsic item height. The original service title fixture measured top -9; the repaired suite passes 240 title combinations (five workspaces, two sizes, three languages, two themes, four text scales) and the selected-value regression. These are widget checks; the separate rebuilt initial-viewport evidence is recorded below. A prior real intermediate frame verified the service selector repair while retaining the title defect.
 
 ## Minimum-size service layout repair
 
-A real 800x600 bilingual dark service view at text scale 2 exposed a clipped selected translation in the service-state selector. The original fixed-height selector also failed the focused layout fixture with a horizontal overflow. The selector now expands and uses intrinsic item height. The focused fixture passes; an identical rebuilt runtime capture remains pending.
+A real 800x600 bilingual dark service view at text scale 2 exposed a clipped selected translation in the service-state selector. The original fixed-height selector also failed the focused layout fixture with a horizontal overflow. The selector now expands and uses intrinsic item height. The focused fixture passes; rebuilt initial-viewport evidence is recorded below.
 
 ## Latest delivery proof
 
-Service guide deployment 38018555585 for 5a19aee6cc273b8f38709783065ff9887327479f succeeded. Live home, assets/index-B8qLqhmk.js, services-idle.png and coverage.json returned HTTP 200 and matched local build bytes. Repository visibility remains PUBLIC, About homepage is exactly https://ding-ding-projects.github.io/material-system-care/, and Pages uses workflow deployment from main. See docs/verification/service-guide-delivery.json. Hosted Windows runs for 74b1f41, 5a19aee, 5921f90 and a36af04 were still running at the last observation; do not infer their outcome from local builds. The earlier dc706dc run 38018347345 succeeded.
+Service guide deployment 38018555585 for 5a19aee6cc273b8f38709783065ff9887327479f succeeded. Live home, assets/index-B8qLqhmk.js, services-idle.png and coverage.json returned HTTP 200 and matched local build bytes. Repository visibility remains PUBLIC, About homepage is exactly https://ding-ding-projects.github.io/material-system-care/, and Pages uses workflow deployment from main. See docs/verification/service-guide-delivery.json. Hosted Windows runs for 74b1f41, 5a19aee, 5921f90, a36af04 and 28a4d91 succeeded. Layout runs 38018832663 and 38018912340 remain in progress. The earlier dc706dc run 38018347345 succeeded.
 
 ## Capture tuple preparation
 
@@ -54,7 +58,7 @@ The process workspace has real paced filtered inventory and an owned disposable-
 
 The previous evidence commit a06debdf73584b2d359321e53c621a6d58ed5a17 is on main. Hosted Windows build 38015913684 and documentation deployment 38015913672 succeeded. Public home, guide script, file-use-idle.png and coverage.json returned 200 and matched the local build. About homepage is exactly https://ding-ding-projects.github.io/material-system-care/. This new documentation/evidence update needs its own build, push and deployment verification; do not reuse the prior deployment verdict.
 
-The fixed ledger retains 295 capabilities. The universal inventory contains 104 contracts across 31 surfaces and 2139 rows. Complete the remaining supported workflows, per-surface controls, full appearance/motion/accessibility coverage, installer lifecycle and verified normal release. The old local 0.8.1 Squirrel package remains bound to b80d9938c1a90cea17eb6a69faa18fb2a257dbf0. No full catalogue parity or shipped-release claim is made.
+The fixed ledger retains 295 capabilities. The universal inventory contains 104 contracts across 32 surfaces and 2208 rows. Complete the remaining supported workflows, per-surface controls, full appearance/motion/accessibility coverage, installer lifecycle and verified normal release. The old local 0.8.1 Squirrel package remains bound to b80d9938c1a90cea17eb6a69faa18fb2a257dbf0. No full catalogue parity or shipped-release claim is made.
 
 Use supported user-mode APIs only. Exclude kernel drivers, other operating systems, proprietary vendor engines and remote-device administration. Supported Lowlevel recovery is authorized; actual captures used documented compatibility HTTP/native C++ and Flutter painted output, not native compositor capture. Keep visible focus untouched and verify exact owned identities before teardown. Never initiate host power/login actions or publish private paths, runtime identifiers or record pixels.
 

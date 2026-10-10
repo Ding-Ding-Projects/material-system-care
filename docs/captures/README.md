@@ -21,3 +21,39 @@
 ![Built process workspace before collection](processes-idle.png)
 
 [Receipt](processes-idle.json): source `a9975e2d639f0fe37b4fc3c699ad05f9df2a2aee`, English, light, 1264 × 681, scale 1. Actual idle painted frame with isolated default preferences. No process collection, close action or injected records. The owned desktop and both producer executables were confirmed absent after teardown. Validate with the fourth argument `processes-idle`; native compositor and interaction evidence remain separate.
+
+## Minimum-size bilingual inspection workspaces
+
+Root engine and desktop builds passed at eeaf858395cf171291faa31d0d85c3de206fdb4b. Five real idle workspaces were inspected at an 800×600 client area, English/Cantonese bilingual mode, dark theme, text scale 2 and requested reduced motion. All five complete titles are visible. Content extends below the viewport; these frames do not prove the lower controls, popups, full keyboard flow, physical DPI or motion. Background Page Down did not scroll the service view. Exact bundle processes were absent and all five owned desktops closed. The route used compatibility HTTP/native C++ with identity-checked native resizing and unchanged Flutter painted output, not native compositor capture. See docs/verification/inspection-minimum.json.
+
+### services
+
+ID: `services-minimum-bilingual`. Producer: `eeaf858395cf171291faa31d0d85c3de206fdb4b`. Initial viewport only; dark, bilingual, text scale 2, 800×600. SHA-256: `5169ffc58363e0b01fa7b07c4d686c1ee59665f6077751323842aa0cea95b4d4`.
+
+![Built services initial viewport with bilingual enlarged text](services-minimum-bilingual.png)
+
+### diagnostics
+
+ID: `diagnostics-minimum-bilingual`. Producer: `eeaf858395cf171291faa31d0d85c3de206fdb4b`. Initial viewport only; dark, bilingual, text scale 2, 800×600. SHA-256: `abf66f45d838f7b15d945fcc3aa4c1767a60fe4cfa9faaf466f69fe6bfd438e7`.
+
+![Built diagnostics initial viewport with bilingual enlarged text](diagnostics-minimum-bilingual.png)
+
+### processes
+
+ID: `processes-minimum-bilingual`. Producer: `eeaf858395cf171291faa31d0d85c3de206fdb4b`. Initial viewport only; dark, bilingual, text scale 2, 800×600. SHA-256: `9577d7bdfeff2c239758643bc2337dca2f8ac0b9e2bf4f2aaf02874f835cd074`.
+
+![Built processes initial viewport with bilingual enlarged text](processes-minimum-bilingual.png)
+
+### file-use
+
+ID: `file-use-minimum-bilingual`. Producer: `eeaf858395cf171291faa31d0d85c3de206fdb4b`. Initial viewport only; dark, bilingual, text scale 2, 800×600. SHA-256: `5b4261ab53522a1776424e858f6566bd0acaa0792de3da4d6bcea55047d8fa66`.
+
+![Built file-use initial viewport with bilingual enlarged text](file-use-minimum-bilingual.png)
+
+### scheduled-tasks
+
+ID: `scheduled-tasks-minimum-bilingual`. Producer: `eeaf858395cf171291faa31d0d85c3de206fdb4b`. Initial viewport only; dark, bilingual, text scale 2, 800×600. SHA-256: `2870499d2fb9992e7b5f56b0c18134fac5476be695d864322aea9af8b6b37adc`.
+
+![Built scheduled-tasks initial viewport with bilingual enlarged text](scheduled-tasks-minimum-bilingual.png)
+
+[Shared source, byte and teardown receipt](../verification/inspection-minimum.json). Run `scripts/verify-inspection-minimum.mjs` with the repository and retained matrix run. Exact capture time is unavailable.

@@ -1,0 +1,144 @@
+{
+  "version": 1,
+  "sourceCommit": "eeaf858395cf171291faa31d0d85c3de206fdb4b",
+  "bundleSha256": "a5a336b7072f0f211faba5ebf33ba4263b99c78ea565941bbfdff65f9d13098b",
+  "executableSha256": "466e9e330e4307321ebcd0cc88c2c89b8540ea7c078db2ebbe2178668287b178",
+  "buildReceiptSha256": "baec81eb129e72ed86b6752ef684a7e1d8683563a4f1348d6a027327bc7af7b2",
+  "route": "lowlevel-compatibility-http-native-cpp-hidden-desktop-with-native-resize-and-flutter-painted-export",
+  "state": {
+    "language": "both",
+    "theme": "dark",
+    "textScale": 2,
+    "reducedMotionRequested": true,
+    "clientWidth": 800,
+    "clientHeight": 600
+  },
+  "captureTimestamp": null,
+  "timestampReason": "No exact frame timestamp was emitted; filesystem times are not capture provenance.",
+  "privacy": {
+    "pixelsReviewed": true,
+    "localRecordsCollected": false,
+    "privatePathsVisible": false,
+    "visibleDesktopUntouched": true
+  },
+  "inspection": {
+    "titlesVisible": true,
+    "initialViewportOnly": true,
+    "bodyBelowFold": true,
+    "servicePageDownMovedViewport": false
+  },
+  "limitations": [
+    "Not native compositor capture.",
+    "Not physical DPI verification.",
+    "Not full body, popup, keyboard, motion or accessibility coverage.",
+    "Service Page Down input was accepted by transport but did not scroll."
+  ],
+  "bundleAbsenceReceiptSha256": "16780fa7d8daf72f5e6b917db1d5021bbc847d5b49015cbe901e9700253c7145",
+  "captures": [
+    {
+      "id": "services-minimum-bilingual",
+      "screen": "services",
+      "path": "docs/captures/services-minimum-bilingual.png",
+      "raw": "services/output/services-001.png",
+      "sha256": "5169ffc58363e0b01fa7b07c4d686c1ee59665f6077751323842aa0cea95b4d4",
+      "bytes": 71858,
+      "width": 800,
+      "height": 600,
+      "evidence": {
+        "services/build-receipt.json": "baec81eb129e72ed86b6752ef684a7e1d8683563a4f1348d6a027327bc7af7b2",
+        "services/request.json": "6e16bdede0af39b44f35e8ef11eb5fc3332e889630fbb0443d68ae411b645dd7",
+        "services/launch.json": "b92f4d8acc391f8b29f1001799cd1ec7f8e6a43c93c0dbe416c08c27b738f1f2",
+        "services/window-before.json": "000d7e0d576ef15da54f2b34048618935831819dc4118fafbfe336217ee5dd2e",
+        "services/native-resize.json": "b86f98438b3846dfb3921d93ca28168364c5af889f13d6f757f8280034a5dbaa",
+        "services/children.json": "e45ad2494fdf6eba00294ae3a608a088a6e02be9836bdc42d3ec000ed2b51476",
+        "services/input.json": "844c29601709c82af6488083e21c8d76b43d568783570fae1964d95bff625cf4",
+        "services/window-close.json": "47a69928938e0ced526a4b92f1f23d2083a2680b5edd36c204926adbdea2e821",
+        "services/teardown.json": "c8e9dfc1878bd98c8f00d2425bae45b226a40e010e2f69b91342949f0457bbf7"
+      }
+    },
+    {
+      "id": "diagnostics-minimum-bilingual",
+      "screen": "diagnostics",
+      "path": "docs/captures/diagnostics-minimum-bilingual.png",
+      "raw": "diagnostics/output/diagnostics-001.png",
+      "sha256": "abf66f45d838f7b15d945fcc3aa4c1767a60fe4cfa9faaf466f69fe6bfd438e7",
+      "bytes": 70610,
+      "width": 800,
+      "height": 600,
+      "evidence": {
+        "diagnostics/build-receipt.json": "baec81eb129e72ed86b6752ef684a7e1d8683563a4f1348d6a027327bc7af7b2",
+        "diagnostics/request.json": "cb743371a63335b73ff30c7f3d1d85df81bdcf79f40a48eebd2d2d1c29e83a38",
+        "diagnostics/launch.json": "123b1a205b847c373283393f4334f19fa2e06ffe97415bd2feb37d884d989292",
+        "diagnostics/window-before.json": "240084fb6ee9268b8400a7d8a9c32617f6989db7406b5a50a8902967d1efd07b",
+        "diagnostics/native-resize.json": "6b5e72eb65e750b4d1258e18250197b6c10706ce675ec918e9f8b953847ad272",
+        "diagnostics/children.json": "47f2df9360cae3b27b41592c27e9a1cf2268816e0a29ab00604ffb0324d5f6db",
+        "diagnostics/input.json": "0db4f1685006e06ea0c42326f11a9d9b2afc6030f8ebce3043d4f2a8e921bea1",
+        "diagnostics/window-close.json": "a3b2d93b9aabfa1b91dd92ba149e97b322dc9063a12f09450eb6bb9aaef1b26f",
+        "diagnostics/teardown.json": "a8a2f497d675c6d9238bcba5afc042f6e89bf83bc2af4e6dd66cb7dd5a5dd7a1"
+      }
+    },
+    {
+      "id": "processes-minimum-bilingual",
+      "screen": "processes",
+      "path": "docs/captures/processes-minimum-bilingual.png",
+      "raw": "processes/output/processes-001.png",
+      "sha256": "9577d7bdfeff2c239758643bc2337dca2f8ac0b9e2bf4f2aaf02874f835cd074",
+      "bytes": 60462,
+      "width": 800,
+      "height": 600,
+      "evidence": {
+        "processes/build-receipt.json": "baec81eb129e72ed86b6752ef684a7e1d8683563a4f1348d6a027327bc7af7b2",
+        "processes/request.json": "9e900cc33ad2b2ca08a185afb95305bade2cbb10154fea43b3b31051bd063b7b",
+        "processes/launch.json": "abb61843108babbce160b32cb9592e660408acb230c71ffb17e4bf641bf81627",
+        "processes/window-before.json": "4d82950d3c535b44523c1c483bd35f03ea77e78a1ae755a751dc3f55169b8934",
+        "processes/native-resize.json": "0472922c3c3f6f9d6e4a69094c00ea71b5f0df34a743b45750f4490eb9bcbdf9",
+        "processes/children.json": "d93c3d8bc935c0f74d0585a8c543332880c692dd59c917ff979779744c013527",
+        "processes/input.json": "ee7f6291d205eb1706bc3776f71b259135cc7b06a32110895ce81fb523447050",
+        "processes/window-close.json": "85a5f47c938299a9e0782c44867c8336b0de25fdae0b31654a61969b8d13711a",
+        "processes/teardown.json": "cb65b71417c403201d7dd93a01960f1fb83eb48a8d945dfd951df906879d0dc8"
+      }
+    },
+    {
+      "id": "file-use-minimum-bilingual",
+      "screen": "file-use",
+      "path": "docs/captures/file-use-minimum-bilingual.png",
+      "raw": "file-use/output/file-use-001.png",
+      "sha256": "5b4261ab53522a1776424e858f6566bd0acaa0792de3da4d6bcea55047d8fa66",
+      "bytes": 68915,
+      "width": 800,
+      "height": 600,
+      "evidence": {
+        "file-use/build-receipt.json": "baec81eb129e72ed86b6752ef684a7e1d8683563a4f1348d6a027327bc7af7b2",
+        "file-use/request.json": "1d37a4d1e332d10f85677aa9f2840f70fef4e1479063c0b534b0f65cd73795b6",
+        "file-use/launch.json": "d631deb4fdf17b3b44d3988d92708cf9d15e774e1cb54037957fd5b6049abf26",
+        "file-use/window-before.json": "8bdabc1a59dacf2b18f2f559eaacc58df05c615674120ec5136b686d19703e0a",
+        "file-use/native-resize.json": "b6b1a50649842e456475d392e5606ddb1974249e426d41fc3594c08b6e39e965",
+        "file-use/children.json": "7b58228773699c28605757cb1dec4ca196b1f6624459460b5e3baf8868f6db40",
+        "file-use/input.json": "7e922fecd1361c908065ef5e9dc676bb1c0e4b367ab97f90d962e83e62c7b59a",
+        "file-use/window-close.json": "ca8ec80b7cf3c3f6566e71343b7b5ff895e2a7285d94a2599863a20e59203bf5",
+        "file-use/teardown.json": "198c3bf12e8c81bbd61eb7adbe82c549173506042c47666409f1829d97391552"
+      }
+    },
+    {
+      "id": "scheduled-tasks-minimum-bilingual",
+      "screen": "scheduled-tasks",
+      "path": "docs/captures/scheduled-tasks-minimum-bilingual.png",
+      "raw": "scheduled-tasks/output/scheduled-tasks-001.png",
+      "sha256": "2870499d2fb9992e7b5f56b0c18134fac5476be695d864322aea9af8b6b37adc",
+      "bytes": 61357,
+      "width": 800,
+      "height": 600,
+      "evidence": {
+        "scheduled-tasks/build-receipt.json": "baec81eb129e72ed86b6752ef684a7e1d8683563a4f1348d6a027327bc7af7b2",
+        "scheduled-tasks/request.json": "e1c376491ecf5089f16c9c9ddac5a243a3a166106589b4e6c3aafd4c060b284b",
+        "scheduled-tasks/launch.json": "d653f751bb3ecb00e76a1fa933cc144c77ef97b8e181e2f465d83caa949c8b8a",
+        "scheduled-tasks/window-before.json": "f9fc9f10387eebbde701fda25d98f6b42b68d17ddfb9abd0023f69089900f594",
+        "scheduled-tasks/native-resize.json": "0ded65e72d19e8c8936f7c78eb4af2786de28d799c45c27f7ae848ffbc4cddc5",
+        "scheduled-tasks/children.json": "b361a0bb5171710ed8e3d22b1e74be8232df826f9832bd0bd778fb402ff6192d",
+        "scheduled-tasks/input.json": "aaadd0b9fd359ee8aeea2ea9f430cd745d182048c43dfe0e72b4d08cca5d014c",
+        "scheduled-tasks/window-close.json": "e24d850c51acd4a0fead7281f17bb3af711219a5a692c1fff5fa93920520ba2d",
+        "scheduled-tasks/teardown.json": "ca54fc151b9ecbf8e5acd7e386875064d9a919792e698494f84c72308f2c28c1"
+      }
+    }
+  ]
+}

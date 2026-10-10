@@ -100,3 +100,9 @@ Isolated workspace captures support [bounded language, theme, text-scale and mot
 ![Built service workspace in Cantonese, dark theme and doubled text](docs/captures/services-yue-dark-text2.png)
 
 This [isolated display-tuple receipt](docs/captures/services-yue-dark-text2.json) records an inspected idle frame. Text scale 2 does not establish physical display DPI or complete keyboard/motion coverage.
+
+## Enlarged bilingual diagnostic preview
+
+![Blue-screen diagnostic initial viewport, bilingual dark theme at 800 by 600 and doubled text](docs/captures/diagnostics-minimum-bilingual.png)
+
+The complete title and lookback value are visible in this real rebuilt initial viewport. Lower content needs scrolling and is not established by this frame. See the [five-workspace evidence inventory](docs/captures/README.md#minimum-size-bilingual-inspection-workspaces) and its explicit limitations.
