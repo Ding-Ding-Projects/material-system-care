@@ -4,12 +4,35 @@
 #include <sddl.h>
 #include <shobjidl.h>
 #include <array>
+#include <algorithm>
 #include <stdexcept>
 #include <sstream>
 #include <iomanip>
 #include <cmath>
 
 namespace {
+void WriteCapture(const flutter::EncodableValue* arguments, std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result) {
+ const auto* map=arguments?std::get_if<flutter::EncodableMap>(arguments):nullptr;
+ if(!map) { result->Error("INVALID_CAPTURE","Expected capture data"); return; }
+ auto pathIt=map->find(flutter::EncodableValue("path")); auto bytesIt=map->find(flutter::EncodableValue("bytes"));
+ const auto* path=pathIt==map->end()?nullptr:std::get_if<std::string>(&pathIt->second);
+ const auto* bytes=bytesIt==map->end()?nullptr:std::get_if<std::vector<uint8_t>>(&bytesIt->second);
+ if(!path || path->size()<7 || path->size()>32760 || path->find('\0')!=std::string::npos || (*path)[1]!=':' || ((*path)[2]!='\\' && (*path)[2]!='/') || !bytes || bytes->size()<8 || bytes->size()>32*1024*1024) { result->Error("INVALID_CAPTURE","Invalid capture path or size"); return; }
+ static constexpr unsigned char png[]{137,80,78,71,13,10,26,10};
+ if(!std::equal(std::begin(png),std::end(png),bytes->begin())) { result->Error("INVALID_CAPTURE","Expected PNG data"); return; }
+ int count=MultiByteToWideChar(CP_UTF8,MB_ERR_INVALID_CHARS,path->data(),static_cast<int>(path->size()),nullptr,0);
+ if(count<=0) { result->Error("INVALID_CAPTURE","Invalid capture path"); return; }
+ std::wstring wide(count,0); MultiByteToWideChar(CP_UTF8,MB_ERR_INVALID_CHARS,path->data(),static_cast<int>(path->size()),wide.data(),count);
+ if(_wcsicmp(wide.c_str()+wide.size()-4,L".png")!=0 || wide.find(L':',2)!=std::wstring::npos) { result->Error("INVALID_CAPTURE","Expected a PNG file path"); return; }
+ // CREATE_NEW and writing on the same unshared handle avoid a create/reopen
+ // race. Caller-selected drive paths may still resolve to network storage.
+ HANDLE file=CreateFileW(wide.c_str(),GENERIC_WRITE,0,nullptr,CREATE_NEW,FILE_ATTRIBUTE_NORMAL,nullptr);
+ if(file==INVALID_HANDLE_VALUE) { result->Error("CAPTURE_CREATE_FAILED","Capture destination could not be exclusively created"); return; }
+ DWORD written=0; bool ok=GetFileType(file)==FILE_TYPE_DISK && WriteFile(file,bytes->data(),static_cast<DWORD>(bytes->size()),&written,nullptr) && written==bytes->size() && FlushFileBuffers(file);
+ CloseHandle(file);
+ if(!ok) { result->Error("CAPTURE_WRITE_FAILED","Capture write did not complete"); return; }
+ result->Success();
+}
 std::string Quote(const std::string& text) {
  std::string out="\""; const char* hex="0123456789abcdef";
  for(unsigned char c:text) { if(c=='"' || c=='\\') { out+='\\'; out+=static_cast<char>(c); } else if(c<32) { out+="\\u00"; out+=hex[c>>4]; out+=hex[c&15]; } else out+=static_cast<char>(c); }
@@ -91,6 +114,7 @@ EngineBridge::EngineBridge(flutter::BinaryMessenger* messenger, HWND window):win
  }
  channel_=std::make_unique<flutter::MethodChannel<flutter::EncodableValue>>(messenger,"material_system_care/engine",&flutter::StandardMethodCodec::GetInstance());
  channel_->SetMethodCallHandler([this](const auto& call, auto result) {
+  if(call.method_name()=="writeCapture") { WriteCapture(call.arguments(),std::move(result)); return; }
   if(call.method_name()=="cancel") {
    const auto* id=call.arguments()?std::get_if<std::string>(call.arguments()):nullptr;
    if(!id || id->empty() || id->size()>128) { result->Error("INVALID_ARGUMENT","Expected operation id"); return; }

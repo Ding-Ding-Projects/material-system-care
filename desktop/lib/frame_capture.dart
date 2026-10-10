@@ -82,9 +82,13 @@ class _FrameCaptureState extends State<FrameCapture> {
       try {
         final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
         if (bytes == null) return;
-        // Exclusive creation prevents overwriting an existing capture.
-        await file.create(exclusive: true);
-        await file.writeAsBytes(bytes.buffer.asUint8List(), flush: true);
+        // The native bridge creates and writes through one exclusive handle.
+        await const MethodChannel(
+          'material_system_care/engine',
+        ).invokeMethod<void>('writeCapture', {
+          'path': file.path,
+          'bytes': bytes.buffer.asUint8List(),
+        });
       } finally {
         image.dispose();
       }
