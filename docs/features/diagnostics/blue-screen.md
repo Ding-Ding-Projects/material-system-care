@@ -18,6 +18,8 @@ Nine common stop codes have curated names and broad categories. Other values rem
 
 ## Limits and privacy
 
+**Copy Microsoft reference** writes only the fixed public Microsoft URL shown beside the explanation. A completed write shows a nonblocking confirmation. If the clipboard rejects the write, the page retains its result and selectable URL and explains that copying did not complete. The message does not expose the underlying exception. Three focused platform-channel tests cover success, rejection and disposal during a pending rejected write. Those mocks do not establish an actual system-clipboard interaction; that remains pending separate isolation and runtime verification.
+
 Collection accepts `days` from 1 through 365 and `limit` from 1 through 100; the interface requests at most 50 events. The query has a 15-second deadline and a 2 MiB output bound. A maximum of 100 dump-file metadata records are returned from the standard Windows dump locations. Reparse-point dump directories and files are excluded.
 
 The engine reads dump names, lengths and modification times, never dump contents, stacks or symbols. It excludes raw event messages, computer names, SIDs, bugcheck address parameters and full file paths. Responses are transient, are not automatically recorded in operation history, and are not uploaded. No debugger, driver, privilege, event-log configuration, restart, repair or crash-trigger action is performed. Fixture contexts cannot inspect actual host events.

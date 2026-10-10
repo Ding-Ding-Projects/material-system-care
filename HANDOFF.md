@@ -1,5 +1,9 @@
 # Implementation handoff
 
+## Reference-copy feedback candidate
+
+Candidate `ed7108a2bfdd7c7e9e4515231fc25bfec3ba0322` catches clipboard rejection locally, keeps the visible reference/result and shows a fixed localized recovery message. Three new mocked-write checks and eleven related diagnostic checks passed, as did the isolated root desktop build and independent source review. This integrated candidate still needs its own build. No actual system-clipboard read/write was performed or claimed; the reference-copy workflow remains unverified at runtime.
+
 ## Verified general-inventory display quality
 
 Integrated source `6ec050099d6239b5b230b9d703a28b55b732ddfc` passed the root desktop build and real 1280×1000 bilingual inventory/filter verification: 741 records, four explicit degraded records, four fallback-query matches, zero nonmatching-query matches and 741 after clearing through the actual context-menu action. Six private frames and fourteen supporting hashes passed the narrow verifier. Owned executables were absent and the hidden desktop closed. Synthetic Ctrl+A did not select all; the text-selection menu remained English-only. Neither gap is represented as completed keyboard/localization coverage. No package was changed.

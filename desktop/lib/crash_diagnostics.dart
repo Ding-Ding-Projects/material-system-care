@@ -157,12 +157,24 @@ class _CrashDiagnosticsPageState extends State<CrashDiagnosticsPage> {
           icon: const Icon(Icons.copy),
           label: UiText('Copy Microsoft reference'),
           onPressed: () async {
-            await Clipboard.setData(
-              const ClipboardData(text: diagnosticReference),
-            );
+            bool copied = false;
+            try {
+              await Clipboard.setData(
+                const ClipboardData(text: diagnosticReference),
+              );
+              copied = true;
+            } catch (_) {
+              // The fixed visible reference remains available for selection.
+            }
             if (!mounted) return;
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: UiText('Microsoft reference copied.')),
+              SnackBar(
+                content: UiText(
+                  copied
+                      ? 'Microsoft reference copied.'
+                      : 'Reference copying did not complete. Select the visible reference to copy it manually.',
+                ),
+              ),
             );
           },
         ),

@@ -180,6 +180,8 @@ const translations = <String, String>{
   'File modified at UTC': '檔案修改時間（UTC）',
   'Copy Microsoft reference': '複製 Microsoft 參考連結',
   'Microsoft reference copied.': '已複製 Microsoft 參考連結。',
+  'Reference copying did not complete. Select the visible reference to copy it manually.':
+      '未能完成複製參考連結。你可以選取畫面上嘅參考連結，然後手動複製。',
   'The recorded code is evidence of the reported stop condition. It does not establish the root cause or identify a culprit driver.':
       '記錄的代碼只證明回報的停止狀況，不能確定根本原因或肇因驅動程式。',
   'Compare the event time with recent driver, firmware, hardware, and Windows updates.':
