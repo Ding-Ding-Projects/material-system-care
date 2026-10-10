@@ -33,3 +33,5 @@ All external commands use full fixed paths, no shell, and separate `ArgumentList
 - [Isolated capture tuples](capture-tuples.md): display-only verification controls and their limits.
 
 - [Startup action review](startup-review.md): explicit enable/disable effects and eligible record selection.
+
+- [Minimum-size keyboard navigation · 最小視窗鍵盤操作](keyboard-navigation.md)

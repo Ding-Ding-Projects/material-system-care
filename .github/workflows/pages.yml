@@ -4,6 +4,9 @@ on:
     branches: [main]
     paths:
       - 'website/**'
+      - '**/*.md'
+      - 'docs/**'
+      - 'design/**'
       - 'contracts/**'
       - 'scripts/build.ps1'
       - 'scripts/bootstrap.ps1'

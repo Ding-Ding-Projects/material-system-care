@@ -42,9 +42,9 @@
 
 - [ ] Verify read-only scan cancellation in the built workspace: request-specific control, completion-race handling and truthful stop-waiting state are implemented; focused Flutter checks passed.
 
-- [ ] Verify receipt-specific recovery review in the built workspace: metadata-only engine details and confirmation blocking are implemented; 33 storage checks and the focused Flutter review test passed. Real user files were not restored.
+- [x] Verify receipt-specific recovery review with owned disposable files in the built workspace, including conflict preservation and successful retry. Original bytes, identities and modification times were restored; private paths remain unpublished. Full interface coverage remains separate.
 
-- [ ] Verify selected temporary-file maintenance in the built workspace: explicit subset review, server-side selection and replay validation are implemented; 30 storage fixture checks and the filtered-selection Flutter fixture passed. Real user files were not moved.
+- [x] Verify selected temporary-file maintenance with two owned disposable files in the built workspace: cancelled confirmation changed neither file, only the selected file moved, and the other remained unchanged. This does not certify arbitrary user-file cleanup.
 
 - [x] Verify manual stop-code entry and explanation through real isolated background input, retain the inspected painted result and source-bound receipts, and prove altered input evidence is rejected. This does not complete the native compositor or full interaction matrix.
 
@@ -89,7 +89,8 @@
 ## Inspection layout verification
 
 - [x] Verify five rebuilt initial viewports at 800×600, bilingual dark theme and doubled text, with complete titles and owned teardown.
-- [ ] Verify lower controls, popup states, keyboard scrolling and the full physical-DPI matrix; initial frames do not establish these.
+- [x] Verify Tab traversal, Page Down and search entry in Services, Scheduled tasks and Processes at 800×600, bilingual dark theme and text scale 2, using the repaired background key sender.
+- [ ] Verify all popup and populated states, complete focus order, remaining themes/scales and the full physical-DPI matrix; the bounded idle keyboard observations do not establish these.
 
 - [x] Verify explicit stop-code entry and completed explanation in enlarged bilingual dark mode at 1264×961.
 - [x] Verify public delivery of the minimum-size diagnostic guide image and required guide assets.
@@ -109,4 +110,14 @@
 - [ ] Verify rebuilt wrapping search and selector labels; 17 focused widget/component checks pass, runtime captures pending.
 
 - [x] Verify three rebuilt bilingual wrapping-label views at 1280x900, dark theme and doubled text; retain exact captures and bundle evidence.
-- [ ] Verify minimum-size lower controls with a working background scrolling route.
+- [x] Verify minimum-size lower controls in Services, Scheduled tasks and Processes with the repaired background key sender; the bounded idle keyboard evidence is recorded separately from the full matrix.
+
+## Cleanup presentation follow-up
+
+- [ ] Replace record-shaped cleanup and recovery output with dedicated bilingual results and actionable recovery summaries, then verify real minimum-size interaction.
+
+## Startup review integrity
+
+- [x] Add deterministic reviewed-state revisions, reject stale changes before mutation, refresh without automatic retry, and verify with focused positive/negative fixtures and exact root builds.
+- [x] Verify actual owned-entry registry stale-review rejection and exact command/kind disable/restore through the built engine; remove the disposable entry afterward.
+- [ ] Verify the startup review, refresh and mutation workflow through the built desktop.

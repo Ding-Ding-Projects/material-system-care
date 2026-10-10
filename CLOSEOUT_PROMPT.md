@@ -1,63 +1,29 @@
-# Continuation checkpoint
+# Resume Material System Care
 
-Continue the authorized Windows 11 x64 Material System Care implementation using Flutter/Dart, C#/.NET 10, C++20 and SQLite. The full suite and complete visual/interaction coverage remain unfinished. Do not mark the goal complete from this documentation milestone.
+Objective: complete the independent Windows 11 x64 suite using Flutter/Dart, C#/.NET 10, narrow C++20 and SQLite. Preserve all 295 capability rows and exclusions. The active goal has no explicit budget and remains incomplete.
 
-## Latest requirements
+## Verified work
 
-Keep the interface modern and composed of official Material Design 3 controls or specification-backed compositions, with no clipping. The public GitHub Pages website must contain complete articles and wiki content directly, with internal navigation instead of redirects to GitHub articles. The new desktop screenshot gallery is bilingual only.
+Main previously matched `eb4b9cab4368bca3951bb295007e18378eee8c0a`. This integration includes the isolated cleanup verification mode from `2ed02f132083d75d281ce1ab4859583f7d5e3c88` and its exact-source root desktop build. The genuine hidden-desktop round trip verified selection, cancellation, recovery movement, conflict preservation and successful retry, with original hashes, file identities and modification times restored. All bundle processes are absent and the hidden desktop is closed. Evidence: `docs/captures/cleanup-workflow.json`, `docs/features/storage/cleanup-verification.md` and `scripts/verify-cleanup-workflow.mjs`. The verifier passed and rejected an altered frame hash. Populated frames remain private because they contain local paths.
 
-## Preserved state
+The prior keyboard unit retained nine exact frames at 800x600, bilingual dark, text scale 2. Public deployment `38082534923` at `eb4b9ca` delivered 709 matching files and 169 full articles. Three browser viewports passed focused image-loading, overflow, accessibility-name and Tab-focus checks. The browser/listener are absent and hidden desktop closed; its isolated profile is retained. The exact About homepage is https://ding-ding-projects.github.io/material-system-care/. These claims apply to that deployed revision; this integration still needs its own deployment readback.
 
-Main and the remote were verified at c434189d5398365670d8aee4cbe2cc1e9d17fd6a before this record. It contains the forty-image bilingual gallery, complete article reader, prerendered article output, responsive navigation, reactive search repair, readable article typography and local attachment checks. Earlier desktop source a650729f0764f709be043e8841206b0b765a9887 is the producer of the forty desktop captures. This record and associated evidence are the next preservation commit.
+Lowlevel main is `00365b0e846e3eb031ea58b0c3ca316c2b1349a8`; sender code is `5012390`. Its hosted build/deployment and this repository build `38082515576` succeeded. Existing shared Lowlevel clients were preserved. The task-owned HTTP service remains available for subsequent isolated verification.
 
-## Verified evidence
+## In progress
 
-- SCREENSHOTS.md and docs/captures/gallery.json enumerate forty inspected original frames, with twenty lifecycle receipt sets. Images are idle initial viewports, not complete interaction or physical DPI evidence.
-- Twelve website tests passed. Universal coverage records 104 contracts, 34 surfaces and 2346 rows; 219 negative mutations were rejected. Full contract delivery remains unverified.
-- The exact root website build passed. Deployment 38020360091 succeeded. All 688 files matched the retained deployment output, including 168 complete article pages, forty gallery images and required assets. All 192 compiled internal article links and anchors had targets.
-- Live isolated Edge checks covered gallery, diagnostic article and prerendered article at 1440x1000, 390x844 and 320x800. Selected captures and receipt hashes are in docs/verification/website-articles-gallery.json. No body overflow, relevant console/resource errors or unnamed visible controls were observed in those checks. This is not full accessibility, theme, scale or motion certification.
-- Service gallery filtering returned eight of forty results. Invalid regex returned zero. One keyboard Tab path reached the article navigation tab with focus-visible state.
-- Public visibility and exact About homepage were verified: https://ding-ding-projects.github.io/material-system-care/ .
-- Hosted text line endings differ from local output in some files. Exact deployment verification used the retained hosted build, not normalized hashes.
+Startup stale-review protection from `785a79c10d8c3318dc8b6a69aa17562fd7e0ae74` is now integrated after its exact root engine and desktop builds, four focused Flutter checks, integrated engine fixtures, negative regression and independent review. Actual owned-entry registry stale rejection and exact disable/restore passed through the built engine request-file route, and the disposable entry was removed. GUI interaction remains separate. Protection is optimistic, not atomic compare-and-swap. The same owned branch is now preparing dedicated cleanup-result presentation, which remains incomplete.
 
-## Remaining work
+Retain the generated-file recovery branch `implement/desktop-ui` at `4e1ae07ef80ac38ca747948138f54c62f5906cdf`. No task-owned worktree or branch has been deleted.
 
-The wiki Git endpoint reports Repository not found; no wiki import or synchronization is claimed. Continue complete suite behavior, installer/runtime verification, language and universal-contract delivery. Inspect and repair enlarged bilingual desktop search/field labels, then rebuild and capture the changed surfaces. Do not treat earlier idle frames as proof of complete layout coverage. Preserve the declared source for every capture.
+The exact root installer build passed at `4db8f8c2e93534433c45acfc60ae8914c8fbe4ef`; package inventory and hashes are in `docs/verification/installer-build.json`. No release is published. Runtime installation/update/uninstall needs a supported disposable user/VM or documented isolated root. Complete build-log/signing-process provenance also remains incomplete.
 
-The Windows build workflow for c434189 was still running at the last check. Check its terminal state. A normal release and full installation/update lifecycle are not claimed. Existing active branches and worktrees remain preserved; none were deleted.
+## Next steps
 
-Use the supported persistent Lowlevel hidden route and isolated profiles. Keep the visible desktop, focus, user data and host power state untouched. All completed browser capture processes and task static servers were closed; retained private profiles and receipts remain local. The task-owned Lowlevel transport remains available for continuing work.
+Finish dedicated bilingual cleanup/recovery result presentation, startup and managed-package interaction, read cancellation, remaining diagnostic actions and the complete appearance/accessibility matrix. Verify genuine Squirrel installation, update and uninstall. Keep full articles and available wiki content on GitHub Pages, verify every deployment and the exact About homepage, and retain honest per-capability status.
 
-## 下一步
+Use exact root build entrypoints, source-bound evidence, bounded retries and prompt verified pushes to main. No user-file mutation without exact review, visible-desktop disruption, private-data publication, host power actions, kernel drivers or proprietary engines. Preserve and archive owned work before any authorized cleanup.
 
-完整維護套件及全部介面驗證仍未完成。先核對最新主分支及流程狀態，保留現有證據，再修正放大雙語桌面標籤、建置及重新擷取受影響畫面。網站文章和圖庫已完成上述指定驗證，但 Wiki 來源仍未能使用，不能宣稱已同步。
+## 中文接續
 
-## Current desktop refinement
-
-Separate wrapping Material labels have been added to search fields and the service-state/maximum-record selectors. Seventeen focused tests pass. Build and new source-bound screenshots remain pending. The c434189 Windows build subsequently completed successfully.
-
-The root desktop and engine builds passed at a5aaea8b27946e958d2de49bad06fbbec970a4f0. Three 1280x900 bilingual dark doubled-text captures were inspected. Exact bundle files verified; bundle processes and named hidden desktops are absent. See docs/verification/wrapping-labels.json. Minimum-size lower controls remain unverified because background wheel input did not move the viewport.
-
-## Verified delivery checkpoint
-
-The interface source a5aaea8b27946e958d2de49bad06fbbec970a4f0 and capture documentation f69279d2dcc5f2958eb41ad632a77bbe0fa6fb5a are on remote main. Documentation deployment 38021026357 succeeded; all 697 live files matched its retained output, including the three new label screenshots. The dedicated gallery retains its 40 earlier bilingual frames; the three current label frames appear in the complete screenshot article and relevant documentation. This verification record is a subsequent documentation-only checkpoint.
-
-The main checkout was clean before this checkpoint. Ten existing worktrees and eleven local branches remain retained for the active broad goal; no stash or cleanup deletion was created. Global instruction issues 49, 45, 25 and 22 were read, with no unrelated backlog adopted. The canonical complete-documentation rule is preserved in c770ae0; its latest remote main is 66d1f12822110e8fa752489a55d83be64a7e06fc. Its full historical sweep was not wholly green.
-
-Next: verify keyboard and lower-control scrolling at 800x600, finish the complete interface/state/motion matrix, continue the supported suite capabilities and installer lifecycle. The goal remains active and incomplete.
-
-## Resource closeout
-
-The user requested preservation and task-owned cleanup with 7% account allowance remaining. New implementation stopped. The new Windows keyboard regression passes for service, scheduled-task and process views after Tab then Page Down at 800x600 with doubled bilingual text. The real hidden service view moved partly, but complete lower-control runtime verification remains unfinished. Its owned process exited and named desktop closed.
-
-The final read-only publication audit verified the forty-frame gallery and all three newer article attachments with exact image hashes. No publication omission was found in those frames. The broad goal remains active and incomplete. Existing branches and worktrees are inventoried for archive-backed cleanup; retain any unmerged recovery state.
-
-## Completed preservation and cleanup
-
-Main eafa64bb8e54f39c281e0a9a2dbc1ec3752c8f87 was pushed and verified. Generated Flutter registration files were preserved on implement/desktop-ui at 4e1ae07ef80ac38ca747948138f54c62f5906cdf, also pushed and verified. That unmerged recovery branch and its checkout remain intentionally retained.
-
-A private archive covering all ten original checkouts and the complete Git administration directory passed integrity testing and listing verification: 3,514 entries, 12,934,984 bytes. It excluded 35,783 ignored files under Git ignore rules. After exact ownership, clean-state, remote-tip and ancestry checks, eight linked worktrees and nine local/remote merged branches were removed. Main and implement/desktop-ui remain; there are no stashes. The archive and private capture records remain outside public source.
-
-The current resource-closeout condition has occurred once since this explicit user request. The broad goal remains active, not complete or paused. The verified account allowance was 7% remaining. Resume only with actual available allowance, preserving the same unfinished scope and evidence. No replacement goal or recurring automation was created.
-
-Continue from the retained source, not from deleted lane paths. The next concrete work is complete native keyboard/lower-control evidence, full Material interface and motion/accessibility coverage, outstanding suite workflows and installer/update verification. The latest deployed product-content proof remains f69279d / run 38021026357, with all 697 public files matching. Subsequent commits are preservation records and the passing keyboard test.
+完整套件仍未完成。今次已用真正介面驗證隔離清理、取消、衝突保護及原始內容復原；含私人路徑嘅畫面不公開。下一步整合啟動項目覆核保護，再完成專用清理顯示、其他流程、完整外觀及安裝更新驗證。保留未完成分支，不能把局部成功當成整個目標完成。
