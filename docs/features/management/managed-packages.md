@@ -4,6 +4,10 @@ In **Apps**, choose **WinGet matches** in the inventory-source selector, select 
 
 Each managed card contains the exact package identifier and optional installed version. Select **Review upgrade** or **Review uninstall** and review the exact target before proceeding. Discovery changes no installed package, accepts no new source agreement, and does not imply consent to a later operation. Existing source agreements and a working WinGet installation are required; a missing client or unsuccessful discovery has an explicit unavailable result and its bounded cause. Invalid data is distinguished from a valid unavailable response and a successful empty inventory.
 
+General installed-inventory display metadata has separate quality states. An invalid name, version or publisher is discarded and rendered with a fixed localized unavailable label; it is not truncated, repaired or used in search. Stable identifiers, source, scope and read-only capability checks remain strict. The workspace counts affected records separately from inaccessible inventory sources. Managed-package records retain their original strict validation and never become actionable through display fallbacks.
+
+中文：一般已安裝清單會分開處理顯示資料品質。名稱、版本或發行者無效時，原值會捨棄，改用固定本地化提示，不會截短或猜測內容。識別碼、來源、範圍及唯讀限制仍嚴格驗證；受影響記錄數與來源不可讀警告分開顯示。WinGet 操作資料仍維持原本嚴格規則。
+
 Confirmation sends only the exact package identifier and consent. A result must match that identifier, contain a consistent completion/exit-code pair and explicitly state that no restart was initiated before success is reported. Every attempted mutation refreshes discovery without automatically repeating the mutation. A failed refresh removes prior actions. The engine does not compare the installed version to its reviewed value, so concurrent changes remain possible. Removal creates no rollback copy. These limits are repeated in the review dialog.
 
 中文：應用程式工作區分開一般唯讀清單及 WinGet 配對。探索、升級同移除各自要覆核；只有確實配對識別碼可以發送操作。來源不可用會保留實際原因，唔會同空清單或無效資料混埋。移除不會建立復原副本，覆核後版本亦可能被其他程序改變。
@@ -21,6 +25,10 @@ The request owns a unique local scratch directory. Cleanup targets only its exac
 Cancellation requests termination of the owned discovery process tree and observes the direct process exit with a separate five-second deadline. An unconfirmed direct-process exit returns `DISCOVERY_TEARDOWN_INCOMPLETE`; parent exit alone does not establish descendant exit. If cleanup also fails, its retained-inventory warning takes precedence in the single-code response.
 
 ## Verification
+
+The display-quality repair passed the integrated root desktop build at `6ec050099d6239b5b230b9d703a28b55b732ddfc`. Real general inventory then displayed 741 records with four explicit degraded-display warnings. Searching the localized fallback returned exactly four records; a nonmatching query returned zero; the actual Select all context-menu action and Backspace restored all 741. No package mutation was requested. Six representative private frames passed the narrow source/bundle/two-hook verifier. See [bounded observations](../../verification/package-display-quality-observations.json). The text-selection menu itself remained English-only in bilingual mode, so complete menu localization is still unfinished. Synthetic Ctrl+A did not select all and is not counted as shortcut proof.
+
+中文：顯示品質修正嘅實際清單有七百四十一項，四項清楚標示顯示資料不可用。搜尋提示字得到四項，不符合查詢得到零項，透過實際選單全選及退格清除後恢復全部記錄。沒有要求更改任何套件。文字選取選單仍只有英文，完整選單本地化尚未完成。
 
 The combined desktop at `bc8274a0bdf0ec984ee6cadbf3c01cda52facfc7` completed explicit real discovery with 45 matched packages at the time of the run. A selected package's upgrade review displayed its exact identifier and installed version, and the review was cancelled. No upgrade or uninstall was confirmed. The owned process and hidden desktop were closed. New frame receipts contain observed framework/platform diagnostic intervals; this is not universal native-error coverage.
 

@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "baa4fca7483265b53d1c7fe472571c0c0584e90c",
+  "manifests": [
+    "duplicate-analysis-normal-frames.json",
+    "duplicate-analysis-minimum-frames.json"
+  ],
+  "language": "both",
+  "theme": "dark",
+  "motion": "reduced",
+  "normalViewport": {
+    "width": 1280,
+    "height": 1000,
+    "textScale": 1
+  },
+  "minimumViewport": {
+    "width": 800,
+    "height": 600,
+    "textScale": 2
+  },
+  "fixture": {
+    "fileCount": 7,
+    "totalBytes": 145,
+    "groups": 2,
+    "matchedFiles": 5,
+    "hashedBytes": 128,
+    "potentialDuplicateBytes": 64,
+    "unchanged": true,
+    "beforeSha256": "010fca1b12b1b57aa93ae0adb8973004665fd5acaa528111f6a65f4d91e32099",
+    "afterSha256": "e802dbc700648ffac61b214ea688379a3ea461dfff8d46ce3e1f40dc8bafc60d"
+  },
+  "normalView": {
+    "reviewCancelledWithoutCollection": true,
+    "explicitReviewedCollection": true,
+    "bothExpandedGroupsInspected": true,
+    "rootEditClearedPreviousResult": true
+  },
+  "ownedProcessesAbsent": true,
+  "hiddenDesktopsClosed": true,
+  "limits": [
+    "Original-resolution numbered frames show the entered root retained and Analyze enabled at 800 by 600. The earlier reused-preview interpretation was incorrect and is superseded. Collection and full minimum-size workflow remain unverified.",
+    "Invalid-path response, pending-scan cancellation, other themes/scales, normal motion and complete accessibility remain unverified.",
+    "Raw path-containing frames remain private. The narrow verifier does not provide global promotion or semantic action/teardown certification.",
+    "Painted Flutter frames do not prove native-compositor output or physical display scaling."
+  ],
+  "minimumView": {
+    "retainedRootInputObserved": true,
+    "analyzeControlEnabled": true,
+    "collectionVerified": false
+  }
+}

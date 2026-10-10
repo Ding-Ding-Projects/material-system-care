@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "scope": "observed-flutter-hooks-and-bytes",
+  "sourceCommit": "f310e7684c9ebdf621bc656f2f98bfa3a47c12bc",
+  "buildReceiptSha256": "46e0f304c0f0bb2d5c86cdb9f3bf1c14901bbe52a2126b07acd82a06d1f5e10c",
+  "bundleManifestSha256": "25c524a97fef2d99e4d01e48111d757e41e9bf213f79d0ab63b1145371312d21",
+  "frames": [
+    {
+      "png": "output/frame.png",
+      "sidecar": "output/frame.png.json",
+      "sha256": "abf66f45d838f7b15d945fcc3aa4c1767a60fe4cfa9faaf466f69fe6bfd438e7",
+      "sidecarSha256": "efedec2baef9be06bee3161d8593e4b5dc9932fbca31d182ae00d126caf859c1",
+      "sequence": 0
+    },
+    {
+      "png": "output/frame-001.png",
+      "sidecar": "output/frame-001.png.json",
+      "sha256": "a36dfb0dfef7743f944571a47eb141536f9f3813d29d790d19f2da6e80ba9bd7",
+      "sidecarSha256": "243d46b1bc771ce12c405bac45d2c227696054ae86c47cb323d0d627471ffbcf",
+      "sequence": 1
+    },
+    {
+      "png": "output/frame-005.png",
+      "sidecar": "output/frame-005.png.json",
+      "sha256": "89ad4c171efde90aaebee36f9bbb87ba11112fba1532cd6df923b5639289b222",
+      "sidecarSha256": "0c7954531660c89783b3321c37bf1738b7d07d351c1d26af2b22987f723a5e42",
+      "sequence": 5
+    },
+    {
+      "png": "output/frame-008.png",
+      "sidecar": "output/frame-008.png.json",
+      "sha256": "2a289342ad610e8fe1a40d8aa69f7746497c696aa7c8f5af07fe1c9008e4e429",
+      "sidecarSha256": "986a0de4d0cd30c822fedf06df90d3d2da15b63759631eaeb4103d8749f35fed",
+      "sequence": 8
+    },
+    {
+      "png": "output/frame-013.png",
+      "sidecar": "output/frame-013.png.json",
+      "sha256": "0a8626ab2ce4ac0e3bcc834695d0d7e63c8104b19236d0f7dcc55f4cfcac6d21",
+      "sidecarSha256": "dfc8efbb81f8b1fb4bf45016c6960cbc7a2cd493181b5002e435aaab3b73b8ca",
+      "sequence": 13
+    },
+    {
+      "png": "output/frame-019.png",
+      "sidecar": "output/frame-019.png.json",
+      "sha256": "a51e6394b70acda6e6f1a5b7e3595354b3d582e685b95c935311d5e7f3db7e25",
+      "sidecarSha256": "38a78523bd1cc78ffaf6f981b74d8a199bebc5340d9e0dd158624494b911867e",
+      "sequence": 19
+    }
+  ],
+  "evidence": [
+    {
+      "role": "action",
+      "path": "minimum-period-open.json",
+      "sha256": "b9507ead62d65c3c7a4a1f5f79c8640de768cd2c9b00b6c3fca578ab2c0ba500"
+    },
+    {
+      "role": "action",
+      "path": "minimum-period-seven.json",
+      "sha256": "85efa979a5d0e01f75776ff2f529c2933503db379c592da5c159c4c888e5d71e"
+    },
+    {
+      "role": "action",
+      "path": "minimum-read-seven.json",
+      "sha256": "e93c3fc7717ccfab6af54fa9232f2da94785ffc69f319da9d6328cb2919d75ff"
+    },
+    {
+      "role": "action",
+      "path": "minimum-tab-period.json",
+      "sha256": "e2f577fe18041796fa4950b4a6efe938a9519c61ea0dc9bc952174613432fef5"
+    },
+    {
+      "role": "action",
+      "path": "minimum-page-down-1.json",
+      "sha256": "7145403d5c7554fc1836c8e9b44e17be1b23f3a5916ecd9068bbbda43d5f0647"
+    },
+    {
+      "role": "action",
+      "path": "minimum-page-down-2.json",
+      "sha256": "0a68f43a7b3585b752c0358b390e20e0770c4602a022a98717195ddb7af67f8e"
+    },
+    {
+      "role": "action",
+      "path": "minimum-page-down-3.json",
+      "sha256": "0ef2cccd0d3668879c774ebfcf1bda9566815d9a708f825af7bb45252d4e5ae4"
+    },
+    {
+      "role": "action",
+      "path": "minimum-page-down-4.json",
+      "sha256": "285aa174d3f0ead3a29bc85cd5e5c8bb403745296fbfad18401d91d570858cdf"
+    },
+    {
+      "role": "action",
+      "path": "minimum-page-down-5.json",
+      "sha256": "730bd3c1ad8046004ca8882eddc2e9a8aad1257ce8acf8a2b50803c293b583af"
+    },
+    {
+      "role": "action",
+      "path": "minimum-page-down-6.json",
+      "sha256": "768bec217d934c5a70a9b93c3a77fa954ad4ca52d12289bf43d332a75d2ac7f1"
+    },
+    {
+      "role": "action",
+      "path": "minimum-page-down-7.json",
+      "sha256": "56f26d3949332730c77a498cd19128b5d35ede87bb608a974f46a92e9fde5a40"
+    },
+    {
+      "role": "action",
+      "path": "minimum-page-down-8.json",
+      "sha256": "958311ce681278140d8c7b4521d9edbace3ca6569918cce4f3280245313ddc1b"
+    },
+    {
+      "role": "action",
+      "path": "minimum-page-down-9.json",
+      "sha256": "ef940a5033b3f1cdc0d24ae66f99f8de4d46f5c5b9bce837bb2a76d104180c92"
+    },
+    {
+      "role": "action",
+      "path": "minimum-page-down-10.json",
+      "sha256": "dbfbb361121139e4014aa901cf44b98fbe151a559d14721bd2412669e378d389"
+    },
+    {
+      "role": "action",
+      "path": "minimum-page-down-11.json",
+      "sha256": "c76b02aa67e26326cbe1919614573e236861e47e012b24b89126e1f84507d160"
+    },
+    {
+      "role": "action",
+      "path": "minimum-page-down-12.json",
+      "sha256": "047209bf9183c982d26d48bae094efb84d35a2d3700dbc94d2b32cd99e61a1e3"
+    },
+    {
+      "role": "action",
+      "path": "minimum-page-down-13.json",
+      "sha256": "d8fa0732e143d211d9fafcbd4df4a0b55f8480c9be82f177965eb5d24ff404e7"
+    },
+    {
+      "role": "action",
+      "path": "minimum-page-down-14.json",
+      "sha256": "a8c4ab32206712dcee6fc709ee154d0758450e25705cbc04cffe2a285af3447f"
+    },
+    {
+      "role": "action",
+      "path": "minimum-page-down-15.json",
+      "sha256": "78f7dbf9883ef325f6b9fe3e68b4fe5338ca8e4da38443bed0a1d1a0f77bbf8a"
+    },
+    {
+      "role": "teardown",
+      "path": "teardown.json",
+      "sha256": "19bb42bc9d7582d249409606f94fe181230ba97bcd111e63a7670c060fb64288"
+    }
+  ]
+}

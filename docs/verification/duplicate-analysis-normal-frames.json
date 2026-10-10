@@ -1,0 +1,174 @@
+{
+  "schemaVersion": 1,
+  "scope": "observed-flutter-hooks-and-bytes",
+  "sourceCommit": "baa4fca7483265b53d1c7fe472571c0c0584e90c",
+  "buildReceiptSha256": "d8e681f0d91242e85a3352643678e3dd7f7913ed75c1a8a151ce76769a9b852f",
+  "bundleManifestSha256": "21f304275d31d7dad1c1e2ac68b2d015f117ce67786d57bad7af56c53e84f8d8",
+  "frames": [
+    {
+      "png": "output/frame-001.png",
+      "sidecar": "output/frame-001.png.json",
+      "sha256": "bd515de8d217d6eda08b211fab1975af45b67dcf147206c91a7239d819001d96",
+      "sidecarSha256": "c219e47708a5476ccec326bb05034d9bacd29b3da204e1fba720b9a7a09a32d4",
+      "sequence": 1
+    },
+    {
+      "png": "output/frame-003.png",
+      "sidecar": "output/frame-003.png.json",
+      "sha256": "7b6cb4e21b48cf4885f835ab80cefb9add3aa833ba7bcfb46387510bfccc4d73",
+      "sidecarSha256": "a6ac3defec45f336fbfe62e17e86b38f76445a0927334f84f7ac067fcfde2673",
+      "sequence": 3
+    },
+    {
+      "png": "output/frame-004.png",
+      "sidecar": "output/frame-004.png.json",
+      "sha256": "5a7890f7c77e87c3a885f56e8780d5bcafd14436e5c299e92809fba02f7ff9d0",
+      "sidecarSha256": "2a539221230d08690ceef182ae274c5b12da12d57dba6a41b6cbf60ace01e15d",
+      "sequence": 4
+    },
+    {
+      "png": "output/frame-006.png",
+      "sidecar": "output/frame-006.png.json",
+      "sha256": "6e93d153a50d03beecd47325ab844def6af071b109750145f01129fa1d47648f",
+      "sidecarSha256": "7f82b4640498d15db0577dd597eafee96d87e2e554a299e6be05372f2f4052f6",
+      "sequence": 6
+    },
+    {
+      "png": "output/frame-008.png",
+      "sidecar": "output/frame-008.png.json",
+      "sha256": "63a7df968b38f54bd0be85f964f457ec71589068feea0034101c95e42171a498",
+      "sidecarSha256": "3662261d6e7b67110dd0bfd7340e5fd786dd8aceca7a669b2d746139b318191c",
+      "sequence": 8
+    },
+    {
+      "png": "output/frame-010.png",
+      "sidecar": "output/frame-010.png.json",
+      "sha256": "753e8b4044732957036d021f2c358fe7e8652aae20bd3dba8f48e59b8a6fcc47",
+      "sidecarSha256": "143349767eb28f6f46dfaff0f58f484d8772c919d825dd797f3df858fcea40b6",
+      "sequence": 10
+    },
+    {
+      "png": "output/frame-012.png",
+      "sidecar": "output/frame-012.png.json",
+      "sha256": "b0bd166fe7440d737194dedda602a7fccfd22f5b75a73bea504a2dc8af970328",
+      "sidecarSha256": "b7d6532c4db7eae191ecd5fd40e1a0a24c9013479661e4f1eefda398d77a55df",
+      "sequence": 12
+    },
+    {
+      "png": "output/frame-014.png",
+      "sidecar": "output/frame-014.png.json",
+      "sha256": "3a80161af81ad9cfa8e4311a6c2ea2acbb16016355049cb03da17bea8db52dd4",
+      "sidecarSha256": "a3b0b774e420a1d7c4a1b55e344941e088a976ddd20632a4f0187a185ff069c2",
+      "sequence": 14
+    },
+    {
+      "png": "output/frame-017.png",
+      "sidecar": "output/frame-017.png.json",
+      "sha256": "e2c0f601ced5d70a69bdbc97643554fd36c74c21285a1b179f182c8aa2f5df4a",
+      "sidecarSha256": "9c0fad692ac8192f23c9fab243432234f6e673318ae7e115c7a67cf1adfcce69",
+      "sequence": 17
+    }
+  ],
+  "evidence": [
+    {
+      "role": "action",
+      "path": "duplicate-cancel-review.json",
+      "sha256": "cdb1cfadca4b5334a3dd88fb2dc0228d14da35841b6157646d4baca03740fa3e"
+    },
+    {
+      "role": "action",
+      "path": "duplicate-confirm.json",
+      "sha256": "b5db2538f71f1b093ccb5cd6bee8b34c220c151a60b9bea0a5950ec8a8bac9b9"
+    },
+    {
+      "role": "action",
+      "path": "duplicate-edit-end.json",
+      "sha256": "d2e9eea6e4f08ec45674e4081e82b0aa85ef5fac45afbb03e459e79141041c52"
+    },
+    {
+      "role": "action",
+      "path": "duplicate-edit-focus.json",
+      "sha256": "57f838d06f3bb7e62f465a6d86880648f103dc66f272ba3056434ddbc2017228"
+    },
+    {
+      "role": "action",
+      "path": "duplicate-edit-path.json",
+      "sha256": "b078d3e67314664bbd0c9f3262d629a540a2db25f912519dd295cc837664e3aa"
+    },
+    {
+      "role": "action",
+      "path": "duplicate-edit-tab.json",
+      "sha256": "d99a1cba8913839f65065d661bcfeb2f3abcc2647de83c53e917dbb60890f4d2"
+    },
+    {
+      "role": "action",
+      "path": "duplicate-empty-group-details.json",
+      "sha256": "55b5779cf01549c965352d62af92fc3564f336f0876eb932ed5a51d66cbe3606"
+    },
+    {
+      "role": "action",
+      "path": "duplicate-empty-group-expand.json",
+      "sha256": "80c4deb8f99499efc55f9374d3f6cb06a0d617bfd9482374c02c0e75191f34b3"
+    },
+    {
+      "role": "action",
+      "path": "duplicate-group-details.json",
+      "sha256": "aca3b1c13605542d90f88cb67b6527e7aa9572fdcd4e42d52939a36518ff3c5e"
+    },
+    {
+      "role": "action",
+      "path": "duplicate-group-expand.json",
+      "sha256": "4c42d5d23c4c77906ddd645de21a84f48f55e85a6905047d38c0b232bcbfc120"
+    },
+    {
+      "role": "action",
+      "path": "duplicate-open-review.json",
+      "sha256": "5e3a066ce09d87e549a8f9d5e365f09693c321add38fa87d23241ffa2ced39c5"
+    },
+    {
+      "role": "action",
+      "path": "duplicate-path-focus.json",
+      "sha256": "afc1225534e20e768d6400972c25de9730259dd96bc59c0098d634ab558a4ec0"
+    },
+    {
+      "role": "action",
+      "path": "duplicate-path-input.json",
+      "sha256": "21941a6390593f533f268e14ea5a4b6f1b643e865997abac75fb787b7ce5f046"
+    },
+    {
+      "role": "action",
+      "path": "duplicate-results-focus.json",
+      "sha256": "3177ff2948d9eefbc21226a1c69b9ec3ebf3f124c5c9c6874ad4fa7b46664b6d"
+    },
+    {
+      "role": "action",
+      "path": "duplicate-results-page.json",
+      "sha256": "b81aba49f309e0b2ef643642189133f552cee9622a7f0cfc9144c1b31d611bd5"
+    },
+    {
+      "role": "action",
+      "path": "duplicate-return-top.json",
+      "sha256": "58674f36a1b9bf8719ac37f11761702df3225f1960eef03f31b3a103c2befcec"
+    },
+    {
+      "role": "action",
+      "path": "duplicate-return-up.json",
+      "sha256": "50a82e6832da4f67385381ae0e8ad67bc2781cd7cfeb6b9d3c9f5369f11496fb"
+    },
+    {
+      "role": "action",
+      "path": "duplicate-review.json",
+      "sha256": "ff70921cd3edbe21d1d38b14db1224f035eb118ad253ead986b9b5502e9fd08a"
+    },
+    {
+      "role": "action",
+      "path": "duplicate-start.json",
+      "sha256": "41785bf6d3c530c64f7f89824ca81f15fa347ba74b53782004c0688596c0f585"
+    },
+    {
+      "role": "teardown",
+      "path": "teardown.json",
+      "sha256": "19641bb4ac0ae7c2b9227b121d2aca46dee90601a798f8d8059f6a34bc79873e"
+    }
+  ]
+}

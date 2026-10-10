@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "6ec050099d6239b5b230b9d703a28b55b732ddfc",
+  "frameManifest": "docs/verification/package-display-quality-frames.json",
+  "viewport": {"width": 1280, "height": 1000},
+  "language": "both",
+  "theme": "dark",
+  "textScale": 1,
+  "motion": "reduced",
+  "inventoryRecords": 741,
+  "degradedRecords": 4,
+  "fallbackFilterMatches": 4,
+  "nonmatchingFilterMatches": 0,
+  "clearedFilterMatches": 741,
+  "mutationConfirmed": false,
+  "ownedProcessesAbsent": true,
+  "hiddenDesktopClosed": true,
+  "limits": [
+    "The synthetic Ctrl+A input inserted a literal a instead of selecting all. The subsequent combined query had zero matches. No shortcut success is claimed.",
+    "The actual Select all context-menu action followed by Backspace cleared the query and restored the full list.",
+    "The built-in text-selection menu displayed English only in bilingual mode. Complete menu localization remains unfinished.",
+    "Raw installed-inventory images remain private. Six representative frames were inspected and source/bundle/two-hook provenance verified; no global promotion is claimed.",
+    "Remaining themes, scales, minimum-size populated inventory and full accessibility coverage remain unverified."
+  ]
+}

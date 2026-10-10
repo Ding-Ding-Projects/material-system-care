@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "0ac670c6ecaf75f6080472a31443e32226ed191b",
+  "runId": 38085439011,
+  "home": "https://ding-ding-projects.github.io/material-system-care/",
+  "homepage": "https://ding-ding-projects.github.io/material-system-care/",
+  "deploymentSource": "workflow",
+  "public": true,
+  "filesChecked": 740,
+  "failures": [],
+  "initialTransportFailureCount": 1,
+  "focusedRetry": {
+    "path": "articles/253ad923fd8a9de60a94.html",
+    "status": 200,
+    "sha256": "23daea699f58b36ceaad58f8082dfb617a6da603f31085184f6affdd75cdb115",
+    "expected": "23daea699f58b36ceaad58f8082dfb617a6da603f31085184f6affdd75cdb115",
+    "match": true,
+    "checkedAt": "2026-10-10T20:56:58.247626+00:00"
+  },
+  "checkedAt": "2026-10-10T20:56:58.247626+00:00",
+  "completeArticles": 177
+}

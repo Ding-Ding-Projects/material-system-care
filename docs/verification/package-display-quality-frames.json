@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "scope": "observed-flutter-hooks-and-bytes",
+  "sourceCommit": "6ec050099d6239b5b230b9d703a28b55b732ddfc",
+  "buildReceiptSha256": "6efa84cee33ddc934ac74ed9d69c77862ae008ae6cc5835d8ebaf89900a036bc",
+  "bundleManifestSha256": "d9299fa158d2eecde4645792e389abc492793fa1fd8fc7f09b249faf51e8ef3b",
+  "frames": [
+    {
+      "png": "output/frame.png",
+      "sidecar": "output/frame.png.json",
+      "sha256": "618a0e27985b7232df2aee6d3f969d70449e3adbad4813a61cf4aa743293a25e",
+      "sidecarSha256": "297432fe04c4739331385f2d2116aa6ee411530fb7bf6f886f365a5f4b426de6",
+      "sequence": 0
+    },
+    {
+      "png": "output/frame-002.png",
+      "sidecar": "output/frame-002.png.json",
+      "sha256": "9a8fc998ac62e81ecb4fdcda78c818ae9cac2c84401c92467a4e177860a7913b",
+      "sidecarSha256": "c443aaf4d815cedeacce943070b1b92665925db57ffa730a3fd9263af06d4b74",
+      "sequence": 2
+    },
+    {
+      "png": "output/frame-004.png",
+      "sidecar": "output/frame-004.png.json",
+      "sha256": "7c47af391df2ed513758ddc9bf4abbbc5306572aec7421bfdfa952cfe7e48700",
+      "sidecarSha256": "c451db703acef67cdc5f1be44d845024af13712790ec1c942594d0826885c2a9",
+      "sequence": 4
+    },
+    {
+      "png": "output/frame-007.png",
+      "sidecar": "output/frame-007.png.json",
+      "sha256": "8624b3b8d371c592bd891284f0d8094acc94b0b045e62af3e5a5d5368cf7f3f4",
+      "sidecarSha256": "dc6e0ed6ab410370ce6f2fbbead62e8079ba820c571d405cf573392180184a8e",
+      "sequence": 7
+    },
+    {
+      "png": "output/frame-008.png",
+      "sidecar": "output/frame-008.png.json",
+      "sha256": "bca1cc2c5d57789927b15c538588d707d423d4fd0db10c3b709ba25fbaa4b604",
+      "sidecarSha256": "835b90a03296022f5b6ae3e20941bd3f237241e9027ccafd66887da654b4287b",
+      "sequence": 8
+    },
+    {
+      "png": "output/frame-011.png",
+      "sidecar": "output/frame-011.png.json",
+      "sha256": "ad14b0af466307ecb14e8833fa4985a91ff67a40f198ef94881bbfe9af5ea9ae",
+      "sidecarSha256": "9fed744bce4fee4d639e098b99a87f701da99ae357c182bd98e2d54481a9eaaa",
+      "sequence": 11
+    }
+  ],
+  "evidence": [
+    {
+      "role": "action",
+      "path": "installed-refresh.json",
+      "sha256": "312d118f54a1ade627b9ed4843b8e253ee94de9aad7ce72b558efc1b5fe9fdd6"
+    },
+    {
+      "role": "action",
+      "path": "installed-settled-tab.json",
+      "sha256": "7d24c3fbc0cdf8615073f2dc3374d0cabb252ad6d32b74442e1f2fed7aee155e"
+    },
+    {
+      "role": "action",
+      "path": "filter-focus.json",
+      "sha256": "6df86c918b9142168f2a8b20d35f752dfc2650b0d7f73f5f0fbf7b1bd0216187"
+    },
+    {
+      "role": "action",
+      "path": "filter-unavailable.json",
+      "sha256": "4d78660a0040dfc587dd6a73472437c1eea478dd53d1859cea1393879e121c4e"
+    },
+    {
+      "role": "action",
+      "path": "filter-settled-tab.json",
+      "sha256": "5ca0511272f65a8bc204a58cfcd3ac2bc280bab86ebff26b6bd58692e99140f4"
+    },
+    {
+      "role": "action",
+      "path": "zero-filter-focus.json",
+      "sha256": "61ab5908ae40d9d6b8bcc85e8a89780cb081684e98593c4fff1a827f50d35fd2"
+    },
+    {
+      "role": "action",
+      "path": "zero-filter-select-all.json",
+      "sha256": "5a6ef10114f61b7501cb6a3db227454b4d4b59bccd6f3c40db945bc73403abd3"
+    },
+    {
+      "role": "action",
+      "path": "zero-filter-type.json",
+      "sha256": "93d8fd68f28c46e2c14d170410cf2ad6afd3a8c8da25976e79027c948b0b4d89"
+    },
+    {
+      "role": "action",
+      "path": "zero-filter-settled-tab.json",
+      "sha256": "da223094c7856d69b7540eac54e68a51bc029b7cd2ea91d78e848a172efbd8bb"
+    },
+    {
+      "role": "action",
+      "path": "filter-context-menu.json",
+      "sha256": "92920c56d10fbacd3fad6d43a51e888c2af8dad15a65f1540396c33b666f8571"
+    },
+    {
+      "role": "action",
+      "path": "filter-select-all-menu.json",
+      "sha256": "dd1478921309bb1a91320b431f74c4ef332e971a501b207b25bee2ad1dbd89c6"
+    },
+    {
+      "role": "action",
+      "path": "filter-clear.json",
+      "sha256": "c4db70d0b49be777e2b917e0f414807ae075f3a1b89ea1c76f4d7512d86377ad"
+    },
+    {
+      "role": "action",
+      "path": "filter-clear-settled-tab.json",
+      "sha256": "4a6b2e6ac62d8b1c234fdcbdafa4d05b82d3b9f2f8f2145077893d8701337b6f"
+    },
+    {
+      "role": "teardown",
+      "path": "teardown.json",
+      "sha256": "0c94017585e939980ac5413bb9b2273703c58d5571a93399f1eeb4935b1f0ffc"
+    }
+  ]
+}

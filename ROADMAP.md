@@ -52,7 +52,12 @@
 - [ ] Complete blue-screen diagnosis runtime verification: read-only engine and dedicated Tools workspace implemented; focused synthetic checks and a painted native frame pass; manual stop-code input passed, and default-period collection with one expanded event subsequently passed; remaining interaction paths, native compositor and full layout coverage remain pending.
 - [x] Build the read-only diagnostic engine and workspace, verify a bounded real event query, and preserve a source-bound painted native frame. Manual stop-code input subsequently passed; native compositor and the full appearance matrix remain separate requirements.
 - [ ] Deliver real health and diagnostics workflows.
+- [x] Verify explicit machine-overview sampling, memory and expanded drive capacity, repeated minimum-size bilingual paging and reverse movement at source `e8e692b`. Full appearance, unavailable states and accessibility remain separate.
 - [ ] Deliver reversible temporary-file maintenance, duplicate analysis, storage inventory, and recovery records.
+- [ ] Verify the dedicated read-only duplicate-analysis workspace in the real build. Typed source, 96 focused checks, isolated engine/desktop verification and independent reviews passed.
+- [x] Verify normal-view read-only duplicate collection, both expanded groups, root-edit result clearing and unchanged seven-file fixture at source `baa4fca`. Minimum-size retained input, cancellation and full appearance/accessibility remain separate.
+- [ ] Verify the dedicated typed read-only folder-analysis workflow with an owned disposable folder. Source, focused checks, independent reviews and isolated root build passed; integrated runtime is pending.
+- [x] Verify bounded real folder totals, largest-file order, expanded normal-view paths/timestamp and unchanged disposable fixture at source `c2fd97e`. Freshness, cancellation and complete appearance/accessibility remain separate.
 - [ ] Deliver application, startup, process, security, and driver workflows using supported APIs.
 - [ ] Verify structured WinGet package discovery and contextual selected-package actions in the built workspace; source and synthetic checks are implemented.
 - [ ] Deliver local file tools and opt-in online/provider workflows.
@@ -102,6 +107,9 @@
 
 - [x] Verify the rebuilt diagnostic lookup guidance and successful live collection under response validation; preserve source-bound evidence.
 - [ ] Verify the reference-copy action, individual dump rows and complete diagnostic input/display matrix.
+- [x] Verify real seven-day collection and the explicitly unavailable dump-metadata section, with inspected frames and owned disposal.
+- [x] Verify the rebuilt repeated-paging focus repair after the original selector scrolls out of view: fifteen consecutive Page Down inputs at 800×600, doubled bilingual text, without refocusing.
+- [ ] Verify the minimum-size dump-section ending and reverse paging beyond the capture-limit boundary, normal motion and remaining diagnostic interaction tuples.
 
 ## Expanded screenshot gallery
 
@@ -148,3 +156,7 @@
 - [x] Verify the bilingual source popup and discovery title at 800×600 with doubled text; retain inspected observed-hook frame evidence.
 - [x] Verify integrated post-discovery paging, visible action focus, keyboard-opened review and explicit cancellation at 800×600 with doubled bilingual text; retain 15 inspected frames and exact owned teardown.
 - [ ] Complete package filtering, general installed-inventory interaction, remaining motion/theme/scale tuples and full accessibility verification.
+- [x] Verify real general-inventory display quality, fallback filtering, zero matches and clearing: 741 records retained with four explicit degraded-display warnings.
+- [ ] Complete bilingual text-selection menus and real Ctrl+A shortcut coverage, plus remaining general-inventory appearance/accessibility states.
+- [ ] Verify seven localized standard selection-command labels in the integrated real desktop; source, 21 focused checks and the isolated build passed.
+- [x] Verify actual Select all, Cut and Copy bilingual labels, full synthetic selection, Escape dismissal and Backspace clearing at 800×600 with doubled text. Other commands retain widget-only coverage.

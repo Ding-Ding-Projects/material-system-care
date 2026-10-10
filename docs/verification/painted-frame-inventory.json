@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "records": [
+    {
+      "id": "overview-minimum-1",
+      "active": true,
+      "path": "docs/captures/overview-minimum-1.png",
+      "sourceCommit": "e8e692bb386f9a7eb0cf4746fc3b044822bafd8b",
+      "artifactSha256": "c7263e421afc104f3f6df0d4ba93b97cddaf7e42d103fcbe799b1d6071f39208",
+      "captureSha256": "a4a51ecc18837baa79e4e9eaa68fcf6f892c10fcc64d7780d930deb5e47491e2",
+      "screen": "system-overview",
+      "state": "idle-bilingual-text2",
+      "theme": "dark",
+      "viewportWidth": 800,
+      "viewportHeight": 600,
+      "scale": 1,
+      "interactionProofId": "overview-minimum-focus",
+      "interactionReceiptSha256": "2fd2fad85b2044e5505318ad233575d646759e418510a66ec85efbdc69b8dab1",
+      "inspectionStatus": "inspected",
+      "title": [
+        "Machine overview: idle",
+        "本機總覽：待命"
+      ],
+      "language": "both",
+      "textScale": 2,
+      "reducedMotionRequested": true,
+      "capturedAt": "2026-10-10T21:22:47.452780Z",
+      "captureMethod": "flutter-repaint-boundary"
+    },
+    {
+      "id": "overview-minimum-2",
+      "active": true,
+      "path": "docs/captures/overview-minimum-2.png",
+      "sourceCommit": "e8e692bb386f9a7eb0cf4746fc3b044822bafd8b",
+      "artifactSha256": "c7263e421afc104f3f6df0d4ba93b97cddaf7e42d103fcbe799b1d6071f39208",
+      "captureSha256": "ac6ffcff04b26ae402346ef59012364f57dc2e5e6592c7c68f9ab4a0a409ee68",
+      "screen": "system-overview",
+      "state": "refresh-control-visible-bilingual-text2",
+      "theme": "dark",
+      "viewportWidth": 800,
+      "viewportHeight": 600,
+      "scale": 1,
+      "interactionProofId": "overview-minimum-page-down",
+      "interactionReceiptSha256": "0f59c9239264a642b504f348e10c8ac8753d5b9119ff3bfbf3f35275591e32e9",
+      "inspectionStatus": "inspected",
+      "title": [
+        "Machine overview: refresh control",
+        "本機總覽：重新整理控制"
+      ],
+      "language": "both",
+      "textScale": 2,
+      "reducedMotionRequested": true,
+      "capturedAt": "2026-10-10T21:22:50.451605Z",
+      "captureMethod": "flutter-repaint-boundary"
+    }
+  ]
+}

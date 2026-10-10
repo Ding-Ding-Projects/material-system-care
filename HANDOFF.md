@@ -1,5 +1,59 @@
 # Implementation handoff
 
+## Machine overview and current painted evidence
+
+Integrated source `e8e692bb386f9a7eb0cf4746fc3b044822bafd8b` passed its exact root desktop build, two independent source reviews and real bilingual dark/reduced-motion checks at normal size and 800×600 with doubled text. Explicit refresh and a second new sample, memory values, expanded drive details, repeated Page Down and reverse movement were inspected. All owned bundle processes and desktops were closed. Host measurements remain private. Two minimum-size idle/control frames were staged byte-for-byte and validated through the explicit version-2 Flutter promotion contract, including original sidecars, source/build binding, input receipts, privacy and teardown. Their scope excludes native compositor, native stderr and browser observation.
+
+The earlier duplicate minimum-input interpretation is corrected: original-resolution numbered frames show the retained root and enabled Analyze control. Collection remains unverified at minimum size. The public issue and rolling Discussion carry the correction.
+
+## Duplicate-analysis integration candidate
+
+Integrated source `baa4fca7483265b53d1c7fe472571c0c0584e90c` passed the exact root engine and desktop builds and a real 1280×1000 bilingual dark/reduced-motion duplicate run. The seven-file fixture returned two groups, five matching files, 128 hashed bytes and 64 potential duplicate bytes. Review cancellation, both expanded groups and root-edit result clearing were observed. All seven files remained unchanged. Original-resolution minimum-size frames show retained root input and an enabled Analyze control, correcting the earlier reused-preview report. Minimum-size collection remains unverified. Both owned processes and desktops were closed. See `docs/verification/duplicate-analysis-observations.json`.
+
+Candidate `2c21195ab4c88d4da97f2330dc517ce0f53a33a0` adds a dedicated read-only duplicate-analysis page, reviewed root, exact-match groups, potential-space estimates, completeness counters and request-specific cancellation. The only engine change exposes the existing depth-exclusion counter. Ninety-six focused checks and two independent source reviews passed. Exact isolated engine verification passed after the primary released the shared user pipe, and the final desktop build passed. The symbolic-link fixture remains skipped for privilege 1314. Integrated build and real disposable duplicate analysis are next; no file removal is provided.
+
+## Folder-analysis integration candidate
+
+The integrated root desktop build at `c2fd97ed4406e3a06af64a53c362d64c61c13da7` and real disposable analysis passed the bounded observations in `docs/verification/storage-analysis-observations.json`: four files, 5,169 bytes, two empty folders, correct descending sizes, normal-view full details and unchanged fixture snapshots. Twenty selected frames passed the narrow verifier across two viewports. Owned teardown completed. Freshness and pending-read cancellation remain runtime follow-ups.
+
+Public delivery `32ad9c3`, run `38086368225`, contains 178 complete articles and 751 matching files after one focused cache retry. The keyboard guide passed three real isolated browser viewports. Browser processes, port and desktop closed; automatic approval review blocked profile deletion, so the retained profile prevents a complete lifecycle-audit claim.
+
+The dedicated read-only folder-analysis workspace is integrated from `3cf232cd9a38bcc1d7ae6d3c613913456e613e8e`, with reduced-motion repair `3edb755f218c9835500cc5a8604127cd1d4a9778`. It reviews one explicit normalized root, validates typed totals and bounded rows, separates largest files and empty folders, clears stale results and preserves request-specific cancellation. No engine method changed. Fifty-two combined focused checks passed for the initial unit; the motion repair reproduced two reduced-mode failures before correction and then passed all 49 affected storage checks. Both isolated root desktop builds passed. Independent reviews found the motion gap and confirmed its repair; the integrated build and disposable runtime remain pending.
+
+## Current selection-toolbar integration
+
+Integrated source `9bf5d30c98c6e0fcf3ac13cc446618e9bc5d32a4` passed its exact root desktop build and actual minimum-size toolbar inspection. Select all, Cut and Copy were bilingual; Select all, Escape dismissal and Backspace clearing worked on synthetic input. Six inspected frames/twelve supporting hashes passed the narrow verifier. No host inventory or clipboard operation was used, and owned teardown completed. Other four labels retain widget-only evidence. See `docs/verification/selection-menu-observations.json`.
+
+Candidate `638a56000ad88b429c4216c63f192468000e4d8c` localizes seven standard Material selection commands through a preference-backed delegate. Twenty-one focused checks, the isolated root desktop build and two independent source reviews passed. The integrated build and real popup inspection remain pending. Explicit custom labels and Flutter callbacks are preserved; other framework strings and actual clipboard operations are outside this limited evidence. Folder analysis is the next isolated implementation unit.
+
+The integrated reference-copy feedback source `38804e4` passed the exact root desktop build. This confirms compilation of the localized catch path, not an actual clipboard operation. The next narrow UI change targets seven official selection-toolbar labels; inherited framework strings remain outside that limited claim.
+
+## Reference-copy feedback candidate
+
+Candidate `ed7108a2bfdd7c7e9e4515231fc25bfec3ba0322` catches clipboard rejection locally, keeps the visible reference/result and shows a fixed localized recovery message. Three new mocked-write checks and eleven related diagnostic checks passed, as did the isolated root desktop build and independent source review. This integrated candidate still needs its own build. No actual system-clipboard read/write was performed or claimed; the reference-copy workflow remains unverified at runtime.
+
+## Verified general-inventory display quality
+
+Integrated source `6ec050099d6239b5b230b9d703a28b55b732ddfc` passed the root desktop build and real 1280×1000 bilingual inventory/filter verification: 741 records, four explicit degraded records, four fallback-query matches, zero nonmatching-query matches and 741 after clearing through the actual context-menu action. Six private frames and fourteen supporting hashes passed the narrow verifier. Owned executables were absent and the hidden desktop closed. Synthetic Ctrl+A did not select all; the text-selection menu remained English-only. Neither gap is represented as completed keyboard/localization coverage. No package was changed.
+
+## General inventory display-quality candidate
+
+The real general-inventory read at source `6d3695e` returned 741 records, including four registry display names with embedded NUL characters followed by more text. Rejecting one such field discarded the whole desktop result. Candidate `93caee65ea2026983ec2f705b63e70767f70d98f` preserves strict identifiers, sources, scope and read-only capability checks while discarding invalid general display values and using localized unavailable labels. Affected-record counts are separate from unavailable-source warnings, and managed validation remains strict. Eighteen focused tests, the isolated root desktop build and independent source review passed. This integrated candidate still requires its own build and real inventory/filter verification. Raw host values remain private.
+
+## Diagnostic paging acceptance
+
+Integrated source `f310e7684c9ebdf621bc656f2f98bfa3a47c12bc` passed the root desktop build and a fresh 800×600 doubled-bilingual run. Fifteen consecutive Page Down inputs moved from the original selector through the final event rows without another Tab. Six representative frames were inspected and passed the narrow source/bundle/two-hook verifier. All twenty originals remain private. The capture cap prevented a further minimum-size dump-section or reverse-paging frame, so those claims remain pending. All owned bundle executables were absent and the hidden desktop closed.
+
+The current verified public delivery is `0ac670c6ecaf75f6080472a31443e32226ed191b`, run `38085439011`: 177 complete articles and 740 matching files. One transport failure cleared on a focused successful hash-matching retry. Public visibility, workflow deployment and exact About homepage were read back. This later diagnostic source still needs its own delivery verification.
+
+## Diagnostic period evidence and paging candidate
+
+The rebuilt source `6d3695e738b0902390e473f6aaf1fb153c30f106` completed explicit seven-day collection at 1280×1000 in bilingual dark mode. The period popup, selected value, completed timestamp and time-meaning text were inspected. Keyboard traversal reached the dump section, which explicitly reported no accessible files and an account-access limitation without requesting elevation. Fourteen frames pass the narrow source/bundle/two-hook verifier; the raw event frames remain private. See `docs/verification/diagnostic-period-frames.json` and `diagnostic-period-observations.json`.
+
+This run exposed a repeated-paging focus gap after the period selector left the visible list. The independent 45-event reproduction confirmed the selector was disposed after the first page movement, leaving later Page Down without a scrolling target. Repair `4ac98e03d044cd2cb1940541c7cc82ea7691aec5` adds a persistent focus target only for explicit paging input, preserves editing keys and uses reduced/immediate or normal/200 ms motion. Fifteen focused checks, the isolated root desktop build and independent source review passed. The integrated build and fresh live acceptance remain pending.
+
+The separate installed-application read returned 741 records, but four names containing embedded NUL characters caused the desktop to reject the entire result. No private values were published. A narrow display-quality repair is in progress; identifiers and managed-package validation must remain strict.
+
 ## Verified disposable read cancellation
 
 At source `1c6b7049f04979de209c87d02c1d787923c4e58d`, the real cleanup fixture route showed a pending scan, one Cancel input, the stopped-waiting state and a completed fresh scan. Independent review inspected the decisive images, matched all 27 frame/sidecar/supporting hashes and rechecked all 9,001 fixture entries against length, modification time, identity and SHA-256. Eligible content was 500 MiB; the fresh plan disclosed its 1,000-target cap. No cleanup mutation was requested. A completion-winning attempt is explicitly excluded from successful cancellation evidence. Engine plan records may still be written, so no immediate engine-stop claim is made.

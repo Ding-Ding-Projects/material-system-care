@@ -1,8 +1,14 @@
 # Material System Care
 
+The dedicated machine overview now shows explicit, timestamped memory and drive measurements. These two current minimum-size views show the bilingual idle state and the refresh control before collection, using doubled text and reduced motion. Measured host records remain private. See [the complete screenshot record](SCREENSHOTS.md) for scope and source binding.
+
+![Bilingual machine overview, minimum size, view 1](docs/captures/overview-minimum-1.png)
+
+![Bilingual machine overview, minimum size, view 2](docs/captures/overview-minimum-2.png)
+
 ## Bilingual screenshot gallery · 雙語畫面圖庫
 
-[Forty reviewed desktop screenshots](SCREENSHOTS.md) · [Website gallery](https://ding-ding-projects.github.io/material-system-care/#/gallery) · [Complete website articles](https://ding-ding-projects.github.io/material-system-care/#/articles)
+[Reviewed desktop screenshots](SCREENSHOTS.md) · [Website gallery](https://ding-ding-projects.github.io/material-system-care/#/gallery) · [Complete website articles](https://ding-ding-projects.github.io/material-system-care/#/articles)
 
 ![Bilingual diagnostics, light theme](docs/captures/gallery/diagnostics-light-text1-1280x900.png)
 

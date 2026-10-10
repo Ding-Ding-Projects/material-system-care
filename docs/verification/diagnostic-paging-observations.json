@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "f310e7684c9ebdf621bc656f2f98bfa3a47c12bc",
+  "frameManifest": "docs/verification/diagnostic-paging-frames.json",
+  "viewport": {"width": 800, "height": 600},
+  "language": "both",
+  "theme": "dark",
+  "textScale": 2,
+  "motion": "reduced",
+  "periodDays": 7,
+  "consecutivePageDownInputs": 15,
+  "refocusBetweenPageInputs": false,
+  "observed": "Continuous movement from the original period selector through the final event rows.",
+  "ownedProcessesAbsent": true,
+  "hiddenDesktopClosed": true,
+  "limitations": [
+    "The twenty-frame capture limit was reached. This run does not supply a further minimum-size dump-section or reverse-paging frame.",
+    "Six representative original frames were visually inspected; all twenty original frames remain retained privately.",
+    "Normal motion and reverse paging have focused widget coverage, not real-runtime coverage from this run.",
+    "Event pixels remain private. Native compositor, physical DPI and full accessibility coverage remain unverified."
+  ]
+}

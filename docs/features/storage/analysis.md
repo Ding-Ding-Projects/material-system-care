@@ -2,6 +2,14 @@
 
 ## Read-only folder-analysis workspace
 
+### Built-runtime observations
+
+Source `c2fd97ed4406e3a06af64a53c362d64c61c13da7` passed the root desktop build and real selected-folder analysis at 800×600 with doubled bilingual text and 1280×1000 with standard bilingual text. An owned disposable folder returned four files, 5,169 bytes and two empty folders. The displayed descending file sizes were 4,096, 1,024, 32 and 17 bytes. Normal-view file details showed the complete path and modification time; both empty-folder paths were expanded and inspected. Independent snapshots showed file bytes, identities and modification times unchanged. Both owned process sets and hidden desktops closed.
+
+Eleven minimum-size and nine normal-size frames passed the narrow source/bundle/two-hook verifier. Raw path-containing images stay private. See [observations](../../verification/storage-analysis-observations.json). Pending-read cancellation, stale-result clearing, invalid-path feedback and the remaining appearance/accessibility matrix still need runtime verification. A root-edit attempt exhausted the 20-frame limit and is not claimed as successful freshness evidence.
+
+中文：真正隔離資料夾分析回傳四個檔案、5,169 位元組及兩個空資料夾；排序、完整路徑及修改時間已核對。兩次畫面分別為最小雙倍文字及正常大小，檔案內容、識別及時間保持不變。程序及隱藏桌面已關閉；路徑畫面不公開，取消及資料更新失效等其他流程仍待實際驗證。
+
 The Storage workspace's **Analyze folder** action opens a dedicated folder-analysis page. Choose a folder with the native folder picker or enter an absolute local or UNC folder path. Review the normalized selected root before starting. Nothing is collected automatically, and this page does not provide deletion, move, duplicate removal, or arbitrary command actions.
 
 The result summarizes observed file count, bytes and empty-folder count. It separately reports inaccessible entries, skipped reparse points, depth-limit exclusions and the traversal limit. Any of those conditions marks the view incomplete. The largest-file section lists at most 100 files; the empty-folder section lists at most 1,000 folders. Their displayed counts distinguish listed rows from observed totals. Expand a row to select its complete path, and for files inspect the UTC modification timestamp. These are point-in-time metadata, not proof that a path has remained unchanged.
