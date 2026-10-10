@@ -1880,15 +1880,21 @@
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
       "status": "unverified",
-      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
+      "statusReason": "The dedicated workspace has reviewed read-only inventory and owned-fixture close-request evidence. Complete appearance, input, rejection and arbitrary-application coverage remain unverified.",
       "intendedPage": "Toolbox",
       "implementation": [
-        "engine/Modules/ManagementModule.cs"
+        "engine/Modules/ManagementModule.cs",
+        "desktop/lib/processes.dart"
       ],
       "tests": [
-        "tests/management/ManagementFixtures.cs"
+        "tests/management/ManagementFixtures.cs",
+        "desktop/test/processes_test.dart"
       ],
-      "evidence": [],
+      "evidence": [
+        "docs/captures/processes-idle.json",
+        "docs/verification/process-inventory.json",
+        "docs/verification/process-close.json"
+      ],
       "documentation": "docs/catalogue/asc-toolbox.md",
       "implementationCoverage": "partial",
       "implementedEquivalent": "processes.list / processes.stop",
@@ -1905,9 +1911,22 @@
           "path": "tests/management/ManagementFixtures.cs",
           "role": "test",
           "symbol": "fixture assertions"
+        },
+        {
+          "commit": "a9975e2d639f0fe37b4fc3c699ad05f9df2a2aee",
+          "path": "desktop/lib/processes.dart",
+          "role": "interface",
+          "symbol": "ProcessesPage"
+        },
+        {
+          "commit": "a9975e2d639f0fe37b4fc3c699ad05f9df2a2aee",
+          "path": "desktop/test/processes_test.dart",
+          "role": "test",
+          "symbol": "isolated entry, exact identity, consent and receipt fixtures"
         }
       ],
-      "fixtureSummary": "docs/architecture/fixture-evidence.md"
+      "fixtureSummary": "docs/architecture/fixture-evidence.md",
+      "actualNavigation": "Tools > Processes"
     },
     {
       "id": "ultimate.01",

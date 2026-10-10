@@ -38,3 +38,7 @@ No scan grants permission to mutate the device. Mutations need the selected stab
 ## Verification
 
 Coverage structure is checked by `node tests/coverage/catalogue.test.mjs`. Passing that test proves inventory integrity only. The release completeness check is `node tests/coverage/catalogue.test.mjs --release`; it intentionally fails until every in-scope capability has linked code, focused tests and reviewed built-artifact evidence. Unit fixtures alone do not prove a visible workflow.
+
+## Process Manager evidence update
+
+`asc-toolbox.24` now links the dedicated Tools > Processes workspace, focused Flutter fixtures, inspected idle frame, measured read-only inventory and owned-fixture close-request/absence evidence. Its status remains unverified because this bounded evidence does not complete the appearance, input, rejection or arbitrary-application matrix. See [process workflow](../features/management/processes.md).
