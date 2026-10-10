@@ -53,6 +53,7 @@
 - [x] Build the read-only diagnostic engine and workspace, verify a bounded real event query, and preserve a source-bound painted native frame. Manual stop-code input subsequently passed; native compositor and the full appearance matrix remain separate requirements.
 - [ ] Deliver real health and diagnostics workflows.
 - [ ] Deliver reversible temporary-file maintenance, duplicate analysis, storage inventory, and recovery records.
+- [ ] Verify the dedicated typed read-only folder-analysis workflow with an owned disposable folder. Source, focused checks, independent reviews and isolated root build passed; integrated runtime is pending.
 - [ ] Deliver application, startup, process, security, and driver workflows using supported APIs.
 - [ ] Verify structured WinGet package discovery and contextual selected-package actions in the built workspace; source and synthetic checks are implemented.
 - [ ] Deliver local file tools and opt-in online/provider workflows.

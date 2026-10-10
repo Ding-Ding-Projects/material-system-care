@@ -1,5 +1,9 @@
 # Implementation handoff
 
+## Folder-analysis integration candidate
+
+The dedicated read-only folder-analysis workspace is integrated from `3cf232cd9a38bcc1d7ae6d3c613913456e613e8e`, with reduced-motion repair `3edb755f218c9835500cc5a8604127cd1d4a9778`. It reviews one explicit normalized root, validates typed totals and bounded rows, separates largest files and empty folders, clears stale results and preserves request-specific cancellation. No engine method changed. Fifty-two combined focused checks passed for the initial unit; the motion repair reproduced two reduced-mode failures before correction and then passed all 49 affected storage checks. Both isolated root desktop builds passed. Independent reviews found the motion gap and confirmed its repair; the integrated build and disposable runtime remain pending.
+
 ## Current selection-toolbar integration
 
 Integrated source `9bf5d30c98c6e0fcf3ac13cc446618e9bc5d32a4` passed its exact root desktop build and actual minimum-size toolbar inspection. Select all, Cut and Copy were bilingual; Select all, Escape dismissal and Backspace clearing worked on synthetic input. Six inspected frames/twelve supporting hashes passed the narrow verifier. No host inventory or clipboard operation was used, and owned teardown completed. Other four labels retain widget-only evidence. See `docs/verification/selection-menu-observations.json`.

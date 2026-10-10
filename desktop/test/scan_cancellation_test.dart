@@ -37,8 +37,14 @@ void main() {
         ),
       );
       await tester.tap(find.text('Analyze folder'));
+      await tester.pumpAndSettle();
+      await tester.enterText(find.byType(TextField), r'C:\Analysis');
       await tester.pump();
-      expect(activeId, startsWith('ui-'));
+      await tester.tap(find.text('Analyze folder'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Analyze selected folder'));
+      await tester.pump();
+      expect(activeId, startsWith('storage-analysis-'));
       await tester.tap(find.text('Cancel scan'));
       await tester.pump();
       expect(cancellations, [activeId]);
@@ -53,7 +59,12 @@ void main() {
       );
       await tester.pumpAndSettle();
       expect(find.byType(LinearProgressIndicator), findsNothing);
-      expect(find.text('Stopped waiting for scan.'), findsWidgets);
+      expect(
+        find.text(
+          'Stopped waiting for analysis. This does not prove that all engine reads have stopped.',
+        ),
+        findsOneWidget,
+      );
       expect(Notices.instance.value.single.kind, 'cancelled');
       expect(find.text('Result received from local engine'), findsNothing);
       expect(tester.takeException(), isNull);
@@ -61,6 +72,8 @@ void main() {
       final firstId = activeId;
       pending = Completer<Object?>();
       await tester.tap(find.text('Analyze folder'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Analyze selected folder'));
       await tester.pump();
       expect(activeId, isNot(firstId));
       await tester.tap(find.text('Cancel scan'));
@@ -68,7 +81,20 @@ void main() {
       expect(cancellations.last, activeId);
       pending.complete({
         'ok': true,
-        'result': {'largeFiles': <dynamic>[]},
+        'result': {
+          'root': r'C:\Analysis',
+          'scope': 'selected-folder-only',
+          'mutationPerformed': false,
+          'fileCount': 0,
+          'totalBytes': 0,
+          'emptyFolderCount': 0,
+          'inaccessible': 0,
+          'reparseSkipped': 0,
+          'tooDeep': 0,
+          'truncated': false,
+          'largeFiles': <dynamic>[],
+          'emptyFolders': <dynamic>[],
+        },
       });
       await tester.pumpAndSettle();
       expect(Notices.instance.value.first.kind, 'success');
