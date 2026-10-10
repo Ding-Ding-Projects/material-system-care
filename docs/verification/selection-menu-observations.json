@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "9bf5d30c98c6e0fcf3ac13cc446618e9bc5d32a4",
+  "frameManifest": "docs/verification/selection-menu-frames.json",
+  "viewport": {"width": 800, "height": 600},
+  "language": "both",
+  "theme": "dark",
+  "textScale": 2,
+  "motion": "reduced",
+  "observedLabels": ["Select all", "Cut", "Copy"],
+  "syntheticInput": "sample selection",
+  "selectAllHighlightedCompleteInput": true,
+  "escapeDismissedMenu": true,
+  "backspaceClearedSelection": true,
+  "clipboardOperationPerformed": false,
+  "inventoryRefreshPerformed": false,
+  "ownedProcessesAbsent": true,
+  "hiddenDesktopClosed": true,
+  "limits": [
+    "Only the three commands offered by the actual selection state were inspected in this runtime. All seven labels have focused widget coverage.",
+    "Six 800 by 600 frames were inspected. The initial pre-resize image is retained privately and is not minimum-size evidence.",
+    "The narrow verifier validates source, bundle, frame and sidecar bytes and the two observed Flutter hooks. It does not provide global image promotion or certify semantic action and teardown claims.",
+    "Other framework strings, operating-system menus, actual clipboard behavior, remaining appearance tuples and complete accessibility remain unverified."
+  ]
+}

@@ -154,3 +154,4 @@
 - [x] Verify real general-inventory display quality, fallback filtering, zero matches and clearing: 741 records retained with four explicit degraded-display warnings.
 - [ ] Complete bilingual text-selection menus and real Ctrl+A shortcut coverage, plus remaining general-inventory appearance/accessibility states.
 - [ ] Verify seven localized standard selection-command labels in the integrated real desktop; source, 21 focused checks and the isolated build passed.
+- [x] Verify actual Select all, Cut and Copy bilingual labels, full synthetic selection, Escape dismissal and Backspace clearing at 800×600 with doubled text. Other commands retain widget-only coverage.

@@ -2,6 +2,8 @@
 
 ## Current selection-toolbar integration
 
+Integrated source `9bf5d30c98c6e0fcf3ac13cc446618e9bc5d32a4` passed its exact root desktop build and actual minimum-size toolbar inspection. Select all, Cut and Copy were bilingual; Select all, Escape dismissal and Backspace clearing worked on synthetic input. Six inspected frames/twelve supporting hashes passed the narrow verifier. No host inventory or clipboard operation was used, and owned teardown completed. Other four labels retain widget-only evidence. See `docs/verification/selection-menu-observations.json`.
+
 Candidate `638a56000ad88b429c4216c63f192468000e4d8c` localizes seven standard Material selection commands through a preference-backed delegate. Twenty-one focused checks, the isolated root desktop build and two independent source reviews passed. The integrated build and real popup inspection remain pending. Explicit custom labels and Flutter callbacks are preserved; other framework strings and actual clipboard operations are outside this limited evidence. Folder analysis is the next isolated implementation unit.
 
 The integrated reference-copy feedback source `38804e4` passed the exact root desktop build. This confirms compilation of the localized catch path, not an actual clipboard operation. The next narrow UI change targets seven official selection-toolbar labels; inherited framework strings remain outside that limited claim.

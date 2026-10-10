@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "scope": "observed-flutter-hooks-and-bytes",
+  "sourceCommit": "9bf5d30c98c6e0fcf3ac13cc446618e9bc5d32a4",
+  "buildReceiptSha256": "a772a0508bbed567ba420bf330140ff29a254ee9fe45eece1e16388722d9263a",
+  "bundleManifestSha256": "dfa1e611c1778c6bcbd1c669b95719c176a027cfc974db9fd4a3c717844ad532",
+  "frames": [
+    {
+      "png": "output/frame-002.png",
+      "sidecar": "output/frame-002.png.json",
+      "sha256": "6c99526994291aefe65b28b0b212df02cdce2bc65b8907db99efdc6d91a8da78",
+      "sidecarSha256": "77a24fc5a58b0951bfb8ed3ef5cc5be9411bb49ea7a6930e671aa91294fb89c2",
+      "sequence": 2
+    },
+    {
+      "png": "output/frame-005.png",
+      "sidecar": "output/frame-005.png.json",
+      "sha256": "ca258febccd7a99d565c53758b9f0b7e4fde1c3f070604e1c2d6d3f0a38efe1f",
+      "sidecarSha256": "ee84a1a6c94e4671a2ffe392c281e793a3f3a5ce19ec951c0f19f41e9f12842c",
+      "sequence": 5
+    },
+    {
+      "png": "output/frame-006.png",
+      "sidecar": "output/frame-006.png.json",
+      "sha256": "4108ce289f01902d151b35a900b4894c24652efc343aa0edec46f74c392b3a4f",
+      "sidecarSha256": "f8e63e5d556148770511db510ebbe9fb77e0e73e1e45a699c6fb61d062ffe37b",
+      "sequence": 6
+    },
+    {
+      "png": "output/frame-007.png",
+      "sidecar": "output/frame-007.png.json",
+      "sha256": "fdf6ccbcec73e73b24af95dd7bcca85fdb24fa58a08074c09d2294475c2caea9",
+      "sidecarSha256": "6dcac7b39305748cf36d94274ad2099cce7b4a48b2d0c7d902a776a6a6e5f73a",
+      "sequence": 7
+    },
+    {
+      "png": "output/frame-008.png",
+      "sidecar": "output/frame-008.png.json",
+      "sha256": "4108ce289f01902d151b35a900b4894c24652efc343aa0edec46f74c392b3a4f",
+      "sidecarSha256": "80b43c0f38331fe88f2c8eafd5a64dfd9d2e68f2f8abbdacf83dbabdb3398d46",
+      "sequence": 8
+    },
+    {
+      "png": "output/frame-010.png",
+      "sidecar": "output/frame-010.png.json",
+      "sha256": "411fddac918f2eb205bd4d05ad0def9af9c5e6471cd7f9cb4517cba066005fd5",
+      "sidecarSha256": "f2c98494e495d4837aa45ea71d8af2eaa35c706d387c04a98db5e9341dccbc82",
+      "sequence": 10
+    }
+  ],
+  "evidence": [
+    {
+      "role": "action",
+      "path": "selection-tab.json",
+      "sha256": "846ee7561457982d2d18a54fe1365e2011e0b19d77d8776ad4d7d86efef8fc5a"
+    },
+    {
+      "role": "action",
+      "path": "selection-page-down.json",
+      "sha256": "32ef125c4031d05369e974f066733ea786ee5eb0caa61ecfc88108bc2184267e"
+    },
+    {
+      "role": "action",
+      "path": "selection-filter-focus.json",
+      "sha256": "edc797a89987683442e55b55a914fd5ac61fb54bb666785797d97d63c7881d87"
+    },
+    {
+      "role": "action",
+      "path": "selection-sample-text.json",
+      "sha256": "14e2e35d7c72ef8db335b05b55978ec30809372d38bbd19a68a2977228ec3060"
+    },
+    {
+      "role": "action",
+      "path": "selection-sample-settle.json",
+      "sha256": "d72ae2782c3e691796498741bb33465b7c4c76dd0924355c2f5e0e95d0e3e713"
+    },
+    {
+      "role": "action",
+      "path": "selection-menu.json",
+      "sha256": "45f13b8bf7ac316aad4ac230c9cb1ab51772b1b6555b5adf45ae9dfefd8ac6f7"
+    },
+    {
+      "role": "action",
+      "path": "selection-select-all.json",
+      "sha256": "b02c2847301b3e20d3fe3e1ad55da755be6b32752f1e0271600f0a91e62d04a7"
+    },
+    {
+      "role": "action",
+      "path": "selection-selected-menu.json",
+      "sha256": "91adc5b00fdd53f96897b6f0a53b032d5babf2e32d3f25ef6693ce88a3734194"
+    },
+    {
+      "role": "action",
+      "path": "selection-dismiss.json",
+      "sha256": "5c3df649aef5448a897d8ef63d74cced365c8a7e856b3643efe57c2c3ef58017"
+    },
+    {
+      "role": "action",
+      "path": "selection-clear.json",
+      "sha256": "c4a1a3b36022da99df3b8c0c6b01562a3ecf26f69905c84ae8538a7a7b21f566"
+    },
+    {
+      "role": "action",
+      "path": "selection-clear-settle.json",
+      "sha256": "f1bad44676ac41192a8fa6ae8367751cc520fa4ee3258c77e9c147c5e269fecb"
+    },
+    {
+      "role": "teardown",
+      "path": "teardown.json",
+      "sha256": "1fa63bc28ed04b1cf324cad94434cec5b4edec8a9ce632adacb67c9a6e1935db"
+    }
+  ]
+}
