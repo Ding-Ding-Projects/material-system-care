@@ -4,6 +4,12 @@ This file retains earlier candidate states as historical evidence. A later sourc
 
 本檔案保留早期候選版本作歷史記錄。後來嘅實際驗證只會取代有明確證據嗰部分，未完成清單仍以路線圖為準，唔會將部分檢查當成整套完成。
 
+## Dedicated cleanup runtime evidence
+
+Integrated source `cb97b0dd7d20214f0ce195e1c3d218a750754e30` completed a normal-size disposable cleanup round trip. Cancellation preserved the original three hashes; only the selected 32-byte file moved to recovery storage; both unselected files remained unchanged. The receipt-specific review restored original bytes, file identities and modification times. A fresh 800×600 doubled-bilingual run at `e6bfd4994f00fc4d03875f687c12a2ddd5250d5b` reached the scope, root, expiry, action controls, two-target summary and both file cards through repeated paging. That run performed no mutation. Twenty-five inspected frames and sixty-eight supporting hashes passed the narrow verifier. Both owned process sets and desktops closed. Minimum-size apply/recovery, full history keyboard traversal and the full appearance matrix remain pending. See `docs/verification/cleanup-workspace-observations.json`.
+
+中文：專用清理介面正常尺寸已完成即棄檔案往返，取消後三個原始雜湊不變，只移動所選 32 位元組檔案，復原後內容、識別碼及修改時間一致。800×600 雙語兩倍文字可逐頁到達兩個檔案及控制，但該輪沒有更改檔案，細尺寸處理及復原仍待驗證。
+
 ## Package review keyboard repair
 
 Candidate `5d75bef27701f6c6339a96eea6b99de1e99c12f6` gives review dialogs an owned scroll controller and focus route. Page Up/Down from initial or action focus scrolls disclosure content, while editable text retains its normal key behavior. Both dialog outcomes preserve usable focus. The original 800×600 doubled-bilingual regression was observed failing before repair; 23 focused checks and the exact candidate root desktop build passed afterward. Two independent source reviews found no remaining concrete defect. Integrated build and real hidden-input acceptance remain pending; no package mutation is claimed.

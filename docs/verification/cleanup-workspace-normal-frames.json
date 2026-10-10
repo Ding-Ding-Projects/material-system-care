@@ -1,0 +1,275 @@
+{
+  "schemaVersion": 1,
+  "scope": "observed-flutter-hooks-and-bytes",
+  "sourceCommit": "cb97b0dd7d20214f0ce195e1c3d218a750754e30",
+  "buildReceiptSha256": "9d4bcb8b1113a3fc3aee55707f952c0d1ac5baaf8d044faafeb4668f4a88af10",
+  "bundleManifestSha256": "ed0c7a21371522068608950403e552c4a6ddf5af6d241852553ce10789b11121",
+  "frames": [
+    {
+      "png": "output/frame.png",
+      "sidecar": "output/frame.png.json",
+      "sha256": "e4b3eb00479ac9383198877ec69a0e05db58cfed222509cc9a4e4a698570a7ff",
+      "sidecarSha256": "0bf7ea1f51d1f4ba4be7315fba7a3e967a3fc148a33794b41f7e331f42b82a5d",
+      "sequence": 0
+    },
+    {
+      "png": "output/frame-001.png",
+      "sidecar": "output/frame-001.png.json",
+      "sha256": "2329c1ddf8eebb96894cb675a0bd48402e5e2fef8329a7c9a47160cb80705d56",
+      "sidecarSha256": "65003154a50e58b16a499c56f4fef33fca98817b1b4845900cd845d65a1c1d56",
+      "sequence": 1
+    },
+    {
+      "png": "output/frame-002.png",
+      "sidecar": "output/frame-002.png.json",
+      "sha256": "fc02dedebaa3a72d85f6af82c9cee67f80b2d90b1aba0b00e837f4d98e0b55b1",
+      "sidecarSha256": "16ea0665b2ab2b47ffa14416e62d7dd795df2b15ba8acfa373db0680cd65d66e",
+      "sequence": 2
+    },
+    {
+      "png": "output/frame-003.png",
+      "sidecar": "output/frame-003.png.json",
+      "sha256": "8c091109a0bc1bcb12b9575df4ef30455c2ac820531b19b513fc7e7635756504",
+      "sidecarSha256": "d6c641df60580c301605362028480e1b6a66f72cd960c375d625199fbea58a64",
+      "sequence": 3
+    },
+    {
+      "png": "output/frame-005.png",
+      "sidecar": "output/frame-005.png.json",
+      "sha256": "8c091109a0bc1bcb12b9575df4ef30455c2ac820531b19b513fc7e7635756504",
+      "sidecarSha256": "b7b2add99aaa899feb3b15e5e7968c5a06f70e9826550cdb2f465702e36d5a5a",
+      "sequence": 5
+    },
+    {
+      "png": "output/frame-006.png",
+      "sidecar": "output/frame-006.png.json",
+      "sha256": "a7b0b2392afc9842989e532113659670d29f54fea0ce366aa0f62262d71b50b7",
+      "sidecarSha256": "3c94b2dcff41d66b4c5da4e9157d22ca74981d04df4af2c652a4465c989ef1e7",
+      "sequence": 6
+    },
+    {
+      "png": "output/frame-008.png",
+      "sidecar": "output/frame-008.png.json",
+      "sha256": "579fd2d35e57f509d74daa16bd930b571d74911adc484d9763fc203247ddf0a3",
+      "sidecarSha256": "c209e8f687dce77284c8f7e612620b21bdc5656f53157d4e87b62d267d778c0e",
+      "sequence": 8
+    },
+    {
+      "png": "output/frame-009.png",
+      "sidecar": "output/frame-009.png.json",
+      "sha256": "1ede17ae98dc9cb3a4717fae663941875e688951014edec4397e66363139e77f",
+      "sidecarSha256": "655b858f638d230bc03d5dfa422c48e66474416359fdce4ddf92d79633346905",
+      "sequence": 9
+    },
+    {
+      "png": "output/frame-010.png",
+      "sidecar": "output/frame-010.png.json",
+      "sha256": "6ad5ced9754615ff42c8e73dd79ab5e4c4ce1079b1a3fe67e83bdd1eb671d72a",
+      "sidecarSha256": "06cb4e6dd3df94e6458e4d88ba41c84497d9cb1365f4aae46488b296538b605f",
+      "sequence": 10
+    },
+    {
+      "png": "output/frame-014.png",
+      "sidecar": "output/frame-014.png.json",
+      "sha256": "dc39dde2299c4e19e68d85b0bb6c2c3593952f5dbcc68a48035b86f09d59d2de",
+      "sidecarSha256": "49c4b45056691803912e4ddddd8987efd306fb24acc0da0067c60022fbaf78f5",
+      "sequence": 14
+    },
+    {
+      "png": "output/frame-015.png",
+      "sidecar": "output/frame-015.png.json",
+      "sha256": "579fd2d35e57f509d74daa16bd930b571d74911adc484d9763fc203247ddf0a3",
+      "sidecarSha256": "c0e0b204e6acfc57573458fbe348ff0ef00bc29357aed1d94b82033995af8164",
+      "sequence": 15
+    },
+    {
+      "png": "output/frame-016.png",
+      "sidecar": "output/frame-016.png.json",
+      "sha256": "906472bb27c9615ba2948495aec1418f4dc28da6c8688162a8d1877c67bb27b2",
+      "sidecarSha256": "b1591f5fa7d3f86750ab50907017157d1995d1ebd1208505992b35e6d7504941",
+      "sequence": 16
+    }
+  ],
+  "evidence": [
+    {
+      "role": "action",
+      "path": "cleanup-apply-confirm-window.json",
+      "sha256": "3b44cc7fa4b85db45b91f72398d895de3448a9726f6d082380ee99c70620f199"
+    },
+    {
+      "role": "action",
+      "path": "cleanup-apply-confirm.json",
+      "sha256": "59ae27cf86be6426b2d4bbb61a4299a7dc100c49b85773a1193ab5ee71abf7ab"
+    },
+    {
+      "role": "action",
+      "path": "cleanup-apply-review-window.json",
+      "sha256": "d36ca8484df6a2195b78ed101b7de3abf59166d8861fd1bed3eb1a04664f2f74"
+    },
+    {
+      "role": "action",
+      "path": "cleanup-apply-review.json",
+      "sha256": "f8487a7a1a0ef9ec3ee2cf691b53942bf7a3fff14dfdc64c26c0f237458bb0b9"
+    },
+    {
+      "role": "action",
+      "path": "cleanup-history-focus-window.json",
+      "sha256": "48c37cad71c58fb021c9b40a6c81bd7855a3fa60be243b7fc642fa0cb8238e82"
+    },
+    {
+      "role": "action",
+      "path": "cleanup-history-focus.json",
+      "sha256": "d1fbccea2d720dc06eb217035bca7590abad5db494413f7cc7d83b4cf218cbbd"
+    },
+    {
+      "role": "action",
+      "path": "cleanup-history-next-control-window.json",
+      "sha256": "67c0de8c4becb0b64a9f4c356055c1b038ad66a5bdece0b2da80bfc681e8aaeb"
+    },
+    {
+      "role": "action",
+      "path": "cleanup-history-next-control.json",
+      "sha256": "b4e7f0a938f838793bc5b481ff128b5fc7149e727d8b73383302be4f8b586542"
+    },
+    {
+      "role": "action",
+      "path": "cleanup-history-page-window.json",
+      "sha256": "88ee493d943cffed500b7b06d80574d00ef358f5b2f232c1d16d2e05a892fcef"
+    },
+    {
+      "role": "action",
+      "path": "cleanup-history-page.json",
+      "sha256": "be90c98184816bee3bfb1d8dda734711b44d556ca7d5fa938efdce6d1c7b91c1"
+    },
+    {
+      "role": "action",
+      "path": "cleanup-history-refresh-window.json",
+      "sha256": "bc3ad6a61d815504277a6639ead3a91ea56528c1f56a463db63f413530d52a21"
+    },
+    {
+      "role": "action",
+      "path": "cleanup-history-refresh.json",
+      "sha256": "88f65a9da96a42de2d7ac46801cb8dc49f679bbeaee18643bc07497f694c0a77"
+    },
+    {
+      "role": "action",
+      "path": "cleanup-recovery-cancel-window.json",
+      "sha256": "d725ddfe978468e84bd30deb518afc53af0c5dbe5459ac6d88cdc072c6dd2524"
+    },
+    {
+      "role": "action",
+      "path": "cleanup-recovery-cancel.json",
+      "sha256": "285a812a935f0edc7d3f3e42b63683df51f76b679ae38eacd37502709f2bb17b"
+    },
+    {
+      "role": "action",
+      "path": "cleanup-recovery-review-window.json",
+      "sha256": "6c11b4cde9e8c71ccca67828319283dad4ba7b15002cbbf1ec726dfdebb64e9d"
+    },
+    {
+      "role": "action",
+      "path": "cleanup-recovery-review.json",
+      "sha256": "e35f470ceb1e2c294fd08a6a015ecbc850fa21a40e72484c84c604fd186d5406"
+    },
+    {
+      "role": "action",
+      "path": "cleanup-restore-confirm-window.json",
+      "sha256": "690870c0f912025cfc76cf1c1cc865d8de75ef934c10ebd33520c9133da038d4"
+    },
+    {
+      "role": "action",
+      "path": "cleanup-restore-confirm.json",
+      "sha256": "ee69ba4e0c2ff7530681b58610f549ac5025eb36f030f93668b3285787237d9f"
+    },
+    {
+      "role": "action",
+      "path": "cleanup-restore-final-review-window.json",
+      "sha256": "b93b389cbf5d2f90aca87e29b01b5c4c2ff2ec62e27756a975625098af4dd72d"
+    },
+    {
+      "role": "action",
+      "path": "cleanup-restore-final-review.json",
+      "sha256": "ccafaa8917e490728701c1fdb0319878ff5f945536a8057995a25ec0c6eea21b"
+    },
+    {
+      "role": "action",
+      "path": "cleanup-result-page-window.json",
+      "sha256": "70b58629eacacd4d5d533976cc039ebfe2baf67e190458fcd9d260eb42f1ee56"
+    },
+    {
+      "role": "action",
+      "path": "cleanup-result-page.json",
+      "sha256": "c2db069acc2a674fa0198de4727efea0aa77547657e442fafc1e022ad674b45a"
+    },
+    {
+      "role": "action",
+      "path": "cleanup-return-to-result-window.json",
+      "sha256": "2a464bcee389928fda5765e32d4b7129ca58a78fa3cbad4faa323e6200e1ea94"
+    },
+    {
+      "role": "action",
+      "path": "cleanup-return-to-result.json",
+      "sha256": "856bc8e04fce019bff1794e64ff4f94991166d354b7b4e71b94de57bbeaede75"
+    },
+    {
+      "role": "action",
+      "path": "cleanup-review-again-window.json",
+      "sha256": "76a64d331d5d68bf8d78c402c406bb626f7409473f9a413a12e9abc50348ae3f"
+    },
+    {
+      "role": "action",
+      "path": "cleanup-review-again.json",
+      "sha256": "765bf2680c438195bc31d14fb0089593d516ee5d8c27f83e5b431f74665cd0ac"
+    },
+    {
+      "role": "action",
+      "path": "cleanup-review-cancel-window.json",
+      "sha256": "58e5c88bdfba77962efdd97d1595baaac691248abe4ea16c16fd6424c2abfd36"
+    },
+    {
+      "role": "action",
+      "path": "cleanup-review-cancel.json",
+      "sha256": "7441f15707cd857cf3184783a24f55db9555c8a033e13fd1766ac47d34ffcb98"
+    },
+    {
+      "role": "action",
+      "path": "cleanup-scan-window.json",
+      "sha256": "2832494e8ced3e7379bca959abb39b77238e9b283057c5ff60650ea0788006a4"
+    },
+    {
+      "role": "action",
+      "path": "cleanup-scan.json",
+      "sha256": "0eebf415aa7bd5e86e79da651d19facf12c21e07662d64fffcfdbebe0ef74b61"
+    },
+    {
+      "role": "action",
+      "path": "cleanup-select-first-window.json",
+      "sha256": "45169456f2d9404f5d9d401c8c5a50454c184c2d2f90b079c569e9f6971f5939"
+    },
+    {
+      "role": "action",
+      "path": "cleanup-select-first.json",
+      "sha256": "34f183acc64068ca331f0f219673d6303057ab63f01ffc6a0de58a319437d003"
+    },
+    {
+      "role": "action",
+      "path": "baseline.json",
+      "sha256": "27cef922a6b3cc475f2129e9b84c168df9c2dbeadf378c16e1d7d8b2bff6715a"
+    },
+    {
+      "role": "action",
+      "path": "fixture.json",
+      "sha256": "878014d334de968838656c4596bac121708f48ccb08e31b015b516cd5419a4b7"
+    },
+    {
+      "role": "teardown",
+      "path": "teardown.json",
+      "sha256": "cd2ec1243fc2bd7c3e6b6d2056eb29bf17c33d8e43c3b8a1a55cf92ab8944706"
+    },
+    {
+      "role": "action",
+      "path": "restoration-check.json",
+      "sha256": "ab90fce33a0779edaaf9f81d49745551da0eb6cae2cab588f5bce3a62ada6ba3"
+    }
+  ]
+}

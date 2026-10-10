@@ -24,7 +24,9 @@
 - [x] Inspect real managed-package discovery, exact-ID reviews and cancellation at normal and minimum viewports, with 45 reported matches and owned teardown. No package mutation was confirmed.
 - [ ] Verify the repaired minimum-size keyboard route to the lower package-review disclosure; complete unavailable-refresh and actual disposable package mutation coverage separately.
 
-- [ ] Verify the newly integrated dedicated cleanup workspace with disposable selected-file and recovery fixtures at normal and minimum doubled-bilingual viewports. Candidate source checks and build passed; older generic-workspace runtime evidence is historical.
+- [x] Verify the dedicated cleanup workspace normal-size disposable selected-file round trip, cancelled reviews and receipt-specific restoration with original bytes, identities and modification times.
+- [x] Verify dedicated cleanup scan and repeated paging through scope, root, expiry, action controls and both file cards at 800×600 with doubled bilingual text, preserving all original fixture files.
+- [ ] Complete dedicated cleanup minimum-size apply/recovery and history keyboard traversal, plus the remaining appearance and accessibility matrix.
 
 - [x] Verify bounded scheduled-task collection, expanded metadata and loaded-record filtering in the real build, retain private result evidence and verify owned teardown.
 - [ ] Complete scheduled-task per-surface language, accessibility, export and appearance contracts.

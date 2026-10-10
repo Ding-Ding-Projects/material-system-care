@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "normal": {
+    "sourceCommit": "cb97b0dd7d20214f0ce195e1c3d218a750754e30",
+    "width": 1280,
+    "height": 1000,
+    "textScale": 1,
+    "fixtureFiles": 3,
+    "eligibleTargets": 2,
+    "selectedTargets": 1,
+    "movedBytes": 32,
+    "cancelPreservedAllOriginalHashes": true,
+    "unselectedOriginalsPreserved": true,
+    "restoredOriginalHashes": true,
+    "restoredIdentities": true,
+    "restoredModificationTimes": true,
+    "reviewedReceiptIdentity": true,
+    "reviewedOriginalPath": true
+  },
+  "minimum": {
+    "sourceCommit": "e6bfd4994f00fc4d03875f687c12a2ddd5250d5b",
+    "width": 800,
+    "height": 600,
+    "textScale": 2,
+    "observed": [
+      "explicit scan",
+      "bounded scope disclosure",
+      "approved root and expiry",
+      "action controls",
+      "two-target summary",
+      "both file cards and controls reached through repeated paging"
+    ],
+    "fixtureOriginalsUnchanged": true
+  },
+  "language": "both",
+  "theme": "dark",
+  "reducedMotion": true,
+  "ownedProcessesAndDesktopsClosed": true,
+  "publicPixels": false,
+  "limits": [
+    "Minimum-size apply, confirmation and recovery remain unverified by this run.",
+    "The normal-size history page did not visibly respond to the sampled Page Down; the direct receipt-specific entry completed restoration. Full history keyboard coverage remains pending.",
+    "Full appearance, physical DPI, native compositor and accessibility coverage remain unverified.",
+    "This disposable fixture does not certify arbitrary host-file maintenance."
+  ]
+}
