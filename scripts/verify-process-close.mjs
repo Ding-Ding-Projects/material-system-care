@@ -1,0 +1,37 @@
+import assert from 'node:assert/strict';
+import {readFileSync,realpathSync} from 'node:fs';
+import {resolve,relative,isAbsolute} from 'node:path';
+import {createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
+const [rootArg,runArg,bundleArg]=process.argv.slice(2);
+assert(rootArg&&runArg&&bundleArg,'Expected repository, private run and bundle');
+const root=realpathSync(rootArg),run=realpathSync(runArg),bundle=realpathSync(bundleArg);
+const contained=(base,path)=>{const p=realpathSync(resolve(base,path)),rel=relative(base,p);assert(rel&&!rel.startsWith('..')&&!isAbsolute(rel));return p;};
+const bytes=(base,path)=>readFileSync(contained(base,path));
+const json=(base,path)=>JSON.parse(bytes(base,path).toString('utf8').replace(/^\uFEFF/,''));
+const hash=b=>createHash('sha256').update(b).digest('hex');
+const r=json(root,'docs/verification/process-close.json'),p=json(run,'build-receipt.json'),m=json(bundle,'bundle-manifest.json');
+assert.equal(r.scope,'owned-fixture-graceful-close');assert.equal(r.sourceCommit,p.source);assert.equal(r.bundleSha256,p.bundleSha256);assert.equal(m.bundleSha256,p.bundleSha256);
+for(const f of m.files){const b=bytes(bundle,f.path);assert.equal(b.length,f.bytes);assert.equal(hash(b),f.sha256);}
+const fb=json(run,'fixture-build.json');assert.equal(r.fixtureSource,fb.source);assert.equal(r.fixtureSha256,fb.sha256);assert.equal(hash(bytes(run,'process_close_fixture.exe')),fb.sha256);
+for(const source of [r.sourceCommit,r.fixtureSource])execFileSync('git',['cat-file','-e',`${source}^{commit}`],{cwd:root,windowsHide:true});
+const files={inputs:'inputs.json',identity:'fixture-identity.json',afterCancel:'after-cancel-identity.json',beforeConfirm:'before-final-confirm.json',afterConfirm:'after-final-confirm.json',teardown:'teardown.json',reviewFrame:'output/processes-008.png',resultFrame:'output/processes-009.png'};
+for(const [key,path] of Object.entries(files))assert.equal(hash(bytes(run,path)),r.privateEvidence[key]);
+const identity=json(run,files.identity),cancel=json(run,files.afterCancel),before=json(run,files.beforeConfirm),after=json(run,files.afterConfirm),launch=json(run,'launch.json'),fixture=json(run,'fixture-launch.json');
+assert.deepEqual(cancel,identity);assert.deepEqual(before.identity,identity);
+assert.equal(realpathSync(identity.path),contained(run,'process_close_fixture.exe'));assert.equal(fixture.pid,identity.pid);assert(fixture.ok&&fixture.client_ok);assert.equal(fixture.desktop,launch.desktop);
+assert.equal(realpathSync(launch.process.executablePath),contained(bundle,'material_system_care.exe'));
+assert(before.elapsedMs>=0&&before.elapsedMs<240000);
+assert.equal(after.count,0);assert.equal(r.fixtureTimeoutMs,300000);assert.equal(after.elapsedMs,r.absenceObservedElapsedMs);
+assert(after.elapsedMs>before.elapsedMs&&after.elapsedMs<r.fixtureTimeoutMs);
+assert.equal(Date.parse(after.observedAt)-Date.parse(identity.startedAt),after.elapsedMs);
+const children=json(run,'children.json'),inputs=json(run,files.inputs);assert(children.ok&&children.client_ok&&children.parent_hwnd===launch.hwnd&&children.children.length===1);
+const child=children.children[0];assert.equal(child.class,'FLUTTERVIEW');assert.equal(inputs.length,32);
+assert(inputs.slice(1,22).every(i=>i.name==='type_text'&&i.params.text.length===1));assert.equal(inputs.slice(1,22).map(i=>i.params.text).join(''),'process_close_fixture');
+for(const [index,x,y] of [[0,250,230],[22,800,560],[23,113,165],[24,121,405],[25,854,414],[26,800,560],[27,121,405],[28,500,265],[29,965,414],[30,121,405],[31,965,414]]){const i=inputs[index];assert.equal(i.name,'mouse_click');assert.deepEqual([i.params.x,i.params.y],[x,y]);}
+for(const i of inputs)assert(i.params.hwnd===child.handle&&i.result.ok&&i.result.client_ok&&i.result.mode==='background'&&i.result.target_hwnd===child.handle);
+assert(Date.parse(inputs[31].observedAt)>=Date.parse(before.observedAt)&&Date.parse(inputs[31].observedAt)<=Date.parse(after.observedAt));
+const teardown=json(run,files.teardown);assert(teardown.processesAbsent&&teardown.desktopEngineAndFixtureAbsent&&JSON.parse(teardown.result).closed);
+assert(r.verified.exactFixtureIdentityVisuallyInspected&&r.verified.cancelLeftFixtureRunning&&r.verified.reviewVisuallyInspected&&r.verified.requestedReceiptVisuallyInspected&&r.verified.fixtureAbsentBeforeTimeout&&r.verified.ownedTeardown);
+assert.equal(r.verified.userApplicationsTargeted,false);assert.equal(r.verified.nativeCompositor,false);assert.equal(r.verified.fullInputMatrix,false);
+console.log(`PASS owned close evidence: ${m.files.length} bundle files, exact fixture identity, cancelled review, final request and absence before timeout. Pixel inspection is separate; exit mechanism and arbitrary application behavior are not instrumented.`);

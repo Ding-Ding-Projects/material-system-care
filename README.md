@@ -67,6 +67,8 @@ Relative Vite assets, metadata fetches, and the logo resolve beneath the project
 
 The actual filtered process-inventory path also passed a bounded hidden-input check using paced character delivery. Its runtime records remain private; the public frame below is the separate idle state. [Evidence summary](docs/verification/process-inventory.json).
 
+Graceful-close review was also exercised against one owned disposable window: cancelling left it running, and a later inspected request was followed by independently observed absence before its timeout. [Bounded evidence](docs/verification/process-close.json). No user application was targeted.
+
 ## Process workspace frame
 
 ![Built process workspace before collection](docs/captures/processes-idle.png)

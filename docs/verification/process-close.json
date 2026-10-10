@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "a9975e2d639f0fe37b4fc3c699ad05f9df2a2aee",
+  "bundleSha256": "d596cb3821d1783ff7a09b43b69b7ce856ec957f9cfe844108f95c680479d070",
+  "fixtureSource": "60922248c23a35c1fcfca0e4b683557adae44e2e",
+  "fixtureSha256": "0f3b938f9437fc7203e81424305a4f94ebaaca01d5895461ff97d599dbdd8d77",
+  "route": "lowlevel-hidden-desktop-flutter-frame-export",
+  "scope": "owned-fixture-graceful-close",
+  "fixtureTimeoutMs": 300000,
+  "absenceObservedElapsedMs": 227455,
+  "privateEvidence": {
+    "inputs": "f9b1fc370721b10116704eb98602fe71c1eb029a814dcc6c3fa8b6aadb0080e9",
+    "identity": "a25a4f33872a72d73de260687dc186401da11628d3613150a77db450429268cb",
+    "afterCancel": "207be39e680d297198ef3e217b01d5e22593c920ad57367d685cea86d20f1df8",
+    "beforeConfirm": "851f9e5858d73462decc6fa895b5737e1c4063263db44cf573f0501010fae88d",
+    "afterConfirm": "5dafabdb609dc5cf37621f97bd259be2070cd32b6db7933e788df7908806356c",
+    "teardown": "bbf6a5f682b6f054ae61cf6dee41f0cc96ed809d7d8d05d5ecf9f22eb1f69080",
+    "reviewFrame": "6709449e6b0308a0ecfb7917ac21c5d4f48fd979a457bcacad397301d9497a6f",
+    "resultFrame": "e99c4c7ddefd93a16cecea3fe171e23a7f6263ec7b6922fac42f61b39f6a1eb6"
+  },
+  "verified": {
+    "exactFixtureIdentityVisuallyInspected": true,
+    "cancelLeftFixtureRunning": true,
+    "reviewVisuallyInspected": true,
+    "requestedReceiptVisuallyInspected": true,
+    "fixtureAbsentBeforeTimeout": true,
+    "ownedTeardown": true,
+    "userApplicationsTargeted": false,
+    "nativeCompositor": false,
+    "fullInputMatrix": false
+  },
+  "limitations": [
+    "The product reports only a close request; the independent fixture-absence query provides the exit observation.",
+    "Only this disposable fixture was closed. Applications with unsaved work or custom close handling are not covered.",
+    "An earlier attempted reopen did not display a dialog and was not accepted as close proof. Only the final inspected review and outcome support this verdict.",
+    "Runtime identity and review frames remain private."
+  ]
+}

@@ -13,6 +13,8 @@
 
 ## Working suite
 
+- [x] Verify cancelled review and a final graceful-close request against an owned disposable window, with independent absence before its timeout and complete owned teardown. Arbitrary application close behavior remains outside this evidence.
+
 - [x] Verify the read-only process inventory with paced hidden input, exact visible filter, owned engine identity and verified teardown. Runtime record pixels remain private; close behavior and full input coverage remain pending.
 
 - [x] Retain and inspect an idle process-workspace painted frame from the exact built source, verify byte/source binding and owned teardown, and reject an altered capture hash. This does not complete native interaction or the appearance matrix.

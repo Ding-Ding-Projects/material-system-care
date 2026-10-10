@@ -1,5 +1,9 @@
 # Implementation handoff
 
+## Owned graceful-close evidence
+
+The real process workspace was verified against a disposable owned native window. The inventory and confirmation showed its exact PID and full-precision start identity. Cancelling review left the same identity running. A later inspected confirmation produced the truthful Close requested receipt, followed by independent exact-path absence at 227.455 seconds after fixture launch, before the 300-second self-exit limit. No user application was targeted. The final exit code or receipt of WM_CLOSE was not separately instrumented, so this establishes an inspected request followed by absence before timeout, not universal close behavior. An earlier attempted reopen had no visible dialog and is excluded. Private frames and launch/input/identity/teardown receipts are retained. Both desktop and engine producers, the fixture and the hidden desktop were confirmed closed. The narrow verifier checked 210 bundle files and rejected altered elapsed-time evidence before passing restored evidence. Native compositor, arbitrary unsaved-work behavior and full input/appearance coverage remain unverified.
+
 ## Owned close verification fixture
 
 A native task-owned graceful-close fixture is being added under scripts/native-fixture. It creates one ordinary window, reads no user data, performs no host action and self-exits after five minutes. It is built through build.bat /s --target=native --resource-only and is not a production product surface or installer payload. Launch it only on the explicitly owned hidden desktop. Actual UI-close verification is pending; do not claim a close from source or compilation alone.
