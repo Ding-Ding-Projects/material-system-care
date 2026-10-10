@@ -42,7 +42,10 @@ class DriverInventory {
           field.runes.any(
             (c) =>
                 c < 32 ||
-                c == 127 ||
+                (c >= 127 && c <= 159) ||
+                c == 0x061c ||
+                c == 0x200e ||
+                c == 0x200f ||
                 (c >= 0x202a && c <= 0x202e) ||
                 (c >= 0x2066 && c <= 0x2069),
           ))

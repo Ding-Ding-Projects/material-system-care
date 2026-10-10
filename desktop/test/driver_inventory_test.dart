@@ -87,6 +87,10 @@ void main() {
     'numeric metadata': (v) => v['packages'][0]['version'] = 1,
     'embedded control': (v) =>
         v['packages'][0]['provider'] = 'name\u0000suffix',
+    'C1 control': (v) => v['packages'][0]['provider'] = 'name\u0085',
+    'Arabic direction mark': (v) => v['packages'][0]['signer'] = 'name\u061c',
+    'left direction mark': (v) => v['packages'][0]['version'] = 'name\u200e',
+    'right direction mark': (v) => v['packages'][0]['version'] = 'name\u200f',
     'bidi override': (v) => v['packages'][0]['signer'] = 'name\u202e',
     'oversized metadata': (v) => v['packages'][0]['originalName'] = 'a' * 4097,
     'oversized rows': (v) => v['packages'] = List.filled(25001, row(0)),
