@@ -135,3 +135,5 @@
 - [x] Replace the generic startup action menu with typed bilingual cards and explicit reviewed actions.
 - [x] Verify malformed-state rejection, cancellation, stale refresh and layout fixtures.
 - [ ] Build and drive the disposable-entry GUI flow, including stale review, exact restoration and owned teardown.
+- [x] Verify the core disposable-entry GUI round trip at 1280×1000, including cancelled review, stale rejection and exact command/type restoration.
+- [ ] Rebuild and capture the corrected Cantonese stale-feedback state and minimum-size interaction.

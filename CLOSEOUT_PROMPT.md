@@ -45,3 +45,7 @@ Use exact root build entrypoints, source-bound evidence, bounded retries and pro
 ## 中文接續
 
 完整套件仍未完成。今次已用真正介面驗證隔離清理、取消、衝突保護及原始內容復原；含私人路徑嘅畫面不公開。下一步整合啟動項目覆核保護，再完成專用清理顯示、其他流程、完整外觀及安裝更新驗證。保留未完成分支，不能把局部成功當成整個目標完成。
+
+## Startup runtime and feedback correction
+
+The combined root desktop build passed at bab873cb. Its real disposable startup flow verified cancellation, stale review, fresh disable, exact command/type restoration and owned teardown. The entry and recovery journal were removed. A missing Cantonese stale-feedback translation was found and corrected with a focused positive/negative widget regression; the rebuilt correction still needs live verification. Evidence: docs/verification/startup-gui.json.

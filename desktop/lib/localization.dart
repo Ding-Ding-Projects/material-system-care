@@ -12,6 +12,8 @@ class CopyScope extends InheritedWidget {
 }
 
 const translations = <String, String>{
+  'The startup record changed. Records were refreshed where available. Review the selected action again.':
+      '啟動記錄已變更，已盡量重新讀取可用記錄。請再次覆核所選操作。',
   'Review sign-in entries': '檢視登入啟動項目',
   'Review current-user startup commands and saved restoration records. Machine and startup-folder entries are outside this workflow.':
       '檢視目前使用者嘅啟動命令及已儲存復原記錄。此流程不處理全機或啟動資料夾項目。',

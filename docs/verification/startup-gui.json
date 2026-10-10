@@ -1,0 +1,139 @@
+{
+  "version": 1,
+  "sourceCommit": "bab873cb655848ad8d4e13081ff8fd5ea46d50f8",
+  "route": "cheap-lowlevel-headless",
+  "captureMethod": "flutter-repaint-boundary",
+  "buildReceipt": {
+    "source": "bab873cb655848ad8d4e13081ff8fd5ea46d50f8",
+    "bundleSha256": "d389476fc6bb61fcb4556d16a32374762b0ccd1a7306def959f83a7e7bebf162",
+    "manifestSha256": "7441c6b3c669a8d524ffe6d52ee29ada886d309385ac49b28fd6abdcb54e9d0b",
+    "version": "0.1.0",
+    "executableSha256": "88f29e90d474b5d2a23ddaaafba93c8e353c928aadebaef96f5ccd6c7d4eba1e",
+    "indexTree": "837057db763cca270835d56e5ebaba9fd5c33b9f",
+    "sourceTree": "837057db763cca270835d56e5ebaba9fd5c33b9f",
+    "builtUtc": "2026-10-10T20:31:34.2225957Z"
+  },
+  "tuple": {
+    "width": 1280,
+    "height": 1000,
+    "language": "both",
+    "theme": "dark",
+    "textScale": 1,
+    "motion": "reduced"
+  },
+  "evidence": {
+    "fixture.json": "a741586471c5bbe09de1730d9588a2e0c9bf6e2b026cdade7f60f34e2101d455",
+    "cancel-independent.json": "377ed2849837007376a45c7cffc1863c5521fea96fb863a6da0d98cc91f06399",
+    "change-independent.json": "05d165efb7e7e44ea16b9f4fe0acb57e6e18b1e445c895d9c06eddff7e2318ac",
+    "stale-independent.json": "5f958c7c2f3b28b51412c90e86760291ee2b92920b814ac03e6b025bdc76a1cd",
+    "disabled-independent.json": "26aa96bdf13f818ab8081933cf71c2572cc814f76592d8f1f1eb37242ac493b9",
+    "finish-independent.json": "e718397bf5d86574b375a513f29ce4f7f62f4d5df79340813d4224d7f8726023",
+    "review-cancelled.json": "60798e106c75c1d000ae3eabdd1ea7fd40cd3374efcfe00f91dc854fce8752ca",
+    "stale-review-confirmed.json": "337f66dd1ee936e9f46d7f89c2fda2aa9e4c93ab0e0efdac497cefde0982bf53",
+    "fresh-disable-confirmed.json": "82dcc2ab7a97c2af330695dde9e708fc1f520aeb27c9a3ae363e97d8bb31f054",
+    "restore-confirmed.json": "014acb1e19708c2bde40cf511740dee514c143d0588ef0b8fea68c9ad7e81420",
+    "teardown.json": "4b081e2045ca552bbe5e63b543ff7b25c2f82a1f5847a2b3a34d72460ec73840",
+    "bundle/build-receipt.json": "6fd15578bf7c86da6efb796dd508f4df3903ff328aab8695ed593ffde65b06e6",
+    "output/frame.png": "057f8628ae13be2dca534032bcad7e34cb3aef182853b6618086e85d0a60a880",
+    "output/frame.png.json": "b346a6e3e1e941c8e697c41539d6ffc0561b7abc0024e9afbb37b7fd0d8ad80e",
+    "output/frame-004.png": "bd123edd7d13e792d5979605969cacbdd105586c026c8e913513442921815ebb",
+    "output/frame-004.png.json": "b786f28b35a1763e6e69e8bcd2378eb9abaadab2a9f84e045884e4a20485a9e7",
+    "output/frame-005.png": "bee4f1d14dd80bf262a5d587a5c2730708b4b30b529508331f7719edc0e84170",
+    "output/frame-005.png.json": "155912344e357b375a08e2a65889590474ea99af8a9a59c7d9ec1012531060be",
+    "output/frame-008.png": "300133d6cc5c041adf423cc924ba1216bf9b67fd4ed1d9c14422bee92001213e",
+    "output/frame-008.png.json": "3ed379af331f5967b7f9a3040799d394105a2e1e93e17ad6a85b87a69ddf3f6a",
+    "output/frame-010.png": "6ae36d6e0834ed848babeee16c515464616d2a9ceb3cbc30b845d9503d9c0fa4",
+    "output/frame-010.png.json": "b2bdeebb094a6fcc58bb1cb37e8845ab0e453c78b86d258481a8f976df1b41df",
+    "output/frame-011.png": "ce3cdeac34d5b02589a8411546a7a4178e12301995fa9c372fa083261259375f",
+    "output/frame-011.png.json": "cfdfda32b4d59b77ef77fa7c820ac0dc84d5b38a1f0a7970ac563b50d6ff9b9c",
+    "output/frame-012.png": "95fe62383aaaae3b9be993261b498da7a0845f8ba6e61b11f4105cf62a83f616",
+    "output/frame-012.png.json": "e31d73e57f8001b033281fed6300127f18709b4bdeb8af9c6395e95857e14ebe"
+  },
+  "checks": {
+    "cancelPreservedOwnedEntry": true,
+    "staleReviewRejectedWithoutJournal": true,
+    "freshReviewDisabledEntry": true,
+    "journalPreservedExactCommandAndKind": true,
+    "restoredReviewedCommandAndKind": true,
+    "ownedEntryAndJournalRemoved": true,
+    "allOwnedProcessesAbsent": true,
+    "hiddenDesktopClosed": true
+  },
+  "frames": [
+    {
+      "path": "output/frame.png",
+      "sidecar": "output/frame.png.json",
+      "sha256": "057f8628ae13be2dca534032bcad7e34cb3aef182853b6618086e85d0a60a880",
+      "capturedAt": "2026-10-10T20:31:42.083413Z",
+      "width": 1280,
+      "height": 1000,
+      "inspected": true,
+      "published": false
+    },
+    {
+      "path": "output/frame-004.png",
+      "sidecar": "output/frame-004.png.json",
+      "sha256": "bd123edd7d13e792d5979605969cacbdd105586c026c8e913513442921815ebb",
+      "capturedAt": "2026-10-10T20:32:01.121075Z",
+      "width": 1280,
+      "height": 1000,
+      "inspected": true,
+      "published": false
+    },
+    {
+      "path": "output/frame-005.png",
+      "sidecar": "output/frame-005.png.json",
+      "sha256": "bee4f1d14dd80bf262a5d587a5c2730708b4b30b529508331f7719edc0e84170",
+      "capturedAt": "2026-10-10T20:32:06.176435Z",
+      "width": 1280,
+      "height": 1000,
+      "inspected": true,
+      "published": false
+    },
+    {
+      "path": "output/frame-008.png",
+      "sidecar": "output/frame-008.png.json",
+      "sha256": "300133d6cc5c041adf423cc924ba1216bf9b67fd4ed1d9c14422bee92001213e",
+      "capturedAt": "2026-10-10T20:32:20.162526Z",
+      "width": 1280,
+      "height": 1000,
+      "inspected": true,
+      "published": false
+    },
+    {
+      "path": "output/frame-010.png",
+      "sidecar": "output/frame-010.png.json",
+      "sha256": "6ae36d6e0834ed848babeee16c515464616d2a9ceb3cbc30b845d9503d9c0fa4",
+      "capturedAt": "2026-10-10T20:32:33.757188Z",
+      "width": 1280,
+      "height": 1000,
+      "inspected": true,
+      "published": false
+    },
+    {
+      "path": "output/frame-011.png",
+      "sidecar": "output/frame-011.png.json",
+      "sha256": "ce3cdeac34d5b02589a8411546a7a4178e12301995fa9c372fa083261259375f",
+      "capturedAt": "2026-10-10T20:32:39.039722Z",
+      "width": 1280,
+      "height": 1000,
+      "inspected": true,
+      "published": false
+    },
+    {
+      "path": "output/frame-012.png",
+      "sidecar": "output/frame-012.png.json",
+      "sha256": "95fe62383aaaae3b9be993261b498da7a0845f8ba6e61b11f4105cf62a83f616",
+      "capturedAt": "2026-10-10T20:32:43.843936Z",
+      "width": 1280,
+      "height": 1000,
+      "inspected": true,
+      "published": false
+    }
+  ],
+  "limitations": [
+    "The stale-feedback frame exposed a missing Cantonese translation; the subsequent source correction requires rebuilt visual verification.",
+    "Native/framework diagnostics were not collected; generic screenshot promotion remains unverified.",
+    "Minimum-size, complete focus, physical-DPI and full appearance/motion coverage remain pending."
+  ]
+}

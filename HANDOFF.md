@@ -299,3 +299,7 @@ The a5aaea8 root desktop and engine builds passed. Three inspected 1280x900 bili
 ## Keyboard verification and resource closeout
 
 The Windows-platform widget regression passes Tab then Page Down for service, task and process views at minimum size with doubled bilingual text. Native hidden-view keyboard input reached a partially moved service viewport; full lower-control runtime proof remains incomplete. User requested preservation and cleanup at verified 7% remaining allowance. No further feature implementation began.
+
+## Startup runtime and feedback correction
+
+The combined root desktop build passed at bab873cb. Its real disposable startup flow verified cancellation, stale review, fresh disable, exact command/type restoration and owned teardown. The entry and recovery journal were removed. A missing Cantonese stale-feedback translation was found and corrected with a focused positive/negative widget regression; the rebuilt correction still needs live verification. Evidence: docs/verification/startup-gui.json.

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_system_care/startup.dart';
 import 'package:material_system_care/main.dart';
+import 'package:material_system_care/localization.dart';
 
 Map<String, dynamic> row({bool enabled = true, String revision = 'A'}) => {
   'id': 'Disposable entry',
@@ -16,6 +17,44 @@ Map<String, dynamic> row({bool enabled = true, String revision = 'A'}) => {
 };
 
 void main() {
+  testWidgets('stale feedback remains bilingual after a rejected review', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(1280, 1600);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    Future<Map<String, dynamic>> invoke(
+      String method,
+      Map<String, dynamic> params,
+    ) async {
+      if (method == 'startup.list')
+        return {
+          'records': [row()],
+        };
+      throw StateError('STARTUP_REVIEW_CHANGED');
+    }
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: CopyScope(
+          preferences: const {'language': 'both'},
+          child: StartupPage(invoke: invoke),
+        ),
+      ),
+    );
+    await tester.tap(find.textContaining('Refresh records'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.textContaining('Review disable'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.textContaining('Confirm selected action'));
+    await tester.pumpAndSettle();
+    final feedback = tester.widget<Text>(
+      find.textContaining('The startup record changed.'),
+    );
+    expect(feedback.data, contains('啟動記錄已變更'));
+    expect(feedback.data, contains('請再次覆核所選操作'));
+  });
   test('typed startup records reject contradictory metadata', () {
     expect(
       StartupRecord.parse({

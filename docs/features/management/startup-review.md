@@ -24,3 +24,9 @@ The built engine at `785a79c10d8c3318dc8b6a69aa17562fd7e0ae74` was exercised thr
 [The sanitized evidence summary](../../verification/startup-registry.json) binds the engine, source and private observations. This is real registry behavior, not a GUI interaction receipt and not atomic compare-and-swap proof. Desktop confirmation, refresh and keyboard behavior remain separate runtime work.
 
 真正引擎已用一個獨有、即棄嘅目前使用者啟動項目驗證：覆核後改動嘅命令會被拒絕，重新覆核先可以停用，再復原完全相同嘅原始命令及登錄類型。測試項目已移除，既有項目冇改。呢份係真實登錄操作證據，唔代表介面操作或原子比較交換已驗證。
+
+## Real desktop round trip
+
+At `bab873cb655848ad8d4e13081ff8fd5ea46d50f8`, the actual 1280×1000 bilingual dark desktop completed cancelled review, stale-review rejection, a fresh disable review and exact command/type restoration for one uniquely named disposable current-user Run entry. Independent checks verified that stale review left the changed entry intact without a journal, disable preserved the reviewed raw command and `REG_EXPAND_SZ`, and restoration reproduced both. The owned entry and journal were removed afterward. All owned bundle processes and the hidden desktop were closed.
+
+The stale-feedback frame exposed a missing Cantonese translation. A focused source correction and visible-feedback regression were added; rebuilt verification remains pending. Inspected painted frames and their timestamped sidecars remain private pending complete diagnostic provenance. See `docs/verification/startup-gui.json`.
