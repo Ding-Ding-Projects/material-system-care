@@ -352,12 +352,21 @@ class _WorkflowPageState extends State<WorkflowPage> {
     setState(() {
       busy = true;
       failure = null;
+      if (method == 'apps.managed') {
+        data = null;
+        chosen.clear();
+      }
     });
     try {
       final result = await Engine.invoke(
         method ?? methods[widget.index],
         params ?? {},
       );
+      if (method == 'apps.managed' && result['available'] != true) {
+        throw StateError(
+          result['reason']?.toString() ?? 'WinGet discovery is unavailable.',
+        );
+      }
       if (mounted)
         setState(() {
           data = result;
@@ -517,6 +526,21 @@ class _WorkflowPageState extends State<WorkflowPage> {
               OutlinedButton(
                 onPressed: busy ? null : () => load('apps.updates'),
                 child: UiText('Check available updates'),
+              ),
+            if (widget.index == 2)
+              FilledButton.tonalIcon(
+                onPressed: busy
+                    ? null
+                    : () async {
+                        if (await confirm(
+                          'Discover managed packages?',
+                          'WinGet may contact its configured source to match installed packages. No packages will be changed, and new source agreements will not be accepted.',
+                        )) {
+                          await load('apps.managed');
+                        }
+                      },
+                icon: const Icon(Icons.inventory_2_outlined),
+                label: UiText('Discover WinGet packages'),
               ),
             if (widget.index == 4)
               FilledButton.tonal(
@@ -682,6 +706,11 @@ class _WorkflowPageState extends State<WorkflowPage> {
                 child: UiText('Retry'),
               ),
             ),
+          ),
+        if (widget.index == 2 && data?['limitation'] is String)
+          ListTile(
+            leading: const Icon(Icons.info_outline),
+            title: UiText(data!['limitation'] as String),
           ),
         SizedBox(
           height: 360,

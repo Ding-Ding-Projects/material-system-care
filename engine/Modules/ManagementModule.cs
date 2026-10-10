@@ -11,7 +11,7 @@ public sealed class ManagementModule : IEngineModule
     private readonly ManagementPlatform platform;
     public ManagementModule() : this(new ManagementPlatform()) { }
     public ManagementModule(ManagementPlatform platform) => this.platform = platform;
-    public bool CanHandle(string method) => method is "apps.list" or "apps.updates" or "apps.upgrade" or "apps.uninstall" or "startup.list" or "startup.set" or "processes.list" or "processes.stop" or "services.list";
+    public bool CanHandle(string method) => method is "apps.list" or "apps.managed" or "apps.updates" or "apps.upgrade" or "apps.uninstall" or "startup.list" or "startup.set" or "processes.list" or "processes.stop" or "services.list";
     public async Task<object?> HandleAsync(string method, JsonElement parameters, EngineContext context, CancellationToken cancellationToken)
     {
         if (!OperatingSystem.IsWindows() && platform.GetType() == typeof(ManagementPlatform))
@@ -19,6 +19,9 @@ public sealed class ManagementModule : IEngineModule
         switch (method)
         {
             case "apps.list": return await platform.AppsAsync(cancellationToken);
+            case "apps.managed":
+                if (context.IsFixture && platform.GetType() == typeof(ManagementPlatform)) throw new EngineException("LIVE_COLLECTION_DISABLED", "Fixture contexts cannot discover installed host packages.");
+                return await platform.ManagedAppsAsync(context.DataRoot, cancellationToken);
             case "apps.updates": return await platform.UpdatesAsync(cancellationToken);
             case "apps.upgrade":
             case "apps.uninstall":
@@ -63,6 +66,7 @@ public static class ManagementPolicy
 
 public class ManagementPlatform
 {
+    public virtual Task<object> ManagedAppsAsync(string dataRoot, CancellationToken ct) => PackageInventory.CollectAsync(dataRoot, ct);
     private const string RunKey = @"Software\Microsoft\Windows\CurrentVersion\Run";
     public virtual async Task<object> AppsAsync(CancellationToken ct)
     {

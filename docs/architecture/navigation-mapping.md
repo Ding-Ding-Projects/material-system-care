@@ -6,7 +6,7 @@ Desktop source `d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e` declares ten visible d
 | --- | --- | --- |
 | Overview | `desktop.overview`; planned `desktop.system` | Live snapshot and engine manifest version are linked. A complete hardware workspace and provenance-bound updated-at value remain missing. |
 | Storage | `desktop.storage`; planned `desktop.care`, `desktop.recovery`, `desktop.files` | Selected-folder analysis, duplicates, temporary-file cleanup and recovery history are linked. Other cleanup, recovery and file workflows remain separate unmet requirements. |
-| Apps | `desktop.applications` | Inventory and update text are linked. Mutation actions require real exact package IDs; registry/AppX rows do not provide them. |
+| Apps | `desktop.applications` | General inventory and update text remain available. Explicit WinGet discovery now supplies structured exact package IDs for contextual reviewed actions; registry/AppX rows still do not invent them. |
 | Startup | `desktop.startup`; planned `desktop.performance` | Added explicit Startup surface inventory. Current-user Run entries exist; a performance/boost workspace is not thereby complete. |
 | Protection | `desktop.security`; planned `desktop.privacy` | Defender/firewall state and confirmed quick scan handoff exist. No independent detection engine, vault, browser interception or privacy workspace parity is established. |
 | Drivers | `desktop.drivers` | Driver-store inventory and selected export exist. Online update catalogue, UI INF installation, rollback and restore remain unverified or missing. |
@@ -17,4 +17,4 @@ Desktop source `d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e` declares ten visible d
 
 `desktop.launcher`, download start/progress/completion, confirmation and notifications remain explicitly inventoried. Public Home, feature, download and settings surfaces retain their own independent requirements. Planned workspaces are not silently removed because the present navigation groups them differently.
 
-The matrix now contains 27 explicit surfaces and 1,863 surface/contract rows. Every universal row remains unimplemented/unverified until its implementation, localization, persistence, focused tests, real built interaction and capture are independently reviewed. No route name, source table or disabled control satisfies those proof boundaries.
+The matrix now contains 28 explicit surfaces and 1,932 surface/contract rows, including Tools > Blue-screen diagnostics. Every universal row remains unimplemented/unverified until its implementation, localization, persistence, focused tests, real built interaction and capture are independently reviewed. No route name, source table or disabled control satisfies those proof boundaries.

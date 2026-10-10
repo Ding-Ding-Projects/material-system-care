@@ -21,6 +21,7 @@ The current source provides a working foundation, with these operation families:
 - Real system, volume, installed-application, startup, process, service, driver and security inventory.
 - Bounded folder analysis, exact duplicate detection, age-limited temporary-file plans, recoverable quarantine and conflict-preserving restoration.
 - Confirmed current-user startup changes and graceful process-close requests. Package operations require a genuine supported package identifier.
+- Explicit WinGet package discovery supplies real matched identifiers for reviewed upgrade and uninstall actions, without guessing from registry names.
 - Supported security scanning and driver operations with explicit elevation requirements. These have not been exercised against this host's security or drivers.
 - Selected-file hashing, strict text and JSON conversion, password generation, network diagnostics and opt-in local provider access.
 - [Blue-screen investigation](docs/features/diagnostics/blue-screen.md) with provider-qualified local events, stop-code lookup and dump metadata. No root-cause certainty, dump-content analysis or automatic repair is claimed.

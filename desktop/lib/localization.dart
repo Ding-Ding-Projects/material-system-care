@@ -12,6 +12,13 @@ class CopyScope extends InheritedWidget {
 }
 
 const translations = <String, String>{
+  "Discover managed packages?": "探索可管理套件？",
+  "Discover WinGet packages": "探索 WinGet 套件",
+  "WinGet may contact its configured source to match installed packages. No packages will be changed, and new source agreements will not be accepted.":
+      "WinGet 可能連接已設定來源以比對已安裝套件。不會更改套件，亦不會接受新的來源協議。",
+  "Only installed packages matched by WinGet are listed. Unmatched applications remain in the general inventory. Available update versions are not inferred from an export.":
+      "只列出 WinGet 成功比對的已安裝套件。未能比對的程式仍在一般清單中；匯出資料不會被當作可用更新版本。",
+  "WinGet discovery is unavailable.": "無法探索 WinGet 套件。",
   "The local engine connection is unavailable.": "本機引擎連線無法使用。",
   "Crash collection exceeded fifteen seconds. Try a shorter period.":
       "當機資料收集超過十五秒，請選擇較短期間。",

@@ -1,5 +1,13 @@
 # Implementation handoff
 
+## Managed package discovery candidate
+
+The Apps workflow now exposes explicit WinGet discovery after a network disclosure. `apps.managed` reads structured export records, validates exact package identifiers and source identity, and returns unknown update availability honestly. A selected row uses the existing separately reviewed upgrade/uninstall operation. Discovery never accepts a new source agreement or changes installed packages. Bounds include a ninety-second collection deadline, monitored export growth, final 2 MiB JSON validation, and separately bounded process teardown. Cleanup failures disclose possible retained local inventory.
+
+The integrated engine fixture suite passed 28 assertion groups after these changes. The focused Flutter fixture passed, including review-before-discovery, exact upgrade target, cancellation without mutation, and removal of stale actionable rows after an unavailable refresh. Independent source review prompted producer-size monitoring and exit observation before cleanup. Root candidate builds, actual discovery and native visual interaction remain pending at this checkpoint. No package mutation was performed.
+
+Hosted Windows build 38008237408 completed successfully for fc4f57f2016c48773d2e4476989e39877a0721a8. This does not verify this newer candidate or establish a published release.
+
 The selected target is Windows 11 x64. Source is public at `Ding-Ding-Projects/material-system-care`. The suite remains in development, not a completed replacement for the whole reference catalogue.
 
 ## Verified milestones

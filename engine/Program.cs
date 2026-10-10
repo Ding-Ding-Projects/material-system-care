@@ -14,7 +14,7 @@ public static class Program
         (typeof(SystemModule), ["engine.ping", "system.snapshot", "settings.get", "settings.save", "history.list"]),
         (typeof(CrashDiagnosticsModule), ["diagnostics.crashes", "diagnostics.explainStopCode"]),
         (typeof(StorageModule), ["storage.analyze", "storage.duplicates", "cleanup.scan", "cleanup.apply", "cleanup.restore", "cleanup.history"]),
-        (typeof(ManagementModule), ["apps.list", "apps.updates", "apps.upgrade", "apps.uninstall", "startup.list", "startup.set", "processes.list", "processes.stop", "services.list"]),
+        (typeof(ManagementModule), ["apps.list", "apps.managed", "apps.updates", "apps.upgrade", "apps.uninstall", "startup.list", "startup.set", "processes.list", "processes.stop", "services.list"]),
         (typeof(ProtectionModule), ["security.status", "security.scan", "drivers.list", "drivers.export", "drivers.install", "network.diagnostics", "files.lockOwners"]),
         (typeof(UtilitiesModule), ["files.hash", "files.convert", "password.generate", "tools.catalogue", "providers.list", "providers.configure", "providers.invoke", "utilities.calculate"])
     ];

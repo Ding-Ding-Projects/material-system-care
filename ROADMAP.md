@@ -18,6 +18,7 @@
 - [ ] Deliver real health and diagnostics workflows.
 - [ ] Deliver reversible temporary-file maintenance, duplicate analysis, storage inventory, and recovery records.
 - [ ] Deliver application, startup, process, security, and driver workflows using supported APIs.
+- [ ] Verify structured WinGet package discovery and contextual selected-package actions in the built workspace; source and synthetic checks are implemented.
 - [ ] Deliver local file tools and opt-in online/provider workflows.
 - [ ] Implement the canonical per-surface settings, accessibility, navigation, localization, and evidence contracts.
 
