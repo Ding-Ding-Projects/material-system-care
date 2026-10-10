@@ -36,7 +36,9 @@ public sealed class ManagementModule : IEngineModule
                 Confirm(parameters);
                 string name = Text(parameters, "id");
                 if (!parameters.TryGetProperty("enabled", out var enabled) || enabled.ValueKind is not (JsonValueKind.True or JsonValueKind.False)) throw new ArgumentException("enabled must be boolean.");
-                return await platform.SetStartupAsync(name, enabled.GetBoolean(), context, cancellationToken);
+                if (!parameters.TryGetProperty("reviewRevision", out var revision) || revision.ValueKind != JsonValueKind.String)
+                    throw StartupReviewChanged();
+                return await platform.SetStartupAsync(name, enabled.GetBoolean(), revision.GetString()!, context, cancellationToken);
             case "processes.list": return platform.Processes();
             case "processes.stop":
                 Confirm(parameters);
@@ -56,6 +58,7 @@ public sealed class ManagementModule : IEngineModule
     }
     private static void Confirm(JsonElement p) { if (!p.TryGetProperty("confirmed", out var c) || c.ValueKind != JsonValueKind.True) throw new ArgumentException("Explicit confirmed:true is required."); }
     private static string Text(JsonElement p, string key) => p.TryGetProperty(key, out var v) && v.ValueKind == JsonValueKind.String && v.GetString() is { Length: > 0 and <= 256 } s && !s.Any(char.IsControl) ? s : throw new ArgumentException($"A bounded {key} is required.");
+    internal static EngineException StartupReviewChanged() => new("STARTUP_REVIEW_CHANGED", "The startup record changed or its review is missing. Refresh the records and review the selected action again.");
 }
 
 public static class ManagementPolicy
@@ -71,6 +74,28 @@ public static class ManagementPolicy
 
 public class ManagementPlatform
 {
+    public sealed record StartupValue(string Value, RegistryValueKind Kind);
+    protected virtual string[] StartupNames() { using var key = Registry.CurrentUser.OpenSubKey(RunKey); return key?.GetValueNames() ?? []; }
+    protected virtual StartupValue? ReadStartupValue(string name) {
+        using var key = Registry.CurrentUser.OpenSubKey(RunKey);
+        if (key == null || !key.GetValueNames().Contains(name, StringComparer.Ordinal)) return null;
+        return new(key.GetValue(name, null, RegistryValueOptions.DoNotExpandEnvironmentNames)?.ToString() ?? "", key.GetValueKind(name));
+    }
+    protected virtual void DeleteStartupValue(string name) { using var key = Registry.CurrentUser.OpenSubKey(RunKey, writable: true) ?? throw new IOException("Current-user Run key is unavailable."); key.DeleteValue(name, throwOnMissingValue: true); }
+    protected virtual void WriteStartupValue(string name, StartupValue value) { using var key = Registry.CurrentUser.OpenSubKey(RunKey, writable: true) ?? throw new IOException("Current-user Run key is unavailable."); key.SetValue(name, value.Value, value.Kind); }
+    private static string StartupRevision(string name, bool enabled, StartupValue value) => Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(JsonSerializer.SerializeToUtf8Bytes(new { schema = 1, name, enabled, value.Value, kind = (int)value.Kind })));
+    private static void RequireRevision(string supplied, string expected) { if (!string.Equals(supplied, expected, StringComparison.Ordinal)) throw ManagementModule.StartupReviewChanged(); }
+    private static StartupValue ReadJournal(string journal, string name) {
+        try {
+        if (!File.Exists(journal)) throw ManagementModule.StartupReviewChanged();
+        using var original = JsonDocument.Parse(File.ReadAllText(journal));
+        if (original.RootElement.GetProperty("name").GetString() != name) throw ManagementModule.StartupReviewChanged();
+        var value = original.RootElement.GetProperty("value").GetString();
+        var kind = (RegistryValueKind)original.RootElement.GetProperty("kind").GetInt32();
+        if (value == null || kind is not (RegistryValueKind.String or RegistryValueKind.ExpandString)) throw ManagementModule.StartupReviewChanged();
+        return new(value, kind);
+        } catch (Exception e) when (e is JsonException or KeyNotFoundException or InvalidOperationException or FileNotFoundException or DirectoryNotFoundException) { throw ManagementModule.StartupReviewChanged(); }
+    }
     public virtual Task<ScheduledTaskInventory.Inventory> TasksAsync(int limit, CancellationToken ct) => ScheduledTaskInventory.CollectAsync(limit, ct);
     public virtual Task<object> ManagedAppsAsync(CancellationToken ct) => PackageInventory.CollectAsync(ct);
     private const string RunKey = @"Software\Microsoft\Windows\CurrentVersion\Run";
@@ -126,50 +151,59 @@ public class ManagementPlatform
     }
     public virtual object Startup(string dataRoot)
     {
-        using var key = Registry.CurrentUser.OpenSubKey(RunKey);
         var records = new List<object>();
-        if (key is not null) foreach (string name in key.GetValueNames()) records.Add(new { id = name, name, enabled = true, scope = "user", source = "HKCU.Run", command = key.GetValue(name, null, RegistryValueOptions.DoNotExpandEnvironmentNames)?.ToString(), canChange = key.GetValueKind(name) is RegistryValueKind.String or RegistryValueKind.ExpandString });
         string folder = Path.Combine(dataRoot, "management-startup");
+        foreach (string name in StartupNames()) {
+            var value = ReadStartupValue(name);
+            bool conflict = File.Exists(Path.Combine(folder, Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(System.Text.Encoding.UTF8.GetBytes(name))) + ".json"));
+            if (value != null) records.Add(new { id = name, name, enabled = true, scope = "user", source = "HKCU.Run", command = value.Value, reviewRevision = StartupRevision(name, true, value), recoveryRequired = conflict, canChange = !conflict && value.Kind is RegistryValueKind.String or RegistryValueKind.ExpandString });
+        }
         if (Directory.Exists(folder)) foreach (string journal in Directory.EnumerateFiles(folder, "*.json").Take(10000))
         {
             using var original = JsonDocument.Parse(File.ReadAllText(journal));
             string? name = original.RootElement.GetProperty("name").GetString();
-            bool conflict = key?.GetValueNames().Contains(name, StringComparer.Ordinal) == true;
-            records.Add(new { id = name, name, enabled = false, scope = "user", source = "originalStateJournal", canChange = !conflict, recoveryRequired = conflict });
+            if (name == null) continue;
+            var value = ReadJournal(journal, name);
+            bool conflict = ReadStartupValue(name) != null;
+            records.Add(new { id = name, name, enabled = false, scope = "user", source = "originalStateJournal", reviewRevision = StartupRevision(name, false, value), canChange = !conflict, recoveryRequired = conflict });
         }
         return new { records, unavailable = new[] { "Startup-folder and machine entries are not modified." } };
     }
-    public virtual async Task<object> SetStartupAsync(string name, bool enabled, EngineContext context, CancellationToken ct)
+    public virtual async Task<object> SetStartupAsync(string name, bool enabled, string reviewRevision, EngineContext context, CancellationToken ct)
     {
         if (name.Length > 256 || name.Any(char.IsControl)) throw new ArgumentException("Invalid startup id.");
         string folder = Path.Combine(context.DataRoot, "management-startup");
-        Directory.CreateDirectory(folder);
+        if (reviewRevision.Length != 64 || !reviewRevision.All(char.IsAsciiHexDigit)) throw ManagementModule.StartupReviewChanged();
         string hash = Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(System.Text.Encoding.UTF8.GetBytes(name)));
         string journal = Path.Combine(folder, hash + ".json");
-        using var key = Registry.CurrentUser.OpenSubKey(RunKey, writable: true) ?? throw new InvalidOperationException("Current-user Run key is unavailable.");
         if (!enabled)
         {
-            if (!key.GetValueNames().Contains(name, StringComparer.Ordinal)) throw new ArgumentException("Selected startup entry no longer exists.");
-            var kind = key.GetValueKind(name);
+            var current = ReadStartupValue(name) ?? throw ManagementModule.StartupReviewChanged();
+            RequireRevision(reviewRevision, StartupRevision(name, true, current));
+            var kind = current.Kind;
             if (kind is not (RegistryValueKind.String or RegistryValueKind.ExpandString)) throw new ArgumentException("Only string startup entries are supported.");
-            string value = (string)key.GetValue(name, null, RegistryValueOptions.DoNotExpandEnvironmentNames)!;
-            if (File.Exists(journal)) throw new InvalidOperationException("An original-state journal already exists; restore it before changing this entry again.");
+            string value = current.Value;
+            if (File.Exists(journal)) throw ManagementModule.StartupReviewChanged();
+            void ValidateCurrent() { var now = ReadStartupValue(name) ?? throw ManagementModule.StartupReviewChanged(); RequireRevision(reviewRevision, StartupRevision(name, true, now)); }
+            ValidateCurrent();
+            Directory.CreateDirectory(folder);
             await using (var journalFile = new FileStream(journal, FileMode.CreateNew, FileAccess.Write, FileShare.None))
                 await JsonSerializer.SerializeAsync(journalFile, new { name, value, kind = (int)kind }, cancellationToken: ct);
             await context.RecordAsync("startup.set", new { id = name, enabled = false, journal = hash }, ct);
-            key.DeleteValue(name, throwOnMissingValue: true);
+            ValidateCurrent();
+            DeleteStartupValue(name);
         }
         else
         {
-            if (!File.Exists(journal)) throw new ArgumentException("No original-state journal exists for this startup entry.");
-            using var original = JsonDocument.Parse(await File.ReadAllTextAsync(journal, ct));
-            if (original.RootElement.GetProperty("name").GetString() != name) throw new InvalidDataException("Startup journal identity mismatch.");
-            string value = original.RootElement.GetProperty("value").GetString()!;
-            var kind = (RegistryValueKind)original.RootElement.GetProperty("kind").GetInt32();
-            if (kind is not (RegistryValueKind.String or RegistryValueKind.ExpandString)) throw new InvalidDataException("Invalid startup journal kind.");
-            if (key.GetValueNames().Contains(name, StringComparer.Ordinal)) throw new InvalidOperationException("An entry now owns this name; restoration will not overwrite it.");
+            var original = ReadJournal(journal, name);
+            void ValidateRestore() { RequireRevision(reviewRevision, StartupRevision(name, false, ReadJournal(journal, name))); if (ReadStartupValue(name) != null) throw ManagementModule.StartupReviewChanged(); }
+            ValidateRestore();
             await context.RecordAsync("startup.set", new { id = name, enabled = true, journal = hash }, ct);
-            key.SetValue(name, value, kind);
+            ValidateRestore();
+            WriteStartupValue(name, original);
+            RequireRevision(reviewRevision, StartupRevision(name, false, ReadJournal(journal, name)));
+            var restored = ReadStartupValue(name) ?? throw ManagementModule.StartupReviewChanged();
+            RequireRevision(StartupRevision(name, true, original), StartupRevision(name, true, restored));
             File.Delete(journal);
         }
         return new { id = name, enabled, completed = true, restartInitiated = false };

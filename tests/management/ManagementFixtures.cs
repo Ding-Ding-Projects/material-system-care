@@ -44,6 +44,7 @@ public static class ManagementFixtures
         catch (EngineException error) when (error.Code == "LIVE_COLLECTION_DISABLED") { }
         var platform = new FixturePlatform();
         var module = new ManagementModule(platform);
+        await StartupReviewChecksAsync(context);
         foreach (var value in new[] { "0", "1001", "\"2\"", "null", "1.5" }) {
             using var badLimit = JsonDocument.Parse("{\"limit\":" + value + "}");
             try { await module.HandleAsync("tasks.list", badLimit.RootElement, context, default); throw new Exception("Invalid task limit accepted."); }
@@ -62,8 +63,72 @@ public static class ManagementFixtures
         catch (ArgumentException) { }
         if (platform.Calls != 0) throw new Exception("Platform called before identifier validation.");
     }
+    private static async Task StartupReviewChecksAsync(EngineContext context)
+    {
+        var platform = new FixturePlatform();
+        var module = new ManagementModule(platform);
+        const string name = "StartupReviewFixture";
+        string Revision(bool enabled) => JsonSerializer.SerializeToElement(platform.Startup(context.DataRoot)).GetProperty("records").EnumerateArray().Single(r => r.GetProperty("id").GetString() == name && r.GetProperty("enabled").GetBoolean() == enabled).GetProperty("reviewRevision").GetString()!;
+        async Task Change(bool enabled, string? revision) => _ = await module.HandleAsync("startup.set", JsonSerializer.SerializeToElement(new { id = name, enabled, confirmed = true, reviewRevision = revision }), context, default);
+        async Task Reject(bool enabled, string? revision) {
+            int writes = platform.StartupWrites;
+            try { await Change(enabled, revision); throw new Exception("Stale startup review accepted."); }
+            catch (EngineException e) when (e.Code == "STARTUP_REVIEW_CHANGED") { }
+            if (platform.StartupWrites != writes) throw new Exception("Stale review mutated startup state.");
+        }
+        platform.StartupValues[name] = new("original-command", Microsoft.Win32.RegistryValueKind.String);
+        string reviewed = Revision(true);
+        if (reviewed != Revision(true) || reviewed.Length != 64) throw new Exception("Startup revision is not deterministic.");
+        await Reject(false, null);
+        await Reject(false, "invalid");
+        platform.StartupValues[name] = new("changed-command", Microsoft.Win32.RegistryValueKind.String);
+        await Reject(false, reviewed);
+        platform.StartupValues[name] = new("original-command", Microsoft.Win32.RegistryValueKind.ExpandString);
+        await Reject(false, reviewed);
+        platform.StartupValues.Remove(name);
+        await Reject(false, reviewed);
+        string folder = Path.Combine(context.DataRoot, "management-startup");
+        if (Directory.Exists(folder)) throw new Exception("Rejected startup review created a journal directory.");
+        platform.StartupValues[name] = new("original-command", Microsoft.Win32.RegistryValueKind.String);
+        await Change(false, reviewed);
+        if (platform.StartupValues.ContainsKey(name) || platform.StartupWrites != 1) throw new Exception("Reviewed disable did not complete.");
+        await Reject(false, reviewed);
+        string restoreRevision = Revision(false);
+        if (restoreRevision == reviewed) throw new Exception("Enabled and restore revisions are interchangeable.");
+        string journal = Directory.GetFiles(folder, "*.json").Single();
+        File.WriteAllText(journal, JsonSerializer.Serialize(new { name, value = "changed-recovery-command", kind = (int)Microsoft.Win32.RegistryValueKind.String }));
+        await Reject(true, restoreRevision);
+        string changedRestore = Revision(false);
+        platform.StartupValues[name] = new("new-occupant", Microsoft.Win32.RegistryValueKind.String);
+        await Reject(true, changedRestore);
+        platform.StartupValues.Remove(name);
+        await Change(true, changedRestore);
+        if (platform.StartupValues[name].Value != "changed-recovery-command" || File.Exists(journal) || platform.StartupWrites != 2) throw new Exception("Reviewed restore did not complete.");
+        await Reject(true, changedRestore);
+        reviewed = Revision(true);
+        int readCount = 0;
+        platform.BeforeStartupRead = () => { if (++readCount == 3) platform.StartupValues[name] = new("changed-during-review", Microsoft.Win32.RegistryValueKind.String); };
+        await Reject(false, reviewed);
+        platform.BeforeStartupRead = null;
+        if (!File.Exists(journal) || platform.StartupValues[name].Value != "changed-during-review") throw new Exception("Late change was removed or recovery was lost.");
+        platform.StartupValues.Remove(name);
+        restoreRevision = Revision(false);
+        readCount = 0;
+        platform.BeforeStartupRead = () => { if (++readCount == 2) platform.StartupValues[name] = new("appeared-during-restore", Microsoft.Win32.RegistryValueKind.String); };
+        await Reject(true, restoreRevision);
+        platform.BeforeStartupRead = null;
+        if (!File.Exists(journal) || platform.StartupValues[name].Value != "appeared-during-restore") throw new Exception("Late occupant was overwritten or recovery was lost.");
+        Console.WriteLine("PASS startup review: deterministic revisions, missing/malformed/changed/removed state, disable/restore, journal changes, occupied names and replay");
+    }
     private sealed class FixturePlatform : ManagementPlatform
     {
+        public Dictionary<string, StartupValue> StartupValues { get; } = new();
+        public int StartupWrites { get; private set; }
+        public Action? BeforeStartupRead { get; set; }
+        protected override string[] StartupNames() => StartupValues.Keys.ToArray();
+        protected override StartupValue? ReadStartupValue(string name) { BeforeStartupRead?.Invoke(); return StartupValues.GetValueOrDefault(name); }
+        protected override void DeleteStartupValue(string name) { StartupWrites++; StartupValues.Remove(name); }
+        protected override void WriteStartupValue(string name, StartupValue value) { StartupWrites++; StartupValues[name] = value; }
         public int Calls { get; private set; }
         public int TaskCalls { get; private set; }
         public int TaskLimit { get; private set; }

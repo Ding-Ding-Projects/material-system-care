@@ -10,6 +10,7 @@ void main() {
       'scope': 'user',
       'source': 'HKCU.Run',
       'canChange': true,
+      'reviewRevision': 'A' * 64,
     };
     expect(canChangeStartupRecord(row), true);
     for (final change in <String, dynamic>{
@@ -19,6 +20,7 @@ void main() {
       'source': 'other',
       'canChange': false,
       'recoveryRequired': true,
+      'reviewRevision': 'invalid',
     }.entries) {
       expect(
         canChangeStartupRecord({...row, change.key: change.value}),
@@ -61,6 +63,7 @@ void main() {
                     'scope': 'user',
                     'source': enabled ? 'HKCU.Run' : 'originalStateJournal',
                     'canChange': true,
+                    'reviewRevision': 'A' * 64,
                     'command': 'private fixture command',
                     'extra': 'not forwarded',
                   },
@@ -104,10 +107,87 @@ void main() {
         await tester.tap(find.text('Confirm selected action'));
         await tester.pumpAndSettle();
         expect(writes, [
-          {'id': 'Example', 'enabled': !enabled, 'confirmed': true},
+          {
+            'id': 'Example',
+            'enabled': !enabled,
+            'reviewRevision': 'A' * 64,
+            'confirmed': true,
+          },
         ]);
         expect(tester.takeException(), isNull);
       },
     );
   }
+  testWidgets(
+    'a stale review refreshes records and requires new confirmation',
+    (tester) async {
+      tester.view.physicalSize = const Size(1400, 1400);
+      tester.view.devicePixelRatio = 1;
+      addTearDown(tester.view.resetPhysicalSize);
+      addTearDown(tester.view.resetDevicePixelRatio);
+      final revisions = <String>[];
+      int reads = 0;
+      final messenger =
+          TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
+      messenger.setMockMethodCallHandler(Engine.channel, (call) async {
+        if (call.arguments['method'] == 'startup.list') {
+          reads++;
+          return {
+            'ok': true,
+            'result': {
+              'records': [
+                {
+                  'id': 'Example',
+                  'name': 'Example',
+                  'enabled': true,
+                  'scope': 'user',
+                  'source': 'HKCU.Run',
+                  'canChange': true,
+                  'reviewRevision': (reads == 1 ? 'A' : 'B') * 64,
+                },
+              ],
+            },
+          };
+        }
+        revisions.add(call.arguments['params']['reviewRevision'] as String);
+        return {
+          'ok': false,
+          'error': {
+            'code': 'STARTUP_REVIEW_CHANGED',
+            'message': 'Refresh and review again.',
+          },
+        };
+      });
+      addTearDown(
+        () => messenger.setMockMethodCallHandler(Engine.channel, null),
+      );
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(body: WorkflowPage(index: 3, title: 'Startup')),
+        ),
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(find.byTooltip('Record actions').first);
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Disable selected startup entry'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Confirm selected action'));
+      await tester.pumpAndSettle();
+      expect(reads, 2);
+      expect(revisions, ['A' * 64]);
+      expect(
+        find.textContaining('The startup record changed.'),
+        findsOneWidget,
+      );
+      await tester.tap(find.byTooltip('Record actions').first);
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Disable selected startup entry'));
+      await tester.pumpAndSettle();
+      expect(revisions.length, 1);
+      await tester.tap(find.text('Confirm selected action'));
+      await tester.pumpAndSettle();
+      expect(revisions, ['A' * 64, 'B' * 64]);
+      expect(tester.takeException(), isNull);
+    },
+  );
 }

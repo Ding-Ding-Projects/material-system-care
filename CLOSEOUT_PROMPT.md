@@ -12,7 +12,7 @@ Lowlevel main is `00365b0e846e3eb031ea58b0c3ca316c2b1349a8`; sender code is `501
 
 ## In progress
 
-The existing `codex/cleanup-fixture` branch also contains startup stale-review protection at `785a79c10d8c3318dc8b6a69aa17562fd7e0ae74`, separately built and tested. It is not part of this cleanup integration. Independent review is dry. Integrate and preserve it separately, then verify actual owned-entry registry/UI behavior. Protection is optimistic, not atomic compare-and-swap.
+Startup stale-review protection from `785a79c10d8c3318dc8b6a69aa17562fd7e0ae74` is now integrated after its exact root engine and desktop builds, four focused Flutter checks, integrated engine fixtures, negative regression and independent review. Verify actual owned-entry registry/UI behavior separately. Protection is optimistic, not atomic compare-and-swap. The same owned branch is now preparing dedicated cleanup-result presentation, which remains incomplete.
 
 Retain the generated-file recovery branch `implement/desktop-ui` at `4e1ae07ef80ac38ca747948138f54c62f5906cdf`. No task-owned worktree or branch has been deleted.
 

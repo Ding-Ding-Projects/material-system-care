@@ -115,3 +115,8 @@
 ## Cleanup presentation follow-up
 
 - [ ] Replace record-shaped cleanup and recovery output with dedicated bilingual results and actionable recovery summaries, then verify real minimum-size interaction.
+
+## Startup review integrity
+
+- [x] Add deterministic reviewed-state revisions, reject stale changes before mutation, refresh without automatic retry, and verify with focused positive/negative fixtures and exact root builds.
+- [ ] Verify actual owned-entry registry disable/restore and stale-review behavior through the built desktop.
