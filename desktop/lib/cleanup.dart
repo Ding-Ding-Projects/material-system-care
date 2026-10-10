@@ -336,6 +336,13 @@ class CleanupResults extends StatelessWidget {
                     child: UiText(cleanupReasonLabel(file.reason!)),
                   ),
                 ExpansionTile(
+                  expansionAnimationStyle:
+                      MediaQuery.disableAnimationsOf(context)
+                      ? const AnimationStyle(
+                          duration: Duration.zero,
+                          reverseDuration: Duration.zero,
+                        )
+                      : null,
                   title: const UiText('File details'),
                   childrenPadding: const EdgeInsets.all(16),
                   expandedCrossAxisAlignment: CrossAxisAlignment.start,

@@ -159,6 +159,9 @@ void main() {
       expect(viewport.position.maxScrollExtent, greaterThan(0));
       viewport.position.jumpTo(viewport.position.maxScrollExtent);
       await tester.pumpAndSettle();
+      final expansion = tester.widget<ExpansionTile>(find.byType(ExpansionTile));
+      expect(expansion.expansionAnimationStyle?.duration, Duration.zero);
+      expect(expansion.expansionAnimationStyle?.reverseDuration, Duration.zero);
       await tester.tap(find.textContaining('檔案詳情'));
       await tester.pumpAndSettle();
       expect(find.text(path), findsOneWidget);
