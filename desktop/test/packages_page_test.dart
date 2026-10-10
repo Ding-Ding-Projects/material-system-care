@@ -198,7 +198,9 @@ void main() {
       debugDefaultTargetPlatformOverride = null;
     },
   );
-  testWidgets('discovery completion preserves a newer text-editing focus', (tester) async {
+  testWidgets('discovery completion preserves a newer text-editing focus', (
+    tester,
+  ) async {
     final pending = Completer<Map<String, dynamic>>();
     await mount(tester, (_, _) => pending.future);
     await selectManaged(tester);
@@ -212,12 +214,52 @@ void main() {
     pending.complete(inventory());
     await tester.pumpAndSettle();
     expect(FocusManager.instance.primaryFocus, same(editingFocus));
-    final scrollable = tester.state<ScrollableState>(find.byType(Scrollable).first);
+    final scrollable = tester.state<ScrollableState>(
+      find.byType(Scrollable).first,
+    );
     final offset = scrollable.position.pixels;
     await tester.sendKeyEvent(LogicalKeyboardKey.pageDown);
     await tester.pumpAndSettle();
     expect(FocusManager.instance.primaryFocus, same(editingFocus));
     expect(scrollable.position.pixels, offset);
+    await tester.pumpWidget(const SizedBox());
+  });
+  testWidgets('normal-motion package paging progresses before settling', (
+    tester,
+  ) async {
+    await mount(
+      tester,
+      (_, _) async => inventory(
+        List.generate(
+          45,
+          (i) => {
+            ...package(),
+            'id': 'winget:Publisher.Tool$i',
+            'name': 'Publisher.Tool$i',
+            'packageId': 'Publisher.Tool$i',
+          },
+        ),
+      ),
+    );
+    await selectManaged(tester);
+    await discover(tester);
+    final scrollable = tester.state<ScrollableState>(
+      find
+          .descendant(
+            of: find.byType(PackagesPage),
+            matching: find.byType(Scrollable),
+          )
+          .first,
+    );
+    final start = scrollable.position.pixels;
+    final target = start + scrollable.position.viewportDimension * 0.8;
+    await tester.sendKeyEvent(LogicalKeyboardKey.pageDown);
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 50));
+    expect(scrollable.position.pixels, greaterThan(start));
+    expect(scrollable.position.pixels, lessThan(target));
+    await tester.pumpAndSettle();
+    expect(scrollable.position.pixels, closeTo(target, 0.01));
     await tester.pumpWidget(const SizedBox());
   });
   testWidgets('popup routes retain bilingual and Cantonese preferences', (

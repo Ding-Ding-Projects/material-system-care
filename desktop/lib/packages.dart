@@ -129,10 +129,18 @@ class _PackagesPageState extends State<PackagesPage> {
     final key = event.logicalKey;
     if (key != LogicalKeyboardKey.pageDown && key != LogicalKeyboardKey.pageUp)
       return KeyEventResult.ignored;
-    _scroll.jumpTo(
-      (position.pixels + (key == LogicalKeyboardKey.pageDown ? step : -step))
-          .clamp(position.minScrollExtent, position.maxScrollExtent),
-    );
+    final target =
+        (position.pixels + (key == LogicalKeyboardKey.pageDown ? step : -step))
+            .clamp(position.minScrollExtent, position.maxScrollExtent);
+    if (MediaQuery.disableAnimationsOf(context)) {
+      _scroll.jumpTo(target);
+    } else {
+      _scroll.animateTo(
+        target,
+        duration: const Duration(milliseconds: 200),
+        curve: Curves.easeOutCubic,
+      );
+    }
     return KeyEventResult.handled;
   }
 
