@@ -12,6 +12,23 @@ class CopyScope extends InheritedWidget {
 }
 
 const translations = <String, String>{
+  "Cleanup verification · 清理驗證": "清理驗證",
+  "Stopped waiting for cleanup scan. This does not prove that all engine reads have stopped.":
+      "已停止等待清理掃描，但唔代表所有引擎讀取已停止。",
+  "Cleanup could not be confirmed. Review recovery history before retrying.":
+      "未能確認清理結果。請先檢視還原記錄再重試。",
+  "The cleanup plan expired. Scan again before selecting files.":
+      "清理計劃已到期。請重新掃描再選擇檔案。",
+  "Cleanup results are invalid or unavailable. Scan again before selecting files.":
+      "清理結果無效或無法提供。請重新掃描再選擇檔案。",
+  "Plan expires at UTC": "計劃到期時間（UTC）",
+  "Approved cleanup root": "核准清理根目錄",
+  "Scan limits: 7 days old, 10,000 entries, 512 MiB hashed, up to 1,000 targets. This is a bounded plan, not a complete disk inventory.":
+      "掃描上限：檔案超過 7 日、10,000 個項目、雜湊 512 MiB，最多 1,000 個目標。呢個係有限計劃，唔係完整磁碟清單。",
+  "Only aged files in the supported current-user temporary folder are eligible. No permanent deletion is requested.":
+      "只處理支援嘅目前使用者暫存資料夾內較舊檔案，唔會要求永久刪除。",
+  "Recoverable temporary-file cleanup": "可還原暫存檔清理",
+  "Recoverable cleanup": "可還原清理",
   "Reported signer": "回報簽署者",
   "Reported version": "回報版本",
   "Device class": "裝置類別",

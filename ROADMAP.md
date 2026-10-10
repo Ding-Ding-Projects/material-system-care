@@ -21,6 +21,8 @@
 
 ## Working suite
 
+- [ ] Verify the newly integrated dedicated cleanup workspace with disposable selected-file and recovery fixtures at normal and minimum doubled-bilingual viewports. Candidate source checks and build passed; older generic-workspace runtime evidence is historical.
+
 - [x] Verify bounded scheduled-task collection, expanded metadata and loaded-record filtering in the real build, retain private result evidence and verify owned teardown.
 - [ ] Complete scheduled-task per-surface language, accessibility, export and appearance contracts.
 

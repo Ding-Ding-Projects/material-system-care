@@ -4,6 +4,12 @@ This file retains earlier candidate states as historical evidence. A later sourc
 
 本檔案保留早期候選版本作歷史記錄。後來嘅實際驗證只會取代有明確證據嗰部分，未完成清單仍以路線圖為準，唔會將部分檢查當成整套完成。
 
+## Dedicated cleanup workspace integration
+
+Candidate `f1acbabe3a25261ecb7750fbddc745099c7937b1` replaces the generic cleanup command form with typed plan selection, explicit selected-path review, receipt results and recovery navigation on one scroll surface. Fixed scan bounds remain visible. The engine contract is unchanged. Two independent source reviews found and then verified a repair for contradictory partial-result flags. Three handwritten negative cases failed before that repair; all 44 focused checks passed afterward, and the candidate passed the exact root desktop build. Integrated compilation and a new disposable runtime round trip remain pending. Historical cleanup evidence below does not automatically verify this new workspace.
+
+中文：清理功能已改用專用工作區，選取目標、確認路徑、結果同復原入口放喺同一個可捲動介面。部分結果標記嘅矛盾已修正，44 項限定檢查通過；整合版本同新介面嘅實際往返測試仍待完成。
+
 ## Driver-store runtime acceptance
 
 Integrated source `83f6503d88f31fce43bdbc25477599bd3989839c` passed the exact root desktop build after one MSBuild task-host initialization failure. Its bounded retry completed; Flutter reported a 19.4-second build phase. Sixty-five focused checks and two independent source reviews cover the isolated candidate. Actual explicit collection returned 27 packages at normal and minimum doubled-bilingual viewports, with first-package metadata, receipt meaning, signer limitations, repeated paging and reverse movement inspected. Fourteen selected frames and nineteen supporting hashes passed the narrow verifier. Both owned process sets and desktops closed. One genuine idle frame is published with a version-2 promotion receipt; host records remain private. Complete appearance, physical DPI, keyboard order and unavailable states remain pending.

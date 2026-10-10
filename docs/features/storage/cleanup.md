@@ -2,6 +2,14 @@
 
 ## Desktop review
 
+The Storage action **Scan recoverable cleanup** opens a dedicated workspace. The disposable cleanup capture route opens the same workspace with its verification indicator. Collection is explicit, uses a fixed seven-day minimum age, 10,000 traversal entries and 512 MiB hashing budget, and accepts at most 1,000 targets. These limits are displayed before scanning. They do not establish complete disk coverage; no missing budget/depth counter is inferred.
+
+The workspace validates the returned category, fixture mode, absolute local root, descendant target paths, unique target paths, exact byte total, bounded counters, plan identifier and UTC expiry before allowing selection. It checks expiry again before and after confirmation. The engine remains the authority for current root and file identity revalidation. Filtering and visible selection retain original plan indexes. Confirmation shows only the exact selected paths, and apply sends only the original plan ID and sorted selected indexes. A returned receipt must match the plan, selection count and selected file paths/sizes before it is displayed.
+
+A new scan clears stale results and selection. Scan cancellation targets its exact pending request, remains pending until the terminal response, and distinguishes an acknowledged cancellation from completion winning the race. Stopping the desktop wait does not prove every engine read has stopped. Disposal requests cancellation and ignores late replies. Applying a plan has no new cancellation control or automatic retry. Partial or cancelled receipts retain their explicit state; uncertain outcomes lead to recovery-history review. Existing receipt-specific restoration review is reused without changing its confirmation or engine behavior.
+
+All controls and typed cards share one scroll surface. Repeated keyboard paging retains focus, text editing keeps its normal keys, and reduced motion disables paging and expansion animation. The existing anchored regular-expression menu remains next to the filter.
+
 Cleanup results use dedicated file and recovery-receipt cards. Summaries show the filename, exact bytes when reported, localized recorded state and reason, and explicit partial/stopped counts. Full original paths remain selectable inside labelled expandable file details. Internal hashes and recovery-storage paths are omitted from the presentation. Unknown states and unavailable values remain explicit rather than becoming success.
 
 Scan checkboxes retain the original server index through filtering. Restoration actions identify one receipt, read its details, and require another explicit confirmation before each attempt, including a conflict retry. An unreadable receipt has no enabled restoration action. Errors offer another scan or recovery-history review instead of automatically repeating a mutation. These are recorded outcomes; live file availability is rechecked by the engine during the requested operation.

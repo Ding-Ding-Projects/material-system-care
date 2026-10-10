@@ -24,6 +24,7 @@ import 'capture_preferences.dart';
 import 'capture_diagnostics.dart';
 import 'wording_cache.dart';
 import 'cleanup.dart';
+import 'cleanup_workspace.dart';
 import 'startup.dart';
 import 'packages.dart';
 
@@ -141,6 +142,29 @@ class Engine {
         : {'items': result};
   }
 }
+
+Widget buildCleanupWorkspace(BuildContext context, {bool fixture = false}) =>
+    CleanupWorkspace(
+      invoke: Engine.invoke,
+      cancel: Engine.cancel,
+      fixture: fixture,
+      onRecovery: (receiptId) => Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (_) => Scaffold(
+            appBar: AppBar(title: const UiText('Recovery history')),
+            body: Padding(
+              padding: const EdgeInsets.all(24),
+              child: WorkflowPage(
+                index: 7,
+                title: 'Recovery history',
+                initialRecoveryId: receiptId,
+                recoveryOnly: true,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
 
 class CareApp extends StatefulWidget {
   const CareApp({
@@ -286,10 +310,9 @@ class _CareAppState extends State<CareApp> {
                 ),
                 body: Padding(
                   padding: const EdgeInsets.all(24),
-                  child: WorkflowPage(
-                    index: 1,
-                    title: 'Disposable cleanup · 即棄清理',
-                    cleanupFixture: true,
+                  child: Builder(
+                    builder: (context) =>
+                        buildCleanupWorkspace(context, fixture: true),
                   ),
                 ),
               )
@@ -491,11 +514,15 @@ class WorkflowPage extends StatefulWidget {
   final int index;
   final String title;
   final bool cleanupFixture;
+  final String? initialRecoveryId;
+  final bool recoveryOnly;
   WorkflowPage({
     super.key,
     required this.index,
     required this.title,
     this.cleanupFixture = false,
+    this.initialRecoveryId,
+    this.recoveryOnly = false,
   });
   @override
   State<WorkflowPage> createState() => _WorkflowPageState();
@@ -559,7 +586,17 @@ class _WorkflowPageState extends State<WorkflowPage> {
             if (mounted) setState(() => provenance = value);
           })
           .catchError((Object _) {});
-    if (widget.index != 1 && widget.index != 4 && widget.index != 6) load();
+    if (widget.recoveryOnly) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        if (widget.initialRecoveryId != null) {
+          rowAction('cleanup.restore', {'receiptId': widget.initialRecoveryId});
+        } else {
+          load('cleanup.history');
+        }
+      });
+    } else if (widget.index != 1 && widget.index != 4 && widget.index != 6)
+      load();
   }
 
   @override
@@ -573,7 +610,9 @@ class _WorkflowPageState extends State<WorkflowPage> {
 
   Future<void> load([String? method, Map<String, dynamic>? params]) async {
     if (busy) return;
-    final operation = method ?? methods[widget.index];
+    final operation =
+        method ??
+        (widget.recoveryOnly ? 'cleanup.history' : methods[widget.index]);
     final requestId = cancellableReads.contains(operation)
         ? Engine.newRequestId()
         : null;
@@ -932,7 +971,13 @@ class _WorkflowPageState extends State<WorkflowPage> {
               ),
             if (widget.index == 0 || widget.index == 1)
               OutlinedButton.icon(
-                onPressed: busy ? null : () => load('cleanup.scan', {}),
+                onPressed: busy
+                    ? null
+                    : () => Navigator.of(context).push(
+                        MaterialPageRoute<void>(
+                          builder: (context) => buildCleanupWorkspace(context),
+                        ),
+                      ),
                 icon: Icon(Icons.manage_search),
                 label: UiText('Scan recoverable cleanup'),
               ),

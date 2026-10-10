@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_system_care/main.dart';
+import 'package:material_system_care/cleanup_workspace.dart';
 
 void main() {
   testWidgets('cleanup applies only reviewed selected plan indexes', (
@@ -21,18 +22,29 @@ void main() {
         'ok': true,
         'result': method == 'cleanup.scan'
             ? {
-                'planId': 'fixture-plan',
+                'planId': 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
                 'mutationPerformed': false,
                 'fixture': true,
+                'root': r'C:\fixture',
+                'category': 'aged-user-temp-files',
+                'minimumAgeDays': 7,
+                'expiresUtc': DateTime.now()
+                    .toUtc()
+                    .add(const Duration(hours: 1))
+                    .toIso8601String(),
+                'totalBytes': 24,
+                'inaccessible': 0,
+                'reparseSkipped': 0,
+                'unavailable': 0,
                 'truncated': false,
                 'targets': [
-                  {'path': r'C:\fixture\keep.tmp'},
-                  {'path': r'C:\fixture\chosen.tmp'},
+                  {'path': r'C:\fixture\keep.tmp', 'size': 12},
+                  {'path': r'C:\fixture\chosen.tmp', 'size': 12},
                 ],
               }
             : method == 'cleanup.apply'
             ? {
-                'receiptId': 'fixture-plan',
+                'receiptId': 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
                 'items': [
                   {
                     'target': {'path': r'C:\fixture\chosen.tmp', 'size': 12},
@@ -50,7 +62,12 @@ void main() {
     addTearDown(() => messenger.setMockMethodCallHandler(Engine.channel, null));
     await tester.pumpWidget(
       MaterialApp(
-        home: Scaffold(body: WorkflowPage(index: 0, title: 'Overview')),
+        home: CleanupWorkspace(
+          invoke: Engine.invoke,
+          cancel: Engine.cancel,
+          onRecovery: (_) {},
+          fixture: true,
+        ),
       ),
     );
     await tester.pumpAndSettle();
@@ -91,7 +108,7 @@ void main() {
     await tester.pumpAndSettle();
     expect(mutations, [
       {
-        'planId': 'fixture-plan',
+        'planId': 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
         'targetIndexes': [1],
         'confirmed': true,
       },
