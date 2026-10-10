@@ -12,6 +12,51 @@ class CopyScope extends InheritedWidget {
 }
 
 const translations = <String, String>{
+  'Protection status': '防護狀態',
+  'Read Microsoft Defender and firewall status without changing settings or starting scans.':
+      '讀取 Microsoft Defender 同防火牆狀態，唔會更改設定或開始掃描。',
+  'Refresh protection status': '重新整理防護狀態',
+  'Protection status is unavailable or invalid. Refresh to try again.':
+      '防護狀態無法提供或無效。請重新整理再試。',
+  'Status interpretation': '狀態解讀',
+  'Received at UTC': '接收時間（UTC）',
+  'Receipt time is not a provider measurement time. Provider dates may be cached.':
+      '接收時間唔係提供者嘅量度時間。提供者日期可能來自快取。',
+  'These settings do not establish that the machine is healthy or threat-free. No scan or configuration change was requested.':
+      '呢啲設定唔能夠證明本機健康或冇威脅。未有要求掃描或更改設定。',
+  'Microsoft Defender status': 'Microsoft Defender 狀態',
+  'Antimalware service': '反惡意程式服務',
+  'Antivirus': '防毒',
+  'Antispyware': '反間諜程式',
+  'Real-time protection': '即時防護',
+  'Behavior monitoring': '行為監察',
+  'Downloaded-file protection': '下載檔案防護',
+  'Network inspection': '網絡檢查',
+  'Restart required (reported)': '回報需要重新啟動',
+  'Antivirus signature version': '防毒簽章版本',
+  'Signature updated at UTC': '簽章更新時間（UTC）',
+  'Last quick scan started at UTC': '上次快速掃描開始時間（UTC）',
+  'Last quick scan ended at UTC': '上次快速掃描結束時間（UTC）',
+  'Last full scan started at UTC': '上次完整掃描開始時間（UTC）',
+  'Last full scan ended at UTC': '上次完整掃描結束時間（UTC）',
+  'Not reported': '未有回報',
+  'Yes': '是',
+  'No': '否',
+  'Defender status is unavailable on this installation or for this account.':
+      '呢個安裝或帳戶無法取得 Defender 狀態。',
+  'Firewall status is unavailable for this account.': '呢個帳戶無法取得防火牆狀態。',
+  'Firewall profiles': '防火牆設定檔',
+  'Profile settings alone do not establish effective network filtering.':
+      '單靠設定檔資料唔能夠確定實際網絡過濾狀態。',
+  'Firewall unavailable': '防火牆狀態無法提供',
+  'Domain firewall profile': '網域防火牆設定檔',
+  'Private firewall profile': '私人防火牆設定檔',
+  'Public firewall profile': '公用防火牆設定檔',
+  'Not configured': '未設定',
+  'Default inbound action': '預設輸入動作',
+  'Default outbound action': '預設輸出動作',
+  'Allow': '允許',
+  'Block': '封鎖',
   'Machine overview': '本機總覽',
   'Refresh for a point-in-time sample of this machine. No automatic polling or benchmark runs.':
       '重新整理以取得本機當時嘅數據。唔會自動輪詢或執行效能測試。',
