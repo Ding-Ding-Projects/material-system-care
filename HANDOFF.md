@@ -2,6 +2,10 @@
 
 ## Folder-analysis integration candidate
 
+The integrated root desktop build at `c2fd97ed4406e3a06af64a53c362d64c61c13da7` and real disposable analysis passed the bounded observations in `docs/verification/storage-analysis-observations.json`: four files, 5,169 bytes, two empty folders, correct descending sizes, normal-view full details and unchanged fixture snapshots. Twenty selected frames passed the narrow verifier across two viewports. Owned teardown completed. Freshness and pending-read cancellation remain runtime follow-ups.
+
+Public delivery `32ad9c3`, run `38086368225`, contains 178 complete articles and 751 matching files after one focused cache retry. The keyboard guide passed three real isolated browser viewports. Browser processes, port and desktop closed; automatic approval review blocked profile deletion, so the retained profile prevents a complete lifecycle-audit claim.
+
 The dedicated read-only folder-analysis workspace is integrated from `3cf232cd9a38bcc1d7ae6d3c613913456e613e8e`, with reduced-motion repair `3edb755f218c9835500cc5a8604127cd1d4a9778`. It reviews one explicit normalized root, validates typed totals and bounded rows, separates largest files and empty folders, clears stale results and preserves request-specific cancellation. No engine method changed. Fifty-two combined focused checks passed for the initial unit; the motion repair reproduced two reduced-mode failures before correction and then passed all 49 affected storage checks. Both isolated root desktop builds passed. Independent reviews found the motion gap and confirmed its repair; the integrated build and disposable runtime remain pending.
 
 ## Current selection-toolbar integration

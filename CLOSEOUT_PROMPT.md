@@ -4,6 +4,10 @@ Continue the independent Windows 11 x64 suite in Ding-Ding-Projects/material-sys
 
 ## Latest verified unit
 
+Folder analysis at `c2fd97ed4406e3a06af64a53c362d64c61c13da7` passed the integrated desktop build and two real disposable runs: four files, 5,169 bytes, two empty folders, descending sizes, normal-view full paths/timestamp, unchanged snapshots and owned teardown. Twenty selected frames passed the narrow verifier. Freshness and pending cancellation remain runtime follow-ups. The duplicate-analysis unit is separately reviewed at `2c21195ab4c88d4da97f2330dc517ce0f53a33a0`, with focused and exact engine/desktop builds passed, awaiting integration and real verification.
+
+Public source `32ad9c3` delivered 178 complete articles and 751 matching files after a focused retry. Three browser viewports passed observed layout/runtime checks. Browser processes, port and desktop closed. Execution approval rejected profile deletion; retain that profile and report complete lifecycle auditing as unfinished.
+
 The dedicated read-only folder-analysis candidate and reduced-motion correction are integrated from `3cf232cd9a38bcc1d7ae6d3c613913456e613e8e` and `3edb755f218c9835500cc5a8604127cd1d4a9778`. Source checks and isolated root builds passed; integrated desktop build and four-file disposable runtime are next. Preserve all 295 capability requirements and do not promote ledger status from these source-only results.
 
 Integrated source `9bf5d30c98c6e0fcf3ac13cc446618e9bc5d32a4` passed the exact root desktop build and actual 800×600 doubled-bilingual selection-menu check. Select all, Cut and Copy labels were visible; Select all highlighted synthetic input, Escape dismissed the menu, Backspace cleared it. Six inspected frames and twelve supporting hashes passed the narrow verifier, and owned processes/desktop closed. No inventory or clipboard operation was used. Other four labels remain widget-only coverage; global promotion is still separate.

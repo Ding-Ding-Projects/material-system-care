@@ -54,6 +54,7 @@
 - [ ] Deliver real health and diagnostics workflows.
 - [ ] Deliver reversible temporary-file maintenance, duplicate analysis, storage inventory, and recovery records.
 - [ ] Verify the dedicated typed read-only folder-analysis workflow with an owned disposable folder. Source, focused checks, independent reviews and isolated root build passed; integrated runtime is pending.
+- [x] Verify bounded real folder totals, largest-file order, expanded normal-view paths/timestamp and unchanged disposable fixture at source `c2fd97e`. Freshness, cancellation and complete appearance/accessibility remain separate.
 - [ ] Deliver application, startup, process, security, and driver workflows using supported APIs.
 - [ ] Verify structured WinGet package discovery and contextual selected-package actions in the built workspace; source and synthetic checks are implemented.
 - [ ] Deliver local file tools and opt-in online/provider workflows.

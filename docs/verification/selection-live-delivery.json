@@ -1,0 +1,12 @@
+{
+  "schemaVersion":1,
+  "sourceCommit":"32ad9c3ca73d93b64014b4acad9bd6893d89c659",
+  "deploymentRun":38086368225,
+  "homepage":"https://ding-ding-projects.github.io/material-system-care/",
+  "repositoryVisibility":"public","deploymentSource":"workflow",
+  "completeArticles":178,"filesChecked":751,"initialMatchingFiles":750,
+  "focusedRetry":{"path":"articles/f8cf78811f076d50f5c9.html","status":200,"sha256":"191602a29ee526ff906a16e011bf55bd7f91480e5b43aba2a657382469bd826a","match":true,"checkedAt":"2026-10-10T21:12:23.766141+00:00"},
+  "allFilesMatchedAfterFocusedRetry":true,"aboutHomepageReadBack":true,
+  "browserObservation":{"article":"docs/features/management/keyboard-navigation.md","viewports":[[1440,1000],[390,844],[320,800]],"language":"both","theme":"light","loadedGuideImages":9,"observedConsoleErrors":0,"observedExceptions":0,"observedResourceFailures":0,"observedUnnamedControls":0,"bodyOverflow":false,"visibleTabFocus":true,"ownedBrowserProcessesAbsent":true,"cdpPortClosed":true,"hiddenDesktopClosed":true,"profileDisposal":"blocked by execution approval review; retained","completeLifecycleAudit":false},
+  "limits":["One article and three emulated viewports do not certify the full accessibility, appearance or navigation matrix.","Profile disposal was not performed. Raw observations remain private and no complete lifecycle-audit pass is claimed.","No final release or installer lifecycle completion is claimed."]
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion":1,
+  "sourceCommit":"c2fd97ed4406e3a06af64a53c362d64c61c13da7",
+  "manifests":["storage-analysis-minimum-frames.json","storage-analysis-normal-frames.json"],
+  "language":"both","theme":"dark","motion":"reduced",
+  "tuples":[{"width":800,"height":600,"textScale":2},{"width":1280,"height":1000,"textScale":1}],
+  "fixture":{"fileCount":4,"totalBytes":5169,"emptyFolderCount":2,"sizesDescending":[4096,1024,32,17],"unchanged":true,"beforeSha256":"1ea004743d77c26062e2d067d1efe1c95870a3a3300b4243ea28f63a9b4d6f9e","afterSha256":"ac3d8ab6739a90b2f4af09bcd95c9ed4c36b768bd78dffd4a59fa9e666c5b79b"},
+  "reviewCancelledWithoutCollection":true,
+  "explicitReviewedCollection":true,
+  "fileDetailsInspected":true,
+  "bothEmptyFolderPathsInspected":true,
+  "ownedProcessesAbsent":true,
+  "hiddenDesktopsClosed":true,
+  "limits":[
+    "Normal-view details exposed full paths and a file timestamp. Minimum evidence covers review, totals and lower file cards, not every expanded detail.",
+    "The initial Tab did not target the path field. Explicit field focus and input were then used. Enter after cancellation did not reopen review; the actual Analyze button did.",
+    "A late root-edit attempt reached the 20-frame limit. Stale-result clearing and invalid-path runtime behavior remain unverified.",
+    "Pending-analysis cancellation, other themes/scales, normal motion and full accessibility remain unverified.",
+    "Raw path-containing frames remain private. The narrow verifier does not provide global promotion or semantic action/teardown certification."
+  ]
+}
