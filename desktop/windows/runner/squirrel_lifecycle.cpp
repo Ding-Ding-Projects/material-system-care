@@ -1,5 +1,4 @@
 #include "squirrel_lifecycle.h"
-#include <filesystem>
 #include <limits>
 
 namespace squirrel_lifecycle {
@@ -25,15 +24,32 @@ bool SafeAbsolutePath(const std::wstring& path) {
 }
 std::optional<std::wstring> UpdaterPath(const std::wstring& executable) {
   if (!SafeAbsolutePath(executable)) return std::nullopt;
-  const std::filesystem::path path(executable);
-  if (path.filename() != L"material_system_care.exe") return std::nullopt;
-  for (const auto& component : path) {
-    if (component == L"." || component == L"..") return std::nullopt;
+  // Normalize separators only after validating the absolute drive prefix.
+  std::wstring path = executable;
+  for (auto& character : path) {
+    if (character == L'/') character = L'\';
   }
-  const auto version = path.parent_path();
-  const auto base = version.parent_path();
-  if (version.empty() || base.empty() || base == base.root_path()) return std::nullopt;
-  return (base / L"Update.exe").wstring();
+  const auto filename = path.find_last_of(L'\');
+  if (filename == std::wstring::npos ||
+      path.substr(filename + 1) != L"material_system_care.exe") return std::nullopt;
+  size_t start = 3;
+  while (start < path.size()) {
+    const auto end = path.find(L'\', start);
+    const auto component = path.substr(start, end - start);
+    if (component == L"." || component == L"..") return std::nullopt;
+    if (end == std::wstring::npos) break;
+    start = end + 1;
+  }
+  // Skip repeated separators, as Windows path decomposition does.
+  size_t version_end = filename;
+  while (version_end > 3 && path[version_end - 1] == L'\') --version_end;
+  if (version_end <= 3) return std::nullopt;
+  const auto version_start = path.find_last_of(L'\', version_end - 1);
+  if (version_start == std::wstring::npos || version_start <= 2) return std::nullopt;
+  size_t base_end = version_start;
+  while (base_end > 3 && path[base_end - 1] == L'\') --base_end;
+  if (base_end <= 3) return std::nullopt;
+  return path.substr(0, base_end) + L"\\Update.exe";
 }
 int RunChild(const std::wstring& executable, const std::wstring& arguments,
              DWORD timeout_ms) {
@@ -46,7 +62,7 @@ int RunChild(const std::wstring& executable, const std::wstring& arguments,
   STARTUPINFOW startup{};
   startup.cb = sizeof(startup);
   PROCESS_INFORMATION process{};
-  const auto directory = std::filesystem::path(executable).parent_path().wstring();
+  const auto directory = executable.substr(0, executable.find_last_of(L"\\/"));
   if (!CreateProcessW(executable.c_str(), command.data(), nullptr, nullptr, FALSE,
                       CREATE_NO_WINDOW, nullptr, directory.c_str(), &startup, &process)) {
     return ERROR_PROCESS_ABORTED;
