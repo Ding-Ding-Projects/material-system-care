@@ -3,7 +3,7 @@ import {matchInWorker} from './search.mjs';
 /** Field-owned search and anchored regex composition, with isolated ephemeral state. */
 export class LocalSearch extends LitElement {
  static properties={items:{attribute:false},translate:{attribute:false},query:{state:true},regex:{state:true},flags:{state:true},results:{state:true},state:{state:true}};
- items=[];translate=(pair)=>pair[0];query='';regex=false;flags='iu';results=[];state='';generation=0;timer=0;
+ constructor(){super();this.items=[];this.translate=(pair)=>pair[0];this.query='';this.regex=false;this.flags='iu';this.results=[];this.state='';this.generation=0;this.timer=0;}
  createRenderRoot(){return this;}
  disconnectedCallback(){clearTimeout(this.timer);this.generation++;super.disconnectedCallback();}
  updated(changed){if(changed.has('items')&&JSON.stringify(changed.get('items'))!==JSON.stringify(this.items))this.search();}
