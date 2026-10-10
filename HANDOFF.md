@@ -10,6 +10,14 @@ Integrated source `e6bfd4994f00fc4d03875f687c12a2ddd5250d5b` passed real 800×60
 
 中文：整合版本已喺 800×600、雙語兩倍文字重驗，對話框可由初始及取消掣焦點上下翻頁，完整下半段說明已可到達。Escape 取消並返回原有記錄，沒有確認升級。其他動態、實際 DPI 及完整無障礙仍待驗證。
 
+## Extended capture and cleanup review finding
+
+Integrated source `78a4368907021ee72bfcd3ea8a9e4ec34d3467fc` produced 21 immutable real painted frames, including sequence 20, in one owned hidden-desktop session. All 21 PNG/sidecar pairs and 44 supporting hashes passed the local source/bundle/hooks verifier. Six representative frames were individually inspected. Original fixture bytes, file identities, lengths and modification times remained unchanged, and all owned processes and the desktop closed. Raw pixels contain local paths and remain private. Separate promotion-validator deployment remains pending. See `docs/verification/extended-capture-observations.json`.
+
+The same minimum-size run confirmed a cleanup review defect: at 800×600 with doubled bilingual text, the two selected paths were below the visible dialog content. Page Down from initial and Cancel-button focus did not move that content. Two independent source reviews confirmed the missing dialog-owned paging route. Escape cancelled without applying cleanup. The targeted repair is in progress; minimum-size apply/recovery is not yet accepted.
+
+中文：同一個隔離桌面已產生 21 張不可覆寫嘅真實畫面，包括編號 20，來源、檔案同診斷掛鈎檢查通過；六張代表畫面已逐張檢視。原始測試檔案完全不變，所屬程序及桌面已關閉。細尺寸覆核框未能用 Page Down 顯示兩個所選路徑，已取消而沒有執行清理，針對性修正仍在進行。
+
 ## Bounded extended painted capture
 
 Candidate `6470a34cb6785c5d9d5a6875e0fe71c574619008` raises the painted-frame producer and local verifier to 64 attempts, sequences 0 through 63. All file immutability, byte, timing, diagnostic and source checks remain unchanged. Eight Dart checks, thirty-three synthetic Node checks, thirty-six native capture assertions, twenty-four lifecycle checks and five transport cases passed. Both candidate root native and desktop builds passed. Boundary checks were observed failing before the repair. Two independent source reviews were dry. Integrated production, a real frame beyond the earlier boundary and the separate promotion-validator deployment remain pending. Historical twenty-frame runs retain their original limits.

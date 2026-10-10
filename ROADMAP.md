@@ -2,7 +2,8 @@
 
 ## Complete documentation and bilingual gallery
 
-- [ ] Verify real painted-frame output beyond sequence 19 under the bounded 64-attempt producer, and deploy the matching promotion validator. Preserve original historical capture limits.
+- [x] Verify real painted-frame output beyond sequence 19 under the bounded 64-attempt producer, with 21 immutable real frames and unchanged disposable originals.
+- [ ] Deploy the matching promotion validator. Preserve original historical capture limits.
 
 - [x] Capture and inspect forty bilingual initial desktop viewports with source binding, original-byte verification and lifecycle records.
 - [x] Build, deploy and inspect the complete in-site article reader and forty-image gallery: 168 article pages, 192 internal links/anchors, 688 deployed files verified; sampled live desktop and narrow views retained.
@@ -30,6 +31,7 @@
 - [x] Verify the dedicated cleanup workspace normal-size disposable selected-file round trip, cancelled reviews and receipt-specific restoration with original bytes, identities and modification times.
 - [x] Verify dedicated cleanup scan and repeated paging through scope, root, expiry, action controls and both file cards at 800×600 with doubled bilingual text, preserving all original fixture files.
 - [ ] Complete dedicated cleanup minimum-size apply/recovery and history keyboard traversal, plus the remaining appearance and accessibility matrix.
+- [ ] Repair the confirmed minimum-size cleanup review paging defect and reverify complete selected-path access before confirming a mutation.
 
 - [x] Verify bounded scheduled-task collection, expanded metadata and loaded-record filtering in the real build, retain private result evidence and verify owned teardown.
 - [ ] Complete scheduled-task per-surface language, accessibility, export and appearance contracts.

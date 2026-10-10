@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "78a4368907021ee72bfcd3ea8a9e4ec34d3467fc",
+  "width": 800,
+  "height": 600,
+  "language": "both",
+  "textScale": 2,
+  "theme": "dark",
+  "reducedMotion": true,
+  "producedSequences": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "individuallyInspectedSequences": [
+    0,
+    10,
+    11,
+    13,
+    16,
+    20
+  ],
+  "firstBeyondHistoricalLimit": 20,
+  "originalFixtureFilesUnchanged": true,
+  "ownedProcessesAndDesktopClosed": true,
+  "publicPixels": false,
+  "observed": [
+    "bounded scan and selected-target review",
+    "Page Down from initial dialog focus and action focus did not expose selected paths",
+    "Escape returned to the workspace without applying cleanup",
+    "final focus action produced sequence 20"
+  ],
+  "limits": [
+    "The confirmed minimum-size review paging defect is not fixed by increasing the capture bound.",
+    "The promotion-validator deployment is recorded separately.",
+    "Private local paths remain in raw pixels; no raw frame from this run is publicly published.",
+    "Painted frames do not establish native compositor, physical DPI, full accessibility or installer behavior."
+  ]
+}
