@@ -56,7 +56,8 @@
         "desktop/lib/main.dart"
       ],
       "tests": [
-        "tests/storage/Program.cs"
+        "tests/storage/Program.cs",
+        "desktop/test/cleanup_selection_test.dart"
       ],
       "evidence": [],
       "documentation": "docs/catalogue/asc-care.md",
@@ -65,22 +66,28 @@
       "remainingGap": "Only aged current-user temporary files in a server-issued recoverable plan; no browser privacy sweep, system-wide disk cleaner or all-user cleanup.",
       "sourceBindings": [
         {
-          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "commit": "488aaf78bf8f2bc993dfd4c88cc4bab7f1c7cbbe",
           "path": "engine/Modules/StorageModule.cs",
           "role": "implementation",
-          "symbol": "cleanup.scan / cleanup.apply / cleanup.restore"
+          "symbol": "cleanup.apply explicit selected indexes"
         },
         {
-          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
-          "path": "tests/storage/Program.cs",
-          "role": "test",
-          "symbol": "fixture assertions"
-        },
-        {
-          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "commit": "488aaf78bf8f2bc993dfd4c88cc4bab7f1c7cbbe",
           "path": "desktop/lib/main.dart",
           "role": "interface",
-          "symbol": "Storage"
+          "symbol": "Selected cleanup target review"
+        },
+        {
+          "commit": "488aaf78bf8f2bc993dfd4c88cc4bab7f1c7cbbe",
+          "path": "tests/storage/Program.cs",
+          "role": "test",
+          "symbol": "selection scope and replay assertions"
+        },
+        {
+          "commit": "488aaf78bf8f2bc993dfd4c88cc4bab7f1c7cbbe",
+          "path": "desktop/test/cleanup_selection_test.dart",
+          "role": "test",
+          "symbol": "filtered selection and consent"
         }
       ],
       "actualNavigation": "Storage",
@@ -1596,7 +1603,8 @@
         "desktop/lib/main.dart"
       ],
       "tests": [
-        "tests/storage/Program.cs"
+        "tests/storage/Program.cs",
+        "desktop/test/cleanup_selection_test.dart"
       ],
       "evidence": [],
       "documentation": "docs/catalogue/asc-toolbox.md",
@@ -1605,22 +1613,28 @@
       "remainingGap": "Only aged current-user temporary files in a server-issued recoverable plan; no browser privacy sweep, system-wide disk cleaner or all-user cleanup.",
       "sourceBindings": [
         {
-          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "commit": "488aaf78bf8f2bc993dfd4c88cc4bab7f1c7cbbe",
           "path": "engine/Modules/StorageModule.cs",
           "role": "implementation",
-          "symbol": "cleanup.scan / cleanup.apply / cleanup.restore"
+          "symbol": "cleanup.apply explicit selected indexes"
         },
         {
-          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
-          "path": "tests/storage/Program.cs",
-          "role": "test",
-          "symbol": "fixture assertions"
-        },
-        {
-          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "commit": "488aaf78bf8f2bc993dfd4c88cc4bab7f1c7cbbe",
           "path": "desktop/lib/main.dart",
           "role": "interface",
-          "symbol": "Storage"
+          "symbol": "Selected cleanup target review"
+        },
+        {
+          "commit": "488aaf78bf8f2bc993dfd4c88cc4bab7f1c7cbbe",
+          "path": "tests/storage/Program.cs",
+          "role": "test",
+          "symbol": "selection scope and replay assertions"
+        },
+        {
+          "commit": "488aaf78bf8f2bc993dfd4c88cc4bab7f1c7cbbe",
+          "path": "desktop/test/cleanup_selection_test.dart",
+          "role": "test",
+          "symbol": "filtered selection and consent"
         }
       ],
       "actualNavigation": "Storage",
@@ -7019,7 +7033,8 @@
         "desktop/lib/main.dart"
       ],
       "tests": [
-        "tests/storage/Program.cs"
+        "tests/storage/Program.cs",
+        "desktop/test/cleanup_selection_test.dart"
       ],
       "evidence": [],
       "documentation": "docs/catalogue/mac-adapted.md",
@@ -7028,22 +7043,28 @@
       "remainingGap": "Only aged current-user temporary files in a server-issued recoverable plan; no browser privacy sweep, system-wide disk cleaner or all-user cleanup.",
       "sourceBindings": [
         {
-          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "commit": "488aaf78bf8f2bc993dfd4c88cc4bab7f1c7cbbe",
           "path": "engine/Modules/StorageModule.cs",
           "role": "implementation",
-          "symbol": "cleanup.scan / cleanup.apply / cleanup.restore"
+          "symbol": "cleanup.apply explicit selected indexes"
         },
         {
-          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
-          "path": "tests/storage/Program.cs",
-          "role": "test",
-          "symbol": "fixture assertions"
-        },
-        {
-          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "commit": "488aaf78bf8f2bc993dfd4c88cc4bab7f1c7cbbe",
           "path": "desktop/lib/main.dart",
           "role": "interface",
-          "symbol": "Storage"
+          "symbol": "Selected cleanup target review"
+        },
+        {
+          "commit": "488aaf78bf8f2bc993dfd4c88cc4bab7f1c7cbbe",
+          "path": "tests/storage/Program.cs",
+          "role": "test",
+          "symbol": "selection scope and replay assertions"
+        },
+        {
+          "commit": "488aaf78bf8f2bc993dfd4c88cc4bab7f1c7cbbe",
+          "path": "desktop/test/cleanup_selection_test.dart",
+          "role": "test",
+          "symbol": "filtered selection and consent"
         }
       ],
       "actualNavigation": "Storage",
