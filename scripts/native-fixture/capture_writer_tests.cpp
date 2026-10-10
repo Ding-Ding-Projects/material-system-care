@@ -19,7 +19,8 @@ void Check(bool condition,const char* message) { if(!condition) throw std::runti
 }
 void CaptureWriterChecks() {
   wchar_t temporary[MAX_PATH]{}; Check(GetTempPathW(MAX_PATH,temporary)>0,"Temporary directory unavailable");
-  const auto parent=std::filesystem::path(temporary);
+  auto parent=std::filesystem::path(temporary).lexically_normal();
+  if(parent.filename().empty()) parent=parent.parent_path();
   const auto root=parent/(L"MaterialSystemCare-capture-"+std::to_wstring(GetCurrentProcessId())+L"-"+std::to_wstring(GetTickCount64()));
   Check(!std::filesystem::exists(root),"Capture fixture directory collision");
   std::filesystem::create_directory(root);

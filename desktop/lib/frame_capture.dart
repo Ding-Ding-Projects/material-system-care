@@ -148,6 +148,7 @@ class _FrameCaptureState extends State<FrameCapture> {
           rendered.size.isEmpty)
         return;
       final frame = await capturePngFrame(rendered);
+      if (!mounted) return;
       // The native bridge writes and flushes the PNG and its paired receipt.
       await const MethodChannel(
         'material_system_care/engine',
