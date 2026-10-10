@@ -85,3 +85,7 @@
 
 - [x] Verify explicit stop-code entry and completed explanation in enlarged bilingual dark mode at 1264×961.
 - [x] Verify public delivery of the minimum-size diagnostic guide image and required guide assets.
+
+## Diagnostic response integrity
+
+- [ ] Validate and present complete diagnostic evidence, next checks and timestamp meaning. Source and 14 focused checks pass; rebuilt runtime verification pending.

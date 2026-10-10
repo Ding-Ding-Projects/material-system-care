@@ -12,6 +12,31 @@ class CopyScope extends InheritedWidget {
 }
 
 const translations = <String, String>{
+  'Code category': '代碼類別',
+  'Memory or driver condition': '記憶體或驅動程式狀況',
+  'Memory condition': '記憶體狀況',
+  'Unhandled exception': '未處理的例外',
+  'Driver power transition': '驅動程式電源轉換',
+  'Hardware error report': '硬件錯誤報告',
+  'Watchdog condition': '監察逾時狀況',
+  'Critical process stopped': '重要程序已停止',
+  'Uncatalogued category': '未收錄的類別',
+  'Diagnostic response is invalid. No evidence was accepted. Try again.':
+      '診斷回應格式無效，未接受任何證據。請再試。',
+  'File modified at UTC': '檔案修改時間（UTC）',
+  'Copy Microsoft reference': '複製 Microsoft 參考連結',
+  'Microsoft reference copied.': '已複製 Microsoft 參考連結。',
+  'The recorded code is evidence of the reported stop condition. It does not establish the root cause or identify a culprit driver.':
+      '記錄的代碼只證明回報的停止狀況，不能確定根本原因或肇因驅動程式。',
+  'Compare the event time with recent driver, firmware, hardware, and Windows updates.':
+      '將事件時間與最近的驅動程式、韌體、硬件及 Windows 更新作比較。',
+  'Preserve available dump files before making changes.': '作出變更前，先保留可用的傾印檔案。',
+  'Use Microsoft WinDbg with matching symbols for deeper dump analysis.':
+      '使用 Microsoft WinDbg 及相符的符號檔，進行更深入的傾印分析。',
+  "Follow the device manufacturer's diagnostics when hardware evidence warrants it.":
+      '當硬件證據顯示有需要時，依照裝置製造商的診斷步驟檢查。',
+  'Recorded event times can follow the crash or restart; dump modification times are file metadata, not crash timestamps.':
+      '記錄的事件時間可能在當機或重新啟動之後；傾印修改時間是檔案資料，不是當機時間。',
   "Services": "服務",
   "Review local services": "檢視本機服務",
   "Read service names, current states and configured start types. This workspace never starts, stops or reconfigures a service.":

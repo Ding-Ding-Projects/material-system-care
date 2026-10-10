@@ -1,5 +1,9 @@
 # Continuation handoff
 
+## Diagnostic response hardening
+
+The desktop validates complete bounded diagnostic responses before accepting them. Malformed event or dump lists, invalid entries, mismatched requested periods, contradictory stop codes, unsupported references and invalid UTC timestamps reject the whole response with a safe message. Unknown fields are not retained. A successful response now exposes the code category, confidence limitation, next checks and an explicitly copied Microsoft reference. Reports show collection time and label dump modification times as file metadata rather than crash times. Fourteen focused checks passed, including 240 title combinations. Removing response validation made the malformed-response widget regression fail; restoring validation passed. New built runtime verification is pending.
+
 ## Objective and current baseline
 
 Complete the Windows 11 x64 Material System Care suite with Flutter/Dart, C#/.NET 10, narrowly scoped C++20, SQLite and the public GitHub Pages documentation site. Blue-screen diagnostics is implemented as an explicit read-only workflow; the wider goal remains active and incomplete. No explicit goal token budget was selected.

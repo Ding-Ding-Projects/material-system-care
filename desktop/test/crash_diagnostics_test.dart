@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:material_system_care/crash_diagnostics.dart';
 import 'package:material_system_care/main.dart';
 import 'package:material_system_care/localization.dart';
+import 'diagnostic_fixtures.dart';
 
 void main() {
   testWidgets(
@@ -62,6 +63,7 @@ void main() {
       MaterialApp(
         home: CrashDiagnosticsPage(
           invoke: (_, __) async => {
+            ...crashReportFixture(),
             'events': <dynamic>[],
             'eventsTruncated': true,
             'dumps': <dynamic>[],
@@ -95,6 +97,7 @@ void main() {
               if (calls > 1)
                 throw StateError('EVENT_LOG_UNAVAILABLE: Access unavailable');
               return {
+                ...crashReportFixture(),
                 'events': <dynamic>[],
                 'dumps': <dynamic>[],
                 'warnings': <dynamic>[],
@@ -143,10 +146,64 @@ void main() {
       );
       await tester.pumpWidget(const MaterialApp(home: SizedBox()));
       pending.complete({
+        ...stopCodeFixture(),
         'hex': '0x0000009F',
         'name': 'DRIVER_POWER_STATE_FAILURE',
       });
       await tester.pump();
+      expect(tester.takeException(), isNull);
+    },
+  );
+  testWidgets('malformed successful evidence becomes an unavailable message', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: CrashDiagnosticsPage(
+          invoke: (_, __) async => {'events': 'invalid'},
+        ),
+      ),
+    );
+    await tester.tap(find.text('Read crash evidence'));
+    await tester.pumpAndSettle();
+    expect(
+      find.text(
+        'Diagnostic response is invalid. No evidence was accepted. Try again.',
+      ),
+      findsOneWidget,
+    );
+    expect(find.text('No matching events in this period.'), findsNothing);
+    expect(tester.takeException(), isNull);
+  });
+  testWidgets(
+    'report explains collection freshness and dump timestamp meaning',
+    (tester) async {
+      tester.view.physicalSize = const Size(1000, 1800);
+      tester.view.devicePixelRatio = 1;
+      addTearDown(tester.view.resetPhysicalSize);
+      addTearDown(tester.view.resetDevicePixelRatio);
+      final report = crashReportFixture()
+        ..['dumps'] = [
+          {
+            'name': 'example.dmp',
+            'bytes': 20,
+            'modifiedAt': '2026-10-09T11:00:00Z',
+            'analysis': 'metadata-only',
+          },
+        ];
+      await tester.pumpWidget(
+        MaterialApp(
+          home: CrashDiagnosticsPage(invoke: (_, __) async => report),
+        ),
+      );
+      await tester.tap(find.text('Read crash evidence'));
+      await tester.pumpAndSettle();
+      expect(find.text('Collected at UTC'), findsOneWidget);
+      expect(find.textContaining('not crash timestamps'), findsOneWidget);
+      expect(
+        find.textContaining('File modified at UTC: 2026-10-09T11:00:00Z'),
+        findsOneWidget,
+      );
       expect(tester.takeException(), isNull);
     },
   );

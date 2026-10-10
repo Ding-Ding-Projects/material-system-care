@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'localization.dart';
 import 'inspection_app_bar.dart';
 import 'motion.dart';
+import 'diagnostic_response.dart';
 
 typedef DiagnosticInvoke =
     Future<Map<String, dynamic>> Function(
@@ -47,17 +48,22 @@ class _CrashDiagnosticsPageState extends State<CrashDiagnosticsPage> {
         collect ? 'diagnostics.crashes' : 'diagnostics.explainStopCode',
         collect ? {'days': days, 'limit': 50} : {'code': code.text.trim()},
       );
+      final validated = collect
+          ? validateCrashReport(result, days)
+          : validateStopCode(result);
       if (!mounted) return;
       setState(() {
         if (collect) {
-          report = result;
+          report = validated;
         } else {
-          explanation = result;
+          explanation = validated;
         }
       });
     } catch (failure) {
       final text = failure is StateError ? failure.message.toString() : '';
-      final reason = failure is MissingPluginException
+      final reason = failure is FormatException
+          ? 'Diagnostic response is invalid. No evidence was accepted. Try again.'
+          : failure is MissingPluginException
           ? 'The local engine connection is unavailable.'
           : text.contains('OPERATION_TIMEOUT:')
           ? 'Crash collection exceeded fifteen seconds. Try a shorter period.'
@@ -76,12 +82,56 @@ class _CrashDiagnosticsPageState extends State<CrashDiagnosticsPage> {
     }
   }
 
-  Widget explanationTile(Map value) => ListTile(
-    isThreeLine: true,
-    leading: const Icon(Icons.info_outline),
-    title: Text('${value['hex']} · ${value['name']}'),
-    subtitle: UiText(
-      'A stop code describes a condition, not a confirmed cause.',
+  Widget explanationTile(Map value) => Padding(
+    padding: const EdgeInsets.all(16),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SelectableText(
+          '${value['hex']} · ${value['name']}',
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
+        const SizedBox(height: 8),
+        UiText('A stop code describes a condition, not a confirmed cause.'),
+        const SizedBox(height: 8),
+        UiText('Code category'),
+        UiText(
+          const {
+            'memory-or-driver': 'Memory or driver condition',
+            'memory': 'Memory condition',
+            'exception': 'Unhandled exception',
+            'driver-power': 'Driver power transition',
+            'hardware-report': 'Hardware error report',
+            'watchdog': 'Watchdog condition',
+            'critical-process': 'Critical process stopped',
+            'unknown': 'Uncatalogued category',
+          }[value['category']]!,
+        ),
+        const SizedBox(height: 8),
+        UiText(value['confidence'] as String),
+        const SizedBox(height: 12),
+        UiText('Next checks', style: Theme.of(context).textTheme.titleSmall),
+        for (final check in value['nextChecks'] as List<String>)
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 4),
+            child: UiText(check),
+          ),
+        const SizedBox(height: 8),
+        SelectableText(value['reference'] as String),
+        TextButton.icon(
+          icon: const Icon(Icons.copy),
+          label: UiText('Copy Microsoft reference'),
+          onPressed: () async {
+            await Clipboard.setData(
+              const ClipboardData(text: diagnosticReference),
+            );
+            if (!mounted) return;
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: UiText('Microsoft reference copied.')),
+            );
+          },
+        ),
+      ],
     ),
   );
 
@@ -209,6 +259,11 @@ class _CrashDiagnosticsPageState extends State<CrashDiagnosticsPage> {
               ),
               if (report != null) ...[
                 const SizedBox(height: 16),
+                UiText('Collected at UTC'),
+                SelectableText(report!['collectedAt'] as String),
+                const SizedBox(height: 8),
+                UiText(report!['timeMeaning'] as String),
+                const SizedBox(height: 16),
                 UiText(
                   'Recorded events',
                   style: Theme.of(context).textTheme.titleLarge,
@@ -274,7 +329,7 @@ class _CrashDiagnosticsPageState extends State<CrashDiagnosticsPage> {
                     leading: const Icon(Icons.description_outlined),
                     title: Text('${dump['name']}'),
                     subtitle: Text(
-                      '${dump['bytes']} ${localize(context, 'bytes')} · ${dump['modifiedAt']}',
+                      '${dump['bytes']} ${localize(context, 'bytes')}\n${localize(context, 'File modified at UTC')}: ${dump['modifiedAt']}',
                     ),
                     trailing: Tooltip(
                       message: localize(context, 'Metadata only'),
