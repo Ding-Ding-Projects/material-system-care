@@ -33,6 +33,7 @@ public sealed class CleanupFixture : IDisposable
     }
     public void Validate()
     {
+        foreach (var scope in locks.OfType<StorageSafeFile.DestinationLocks>()) scope.Validate();
         foreach (var path in new[] { Root, Records, Temp }) StorageSafeFile.ValidateAncestors(path);
         marker.Position = 0;
         if (marker.Length != System.Text.Encoding.UTF8.GetByteCount(Marker)) throw new EngineException("INVALID_FIXTURE", "The fixture marker is invalid.");

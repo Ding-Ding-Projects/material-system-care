@@ -1,6 +1,7 @@
 #include "flutter_window.h"
 
 #include <optional>
+#include <exception>
 
 #include "flutter/generated_plugin_registrant.h"
 
@@ -25,7 +26,12 @@ bool FlutterWindow::OnCreate() {
     return false;
   }
   RegisterPlugins(flutter_controller_->engine());
-  engine_bridge_ = std::make_unique<EngineBridge>(flutter_controller_->engine()->messenger(), GetHandle());
+  try {
+    engine_bridge_ = std::make_unique<EngineBridge>(flutter_controller_->engine()->messenger(), GetHandle());
+  } catch (const std::exception&) {
+    // Invalid explicit launch modes must exit, never start a normal engine.
+    return false;
+  }
   SetChildContent(flutter_controller_->view()->GetNativeWindow());
 
   flutter_controller_->engine()->SetNextFrameCallback([&]() {

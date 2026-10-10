@@ -20,7 +20,14 @@ try
             if (denied.RootElement.GetProperty("error").GetProperty("code").GetString() != "FIXTURE_METHOD_DENIED") throw new Exception("Fixture allowed host collection");
             var ping = JsonDocument.Parse(await MaterialSystemCare.Engine.Program.DispatchAsync(request("engine.ping"), isolated, launchModules, CancellationToken.None));
             if (!ping.RootElement.GetProperty("result").GetProperty("cleanupFixture").GetBoolean()) throw new Exception("Fixture identity missing");
-            try { Directory.Move(launch.Temp, launch.Temp + "-moved"); throw new Exception("Fixture directory was replaceable"); } catch (IOException) { }
+            var scan = JsonDocument.Parse(await MaterialSystemCare.Engine.Program.DispatchAsync(request("cleanup.scan"), isolated, launchModules, CancellationToken.None));
+            if (scan.RootElement.GetProperty("result").GetProperty("root").GetString() != launch.Temp) throw new Exception("Fixture scan escaped its temporary scope");
+            if (!File.Exists(Path.Combine(launch.Records, "records.db"))) throw new Exception("Fixture records were not isolated");
+            Directory.Move(launch.Temp, launch.Temp + "-moved");
+            Directory.CreateDirectory(launch.Temp);
+            try { launch.Validate(); throw new Exception("Replaced fixture directory accepted"); } catch (EngineException e) when (e.Code == "TARGET_CHANGED") { }
+            Directory.Delete(launch.Temp);
+            Directory.Move(launch.Temp + "-moved", launch.Temp);
             try { File.WriteAllText(Path.Combine(launchRoot, CleanupFixture.MarkerName), "changed"); throw new Exception("Fixture marker was replaceable"); } catch (IOException) { }
             launch.Validate();
             Console.WriteLine("PASS fixture scope, restricted dispatch, identity and replacement locks");
@@ -29,6 +36,14 @@ try
         try { using var invalid = new CleanupFixture(launchRoot); throw new Exception("Invalid marker accepted"); } catch (EngineException e) when (e.Code == "INVALID_FIXTURE") { }
         try { using var invalid = new CleanupFixture(sandbox); throw new Exception("Outside scope accepted"); } catch (EngineException e) when (e.Code == "INVALID_FIXTURE") { }
         Console.WriteLine("PASS invalid fixture marker and parent rejected");
+        foreach (var invalidArgs in new[] {
+            new[] { "--cleanup-fixture-root" },
+            new[] { "--cleanup-fixture-pipe", new string('a', 32) },
+            new[] { "--cleanup-fixture-root", launchRoot, "--cleanup-fixture-root", launchRoot },
+            new[] { "--cleanup-fixture-root", launchRoot, "--cleanup-fixture-pipe", "invalid" },
+            new[] { "--cleanup-fixture-root", launchRoot, "--cleanup-fixture-pipe", new string('a', 32), "--data-root", sandbox }
+        }) if (await MaterialSystemCare.Engine.Program.Main(invalidArgs) != 1) throw new Exception("Malformed fixture launch accepted");
+        Console.WriteLine("PASS malformed fixture arguments fail without production fallback");
     } finally {
         Microsoft.Data.Sqlite.SqliteConnection.ClearAllPools();
         Directory.Delete(launchRoot, true);
