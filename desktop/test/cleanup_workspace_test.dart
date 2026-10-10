@@ -220,6 +220,75 @@ void main() {
       );
       expect(find.byType(CleanupResults), findsNothing);
     });
+
+  for (final scenario in [
+    'empty complete',
+    'skipped complete',
+    'complete marked partial',
+    'partial subset',
+    'cancelled empty',
+  ]) {
+    testWidgets('receipt partial invariant: $scenario', (t) async {
+      final partial =
+          scenario == 'partial subset' ||
+          scenario == 'cancelled empty' ||
+          scenario == 'complete marked partial';
+      final empty =
+          scenario == 'empty complete' || scenario == 'cancelled empty';
+      await mount(
+        t,
+        (method, parameters, {requestId}) async => method == 'cleanup.scan'
+            ? scan()
+            : {
+                'receiptId': 'a' * 32,
+                'plannedCount': scenario == 'partial subset' ? 2 : 1,
+                'partial': partial,
+                'cancelled': scenario == 'cancelled empty',
+                'permanentDeletion': false,
+                'items': empty
+                    ? []
+                    : [
+                        {
+                          'target': {
+                            'path': r'C:\fixture\file0.tmp',
+                            'size': 1,
+                          },
+                          'state': scenario == 'skipped complete'
+                              ? 'skipped'
+                              : 'quarantined',
+                        },
+                      ],
+              },
+      );
+      await start(t);
+      await t.tap(find.widgetWithText(CheckboxListTile, 'file0.tmp'));
+      if (scenario == 'partial subset')
+        await t.tap(find.widgetWithText(CheckboxListTile, 'file1.tmp'));
+      await t.pump();
+      await t.tap(find.text('Apply selected cleanup targets'));
+      await t.pumpAndSettle();
+      await t.tap(find.text('Confirm selected action'));
+      await t.pumpAndSettle();
+      final valid =
+          scenario == 'partial subset' || scenario == 'cancelled empty';
+      expect(
+        find.byType(CleanupResults),
+        valid ? findsOneWidget : findsNothing,
+      );
+      expect(
+        find.textContaining('Cleanup could not be confirmed'),
+        valid ? findsNothing : findsOneWidget,
+      );
+      if (valid) {
+        final result = t
+            .widget<CleanupResults>(find.byType(CleanupResults))
+            .result;
+        expect(result.partial, isTrue);
+        expect(result.cancelled, scenario == 'cancelled empty');
+        expect(result.files.length, empty ? 0 : 1);
+      }
+    });
+  }
   for (final reduced in [true, false])
     testWidgets('persistent paging and reduced motion $reduced', (t) async {
       await mount(t, (m, p, {requestId}) async => scan(40), reduced: reduced);

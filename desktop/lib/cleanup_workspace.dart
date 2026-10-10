@@ -323,6 +323,12 @@ class _CleanupWorkspaceState extends State<CleanupWorkspace> {
       if (parsed.receiptId != reviewed.result.planId ||
           parsed.plannedCount != indexes.length)
         throw const FormatException('Mismatched receipt');
+      final quarantined = parsed.files
+          .where((file) => file.state == 'quarantined')
+          .length;
+      if (parsed.partial != (quarantined != indexes.length)) {
+        throw const FormatException('Contradictory partial receipt');
+      }
       if (!mounted) return;
       setState(() => result = parsed);
       notifyOperation(
