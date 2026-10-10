@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "215e6f85dd426e5ef056b896b00f7016cb3b70f9",
+  "width": 800,
+  "height": 600,
+  "textScale": 2,
+  "language": "both",
+  "theme": "dark",
+  "reducedMotion": true,
+  "selectedTargets": 2,
+  "movedBytes": 96,
+  "cancellationPreservedOriginals": true,
+  "unselectedFilePreserved": true,
+  "observed": [
+    "complete selected paths reached from initial and action-button focus",
+    "reverse paging",
+    "cancelled review retained original bytes and identities",
+    "fresh exact-path review and explicit apply moved two selected aged files",
+    "receipt-specific restoration entry",
+    "recovery dialog failed to expose paths with Page Down; restoration cancelled"
+  ],
+  "ownedProcessesAndDesktopClosed": true,
+  "publicPixels": false,
+  "limits": [
+    "Restoration is pending the separately confirmed recovery-dialog paging repair.",
+    "Both selected files remain preserved in recovery; this record does not claim restoration.",
+    "Normal motion, physical DPI, complete keyboard order and accessibility remain outside this runtime sample."
+  ]
+}

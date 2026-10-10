@@ -1,0 +1,359 @@
+{
+  "schemaVersion": 1,
+  "scope": "observed-flutter-hooks-and-bytes",
+  "sourceCommit": "215e6f85dd426e5ef056b896b00f7016cb3b70f9",
+  "buildReceiptSha256": "35c70fc7fc56cf54dc058a2e8ff2fd4e9cc163344501b92368fb46e09ff03a30",
+  "bundleManifestSha256": "e53fb1896339308f36f8e0722de48215a47c685dec978d20419aa3f57a304a7a",
+  "frames": [
+    {
+      "png": "output/frame-008.png",
+      "sidecar": "output/frame-008.png.json",
+      "sha256": "77e1ad651e9da023f1b38ab68dd2416ab30f7b84b331e14f6d62f2df155d3e30",
+      "sidecarSha256": "9d5196e445f6e9108d522cc51fdb202f525877e9369d11e69f66304822ac5b6b",
+      "sequence": 8
+    },
+    {
+      "png": "output/frame-010.png",
+      "sidecar": "output/frame-010.png.json",
+      "sha256": "c230092d39e123fdd29ab5d7dc5fa22d8415e4d755536878894dc7620a8eebaf",
+      "sidecarSha256": "6879860c29830904e965af5f743c95a65de6ae32ad10ca5894d32da0b31b7844",
+      "sequence": 10
+    },
+    {
+      "png": "output/frame-011.png",
+      "sidecar": "output/frame-011.png.json",
+      "sha256": "f5a138841c98edbbc2ce0e61b0197fbc5df5814f77900d09ab9acf0a34e04634",
+      "sidecarSha256": "62e08d2a83eb7c70c089c7014c3f818ec2db14d42e22d7a741a147c28d72326c",
+      "sequence": 11
+    },
+    {
+      "png": "output/frame-014.png",
+      "sidecar": "output/frame-014.png.json",
+      "sha256": "59c4a4500bb6105249ed68508d17486b58ab2ebbb97f4e15c35acb271316fe8a",
+      "sidecarSha256": "52dbfc7e5069e3c616a37bc67ce06879eb93fcaac4beb3c55d6e482276997684",
+      "sequence": 14
+    },
+    {
+      "png": "output/frame-017.png",
+      "sidecar": "output/frame-017.png.json",
+      "sha256": "59c4a4500bb6105249ed68508d17486b58ab2ebbb97f4e15c35acb271316fe8a",
+      "sidecarSha256": "d2ba16b830e2964d2b31d6213a0a807f1d2cd4b927981d4a454dc6c8740ce2ca",
+      "sequence": 17
+    },
+    {
+      "png": "output/frame-022.png",
+      "sidecar": "output/frame-022.png.json",
+      "sha256": "0cc7409dedef5985225bb4a11e400939e692f113d703f24c34876d31ceeacb5a",
+      "sidecarSha256": "b668ad9a9f9aa79facc08ff0f13d88d61219115a4a95ceddc42aed99a52be332",
+      "sequence": 22
+    },
+    {
+      "png": "output/frame-024.png",
+      "sidecar": "output/frame-024.png.json",
+      "sha256": "d47ff1f3a5d38c619c933f8b771dfbc11b6f5d5af2f0852a30d863373784a211",
+      "sidecarSha256": "3c855103114448de129b38f45d23515915d9740fc7b13f2096fbb87921b4dc7a",
+      "sequence": 24
+    },
+    {
+      "png": "output/frame-025.png",
+      "sidecar": "output/frame-025.png.json",
+      "sha256": "bb8da2fc6b674bb256a48d52c51e0778065049db1411e00744a6fc8da19fd014",
+      "sidecarSha256": "f19fee0cf70b11529282d4db6be0ba5a7b019dc1c22b1235cb8f53471b27e0cb",
+      "sequence": 25
+    },
+    {
+      "png": "output/frame-026.png",
+      "sidecar": "output/frame-026.png.json",
+      "sha256": "bb8da2fc6b674bb256a48d52c51e0778065049db1411e00744a6fc8da19fd014",
+      "sidecarSha256": "4f9e8baa281ea48577b3ed4ef3f887bb0e8095dec9db2041c6f463164250ac9b",
+      "sequence": 26
+    }
+  ],
+  "evidence": [
+    {
+      "role": "action",
+      "path": "repair-apply-confirm-window.json",
+      "sha256": "767750bd370210282f5075ee72825e4346a6ab50362a85a4f7158758b89ff395"
+    },
+    {
+      "role": "action",
+      "path": "repair-apply-confirm.json",
+      "sha256": "95148bf08b9427f959288514375ec80883d4ecdfffe10d5db68600fd8ce5b57f"
+    },
+    {
+      "role": "action",
+      "path": "repair-cancel-restoration-window.json",
+      "sha256": "c7ab3ad3ca7d11fc6c3394629088bd603066bfc841fd83ee9872c683c5275eee"
+    },
+    {
+      "role": "action",
+      "path": "repair-cancel-restoration.json",
+      "sha256": "9ba317fea2f64bbe2431efd5251dd6926fa694ac7d272299987298ec4aaf405a"
+    },
+    {
+      "role": "action",
+      "path": "repair-limits-window.json",
+      "sha256": "27c945d817c44b589a11598d7d85cad0fa0b88b50a4ec2975c95c7dbebddb711"
+    },
+    {
+      "role": "action",
+      "path": "repair-limits.json",
+      "sha256": "64d867a0a4c47c21b34c1f4c682734b187166211a179d5d7cb86ce85e0fb9f55"
+    },
+    {
+      "role": "action",
+      "path": "repair-open-restoration-window.json",
+      "sha256": "cb3c2a86df755b0ed7f08a9aa98d013d851a6d0a641357a8b23eb5172da02c83"
+    },
+    {
+      "role": "action",
+      "path": "repair-open-restoration.json",
+      "sha256": "9df6993035a7eee656d072f7a0564ffb88546071d8567a3d28789596a878f650"
+    },
+    {
+      "role": "action",
+      "path": "repair-open-review-window.json",
+      "sha256": "5d4d67b6fd48e9d04ac18bab3185d22e9f486391657566f9f523bab90a3b0d67"
+    },
+    {
+      "role": "action",
+      "path": "repair-open-review.json",
+      "sha256": "feef414e55934219b786c6259a09384285694a25f7bd45641d300aed0b0448c6"
+    },
+    {
+      "role": "action",
+      "path": "repair-receipt-actions-window.json",
+      "sha256": "fdb2235aea321c546e113f55e02bf8cfe028031e105ff7db49fe74c3d71f0c79"
+    },
+    {
+      "role": "action",
+      "path": "repair-receipt-actions.json",
+      "sha256": "0fdf53f69c6dfbea666b41c038edc7cf4ed608dd49c8715ba5a063c3cca02f70"
+    },
+    {
+      "role": "action",
+      "path": "repair-receipt-counts-window.json",
+      "sha256": "a69b7106f85b0e473f6bd0a88af7dc7a2be1d2e9107cef7892649dac479701b5"
+    },
+    {
+      "role": "action",
+      "path": "repair-receipt-counts.json",
+      "sha256": "9f35397633df7d9d68cf124411da9fbdf90235ccebd73391a752cf698031f01f"
+    },
+    {
+      "role": "action",
+      "path": "repair-receipt-page-window.json",
+      "sha256": "2b7a7ae2c78b173be9b8dbaf7d8ee1cb7e4db25702fdf6eefffcac13944f9701"
+    },
+    {
+      "role": "action",
+      "path": "repair-receipt-page.json",
+      "sha256": "a55cd035e1644e300bf19a601dd56d71bb52777755fa7abe020b01d729cea8ab"
+    },
+    {
+      "role": "action",
+      "path": "repair-receipt-review-control-window.json",
+      "sha256": "a175c0191bb2ba113109b5d8cb5b2700d505cd2fcccc00801f29779982278c46"
+    },
+    {
+      "role": "action",
+      "path": "repair-receipt-review-control.json",
+      "sha256": "09b8de0ad42ac98a3013c8fba4fc2d41f8baa90fca751f2fe0fcb431ee994ab7"
+    },
+    {
+      "role": "action",
+      "path": "repair-receipt-scope-window.json",
+      "sha256": "03bd663d19a922e1abb8d9ee6b33775502cd2cdac55d2a6148d06f771bf0d23d"
+    },
+    {
+      "role": "action",
+      "path": "repair-receipt-scope.json",
+      "sha256": "116ff95bdfc494a21c31e135e3fd9cd3f513f703e546eccfe8c82d5aba163e4c"
+    },
+    {
+      "role": "action",
+      "path": "repair-receipt-summary-window.json",
+      "sha256": "b19ae6380b130da785dd3cff247a539c29980fc86fc64bf1be1ebf1886c6bc28"
+    },
+    {
+      "role": "action",
+      "path": "repair-receipt-summary.json",
+      "sha256": "4411a9adf11934da12ff0d62c67b5d2649af2d9219daf74f9484a026cd3d055b"
+    },
+    {
+      "role": "action",
+      "path": "repair-recovery-dialog-page-window.json",
+      "sha256": "61f4468be9438bbfdf02527504a682ad0eec4fe4212210b1c5eb9abb1bc1e27a"
+    },
+    {
+      "role": "action",
+      "path": "repair-recovery-dialog-page.json",
+      "sha256": "78593c5a3a3fd79007bcdabb1e579c96ca264b91c09b3caed99acabb8e7ed036"
+    },
+    {
+      "role": "action",
+      "path": "repair-review-action-page-window.json",
+      "sha256": "5179525f02380e7771fc4d52e8291627eabbfd194d4f2c2511136a7833c184d6"
+    },
+    {
+      "role": "action",
+      "path": "repair-review-action-page.json",
+      "sha256": "67f9e21bb91abb765b509c9767899b3e9a3beef8bb2a2f50f5705ad934906c6e"
+    },
+    {
+      "role": "action",
+      "path": "repair-review-again-window.json",
+      "sha256": "0337a94f1a7ebbb2a0c389e8b63a08feb3687487155a900556a33cd33e3d3281"
+    },
+    {
+      "role": "action",
+      "path": "repair-review-again.json",
+      "sha256": "ecb06a3c5f9f3a72df75e13a5996d21f11fa24b7c4521ccaea95da2ea9f5375a"
+    },
+    {
+      "role": "action",
+      "path": "repair-review-cancel-focus-window.json",
+      "sha256": "36caea26e42453a77599b89ed9f53fb6059a9d56a9812f7537bd313b76fae3d8"
+    },
+    {
+      "role": "action",
+      "path": "repair-review-cancel-focus.json",
+      "sha256": "ceb327b4604d6967c2381ca55a077f19ba886ce2c3641fa76ac762d7e3f23922"
+    },
+    {
+      "role": "action",
+      "path": "repair-review-cancel-window.json",
+      "sha256": "3428e05fd8396db908e2a7751c7195ac9209ac4057e43220b696f1aeb0bc5e22"
+    },
+    {
+      "role": "action",
+      "path": "repair-review-cancel.json",
+      "sha256": "b6b440f22d241a39030dfaee802dfdf40ef08aedb2414e18d3a4ddaf744e2c07"
+    },
+    {
+      "role": "action",
+      "path": "repair-review-page-window.json",
+      "sha256": "3e6ec19cd55d46b6088d6c55d6fa3a629cc87aeea00b3f096e5cc467aa4a4140"
+    },
+    {
+      "role": "action",
+      "path": "repair-review-page.json",
+      "sha256": "9be4816227b3b3c968b559b317f83fe2fd236b9fbe42464db3033814389a85ce"
+    },
+    {
+      "role": "action",
+      "path": "repair-review-paths-again-window.json",
+      "sha256": "3e8fcd13a0c257b447170b20a5615b6640bbc0996aa48b3ccee90b1aade31736"
+    },
+    {
+      "role": "action",
+      "path": "repair-review-paths-again.json",
+      "sha256": "fbb2cd676ffa92e1c83e5a78d2a73c45f94612a6f6d81f1d2edddd1872423c67"
+    },
+    {
+      "role": "action",
+      "path": "repair-review-reverse-window.json",
+      "sha256": "d0bd9b970830ac725f7b7aa1612783db0a8ce95b66165c6f0fe7b02291bd76b8"
+    },
+    {
+      "role": "action",
+      "path": "repair-review-reverse.json",
+      "sha256": "141b6277bf270126ad977f6f39c1d1f0a57aa46535212408d07cb929a15d0a0c"
+    },
+    {
+      "role": "action",
+      "path": "repair-scan-control-window.json",
+      "sha256": "d1f0055cb3723685f60c0c029dba2444d32c61012f6aea3ea2e8b6086c921f9c"
+    },
+    {
+      "role": "action",
+      "path": "repair-scan-control.json",
+      "sha256": "9745d34412d9f566126c3392153c2a104350d70994ce1152c4d155af35b930c1"
+    },
+    {
+      "role": "action",
+      "path": "repair-scan-window.json",
+      "sha256": "f370970f730caafb56fb1183b641d23ad003d168c72cbb17997606efbc5accc6"
+    },
+    {
+      "role": "action",
+      "path": "repair-scan.json",
+      "sha256": "421ef5a420a74d935b70c4d023c7940bf3fef094d288e48c63ccd668638a36af"
+    },
+    {
+      "role": "action",
+      "path": "repair-scanned-expiry-window.json",
+      "sha256": "e55ffd1b4f8574a9fe4aa08dc3492e05123056fd4a0a3ed16d1111aaa2cb9693"
+    },
+    {
+      "role": "action",
+      "path": "repair-scanned-expiry.json",
+      "sha256": "cb97b5c7538681503aef1ac13837b782033c920db441324462784e7cbc09259f"
+    },
+    {
+      "role": "action",
+      "path": "repair-scanned-limits-window.json",
+      "sha256": "81cd1e7534cd5ae04534358a5fe5770a258f65e86b0420bbb608386322e47425"
+    },
+    {
+      "role": "action",
+      "path": "repair-scanned-limits.json",
+      "sha256": "190a652d248ce3d3b929ed00a4675aeafae612915f36e76b8f5d816dffe0a74d"
+    },
+    {
+      "role": "action",
+      "path": "repair-scanned-root-window.json",
+      "sha256": "751380fcfc4f796739805bf055ca1efeba5c19da17ae35c1ebb12a5e292e59e8"
+    },
+    {
+      "role": "action",
+      "path": "repair-scanned-root.json",
+      "sha256": "5673c69f0c5f7aec49788bd6fdcf95759442ee8e6e36c1be304554c826ca381e"
+    },
+    {
+      "role": "action",
+      "path": "repair-select-controls-window.json",
+      "sha256": "c8fc0f9ffad0c369407b353860d7a2f1a9416743080b811d0c474fe03a9eee12"
+    },
+    {
+      "role": "action",
+      "path": "repair-select-controls.json",
+      "sha256": "cd15e9c1d94d4a89e8ea8194f8fdd0650031d3975557f9a3b55505bbbdb0b2fe"
+    },
+    {
+      "role": "action",
+      "path": "repair-select-two-window.json",
+      "sha256": "df95faa7952644dfc0022d5252ca5e5c18c943e182b46f9ccac8dce600abf2b5"
+    },
+    {
+      "role": "action",
+      "path": "repair-select-two.json",
+      "sha256": "164ee7509a7557c8e0b4fde4be06bb982266c1a523d83b98bbecd59d6d6adae8"
+    },
+    {
+      "role": "action",
+      "path": "repair-tab-window.json",
+      "sha256": "522084be8f6780ede089b231141631ee6a3bd50758bcfa57348e62d10c902638"
+    },
+    {
+      "role": "action",
+      "path": "repair-tab.json",
+      "sha256": "6f087bdadc14366d6f1217c4b16392c7cf1bebb05a91c5ca4a1b4ae8e2f2d33d"
+    },
+    {
+      "role": "action",
+      "path": "baseline.json",
+      "sha256": "ba1ab85e956931fbc87ad3adae9a84f923461b5d70c732293bcb336133fd1280"
+    },
+    {
+      "role": "action",
+      "path": "fixture.json",
+      "sha256": "a9986b1113603d05e45d3669a3118224568981c5ba0a69d1fbad30b2fd9c59d5"
+    },
+    {
+      "role": "teardown",
+      "path": "teardown.json",
+      "sha256": "0770574dc0bae1ff9e5e08867279ef54ca03d848f8791168f73e4ed6addb6eab"
+    }
+  ]
+}

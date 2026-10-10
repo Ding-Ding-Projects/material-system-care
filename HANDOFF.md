@@ -4,6 +4,14 @@ This file retains earlier candidate states as historical evidence. A later sourc
 
 本檔案保留早期候選版本作歷史記錄。後來嘅實際驗證只會取代有明確證據嗰部分，未完成清單仍以路線圖為準，唔會將部分檢查當成整套完成。
 
+## Cleanup confirmation acceptance and recovery follow-up
+
+Integrated source `215e6f85dd426e5ef056b896b00f7016cb3b70f9` passed the exact root desktop build and a fresh 800×600 doubled-bilingual run. The cleanup dialog revealed both full selected paths from initial and action-button focus, reversed with Page Up, and cancelled without changing the three original hashes or identities. A fresh complete-path review then moved only the two selected aged files, totaling 96 bytes; the recent file stayed unchanged. Nine inspected frames and 57 supporting hashes passed the local verifier. The receipt-specific recovery entry exposed a separate missing modal paging route, so restoration was cancelled. Both target files remain preserved in recovery. Owned processes and desktop closed. See `docs/verification/cleanup-dialog-repair-observations.json`.
+
+The recovery-only correction is being verified separately. It must retain the exact reviewed receipt and explicit confirmation. No completed minimum-size restoration is claimed yet. The installed extended-capture validator passed its focused positive and negative checks after synchronization; historical evidence retains its own source and bounds.
+
+中文：清理確認修正已喺真正 800×600、雙語兩倍文字通過覆核，兩個完整所選路徑可以由初始及按鈕焦點翻頁到達。取消後三個原始檔案不變；再次完整覆核後，只移動兩個已選舊檔案，共 96 位元組，新檔案不變。復原覆核框另有翻頁缺口，因此已取消復原，兩個檔案仍安全保留喺復原區，該部分正獨立修正。
+
 ## Package dialog runtime repair acceptance
 
 Integrated source `e6bfd4994f00fc4d03875f687c12a2ddd5250d5b` passed real 800×600 doubled-bilingual inspection. Managed discovery returned 45 matches. The selected upgrade dialog scrolled from initial focus and visible Cancel focus, reversed with Page Up, and reached the complete lower bilingual disclosure through repeated Page Down. Escape cancelled the review and returned to the same records. No upgrade was confirmed. Fourteen inspected frames and their supporting receipts passed the narrow verifier, and owned processes and desktop closed. Removal/discovery share the repaired component, but their complete repaired scroll paths were not separately repeated. Normal motion, physical DPI and full accessibility remain open. See `docs/verification/package-dialog-repair-observations.json`.
