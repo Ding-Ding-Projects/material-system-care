@@ -4,33 +4,13 @@
 
 #include "flutter_window.h"
 #include "utils.h"
+#include "squirrel_lifecycle.h"
 
 int APIENTRY wWinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prev,
                       _In_ wchar_t *command_line, _In_ int show_command) {
   auto arguments = GetCommandLineArguments();
-  for (const auto& argument : arguments) {
-    if (argument == "--squirrel-install" || argument == "--squirrel-updated" ||
-        argument == "--squirrel-uninstall" || argument == "--squirrel-obsolete") {
-      if (argument != "--squirrel-obsolete") {
-        wchar_t executable[32768]{};
-        GetModuleFileNameW(nullptr, executable, 32768);
-        std::wstring base(executable);
-        base.resize(base.find_last_of(L"\\/"));
-        base.resize(base.find_last_of(L"\\/"));
-        std::wstring updater = base + L"\\Update.exe";
-        std::wstring command = L"\"" + updater + L"\" " +
-            (argument == "--squirrel-uninstall" ? L"--removeShortcut " : L"--createShortcut ") +
-            L"material_system_care.exe";
-        STARTUPINFOW startup{}; startup.cb = sizeof(startup);
-        PROCESS_INFORMATION process{};
-        if (CreateProcessW(updater.c_str(), command.data(), nullptr, nullptr, FALSE,
-                           CREATE_NO_WINDOW, nullptr, base.c_str(), &startup, &process)) {
-          WaitForSingleObject(process.hProcess, 10000);
-          CloseHandle(process.hThread); CloseHandle(process.hProcess);
-        }
-      }
-      return EXIT_SUCCESS;
-    }
+  if (const auto result = squirrel_lifecycle::Handle(arguments)) {
+    return *result;
   }
   // Attach to console when present (e.g., 'flutter run') or create a
   // new console when running with a debugger.

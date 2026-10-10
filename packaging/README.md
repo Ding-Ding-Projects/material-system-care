@@ -26,3 +26,13 @@ Product branding retains its source at packaging/assets/mark.svg. Run powershell
 No release is published. A disposable operating-system user/VM or documented isolated installation root has not been established. Installation, update, uninstall, complete build-log provenance and signing-process observation remain unverified. Do not redirect `LOCALAPPDATA` to pretend the real per-user Squirrel installation is isolated.
 
 中文：指定來源嘅正式安裝建置入口已完成，套件內容同雜湊已核對，安裝程式未簽署。未建立合適嘅即棄安裝邊界，所以實際安裝、更新、解除安裝仍未驗證，亦未公開發行。
+
+## Lifecycle result handling
+
+The desktop now checks updater launch, wait, and exit results rather than
+reporting every Squirrel lifecycle event as successful. See
+[the lifecycle contract](../docs/features/management/squirrel-lifecycle.md) for
+recognized events, fixed shortcut arguments, path checks, and the ten-second
+wait limit. A timeout reports failure without terminating the updater, which
+may still complete later. Native controlled-child tests do not replace actual
+installation, update, shortcut, and uninstall verification.
