@@ -132,3 +132,11 @@ Read [all articles](https://ding-ding-projects.github.io/material-system-care/#/
 ![Live bilingual gallery](docs/captures/website-gallery-desktop.png)
 
 網站內可直接閱讀完整文章，毋須跳轉至 GitHub 文件。上述驗證涵蓋指定部署及部分畫面，並非整個維護套件已完成。
+
+### Readable bilingual control labels
+
+The current process view keeps both label lines visible at doubled text size. See [the screenshot gallery](SCREENSHOTS.md#enlarged-bilingual-control-labels) for the service and scheduled-task views and the remaining minimum-size verification limits.
+
+目前程序畫面在雙倍文字大小下仍完整顯示雙語標籤；服務及排程工作畫面與尚待驗證的最小視窗限制，請參閱圖庫。
+
+![Process workspace with complete bilingual search label](docs/captures/processes-wrapping-labels.png)

@@ -247,3 +247,5 @@ The fixed Process Manager ledger row asc-toolbox.24 now links the actual desktop
 ## Wrapping Material control labels
 
 Registered wrapping labels now accompany official search and selector controls across record, process, service and scheduled-task views. Seventeen focused checks passed, including the existing title matrix. Root build and new runtime captures remain pending.
+
+The a5aaea8 root desktop and engine builds passed. Three inspected 1280x900 bilingual dark screenshots and their source-bound receipt are recorded in docs/verification/wrapping-labels.json. The 210-file bundle was verified. All three named desktops and bundle processes are absent. Minimum-size lower controls and background scrolling remain unverified.

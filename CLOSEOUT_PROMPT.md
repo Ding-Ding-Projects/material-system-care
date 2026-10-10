@@ -35,3 +35,5 @@ Use the supported persistent Lowlevel hidden route and isolated profiles. Keep t
 ## Current desktop refinement
 
 Separate wrapping Material labels have been added to search fields and the service-state/maximum-record selectors. Seventeen focused tests pass. Build and new source-bound screenshots remain pending. The c434189 Windows build subsequently completed successfully.
+
+The root desktop and engine builds passed at a5aaea8b27946e958d2de49bad06fbbec970a4f0. Three 1280x900 bilingual dark doubled-text captures were inspected. Exact bundle files verified; bundle processes and named hidden desktops are absent. See docs/verification/wrapping-labels.json. Minimum-size lower controls remain unverified because background wheel input did not move the viewport.

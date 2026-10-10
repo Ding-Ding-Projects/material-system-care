@@ -27,3 +27,15 @@ Search controls on record, process, service and scheduled-task workspaces use th
 Thirteen focused checks passed for label geometry at widths 220, 300 and 752 with doubled text, input preservation and the existing three inspection workflows. Four additional component/layout checks passed, including the 240 title combinations. Rebuilt runtime captures of this refinement remain pending.
 
 搜尋及選單標籤會在控制項上方換行，輸入後仍然可見。已通過上述指定測試；這次調整的重新建置畫面仍待驗證，不能當作完整介面認證。
+
+## Enlarged bilingual control labels
+
+The rebuilt service, scheduled-task and process views show complete wrapping search labels at 1280×900, dark theme and text scale 2. Source: a5aaea8b27946e958d2de49bad06fbbec970a4f0. The 800×600 lower controls still need scroll verification. Exact evidence and limitations: [receipt](../../../docs/verification/wrapping-labels.json).
+
+放大雙語標籤已在上述三個畫面核對；最小視窗下方控制項仍待捲動驗證。
+
+![services with complete bilingual labels](../../../docs/captures/services-wrapping-labels.png)
+
+![scheduled-tasks with complete bilingual labels](../../../docs/captures/scheduled-tasks-wrapping-labels.png)
+
+![processes with complete bilingual labels](../../../docs/captures/processes-wrapping-labels.png)

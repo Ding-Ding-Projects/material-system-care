@@ -107,3 +107,6 @@
 - [ ] Verify startup review in the built application; three fixture checks pass and no host entry was changed.
 
 - [ ] Verify rebuilt wrapping search and selector labels; 17 focused widget/component checks pass, runtime captures pending.
+
+- [x] Verify three rebuilt bilingual wrapping-label views at 1280x900, dark theme and doubled text; retain exact captures and bundle evidence.
+- [ ] Verify minimum-size lower controls with a working background scrolling route.

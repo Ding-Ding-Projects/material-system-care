@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "sourceCommit": "a5aaea8b27946e958d2de49bad06fbbec970a4f0",
+  "bundleSha256": "7637b2ffd26d21f373bef58a996bcc6c5f1d7dc636b18ceae822693b27826f5b",
+  "buildReceiptSha256": "75a7bfd902a6e18db590b2cb3e453ab0ed90601ed0f0971c91a6d65ee5318695",
+  "route": "lowlevel-compatibility-http-native-cpp-hidden-desktop-with-identity-checked-resize-and-flutter-painted-export",
+  "state": {
+    "language": "both",
+    "theme": "dark",
+    "textScale": 2,
+    "reducedMotionRequested": true,
+    "idle": true
+  },
+  "captureTimestamp": null,
+  "privacy": {
+    "pixelsReviewed": true,
+    "localRecordsCollected": false,
+    "visibleDesktopUntouched": true
+  },
+  "verification": {
+    "bundleFilesVerified": 210,
+    "bundleProcessesAbsent": true,
+    "namedDesktopsAbsent": true,
+    "focusedTestsPassed": 17
+  },
+  "limitations": [
+    "Not native compositor or physical DPI evidence.",
+    "Background wheel input did not move the minimum-size viewport. Lower controls at 800x600 remain unverified.",
+    "Generic Alt+F4 cleanup did not succeed. Identity-checked WM_CLOSE, bundle-process absence and named-desktop closure were checked separately.",
+    "No exact frame timestamp was emitted.",
+    "Not full Material Design, interaction, accessibility or motion certification."
+  ],
+  "screenshots": [
+    {
+      "screen": "services",
+      "path": "docs/captures/services-wrapping-labels.png",
+      "sha256": "9ecfd8c2f76201d68b63de6d28aa3a7c20785fe737235b9b03087b9dce9bce3e",
+      "width": 1280,
+      "height": 900,
+      "raw": "services/output/frame-001.png",
+      "evidence": {
+        "request.json": "72ff8ca41a5ef24a6fcc9ebc242b7b6715ff3df3b5125eda73d8e95d0432d734",
+        "launch.json": "58430066a22cd5e4f30bfd66649e9341c8c12f78c819be890a39c84c577b1cd8",
+        "window.json": "059df08b0d65f62ee958aa6283841b183ab10cf56c40411089616b61b21a9211",
+        "desktop-close.json": "623609ed0571845900209f022c2cfcd912ffe5fdc93e000b098c51230e80cdb5",
+        "desktop-absence.json": "a8042819e940f4a36dfa8b0cfa36e6a3be0930d494164d8be7680ebfc4889166",
+        "stage.json": "66db8039461005a880d63e2e38e7379f842f50672c5673a5e9b9b722424260e4"
+      }
+    },
+    {
+      "screen": "scheduled-tasks",
+      "path": "docs/captures/scheduled-tasks-wrapping-labels.png",
+      "sha256": "ddf7dbaff4bcacdbace8b5740ab38fd768c7740ff332f6db4644619249c824ab",
+      "width": 1280,
+      "height": 900,
+      "raw": "scheduled-tasks/output/frame.png",
+      "evidence": {
+        "request.json": "96883c7d16f986c37a8160e4386703fdbb9e8a4ab61be16366763431696b4dee",
+        "launch.json": "a1a14cb10b2f41d9b4df10c1d635348b378c844b3f49fa38d9d04aa377814914",
+        "window.json": "0a39a6a55f150da2332bcc678edcbf212d843696af4036561596c1b814b2e377",
+        "desktop-close.json": "9c5be76faf7bdd5a0b7e1f73b3110c6a02ab66a8682dca67f0b6b48eb63de883",
+        "desktop-absence.json": "f255dd38a5310b0efe0878665b52e51eed76df3dc478b82f3b8e9efc73888ceb",
+        "stage.json": "1f440315a873d9c2bc1b95dcda434413747ac55596b7c91ebd0a0e4590be5118"
+      }
+    },
+    {
+      "screen": "processes",
+      "path": "docs/captures/processes-wrapping-labels.png",
+      "sha256": "fde68fbece9a7e94933a5944211329ca83aa168c45e0d609a9854a0845db368a",
+      "width": 1280,
+      "height": 900,
+      "raw": "processes/output/frame.png",
+      "evidence": {
+        "request.json": "9e5292b31222c15e1f3e66702e659054965eb96e1bde97628df670d442e37e82",
+        "launch.json": "4602823ffe3b27f6054492fbf7484feec85c4653f9ce6370ecc6c3a6042fa47a",
+        "window.json": "a1e00a930abd986a58e029ba11e7d44fae915a726fa07d27d9f6e02f57fb1e2c",
+        "desktop-close.json": "84ffc2b6d819f8556853d293a9045843b29fe814c8368b8168afa904fdfeac6c",
+        "desktop-absence.json": "c3d944e65dceae69e98b1eff5c5fefbdd303791ed28d6ed15e6c61b66abe96c9",
+        "stage.json": "69eb391e65783455e03a01d8273cb1769584493b89f34696b6a82f3c783e655a"
+      }
+    }
+  ]
+}

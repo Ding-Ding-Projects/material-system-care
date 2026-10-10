@@ -182,3 +182,15 @@ These are initial viewports, not full workflow verification. Larger text may ext
 
 ![雙語 Services / 服務 dark 800x600 text 2](docs/captures/gallery/services-dark-text2-800x600.png)
 
+
+## Enlarged bilingual control labels
+
+The rebuilt service, scheduled-task and process views show complete wrapping search labels at 1280×900, dark theme and text scale 2. Source: a5aaea8b27946e958d2de49bad06fbbec970a4f0. The 800×600 lower controls still need scroll verification. Exact evidence and limitations: [receipt](docs/verification/wrapping-labels.json).
+
+放大雙語標籤已在上述三個畫面核對；最小視窗下方控制項仍待捲動驗證。
+
+![services with complete bilingual labels](docs/captures/services-wrapping-labels.png)
+
+![scheduled-tasks with complete bilingual labels](docs/captures/scheduled-tasks-wrapping-labels.png)
+
+![processes with complete bilingual labels](docs/captures/processes-wrapping-labels.png)
