@@ -1,5 +1,11 @@
 # Implementation handoff
 
+## Diagnostic paging acceptance
+
+Integrated source `f310e7684c9ebdf621bc656f2f98bfa3a47c12bc` passed the root desktop build and a fresh 800×600 doubled-bilingual run. Fifteen consecutive Page Down inputs moved from the original selector through the final event rows without another Tab. Six representative frames were inspected and passed the narrow source/bundle/two-hook verifier. All twenty originals remain private. The capture cap prevented a further minimum-size dump-section or reverse-paging frame, so those claims remain pending. All owned bundle executables were absent and the hidden desktop closed.
+
+The current verified public delivery is `0ac670c6ecaf75f6080472a31443e32226ed191b`, run `38085439011`: 177 complete articles and 740 matching files. One transport failure cleared on a focused successful hash-matching retry. Public visibility, workflow deployment and exact About homepage were read back. This later diagnostic source still needs its own delivery verification.
+
 ## Diagnostic period evidence and paging candidate
 
 The rebuilt source `6d3695e738b0902390e473f6aaf1fb153c30f106` completed explicit seven-day collection at 1280×1000 in bilingual dark mode. The period popup, selected value, completed timestamp and time-meaning text were inspected. Keyboard traversal reached the dump section, which explicitly reported no accessible files and an account-access limitation without requesting elevation. Fourteen frames pass the narrow source/bundle/two-hook verifier; the raw event frames remain private. See `docs/verification/diagnostic-period-frames.json` and `diagnostic-period-observations.json`.
