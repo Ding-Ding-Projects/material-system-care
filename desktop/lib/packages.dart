@@ -213,37 +213,17 @@ class _PackagesPageState extends State<PackagesPage> {
       context: context,
       builder: (dialog) => CopyScope(
         preferences: CopyScope.of(context),
-        child: AlertDialog(
-          title: UiText(title),
-          content: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: content,
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(dialog, false),
-              child: const UiText('Cancel'),
-            ),
-            FilledButton(
-              onPressed: () => Navigator.pop(dialog, true),
-              child: const UiText('Confirm selected action'),
-            ),
-          ],
-        ),
+        child: _PackageReviewDialog(title: title, content: content),
       ),
     );
     if (!mounted) return false;
     setState(() => reviewing = false);
-    if (result != true) {
-      if (previousFocus?.context != null && previousFocus!.canRequestFocus) {
-        previousFocus.requestFocus();
-      } else {
-        _resultsFocus.requestFocus();
-      }
+    if (previousFocus?.context != null && previousFocus!.canRequestFocus) {
+      previousFocus.requestFocus();
+    } else {
+      _resultsFocus.requestFocus();
     }
+    FocusManager.instance.applyFocusChangesIfNeeded();
     return result == true;
   }
 
@@ -596,4 +576,83 @@ class _PackagesPageState extends State<PackagesPage> {
       ),
     );
   }
+}
+
+class _PackageReviewDialog extends StatefulWidget {
+  const _PackageReviewDialog({required this.title, required this.content});
+  final String title;
+  final List<Widget> content;
+  @override
+  State<_PackageReviewDialog> createState() => _PackageReviewDialogState();
+}
+
+class _PackageReviewDialogState extends State<_PackageReviewDialog> {
+  final _scroll = ScrollController();
+  final _focus = FocusNode(debugLabel: 'Package review paging');
+  @override
+  void dispose() {
+    _scroll.dispose();
+    _focus.dispose();
+    super.dispose();
+  }
+
+  KeyEventResult _page(FocusNode node, KeyEvent event) {
+    if ((event is! KeyDownEvent && event is! KeyRepeatEvent) ||
+        !_scroll.hasClients ||
+        FocusManager.instance.primaryFocus?.context
+                ?.findAncestorWidgetOfExactType<EditableText>() !=
+            null) {
+      return KeyEventResult.ignored;
+    }
+    final key = event.logicalKey;
+    if (key != LogicalKeyboardKey.pageDown &&
+        key != LogicalKeyboardKey.pageUp) {
+      return KeyEventResult.ignored;
+    }
+    final position = _scroll.position;
+    final target =
+        (position.pixels +
+                position.viewportDimension *
+                    (key == LogicalKeyboardKey.pageDown ? .8 : -.8))
+            .clamp(position.minScrollExtent, position.maxScrollExtent);
+    _focus.requestFocus();
+    if (MediaQuery.disableAnimationsOf(context)) {
+      _scroll.jumpTo(target);
+    } else {
+      _scroll.animateTo(
+        target,
+        duration: const Duration(milliseconds: 200),
+        curve: Curves.easeOutCubic,
+      );
+    }
+    return KeyEventResult.handled;
+  }
+
+  @override
+  Widget build(BuildContext context) => Focus(
+    focusNode: _focus,
+    autofocus: true,
+    onKeyEvent: _page,
+    child: AlertDialog(
+      title: UiText(widget.title),
+      content: SingleChildScrollView(
+        controller: _scroll,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: widget.content,
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context, false),
+          child: const UiText('Cancel'),
+        ),
+        FilledButton(
+          onPressed: () => Navigator.pop(context, true),
+          child: const UiText('Confirm selected action'),
+        ),
+      ],
+    ),
+  );
 }

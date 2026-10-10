@@ -4,6 +4,12 @@ This file retains earlier candidate states as historical evidence. A later sourc
 
 本檔案保留早期候選版本作歷史記錄。後來嘅實際驗證只會取代有明確證據嗰部分，未完成清單仍以路線圖為準，唔會將部分檢查當成整套完成。
 
+## Package review keyboard repair
+
+Candidate `5d75bef27701f6c6339a96eea6b99de1e99c12f6` gives review dialogs an owned scroll controller and focus route. Page Up/Down from initial or action focus scrolls disclosure content, while editable text retains its normal key behavior. Both dialog outcomes preserve usable focus. The original 800×600 doubled-bilingual regression was observed failing before repair; 23 focused checks and the exact candidate root desktop build passed afterward. Two independent source reviews found no remaining concrete defect. Integrated build and real hidden-input acceptance remain pending; no package mutation is claimed.
+
+中文：套件確認對話框已加入獨立捲動及鍵盤焦點處理。原有細尺寸測試先確認失敗，修正後 23 項限定檢查及候選建置通過。實際整合版本仍須再操作驗證。
+
 ## Managed-package review and latest delivery
 
 Retained source `83f6503d88f31fce43bdbc25477599bd3989839c` completed real managed-package discovery at normal and 800×600 doubled-bilingual viewports. Both returned 45 matches. The network disclosure, exact-ID upgrade/removal reviews and cancellation were inspected; no package mutation was confirmed. Changing the source cleared the old records. The minimum modal had a confirmed keyboard gap: its lower disclosure was outside the viewport and Page Down did not move it from initial, button or selected-text focus. Repair and fresh acceptance remain pending. Twenty-seven selected frames and thirty-three supporting hashes passed the narrow verifier; both owned process sets and desktops closed. Populated host records stay private. See `docs/verification/managed-package-observations.json`.
