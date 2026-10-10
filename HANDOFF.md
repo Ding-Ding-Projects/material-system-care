@@ -1,5 +1,9 @@
 # Implementation handoff
 
+## Latest delivery proof
+
+Service guide deployment 38018555585 for 5a19aee6cc273b8f38709783065ff9887327479f succeeded. Live home, assets/index-B8qLqhmk.js, services-idle.png and coverage.json returned HTTP 200 and matched local build bytes. Repository visibility remains PUBLIC, About homepage is exactly https://ding-ding-projects.github.io/material-system-care/, and Pages uses workflow deployment from main. See docs/verification/service-guide-delivery.json. Hosted Windows runs for 74b1f41, 5a19aee, 5921f90 and a36af04 were still running at the last observation; do not infer their outcome from local builds. The earlier dc706dc run 38018347345 succeeded.
+
 ## Capture tuple preparation
 
 Bounded isolated language, theme, text-scale and reduced-motion controls are implemented. Invalid/repeated/unknown values disable export while preserving isolation. Normal launches do not apply these overrides or change personal settings. Seven focused checks passed including service regressions. The invalid-request isolation regression rejected the previous behavior, then passed after restoration. Root engine and desktop builds passed at 5921f9005cc878ff6ef5753d71b27f8d748f0578. An actual isolated service view in Cantonese, dark theme, text scale 2 and requested reduced motion was inspected at 1264x681. All idle explanatory text and controls fit that viewport. Its receipt verified 210 bundle files; owned processes were absent and the hidden desktop closed. This is one painted idle tuple, not physical DPI, keyboard or motion-transition proof. See docs/captures/services-yue-dark-text2.json. Text-scale evidence is distinct from physical DPI. See docs/features/management/capture-tuples.md.

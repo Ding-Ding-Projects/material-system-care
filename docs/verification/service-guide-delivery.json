@@ -1,0 +1,37 @@
+{
+  "source": "5a19aee6cc273b8f38709783065ff9887327479f",
+  "observedAt": "2026-10-10T02:54:45.308Z",
+  "files": [
+    {
+      "path": "index.html",
+      "status": 200,
+      "sha256": "07029092df9e12c4e26fe7a9aacb63c1b9141e43a2559400011fca2e61979164",
+      "matches": true
+    },
+    {
+      "path": "assets/index-B8qLqhmk.js",
+      "status": 200,
+      "sha256": "df4da0899b9ac74f28b0267381a9c69a06c218007e32b814cb5e77f52ce3f058",
+      "matches": true
+    },
+    {
+      "path": "services-idle.png",
+      "status": 200,
+      "sha256": "d5357efae3bf04479012b351d444b4fcf7a73963028d377656dbad61009dd8bd",
+      "matches": true
+    },
+    {
+      "path": "coverage.json",
+      "status": 200,
+      "sha256": "e6b182b50fcffab91b8f4d0fd04de79c454a2d6b043782afdf470f679cf0dae4",
+      "matches": true
+    }
+  ],
+  "homepage": "https://ding-ding-projects.github.io/material-system-care/",
+  "workflowRun": 38018555585,
+  "visibility": "PUBLIC",
+  "deploymentSource": {
+    "branch": "main",
+    "buildType": "workflow"
+  }
+}
