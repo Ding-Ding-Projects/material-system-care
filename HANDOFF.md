@@ -1,5 +1,9 @@
 # Implementation handoff
 
+## Application workspace candidate
+
+The Apps destination now uses dedicated typed cards for read-only installed records and exact WinGet matches. Discovery and package actions have separate reviews. Results require matching identity, consistent completion/exit code and no restart before reporting completion. Valid unavailable causes remain visible; malformed or failed refresh clears stale actions. Ten focused checks passed, as did 336 title-layout tuples. Removing the identity correlation made the focused negative regression fail. The real build and package workspace interaction remain pending. No user package was upgraded or removed.
+
 ## Verified startup minimum-size feedback
 
 The exact root desktop build passed at `549ea20ebaccee35b7ee1334d8b27dd28807aa03`. A fresh hidden run at 800×600, bilingual dark theme, text scale 2 and reduced motion verified the real review dialog and corrected English/Cantonese stale feedback. Page Down reached the lower controls and Page Up brought the complete feedback into view. The stale review preserved the changed disposable Run value and created no journal. The fixture entry was removed afterward, all owned bundle processes were absent and the hidden desktop closed. See `docs/verification/startup-minimum.json` and `scripts/verify-startup-minimum.mjs`.

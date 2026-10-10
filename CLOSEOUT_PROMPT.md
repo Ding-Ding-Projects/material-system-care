@@ -1,5 +1,7 @@
 # Resume Material System Care
 
+Latest source candidate: a dedicated Apps workspace replaces generic inventory rendering with typed installed-record and WinGet cards. Ten focused checks and 336 title tuples passed, plus an intentional identity-validation negative regression. Explicit discovery and per-package reviews remain independent. Valid unavailable causes stay visible; stale actions clear after failed refresh. Its real build and runtime are pending. No installed package was changed. The capture-diagnostics candidate is preserved separately at c4a97a15d24fb50dea014d33f965f083765bbfd1, with eleven focused checks and exact root native/desktop builds passed. Integrate and verify the combined source next.
+
 Continue the independent Windows 11 x64 suite in Ding-Ding-Projects/material-system-care. The full goal is active with no explicit budget. Flutter/Dart, C#/.NET 10, narrow C++20 and SQLite remain the selected stack. Preserve all 295 capability requirements and the exclusions for kernel drivers, proprietary engines, other operating systems and remote-device administration.
 
 ## Latest completed unit

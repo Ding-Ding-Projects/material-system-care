@@ -38,4 +38,3 @@ The exact root desktop build passed at `549ea20ebaccee35b7ee1334d8b27dd28807aa03
 The earlier 1280×1000 run at `bab873cb655848ad8d4e13081ff8fd5ea46d50f8` independently verified cancellation, stale rejection, fresh disable and exact command/type restoration. Its historical missing-translation observation is retained, and this newer run verifies the correction. New frames remain private because native/framework diagnostic collection is not yet implemented. Full accessibility, motion, theme, scale and physical-DPI coverage remain incomplete.
 
 中文：800×600、雙語深色及兩倍文字嘅實際覆核按鈕可見；資料過期時保留已變更項目，冇建立復原記錄。Page Up 可讀到完整中英文提示。即棄項目已移除，專用程序及隱藏桌面已關閉。新畫面仍未公開，完整外觀及無障礙驗證仍待完成。
-

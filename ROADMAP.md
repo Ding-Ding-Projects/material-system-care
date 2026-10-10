@@ -138,3 +138,9 @@
 - [x] Verify the core disposable-entry GUI round trip at 1280×1000, including cancelled review, stale rejection and exact command/type restoration.
 - [x] Rebuild and capture the corrected Cantonese stale-feedback state and minimum-size interaction at 800×600, bilingual dark and text scale 2.
 - [ ] Complete all startup themes, scales, focus paths, accessibility and motion-state verification.
+
+## Dedicated application inventory
+
+- [ ] Build and verify the new typed installed-application and WinGet cards in the real desktop. Source and ten focused checks are complete; a 336-tuple title suite passed.
+- [ ] Verify real disclosed discovery, filtering, review cancellation, minimum-size interaction and owned teardown.
+- [ ] Verify package mutation against an owned disposable package; installed user packages are excluded from runtime verification.

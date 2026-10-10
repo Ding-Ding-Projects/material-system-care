@@ -12,6 +12,52 @@ class CopyScope extends InheritedWidget {
 }
 
 const translations = <String, String>{
+  'WinGet is not installed for the current user.': '目前使用者未安裝 WinGet。',
+  'WinGet discovery did not complete. Check its installation, source availability and previously accepted source agreements. No source configuration was changed.':
+      'WinGet 探索未完成。請檢查安裝、來源可用性及之前接受嘅來源協議，沒有更改來源設定。',
+  'Unavailable': '無法提供',
+  'Review installed applications': '檢視已安裝應用程式',
+  'General inventory is read-only. Exact WinGet matches provide separately reviewed package actions.':
+      '一般清單只供檢視。確實配對嘅 WinGet 套件先有獨立覆核操作。',
+  'Inventory source': '清單來源',
+  'Installed applications': '已安裝應用程式',
+  'WinGet matches': 'WinGet 配對項目',
+  'Filter application records': '篩選應用程式記錄',
+  'Application records refreshed.': '已重新讀取應用程式記錄。',
+  'Application records are unavailable or invalid. No package change was requested.':
+      '無法取得應用程式記錄或資料無效，未要求變更任何套件。',
+  'Select an inventory source and refresh to begin. No package changes occur during discovery.':
+      '選擇清單來源並重新讀取。探索期間不會變更套件。',
+  'Some inventory sources could not be read. Displayed records are incomplete.':
+      '部分清單來源無法讀取，顯示嘅記錄並不完整。',
+  'Only installed WinGet matches are listed. Available update versions have not been checked.':
+      '只列出已安裝並經 WinGet 配對嘅項目，未檢查可用更新版本。',
+  'No application records match the current filter.': '沒有應用程式記錄符合目前篩選條件。',
+  'Installed version': '已安裝版本',
+  'Publisher': '發行者',
+  'Matched by WinGet': '由 WinGet 配對',
+  'Current-user packaged application': '目前使用者嘅封裝應用程式',
+  'Installed application registry': '已安裝應用程式登錄記錄',
+  'Current user': '目前使用者',
+  'All users': '所有使用者',
+  'Read-only record. Use a verified WinGet match for package actions.':
+      '此記錄只供檢視。套件操作需要已驗證嘅 WinGet 配對。',
+  'Review upgrade': '覆核升級',
+  'Review uninstall': '覆核移除',
+  'Review package upgrade': '覆核套件升級',
+  'Review package removal': '覆核套件移除',
+  'WinGet will check whether this exact package can be upgraded. No newer version has been confirmed.':
+      'WinGet 會檢查此確實套件能否升級，目前未確認有較新版本。',
+  'WinGet will request removal of this exact package. This workspace does not create a rollback copy.':
+      'WinGet 會要求移除此確實套件，此工作區不會建立復原副本。',
+  'WinGet may contact its source and request system consent. The installed version can change after this review. No other package is selected.':
+      'WinGet 可能連接來源並要求系統授權。已安裝版本可能在覆核後改變，沒有選取其他套件。',
+  'Selected package operation completed and records refreshed.':
+      '所選套件操作已完成，並已重新讀取記錄。',
+  'The package operation completed, but refreshed records are unavailable.':
+      '套件操作已完成，但無法取得更新後嘅記錄。',
+  'Package completion was not confirmed. Review refreshed records before trying again.':
+      '未能確認套件操作完成，重試前請檢視更新後嘅記錄。',
   'The startup record changed. Records were refreshed where available. Review the selected action again.':
       '啟動記錄已變更，已盡量重新讀取可用記錄。請再次覆核所選操作。',
   'Review sign-in entries': '檢視登入啟動項目',
