@@ -9,6 +9,7 @@ import 'storage_analysis.dart';
 import 'duplicate_analysis.dart';
 import 'system_overview.dart';
 import 'protection_status.dart';
+import 'driver_inventory.dart';
 import 'labeled_controls.dart';
 import 'notifications.dart';
 import 'provenance.dart';
@@ -47,6 +48,7 @@ void main(List<String> arguments) {
   final duplicateAnalysis = arguments.contains('--duplicate-analysis');
   final systemOverview = arguments.contains('--system-overview');
   final protectionStatus = arguments.contains('--protection-status');
+  final driverInventory = arguments.contains('--driver-inventory');
   // Capture mode is explicit, starts at the selected real workspace, and
   // excludes persisted personal settings. It never injects diagnostic results.
   final exporting =
@@ -62,6 +64,7 @@ void main(List<String> arguments) {
             duplicateAnalysis,
             systemOverview,
             protectionStatus,
+            driverInventory,
             cleanupFixtureMode,
           ].where((selected) => selected).length ==
           1 &&
@@ -80,6 +83,7 @@ void main(List<String> arguments) {
     startDuplicateAnalysis: duplicateAnalysis,
     startSystemOverview: systemOverview,
     startProtectionStatus: protectionStatus,
+    startDriverInventory: driverInventory,
     isolatedCapture: captureRequested || cleanupFixtureMode,
     capturePreferences: exporting ? capturePreferences! : const {},
   );
@@ -154,6 +158,7 @@ class CareApp extends StatefulWidget {
     this.startDuplicateAnalysis = false,
     this.startSystemOverview = false,
     this.startProtectionStatus = false,
+    this.startDriverInventory = false,
     this.isolatedCapture = false,
     this.capturePreferences = const {},
   });
@@ -170,6 +175,7 @@ class CareApp extends StatefulWidget {
   final bool startDuplicateAnalysis;
   final bool startSystemOverview;
   final bool startProtectionStatus;
+  final bool startDriverInventory;
   final bool isolatedCapture;
   final Map<String, dynamic> capturePreferences;
   @override
@@ -287,6 +293,8 @@ class _CareAppState extends State<CareApp> {
                   ),
                 ),
               )
+            : widget.startDriverInventory
+            ? DriverInventoryPage(invoke: Engine.invoke)
             : widget.startProtectionStatus
             ? ProtectionStatusPage(invoke: Engine.invoke)
             : widget.startSystemOverview
@@ -448,6 +456,8 @@ class _WorkspaceState extends State<Workspace> {
                       ? StartupPage(invoke: Engine.invoke)
                       : selected == 2
                       ? PackagesPage(invoke: Engine.invoke)
+                      : selected == 5
+                      ? DriverInventoryPage(invoke: Engine.invoke)
                       : selected == 0
                       ? SystemOverviewPage(invoke: Engine.invoke)
                       : WorkflowPage(index: selected, title: name(selected)),

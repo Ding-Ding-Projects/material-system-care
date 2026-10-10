@@ -12,6 +12,25 @@ class CopyScope extends InheritedWidget {
 }
 
 const translations = <String, String>{
+  "Reported signer": "回報簽署者",
+  "Reported version": "回報版本",
+  "Device class": "裝置類別",
+  "Original file name": "原始檔案名稱",
+  "Published package name": "發佈套件名稱",
+  "No third-party driver-store packages were reported.": "未有回報第三方驅動程式套件。",
+  "No online catalogue is available. Inbox drivers and device health are not covered by this inventory.":
+      "未有網上目錄。呢份清單唔涵蓋系統內置驅動程式同裝置健康狀態。",
+  "Signer metadata is reported by Windows. It is not an independent signature verification, compatibility check or update recommendation.":
+      "簽署者資料由 Windows 回報，唔代表獨立簽章驗證、相容性檢查或更新建議。",
+  "Receipt time is not a driver measurement or installation time. Collect again for a new inventory.":
+      "接收時間唔係驅動程式嘅量度或安裝時間。請重新收集以取得新清單。",
+  "Packages reported": "回報套件數量",
+  "Driver inventory is unavailable or invalid. Collect again to retry.":
+      "驅動程式清單無法提供或無效。請重新收集再試。",
+  "Collect driver inventory": "收集驅動程式清單",
+  "Review installed third-party driver-store packages. Collection does not install, export, update or remove drivers.":
+      "檢視已安裝嘅第三方驅動程式套件。收集資料唔會安裝、匯出、更新或移除驅動程式。",
+  "Driver store review": "驅動程式存放區檢視",
   'Protection status': '防護狀態',
   'Read Microsoft Defender and firewall status without changing settings or starting scans.':
       '讀取 Microsoft Defender 同防火牆狀態，唔會更改設定或開始掃描。',
