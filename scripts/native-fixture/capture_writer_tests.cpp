@@ -37,6 +37,7 @@ void CaptureWriterChecks() {
     Check(receipt.find("86a2c26bb72fa1a99e131ac0107561ffaf3984865927d1489a8c5acaf8eef873")!=std::string::npos,"PNG hash mismatch");
     for(const auto* field:{"\"schemaVersion\":1","\"captureMethod\":\"flutter-repaint-boundary\"","\"sequence\":0","\"width\":1","\"height\":1","\"pixelRatio\":1","\"pngBytes\":68","\"writeElapsedMicroseconds\":"}) Check(receipt.find(field)!=std::string::npos,"Missing capture receipt field");
     Check(receipt.find(request.path)==std::string::npos && receipt.find("frame.png")==std::string::npos,"Receipt contains a path");
+    Check(receipt.find("\"diagnosticStatus\":\"legacy-unverified\",\"diagnostics\":null")!=std::string::npos,"Missing diagnostics became a zero count");
     result=capture_writer::Write(request,[]{return false;}); Check(!result.error.empty() && Read(root/"frame.png")==bytes && Read(root/"frame.png.json")==receipt,"Existing pair overwritten");
     request.path=(root/"dimension.png").string(); request.width=2;
     Check(!capture_writer::Write(request,[]{return false;}).error.empty() && !std::filesystem::exists(request.path),"Dimension mismatch accepted"); request.width=1;
@@ -52,6 +53,26 @@ void CaptureWriterChecks() {
     result=capture_writer::Write(request,[]{return false;}); Check(result.png_saved && !result.receipt_saved && result.error.find("receipt is incomplete")!=std::string::npos && Read(request.path+".json")=="keep","Receipt collision did not retain PNG and original sidecar");
     request.path=(root/"cancelled.png").string(); result=capture_writer::Write(request,[]{return true;}); Check(!result.png_saved && !std::filesystem::exists(request.path),"Early cancellation created a PNG");
     unsigned calls=0; result=capture_writer::Write(request,[&]{return ++calls>=3;}); Check(result.png_saved && !result.receipt_saved && !std::filesystem::exists(request.path+".json"),"Late cancellation was not reported as an incomplete receipt");
+    request.path=(root/"diagnostic.png").string();
+    request.diagnostics=capture_writer::Diagnostics{1,0,"flutter-framework,platform-dispatcher",valid,request.capture_completed_utc,1,0,0,true};
+    result=capture_writer::Write(request,[]{return false;});
+    Check(result.receipt_saved && Read(request.path+".json").find("\"frameworkErrorCount\":1")!=std::string::npos,"Observed diagnostic count was not paired");
+    request.path=(root/"invalid-diagnostic.png").string();
+    auto& diagnostic=*request.diagnostics;
+    diagnostic.sequence=1;
+    Check(!capture_writer::Write(request,[]{return false;}).png_saved,"Diagnostic sequence mismatch accepted"); diagnostic.sequence=0;
+    diagnostic.healthy=false;
+    Check(!capture_writer::Write(request,[]{return false;}).png_saved,"Missing diagnostic hook accepted"); diagnostic.healthy=true;
+    diagnostic.dropped=1;
+    Check(!capture_writer::Write(request,[]{return false;}).png_saved,"Dropped diagnostics accepted"); diagnostic.dropped=0;
+    diagnostic.framework_errors=1001;
+    Check(!capture_writer::Write(request,[]{return false;}).png_saved,"Unbounded diagnostic count accepted"); diagnostic.framework_errors=1;
+    diagnostic.completed_utc=valid;
+    Check(!capture_writer::Write(request,[]{return false;}).png_saved,"Diagnostic interval mismatch accepted"); diagnostic.completed_utc=request.capture_completed_utc;
+    diagnostic.started_utc="invalid";
+    Check(!capture_writer::Write(request,[]{return false;}).png_saved,"Malformed diagnostic time accepted"); diagnostic.started_utc=valid;
+    diagnostic.coverage="console";
+    Check(!capture_writer::Write(request,[]{return false;}).png_saved,"Invented diagnostic coverage accepted");
   } catch(...) { if(root.parent_path()==parent && root.filename().wstring().starts_with(L"MaterialSystemCare-capture-")) std::filesystem::remove_all(root); throw; }
   Check(root.parent_path()==parent && root.filename().wstring().starts_with(L"MaterialSystemCare-capture-"),"Capture cleanup scope changed"); std::filesystem::remove_all(root);
   std::cout<<"Capture writer: "<<assertions<<" assertions passed"<<std::endl;

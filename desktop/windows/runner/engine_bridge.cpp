@@ -23,7 +23,18 @@ capture_writer::Result WriteCapture(const flutter::EncodableValue* arguments, co
  const auto* bytesValue=value("bytes"); const auto* bytes=bytesValue?std::get_if<std::vector<uint8_t>>(bytesValue):nullptr;
  const auto* ratioValue=value("pixelRatio"); const auto* ratio=ratioValue?std::get_if<double>(ratioValue):nullptr;
  if(!path || !started || !completed || !bytes || !ratio) return {false,false,"Invalid capture metadata"};
- capture_writer::Request request{*path,*bytes,*started,*completed,number("captureElapsedMicroseconds"),number("sequence"),number("width"),number("height"),*ratio};
+ capture_writer::Request request{*path,*bytes,*started,*completed,number("captureElapsedMicroseconds"),number("sequence"),number("width"),number("height"),*ratio,{}};
+ if(const auto* supplied=value("diagnostics")) {
+   const auto* metadata=std::get_if<flutter::EncodableMap>(supplied);
+   if(!metadata) return {false,false,"Invalid capture diagnostics"};
+   auto field=[&](const char* key)->const flutter::EncodableValue* { auto found=metadata->find(flutter::EncodableValue(key)); return found==metadata->end()?nullptr:&found->second; };
+   auto integer=[&](const char* key)->int64_t { auto item=field(key); if(item) { if(auto n=std::get_if<int32_t>(item)) return *n; if(auto n=std::get_if<int64_t>(item)) return *n; } return -1; };
+   auto string=[&](const char* key)->const std::string* { auto item=field(key); return item?std::get_if<std::string>(item):nullptr; };
+   const auto* coverage=string("coverage"); const auto* from=string("startedUtc"); const auto* through=string("completedUtc");
+   const auto* health=field("healthy"); const auto* healthy=health?std::get_if<bool>(health):nullptr;
+   if(!coverage || !from || !through || !healthy) return {false,false,"Invalid capture diagnostics"};
+   request.diagnostics=capture_writer::Diagnostics{integer("schemaVersion"),integer("sequence"),*coverage,*from,*through,integer("frameworkErrorCount"),integer("platformErrorCount"),integer("droppedCount"),*healthy};
+ }
  return capture_writer::Write(request,cancelled);
 }
 std::string Quote(const std::string& text) {

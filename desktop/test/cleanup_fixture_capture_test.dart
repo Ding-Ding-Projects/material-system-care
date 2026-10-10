@@ -27,6 +27,8 @@ void main() {
     expect(find.byType(FrameCapture), findsOneWidget);
     final capture = tester.widget<FrameCapture>(find.byType(FrameCapture));
     expect(capture.output, 'C:/unused-fixture.png');
+    expect(capture.diagnostics, isNotNull);
+    expect(capture.diagnostics!.snapshot(0, DateTime.now())['healthy'], isTrue);
     final app = tester.widget<entry.CareApp>(find.byType(entry.CareApp));
     expect(app.cleanupFixture, isTrue);
     expect(app.isolatedCapture, isTrue);
@@ -41,14 +43,17 @@ void main() {
     );
     expect(find.byType(NavigationRail), findsNothing);
     await tester.pumpWidget(const SizedBox());
+    expect(capture.diagnostics!.snapshot(0, DateTime.now())['healthy'], isFalse);
   });
 
   testWidgets(
     'fixture and another destination do not export or apply overrides',
     (tester) async {
+      final originalHandler = FlutterError.onError;
       entry.main([...arguments, '--services']);
       await tester.pump();
       expect(find.byType(FrameCapture), findsNothing);
+      expect(FlutterError.onError, same(originalHandler));
       final app = tester.widget<entry.CareApp>(find.byType(entry.CareApp));
       expect(app.cleanupFixture, isTrue);
       expect(app.isolatedCapture, isTrue);

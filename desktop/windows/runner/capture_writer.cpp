@@ -65,6 +65,19 @@ Result Write(const Request& request,const std::function<bool()>& cancelled) {
   if(request.width<1 || request.width>32768 || request.height<1 || request.height>32768 || request.width*request.height>100000000 || BigEndian(bytes,16)!=request.width || BigEndian(bytes,20)!=request.height || request.pixel_ratio!=1 || request.sequence<0 || request.sequence>=20) return fail("Capture dimensions, ratio or sequence are invalid");
   uint64_t started=0,completed=0;
   if(!ParseUtc(request.capture_started_utc,started) || !ParseUtc(request.capture_completed_utc,completed) || completed<started || request.capture_elapsed_microseconds<0 || request.capture_elapsed_microseconds>600000000 || completed-started>6000000000ULL) return fail("Capture timestamps or elapsed duration are invalid");
+  if(request.diagnostics) {
+    const auto& d=*request.diagnostics;
+    uint64_t from=0,through=0;
+    if(d.schema_version!=1 || d.sequence!=request.sequence || !d.healthy ||
+       d.coverage!="flutter-framework,platform-dispatcher" ||
+       d.framework_errors<0 || d.platform_errors<0 || d.dropped!=0 ||
+       d.framework_errors>1000 || d.platform_errors>1000 ||
+       d.framework_errors+d.platform_errors>1000 ||
+       !ParseUtc(d.started_utc,from) || !ParseUtc(d.completed_utc,through) ||
+       from>started || through!=completed || through<from ||
+       through-from>864000000000ULL)
+      return fail("Capture diagnostics are unhealthy, invalid or mismatched");
+  }
   int count=MultiByteToWideChar(CP_UTF8,MB_ERR_INVALID_CHARS,path.data(),static_cast<int>(path.size()),nullptr,0);
   if(count<=0) return fail("Invalid capture path");
   std::wstring wide(count,0); MultiByteToWideChar(CP_UTF8,MB_ERR_INVALID_CHARS,path.data(),static_cast<int>(path.size()),wide.data(),count);
@@ -89,7 +102,16 @@ Result Write(const Request& request,const std::function<bool()>& cancelled) {
   if(cancelled()) return fail("PNG saved but receipt is incomplete: capture cancelled");
   std::ostringstream json;
   json<<"{\"schemaVersion\":1,\"captureMethod\":\"flutter-repaint-boundary\",\"captureStartedUtc\":\""<<request.capture_started_utc<<"\",\"captureCompletedUtc\":\""<<request.capture_completed_utc<<"\",\"captureElapsedMicroseconds\":"<<request.capture_elapsed_microseconds<<",\"writeStartedUtc\":\""<<Utc(writeStarted)<<"\",\"writeCompletedUtc\":\""<<Utc(writeCompleted)<<"\",\"writeElapsedMicroseconds\":"<<elapsed<<",\"sequence\":"<<request.sequence<<",\"width\":"<<request.width<<",\"height\":"<<request.height<<",\"pixelRatio\":1,\"pngBytes\":"<<bytes.size()<<",\"pngSha256\":\""<<digest<<"\"}\n";
-  const auto text=json.str();
+  auto text=json.str();
+  text.resize(text.size()-2);
+  if(request.diagnostics) {
+    const auto& d=*request.diagnostics;
+    std::ostringstream metadata;
+    metadata<<",\"diagnosticStatus\":\"observed\",\"diagnostics\":{\"schemaVersion\":1,\"coverage\":\"flutter-framework,platform-dispatcher\",\"startedUtc\":\""<<d.started_utc<<"\",\"completedUtc\":\""<<d.completed_utc<<"\",\"sequence\":"<<d.sequence<<",\"frameworkErrorCount\":"<<d.framework_errors<<",\"platformErrorCount\":"<<d.platform_errors<<",\"droppedCount\":0,\"healthy\":true}}\n";
+    text+=metadata.str();
+  } else {
+    text+=",\"diagnosticStatus\":\"legacy-unverified\",\"diagnostics\":null}\n";
+  }
   Handle receipt; receipt.value=CreateFileW((wide+L".json").c_str(),GENERIC_WRITE,0,nullptr,CREATE_NEW,FILE_ATTRIBUTE_NORMAL,nullptr);
   if(receipt.value==INVALID_HANDLE_VALUE || !Save(receipt.value,reinterpret_cast<const uint8_t*>(text.data()),static_cast<DWORD>(text.size()))) return fail("PNG saved but receipt is incomplete: the sidecar could not be exclusively written and flushed");
   result.receipt_saved=true; return result;
