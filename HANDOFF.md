@@ -2,7 +2,7 @@
 
 ## Read-only scan cancellation
 
-Read-only folder analysis, duplicate discovery and temporary-file scans now expose a request-specific Cancel scan control. The spinner remains until the original desktop request finishes; a result that wins the race remains successful. Cancellation ends the desktop wait and asks the engine to stop, but is not an acknowledgement that all engine reads have already stopped. Leaving the workspace also requests cancellation of its active read. Mutation workflows do not receive this control. Three focused Flutter checks passed, including cancellation and completion races, selected cleanup and recovery review. Native compilation and built cancellation interaction remain pending.
+Read-only folder analysis, duplicate discovery and temporary-file scans now expose a request-specific Cancel scan control. The spinner remains until the original desktop request finishes; a result that wins the race remains successful. Cancellation ends the desktop wait and asks the engine to stop, but is not an acknowledgement that all engine reads have already stopped. Leaving the workspace also requests cancellation of its active read. Mutation workflows do not receive this control. Three focused Flutter checks passed, including cancellation and completion races, selected cleanup and recovery review. The root desktop build passed at 7fccbd4a8354a09ee3c32ca98aa88b64b362c4b7. Built cancellation interaction remains pending.
 
 ## Recovery file review
 
