@@ -32,3 +32,5 @@ The read-only inventory schema was inspected on the development host, confirming
 - [Defender command line](https://learn.microsoft.com/en-us/defender-endpoint/command-line-arguments-microsoft-defender-antivirus)
 
 These local IPC methods do not expose an HTTP API. A Postman collection is not applicable.
+
+- [File-use inspection](file-use.md): explicit read-only Restart Manager workspace and advisory results.

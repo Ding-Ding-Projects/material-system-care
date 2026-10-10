@@ -55,3 +55,7 @@ Settings and history use SQLite below the user's local application data. Private
 ## Desktop request cancellation
 
 The Flutter method channel accepts an explicit request `id` for invocation and a `cancel` call containing that same string. Only `storage.analyze`, `storage.duplicates` and `cleanup.scan` currently expose cancellation in the workspace. Native transport cancellation reports `ENGINE_CANCELLED`; engine envelopes use `CANCELLED`. Neither transport termination nor acceptance of a cancellation request proves that the engine has finished every read. A successful result may win the race and remains successful.
+
+### File-use result correlation
+
+`files.lockOwners` returns the exact submitted `requestedPath` plus the normalized `path` and advisory `owners`. The desktop requires the request-path echo before accepting a result. An older engine without that field is reported unavailable by this workspace; no stale result is retained. This read-only operation never closes a process or handle.

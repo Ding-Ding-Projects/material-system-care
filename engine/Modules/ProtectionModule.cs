@@ -177,7 +177,8 @@ public sealed class ProtectionModule : IEngineModule
 
     private static object LockOwners(JsonElement p, CancellationToken ct)
     {
-        var path = LocalPath(Text(p, "path", 1024));
+        var requestedPath = Text(p, "path", 1024);
+        var path = LocalPath(requestedPath);
         if (!File.Exists(path)) throw Invalid("Select an existing local file.");
         ct.ThrowIfCancellationRequested();
         var key = new StringBuilder(33);
@@ -199,7 +200,7 @@ public sealed class ProtectionModule : IEngineModule
                 error = RmGetList(session, out needed, ref count, owners, ref reboot);
                 if (error == 234) continue;
                 if (error != 0) throw new EngineException("LOCK_QUERY_UNAVAILABLE", "Restart Manager could not list owners.");
-                return new { path, owners = owners.Take((int)count).Select(x => new { processId = x.Process.Id, processStartTime = ((long)x.Process.StartHigh << 32) | x.Process.StartLow, name = x.Name, service = x.Service, restartable = x.Restartable }).ToArray(),
+                return new { requestedPath, path, owners = owners.Take((int)count).Select(x => new { processId = x.Process.Id, processStartTime = ((long)x.Process.StartHigh << 32) | x.Process.StartLow, name = x.Name, service = x.Service, restartable = x.Restartable }).ToArray(),
                     message = "Restart Manager reports affected applications, not every possible file handle. No process or handle was closed." };
             }
             throw new EngineException("LOCK_QUERY_BUSY", "File ownership changed repeatedly. Retry the query.");

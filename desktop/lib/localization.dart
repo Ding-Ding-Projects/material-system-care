@@ -12,6 +12,36 @@ class CopyScope extends InheritedWidget {
 }
 
 const translations = <String, String>{
+  "File use": "檔案使用情況",
+  "Inspect a file in use": "檢視檔案使用情況",
+  "Restart Manager reports affected applications and services, not every possible file handle. Results can change after inspection.":
+      "重新啟動管理員會列出受影響的應用程式及服務，並非所有檔案控制代碼。檢查後結果可能改變。",
+  "Local file path": "本機檔案路徑",
+  "Choose file": "選擇檔案",
+  "Inspect file use": "檢查檔案使用情況",
+  "Choose a file, then inspect. Nothing is collected automatically.":
+      "請選擇檔案後再檢查，不會自動收集資料。",
+  "Inspected file": "已檢查的檔案",
+  "Service": "服務",
+  "No affected applications were reported. This does not prove that the file is unlocked.":
+      "沒有回報受影響的應用程式，但這不代表檔案沒有被鎖定。",
+  "Restart Manager marks this record as restartable. No restart is requested.":
+      "重新啟動管理員將此記錄標示為可重新啟動；此處沒有發出重新啟動要求。",
+  "Restart Manager does not mark this record as restartable.":
+      "重新啟動管理員沒有將此記錄標示為可重新啟動。",
+  "This inspection does not close processes or handles, unlock files, or change file contents.":
+      "此檢查不會關閉程序或控制代碼、解除檔案鎖定，亦不會更改檔案內容。",
+  "The file picker is unavailable. Enter a full local file path.":
+      "檔案選擇器無法使用，請輸入完整本機檔案路徑。",
+  "Choose an existing file using its full local path.": "請使用完整本機路徑選擇現有檔案。",
+  "File use changed during inspection. Try again.": "檢查期間檔案使用情況已改變，請再試一次。",
+  "Too many affected records were reported. No partial result is shown.":
+      "回報的受影響記錄太多，不會顯示不完整結果。",
+  "File-use inspection requires Windows.": "檔案使用情況檢查需要 Windows。",
+  "Windows Restart Manager could not inspect this file.":
+      "Windows 重新啟動管理員無法檢查此檔案。",
+  "File-use inspection is unavailable. No process or handle was closed.":
+      "無法檢查檔案使用情況，沒有關閉任何程序或控制代碼。",
   "Processes": "程序",
   "Inspect running processes": "檢視運行中程序",
   "Memory is a point-in-time working set. CPU time is cumulative, not current utilization. Records can change after collection.":

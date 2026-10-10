@@ -9,6 +9,7 @@ import 'provenance.dart';
 import 'motion.dart';
 import 'crash_diagnostics.dart';
 import 'processes.dart';
+import 'file_use.dart';
 import 'frame_capture.dart';
 import 'wording_cache.dart';
 
@@ -18,12 +19,17 @@ void main(List<String> arguments) {
       .toList();
   final diagnostics = arguments.contains('--diagnostics');
   final processes = arguments.contains('--processes');
+  final fileUse = arguments.contains('--file-use');
   // Capture mode is explicit, starts at the selected real workspace, and
   // excludes persisted personal settings. It never injects diagnostic results.
-  final exporting = (diagnostics != processes) && capture.length == 1;
+  final exporting =
+      [diagnostics, processes, fileUse].where((selected) => selected).length ==
+          1 &&
+      capture.length == 1;
   final app = CareApp(
     startDiagnostics: diagnostics,
     startProcesses: processes,
+    startFileUse: fileUse,
     isolatedCapture: exporting,
   );
   runApp(
@@ -81,11 +87,13 @@ class CareApp extends StatefulWidget {
     this.wordingCache,
     this.startDiagnostics = false,
     this.startProcesses = false,
+    this.startFileUse = false,
     this.isolatedCapture = false,
   });
   final WordingCache? wordingCache;
   final bool startDiagnostics;
   final bool startProcesses;
+  final bool startFileUse;
   final bool isolatedCapture;
   @override
   State<CareApp> createState() => _CareAppState();
@@ -165,6 +173,8 @@ class _CareAppState extends State<CareApp> {
             ? CrashDiagnosticsPage(invoke: Engine.invoke)
             : widget.startProcesses
             ? ProcessesPage(invoke: Engine.invoke)
+            : widget.startFileUse
+            ? FileUsePage(invoke: Engine.invoke)
             : Workspace(
                 settings: settings,
                 wordingCache: widget.wordingCache,
@@ -1019,6 +1029,24 @@ class _ToolsEditorState extends State<ToolsEditor> {
                   ),
             icon: const Icon(Icons.memory),
             label: const UiText('Processes'),
+          ),
+        ),
+        const SizedBox(height: 12),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: FilledButton.tonalIcon(
+            onPressed: widget.busy
+                ? null
+                : () => Navigator.of(context).push(
+                    MaterialPageRoute<void>(
+                      builder: (_) => CopyScope(
+                        preferences: CopyScope.of(context),
+                        child: FileUsePage(invoke: Engine.invoke),
+                      ),
+                    ),
+                  ),
+            icon: const Icon(Icons.find_in_page_outlined),
+            label: const UiText('File use'),
           ),
         ),
         const SizedBox(height: 12),

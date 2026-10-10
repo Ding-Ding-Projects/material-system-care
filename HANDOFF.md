@@ -1,5 +1,9 @@
 # Implementation handoff
 
+## File-use workspace source checkpoint
+
+Tools > File use now exposes the existing read-only Restart Manager query. It supports native file choice or typed path, explicit inspection, correlated request-path echo, advisory records and stale-result clearing. Six focused widget checks and four process regression checks passed. Root builds and genuine File use frames are pending at this checkpoint. No user process or file was changed.
+
 ## Built diagnostic collection milestone
 
 A fresh hidden run of producer cfa86ebb78312984a90ccd26b814f4a4d00a58e9 completed the actual Read crash evidence control at the default 30-day lookback and expanded one returned record. Three painted frames were inspected privately; the completed view and expanded provider/event/uncatalogued-code explanation were visible. No root cause was inferred. Host-specific timestamps, record identifiers and code observations are withheld from publication. docs/verification/diagnostic-collection.json retains sanitized source/hash declarations; scripts/verify-diagnostic-collection.mjs checked 210 producer files, two background clicks, private frame hashes and teardown receipts. An altered input hash was rejected, then restored evidence passed. A scroll call was rejected before execution, so the dump-metadata section was not inspected. Exact desktop/engine paths were absent and the named hidden desktop was closed. Other periods, failure/refresh paths, native compositor and full appearance/accessibility coverage remain pending.

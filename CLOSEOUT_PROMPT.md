@@ -1,5 +1,9 @@
 # Continuation
 
+## Latest File-use workspace source checkpoint
+
+Tools > File use is implemented with explicit file selection and read-only Restart Manager inspection. Exact requestedPath echo binds accepted results. Six focused widget checks and four existing process checks passed. Root builds and real File use capture are pending. Source: desktop/lib/file_use.dart; documentation: docs/features/protection/file-use.md. Complete surface contracts remain unverified.
+
 ## Objective and latest request
 
 Continue Material System Care for Windows 11 x64: Flutter/Dart desktop, C#/.NET 10 engine, narrow C++ integration, SQLite and a public Lit/Material Web GitHub Pages website. The latest requested addition is blue-screen diagnosis. Its bounded read-only implementation is present; the complete suite remains unfinished.
@@ -24,7 +28,7 @@ Selected cleanup, receipt-specific recovery review, read-only scan cancellation 
 
 ## Remaining work and boundaries
 
-Complete supported actionable workflows, the fixed 295-capability ledger and 104 universal feature contracts without promoting partial evidence to parity. Continue native runtime interaction, appearance/motion/accessibility coverage, installer lifecycle and normal release verification. A read-only File use workspace for existing files.lockOwners was considered, but no implementation has been started. Preserve current source and evidence before selecting that next unit.
+Complete supported actionable workflows, the fixed 295-capability ledger and 104 universal feature contracts without promoting partial evidence to parity. Continue native runtime interaction, appearance/motion/accessibility coverage, installer lifecycle and normal release verification. The File use workspace source is now implemented as described above. Preserve current source and evidence before selecting that next unit.
 
 Keep Windows 11 x64 and supported user-mode APIs; exclude kernel drivers, other operating systems, proprietary vendor engines and remote-device administration. Lowlevel recovery is authorized through supported hidden-desktop routes. The working route is documented compatibility HTTP/native C++; do not mislabel it as the strict cheap transport or claim native compositor proof from painted output. Keep the visible desktop and focus untouched, use isolated preferences, verify exact process identity and tear down only owned processes. Do not change host power/login state or weaken security.
 
