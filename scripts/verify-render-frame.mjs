@@ -7,7 +7,7 @@ import {execFileSync} from 'node:child_process';
 // A deliberately narrow validator for painted native Flutter output. It cannot
 // certify native compositor capture, input, accessibility, or event collection.
 const [rootArg, runArg, bundleArg, mode = 'idle'] = process.argv.slice(2);
-assert(['idle','explained','processes-idle','file-use-idle','scheduled-tasks-idle','services-idle'].includes(mode), 'Unknown frame state');
+assert(['idle','explained','processes-idle','file-use-idle','scheduled-tasks-idle','services-idle','services-yue-dark-text2'].includes(mode), 'Unknown frame state');
 assert(rootArg && runArg && bundleArg, 'Expected repository, owned capture run, and built bundle paths');
 const root = realpathSync(rootArg), run = realpathSync(runArg), bundle = realpathSync(bundleArg);
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
@@ -19,10 +19,11 @@ const contained = (base, path) => {
   return result;
 };
 const processFrame = mode === 'processes-idle';
-const serviceFrame = mode === 'services-idle';
+const enlargedServiceFrame = mode === 'services-yue-dark-text2';
+const serviceFrame = mode === 'services-idle' || enlargedServiceFrame;
 const taskFrame = mode === 'scheduled-tasks-idle';
 const fileUseFrame = mode === 'file-use-idle';
-const receipt = json(resolve(root, serviceFrame ? 'docs/captures/services-idle.json' : taskFrame ? 'docs/captures/scheduled-tasks-idle.json' : fileUseFrame ? 'docs/captures/file-use-idle.json' : processFrame ? 'docs/captures/processes-idle.json' : `docs/captures/diagnostics-${mode}.json`));
+const receipt = json(resolve(root, serviceFrame ? (enlargedServiceFrame ? 'docs/captures/services-yue-dark-text2.json' : 'docs/captures/services-idle.json') : taskFrame ? 'docs/captures/scheduled-tasks-idle.json' : fileUseFrame ? 'docs/captures/file-use-idle.json' : processFrame ? 'docs/captures/processes-idle.json' : `docs/captures/diagnostics-${mode}.json`));
 assert.equal(receipt.route, 'lowlevel-hidden-desktop-flutter-frame-export');
 assert.equal(receipt.scope, mode !== 'explained' ? 'render-only' : 'painted-frame-with-background-input');
 for (const [key,value] of Object.entries(receipt.verification)) assert.equal(value, mode === 'explained' && key === 'inputHandling', 'Unsupported verification claim');
@@ -63,7 +64,8 @@ assert(launch.created && launch.hwnd > 0 && launch.process.pid === launch.pid);
 assert.equal(realpathSync(launch.process.executablePath), contained(bundle, 'material_system_care.exe'));
 if (serviceFrame) {
  const request = json(contained(run, 'request.json'));
- assert.deepEqual(request.arguments, ['--services', '--capture-frame=' + resolve(run, 'output/services.png').replaceAll('\\', '/'), '--capture-on-input']);
+ assert.deepEqual(request.arguments, ['--services', '--capture-frame=' + resolve(run, 'output/services.png').replaceAll('\\', '/'), ...(enlargedServiceFrame ? ['--capture-language=yue','--capture-theme=dark','--capture-text-scale=2','--capture-motion=reduced'] : ['--capture-on-input'])]);
+ if (enlargedServiceFrame) { assert.equal(receipt.state.language, 'yue'); assert.equal(receipt.state.theme, 'dark'); assert.equal(receipt.state.textScale, 2); assert.equal(receipt.state.reducedMotionRequested, true); }
  assert.equal(receipt.state.screen, 'services');
 }
 if (taskFrame) {

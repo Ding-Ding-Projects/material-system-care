@@ -2,7 +2,7 @@
 
 ## Capture tuple preparation
 
-Bounded isolated language, theme, text-scale and reduced-motion controls are implemented. Invalid/repeated/unknown values disable export while preserving isolation. Normal launches do not apply these overrides or change personal settings. Seven focused checks passed including service regressions. The invalid-request isolation regression rejected the previous behavior, then passed after restoration. Root build and actual tuple capture remain pending. Text-scale evidence is distinct from physical DPI. See docs/features/management/capture-tuples.md.
+Bounded isolated language, theme, text-scale and reduced-motion controls are implemented. Invalid/repeated/unknown values disable export while preserving isolation. Normal launches do not apply these overrides or change personal settings. Seven focused checks passed including service regressions. The invalid-request isolation regression rejected the previous behavior, then passed after restoration. Root engine and desktop builds passed at 5921f9005cc878ff6ef5753d71b27f8d748f0578. An actual isolated service view in Cantonese, dark theme, text scale 2 and requested reduced motion was inspected at 1264x681. All idle explanatory text and controls fit that viewport. Its receipt verified 210 bundle files; owned processes were absent and the hidden desktop closed. This is one painted idle tuple, not physical DPI, keyboard or motion-transition proof. See docs/captures/services-yue-dark-text2.json. Text-scale evidence is distinct from physical DPI. See docs/features/management/capture-tuples.md.
 
 ## Service review runtime milestone
 

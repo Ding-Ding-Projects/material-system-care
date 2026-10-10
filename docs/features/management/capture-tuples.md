@@ -7,3 +7,7 @@ Display overrides are applied only when isolated export is enabled. Duplicate, m
 Text scale composes with the platform text scaler. It is not physical monitor DPI or proof of the complete display-scale matrix. Motion=system respects the operating-system animation preference; it does not force animations on. Reduced motion explicitly disables application transitions. Frame export still records actual painted Flutter output at pixel ratio 1, not native compositor pixels.
 
 Three focused checks cover invalid/repeated values and a dark Cantonese doubled-text reduced-motion service entry with no settings or record calls. Four service checks pass alongside them. Full runtime tuple and layout coverage remains pending.
+
+## Inspected runtime tuple
+
+Root engine and desktop builds passed at 5921f9005cc878ff6ef5753d71b27f8d748f0578. An actual isolated service view in Cantonese, dark theme, text scale 2 and requested reduced motion was inspected at 1264x681. All idle explanatory text and controls fit that viewport. Its receipt verified 210 bundle files; owned processes were absent and the hidden desktop closed. This is one painted idle tuple, not physical DPI, keyboard or motion-transition proof. See docs/captures/services-yue-dark-text2.json.

@@ -71,3 +71,5 @@
 - [ ] Finish service per-surface language, accessibility, appearance and export contracts.
 
 - [ ] Verify all required workspace appearance tuples using the new isolated capture controls. Parser and isolated-widget checks pass; physical display scaling remains separate.
+
+- [x] Inspect an isolated Cantonese/dark/text-scale-2 service idle frame and verify its source bytes and owned teardown. This does not complete the physical display-scale matrix.

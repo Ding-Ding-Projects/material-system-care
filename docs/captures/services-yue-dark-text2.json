@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "id": "services-idle-yue-dark-text2-1264x681",
+  "route": "lowlevel-hidden-desktop-flutter-frame-export",
+  "scope": "render-only",
+  "sourceCommit": "5921f9005cc878ff6ef5753d71b27f8d748f0578",
+  "bundleSha256": "5356e6407149823e2b5daf19932b01e7dac73ebf49e14d060f6ebf7696e2d493",
+  "executableSha256": "466e9e330e4307321ebcd0cc88c2c89b8540ea7c078db2ebbe2178668287b178",
+  "buildReceiptSha256": "45a875a8d06ddcbeb0abf21347ea6cfae2ef1b75f16644539a21b71e88745028",
+  "artifactBuiltAt": "2026-10-10T02:54:01.5360263Z",
+  "capture": {
+    "path": "docs/captures/services-yue-dark-text2.png",
+    "sha256": "40f7345f46d4f57c9e7f99918592963abc3ee336bd7b4df2236abd62130191a5",
+    "bytes": 76442,
+    "width": 1264,
+    "height": 681,
+    "capturedAt": null,
+    "observedAt": "2026-10-10T02:54:16.174Z"
+  },
+  "state": {
+    "screen": "services",
+    "state": "idle",
+    "language": "yue",
+    "theme": "dark",
+    "scale": 1,
+    "preferences": "isolated-defaults",
+    "data": "No service records collected in this frame",
+    "textScale": 2,
+    "reducedMotionRequested": true
+  },
+  "privacy": {
+    "visibleDesktopUntouched": true,
+    "personalSettingsLoaded": false,
+    "pixelsInspected": true,
+    "sensitiveDataFound": false,
+    "handEdited": false
+  },
+  "verification": {
+    "nativeCompositor": false,
+    "inputHandling": false,
+    "engineCollection": false,
+    "fullLayoutMatrix": false
+  },
+  "limitations": [
+    "Actual painted Flutter frame, not native compositor capture.",
+    "This idle frame does not establish service collection or complete interface coverage.",
+    "Exact capture instant unavailable; observation time recorded separately.",
+    "Text scale 2 is not physical display DPI. An idle frame does not prove reduced-motion transitions or keyboard behavior."
+  ]
+}
