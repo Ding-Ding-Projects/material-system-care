@@ -28,6 +28,12 @@ The current source provides a working foundation, with these operation families:
 
 This list describes source behavior. It does not establish complete reference-product parity, runtime visual verification, or production readiness. The [versioned capability ledger](contracts/capabilities.json) retains all 295 requirements, their sources and their individual implementation states. See the [verification handoff](HANDOFF.md) for exact tested revisions and remaining gaps.
 
+## Diagnostic workspace preview
+
+![Built blue-screen diagnostics workspace in English and light theme](docs/captures/diagnostics-idle.png)
+
+This is an actual painted frame from the native build at `d1b4cca6d1f843a559f4f47f0f01288e60b18773`, exported on an isolated desktop. Its evidence is **render-only**, not native-compositor or input verification. No diagnostic data was injected. See the [capture receipt and limitations](docs/captures/README.md).
+
 ## Project records
 
 - [Architecture and local protocol](contracts/engine-protocol.md)

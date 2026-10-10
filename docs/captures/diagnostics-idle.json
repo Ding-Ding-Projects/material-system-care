@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "id": "diagnostics-idle-en-light-1264x681",
+  "route": "lowlevel-hidden-desktop-flutter-frame-export",
+  "scope": "render-only",
+  "sourceCommit": "d1b4cca6d1f843a559f4f47f0f01288e60b18773",
+  "bundleSha256": "f9ecdf81b7b294adec51a37cb06b5c390a6a6193cbd65160c2a9cfae599c492d",
+  "executableSha256": "63efc3ae2683250617457a7375803a181fb2de7fb417388219216dedf5b354de",
+  "buildReceiptSha256": "18431374123ae2c702895f3ebc53e5949e73356e0e5ea0e6278edad5954f7477",
+  "artifactBuiltAt": "2026-10-10T00:02:13.1696293Z",
+  "capture": {
+    "path": "docs/captures/diagnostics-idle.png",
+    "sha256": "ae81d30b57c848cd944b13c604155cb906ee61a8f239ce1b56df01914a0f2ee9",
+    "bytes": 38296,
+    "width": 1264,
+    "height": 681,
+    "capturedAt": null,
+    "observedAt": "2026-10-10T00:02:38.137Z"
+  },
+  "state": {
+    "screen": "blue-screen-diagnostics",
+    "state": "idle",
+    "language": "en",
+    "theme": "light",
+    "scale": 1,
+    "preferences": "isolated-defaults",
+    "data": "no host collection or injected results"
+  },
+  "privacy": {
+    "visibleDesktopUntouched": true,
+    "personalSettingsLoaded": false,
+    "pixelsInspected": true,
+    "sensitiveDataFound": false,
+    "handEdited": false
+  },
+  "verification": {
+    "nativeCompositor": false,
+    "inputHandling": false,
+    "engineCollection": false,
+    "fullLayoutMatrix": false
+  },
+  "limitations": [
+    "Actual painted Flutter frame from the built native application; not a native-window screenshot.",
+    "Exact capture timestamp unavailable; observation timestamp is recorded independently.",
+    "No conclusion about input, crash-event collection or complete layout coverage."
+  ]
+}

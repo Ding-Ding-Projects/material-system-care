@@ -1,0 +1,64 @@
+import assert from 'node:assert/strict';
+import {readFileSync, realpathSync} from 'node:fs';
+import {resolve, relative, isAbsolute} from 'node:path';
+import {createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
+
+// A deliberately narrow validator for painted native Flutter output. It cannot
+// certify native compositor capture, input, accessibility, or event collection.
+const [rootArg, runArg, bundleArg] = process.argv.slice(2);
+assert(rootArg && runArg && bundleArg, 'Expected repository, owned capture run, and built bundle paths');
+const root = realpathSync(rootArg), run = realpathSync(runArg), bundle = realpathSync(bundleArg);
+const hash = bytes => createHash('sha256').update(bytes).digest('hex');
+const json = path => JSON.parse(readFileSync(path, 'utf8').replace(/^\uFEFF/, ''));
+const contained = (base, path) => {
+  const result = realpathSync(resolve(base, path));
+  const rel = relative(base, result);
+  assert(rel && !rel.startsWith('..') && !isAbsolute(rel), 'Path must remain in its owned root');
+  return result;
+};
+const receipt = json(resolve(root, 'docs/captures/diagnostics-idle.json'));
+assert.equal(receipt.route, 'lowlevel-hidden-desktop-flutter-frame-export');
+assert.equal(receipt.scope, 'render-only');
+assert(Object.values(receipt.verification).every(value => value === false), 'Render-only receipt cannot claim behavioral verification');
+const raw = readFileSync(contained(run, 'output/diagnostics.png'));
+const saved = readFileSync(contained(root, receipt.capture.path));
+assert(raw.equals(saved), 'Published bytes differ from the original render');
+assert.equal(hash(raw), receipt.capture.sha256);
+assert.equal(raw.length, receipt.capture.bytes);
+assert(raw.subarray(0, 8).equals(Buffer.from([137,80,78,71,13,10,26,10])));
+assert.equal(raw.readUInt32BE(16), receipt.capture.width);
+assert.equal(raw.readUInt32BE(20), receipt.capture.height);
+let ended = false;
+for (let offset = 8; offset < raw.length;) {
+  const length = raw.readUInt32BE(offset), end = offset + 12 + length;
+  assert(end <= raw.length, 'PNG chunk exceeds file');
+  const type = raw.toString('ascii', offset + 4, offset + 8);
+  assert(!['tEXt','zTXt','iTXt','eXIf'].includes(type), 'Unexpected PNG metadata');
+  offset = end;
+  if (type === 'IEND') { assert.equal(offset, raw.length); ended = true; break; }
+}
+assert(ended, 'Missing PNG end');
+const producerBytes = readFileSync(contained(run, 'build-receipt.json'));
+assert.equal(hash(producerBytes), receipt.buildReceiptSha256);
+const producer = JSON.parse(producerBytes.toString('utf8').replace(/^\uFEFF/, ''));
+assert.equal(producer.source, receipt.sourceCommit);
+assert.equal(producer.bundleSha256, receipt.bundleSha256);
+assert.equal(hash(readFileSync(contained(bundle, 'material_system_care.exe'))), receipt.executableSha256);
+const manifest = json(contained(bundle, 'bundle-manifest.json'));
+assert.equal(manifest.bundleSha256, producer.bundleSha256);
+for (const entry of manifest.files) {
+  const bytes = readFileSync(contained(bundle, entry.path));
+  assert.equal(bytes.length, entry.bytes);
+  assert.equal(hash(bytes), entry.sha256, `Changed bundle file: ${entry.path}`);
+}
+execFileSync('git', ['cat-file', '-e', `${receipt.sourceCommit}^{commit}`], {cwd: root, windowsHide: true});
+const launch = json(contained(run, 'launch.json'));
+assert(launch.created && launch.hwnd > 0 && launch.process.pid === launch.pid);
+assert.equal(realpathSync(launch.process.executablePath), contained(bundle, 'material_system_care.exe'));
+const teardown = json(contained(run, 'teardown.json'));
+assert(teardown.processesAbsent && JSON.parse(teardown.result).closed === true);
+assert(receipt.privacy.visibleDesktopUntouched && receipt.privacy.pixelsInspected && !receipt.privacy.sensitiveDataFound && !receipt.privacy.handEdited);
+const readme = readFileSync(resolve(root, 'README.md'), 'utf8');
+assert(readme.includes(receipt.capture.path) && readme.includes('render-only'), 'README must show and qualify the frame');
+console.log(`PASS render-only frame: ${receipt.capture.width}x${receipt.capture.height}, ${receipt.capture.sha256}; ${manifest.files.length} bundle files verified. Native input/compositor remain unverified.`);
