@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "sourceCommit": "e1e5d4640bf9da2c9a861b051b4b0de0daf5f3c3",
+  "selectionSourceCommit": "dc2f490ab0b9ef8ae5e0276f536fd06895694cf5",
+  "route": "cheap-lowlevel-headless",
+  "captureMethod": "flutter-repaint-boundary",
+  "buildReceipt": {
+    "source": "e1e5d4640bf9da2c9a861b051b4b0de0daf5f3c3",
+    "bundleSha256": "77bf89aa0320a88fbae023e4cd84a749af66b19aa45cb8cc78155d9335e1052a",
+    "manifestSha256": "327304f034938c77e6962c4aef81ea98502c68333792049f962a2b8c04aff57b",
+    "version": "0.1.0",
+    "executableSha256": "7dcb452812ae164356f86365906082d61d71205073d233b499411bd427dcd662",
+    "indexTree": "f4900db693dede92e7a5d769f0a372a4cbaeac49",
+    "sourceTree": "f4900db693dede92e7a5d769f0a372a4cbaeac49",
+    "builtUtc": "2026-10-10T20:22:48.3259137Z"
+  },
+  "evidence": {
+    "cleanup-cards-a3639711576f42d1b4657b75065c08d8/apply-proof.json": "7cf484d9e4ff980f6544770d9cd183cf02b514c449cb4eb96944eb0515c0ec86",
+    "cleanup-cards-a3639711576f42d1b4657b75065c08d8/teardown.json": "81ab70c54e7dd2d66a290bfa937bf92f10c7743bb917c2bb9cf8c4042ea585d3",
+    "cleanup-timed-6d566ad6e2e04aaeb397c698e751da23/restore-proof.json": "62339c40bd31d66476bea693a0e7d759d940c18b5d77f9285b10296c25bf39e9",
+    "cleanup-timed-6d566ad6e2e04aaeb397c698e751da23/teardown.json": "0b721ce5cc3c9f4655545434ca80af7c2581782197e945e2bf285c29b190810d",
+    "cleanup-restored-7fdd743cb57d4c44852574072e441f3d/teardown.json": "217051ddc2e1015b6ebc1f60a0b5b6d8ed1accecbfe499d67959a45869d2e483",
+    "cleanup-timed-6d566ad6e2e04aaeb397c698e751da23/history-tab-1.json": "1264a29eec9e2074e9685f600e805effe18ac550aa41349f2396a292b5be1cdb",
+    "cleanup-timed-6d566ad6e2e04aaeb397c698e751da23/history-review-confirmation.json": "e809c3647a2068b2bc06470835dd0a672874d373a2857b5be20c93442cf9974f",
+    "cleanup-timed-6d566ad6e2e04aaeb397c698e751da23/restore-confirmed.json": "4ee65f56f0881b175a3a3e9fed6b1e61e2f797dcc502c6ce641841e5e03e3019",
+    "cleanup-restored-7fdd743cb57d4c44852574072e441f3d/restored-capture.json": "a4db00b4cde548a57b7f920e40e25597341f9d86188321369c380b20952ea0b1",
+    "cleanup-timed-6d566ad6e2e04aaeb397c698e751da23/bundle/build-receipt.json": "5113ddb2cfeaafe3238a99fd513e930a19b2526654009b4e9de113aea541f197",
+    "cleanup-restored-7fdd743cb57d4c44852574072e441f3d/bundle/build-receipt.json": "5113ddb2cfeaafe3238a99fd513e930a19b2526654009b4e9de113aea541f197",
+    "cleanup-timed-6d566ad6e2e04aaeb397c698e751da23/output/frame-012.png": "f66cdb734c76e01fe6d1e44e9eb45bfef339ac9474ce6365a6b692e807861707",
+    "cleanup-timed-6d566ad6e2e04aaeb397c698e751da23/output/frame-012.png.json": "c317e2ce33163e4ec11152f80f22ac346b01f6a4da5ef2bfb9a1008a777b8c63",
+    "cleanup-restored-7fdd743cb57d4c44852574072e441f3d/output/frame-005.png": "cc13ef6c311d75bb28f1e5059aa8e2c7728d3d717af142021665990ec85071b5",
+    "cleanup-restored-7fdd743cb57d4c44852574072e441f3d/output/frame-005.png.json": "35400cbd8a352e909d0e71f23b23777920f37466b5da2515763c01ac91190062"
+  },
+  "frames": [
+    {
+      "path": "cleanup-timed-6d566ad6e2e04aaeb397c698e751da23/output/frame-012.png",
+      "sidecar": "cleanup-timed-6d566ad6e2e04aaeb397c698e751da23/output/frame-012.png.json",
+      "state": "recovery-history-before-restoration",
+      "sha256": "f66cdb734c76e01fe6d1e44e9eb45bfef339ac9474ce6365a6b692e807861707",
+      "width": 1280,
+      "height": 1000,
+      "capturedAt": "2026-10-10T20:24:46.267404Z",
+      "published": false,
+      "inspection": "Decoded and visually inspected; no personal paths are visible in these two frames."
+    },
+    {
+      "path": "cleanup-restored-7fdd743cb57d4c44852574072e441f3d/output/frame-005.png",
+      "sidecar": "cleanup-restored-7fdd743cb57d4c44852574072e441f3d/output/frame-005.png.json",
+      "state": "recovery-history-after-restoration",
+      "sha256": "cc13ef6c311d75bb28f1e5059aa8e2c7728d3d717af142021665990ec85071b5",
+      "width": 1280,
+      "height": 1000,
+      "capturedAt": "2026-10-10T20:25:41.827628Z",
+      "published": false,
+      "inspection": "Decoded and visually inspected; no personal paths are visible in these two frames."
+    }
+  ],
+  "checks": {
+    "selectedMovePreservesBytesAndIdentity": true,
+    "restoredExactBytesAndIdentity": true,
+    "unselectedUnchanged": true,
+    "recoveryPayloadAbsent": true,
+    "lowerSelectionReachedAt800x600TextScale2": true,
+    "restorationReviewedAt1280x1000TextScale1": true,
+    "allOwnedBundleProcessesAbsent": true,
+    "ownedDesktopsClosed": true
+  },
+  "limitations": [
+    "Native compositor and physical DPI were not measured.",
+    "Native/framework diagnostic events were not collected, so the generic evidence-promotion check remains unverified.",
+    "The two inspected timestamped frames remain private pending complete promotion evidence.",
+    "Full appearance, accessibility and motion-state coverage remains incomplete."
+  ]
+}

@@ -121,3 +121,11 @@
 - [x] Add deterministic reviewed-state revisions, reject stale changes before mutation, refresh without automatic retry, and verify with focused positive/negative fixtures and exact root builds.
 - [x] Verify actual owned-entry registry stale-review rejection and exact command/kind disable/restore through the built engine; remove the disposable entry afterward.
 - [ ] Verify the startup review, refresh and mutation workflow through the built desktop.
+
+## Typed cleanup results
+
+- [x] Implement bilingual typed file/receipt cards and reviewed restoration.
+- [x] Verify disposable selected-file movement and exact-byte/identity restoration.
+- [x] Write real capture timestamps and PNG-bound sidecars.
+- [ ] Collect native/framework diagnostic observations and promote current recovery frames.
+- [ ] Complete the remaining theme, scale, accessibility and motion-state matrix.

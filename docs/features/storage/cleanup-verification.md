@@ -24,3 +24,11 @@ Populated frames show local paths and remain private. No edited, cropped or reco
 真正 Windows 介面已用兩個即棄檔案完成選取、取消確認、移到復原區、目的地衝突保護，以及再次確認復原。取消後兩個檔案都冇改；只處理已選檔案。衝突時現有檔案同復原內容都保留，移走指定測試衝突檔案後，原本內容、檔案識別及修改時間全部吻合。
 
 呢次只驗證隔離測試範圍。含本機路徑嘅畫面保留喺私人證據，公開記錄只列來源、雜湊同實際結果。完整外觀、鍵盤、輔助使用及實體 DPI 驗證仍未完成。
+
+## Typed cleanup cards and timestamped recovery observations
+
+The dedicated bilingual cleanup cards preserve original target indices, show explicit recorded states and require a fresh restoration review. Thirteen focused Flutter checks and the exact root desktop build passed. The runtime selection/apply phase used `dc2f490`; the timestamped restoration phase used `e1e5d4640bf9da2c9a861b051b4b0de0daf5f3c3`. At 800×600 with doubled bilingual text, keyboard focus reached both file choices. The subsequent explicit review moved only the selected disposable file. Restoration at 1280×1000 returned that file with identical bytes and identity; the unselected file stayed unchanged and no recovery payload remained. All owned processes and hidden desktops were closed.
+
+The two path-free recovery-history frames were decoded and inspected. Their PNG sidecars bind real capture times, dimensions and hashes. They remain private because native/framework diagnostic events were not collected and the generic promotion check therefore remains unverified. No native-compositor, physical-DPI, complete accessibility or full motion-matrix claim is made. Evidence: `docs/verification/cleanup-cards.json` and `scripts/verify-cleanup-cards.mjs`.
+
+中文：雙語清理卡片保留原本選取編號，復原前再次顯示覆核。指定即棄檔案已復原，內容與檔案識別完全相同，另一個檔案沒有改動。兩張新畫面已有真實擷取時間及雜湊，但診斷事件未收集，因此仍保留私人，不冒充完整公開證據。

@@ -1,5 +1,13 @@
 # Implementation handoff
 
+## Typed cleanup cards and timestamped recovery observations
+
+The dedicated bilingual cleanup cards preserve original target indices, show explicit recorded states and require a fresh restoration review. Thirteen focused Flutter checks and the exact root desktop build passed. The runtime selection/apply phase used `dc2f490`; the timestamped restoration phase used `e1e5d4640bf9da2c9a861b051b4b0de0daf5f3c3`. At 800×600 with doubled bilingual text, keyboard focus reached both file choices. The subsequent explicit review moved only the selected disposable file. Restoration at 1280×1000 returned that file with identical bytes and identity; the unselected file stayed unchanged and no recovery payload remained. All owned processes and hidden desktops were closed.
+
+The two path-free recovery-history frames were decoded and inspected. Their PNG sidecars bind real capture times, dimensions and hashes. They remain private because native/framework diagnostic events were not collected and the generic promotion check therefore remains unverified. No native-compositor, physical-DPI, complete accessibility or full motion-matrix claim is made. Evidence: `docs/verification/cleanup-cards.json` and `scripts/verify-cleanup-cards.mjs`.
+
+中文：雙語清理卡片保留原本選取編號，復原前再次顯示覆核。指定即棄檔案已復原，內容與檔案識別完全相同，另一個檔案沒有改動。兩張新畫面已有真實擷取時間及雜湊，但診斷事件未收集，因此仍保留私人，不冒充完整公開證據。
+
 ## Disposable cleanup round trip and current delivery
 
 The isolated verification mode is integrated from `2ed02f132083d75d281ce1ab4859583f7d5e3c88`. Its root desktop build and focused engine/Flutter checks passed. Independent review found no remaining scope-escape defect in the reviewed implementation. A real directory-junction root was rejected without writing records; symbolic-link creation remains unavailable under the current account privilege.
