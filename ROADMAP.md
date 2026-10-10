@@ -13,6 +13,8 @@
 
 ## Working suite
 
+- [x] Retain and inspect an idle process-workspace painted frame from the exact built source, verify byte/source binding and owned teardown, and reject an altered capture hash. This does not complete native interaction or the appearance matrix.
+
 - [ ] Verify the dedicated process workspace in the built application: explicit inventory, exact-identity review and accepted/declined close receipts are implemented; three focused Flutter fixtures passed. No actual process close was performed.
 
 - [ ] Verify read-only scan cancellation in the built workspace: request-specific control, completion-race handling and truthful stop-waiting state are implemented; focused Flutter checks passed.

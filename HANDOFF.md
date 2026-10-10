@@ -1,5 +1,9 @@
 # Implementation handoff
 
+## Process capture evidence
+
+The process workspace now has an inspected source-bound painted frame at docs/captures/processes-idle.png, SHA-256 2c87439a9470e527a740898f57ed8a9838a82cf1b0d0b8635454472b8a880c18, 1264 by 681. Producer a9975e2d639f0fe37b4fc3c699ad05f9df2a2aee passed the root desktop build. Lowlevel launched the real workspace with isolated defaults; no process collection, injected data or close action occurred. Both desktop and engine executable paths were confirmed absent and the named desktop closed. The validator checked all 210 bundle files and rejected an altered PNG hash before passing restored evidence. This is render-only proof, not native-compositor or interaction proof. Four process Flutter checks passed, including no automatic settings/collection calls in isolated entry. Independent review confirmed the entry semantics. Supplying both workspace flags disables isolated export and is not a supported evidence invocation.
+
 ## Process workspace
 
 The new Tools > Processes workspace exposes existing measured process inventory and exact-identity graceful-close review. It requires explicit collection and confirmation, distinguishes requested from terminated, clears actionable rows after a close attempt or failed refresh, and disables unavailable capabilities. Three focused Flutter checks passed; no actual process close was performed. The root desktop and website builds passed at 48e92f927d338e45c7f913107daea145f15546ae. The first desktop attempt failed without detailed output; the single verbose retry succeeded without source changes, so the initial cause remains unestablished. Real process-workspace interaction and capture remain pending. Universal surface completeness remains unverified.

@@ -7,7 +7,7 @@ import {execFileSync} from 'node:child_process';
 // A deliberately narrow validator for painted native Flutter output. It cannot
 // certify native compositor capture, input, accessibility, or event collection.
 const [rootArg, runArg, bundleArg, mode = 'idle'] = process.argv.slice(2);
-assert(['idle','explained'].includes(mode), 'Unknown frame state');
+assert(['idle','explained','processes-idle'].includes(mode), 'Unknown frame state');
 assert(rootArg && runArg && bundleArg, 'Expected repository, owned capture run, and built bundle paths');
 const root = realpathSync(rootArg), run = realpathSync(runArg), bundle = realpathSync(bundleArg);
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
@@ -18,11 +18,12 @@ const contained = (base, path) => {
   assert(rel && !rel.startsWith('..') && !isAbsolute(rel), 'Path must remain in its owned root');
   return result;
 };
-const receipt = json(resolve(root, `docs/captures/diagnostics-${mode}.json`));
+const processFrame = mode === 'processes-idle';
+const receipt = json(resolve(root, processFrame ? 'docs/captures/processes-idle.json' : `docs/captures/diagnostics-${mode}.json`));
 assert.equal(receipt.route, 'lowlevel-hidden-desktop-flutter-frame-export');
-assert.equal(receipt.scope, mode === 'idle' ? 'render-only' : 'painted-frame-with-background-input');
+assert.equal(receipt.scope, mode !== 'explained' ? 'render-only' : 'painted-frame-with-background-input');
 for (const [key,value] of Object.entries(receipt.verification)) assert.equal(value, mode === 'explained' && key === 'inputHandling', 'Unsupported verification claim');
-const raw = readFileSync(contained(run, mode === 'idle' ? 'output/diagnostics.png' : 'output/diagnostics-002.png'));
+const raw = readFileSync(contained(run, processFrame ? 'output/processes.png' : mode === 'idle' ? 'output/diagnostics.png' : 'output/diagnostics-002.png'));
 const saved = readFileSync(contained(root, receipt.capture.path));
 assert(raw.equals(saved), 'Published bytes differ from the original render');
 assert.equal(hash(raw), receipt.capture.sha256);
@@ -57,6 +58,11 @@ execFileSync('git', ['cat-file', '-e', `${receipt.sourceCommit}^{commit}`], {cwd
 const launch = json(contained(run, 'launch.json'));
 assert(launch.created && launch.hwnd > 0 && launch.process.pid === launch.pid);
 assert.equal(realpathSync(launch.process.executablePath), contained(bundle, 'material_system_care.exe'));
+if (processFrame) {
+ const request = json(contained(run, 'request.json'));
+ assert.deepEqual(request.arguments, ['--processes', '--capture-frame=' + resolve(run, 'output/processes.png').replaceAll('\\', '/')]);
+ assert.equal(receipt.state.screen, 'processes');
+}
 if (mode === 'explained') {
  const inputBytes = readFileSync(contained(run, 'inputs.json')), childBytes = readFileSync(contained(run, 'children.json'));
  assert.equal(hash(inputBytes), receipt.interaction.inputReceiptSha256); assert.equal(hash(childBytes), receipt.interaction.childReceiptSha256);

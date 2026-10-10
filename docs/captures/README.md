@@ -15,3 +15,9 @@
 ![Completed local stop-code explanation](diagnostics-explained.png)
 
 [Interaction receipt](diagnostics-explained.json): source `cfa86ebb78312984a90ccd26b814f4a4d00a58e9`, English, light, 1264 × 681, scale 1. Lowlevel background input entered `0x9F` and clicked the real explanation button. The inspected painted frame shows `0x0000009F · DRIVER_POWER_STATE_FAILURE` and a completed local-engine response. No crash-history collection or dump read ran. Source, bundle, raw PNG, input/child receipts and owned teardown are retained. Run the same validator with its optional fourth argument `explained`. It checks byte and receipt consistency; it cannot replace pixel inspection or prove a full input matrix.
+
+## Process workspace
+
+![Built process workspace before collection](processes-idle.png)
+
+[Receipt](processes-idle.json): source `a9975e2d639f0fe37b4fc3c699ad05f9df2a2aee`, English, light, 1264 × 681, scale 1. Actual idle painted frame with isolated default preferences. No process collection, close action or injected records. The owned desktop and both producer executables were confirmed absent after teardown. Validate with the fourth argument `processes-idle`; native compositor and interaction evidence remain separate.
