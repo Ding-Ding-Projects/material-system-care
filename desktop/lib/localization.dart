@@ -12,6 +12,34 @@ class CopyScope extends InheritedWidget {
 }
 
 const translations = <String, String>{
+  'Review sign-in entries': '檢視登入啟動項目',
+  'Review current-user startup commands and saved restoration records. Machine and startup-folder entries are outside this workflow.':
+      '檢視目前使用者嘅啟動命令及已儲存復原記錄。此流程不處理全機或啟動資料夾項目。',
+  'Startup state': '啟動狀態',
+  'All entries': '全部項目',
+  'Enabled': '已啟用',
+  'Disabled': '已停用',
+  'Filter startup records': '篩選啟動記錄',
+  'Startup records refreshed.': '已重新讀取啟動記錄。',
+  'Startup records are unavailable or invalid. No change was requested.':
+      '無法取得啟動記錄或資料無效，未要求任何變更。',
+  'Startup change completed and records refreshed.': '啟動項目變更已完成，並已重新讀取記錄。',
+  'The change completed, but refreshed records are unavailable.':
+      '變更已完成，但無法取得更新後嘅記錄。',
+  'The startup change was not confirmed. Review refreshed records before trying again.':
+      '未能確認啟動項目變更，重試前請檢視更新後嘅記錄。',
+  'Read startup records to begin. Nothing changes until you review and confirm an entry.':
+      '先讀取啟動記錄；覆核並確認項目前不會作出變更。',
+  'Matching entries': '符合項目',
+  'No startup entries match the current filter.': '沒有啟動項目符合目前篩選條件。',
+  'Enabled at sign-in': '登入時已啟用',
+  'Disabled with saved restoration record': '已停用，並保留復原記錄',
+  'A conflicting recovery record needs attention. This entry cannot be changed here.':
+      '復原記錄有衝突需要處理，無法在此更改項目。',
+  'This entry is read-only.': '此項目僅供讀取。',
+  'Startup command': '啟動命令',
+  'Review disable': '覆核停用',
+  'Review enable': '覆核啟用',
   'Selected files': '已選取檔案',
   'Cleanup plan': '清理計劃',
   'Recorded cleanup result': '已記錄清理結果',

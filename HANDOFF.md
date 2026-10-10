@@ -1,5 +1,13 @@
 # Implementation handoff
 
+## Dedicated startup workspace
+
+A dedicated Material 3 startup workspace replaces the generic record menu in normal navigation. It reads on explicit refresh, validates typed records, labels enabled/disabled/conflicting states, provides selectable command details and reviews one named action at a time. Confirmed requests carry only the identifier, desired state, reviewed revision and consent. Invalid refresh removes stale actions; stale mutation refreshes without retry. The isolated `--startup` capture route uses the real workspace without loading personal settings.
+
+Five focused startup checks and the related display/capture tests passed, including 288 title-layout tuples across six workspaces. Removing scope validation caused the intended regression failure before exact source restoration. Two independent source reviews found no concrete defect. The root build and real disposable startup GUI interaction remain pending for this source.
+
+中文：獨立啟動工作區已完成來源及指定元件檢查，資料過期會重新讀取而不會自動重試。實際建置與即棄項目介面操作仍待驗證。
+
 ## Typed cleanup cards and timestamped recovery observations
 
 The dedicated bilingual cleanup cards preserve original target indices, show explicit recorded states and require a fresh restoration review. Thirteen focused Flutter checks and the exact root desktop build passed. The runtime selection/apply phase used `dc2f490`; the timestamped restoration phase used `e1e5d4640bf9da2c9a861b051b4b0de0daf5f3c3`. At 800×600 with doubled bilingual text, keyboard focus reached both file choices. The subsequent explicit review moved only the selected disposable file. Restoration at 1280×1000 returned that file with identical bytes and identity; the unselected file stayed unchanged and no recovery payload remained. All owned processes and hidden desktops were closed.

@@ -1,5 +1,13 @@
 # Resume Material System Care
 
+## Dedicated startup workspace
+
+A dedicated Material 3 startup workspace replaces the generic record menu in normal navigation. It reads on explicit refresh, validates typed records, labels enabled/disabled/conflicting states, provides selectable command details and reviews one named action at a time. Confirmed requests carry only the identifier, desired state, reviewed revision and consent. Invalid refresh removes stale actions; stale mutation refreshes without retry. The isolated `--startup` capture route uses the real workspace without loading personal settings.
+
+Five focused startup checks and the related display/capture tests passed, including 288 title-layout tuples across six workspaces. Removing scope validation caused the intended regression failure before exact source restoration. Two independent source reviews found no concrete defect. The root build and real disposable startup GUI interaction remain pending for this source.
+
+中文：獨立啟動工作區已完成來源及指定元件檢查，資料過期會重新讀取而不會自動重試。實際建置與即棄項目介面操作仍待驗證。
+
 Objective: complete the independent Windows 11 x64 suite using Flutter/Dart, C#/.NET 10, narrow C++20 and SQLite. Preserve all 295 capability rows and exclusions. The active goal has no explicit budget and remains incomplete.
 
 ## Verified work

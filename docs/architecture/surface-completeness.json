@@ -883,6 +883,8 @@
     {
       "id": "desktop.startup",
       "title": "Startup workspace",
+      "implementationPath": "desktop/lib/startup.dart",
+      "verification": "Focused source checks passed; built interaction and full surface contract remain pending.",
       "status": "source-linked-unverified",
       "actualNavigation": "Startup",
       "sourceCommit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e"

@@ -17,6 +17,7 @@ import 'frame_capture.dart';
 import 'capture_preferences.dart';
 import 'wording_cache.dart';
 import 'cleanup.dart';
+import 'startup.dart';
 
 void main(List<String> arguments) {
   final cleanupFixtureMode = arguments.any(
@@ -33,6 +34,7 @@ void main(List<String> arguments) {
   final fileUse = arguments.contains('--file-use');
   final scheduledTasks = arguments.contains('--scheduled-tasks');
   final services = arguments.contains('--services');
+  final startup = arguments.contains('--startup');
   // Capture mode is explicit, starts at the selected real workspace, and
   // excludes persisted personal settings. It never injects diagnostic results.
   final exporting =
@@ -42,6 +44,7 @@ void main(List<String> arguments) {
             fileUse,
             scheduledTasks,
             services,
+            startup,
             cleanupFixtureMode,
           ].where((selected) => selected).length ==
           1 &&
@@ -54,6 +57,7 @@ void main(List<String> arguments) {
     startFileUse: fileUse,
     startScheduledTasks: scheduledTasks,
     startServices: services,
+    startStartup: startup,
     isolatedCapture: captureRequested || cleanupFixtureMode,
     capturePreferences: exporting ? capturePreferences! : const {},
   );
@@ -116,6 +120,7 @@ class CareApp extends StatefulWidget {
     this.startFileUse = false,
     this.startScheduledTasks = false,
     this.startServices = false,
+    this.startStartup = false,
     this.isolatedCapture = false,
     this.capturePreferences = const {},
   });
@@ -126,6 +131,7 @@ class CareApp extends StatefulWidget {
   final bool startFileUse;
   final bool startScheduledTasks;
   final bool startServices;
+  final bool startStartup;
   final bool isolatedCapture;
   final Map<String, dynamic> capturePreferences;
   @override
@@ -249,6 +255,8 @@ class _CareAppState extends State<CareApp> {
             ? ScheduledTasksPage(invoke: Engine.invoke)
             : widget.startServices
             ? ServicesPage(invoke: Engine.invoke)
+            : widget.startStartup
+            ? StartupPage(invoke: Engine.invoke)
             : Workspace(
                 settings: settings,
                 wordingCache: widget.wordingCache,
@@ -376,6 +384,8 @@ class _WorkspaceState extends State<Workspace> {
                         )
                       : selected == 9
                       ? HelpPanel()
+                      : selected == 3
+                      ? StartupPage(invoke: Engine.invoke)
                       : WorkflowPage(index: selected, title: name(selected)),
                 ),
               ),

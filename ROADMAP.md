@@ -129,3 +129,9 @@
 - [x] Write real capture timestamps and PNG-bound sidecars.
 - [ ] Collect native/framework diagnostic observations and promote current recovery frames.
 - [ ] Complete the remaining theme, scale, accessibility and motion-state matrix.
+
+## Dedicated startup review
+
+- [x] Replace the generic startup action menu with typed bilingual cards and explicit reviewed actions.
+- [x] Verify malformed-state rejection, cancellation, stale refresh and layout fixtures.
+- [ ] Build and drive the disposable-entry GUI flow, including stale review, exact restoration and owned teardown.

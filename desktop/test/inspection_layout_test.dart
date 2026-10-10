@@ -23,6 +23,11 @@ void main() {
               'reducedMotion': true,
             };
             final pages = <String, CareApp>{
+              'Startup': CareApp(
+                startStartup: true,
+                isolatedCapture: true,
+                capturePreferences: prefs,
+              ),
               'Services': CareApp(
                 startServices: true,
                 isolatedCapture: true,
