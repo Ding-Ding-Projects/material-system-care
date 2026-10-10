@@ -21,6 +21,11 @@ void LifecycleChecks() {
   check(!UpdaterPath(L"C:\\root\\..\\app-1\\material_system_care.exe"));
   check(!UpdaterPath(L"C:\\root\\app-1\\other.exe"));
   check(UpdaterPath(L"C:\\root\\app-1\\material_system_care.exe") == L"C:\\root\\Update.exe");
+  check(UpdaterPath(L"C:\\root/app-1/material_system_care.exe") == L"C:\\root\\Update.exe");
+  check(UpdaterPath(L"C:\\root\\\\app-1\\material_system_care.exe") == L"C:\\root\\Update.exe");
+  check(!UpdaterPath(L"C:\\root/app-1/../material_system_care.exe"));
+  check(!UpdaterPath(L"C:\\root\\app-1\\material_system_care.exe:stream"));
+  check(!UpdaterPath(L"C:\\root\\app-1\\material_system_care.exe\n"));
   wchar_t module[32768]{};
   const auto length = GetModuleFileNameW(nullptr, module, 32768);
   check(length > 0 && length < 32768);
