@@ -418,6 +418,7 @@ class WorkflowPage extends StatefulWidget {
 
 bool canChangeStartupRecord(Map<String, dynamic> row) {
   final id = row['id'];
+  final revision = row['reviewRevision'];
   return row['canChange'] == true &&
       row['recoveryRequired'] != true &&
       row['scope'] == 'user' &&
@@ -426,6 +427,8 @@ bool canChangeStartupRecord(Map<String, dynamic> row) {
       id.isNotEmpty &&
       id.length <= 256 &&
       !id.runes.any((c) => c < 32 || c == 127) &&
+      revision is String &&
+      RegExp(r'^[0-9A-F]{64}$').hasMatch(revision) &&
       (row['enabled'] == true
           ? row['source'] == 'HKCU.Run'
           : row['source'] == 'originalStateJournal');
@@ -499,11 +502,14 @@ class _WorkflowPageState extends State<WorkflowPage> {
       }
     });
     try {
-      final result = await Engine.invoke(
+      var result = await Engine.invoke(
         operation,
         params ?? {},
         requestId: requestId,
       );
+      if (operation == 'startup.set') {
+        result = await Engine.invoke('startup.list', {});
+      }
       if (method == 'apps.managed' && result['available'] != true) {
         throw StateError(
           result['reason']?.toString() ?? 'WinGet discovery is unavailable.',
@@ -518,6 +524,22 @@ class _WorkflowPageState extends State<WorkflowPage> {
       if (mounted && method != null)
         notifyOperation(context, 'success', method);
     } catch (e) {
+      if (operation == 'startup.set' &&
+          e.toString().contains('STARTUP_REVIEW_CHANGED')) {
+        Map<String, dynamic>? refreshed;
+        try {
+          refreshed = await Engine.invoke('startup.list', {});
+        } catch (_) {}
+        if (mounted)
+          setState(() {
+            data = refreshed;
+            chosen.clear();
+            failure =
+                'The startup record changed. Records were refreshed where available. Review the selected action again.';
+          });
+        if (mounted) notifyOperation(context, 'error', operation);
+        return;
+      }
       if (e is PlatformException &&
           e.code == 'ENGINE_CANCELLED' &&
           requestId != null) {
@@ -695,6 +717,7 @@ class _WorkflowPageState extends State<WorkflowPage> {
         if (!mounted) return;
         await load('startup.set', {
           'id': row['id'],
+          'reviewRevision': row['reviewRevision'],
           'enabled': enabled,
           'confirmed': true,
         });
