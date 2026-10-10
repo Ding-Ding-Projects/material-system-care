@@ -1,5 +1,9 @@
 # Implementation handoff
 
+## Duplicate-analysis integration candidate
+
+Candidate `2c21195ab4c88d4da97f2330dc517ce0f53a33a0` adds a dedicated read-only duplicate-analysis page, reviewed root, exact-match groups, potential-space estimates, completeness counters and request-specific cancellation. The only engine change exposes the existing depth-exclusion counter. Ninety-six focused checks and two independent source reviews passed. Exact isolated engine verification passed after the primary released the shared user pipe, and the final desktop build passed. The symbolic-link fixture remains skipped for privilege 1314. Integrated build and real disposable duplicate analysis are next; no file removal is provided.
+
 ## Folder-analysis integration candidate
 
 The integrated root desktop build at `c2fd97ed4406e3a06af64a53c362d64c61c13da7` and real disposable analysis passed the bounded observations in `docs/verification/storage-analysis-observations.json`: four files, 5,169 bytes, two empty folders, correct descending sizes, normal-view full details and unchanged fixture snapshots. Twenty selected frames passed the narrow verifier across two viewports. Owned teardown completed. Freshness and pending-read cancellation remain runtime follow-ups.

@@ -4,6 +4,8 @@ Continue the independent Windows 11 x64 suite in Ding-Ding-Projects/material-sys
 
 ## Latest verified unit
 
+Candidate `2c21195ab4c88d4da97f2330dc517ce0f53a33a0` is integrated for dedicated read-only duplicate analysis. Focused96, independent source reviews and isolated engine/desktop builds passed; integrated build and disposable runtime are next. The additive engine counter reports depth exclusions. No deletion action exists. Keep symbolic-link privilege1314 explicitly unverified.
+
 Folder analysis at `c2fd97ed4406e3a06af64a53c362d64c61c13da7` passed the integrated desktop build and two real disposable runs: four files, 5,169 bytes, two empty folders, descending sizes, normal-view full paths/timestamp, unchanged snapshots and owned teardown. Twenty selected frames passed the narrow verifier. Freshness and pending cancellation remain runtime follow-ups. The duplicate-analysis unit is separately reviewed at `2c21195ab4c88d4da97f2330dc517ce0f53a33a0`, with focused and exact engine/desktop builds passed, awaiting integration and real verification.
 
 Public source `32ad9c3` delivered 178 complete articles and 751 matching files after a focused retry. Three browser viewports passed observed layout/runtime checks. Browser processes, port and desktop closed. Execution approval rejected profile deletion; retain that profile and report complete lifecycle auditing as unfinished.

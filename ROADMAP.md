@@ -53,6 +53,7 @@
 - [x] Build the read-only diagnostic engine and workspace, verify a bounded real event query, and preserve a source-bound painted native frame. Manual stop-code input subsequently passed; native compositor and the full appearance matrix remain separate requirements.
 - [ ] Deliver real health and diagnostics workflows.
 - [ ] Deliver reversible temporary-file maintenance, duplicate analysis, storage inventory, and recovery records.
+- [ ] Verify the dedicated read-only duplicate-analysis workspace in the real build. Typed source, 96 focused checks, isolated engine/desktop verification and independent reviews passed.
 - [ ] Verify the dedicated typed read-only folder-analysis workflow with an owned disposable folder. Source, focused checks, independent reviews and isolated root build passed; integrated runtime is pending.
 - [x] Verify bounded real folder totals, largest-file order, expanded normal-view paths/timestamp and unchanged disposable fixture at source `c2fd97e`. Freshness, cancellation and complete appearance/accessibility remain separate.
 - [ ] Deliver application, startup, process, security, and driver workflows using supported APIs.
