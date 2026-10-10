@@ -25,6 +25,7 @@ void main() {
             'result': {
               'receiptId': 'receipt-1',
               'recordedOnly': true,
+              'mutationPerformed': false,
               'items': [
                 {
                   'path': r'C:\fixture\restorable.tmp',

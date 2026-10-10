@@ -607,6 +607,24 @@ class _WorkflowPageState extends State<WorkflowPage> {
   }
 
   List<Map<String, dynamic>> get rows {
+    final cleanup = cleanupResult;
+    if (cleanup != null) {
+      if (cleanup.kind == CleanupKind.history) {
+        return cleanup.receipts
+            .map((receipt) => <String, dynamic>{'id': receipt.id})
+            .toList();
+      }
+      return cleanup.files
+          .map(
+            (file) => <String, dynamic>{
+              'path': file.path,
+              'size': file.bytes,
+              'state': file.state,
+              'reason': file.reason,
+            },
+          )
+          .toList();
+    }
     if (data == null) return [];
     for (final key in [
       'items',
@@ -867,15 +885,20 @@ class _WorkflowPageState extends State<WorkflowPage> {
                 icon: Icon(Icons.folder_open),
                 label: UiText('Choose folder'),
               ),
-            if (data?['planId'] != null && data?['mutationPerformed'] == false)
+            if (cleanupResult?.kind == CleanupKind.scan)
               FilledButton.tonal(
                 onPressed: busy || chosen.isEmpty
                     ? null
                     : () async {
                         final selected = chosen.toList()..sort();
-                        final planId = data!['planId'];
+                        final plan = cleanupResult!;
+                        if (selected.any(
+                          (index) => index < 0 || index >= plan.files.length,
+                        ))
+                          return;
+                        final planId = plan.planId!;
                         final detail =
-                            '${localize(context, "Only selected temporary files will move to recovery.")}\n\n${selected.map((i) => records[i]['path']).join('\n')}';
+                            '${localize(context, "Only selected temporary files will move to recovery.")}\n\n${selected.map((i) => plan.files[i].path).join('\n')}';
                         if (await confirm(
                           'Move selected temporary files to recovery?',
                           detail,
@@ -888,7 +911,7 @@ class _WorkflowPageState extends State<WorkflowPage> {
                       },
                 child: UiText('Apply selected cleanup targets'),
               ),
-            if (data?['planId'] != null && data?['mutationPerformed'] == false)
+            if (cleanupResult?.kind == CleanupKind.scan)
               OutlinedButton(
                 onPressed: busy
                     ? null

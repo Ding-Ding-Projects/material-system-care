@@ -34,6 +34,7 @@ class CleanupResult {
     this.files,
     this.receipts,
     this.receiptId,
+    this.planId,
     this.partial,
     this.cancelled,
     this.plannedCount,
@@ -44,6 +45,7 @@ class CleanupResult {
   final List<CleanupFile> files;
   final List<CleanupReceipt> receipts;
   final String? receiptId;
+  final String? planId;
   final bool partial, cancelled, truncated;
   final int? plannedCount;
   final int excluded;
@@ -71,6 +73,41 @@ class CleanupResult {
       ? value
       : null;
   static CleanupResult parse(String method, Map<String, dynamic> data) {
+    if (!const {
+      'cleanup.scan',
+      'cleanup.apply',
+      'cleanup.restore',
+      'cleanup.history',
+      'cleanup.details',
+    }.contains(method)) {
+      throw const FormatException('Unsupported cleanup result');
+    }
+    for (final field in const [
+      'partial',
+      'cancelled',
+      'truncated',
+      'fixture',
+      'mutationPerformed',
+      'permanentDeletion',
+      'recordedOnly',
+    ]) {
+      if (data.containsKey(field) && data[field] is! bool)
+        throw const FormatException('Invalid cleanup status flag');
+    }
+    final required = switch (method) {
+      'cleanup.scan' => ['fixture', 'truncated', 'mutationPerformed'],
+      'cleanup.apply' => ['partial', 'cancelled', 'permanentDeletion'],
+      'cleanup.restore' => ['partial', 'cancelled'],
+      'cleanup.details' => ['recordedOnly', 'mutationPerformed'],
+      _ => <String>[],
+    };
+    if (required.any((field) => !data.containsKey(field)) ||
+        (method == 'cleanup.scan' || method == 'cleanup.details') &&
+            data['mutationPerformed'] != false ||
+        method == 'cleanup.apply' && data['permanentDeletion'] != false ||
+        method == 'cleanup.details' && data['recordedOnly'] != true) {
+      throw const FormatException('Missing or contradictory cleanup status');
+    }
     final kind = method == 'cleanup.scan'
         ? CleanupKind.scan
         : method == 'cleanup.history'
@@ -84,6 +121,14 @@ class CleanupResult {
             : 'items'];
     if (raw is! List || raw.length > 1000)
       throw const FormatException('Invalid cleanup results');
+    final planId = kind == CleanupKind.scan ? text(data['planId']) : null;
+    final receiptId = kind == CleanupKind.receipt
+        ? text(data['receiptId'])
+        : null;
+    if (kind == CleanupKind.scan && planId == null ||
+        kind == CleanupKind.receipt && receiptId == null) {
+      throw const FormatException('Missing cleanup identity');
+    }
     final files = <CleanupFile>[];
     final receipts = <CleanupReceipt>[];
     for (var index = 0; index < raw.length; index++) {
@@ -124,7 +169,8 @@ class CleanupResult {
       kind,
       List.unmodifiable(files),
       List.unmodifiable(receipts),
-      text(data['receiptId']),
+      receiptId,
+      planId,
       data['partial'] == true,
       data['cancelled'] == true,
       count(data['plannedCount']),

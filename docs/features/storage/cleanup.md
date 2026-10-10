@@ -6,6 +6,8 @@ Cleanup results use dedicated file and recovery-receipt cards. Summaries show th
 
 Scan checkboxes retain the original server index through filtering. Restoration actions identify one receipt, read its details, and require another explicit confirmation before each attempt, including a conflict retry. An unreadable receipt has no enabled restoration action. Errors offer another scan or recovery-history review instead of automatically repeating a mutation. These are recorded outcomes; live file availability is rechecked by the engine during the requested operation.
 
+The client derives cleanup filtering, selection, plan identity and confirmation paths only from the method-specific typed result. Unexpected sibling arrays cannot substitute records. Present status flags must be booleans, and each method requires its actual engine flags: scan requires `fixture`, `truncated` and `mutationPerformed:false`; apply requires `partial`, `cancelled` and `permanentDeletion:false`; restore requires `partial` and `cancelled`; details requires `recordedOnly:true` and `mutationPerformed:false`. Flags not required by that method may be omitted. Malformed or contradictory flags reject the result instead of silently suppressing a warning.
+
 ## Engine behavior
 
 1. Call `cleanup.scan` with `{ "minimumAgeDays": 7, "maxEntries": 10000, "maxHashMiB": 512 }`. Only the current user's `%LOCALAPPDATA%\\Temp` is eligible, and only if it agrees with the operating-system temporary path. A supplied `path` must match that root exactly. The minimum age is 1 through 365 days. The result includes `planId`, exact targets, total bytes, traversal counters, expiration and `mutationPerformed: false`.

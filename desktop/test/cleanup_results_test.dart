@@ -6,6 +6,196 @@ import 'package:material_system_care/localization.dart';
 import 'package:material_system_care/main.dart';
 
 void main() {
+  test('method-required flags cannot be omitted or contradicted', () {
+    final cases = <String, Map<String, dynamic>>{
+      'cleanup.scan': {
+        'planId': 'plan-1',
+        'targets': [],
+        'fixture': false,
+        'truncated': false,
+        'mutationPerformed': false,
+      },
+      'cleanup.apply': {
+        'receiptId': 'receipt-1',
+        'items': [],
+        'partial': false,
+        'cancelled': false,
+        'permanentDeletion': false,
+      },
+      'cleanup.restore': {
+        'receiptId': 'receipt-1',
+        'items': [],
+        'partial': false,
+        'cancelled': false,
+      },
+      'cleanup.details': {
+        'receiptId': 'receipt-1',
+        'items': [],
+        'recordedOnly': true,
+        'mutationPerformed': false,
+      },
+    };
+    for (final entry in cases.entries) {
+      expect(
+        () => CleanupResult.parse(entry.key, entry.value),
+        returnsNormally,
+      );
+      for (final field in entry.value.keys.where(
+        (key) => entry.value[key] is bool,
+      )) {
+        final missing = Map<String, dynamic>.of(entry.value)..remove(field);
+        expect(
+          () => CleanupResult.parse(entry.key, missing),
+          throwsFormatException,
+          reason: '${entry.key} requires $field',
+        );
+      }
+    }
+    expect(
+      () => CleanupResult.parse('cleanup.history', {'receipts': []}),
+      returnsNormally,
+    );
+    expect(
+      () => CleanupResult.parse('cleanup.scan', {
+        ...cases['cleanup.scan']!,
+        'mutationPerformed': true,
+      }),
+      throwsFormatException,
+    );
+    expect(
+      () => CleanupResult.parse('cleanup.apply', {
+        ...cases['cleanup.apply']!,
+        'permanentDeletion': true,
+      }),
+      throwsFormatException,
+    );
+    expect(
+      () => CleanupResult.parse('cleanup.details', {
+        ...cases['cleanup.details']!,
+        'recordedOnly': false,
+      }),
+      throwsFormatException,
+    );
+  });
+
+  testWidgets(
+    'extra unrelated rows cannot escape typed cleanup search bounds',
+    (tester) async {
+      tester.view.physicalSize = const Size(1400, 1400);
+      tester.view.devicePixelRatio = 1;
+      addTearDown(tester.view.resetPhysicalSize);
+      addTearDown(tester.view.resetDevicePixelRatio);
+      final messenger =
+          TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
+      messenger.setMockMethodCallHandler(
+        Engine.channel,
+        (call) async => {
+          'ok': true,
+          'result': {
+            'planId': 'plan-1',
+            'fixture': true,
+            'truncated': false,
+            'mutationPerformed': false,
+            'targets': [
+              {'path': r'C:\fixture\only.tmp'},
+            ],
+            'items': [
+              {'path': 'wrong-a'},
+              {'path': 'wrong-b'},
+              {'path': 'wrong-c'},
+            ],
+          },
+        },
+      );
+      addTearDown(
+        () => messenger.setMockMethodCallHandler(Engine.channel, null),
+      );
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(body: WorkflowPage(index: 1, title: 'Storage')),
+        ),
+      );
+      await tester.tap(find.text('Scan recoverable cleanup'));
+      await tester.pumpAndSettle();
+      await tester.enterText(find.byType(SearchBar), 'only');
+      await tester.pumpAndSettle();
+      expect(find.text('only.tmp'), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  test('cleanup status flags reject non-booleans', () {
+    for (final field in [
+      'partial',
+      'cancelled',
+      'truncated',
+      'fixture',
+      'mutationPerformed',
+      'permanentDeletion',
+      'recordedOnly',
+    ]) {
+      for (final value in ['true', 1, null]) {
+        expect(
+          () => CleanupResult.parse('cleanup.apply', {
+            'receiptId': 'receipt-1',
+            'items': [],
+            'partial': false,
+            'cancelled': false,
+            'permanentDeletion': false,
+            field: value,
+          }),
+          throwsFormatException,
+          reason: '$field=$value',
+        );
+      }
+    }
+  });
+
+  testWidgets('mixed arrays cannot replace the typed plan in confirmation', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(1400, 1400);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    final messenger =
+        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
+    messenger.setMockMethodCallHandler(
+      Engine.channel,
+      (call) async => {
+        'ok': true,
+        'result': {
+          'planId': 'plan-1',
+          'mutationPerformed': false,
+          'fixture': true,
+          'truncated': false,
+          'targets': [
+            {'path': r'C:\fixture\first.tmp'},
+            {'path': r'C:\fixture\second.tmp'},
+          ],
+          'items': [
+            {'path': r'C:\unrelated\wrong-first.tmp'},
+            {'path': r'C:\unrelated\wrong-second.tmp'},
+          ],
+        },
+      },
+    );
+    addTearDown(() => messenger.setMockMethodCallHandler(Engine.channel, null));
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(body: WorkflowPage(index: 1, title: 'Storage')),
+      ),
+    );
+    await tester.tap(find.text('Scan recoverable cleanup'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.widgetWithText(CheckboxListTile, 'second.tmp'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Apply selected cleanup targets'));
+    await tester.pumpAndSettle();
+    expect(find.textContaining(r'C:\fixture\second.tmp'), findsOneWidget);
+    expect(find.textContaining(r'C:\unrelated\wrong-second.tmp'), findsNothing);
+  });
+
   testWidgets('cleanup file selection is reachable from the keyboard', (
     tester,
   ) async {
@@ -15,6 +205,10 @@ void main() {
         home: Scaffold(
           body: CleanupResults(
             result: CleanupResult.parse('cleanup.scan', {
+              'planId': 'plan-1',
+              'fixture': true,
+              'truncated': false,
+              'mutationPerformed': false,
               'targets': [
                 {'path': r'C:\fixture\keyboard.tmp', 'size': 1},
               ],
@@ -38,6 +232,10 @@ void main() {
     'typed results preserve original positions and reject malformed paths',
     () {
       final result = CleanupResult.parse('cleanup.scan', {
+        'planId': 'plan-1',
+        'fixture': true,
+        'truncated': false,
+        'mutationPerformed': false,
         'targets': [
           {'path': r'C:\fixture\first.tmp', 'size': 5},
           {'path': r'C:\fixture\second.tmp', 'size': 7},
@@ -47,6 +245,10 @@ void main() {
       expect(result.files[1].name, 'second.tmp');
       expect(
         () => CleanupResult.parse('cleanup.apply', {
+          'receiptId': 'receipt-1',
+          'partial': false,
+          'cancelled': false,
+          'permanentDeletion': false,
           'items': [
             {
               'target': {'hash': 'private'},
@@ -63,6 +265,10 @@ void main() {
     (tester) async {
       final selected = <int>[];
       final result = CleanupResult.parse('cleanup.scan', {
+        'planId': 'plan-1',
+        'fixture': true,
+        'truncated': false,
+        'mutationPerformed': false,
         'targets': [
           {'path': r'C:\fixture\first.tmp', 'size': 5},
           {
@@ -112,6 +318,7 @@ void main() {
         'partial': true,
         'cancelled': true,
         'plannedCount': 2,
+        'permanentDeletion': false,
         'items': [
           {
             'target': {'path': path, 'size': 1024, 'hash': 'hidden-hash'},
@@ -159,7 +366,9 @@ void main() {
       expect(viewport.position.maxScrollExtent, greaterThan(0));
       viewport.position.jumpTo(viewport.position.maxScrollExtent);
       await tester.pumpAndSettle();
-      final expansion = tester.widget<ExpansionTile>(find.byType(ExpansionTile));
+      final expansion = tester.widget<ExpansionTile>(
+        find.byType(ExpansionTile),
+      );
       expect(expansion.expansionAnimationStyle?.duration, Duration.zero);
       expect(expansion.expansionAnimationStyle?.reverseDuration, Duration.zero);
       await tester.tap(find.textContaining('檔案詳情'));
@@ -208,6 +417,8 @@ void main() {
           'result': {
             'receiptId': 'receipt-1',
             'recordedOnly': method == 'cleanup.details',
+            'mutationPerformed': false,
+            'cancelled': false,
             'partial': true,
             'items': [
               {

@@ -23,6 +23,8 @@ void main() {
             ? {
                 'planId': 'fixture-plan',
                 'mutationPerformed': false,
+                'fixture': true,
+                'truncated': false,
                 'targets': [
                   {'path': r'C:\fixture\keep.tmp'},
                   {'path': r'C:\fixture\chosen.tmp'},
@@ -40,6 +42,7 @@ void main() {
                 'partial': false,
                 'cancelled': false,
                 'plannedCount': 1,
+                'permanentDeletion': false,
               }
             : {'records': <dynamic>[]},
       };
