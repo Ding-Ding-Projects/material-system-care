@@ -117,6 +117,9 @@ class _ServicesPageState extends State<ServicesPage> {
                   SizedBox(
                     width: 220,
                     child: DropdownButtonFormField<String>(
+                      isExpanded: true,
+                      isDense: false,
+                      itemHeight: null,
                       initialValue: state,
                       decoration: InputDecoration(
                         labelText: localize(context, 'Service state'),

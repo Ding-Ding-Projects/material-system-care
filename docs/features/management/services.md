@@ -13,3 +13,7 @@ Official Material controls own focus, press, selection and expansion feedback. O
 ## Verification
 
 Four focused widget checks passed for isolated entry, explicit singleton collection/filtering/stale-result clearing, duplicate rejection and late completion after disposal. Root engine and desktop builds passed at 74b1f41232e987687524c0aa1ef228ede9e06ed8. Four focused widget checks passed. A genuine hidden-desktop run collected 294 service records, filtered the loaded set, expanded one record and excluded that stopped record under the Running filter. The observed count is account- and time-specific, not an exhaustive access guarantee. All owned bundle processes were absent and the hidden desktop closed. Populated frames remain private; only the inspected idle image is public. The narrow verifier checked 210 bundle files and rejected an altered input-receipt hash before restored evidence passed. Complete language, accessibility, appearance and export contracts remain unverified. The isolated --services capture selector opens the production widget without persisted settings; it never injects service records.
+
+## Enlarged bilingual selection
+
+The state selector uses expanded width and intrinsic item height so selected bilingual text can wrap instead of being forced into a single fixed-height item. A focused 800x600/text-scale-2 fixture passes after reproducing the original overflow. Identical rebuilt runtime verification remains pending.

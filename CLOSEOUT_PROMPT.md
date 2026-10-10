@@ -1,5 +1,9 @@
 # Continuation
 
+## Minimum-size service layout repair
+
+A real 800x600 bilingual dark service view at text scale 2 exposed a clipped selected translation in the service-state selector. The original fixed-height selector also failed the focused layout fixture with a horizontal overflow. The selector now expands and uses intrinsic item height. The focused fixture passes; an identical rebuilt runtime capture remains pending.
+
 ## Latest delivery proof
 
 Service guide deployment 38018555585 for 5a19aee6cc273b8f38709783065ff9887327479f succeeded. Live home, assets/index-B8qLqhmk.js, services-idle.png and coverage.json returned HTTP 200 and matched local build bytes. Repository visibility remains PUBLIC, About homepage is exactly https://ding-ding-projects.github.io/material-system-care/, and Pages uses workflow deployment from main. See docs/verification/service-guide-delivery.json. Hosted Windows runs for 74b1f41, 5a19aee, 5921f90 and a36af04 were still running at the last observation; do not infer their outcome from local builds. The earlier dc706dc run 38018347345 succeeded.
