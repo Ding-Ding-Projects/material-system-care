@@ -12,6 +12,13 @@ class CopyScope extends InheritedWidget {
 }
 
 const translations = <String, String>{
+  'Copy': '複製',
+  'Cut': '剪下',
+  'Paste': '貼上',
+  'Select all': '全選',
+  'Look Up': '查詢',
+  'Search Web': '搜尋網頁',
+  'Share': '分享',
   'Discover WinGet packages?': '探索 WinGet 套件？',
   'WinGet is not installed for the current user.': '目前使用者未安裝 WinGet。',
   'WinGet discovery did not complete. Check its installation, source availability and previously accepted source agreements. No source configuration was changed.':
@@ -536,8 +543,10 @@ const translations = <String, String>{
       '本機引擎未連接。請開啟已安裝的程式並確認引擎可用，然後重試。',
 };
 
-String localize(BuildContext context, String text) {
-  final prefs = CopyScope.of(context);
+String localize(BuildContext context, String text) =>
+    localizePreferences(CopyScope.of(context), text);
+
+String localizePreferences(Map<String, dynamic> prefs, String text) {
   final language = prefs['language'] ?? 'en';
   String translated = translations[text] ?? text;
   var result = language == 'yue'
