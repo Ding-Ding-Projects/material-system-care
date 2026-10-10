@@ -1,25 +1,27 @@
 # Resume Material System Care
 
-Objective: finish the independent Windows 11 x64 maintenance suite with Flutter/Dart, C#/.NET 10, narrow C++20 and SQLite. Preserve all 295 capability requirements and exclusions. The active goal was restored without an explicit budget and is incomplete.
+Objective: complete the independent Windows 11 x64 suite using Flutter/Dart, C#/.NET 10, narrow C++20 and SQLite. Preserve all 295 capability rows and exclusions. The active goal has no explicit budget and remains incomplete.
 
-## Current verified unit
+## Verified work
 
-Baseline source `fafca0e8f908768b6c0e4ff4094fd99575875e0e` passed the root desktop build. Its copied 210-file bundle produced real Services, Scheduled tasks and Processes runs at 800 × 600, bilingual dark theme and text scale 2. Tab traversal, Page Down movement and lower search-field text were observed. All recorded processes are absent and all three hidden desktops are closed.
+Main previously matched `eb4b9cab4368bca3951bb295007e18378eee8c0a`. This integration includes the isolated cleanup verification mode from `2ed02f132083d75d281ce1ab4859583f7d5e3c88` and its exact-source root desktop build. The genuine hidden-desktop round trip verified selection, cancellation, recovery movement, conflict preservation and successful retry, with original hashes, file identities and modification times restored. All bundle processes are absent and the hidden desktop is closed. Evidence: `docs/captures/cleanup-workflow.json`, `docs/features/storage/cleanup-verification.md` and `scripts/verify-cleanup-workflow.mjs`. The verifier passed and rejected an altered frame hash. Populated frames remain private because they contain local paths.
 
-The Lowlevel keyboard repair is on its remote main at `00365b0e846e3eb031ea58b0c3ca316c2b1349a8`. Its implementation `5012390` retains the extended bit for navigation keys even when the mapper omits the prefix. Four focused tests and the exact root build with a separate environment passed. The original shared environment was restored using its original interpreter; existing registered servers were not stopped. Lowlevel hosted build/deployment runs were in progress at the last observation.
+The prior keyboard unit retained nine exact frames at 800x600, bilingual dark, text scale 2. Public deployment `38082534923` at `eb4b9ca` delivered 709 matching files and 169 full articles. Three browser viewports passed focused image-loading, overflow, accessibility-name and Tab-focus checks. The browser/listener are absent and hidden desktop closed; its isolated profile is retained. The exact About homepage is https://ding-ding-projects.github.io/material-system-care/. These claims apply to that deployed revision; this integration still needs its own deployment readback.
 
-Nine exact painted PNGs, their input and lifecycle receipt hashes, and the producer binding are recorded in `docs/captures/keyboard-navigation.json`. The observation verifier passes and rejects a corrupted image hash. These are not native compositor or physical-DPI evidence. Frame timestamps were not emitted and remain unknown. Complete focus order, popup states, populated states, appearance/scale coverage, accessibility and motion remain unfinished.
+Lowlevel main is `00365b0e846e3eb031ea58b0c3ca316c2b1349a8`; sender code is `5012390`. Its hosted build/deployment and this repository build `38082515576` succeeded. Existing shared Lowlevel clients were preserved. The task-owned HTTP service remains available for subsequent isolated verification.
 
-## Active isolated work
+## In progress
 
-`codex/cleanup-fixture` implements a safe explicit disposable cleanup/recovery launch mode with isolated records/temp targets, a unique pipe and restricted dispatch. It is unfinished and must be independently reviewed and verified before integration or destructive UI proof. Preserve `implement/desktop-ui` at `4e1ae07ef80ac38ca747948138f54c62f5906cdf`.
+The existing `codex/cleanup-fixture` branch also contains startup stale-review protection at `785a79c10d8c3318dc8b6a69aa17562fd7e0ae74`, separately built and tested. It is not part of this cleanup integration. Independent review is dry. Integrate and preserve it separately, then verify actual owned-entry registry/UI behavior. Protection is optimistic, not atomic compare-and-swap.
 
-## Next work
+Retain the generated-file recovery branch `implement/desktop-ui` at `4e1ae07ef80ac38ca747948138f54c62f5906cdf`. No task-owned worktree or branch has been deleted.
 
-Publish and verify the updated documentation and nine observation images directly on GitHub Pages. The last verified deployment was `38021026357` at `f69279d`, with 697 matching files and the exact About homepage. Then review/integrate the isolated fixture mode, perform a selected cleanup, cancelled review, conflict-preserving restore and exact-byte recovery through the real GUI. Continue the remaining capability and interface matrices, genuine Squirrel installation/update/uninstall and final public delivery. A gallery or component test does not complete the wider goal.
+## Next steps
 
-Use exact root build entrypoints, source-bound evidence, bounded retries, isolated hidden desktops and prompt verified pushes to main. Keep user data, credentials, private terminology, visible desktop/focus and host power state untouched. Retain unfinished branches and do not infer completion from source-only changes.
+Finish dedicated bilingual cleanup/recovery result presentation, startup and managed-package interaction, read cancellation, remaining diagnostic actions and the complete appearance/accessibility matrix. Verify genuine Squirrel installation, update and uninstall. Keep full articles and available wiki content on GitHub Pages, verify every deployment and the exact About homepage, and retain honest per-capability status.
+
+Use exact root build entrypoints, source-bound evidence, bounded retries and prompt verified pushes to main. No user-file mutation without exact review, visible-desktop disruption, private-data publication, host power actions, kernel drivers or proprietary engines. Preserve and archive owned work before any authorized cleanup.
 
 ## 中文接續
 
-完整維護套件仍未完成。最小視窗嘅三個工作區鍵盤操作已有指定證據；九張原始圖像已入庫，網站發佈仍須逐項核對。先完成隔離清理測試模式審查，再用真正介面驗證選取、取消、衝突保護與原始內容復原。保留未完成分支及既有復原記錄，不能把圖庫發佈當成整個目標完成。
+完整套件仍未完成。今次已用真正介面驗證隔離清理、取消、衝突保護及原始內容復原；含私人路徑嘅畫面不公開。下一步整合啟動項目覆核保護，再完成專用清理顯示、其他流程、完整外觀及安裝更新驗證。保留未完成分支，不能把局部成功當成整個目標完成。

@@ -1,0 +1,120 @@
+{
+  "version": 1,
+  "sourceCommit": "2ed02f132083d75d281ce1ab4859583f7d5e3c88",
+  "route": "cheap-lowlevel-headless",
+  "evidenceKind": "painted-flutter-with-independent-file-observations",
+  "buildReceipt": {
+    "source": "2ed02f132083d75d281ce1ab4859583f7d5e3c88",
+    "bundleSha256": "150c91b25589153e740a62d0a32d919b498b7eb783b11c270ff66f62e5144d2a",
+    "manifestSha256": "327304f034938c77e6962c4aef81ea98502c68333792049f962a2b8c04aff57b",
+    "version": "0.1.0",
+    "executableSha256": "f86305394b46586fd2e903699f9a3cfbf2f51b218d39b32c00cddcfede60ef25",
+    "indexTree": "35eb87220d1d15575116f7ebf81866720e035822",
+    "sourceTree": "35eb87220d1d15575116f7ebf81866720e035822",
+    "builtUtc": "2026-10-10T20:11:13.3366390Z"
+  },
+  "viewport": {
+    "width": 1280,
+    "height": 1000,
+    "language": "both",
+    "theme": "dark",
+    "textScale": 1,
+    "motion": "reduced",
+    "physicalDpiVerified": false
+  },
+  "frameCapturedAt": null,
+  "checks": {
+    "selectedTargetsOnly": true,
+    "cancelLeavesFilesUnchanged": true,
+    "selectedMovePreservesBytesAndIdentity": true,
+    "unselectedUnchanged": true,
+    "conflictDoesNotOverwrite": true,
+    "recoveryPreservedAfterConflict": true,
+    "retryRestoresOriginalBytesIdentityAndModificationTime": true,
+    "allOwnedBundleProcessesAbsent": true,
+    "desktopClosed": true
+  },
+  "privacy": {
+    "disposableFilesOnly": true,
+    "hostRecordsCollected": false,
+    "populatedImagesPublished": false,
+    "reason": "Populated frames contain local paths and are retained privately. No edited or reconstructed substitute is published."
+  },
+  "evidence": {
+    "baseline.json": "360e3cd0c7d85da54d2926066f4e72632f8c9263ef6c6fbcabaa85fc7d7424c6",
+    "fixture.json": "ee31b6512e78c6cfe01b6dd112d42dd917ccd63c7b95af204cc0760316f01c57",
+    "launch.json": "1928d2d3a9624e50f4d2f4b7517d15e2c489ab6b1c711840033e4a669ee1f505",
+    "window.json": "ebce2dc95c9593f6e6f2397625007b7c02e946b592b55115659ee9105e2aac52",
+    "bundle/build-receipt.json": "aa677f5d08e86e0c92e13b3a9ba0ec703b79b3ef9d761631659d0272492e3f3e",
+    "scan.json": "db205c7edb37e1328f2fb1479dd51fcc3d93cb43c977c92a709ae5ad83a1da3f",
+    "select-alpha.json": "7222b14a29cdfb705126792263c47b819edeb5e8bd24efe2353fc4a265630c0a",
+    "review-selected.json": "af7997d435b8005fa16e51239c2675459673d60d4f2cf37a40f3976d0f53c995",
+    "cancel-review.json": "c0254023baaf8d004cfacc60970e223490be8388f4deae9169e2242f0bbe0266",
+    "confirm-selected.json": "d13e50ae758d8556d68c6431a0a14e868645a6f2d03ff2ddf59faea9acf718e4",
+    "apply-independent-proof.json": "581810ecfaab3ec9d10acbad2adeaca2cb15d566664da2ca419bbd529a030b19",
+    "conflict-fixture.json": "5d08aa17eba7efdbb64a724d5eb3cade9078948352e45846a35a7367dbaeb817",
+    "confirm-restore-conflict.json": "6d4853630adfa6c95f286e7ca9dc09f44ca58e61f269f584cd23b9c10a511ef9",
+    "conflict-independent-proof.json": "598e66479b5bff42511a233bfc1a2482dab31b7efd3b4e0eabc9111fc4a85746",
+    "confirm-restore-retry.json": "7a54886d177432ee12255f35b892d0f6ebd274f8e349a1e985c71951660f9531",
+    "restore-independent-proof.json": "cff24350456db46b7adf9518d6b81f53ff50a99b69128163d6eb956e681305f9",
+    "teardown.json": "4a81452fe2cc2dfc79acf8700fc3d9032caf710a28bb594e68143a27bf55ed62"
+  },
+  "inspectedFrames": [
+    {
+      "path": "output/frame-001.png",
+      "sha256": "24dbc2e1beb28525ff97a08fc9f023ed4183e8ca66e06b7d241f29dd24cf9933",
+      "published": false
+    },
+    {
+      "path": "output/frame-002.png",
+      "sha256": "e76c6bf3a0ca2cbbc9e6a6c89b7a1dbe540e01a4dc32b1253e6e1bfde5e9c3a1",
+      "published": false
+    },
+    {
+      "path": "output/frame-003.png",
+      "sha256": "637b176eca9066c972e8b0db5b40e5ad18f389b47c49d9071d171a602e8cd1ad",
+      "published": false
+    },
+    {
+      "path": "output/frame-004.png",
+      "sha256": "c3736ac76f0dba1ca4cc65e316f76c9ae4ae791afa0b0578929a9fbaf2a9d5e6",
+      "published": false
+    },
+    {
+      "path": "output/frame-007.png",
+      "sha256": "644c721852bab5ead9bf2c4e4d574565f04e6237b6f50ccede2f13095abe43ec",
+      "published": false
+    },
+    {
+      "path": "output/frame-008.png",
+      "sha256": "b9c1c0d5896beec0229d15df54e20c736707fda19ef45a11c7ac47fe915c4e36",
+      "published": false
+    },
+    {
+      "path": "output/frame-009.png",
+      "sha256": "e2c494704c77e3febbeb9ca33cfb54638196eac1270cc1df5031f460515df834",
+      "published": false
+    },
+    {
+      "path": "output/frame-010.png",
+      "sha256": "58e1d0b438ad03c04244502a1af12329613277f3c9906d7ed85d648e3df30a7b",
+      "published": false
+    },
+    {
+      "path": "output/frame-011.png",
+      "sha256": "98051ac03ac524010ebec41fb90505d1cbb91438a17d65fc6205b09fc686bbdc",
+      "published": false
+    },
+    {
+      "path": "output/frame-015.png",
+      "sha256": "7acbadebe18f6fc758a635f26557693f0797f8118bdb449131addea87e0448a1",
+      "published": false
+    }
+  ],
+  "limitations": [
+    "Native compositor and physical DPI are unverified.",
+    "Full appearance, accessibility and input matrices remain incomplete.",
+    "Raw record-shaped cleanup results still need a dedicated bilingual presentation.",
+    "This verifies disposable files, not arbitrary user-directory cleanup."
+  ]
+}

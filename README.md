@@ -14,6 +14,8 @@ Temporary-file maintenance now requires an explicit selected subset of the scann
 
 Recovery history reads the receipt's recorded file details before asking to restore. Missing details block that action; restoration still checks actual identity, content and occupied destinations before moving anything.
 
+A real [disposable cleanup/recovery round trip](docs/features/storage/cleanup-verification.md) verified selected-file movement, cancelled confirmation, conflict preservation and restoration of original bytes and identities. Its populated frames remain private because they contain local paths. The complete interface and installer lifecycle are still unverified.
+
 A Windows 11 x64 maintenance and diagnostics workspace built with Flutter, .NET 10, and Material Design 3.
 
 **Development status:** implementation is in progress. No production installer or complete feature-parity claim is available yet.

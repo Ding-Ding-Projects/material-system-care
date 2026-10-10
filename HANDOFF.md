@@ -1,5 +1,17 @@
 # Implementation handoff
 
+## Disposable cleanup round trip and current delivery
+
+The isolated verification mode is integrated from `2ed02f132083d75d281ce1ab4859583f7d5e3c88`. Its root desktop build and focused engine/Flutter checks passed. Independent review found no remaining scope-escape defect in the reviewed implementation. A real directory-junction root was rejected without writing records; symbolic-link creation remains unavailable under the current account privilege.
+
+The actual desktop completed scan, single-file selection, cancelled confirmation, recovery movement, conflict-preserving restoration and successful retry. Independent checks verified both original hashes, file identities and modification times. All owned bundle processes are absent and the named hidden desktop is closed. `docs/captures/cleanup-workflow.json` binds private observations and inspected frames; `scripts/verify-cleanup-workflow.mjs` verifies their hashes and bounded assertions. Populated frames contain local paths and remain private. Dedicated bilingual cleanup-result presentation, complete accessibility, appearance, input and physical-DPI coverage remain unfinished.
+
+Public deployment `38082534923` at `eb4b9cab4368bca3951bb295007e18378eee8c0a` delivered all 709 files with matching hashes, including 169 complete articles and the nine keyboard observation images. The article passed desktop 1440×1000, narrow 390×844 and minimum 320×800 checks with zero body overflow, console/resource errors or unnamed interactive controls, and visible Tab focus. The owned browser and listener are absent, its hidden desktop is closed, and its isolated profile is retained for final cleanup. This is bounded browser evidence, not a complete accessibility certification. The repository About homepage was read back as `https://ding-ding-projects.github.io/material-system-care/`.
+
+Hosted builds `38082515576` (this repository) and `38082470315` (the Lowlevel repair) completed successfully. Genuine Squirrel installation/update/uninstall remains unverified. A separately prepared startup stale-review change has focused test and build evidence and awaits its own integration; do not treat its source-only checks as registry or GUI mutation evidence.
+
+中文：即棄檔案嘅真正介面驗證已完成指定範圍，取消、衝突保護同原始內容復原都有獨立核對。含本機路徑嘅畫面不公開。網站最新一輪已逐一核對 709 個檔案；完整套件、外觀矩陣及安裝更新生命週期仍未完成。
+
 ## Resumed keyboard verification
 
 The full suite goal was restored without an explicit budget. The baseline `fafca0e8f908768b6c0e4ff4094fd99575875e0e` passed the root desktop build and produced the bundle used for three real minimum-size keyboard runs. The Lowlevel repair is published at `00365b0e846e3eb031ea58b0c3ca316c2b1349a8`, with the verified sender implementation at `5012390`.

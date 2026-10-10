@@ -26,8 +26,12 @@ public static class Program
         Console.CancelKeyPress += (_, e) => { e.Cancel = true; shutdown.Cancel(); };
         try {
             string? Option(string name) { var i = Array.IndexOf(args, name); if (i < 0) return null; if (i + 1 >= args.Length) throw new EngineException("INVALID_ARGUMENT", "An option value is missing."); return args[i + 1]; }
-            var context = new EngineContext(Option("--data-root"));
-            var modules = CreateModules();
+            var fixtureRequested = args.Any(a => a.StartsWith("--cleanup-fixture", StringComparison.Ordinal));
+            if (fixtureRequested && (args.Length != 4 || args[0] != "--cleanup-fixture-root" || args[2] != "--cleanup-fixture-pipe" || args[3].Length != 32 || !args[3].All(char.IsAsciiHexDigit)))
+                throw new EngineException("INVALID_ARGUMENT", "Invalid cleanup fixture launch arguments.");
+            using var fixture = fixtureRequested ? new CleanupFixture(args[1]) : null;
+            var context = new EngineContext(fixture?.Records ?? Option("--data-root"), fixture);
+            var modules = fixture == null ? CreateModules() : new IEngineModule[] { new SystemModule(), new StorageModule(fixture.Temp) };
             if (Option("--request-file") is { } file) {
                 await using var input = File.OpenRead(file);
                 var request = await ReadLineAsync(input, shutdown.Token);
@@ -39,7 +43,7 @@ public static class Program
             var clients = new List<Task>();
             while (!shutdown.IsCancellationRequested) {
                 await slots.WaitAsync(shutdown.Token);
-                var pipe = new NamedPipeServerStream("MaterialSystemCare." + sid, PipeDirection.InOut, 16, PipeTransmissionMode.Byte, PipeOptions.Asynchronous | PipeOptions.CurrentUserOnly);
+                var pipe = new NamedPipeServerStream("MaterialSystemCare." + sid + (fixture == null ? "" : ".fixture." + args[3]), PipeDirection.InOut, 16, PipeTransmissionMode.Byte, PipeOptions.Asynchronous | PipeOptions.CurrentUserOnly);
                 try { await pipe.WaitForConnectionAsync(shutdown.Token); }
                 catch { pipe.Dispose(); slots.Release(); throw; }
                 clients.RemoveAll(t => t.IsCompleted);
@@ -118,6 +122,10 @@ public static class Program
             if (root.TryGetProperty("id", out var requestId) && requestId.ValueKind == JsonValueKind.String && requestId.GetString()!.Length <= 128) id = requestId.GetString();
             if (id == null || !root.TryGetProperty("version", out var version) || version.ValueKind != JsonValueKind.Number || !version.TryGetInt32(out var v) || v != 1 || !root.TryGetProperty("method", out var methodValue) || methodValue.ValueKind != JsonValueKind.String || !root.TryGetProperty("params", out var parameters) || parameters.ValueKind != JsonValueKind.Object) throw new EngineException("INVALID_REQUEST", "Version 1, a bounded id, method, and object parameters are required.");
             var method = methodValue.GetString()!;
+            if (context.CleanupFixture is { } fixture) {
+                fixture.Validate();
+                if (!CleanupFixture.Methods.Contains(method, StringComparer.Ordinal)) throw new EngineException("FIXTURE_METHOD_DENIED", "This capability is unavailable in cleanup fixture mode.");
+            }
             if (method.Length is < 1 or > 128 || method.Any(c => !(char.IsAsciiLetterOrDigit(c) || c is '.' or '_'))) throw new EngineException("INVALID_REQUEST", "The method name is invalid.");
             var owner = ModuleInventory.FirstOrDefault(entry => entry.Methods.Contains(method, StringComparer.Ordinal)).Type;
             var module = owner == null ? null : modules.FirstOrDefault(m => owner.IsInstanceOfType(m) && m.CanHandle(method));

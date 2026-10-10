@@ -77,7 +77,7 @@ internal static class StorageSafeFile
         }
         finally { Marshal.FreeHGlobal(buffer); }
     }
-    private sealed class DestinationLocks : IDisposable
+    internal sealed class DestinationLocks : IDisposable
     {
         private readonly List<(string Path, SafeFileHandle Handle)> handles = [];
         public DestinationLocks(string parent)
@@ -90,6 +90,12 @@ internal static class StorageSafeFile
                     if (handle.IsInvalid) { handle.Dispose(); throw new IOException("Unable to lock a recovery ancestor.", new Win32Exception(Marshal.GetLastWin32Error())); }
                     handles.Add((path, handle));
                 }
+                Validate();
+            }
+            catch { Dispose(); throw; }
+        }
+        public void Validate()
+        {
                 foreach (var item in handles)
                 {
                     if (!GetFileInformationByHandle(item.Handle, out var info) || (info.Attributes & 0x400) != 0)
@@ -102,8 +108,6 @@ internal static class StorageSafeFile
                     if (length == 0 || length >= resolved.Capacity || !string.Equals(item.Path.TrimEnd('\\'), final.TrimEnd('\\'), StringComparison.OrdinalIgnoreCase))
                         throw new EngineException("TARGET_CHANGED", "A recovery ancestor changed.");
                 }
-            }
-            catch { Dispose(); throw; }
         }
         public void Dispose() { foreach (var item in handles) item.Handle.Dispose(); handles.Clear(); }
     }

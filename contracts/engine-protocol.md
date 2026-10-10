@@ -63,3 +63,8 @@ The Flutter method channel accepts an explicit request `id` for invocation and a
 ### Scheduled-task inspection
 
 `tasks.list` accepts optional integer `limit` (1..1000, default 200). It returns projected `records`, `truncated`, UTC `observedAt` and an access/timing limitation. Record fields are `name`, `path`, `state`, nullable `enabled`, nullable timezone-unspecified `lastRun`/`nextRun`, nullable unsigned-32-bit `lastResult`, and `infoAvailable`. This method is read-only and unavailable to real host collection from fixture contexts. It never returns action commands or principals.
+# Disposable cleanup launch scope
+
+Desktop verification may explicitly use `--cleanup-fixture-root <directory>`. The native bridge adds internal `--cleanup-fixture-pipe <32-hex-suffix>` arguments and connects only to that child PID. The engine requires exactly this argument pair, an existing direct child of the dedicated temporary fixture parent, fixed marker schema, and existing `temp`/`records` children. See [fixture preparation](../docs/architecture/cleanup-fixture.md).
+
+In this mode `engine.ping` returns `cleanupFixture: true` and the restricted capability inventory. Dispatch allows only `engine.ping`, `settings.get`, `settings.save`, `history.list`, and `cleanup.scan/apply/restore/history/details`. Other methods return `FIXTURE_METHOD_DENIED`. Invalid scope returns failure without production fallback. Ordinary startup retains its existing pipe and storage behavior.
