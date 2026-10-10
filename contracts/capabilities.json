@@ -627,31 +627,38 @@
         "desktop/lib/main.dart"
       ],
       "tests": [
-        "tests/storage/Program.cs"
+        "tests/storage/Program.cs",
+        "desktop/test/recovery_review_test.dart"
       ],
       "evidence": [],
       "documentation": "docs/catalogue/asc-care.md",
       "implementationCoverage": "partial",
-      "implementedEquivalent": "cleanup.history",
+      "implementedEquivalent": "cleanup.history / cleanup.details",
       "remainingGap": "Cleanup receipts only; no registry, driver or arbitrary settings rescue center.",
       "sourceBindings": [
         {
-          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "commit": "ca91247ef313ff0592c5d45d70d819049e9de92f",
           "path": "engine/Modules/StorageModule.cs",
           "role": "implementation",
-          "symbol": "cleanup.history"
+          "symbol": "cleanup.history / cleanup.details"
         },
         {
-          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
-          "path": "tests/storage/Program.cs",
-          "role": "test",
-          "symbol": "fixture assertions"
-        },
-        {
-          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "commit": "ca91247ef313ff0592c5d45d70d819049e9de92f",
           "path": "desktop/lib/main.dart",
           "role": "interface",
-          "symbol": "Activity"
+          "symbol": "Recovery file review"
+        },
+        {
+          "commit": "ca91247ef313ff0592c5d45d70d819049e9de92f",
+          "path": "tests/storage/Program.cs",
+          "role": "test",
+          "symbol": "read-only recovery details"
+        },
+        {
+          "commit": "ca91247ef313ff0592c5d45d70d819049e9de92f",
+          "path": "desktop/test/recovery_review_test.dart",
+          "role": "test",
+          "symbol": "restore confirmation and unavailable-details blocking"
         }
       ],
       "actualNavigation": "Activity",

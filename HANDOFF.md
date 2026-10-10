@@ -4,7 +4,7 @@
 
 The engine now exposes read-only cleanup.details for a validated receipt ID. It returns recorded path, size, state and reason without internal hashes or quarantine locations. The desktop reads matching details before restore confirmation, shows the recorded files, blocks unavailable or empty details, and sends only the reviewed receipt ID with explicit confirmation. Stored state is a snapshot; current availability and destination conflicts remain governed by actual restore-time validation. Skipped/already-restored items can appear in review without being moved again.
 
-Thirty-three storage checks and the focused recovery-review Flutter check passed. Tests cover metadata-only behavior, omitted internal fields, traversal rejection, unavailable-detail blocking, cancellation without restoration and receipt-specific confirmation. Independent bounded review found no concrete correctness/privacy/scope regression. Candidate root builds and genuine built recovery interaction remain pending. No real user files were restored.
+Thirty-three storage checks and the focused recovery-review Flutter check passed. Tests cover metadata-only behavior, omitted internal fields, traversal rejection, unavailable-detail blocking, cancellation without restoration and receipt-specific confirmation. Independent bounded review found no concrete correctness/privacy/scope regression. Root engine verification and desktop builds passed at ca91247ef313ff0592c5d45d70d819049e9de92f. Genuine built recovery interaction remains pending. No real user files were restored.
 
 ## Selected maintenance targets
 
