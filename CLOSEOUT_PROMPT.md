@@ -1,5 +1,9 @@
 # Continuation
 
+## Live capture delivery and interaction limit
+
+Deployment 38012355045 succeeded at 998c17ebb2c10fa726287c6ded18e963e857c762. The live home, script and processes-idle.png returned 200; script and PNG bytes matched local built/reviewed output and About homepage was exact. A separate bounded read-only interaction attempt remains unverified: repeated character delivery produced an incorrect filter, and background modifier/editing keys did not correct it. Its private frames and input receipts are retained, no close action ran, and the exact desktop/engine executable paths and named desktop were confirmed closed. Do not promote these attempted interaction frames or claim intended filtered inventory passed. Next investigate supported background input delivery or another supported Lowlevel control route without visible-focus changes. The existing public idle frame remains valid render-only evidence.
+
 ## Process capture evidence
 
 The process workspace now has an inspected source-bound painted frame at docs/captures/processes-idle.png, SHA-256 2c87439a9470e527a740898f57ed8a9838a82cf1b0d0b8635454472b8a880c18, 1264 by 681. Producer a9975e2d639f0fe37b4fc3c699ad05f9df2a2aee passed the root desktop build. Lowlevel launched the real workspace with isolated defaults; no process collection, injected data or close action occurred. Both desktop and engine executable paths were confirmed absent and the named desktop closed. The validator checked all 210 bundle files and rejected an altered PNG hash before passing restored evidence. This is render-only proof, not native-compositor or interaction proof. Four process Flutter checks passed, including no automatic settings/collection calls in isolated entry. Independent review confirmed the entry semantics. Supplying both workspace flags disables isolated export and is not a supported evidence invocation.
