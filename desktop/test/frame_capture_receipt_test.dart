@@ -23,7 +23,7 @@ void main() {
       10,
     );
     expect(captureUtc(start), '2026-10-10T12:13:14.015016Z');
-    for (final sequence in [0, 1, 19]) {
+    for (final sequence in [0, 1, 19, 63]) {
       final path = frameCapturePath('C:/test/frame.png', sequence);
       final request = frame.request(path, sequence);
       expect(request['sequence'], sequence);
@@ -38,7 +38,7 @@ void main() {
       );
     }
     expect(
-      () => frameCapturePath('C:/test/frame.png', 20),
+      () => frameCapturePath('C:/test/frame.png', 64),
       throwsArgumentError,
     );
   });

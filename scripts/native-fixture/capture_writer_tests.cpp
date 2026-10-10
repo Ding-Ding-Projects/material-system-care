@@ -53,6 +53,11 @@ void CaptureWriterChecks() {
     result=capture_writer::Write(request,[]{return false;}); Check(result.png_saved && !result.receipt_saved && result.error.find("receipt is incomplete")!=std::string::npos && Read(request.path+".json")=="keep","Receipt collision did not retain PNG and original sidecar");
     request.path=(root/"cancelled.png").string(); result=capture_writer::Write(request,[]{return true;}); Check(!result.png_saved && !std::filesystem::exists(request.path),"Early cancellation created a PNG");
     unsigned calls=0; result=capture_writer::Write(request,[&]{return ++calls>=3;}); Check(result.png_saved && !result.receipt_saved && !std::filesystem::exists(request.path+".json"),"Late cancellation was not reported as an incomplete receipt");
+    request.sequence=63; request.path=(root/"boundary-063.png").string();
+    result=capture_writer::Write(request,[]{return false;});
+    Check(result.receipt_saved && Read(request.path+".json").find("\"sequence\":63")!=std::string::npos,"Sequence 63 rejected");
+    request.sequence=64; request.path=(root/"boundary-064.png").string();
+    Check(!capture_writer::Write(request,[]{return false;}).png_saved,"Sequence 64 accepted"); request.sequence=0;
     request.path=(root/"diagnostic.png").string();
     request.diagnostics=capture_writer::Diagnostics{1,0,"flutter-framework,platform-dispatcher",valid,request.capture_completed_utc,1,0,0,true};
     result=capture_writer::Write(request,[]{return false;});

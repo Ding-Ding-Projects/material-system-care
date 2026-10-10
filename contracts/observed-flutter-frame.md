@@ -68,3 +68,5 @@ Timestamp checks validate consistency of supplied observations, not an external
 clock attestation. Existing captures are never modified. Only real receipts
 supplied by the capture owner may support a live-evidence result; the test
 script creates explicitly synthetic fixtures and cannot establish live proof.
+
+The narrow verifier accepts up to 64 distinct frames with sequences 0 through 63. Sequence 64 and a 65-frame inventory are rejected. Filename/sequence binding, exact PNG and sidecar hashes, source/bundle verification, two-hook diagnostic coverage and privacy checks remain unchanged. This extension does not establish acceptance by a separate promotion validator.

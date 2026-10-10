@@ -4,6 +4,12 @@ This file retains earlier candidate states as historical evidence. A later sourc
 
 本檔案保留早期候選版本作歷史記錄。後來嘅實際驗證只會取代有明確證據嗰部分，未完成清單仍以路線圖為準，唔會將部分檢查當成整套完成。
 
+## Bounded extended painted capture
+
+Candidate `6470a34cb6785c5d9d5a6875e0fe71c574619008` raises the painted-frame producer and local verifier to 64 attempts, sequences 0 through 63. All file immutability, byte, timing, diagnostic and source checks remain unchanged. Eight Dart checks, thirty-three synthetic Node checks, thirty-six native capture assertions, twenty-four lifecycle checks and five transport cases passed. Both candidate root native and desktop builds passed. Boundary checks were observed failing before the repair. Two independent source reviews were dry. Integrated production, a real frame beyond the earlier boundary and the separate promotion-validator deployment remain pending. Historical twenty-frame runs retain their original limits.
+
+中文：繪製畫面擷取上限改為 64 次嘗試，編號 0 至 63，原有檔案不可覆寫、容量、時間、診斷及來源檢查保持不變。候選測試同建置通過，整合後超過舊上限嘅實際畫面及獨立驗證器部署仍待完成。
+
 ## Dedicated cleanup runtime evidence
 
 Integrated source `cb97b0dd7d20214f0ce195e1c3d218a750754e30` completed a normal-size disposable cleanup round trip. Cancellation preserved the original three hashes; only the selected 32-byte file moved to recovery storage; both unselected files remained unchanged. The receipt-specific review restored original bytes, file identities and modification times. A fresh 800×600 doubled-bilingual run at `e6bfd4994f00fc4d03875f687c12a2ddd5250d5b` reached the scope, root, expiry, action controls, two-target summary and both file cards through repeated paging. That run performed no mutation. Twenty-five inspected frames and sixty-eight supporting hashes passed the narrow verifier. Both owned process sets and desktops closed. Minimum-size apply/recovery, full history keyboard traversal and the full appearance matrix remain pending. See `docs/verification/cleanup-workspace-observations.json`.

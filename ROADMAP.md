@@ -2,6 +2,8 @@
 
 ## Complete documentation and bilingual gallery
 
+- [ ] Verify real painted-frame output beyond sequence 19 under the bounded 64-attempt producer, and deploy the matching promotion validator. Preserve original historical capture limits.
+
 - [x] Capture and inspect forty bilingual initial desktop viewports with source binding, original-byte verification and lifecycle records.
 - [x] Build, deploy and inspect the complete in-site article reader and forty-image gallery: 168 article pages, 192 internal links/anchors, 688 deployed files verified; sampled live desktop and narrow views retained.
 - [ ] Import a separate wiki when its endpoint becomes available; currently no accessible wiki source.

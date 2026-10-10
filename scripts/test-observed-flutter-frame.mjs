@@ -41,6 +41,22 @@ try {
     evidence: [{role: 'teardown', path: 'teardown.json', sha256: hash(readFileSync(join(run, 'teardown.json')))}]};
   const verify = () => verifyObservedFlutterFrame(repo, run, bundle, 'manifest.json');
   save(repo, 'manifest.json', manifest); assert.equal(verify().frames, 1); checks++;
+  const boundaryFrames = [];
+  for (let sequence = 0; sequence < 65; sequence++) {
+    const name = `boundary-${String(sequence).padStart(3, '0')}.png`;
+    const receipt = structuredClone(sidecar); receipt.sequence = sequence; receipt.diagnostics.sequence = sequence;
+    writeFileSync(join(run, name), png); save(run, `${name}.json`, receipt);
+    boundaryFrames.push({png: name, sidecar: `${name}.json`, sha256: hash(png), sidecarSha256: hash(readFileSync(join(run, `${name}.json`))), sequence});
+  }
+  save(repo, 'manifest.json', {...manifest, frames: [boundaryFrames[63]]});
+  assert.equal(verify().frames, 1); checks++;
+  save(repo, 'manifest.json', {...manifest, frames: [boundaryFrames[64]]});
+  assert.throws(verify); checks++;
+  save(repo, 'manifest.json', {...manifest, frames: boundaryFrames.slice(0, 64)});
+  assert.equal(verify().frames, 64); checks++;
+  save(repo, 'manifest.json', {...manifest, frames: boundaryFrames});
+  assert.throws(verify); checks++;
+  save(repo, 'manifest.json', manifest);
   function alteredReceipt(change) {
     const changed = structuredClone(sidecar); change(changed); save(run, 'frame.png.json', changed);
     const m = structuredClone(manifest); m.frames[0].sidecarSha256 = hash(readFileSync(join(run, 'frame.png.json'))); save(repo, 'manifest.json', m);

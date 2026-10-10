@@ -18,7 +18,7 @@ Uint8List captureByteView(ByteData bytes) =>
 
 String frameCapturePath(String original, int sequence) {
   if (sequence < 0 ||
-      sequence >= 20 ||
+      sequence >= maximumPaintedCaptureAttempts ||
       !original.toLowerCase().endsWith('.png'))
     throw ArgumentError('Invalid capture sequence or extension');
   return sequence == 0
@@ -122,7 +122,7 @@ class _FrameCaptureState extends State<FrameCapture> {
   }
 
   void schedule() {
-    if (!mounted || sequence >= 20) return;
+    if (!mounted || sequence >= maximumPaintedCaptureAttempts) return;
     pending?.cancel();
     pending = Timer(const Duration(milliseconds: 800), capture);
   }
@@ -136,7 +136,8 @@ class _FrameCaptureState extends State<FrameCapture> {
   }
 
   Future<void> capture() async {
-    if (writing || !mounted || sequence >= 20) return;
+    if (writing || !mounted || sequence >= maximumPaintedCaptureAttempts)
+      return;
     writing = true;
     try {
       await WidgetsBinding.instance.endOfFrame;

@@ -69,3 +69,5 @@ The same run found repeated Page Down stopped after the focused selector scrolle
 Reference copying, populated dump metadata, remaining periods, failure/refresh states, full accessibility and physical-DPI coverage remain separate requirements.
 
 中文：真正七日收集已驗證，週期選單、收集時間及時間含義可見。鍵盤可到傾印資料區，本帳戶不能讀取資料嘅限制亦清楚列明，沒有要求提升權限。這只證明不可用狀態，並非已有傾印資料列。重複翻頁焦點修正已通過指定測試，重新建置後嘅實際驗證仍待完成。
+
+New explicit painted-capture sessions allow at most 64 attempts (sequences 0 through 63), so longer review workflows can retain their later states. The debounce and one-writer rule remain unchanged. Historical evidence produced under the earlier 20-attempt limit is unchanged and does not acquire additional frames or coverage.
