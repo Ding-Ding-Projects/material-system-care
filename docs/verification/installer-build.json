@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "sourceCommit": "4db8f8c2e93534433c45acfc60ae8914c8fbe4ef",
+  "command": "build-installer.bat /s",
+  "versionString": "0.1.0",
+  "buildExitCode": 0,
+  "bundleSha256": "46b910731afc31bb386bfe04e975291ca3149cc3cceb38077b7a211b1a12d915",
+  "files": [
+    {
+      "name": "MaterialSystemCare-0.1.0-full.nupkg",
+      "bytes": 47926729,
+      "sha256": "99e0623c29d09afc2c8e8c07895055c22ede3ec1ecf6d20214796eaa0b9cf5ea"
+    },
+    {
+      "name": "RELEASES",
+      "bytes": 88,
+      "sha256": "0e50e2f2ce4cff603c0b92183eb81e70dc81ad7eddb494d583bf4b671c5c7eb5"
+    },
+    {
+      "name": "Setup.exe",
+      "bytes": 48638464,
+      "sha256": "ddb0c8be2c46f329e8eaa9b9f1201a4d7c6c8b88a6018113ab5a630dab64f307"
+    }
+  ],
+  "releaseRowsVerified": true,
+  "rawZipEntries": 218,
+  "fullZipEntries": 231,
+  "verifiedPayloadFiles": 210,
+  "setupAuthenticodeStatus": "NotSigned",
+  "signerProcessAuditComplete": false,
+  "completeBuildLogRetained": false,
+  "installedRuntimeVerified": false,
+  "updaterVerified": false,
+  "uninstallVerified": false,
+  "limitations": [
+    "Existing-host packaging only.",
+    "No disposable operating-system user, VM, or documented isolated installation root has been established.",
+    "Full signing-process audit and complete build-log provenance remain pending.",
+    "This development package is not published as a release."
+  ]
+}

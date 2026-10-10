@@ -17,3 +17,12 @@ The release workflow builds and packages on Windows and runs no tests or lint. P
 The native client accepts only the PID of the engine launched by that workspace, checks it with GetNamedPipeServerProcessId before sending request bytes, and restricts server impersonation with identification-only SQOS. It does not attach to an arbitrary same-user pipe server. The isolated fixture proves rejection of a same-user server with a different expected PID. Squirrel awareness uses the exact English Unicode resource block queried by pinned Squirrel 2.0.1 (040904B0); build and package entrypoints validate the built resource. Real installation and lifecycle execution remain separate pending runtime proof.
 
 Product branding retains its source at packaging/assets/mark.svg. Run powershell.exe -NoProfile -File scripts/render-product-icon.ps1 to reproduce the native 16/32/48/256-pixel ICO using the platform vector drawing API. The renderer validates the source geometry before conversion. Full bundle manifests use ordinal relative-path ordering and SHA-256 for every produced payload file, including AOT data/app.so, assets, Flutter runtime and engine files. Receipt and manifest files are excluded only at their defined root/engine locations to avoid self-reference. Packaging validates the exact inventory and hashes; build.bat /s --target=bundle proves changed AOT bytes and unexpected files are rejected.
+
+
+## Latest bounded package check
+
+`build-installer.bat /s` completed at source `4db8f8c2e93534433c45acfc60ae8914c8fbe4ef`. The raw archive had 218 entries; the full Squirrel package had 231 entries and matched all 210 intended payload files. `RELEASES` length and SHA-1 matched the package. `Setup.exe` reported `NotSigned`. [The recorded hashes and limitations](../docs/verification/installer-build.json) distinguish this package check from installation proof.
+
+No release is published. A disposable operating-system user/VM or documented isolated installation root has not been established. Installation, update, uninstall, complete build-log provenance and signing-process observation remain unverified. Do not redirect `LOCALAPPDATA` to pretend the real per-user Squirrel installation is isolated.
+
+中文：指定來源嘅正式安裝建置入口已完成，套件內容同雜湊已核對，安裝程式未簽署。未建立合適嘅即棄安裝邊界，所以實際安裝、更新、解除安裝仍未驗證，亦未公開發行。

@@ -16,6 +16,8 @@ Startup stale-review protection from `785a79c10d8c3318dc8b6a69aa17562fd7e0ae74` 
 
 Retain the generated-file recovery branch `implement/desktop-ui` at `4e1ae07ef80ac38ca747948138f54c62f5906cdf`. No task-owned worktree or branch has been deleted.
 
+The exact root installer build passed at `4db8f8c2e93534433c45acfc60ae8914c8fbe4ef`; package inventory and hashes are in `docs/verification/installer-build.json`. No release is published. Runtime installation/update/uninstall needs a supported disposable user/VM or documented isolated root. Complete build-log/signing-process provenance also remains incomplete.
+
 ## Next steps
 
 Finish dedicated bilingual cleanup/recovery result presentation, startup and managed-package interaction, read cancellation, remaining diagnostic actions and the complete appearance/accessibility matrix. Verify genuine Squirrel installation, update and uninstall. Keep full articles and available wiki content on GitHub Pages, verify every deployment and the exact About homepage, and retain honest per-capability status.
