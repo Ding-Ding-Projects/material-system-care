@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "evidenceKind": "hosted-squirrel-package-readback",
+  "sourceCommit": "4214c848b7c887bfdd2b542e50331517d1d93455",
+  "runId": 38090507169,
+  "runUrl": "https://github.com/Ding-Ding-Projects/material-system-care/actions/runs/38090507169",
+  "runConclusion": "success",
+  "artifactName": "windows-build-evidence",
+  "artifactId": 11683443385,
+  "version": "0.112.1",
+  "builtUtc": "2026-10-10T22:16:14.1073679Z",
+  "checks": {
+    "releaseManifestHashAndLength": "passed",
+    "zipCrc": "passed",
+    "packageEntries": 230,
+    "manifestPayloadFiles": 209,
+    "payloadHashes": "passed",
+    "desktopAndEngineSourceVersionBinding": "passed",
+    "setupAuthenticodeStatus": "NotSigned"
+  },
+  "files": [
+    {
+      "name": "Setup.exe",
+      "bytes": 48762880,
+      "sha256": "a0c873f8a72782eaf782c93c1aca526e92c646fe81c625df36b2d7baae690829"
+    },
+    {
+      "name": "MaterialSystemCare-0.112.1-full.nupkg",
+      "bytes": 48050777,
+      "sha256": "9db0b15179bbd5fba73330182103e0b31c0bdf6e6decd222a00c9200c85b5949"
+    },
+    {
+      "name": "RELEASES",
+      "bytes": 90,
+      "sha256": "a5c6156a5ea60e57937131e7b89bc97df73cca956347eeec3e4e14b4003c2059"
+    }
+  ],
+  "limitations": [
+    "No installation, update or uninstall was performed.",
+    "No public release was published by this automatic build.",
+    "Package-byte verification does not establish complete capability, interface or lifecycle verification."
+  ]
+}

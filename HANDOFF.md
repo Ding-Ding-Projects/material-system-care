@@ -4,6 +4,14 @@ This file retains earlier candidate states as historical evidence. A later sourc
 
 本檔案保留早期候選版本作歷史記錄。後來嘅實際驗證只會取代有明確證據嗰部分，未完成清單仍以路線圖為準，唔會將部分檢查當成整套完成。
 
+## Hosted package and final gallery readback
+
+Run `38090507169` completed successfully for source `4214c848b7c887bfdd2b542e50331517d1d93455`. Its downloaded Squirrel version `0.112.1` passed release-manifest hash/length verification, ZIP integrity, all 209 manifest payload hashes, and desktop/engine source-version binding. The 48,762,880-byte installer reports `NotSigned`. Automatic publication was skipped by the existing explicit-candidate gate. This proves package bytes only: actual installation, update and uninstall remain unverified, and no public release is claimed. See `docs/verification/hosted-package-4214c848.json`.
+
+The same source's documentation deployment, run `38090507083`, passed anonymous byte comparison for 806 files, including 44 bilingual gallery images and 184 complete articles. The new restored-file image matches SHA-256 `c7460498564c6c14057d64144cd88ff1325af248559c70a6a20c816c5698b983`. About points exactly to `https://ding-ding-projects.github.io/material-system-care/`. This remains separate from a new complete browser or physical-DPI verdict.
+
+中文：託管建置已成功完成，Squirrel 0.112.1 安裝包嘅清單、長度、雜湊、壓縮檔完整性、209 個內容檔案及桌面與引擎來源綁定全部通過。安裝包保持未簽署；自動建置沒有發佈正式版本，真正安裝、更新及解除安裝仍待驗證。同一來源嘅公開文件有 806 個檔案逐一比對一致，包括 44 張雙語畫面及 184 篇完整文章，About 網址亦已讀回確認。
+
 ## Completed minimum-size disposable restoration
 
 Integrated source `44dfb7ccf355c4bcd0d148b5d9ffb8ee5c0b6891` passed the exact root desktop build after two independent source reviews and 57 focused checks. The original-source negative cases failed to reach the receipt action after thirty Page Down inputs. The repaired 800×600 doubled-bilingual run reached that action through consecutive paging, reviewed both complete recorded paths and states, cancelled without changing any fixture file, reversed the history view after cancellation, and completed a fresh explicit restoration. All three original hashes, file identities, lengths and modification times matched; no recovery payload remained. All owned processes and the desktop closed.

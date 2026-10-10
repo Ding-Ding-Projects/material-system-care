@@ -82,6 +82,8 @@
 
 ## Delivery
 
+- [x] Verify hosted Squirrel package bytes for source `4214c848`: run `38090507169` passed, 209 payload files and embedded receipts matched. This does not complete installation, update, uninstall or release verification.
+- [x] Verify anonymous delivery of source `4214c848`: 806 files, 44 bilingual gallery images and 184 complete articles matched, with the exact About homepage read back.
 - [ ] Verify the built desktop and its motion, accessibility, scaling, and failure states.
 - [ ] Build and verify the genuine Squirrel.Windows installer and update path.
 - [x] Produce the genuine unsigned Squirrel.Windows installer, full package and RELEASES manifest locally.
