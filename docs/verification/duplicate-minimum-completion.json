@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "6803337b701c5be2f945e879ff5449223e84b2c6",
+  "manifest": "duplicate-minimum-completion-frames.json",
+  "width": 800,
+  "height": 600,
+  "textScale": 2,
+  "language": "both",
+  "theme": "dark",
+  "motion": "reduced",
+  "observed": {
+    "rootRetained": true,
+    "reviewAndConfirmation": true,
+    "completedCollection": true,
+    "groups": 2,
+    "matchingFiles": 5,
+    "hashedBytes": 128,
+    "potentialDuplicateBytes": 64,
+    "repeatedPaging": true,
+    "bothGroupsExpanded": true,
+    "firstGroupAllPathsReached": true,
+    "secondGroupDetailStartReached": true
+  },
+  "fixture": {
+    "files": 7,
+    "unchanged": true,
+    "beforeSha256": "010fca1b12b1b57aa93ae0adb8973004665fd5acaa528111f6a65f4d91e32099",
+    "afterSha256": "e802dbc700648ffac61b214ea688379a3ea461dfff8d46ce3e1f40dc8bafc60d"
+  },
+  "ownedProcessesAbsent": true,
+  "hiddenDesktopClosed": true,
+  "publicFrames": [],
+  "limits": [
+    "The retained built bundle is bound to source 6803337, not to the later documentation-only commit.",
+    "The 20-frame capture cap ended this run at the start of the second group's full paths. Full second-group path traversal and reverse movement were not captured in this run.",
+    "After confirmation restored text-field focus, Page Down did not move the page until Tab moved focus outside text editing. This preserves the documented editing-key boundary.",
+    "Pending-read cancellation, normal motion, other appearance states, physical DPI and complete accessibility remain separate requirements.",
+    "Fixture paths and populated frames remain private. No file removal was requested."
+  ]
+}

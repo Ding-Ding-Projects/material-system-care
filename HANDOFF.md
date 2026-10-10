@@ -1,5 +1,9 @@
 # Implementation handoff
 
+## Minimum-size duplicate collection
+
+Retained build `6803337b701c5be2f945e879ff5449223e84b2c6` completed the owned seven-file duplicate fixture at 800×600, doubled bilingual text, dark theme and reduced motion. Root entry, review, confirmation, the correct two-group summary, repeated paging, both expansions and all first-group paths were inspected. Fourteen selected frames and twenty-one supporting hashes passed the narrow verifier. All seven fixture files remained unchanged and owned teardown completed. The twenty-frame cap ended this run at the second group's detail start, leaving full second-group path traversal, reverse paging and pending-read cancellation outside the evidence. See `docs/verification/duplicate-minimum-completion.json`.
+
 ## Protection status and current public gallery
 
 Integrated source `6803337b701c5be2f945e879ff5449223e84b2c6` passed the exact root desktop build and live read-only protection inspection at 1280×1000 and 800×600 with doubled bilingual text, dark theme and reduced motion. Explicit refresh, loading/completion, receipt/provider timestamps, missing values, three firewall profiles, Domain expansion and repeated/reverse paging were inspected. Twenty-two selected frames and twenty-four supporting hashes passed the narrow verifier. Populated host status stays private. Owned processes and desktops were closed. Full appearance, keyboard order, physical DPI and unavailable responses remain pending.

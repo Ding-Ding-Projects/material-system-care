@@ -57,6 +57,7 @@
 - [ ] Deliver reversible temporary-file maintenance, duplicate analysis, storage inventory, and recovery records.
 - [ ] Verify the dedicated read-only duplicate-analysis workspace in the real build. Typed source, 96 focused checks, isolated engine/desktop verification and independent reviews passed.
 - [x] Verify normal-view read-only duplicate collection, both expanded groups, root-edit result clearing and unchanged seven-file fixture at source `baa4fca`. Minimum-size retained input, cancellation and full appearance/accessibility remain separate.
+- [x] Verify duplicate collection, correct totals, both expansions and repeated paging at 800×600 with doubled bilingual text using retained source `6803337`. Full second-group path traversal, reverse movement and pending-read cancellation remain separate.
 - [ ] Verify the dedicated typed read-only folder-analysis workflow with an owned disposable folder. Source, focused checks, independent reviews and isolated root build passed; integrated runtime is pending.
 - [x] Verify bounded real folder totals, largest-file order, expanded normal-view paths/timestamp and unchanged disposable fixture at source `c2fd97e`. Freshness, cancellation and complete appearance/accessibility remain separate.
 - [ ] Deliver application, startup, process, security, and driver workflows using supported APIs.
