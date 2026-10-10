@@ -102,6 +102,8 @@
 
 - [x] Verify the rebuilt diagnostic lookup guidance and successful live collection under response validation; preserve source-bound evidence.
 - [ ] Verify the reference-copy action, individual dump rows and complete diagnostic input/display matrix.
+- [x] Verify real seven-day collection and the explicitly unavailable dump-metadata section, with inspected frames and owned disposal.
+- [ ] Verify the rebuilt repeated-paging focus repair after the original selector scrolls out of view.
 
 ## Expanded screenshot gallery
 

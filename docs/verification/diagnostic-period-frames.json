@@ -1,0 +1,179 @@
+{
+  "schemaVersion": 1,
+  "scope": "observed-flutter-hooks-and-bytes",
+  "sourceCommit": "6d3695e738b0902390e473f6aaf1fb153c30f106",
+  "buildReceiptSha256": "63bd9493d375f03dc90466a0ac12a0ab62edf0d02981807618a780fff3a248d2",
+  "bundleManifestSha256": "4bedc5e8f387f17ce24450abbfd21e65dbdad1f797ca3a7d5d9a336b53039dc8",
+  "frames": [
+    {
+      "png": "output/frame.png",
+      "sidecar": "output/frame.png.json",
+      "sha256": "3df84d2b54266c2caae88a35fff9cbfe9048b62e96be424f2b0242695c809988",
+      "sidecarSha256": "97fa4eacc4f03a5cca5fa31aad653610b5b43f2d9fc46d823dc5db55f9c72655",
+      "sequence": 0
+    },
+    {
+      "png": "output/frame-001.png",
+      "sidecar": "output/frame-001.png.json",
+      "sha256": "e4f52cb3710746effcb605c8e44e081428001c1a6a0bcd95edbab7812ef105ec",
+      "sidecarSha256": "485f342af42ce4a81dd9b79692bd1c03fb1ed75fb859aecf60285ab294aeb7a9",
+      "sequence": 1
+    },
+    {
+      "png": "output/frame-002.png",
+      "sidecar": "output/frame-002.png.json",
+      "sha256": "a5fbc2585ab2bc5f53c012d3f839eee0fbb234302940283b986b715abbfcf2a6",
+      "sidecarSha256": "a03bed8175847d803adeb7b0ebf0334f824591b9181c8c350883091adbe97037",
+      "sequence": 2
+    },
+    {
+      "png": "output/frame-003.png",
+      "sidecar": "output/frame-003.png.json",
+      "sha256": "8e63587cd3d99faaa74475da06ae8e7487c6bf0d400008984b57448123a67ecf",
+      "sidecarSha256": "5b773310f1f9a166ae8c25127f89a31175126d0576a60bd91dd8a0d976c464bb",
+      "sequence": 3
+    },
+    {
+      "png": "output/frame-004.png",
+      "sidecar": "output/frame-004.png.json",
+      "sha256": "50dc12d9a849be40b5c1d2e413c26d4fe6d5f366cc7ea500c907e7e9358b7cf1",
+      "sidecarSha256": "ae7d8dcb4c0e9517cee2a0bcb5a808cff026ba23deb1d23c338186ec697dc9e4",
+      "sequence": 4
+    },
+    {
+      "png": "output/frame-005.png",
+      "sidecar": "output/frame-005.png.json",
+      "sha256": "50dc12d9a849be40b5c1d2e413c26d4fe6d5f366cc7ea500c907e7e9358b7cf1",
+      "sidecarSha256": "bcaf2e52a8a46429a45cbd2f092f65a1c18bb1e06c71cc85706e34af5410192d",
+      "sequence": 5
+    },
+    {
+      "png": "output/frame-006.png",
+      "sidecar": "output/frame-006.png.json",
+      "sha256": "afd3a55aa0159c6766d5c82d3152deb4220aeb718bac80f4b279239fd30ca4d8",
+      "sidecarSha256": "740c649f0e94a47c3cd4466470ce820e00bb3f2059f8a0b7f31314a532dcdd0d",
+      "sequence": 6
+    },
+    {
+      "png": "output/frame-007.png",
+      "sidecar": "output/frame-007.png.json",
+      "sha256": "edc64fd3faf134643f29f44ce3deef1cca22d7abd7fb1fd08cfd5f4737e5eba7",
+      "sidecarSha256": "7086e6b187d856afec424814ce2af5091bcc7856910b9dd3c046cea2443af7c8",
+      "sequence": 7
+    },
+    {
+      "png": "output/frame-008.png",
+      "sidecar": "output/frame-008.png.json",
+      "sha256": "edc64fd3faf134643f29f44ce3deef1cca22d7abd7fb1fd08cfd5f4737e5eba7",
+      "sidecarSha256": "fecedf3b1155a2c301c567ab7077d39aee4fd2d7eeacc92149070e4c35ee8968",
+      "sequence": 8
+    },
+    {
+      "png": "output/frame-009.png",
+      "sidecar": "output/frame-009.png.json",
+      "sha256": "1c562f5112de7929b63e4030a7e2c521decb6b5264f6695807d3e798fd82273a",
+      "sidecarSha256": "01a989c0480692d3cf7898e2eeb041f3fc9fc99d724e70bde4a909e1970dcdc6",
+      "sequence": 9
+    },
+    {
+      "png": "output/frame-010.png",
+      "sidecar": "output/frame-010.png.json",
+      "sha256": "ec9db90d5147b94f56beb0afe94df964ac6932be500dd766f6d8620d1de81538",
+      "sidecarSha256": "c10b72124f55505cac742c4ff91d105cd2697945aefecccb06b31c6bf8858179",
+      "sequence": 10
+    },
+    {
+      "png": "output/frame-011.png",
+      "sidecar": "output/frame-011.png.json",
+      "sha256": "580efdd96b65e6763dbf55e431be645b17e4794cf4e99a3a714bf09cfec2e09e",
+      "sidecarSha256": "ac5f63506aa2a5585f10c0229b9e1c42685d61a79c5931dfb903a601cefb5b85",
+      "sequence": 11
+    },
+    {
+      "png": "output/frame-012.png",
+      "sidecar": "output/frame-012.png.json",
+      "sha256": "92ad5ac6d2571ac52ee7c8afdc1b320f629d961650ed4fefdabedfd4a64d47c7",
+      "sidecarSha256": "6b344a5dca7440c1b6596f8ec34e13d7b05588f4eabcdc82e73c0763e6e26a56",
+      "sequence": 12
+    },
+    {
+      "png": "output/frame-013.png",
+      "sidecar": "output/frame-013.png.json",
+      "sha256": "58eb8f4fbcc6b837c5ceef0ae06d6c3de273691b70b1ae8a58defca2afbcabc6",
+      "sidecarSha256": "6aa3f5582413cf3c3b79770bf6b0b8e22ca24d0468332cae3d1e2562e7b7f5b2",
+      "sequence": 13
+    }
+  ],
+  "evidence": [
+    {
+      "role": "action",
+      "path": "period-open.json",
+      "sha256": "7177f4a96e53705c922bd24a2f0bf2fee4629733415585d5aed75c336bd373ae"
+    },
+    {
+      "role": "action",
+      "path": "period-select-seven.json",
+      "sha256": "f953bade3b1dc263fa11bfa9858284a5a24bbb8b3924498a458348dc920a0bcf"
+    },
+    {
+      "role": "action",
+      "path": "collect-seven-days.json",
+      "sha256": "f2804a3b93fb4ce6a2263dc26c6f27c1e353d5e3aebde37674fed49cf73e8ed0"
+    },
+    {
+      "role": "action",
+      "path": "collection-tab.json",
+      "sha256": "55956fa0f80e99b6e26ca4c04e9ce77ef388e0b61311551304aab5b147c56e50"
+    },
+    {
+      "role": "action",
+      "path": "collection-end.json",
+      "sha256": "bff93091df9b881eee438a19bae8c623af5b64bbb248fc3e0f7612e2598f6e3a"
+    },
+    {
+      "role": "action",
+      "path": "collection-page-down.json",
+      "sha256": "331ba0e59207d46b5f0d77253618479ccffcf4b8fae1b4f647e6944292e7d53e"
+    },
+    {
+      "role": "action",
+      "path": "collection-page-down-2.json",
+      "sha256": "ce5087d87dbb5db42ebf543ee9b387978cf387eabc9bd8b238c29d41f4189957"
+    },
+    {
+      "role": "action",
+      "path": "lower-record-tab.json",
+      "sha256": "6c4840500136eb024f447bba36ad648c32ca1c7779dca3258e4ef55162eae447"
+    },
+    {
+      "role": "action",
+      "path": "lower-record-page-down.json",
+      "sha256": "0a248a4fd780f4e750c9cb98fabebd3f6aff4c2f2b362ed6d2a1e8826408a42c"
+    },
+    {
+      "role": "action",
+      "path": "later-record-tab.json",
+      "sha256": "c0dce2f10db5a70c54f597938c9ff19d962ce2ef3c60aa13811dbea0a2e4c55b"
+    },
+    {
+      "role": "action",
+      "path": "later-record-page-down.json",
+      "sha256": "2735668ace616ce52627112631b04e427a879934d75e6c32c65dc25af880a5ad"
+    },
+    {
+      "role": "action",
+      "path": "dump-section-tab.json",
+      "sha256": "912c47eb96a941866920b032d3897e6ef8b8de93a409b7d661ba88fce6a1b493"
+    },
+    {
+      "role": "action",
+      "path": "dump-section-page-down.json",
+      "sha256": "0f007b7a1d3ac70a2588cb90d8f4e236f121df3ef0b69135fbb85f91ce961f19"
+    },
+    {
+      "role": "teardown",
+      "path": "teardown.json",
+      "sha256": "989d7ab0b6c3101bdd5be13d63b7bdd6cc206c850f54040a577b95dec9cad24c"
+    }
+  ]
+}

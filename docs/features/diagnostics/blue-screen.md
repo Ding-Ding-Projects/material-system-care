@@ -57,3 +57,11 @@ The desktop validates complete bounded diagnostic responses before accepting the
 Root engine and desktop builds passed at 5dbf2884901cbbad61a3c763c120b19d997928e8. A real English/light run verified manual 0x9F lookup, visible code category, confidence limit, four next checks and the fixed Microsoft reference at 1264×961. A subsequent live collection passed the new response validator and displayed collection time and timestamp meaning. Populated frames remain private. The guidance-only frame and 210 bundle files passed the shared evidence verifier; altered input evidence was rejected before restoration passed. Owned processes were absent and the hidden desktop closed. Copy-reference, individual dump rows and the full display/input matrix remain unverified.
 
 [Current guidance frame](../../captures/diagnostics-guidance.png) and [receipt](../../verification/diagnostics-guidance.json). The previous frames retain their historical producer identities.
+
+## Seven-day collection and metadata availability
+
+Source `6d3695e738b0902390e473f6aaf1fb153c30f106` completed a real seven-day collection in the bilingual dark workspace at 1280×1000. The actual period popup, selected seven-day value, collection timestamp and metadata-time explanation were inspected. Keyboard traversal reached the dump section. It showed no accessible dump files and explicitly disclosed that this account could not read the metadata; no elevation was requested. This verifies the unavailable state, not a populated dump row. The [frame manifest](../../verification/diagnostic-period-frames.json) and [observations](../../verification/diagnostic-period-observations.json) retain the bounded result. Event pixels remain private.
+
+The same run found repeated Page Down stopped after the focused selector scrolled out of view. Tab restored a visible target. A persistent paging-focus repair passes focused tests and independent source review; its new built acceptance remains pending. Reference copying, populated dump metadata, remaining periods, failure/refresh states, full accessibility and physical-DPI coverage remain separate requirements.
+
+中文：真正七日收集已驗證，週期選單、收集時間及時間含義可見。鍵盤可到傾印資料區，本帳戶不能讀取資料嘅限制亦清楚列明，沒有要求提升權限。這只證明不可用狀態，並非已有傾印資料列。重複翻頁焦點修正已通過指定測試，重新建置後嘅實際驗證仍待完成。

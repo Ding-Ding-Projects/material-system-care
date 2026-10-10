@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "6d3695e738b0902390e473f6aaf1fb153c30f106",
+  "frameManifest": "docs/verification/diagnostic-period-frames.json",
+  "viewport": {"width": 1280, "height": 1000},
+  "language": "both",
+  "theme": "dark",
+  "textScale": 1,
+  "motion": "reduced",
+  "observations": {
+    "periodPopupBilingual": true,
+    "selectedDays": 7,
+    "collectionSucceeded": true,
+    "collectionTimestampVisible": true,
+    "metadataTimeMeaningVisible": true,
+    "dumpSectionReached": true,
+    "dumpRows": 0,
+    "dumpUnavailableReasonVisible": true,
+    "elevationRequested": false,
+    "ownedProcessesAbsent": true,
+    "hiddenDesktopClosed": true
+  },
+  "limits": [
+    "Page Down moved after a focused control, but a repeated Page Down did not move until Tab restored a visible focus target. This remains a focus follow-up, not complete keyboard acceptance.",
+    "Ctrl+End did not move this observed state. No success is attributed to that input.",
+    "The dump section showed no accessible files and an account-access limitation. No populated dump-row or dump-content proof is claimed.",
+    "The reference-copy action was not exercised; this run did not alter the shared clipboard.",
+    "Raw event records remain private. Painted frames and two observed Flutter hooks do not establish native-compositor, physical-DPI or full accessibility coverage."
+  ]
+}
