@@ -4,6 +4,8 @@ Continue the independent Windows 11 x64 suite in Ding-Ding-Projects/material-sys
 
 ## Latest verified unit
 
+The integrated reference-copy feedback source `38804e4` passed the exact root desktop build. Real system-clipboard success/failure remains unverified. A new isolated source unit is implementing only the seven default Flutter text-selection labels through a shared MaterialLocalizations delegate; broader framework/menu localization is not claimed.
+
 Current source integrates `ed7108a2bfdd7c7e9e4515231fc25bfec3ba0322` for local reference-copy rejection feedback. Three mocked clipboard cases plus eleven related diagnostic checks, isolated build and independent review passed. Integrated build remains pending. Actual clipboard success/failure remains unverified; no user clipboard contents were read or changed. Keep that boundary explicit.
 
 The display-quality fix at `6ec050099d6239b5b230b9d703a28b55b732ddfc` passed its integrated desktop build and real inventory/filter run: 741 records, four degraded display records, fallback filter four, nonmatching query zero, cleared query741. Six representative frames and fourteen supporting hashes passed the narrow verifier; owned teardown completed. Synthetic Ctrl+A was unsuccessful and the text-selection menu remained English-only, so those are explicit follow-ups. The reference-copy failure-feedback candidate is ready separately at `ed7108a2bfdd7c7e9e4515231fc25bfec3ba0322`, with mocked-write tests and build only; no real clipboard change was made.

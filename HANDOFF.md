@@ -1,5 +1,7 @@
 # Implementation handoff
 
+The integrated reference-copy feedback source `38804e4` passed the exact root desktop build. This confirms compilation of the localized catch path, not an actual clipboard operation. The next narrow UI change targets seven official selection-toolbar labels; inherited framework strings remain outside that limited claim.
+
 ## Reference-copy feedback candidate
 
 Candidate `ed7108a2bfdd7c7e9e4515231fc25bfec3ba0322` catches clipboard rejection locally, keeps the visible reference/result and shows a fixed localized recovery message. Three new mocked-write checks and eleven related diagnostic checks passed, as did the isolated root desktop build and independent source review. This integrated candidate still needs its own build. No actual system-clipboard read/write was performed or claimed; the reference-copy workflow remains unverified at runtime.
