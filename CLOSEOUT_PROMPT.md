@@ -51,3 +51,13 @@ Next: verify keyboard and lower-control scrolling at 800x600, finish the complet
 The user requested preservation and task-owned cleanup with 7% account allowance remaining. New implementation stopped. The new Windows keyboard regression passes for service, scheduled-task and process views after Tab then Page Down at 800x600 with doubled bilingual text. The real hidden service view moved partly, but complete lower-control runtime verification remains unfinished. Its owned process exited and named desktop closed.
 
 The final read-only publication audit verified the forty-frame gallery and all three newer article attachments with exact image hashes. No publication omission was found in those frames. The broad goal remains active and incomplete. Existing branches and worktrees are inventoried for archive-backed cleanup; retain any unmerged recovery state.
+
+## Completed preservation and cleanup
+
+Main eafa64bb8e54f39c281e0a9a2dbc1ec3752c8f87 was pushed and verified. Generated Flutter registration files were preserved on implement/desktop-ui at 4e1ae07ef80ac38ca747948138f54c62f5906cdf, also pushed and verified. That unmerged recovery branch and its checkout remain intentionally retained.
+
+A private archive covering all ten original checkouts and the complete Git administration directory passed integrity testing and listing verification: 3,514 entries, 12,934,984 bytes. It excluded 35,783 ignored files under Git ignore rules. After exact ownership, clean-state, remote-tip and ancestry checks, eight linked worktrees and nine local/remote merged branches were removed. Main and implement/desktop-ui remain; there are no stashes. The archive and private capture records remain outside public source.
+
+The current resource-closeout condition has occurred once since this explicit user request. The broad goal remains active, not complete or paused. The verified account allowance was 7% remaining. Resume only with actual available allowance, preserving the same unfinished scope and evidence. No replacement goal or recurring automation was created.
+
+Continue from the retained source, not from deleted lane paths. The next concrete work is complete native keyboard/lower-control evidence, full Material interface and motion/accessibility coverage, outstanding suite workflows and installer/update verification. The latest deployed product-content proof remains f69279d / run 38021026357, with all 697 public files matching. Subsequent commits are preservation records and the passing keyboard test.
