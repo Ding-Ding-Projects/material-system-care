@@ -14,7 +14,7 @@ class EngineBridge {
   ~EngineBridge();
   void Complete();
  private:
-  struct Reply { std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result; std::string text; std::string error; };
+  struct Reply { std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result; std::string text; std::string error; std::string errorCode="ENGINE_UNAVAILABLE"; bool nullSuccess=false; };
   HWND window_;
   HANDLE process_ = nullptr;
   DWORD process_id_ = 0;

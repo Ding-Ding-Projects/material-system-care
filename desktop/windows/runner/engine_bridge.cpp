@@ -11,27 +11,27 @@
 #include <cmath>
 
 namespace {
-void WriteCapture(const flutter::EncodableValue* arguments, std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result) {
+std::string WriteCapture(const flutter::EncodableValue* arguments) {
  const auto* map=arguments?std::get_if<flutter::EncodableMap>(arguments):nullptr;
- if(!map) { result->Error("INVALID_CAPTURE","Expected capture data"); return; }
+ if(!map) { return "Expected capture data"; }
  auto pathIt=map->find(flutter::EncodableValue("path")); auto bytesIt=map->find(flutter::EncodableValue("bytes"));
  const auto* path=pathIt==map->end()?nullptr:std::get_if<std::string>(&pathIt->second);
  const auto* bytes=bytesIt==map->end()?nullptr:std::get_if<std::vector<uint8_t>>(&bytesIt->second);
- if(!path || path->size()<7 || path->size()>32760 || path->find('\0')!=std::string::npos || (*path)[1]!=':' || ((*path)[2]!='\\' && (*path)[2]!='/') || !bytes || bytes->size()<8 || bytes->size()>32*1024*1024) { result->Error("INVALID_CAPTURE","Invalid capture path or size"); return; }
+ if(!path || path->size()<7 || path->size()>32760 || path->find('\0')!=std::string::npos || (*path)[1]!=':' || ((*path)[2]!='\\' && (*path)[2]!='/') || !bytes || bytes->size()<8 || bytes->size()>32*1024*1024) { return "Invalid capture path or size"; }
  static constexpr unsigned char png[]{137,80,78,71,13,10,26,10};
- if(!std::equal(std::begin(png),std::end(png),bytes->begin())) { result->Error("INVALID_CAPTURE","Expected PNG data"); return; }
+ if(!std::equal(std::begin(png),std::end(png),bytes->begin())) { return "Expected PNG data"; }
  int count=MultiByteToWideChar(CP_UTF8,MB_ERR_INVALID_CHARS,path->data(),static_cast<int>(path->size()),nullptr,0);
- if(count<=0) { result->Error("INVALID_CAPTURE","Invalid capture path"); return; }
+ if(count<=0) { return "Invalid capture path"; }
  std::wstring wide(count,0); MultiByteToWideChar(CP_UTF8,MB_ERR_INVALID_CHARS,path->data(),static_cast<int>(path->size()),wide.data(),count);
- if(_wcsicmp(wide.c_str()+wide.size()-4,L".png")!=0 || wide.find(L':',2)!=std::wstring::npos) { result->Error("INVALID_CAPTURE","Expected a PNG file path"); return; }
+ if(_wcsicmp(wide.c_str()+wide.size()-4,L".png")!=0 || wide.find(L':',2)!=std::wstring::npos) { return "Expected a PNG file path"; }
  // CREATE_NEW and writing on the same unshared handle avoid a create/reopen
  // race. Caller-selected drive paths may still resolve to network storage.
  HANDLE file=CreateFileW(wide.c_str(),GENERIC_WRITE,0,nullptr,CREATE_NEW,FILE_ATTRIBUTE_NORMAL,nullptr);
- if(file==INVALID_HANDLE_VALUE) { result->Error("CAPTURE_CREATE_FAILED","Capture destination could not be exclusively created"); return; }
+ if(file==INVALID_HANDLE_VALUE) { return "Capture destination could not be exclusively created"; }
  DWORD written=0; bool ok=GetFileType(file)==FILE_TYPE_DISK && WriteFile(file,bytes->data(),static_cast<DWORD>(bytes->size()),&written,nullptr) && written==bytes->size() && FlushFileBuffers(file);
  CloseHandle(file);
- if(!ok) { result->Error("CAPTURE_WRITE_FAILED","Capture write did not complete"); return; }
- result->Success();
+ if(!ok) { return "Capture write did not complete"; }
+ return {};
 }
 std::string Quote(const std::string& text) {
  std::string out="\""; const char* hex="0123456789abcdef";
@@ -114,7 +114,18 @@ EngineBridge::EngineBridge(flutter::BinaryMessenger* messenger, HWND window):win
  }
  channel_=std::make_unique<flutter::MethodChannel<flutter::EncodableValue>>(messenger,"material_system_care/engine",&flutter::StandardMethodCodec::GetInstance());
  channel_->SetMethodCallHandler([this](const auto& call, auto result) {
-  if(call.method_name()=="writeCapture") { WriteCapture(call.arguments(),std::move(result)); return; }
+  if(call.method_name()=="writeCapture") {
+   for(auto it=workers_.begin();it!=workers_.end();) { if(*it->done) { it->thread.join(); it=workers_.erase(it); } else ++it; }
+   if(workers_.size()>=16 || !call.arguments()) { result->Error("CAPTURE_BUSY","Capture writer is unavailable"); return; }
+   auto data=*call.arguments(); auto done=std::make_shared<std::atomic<bool>>(false); auto cancelled=std::make_shared<std::atomic<bool>>(false);
+   std::thread worker([this,data=std::move(data),result=std::move(result),done,cancelled]() mutable {
+    auto reply=std::make_unique<Reply>(); reply->result=std::move(result); reply->errorCode="CAPTURE_WRITE_FAILED"; reply->nullSuccess=true;
+    try { reply->error=*cancelled?"Capture cancelled":WriteCapture(&data); } catch(...) { reply->error="Capture writer could not complete"; }
+    { std::lock_guard<std::mutex> lock(mutex_); replies_.push_back(std::move(reply)); }
+    if(!stopping_) PostMessageW(window_,kCompletion,0,0); *done=true;
+   });
+   workers_.push_back(Worker{std::move(worker),done,cancelled,"capture:"}); return;
+  }
   if(call.method_name()=="cancel") {
    const auto* id=call.arguments()?std::get_if<std::string>(call.arguments()):nullptr;
    if(!id || id->empty() || id->size()>128) { result->Error("INVALID_ARGUMENT","Expected operation id"); return; }
@@ -155,11 +166,11 @@ EngineBridge::EngineBridge(flutter::BinaryMessenger* messenger, HWND window):win
 }
 void EngineBridge::Complete() {
  std::vector<std::unique_ptr<Reply>> replies; { std::lock_guard<std::mutex> lock(mutex_); replies.swap(replies_); }
- for(auto& reply:replies) { if(reply->error.empty()) reply->result->Success(flutter::EncodableValue(reply->text)); else reply->result->Error("ENGINE_UNAVAILABLE",reply->error); }
+ for(auto& reply:replies) { if(reply->error.empty()) { if(reply->nullSuccess) reply->result->Success(); else reply->result->Success(flutter::EncodableValue(reply->text)); } else reply->result->Error(reply->errorCode,reply->error); }
 }
 EngineBridge::~EngineBridge() {
  stopping_=true; channel_->SetMethodCallHandler(nullptr);
- for(auto& worker:workers_) *worker.cancelled=true;
+ for(auto& worker:workers_) { *worker.cancelled=true; if(worker.id=="capture:" && worker.thread.joinable()) CancelSynchronousIo(worker.thread.native_handle()); }
  if(job_) CloseHandle(job_);
  for(auto& worker:workers_) if(worker.thread.joinable()) worker.thread.join();
  Complete(); if(process_) CloseHandle(process_);
