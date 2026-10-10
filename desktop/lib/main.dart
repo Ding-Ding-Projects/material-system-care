@@ -15,6 +15,7 @@ import 'scheduled_tasks.dart';
 import 'services.dart';
 import 'frame_capture.dart';
 import 'capture_preferences.dart';
+import 'capture_diagnostics.dart';
 import 'wording_cache.dart';
 import 'cleanup.dart';
 import 'startup.dart';
@@ -65,11 +66,17 @@ void main(List<String> arguments) {
     isolatedCapture: captureRequested || cleanupFixtureMode,
     capturePreferences: exporting ? capturePreferences! : const {},
   );
+  CaptureDiagnostics? captureDiagnostics;
+  if (exporting) {
+    WidgetsFlutterBinding.ensureInitialized();
+    captureDiagnostics = CaptureDiagnostics()..install();
+  }
   runApp(
     exporting
         ? FrameCapture(
             output: capture.single.substring('--capture-frame='.length),
             onInput: arguments.contains('--capture-on-input'),
+            diagnostics: captureDiagnostics,
             child: app,
           )
         : app,

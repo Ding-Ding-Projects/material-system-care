@@ -5,6 +5,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'capture_diagnostics.dart';
 
 String captureUtc(DateTime value) {
   final utc = value.toUtc();
@@ -32,11 +33,13 @@ class CapturedPng {
     this.completed,
     this.elapsedMicroseconds,
     this.width,
-    this.height,
-  );
+    this.height, [
+    this.diagnostics,
+  ]);
   final Uint8List bytes;
   final DateTime started, completed;
   final int elapsedMicroseconds, width, height;
+  final Map<String, Object>? diagnostics;
   Map<String, Object> request(String path, int sequence) => {
     'path': path,
     'bytes': bytes,
@@ -47,12 +50,15 @@ class CapturedPng {
     'width': width,
     'height': height,
     'pixelRatio': 1.0,
+    if (diagnostics != null) 'diagnostics': diagnostics!,
   };
 }
 
 Future<CapturedPng> capturePngFrame(
   RenderRepaintBoundary boundary, {
   DateTime Function()? clock,
+  CaptureDiagnostics? diagnostics,
+  int sequence = 0,
 }) async {
   final now = clock ?? DateTime.now;
   final started = now().toUtc();
@@ -63,6 +69,7 @@ Future<CapturedPng> capturePngFrame(
   try {
     if (completed.isBefore(started))
       throw StateError('Capture clock reversed; no receipt was requested.');
+    final snapshot = diagnostics?.snapshot(sequence, completed);
     final data = await image.toByteData(format: ui.ImageByteFormat.png);
     if (data == null) throw StateError('PNG encoding did not complete.');
     return CapturedPng(
@@ -72,6 +79,7 @@ Future<CapturedPng> capturePngFrame(
       elapsed.elapsedMicroseconds,
       image.width,
       image.height,
+      snapshot,
     );
   } finally {
     image.dispose();
@@ -86,10 +94,12 @@ class FrameCapture extends StatefulWidget {
     required this.output,
     required this.child,
     this.onInput = false,
+    this.diagnostics,
   });
   final String output;
   final Widget child;
   final bool onInput;
+  final CaptureDiagnostics? diagnostics;
   @override
   State<FrameCapture> createState() => _FrameCaptureState();
 }
@@ -119,6 +129,7 @@ class _FrameCaptureState extends State<FrameCapture> {
 
   @override
   void dispose() {
+    widget.diagnostics?.dispose();
     pending?.cancel();
     if (widget.onInput) HardwareKeyboard.instance.removeHandler(keyEvent);
     super.dispose();
@@ -147,7 +158,11 @@ class _FrameCaptureState extends State<FrameCapture> {
           !rendered.hasSize ||
           rendered.size.isEmpty)
         return;
-      final frame = await capturePngFrame(rendered);
+      final frame = await capturePngFrame(
+        rendered,
+        diagnostics: widget.diagnostics,
+        sequence: number,
+      );
       if (!mounted) return;
       // The native bridge writes and flushes the PNG and its paired receipt.
       await const MethodChannel(

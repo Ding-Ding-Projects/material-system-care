@@ -766,9 +766,10 @@
     {
       "id": "desktop.applications",
       "title": "Applications workspace",
+      "implementationPath": "desktop/lib/packages.dart",
       "status": "source-linked-unverified",
       "actualNavigation": "Apps",
-      "sourceCommit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e"
+      "sourceCommit": "6df22adac73f67b30c638b57fed846088d9203fb"
     },
     {
       "id": "desktop.system",

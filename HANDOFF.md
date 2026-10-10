@@ -1,5 +1,9 @@
 # Implementation handoff
 
+## Capture diagnostic integration
+
+Candidate `c4a97a15d24fb50dea014d33f965f083765bbfd1` adds real capture-scoped Flutter framework/platform observers and pairs their bounded metadata with each new PNG receipt. Eleven focused checks, 34 native writer assertions, 24 lifecycle cases and five transport cases passed; exact root native and desktop builds succeeded in the isolated producer. Independent review found no concrete defect. The combined package/capture source still requires its own build and live capture. This records only the two named hooks, not native stderr, engine failures, browser events or every possible crash. Historical images receive no retroactive diagnostic verdict.
+
 ## Application workspace candidate
 
 The Apps destination now uses dedicated typed cards for read-only installed records and exact WinGet matches. Discovery and package actions have separate reviews. Results require matching identity, consistent completion/exit code and no restart before reporting completion. Valid unavailable causes remain visible; malformed or failed refresh clears stale actions. Ten focused checks passed, as did 336 title-layout tuples. Removing the identity correlation made the focused negative regression fail. The real build and package workspace interaction remain pending. No user package was upgraded or removed.
