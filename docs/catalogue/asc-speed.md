@@ -23,3 +23,7 @@ No scan grants permission to mutate the device. Mutations need the selected stab
 ## Verification
 
 Coverage structure is checked by `node tests/coverage/catalogue.test.mjs`. Passing that test proves inventory integrity only. The release completeness check is `node tests/coverage/catalogue.test.mjs --release`; it intentionally fails until every in-scope capability has linked code, focused tests and reviewed built-artifact evidence. Unit fixtures alone do not prove a visible workflow.
+
+## Scheduled-task implementation evidence
+
+The independent tasks.list workflow is available under Tools > Scheduled tasks. See [behavior and bounds](../features/management/scheduled-tasks.md), [idle frame](../captures/scheduled-tasks-idle.json) and [runtime receipt](../verification/scheduled-tasks.json). The row remains partially implemented and unverified for full parity.

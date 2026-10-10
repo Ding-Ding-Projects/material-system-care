@@ -1,8 +1,8 @@
 # Continuation
 
-## Latest scheduled-task source checkpoint
+## Scheduled-task runtime milestone
 
-New read-only tasks.list and Tools > Scheduled tasks workspace are implemented. Three focused Flutter checks passed. Parser/privacy fixture additions, root builds, actual collection and screenshots are pending. No task was run or changed. Preserve the bounded output, current-account access, timezone-unspecified times and no-action-command disclosure boundaries. Continue from this source before claiming runtime delivery.
+Root engine verification and desktop builds passed at ead6535d65b92bb889936ba1f435347b2e017d9e. Three focused Flutter checks and integrated parser/privacy fixtures passed. A real hidden-desktop run completed explicit account-visible collection, expanded one record and filtered loaded rows to a no-match result. No task was run or changed. The idle frame is public; populated frames remain private because they contain local task names and identifiers. All owned bundle processes were absent and the hidden desktop closed. Evidence: docs/captures/scheduled-tasks-idle.json and docs/verification/scheduled-tasks.json. The narrow verifier checked 210 bundle files and rejected an altered capture hash before restored evidence passed. The catalogue and universal checks passed with 295 capabilities, 337 negative catalogue mutations, 104 contracts, 31 surfaces, 2139 rows and 216 negative universal mutations. Painted-frame evidence does not establish native compositor capture or the complete appearance/accessibility matrix.
 
 ## Objective and current state
 
@@ -30,7 +30,7 @@ The process workspace has real paced filtered inventory and an owned disposable-
 
 The previous evidence commit a06debdf73584b2d359321e53c621a6d58ed5a17 is on main. Hosted Windows build 38015913684 and documentation deployment 38015913672 succeeded. Public home, guide script, file-use-idle.png and coverage.json returned 200 and matched the local build. About homepage is exactly https://ding-ding-projects.github.io/material-system-care/. This new documentation/evidence update needs its own build, push and deployment verification; do not reuse the prior deployment verdict.
 
-The fixed ledger retains 295 capabilities. The universal inventory contains 104 contracts across 30 surfaces and 2070 rows. Complete the remaining supported workflows, per-surface controls, full appearance/motion/accessibility coverage, installer lifecycle and verified normal release. The old local 0.8.1 Squirrel package remains bound to b80d9938c1a90cea17eb6a69faa18fb2a257dbf0. No full catalogue parity or shipped-release claim is made.
+The fixed ledger retains 295 capabilities. The universal inventory contains 104 contracts across 31 surfaces and 2139 rows. Complete the remaining supported workflows, per-surface controls, full appearance/motion/accessibility coverage, installer lifecycle and verified normal release. The old local 0.8.1 Squirrel package remains bound to b80d9938c1a90cea17eb6a69faa18fb2a257dbf0. No full catalogue parity or shipped-release claim is made.
 
 Use supported user-mode APIs only. Exclude kernel drivers, other operating systems, proprietary vendor engines and remote-device administration. Supported Lowlevel recovery is authorized; actual captures used documented compatibility HTTP/native C++ and Flutter painted output, not native compositor capture. Keep visible focus untouched and verify exact owned identities before teardown. Never initiate host power/login actions or publish private paths, runtime identifiers or record pixels.
 

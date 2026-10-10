@@ -7,7 +7,7 @@ import {execFileSync} from 'node:child_process';
 // A deliberately narrow validator for painted native Flutter output. It cannot
 // certify native compositor capture, input, accessibility, or event collection.
 const [rootArg, runArg, bundleArg, mode = 'idle'] = process.argv.slice(2);
-assert(['idle','explained','processes-idle','file-use-idle'].includes(mode), 'Unknown frame state');
+assert(['idle','explained','processes-idle','file-use-idle','scheduled-tasks-idle'].includes(mode), 'Unknown frame state');
 assert(rootArg && runArg && bundleArg, 'Expected repository, owned capture run, and built bundle paths');
 const root = realpathSync(rootArg), run = realpathSync(runArg), bundle = realpathSync(bundleArg);
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
@@ -19,12 +19,13 @@ const contained = (base, path) => {
   return result;
 };
 const processFrame = mode === 'processes-idle';
+const taskFrame = mode === 'scheduled-tasks-idle';
 const fileUseFrame = mode === 'file-use-idle';
-const receipt = json(resolve(root, fileUseFrame ? 'docs/captures/file-use-idle.json' : processFrame ? 'docs/captures/processes-idle.json' : `docs/captures/diagnostics-${mode}.json`));
+const receipt = json(resolve(root, taskFrame ? 'docs/captures/scheduled-tasks-idle.json' : fileUseFrame ? 'docs/captures/file-use-idle.json' : processFrame ? 'docs/captures/processes-idle.json' : `docs/captures/diagnostics-${mode}.json`));
 assert.equal(receipt.route, 'lowlevel-hidden-desktop-flutter-frame-export');
 assert.equal(receipt.scope, mode !== 'explained' ? 'render-only' : 'painted-frame-with-background-input');
 for (const [key,value] of Object.entries(receipt.verification)) assert.equal(value, mode === 'explained' && key === 'inputHandling', 'Unsupported verification claim');
-const raw = readFileSync(contained(run, fileUseFrame ? 'output/file-use.png' : processFrame ? 'output/processes.png' : mode === 'idle' ? 'output/diagnostics.png' : 'output/diagnostics-002.png'));
+const raw = readFileSync(contained(run, taskFrame ? 'output/scheduled-tasks.png' : fileUseFrame ? 'output/file-use.png' : processFrame ? 'output/processes.png' : mode === 'idle' ? 'output/diagnostics.png' : 'output/diagnostics-002.png'));
 const saved = readFileSync(contained(root, receipt.capture.path));
 assert(raw.equals(saved), 'Published bytes differ from the original render');
 assert.equal(hash(raw), receipt.capture.sha256);
@@ -59,6 +60,11 @@ execFileSync('git', ['cat-file', '-e', `${receipt.sourceCommit}^{commit}`], {cwd
 const launch = json(contained(run, 'launch.json'));
 assert(launch.created && launch.hwnd > 0 && launch.process.pid === launch.pid);
 assert.equal(realpathSync(launch.process.executablePath), contained(bundle, 'material_system_care.exe'));
+if (taskFrame) {
+ const request = json(contained(run, 'request.json'));
+ assert.deepEqual(request.arguments, ['--scheduled-tasks', '--capture-frame=' + resolve(run, 'output/scheduled-tasks.png').replaceAll('\\', '/'), '--capture-on-input']);
+ assert.equal(receipt.state.screen, 'scheduled-tasks');
+}
 if (fileUseFrame) {
  const request = json(contained(run, 'request.json'));
  assert.deepEqual(request.arguments, ['--file-use', '--capture-frame=' + resolve(run, 'output/file-use.png').replaceAll('\\', '/'), '--capture-on-input']);

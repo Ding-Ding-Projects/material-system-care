@@ -773,13 +773,52 @@
         "Supported Windows user-mode APIs"
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
-      "status": "unimplemented",
-      "statusReason": "Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row.",
+      "status": "unverified",
+      "statusReason": "Bounded read-only task metadata, focused checks and real collection, expansion and filtering are evidenced. Full surface contracts remain unverified.",
       "intendedPage": "Performance",
-      "implementation": [],
-      "tests": [],
-      "evidence": [],
-      "documentation": "docs/catalogue/asc-speed.md"
+      "implementation": [
+        "engine/Modules/ScheduledTaskInventory.cs",
+        "desktop/lib/scheduled_tasks.dart"
+      ],
+      "tests": [
+        "tests/management/ManagementFixtures.cs",
+        "desktop/test/scheduled_tasks_test.dart"
+      ],
+      "evidence": [
+        "docs/captures/scheduled-tasks-idle.json",
+        "docs/verification/scheduled-tasks.json"
+      ],
+      "documentation": "docs/catalogue/asc-speed.md",
+      "implementationCoverage": "partial",
+      "implementedEquivalent": "tasks.list",
+      "remainingGap": "Account-visible metadata only, with capped nontransactional enumeration. No task mutation. Full per-surface appearance, accessibility, language and export contracts remain unverified.",
+      "actualNavigation": "Tools > Scheduled tasks",
+      "sourceBindings": [
+        {
+          "path": "engine/Modules/ScheduledTaskInventory.cs",
+          "role": "implementation",
+          "symbol": "ScheduledTaskInventory",
+          "commit": "ead6535d65b92bb889936ba1f435347b2e017d9e"
+        },
+        {
+          "path": "desktop/lib/scheduled_tasks.dart",
+          "role": "interface",
+          "symbol": "ScheduledTasksPage",
+          "commit": "ead6535d65b92bb889936ba1f435347b2e017d9e"
+        },
+        {
+          "path": "tests/management/ManagementFixtures.cs",
+          "role": "test",
+          "symbol": "scheduled task parser and platform fixtures",
+          "commit": "ead6535d65b92bb889936ba1f435347b2e017d9e"
+        },
+        {
+          "path": "desktop/test/scheduled_tasks_test.dart",
+          "role": "test",
+          "symbol": "focused widget fixtures",
+          "commit": "ead6535d65b92bb889936ba1f435347b2e017d9e"
+        }
+      ]
     },
     {
       "id": "asc-speed.05",

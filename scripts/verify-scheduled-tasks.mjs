@@ -1,0 +1,45 @@
+import assert from 'node:assert/strict';
+import {readFileSync, realpathSync} from 'node:fs';
+import {resolve, relative, isAbsolute} from 'node:path';
+import {createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
+
+const [rootArg, runArg, bundleArg] = process.argv.slice(2);
+assert(rootArg && runArg && bundleArg, 'Expected repository, private run and bundle');
+const root = realpathSync(rootArg), run = realpathSync(runArg);
+execFileSync(process.execPath, [resolve(root, 'scripts/verify-render-frame.mjs'), root, run, bundleArg, 'scheduled-tasks-idle'], {stdio: 'inherit', windowsHide: true});
+const json = p => JSON.parse(readFileSync(p, 'utf8').replace(/^\uFEFF/, ''));
+const hash = b => createHash('sha256').update(b).digest('hex');
+const summary = json(resolve(root, 'docs/verification/scheduled-tasks.json'));
+assert.equal(summary.sourceCommit, json(resolve(run, 'build-receipt.json')).source);
+assert.equal(summary.scope, 'account-visible-scheduled-task-review');
+assert.equal(summary.route, 'lowlevel-hidden-desktop-flutter-frame-export');
+assert.equal(summary.publishedPixels, false);
+assert.equal(summary.captureInstant, null);
+assert.deepEqual(Object.keys(summary.files), ['inputs.json', 'children.json', 'launch.json', 'teardown.json', 'output/scheduled-tasks-003.png', 'output/scheduled-tasks-004.png', 'output/scheduled-tasks-006.png']);
+for (const [name, entry] of Object.entries(summary.files)) {
+  const path = realpathSync(resolve(run, name));
+  const rel = relative(run, path);
+  assert(rel && !rel.startsWith('..') && !isAbsolute(rel));
+  const data = readFileSync(path);
+  assert.equal(data.length, entry.bytes);
+  assert.equal(hash(data), entry.sha256);
+}
+const children = json(resolve(run, 'children.json'));
+const launch = json(resolve(run, 'launch.json'));
+assert(children.ok && children.client_ok && children.parent_hwnd === launch.hwnd);
+assert.equal(children.children.length, 1);
+assert.equal(children.children[0].class, 'FLUTTERVIEW');
+const hwnd = children.children[0].handle;
+const inputs = json(resolve(run, 'inputs.json'));
+assert.deepEqual(inputs.filter(i => i.name === 'mouse_click').map(i => [i.params.x,i.params.y]), [[505,220],[500,193],[1150,600],[1068,438],[330,266],[1140,600]]);
+const text = inputs.filter(i => i.name === 'type_text');
+assert.equal(text.map(i => i.params.text).join(''), 'zzmscnohitzz');
+assert(text.every(i => i.params.text.length === 1));
+assert.equal(inputs.length, text.length + 6);
+assert(inputs.slice(0,5).every(i => i.name === 'mouse_click'));
+assert(inputs.slice(5,-1).every(i => i.name === 'type_text'));
+assert.equal(inputs.at(-1).name, 'mouse_click');
+for (const input of inputs) assert(input.status === 0 && input.params.hwnd === hwnd && input.result.ok && input.result.client_ok && input.result.mode === 'background' && input.result.target_hwnd === hwnd);
+assert.deepEqual(summary.review, {completedCollection:true,expandedRecord:true,loadedRecordFilter:true,ownedTeardown:true,taskMutation:false,nativeCompositor:false,fullLayoutMatrix:false});
+console.log('PASS scheduled-task receipts: source-bound bundle, private frame hashes, explicit read, expansion, paced filter and owned teardown. Pixel review remains separate.');

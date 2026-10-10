@@ -1,8 +1,8 @@
 # Implementation handoff
 
-## Scheduled-task source checkpoint
+## Scheduled-task runtime milestone
 
-A new tasks.list method and Tools > Scheduled tasks workspace expose explicit bounded task metadata. Commands, arguments and principals are excluded; no task mutation exists. Three focused widget checks passed, with parser/privacy fixture additions awaiting root engine verification. Root builds, genuine collection and captures remain pending. Independent source review found no concrete blocker and noted access, ordering, nontransactional timing and private-name limits.
+Root engine verification and desktop builds passed at ead6535d65b92bb889936ba1f435347b2e017d9e. Three focused Flutter checks and integrated parser/privacy fixtures passed. A real hidden-desktop run completed explicit account-visible collection, expanded one record and filtered loaded rows to a no-match result. No task was run or changed. The idle frame is public; populated frames remain private because they contain local task names and identifiers. All owned bundle processes were absent and the hidden desktop closed. Evidence: docs/captures/scheduled-tasks-idle.json and docs/verification/scheduled-tasks.json. Painted-frame evidence does not establish native compositor capture or the complete appearance/accessibility matrix.
 
 ## Populated File use milestone
 

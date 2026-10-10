@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "id": "scheduled-tasks-idle-en-light-1264x681",
+  "route": "lowlevel-hidden-desktop-flutter-frame-export",
+  "scope": "render-only",
+  "sourceCommit": "ead6535d65b92bb889936ba1f435347b2e017d9e",
+  "bundleSha256": "cc6f34d51d4c770477619a353687b182088d46f227bbe9872f816f78d7cf9370",
+  "executableSha256": "466e9e330e4307321ebcd0cc88c2c89b8540ea7c078db2ebbe2178668287b178",
+  "buildReceiptSha256": "024ff3b946d5cafda424fb078aaed78d19c0cd9ce34379d18882d1f357be157d",
+  "artifactBuiltAt": "2026-10-10T02:32:59.4164700Z",
+  "capture": {
+    "path": "docs/captures/scheduled-tasks-idle.png",
+    "sha256": "813db9b3380b28bfe3f5c4e27da61ab8ee833c7ba79d7137106a54a77e3c4b62",
+    "bytes": 32574,
+    "width": 1264,
+    "height": 681,
+    "capturedAt": null,
+    "observedAt": "2026-10-10T02:40:05.524Z"
+  },
+  "state": {
+    "screen": "scheduled-tasks",
+    "state": "idle",
+    "language": "en",
+    "theme": "light",
+    "scale": 1,
+    "preferences": "isolated-defaults",
+    "data": "No scheduled-task records collected in this frame"
+  },
+  "privacy": {
+    "visibleDesktopUntouched": true,
+    "personalSettingsLoaded": false,
+    "pixelsInspected": true,
+    "sensitiveDataFound": false,
+    "handEdited": false
+  },
+  "verification": {
+    "nativeCompositor": false,
+    "inputHandling": false,
+    "engineCollection": false,
+    "fullLayoutMatrix": false
+  },
+  "limitations": [
+    "Actual painted Flutter frame, not native compositor capture.",
+    "This idle frame does not establish task collection or complete interface coverage.",
+    "Exact capture instant unavailable; observation time recorded separately."
+  ]
+}

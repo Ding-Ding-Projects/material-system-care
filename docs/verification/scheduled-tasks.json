@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "ead6535d65b92bb889936ba1f435347b2e017d9e",
+  "scope": "account-visible-scheduled-task-review",
+  "route": "lowlevel-hidden-desktop-flutter-frame-export",
+  "publishedPixels": false,
+  "withheldReason": "Result frames contain local task names and identifiers.",
+  "captureInstant": null,
+  "observedAt": "2026-10-10T02:40:05.524Z",
+  "files": {
+    "inputs.json": {
+      "sha256": "1b703d7c9d4a28077da211d31d31d343e0b0d6df874a5c24b4a27df0db3b4e38",
+      "bytes": 7046
+    },
+    "children.json": {
+      "sha256": "1b13ea07f3d2ec9d77fe76deae2f7aff34b2fd2e378d30c1797082c52c04f9c8",
+      "bytes": 239
+    },
+    "launch.json": {
+      "sha256": "ba405d466fb5b2cdac67a7da6cadd30154ec4aab4389ee22457fcfb7867da4cc",
+      "bytes": 921
+    },
+    "teardown.json": {
+      "sha256": "572389515e674f8990be65d2eefc338eb72c70f918c70676cba8189fb67f9a10",
+      "bytes": 260
+    },
+    "output/scheduled-tasks-003.png": {
+      "sha256": "9641ffbd807a17d0ddf687454a1ec4cb3579acf195ef777980b768236c94c897",
+      "bytes": 53528
+    },
+    "output/scheduled-tasks-004.png": {
+      "sha256": "68f536ec91c55dbf9ae8cd9cf61293e34e139e6d060e4d9150c95cf179ea2dde",
+      "bytes": 52451
+    },
+    "output/scheduled-tasks-006.png": {
+      "sha256": "c9c0356d9ec4dca78ac8cde4801b9192f2930535c5f65bfc73fa3922bc102a94",
+      "bytes": 38171
+    }
+  },
+  "review": {
+    "completedCollection": true,
+    "expandedRecord": true,
+    "loadedRecordFilter": true,
+    "ownedTeardown": true,
+    "taskMutation": false,
+    "nativeCompositor": false,
+    "fullLayoutMatrix": false
+  },
+  "limitations": [
+    "Pixel review is a declaration, separate from receipt validation.",
+    "Account visibility and changing task state prevent exhaustive or transactional inventory claims.",
+    "The initial click missed the read control; only the later explicit query and settled frames establish collection.",
+    "Reported run times have no asserted timezone; nonzero result codes alone are not a diagnosis."
+  ]
+}

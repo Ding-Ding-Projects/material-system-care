@@ -13,7 +13,8 @@
 
 ## Working suite
 
-- [ ] Verify the new scheduled-task review workspace: bounded read-only source and focused widgets are implemented; root builds, real collection and full surface contracts remain pending.
+- [x] Verify bounded scheduled-task collection, expanded metadata and loaded-record filtering in the real build, retain private result evidence and verify owned teardown.
+- [ ] Complete scheduled-task per-surface language, accessibility, export and appearance contracts.
 
 - [x] Verify a populated File use result against an owned holder, stable identity, refresh after holder release, retained fixture bytes and complete owned teardown. This does not establish an exhaustive handle inventory or unlock behavior.
 
