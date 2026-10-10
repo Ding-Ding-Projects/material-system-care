@@ -13,6 +13,8 @@
 
 ## Working suite
 
+- [x] Inspect built default-period crash collection and one expanded event on a hidden desktop, retain private source-bound frames and verify owned teardown. Other periods, failure states, dump metadata section and full appearance coverage remain pending.
+
 - [x] Verify cancelled review and a final graceful-close request against an owned disposable window, with independent absence before its timeout and complete owned teardown. Arbitrary application close behavior remains outside this evidence.
 
 - [x] Verify the read-only process inventory with paced hidden input, exact visible filter, owned engine identity and verified teardown. Runtime record pixels remain private; close behavior and full input coverage remain pending.
@@ -29,7 +31,7 @@
 
 - [x] Verify manual stop-code entry and explanation through real isolated background input, retain the inspected painted result and source-bound receipts, and prove altered input evidence is rejected. This does not complete the native compositor or full interaction matrix.
 
-- [ ] Complete blue-screen diagnosis runtime verification: read-only engine and dedicated Tools workspace implemented; focused synthetic checks and a painted native frame pass; manual stop-code input passed, while built event-collection interaction, native compositor and full layout coverage remain pending.
+- [ ] Complete blue-screen diagnosis runtime verification: read-only engine and dedicated Tools workspace implemented; focused synthetic checks and a painted native frame pass; manual stop-code input passed, and default-period collection with one expanded event subsequently passed; remaining interaction paths, native compositor and full layout coverage remain pending.
 - [x] Build the read-only diagnostic engine and workspace, verify a bounded real event query, and preserve a source-bound painted native frame. Manual stop-code input subsequently passed; native compositor and the full appearance matrix remain separate requirements.
 - [ ] Deliver real health and diagnostics workflows.
 - [ ] Deliver reversible temporary-file maintenance, duplicate analysis, storage inventory, and recovery records.

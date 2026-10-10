@@ -1,5 +1,9 @@
 # Implementation handoff
 
+## Built diagnostic collection milestone
+
+A fresh hidden run of producer cfa86ebb78312984a90ccd26b814f4a4d00a58e9 completed the actual Read crash evidence control at the default 30-day lookback and expanded one returned record. Three painted frames were inspected privately; the completed view and expanded provider/event/uncatalogued-code explanation were visible. No root cause was inferred. Host-specific timestamps, record identifiers and code observations are withheld from publication. docs/verification/diagnostic-collection.json retains sanitized source/hash declarations; scripts/verify-diagnostic-collection.mjs checked 210 producer files, two background clicks, private frame hashes and teardown receipts. An altered input hash was rejected, then restored evidence passed. A scroll call was rejected before execution, so the dump-metadata section was not inspected. Exact desktop/engine paths were absent and the named hidden desktop was closed. Other periods, failure/refresh paths, native compositor and full appearance/accessibility coverage remain pending.
+
 ## Current blue-screen request and evidence refresh
 
 The read-only blue-screen workspace is implemented. Its manual 0x9F path has genuine source-bound painted-result and background-input evidence; a bounded real engine event query also passed separately. Public home and explained image returned HTTP 200 and the image matched retained bytes. Hosted documentation run 38013930022 and Windows build 38013930047 succeeded at b8e0d34de12b442c626b6c5fae020043c47fb810. Native compositor, built event-collection interaction, the full matrix and deeper dump analysis are not established. CLOSEOUT_PROMPT.md now consolidates the current state; older sections below are historical milestones and their then-pending statements do not override newer evidence. No runtime code changed in this refresh.

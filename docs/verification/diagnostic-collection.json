@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "cfa86ebb78312984a90ccd26b814f4a4d00a58e9",
+  "bundleSha256": "1c55f3367c64c046fa41f4a740d9cf21e6588b51e4803bbae2b7a55f6e42e4d1",
+  "route": "lowlevel-hidden-desktop-flutter-frame-export",
+  "transport": "documented-compatibility-http/native-cpp",
+  "scope": "read-only-crash-collection-and-one-expanded-record",
+  "publishedPixels": false,
+  "withheldReason": "Local crash timestamps, record identifiers and stop-code observations remain in private evidence.",
+  "captureInstant": null,
+  "observedAt": "2026-10-10T01:50:37.517Z",
+  "files": {
+    "build-receipt.json": {
+      "sha256": "0dc138204304aed753f9940fec948e35401e01f233fb5f3e2eabd65f664b9e28",
+      "bytes": 544
+    },
+    "launch.json": {
+      "sha256": "d8893f2d3a03fa9247ddcc955eb1ceb9befa689338e765e447188e7fb0598ec7",
+      "bytes": 934
+    },
+    "window.json": {
+      "sha256": "185633878b7065dae9f777bba2e52f37efc09702a575daa5c45c9cdc8f9658c1",
+      "bytes": 597
+    },
+    "children.json": {
+      "sha256": "87d05caafbc5bb9cbcf2736a41f765bca47e6b9b580a22bbe1bcd08fff62461e",
+      "bytes": 239
+    },
+    "inputs.json": {
+      "sha256": "9330078ed06d07dd8f0cba236f29ee15e3866d6b8be2675a3f6cd2a8526730a0",
+      "bytes": 952
+    },
+    "unsupported-scroll.json": {
+      "sha256": "4386a676845d6ca5795138f2176f3e6d34b7de6d7629bb6abed5d77a71be142d",
+      "bytes": 342
+    },
+    "teardown.json": {
+      "sha256": "2be6d8a6e65d623b06162c7d56a731982280db3c994800b9254955bf7b2b4189",
+      "bytes": 239
+    },
+    "output/diagnostics.png": {
+      "sha256": "ae81d30b57c848cd944b13c604155cb906ee61a8f239ce1b56df01914a0f2ee9",
+      "bytes": 38296
+    },
+    "output/diagnostics-001.png": {
+      "sha256": "a768efd741c52e89798e2c7458a24f6d75d2e8069c36505f5f03281637fee7b4",
+      "bytes": 49663
+    },
+    "output/diagnostics-002.png": {
+      "sha256": "88cb15b0efe7a3226d2469da95da100b2cccab0f520db025742c9d6d4c65d2c5",
+      "bytes": 48355
+    }
+  },
+  "review": {
+    "initialIdleInspected": true,
+    "completedCollectionInspected": true,
+    "oneExpandedRecordInspected": true,
+    "providerAndEventTypeVisible": true,
+    "unknownCodePresentedWithoutRootCause": true,
+    "ownedTeardown": true,
+    "visibleDesktopUntouched": true,
+    "nativeCompositor": false,
+    "fullInputMatrix": false,
+    "dumpMetadataSectionInspected": false
+  },
+  "limitations": [
+    "Manual pixel review establishes visible states; hashes and receipts do not perform image recognition.",
+    "The scroll request was rejected before execution because the transport does not accept an HWND argument for that operation. No visible-desktop route was used.",
+    "One default-lookback collection and one expanded entry were inspected. Alternative periods, refresh failures, dump metadata section, accessibility, themes and scales remain unverified.",
+    "No dump contents were read, driver culprit attributed, repair performed or host power/login action initiated."
+  ]
+}
