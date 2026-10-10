@@ -1,5 +1,7 @@
 # Local management
 
+- [Process inspection](processes.md): exact-identity review and truthful graceful-close receipts.
+
 - [Managed package discovery](managed-packages.md): explicit structured WinGet matches and contextual actions.
 
 The management module implements installed-application inventory, WinGet operations, reversible current-user Run entries, process metadata and graceful close requests, and read-only service inventory. Registry inventory reads both uninstall views and both supported hives without executing registered command strings. AppX inventory uses the current user's supported PowerShell command.

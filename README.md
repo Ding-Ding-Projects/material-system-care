@@ -20,6 +20,8 @@ The entrypoints discover existing tools and obtain missing supported dependencie
 
 Read-only storage scans support request-specific cancellation. The interface distinguishes stopping its wait from confirmation that the engine has finished, and preserves a completed result that wins the race.
 
+The **Tools → Processes** workspace provides measured process records and an explicitly reviewed graceful-close request. A request never claims the process has exited. See [process inspection](docs/features/management/processes.md).
+
 ## Implemented development workflows
 
 The current source provides a working foundation, with these operation families:

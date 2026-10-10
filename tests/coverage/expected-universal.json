@@ -204,7 +204,8 @@
     "website.downloads",
     "website.settings",
     "desktop.startup",
-    "desktop.crash-diagnostics"
+    "desktop.crash-diagnostics",
+    "desktop.processes"
   ],
   "notApplicableDelivery": {
     "postman-collections": "The engine protocol uses a local named pipe, not an HTTP API. Add collections if an HTTP provider API is introduced.",

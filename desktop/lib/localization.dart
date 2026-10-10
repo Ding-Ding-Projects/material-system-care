@@ -12,6 +12,27 @@ class CopyScope extends InheritedWidget {
 }
 
 const translations = <String, String>{
+  "Processes": "程序",
+  "Inspect running processes": "檢視運行中程序",
+  "Memory is a point-in-time working set. CPU time is cumulative, not current utilization. Records can change after collection.":
+      "記憶體係當時嘅工作集。CPU 時間係累計值，唔係即時使用率。收集後記錄可能改變。",
+  "Refresh processes": "更新程序",
+  "Filter by process name or PID": "按程序名稱或 PID 篩選",
+  "Request graceful close?": "要求正常關閉？",
+  "Save work first. The selected application may ask about unsaved work, decline, or remain open. This never forces termination.":
+      "請先儲存工作。所選應用程式可能詢問未儲存內容、拒絕或繼續開啟。此操作絕不強制終止。",
+  "Request close": "要求關閉",
+  "Close requested. Process exit is not confirmed. Refresh to observe current records.":
+      "已要求關閉，未確認程序已退出。請更新查看目前記錄。",
+  "No close request was accepted. The process may still be running.":
+      "關閉要求未被接受，程序可能仍在運行。",
+  "Close outcome is unavailable. Do not assume the process stopped. Refresh before another request.":
+      "未能取得關閉結果，請勿假設程序已停止。再次要求前請先更新。",
+  "Process records are unavailable. Refresh to try again.": "未能取得程序記錄，請更新重試。",
+  "Working set bytes": "工作集位元組",
+  "Cumulative CPU milliseconds": "累計 CPU 毫秒",
+  "Started at UTC": "開始時間 UTC",
+  "Graceful close is unavailable for this record.": "此記錄未能使用正常關閉。",
   'Cancel scan': '取消掃描',
   'Cancellation requested…': '已要求取消…',
   'Stopped waiting for scan.': '已停止等候掃描。',

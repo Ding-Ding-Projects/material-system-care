@@ -13,6 +13,8 @@
 
 ## Working suite
 
+- [ ] Verify the dedicated process workspace in the built application: explicit inventory, exact-identity review and accepted/declined close receipts are implemented; three focused Flutter fixtures passed. No actual process close was performed.
+
 - [ ] Verify read-only scan cancellation in the built workspace: request-specific control, completion-race handling and truthful stop-waiting state are implemented; focused Flutter checks passed.
 
 - [ ] Verify receipt-specific recovery review in the built workspace: metadata-only engine details and confirmation blocking are implemented; 33 storage checks and the focused Flutter review test passed. Real user files were not restored.

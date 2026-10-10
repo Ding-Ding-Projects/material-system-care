@@ -8,6 +8,7 @@ import 'notifications.dart';
 import 'provenance.dart';
 import 'motion.dart';
 import 'crash_diagnostics.dart';
+import 'processes.dart';
 import 'frame_capture.dart';
 import 'wording_cache.dart';
 
@@ -994,6 +995,24 @@ class _ToolsEditorState extends State<ToolsEditor> {
                   ),
             icon: const Icon(Icons.monitor_heart_outlined),
             label: UiText('Blue-screen diagnostics'),
+          ),
+        ),
+        const SizedBox(height: 12),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: FilledButton.tonalIcon(
+            onPressed: widget.busy
+                ? null
+                : () => Navigator.of(context).push(
+                    MaterialPageRoute<void>(
+                      builder: (_) => CopyScope(
+                        preferences: CopyScope.of(context),
+                        child: ProcessesPage(invoke: Engine.invoke),
+                      ),
+                    ),
+                  ),
+            icon: const Icon(Icons.memory),
+            label: const UiText('Processes'),
           ),
         ),
         const SizedBox(height: 12),
