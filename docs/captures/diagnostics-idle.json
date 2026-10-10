@@ -3,11 +3,11 @@
   "id": "diagnostics-idle-en-light-1264x681",
   "route": "lowlevel-hidden-desktop-flutter-frame-export",
   "scope": "render-only",
-  "sourceCommit": "d1b4cca6d1f843a559f4f47f0f01288e60b18773",
-  "bundleSha256": "f9ecdf81b7b294adec51a37cb06b5c390a6a6193cbd65160c2a9cfae599c492d",
+  "sourceCommit": "fb128bc4acf89d9fe149150bd571c2351b91229e",
+  "bundleSha256": "caf95b516d3528ff58bad93dd0da54a60005f4379a4551d5d59221082e338668",
   "executableSha256": "63efc3ae2683250617457a7375803a181fb2de7fb417388219216dedf5b354de",
-  "buildReceiptSha256": "18431374123ae2c702895f3ebc53e5949e73356e0e5ea0e6278edad5954f7477",
-  "artifactBuiltAt": "2026-10-10T00:02:13.1696293Z",
+  "buildReceiptSha256": "3f0ce225d3cd0346941af93d1dfd8cc26fef4d4d41dd716e0fce0bb41c54964c",
+  "artifactBuiltAt": "2026-10-10T00:11:07.5166345Z",
   "capture": {
     "path": "docs/captures/diagnostics-idle.png",
     "sha256": "ae81d30b57c848cd944b13c604155cb906ee61a8f239ce1b56df01914a0f2ee9",
@@ -15,7 +15,7 @@
     "width": 1264,
     "height": 681,
     "capturedAt": null,
-    "observedAt": "2026-10-10T00:02:38.137Z"
+    "observedAt": "2026-10-10T00:14:01.503Z"
   },
   "state": {
     "screen": "blue-screen-diagnostics",

@@ -13,7 +13,8 @@
 
 ## Working suite
 
-- [ ] Complete blue-screen diagnosis runtime verification: read-only engine and dedicated Tools workspace implemented; focused synthetic checks pass; built screenshots remain pending.
+- [ ] Complete blue-screen diagnosis runtime verification: read-only engine and dedicated Tools workspace implemented; focused synthetic checks and a painted native frame pass; native input/compositor and full layout coverage remain pending.
+- [x] Build the read-only diagnostic engine and workspace, verify a bounded real event query, and preserve a source-bound painted native frame. Native compositor/input and the full appearance matrix remain separate requirements.
 - [ ] Deliver real health and diagnostics workflows.
 - [ ] Deliver reversible temporary-file maintenance, duplicate analysis, storage inventory, and recovery records.
 - [ ] Deliver application, startup, process, security, and driver workflows using supported APIs.

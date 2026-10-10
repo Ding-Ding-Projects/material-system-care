@@ -2,7 +2,7 @@
 
 | ID | Producer | Scope | State |
 | --- | --- | --- | --- |
-| `diagnostics-idle-en-light-1264x681` | `d1b4cca6d1f843a559f4f47f0f01288e60b18773` | Actual painted Flutter frame, render-only | Diagnostic workspace, idle, English, light, 1264 × 681, scale 1 |
+| `diagnostics-idle-en-light-1264x681` | `fb128bc4acf89d9fe149150bd571c2351b91229e` | Actual painted Flutter frame, render-only | Diagnostic workspace, idle, English, light, 1264 × 681, scale 1 |
 
 ![Built blue-screen diagnostics workspace, idle, English and light theme](diagnostics-idle.png)
 

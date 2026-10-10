@@ -32,7 +32,7 @@ This list describes source behavior. It does not establish complete reference-pr
 
 ![Built blue-screen diagnostics workspace in English and light theme](docs/captures/diagnostics-idle.png)
 
-This is an actual painted frame from the native build at `d1b4cca6d1f843a559f4f47f0f01288e60b18773`, exported on an isolated desktop. Its evidence is **render-only**, not native-compositor or input verification. No diagnostic data was injected. See the [capture receipt and limitations](docs/captures/README.md).
+This is an actual painted frame from the native build at `fb128bc4acf89d9fe149150bd571c2351b91229e`, exported on an isolated desktop. Its evidence is **render-only**, not native-compositor or input verification. No diagnostic data was injected. See the [capture receipt and limitations](docs/captures/README.md).
 
 ## Project records
 

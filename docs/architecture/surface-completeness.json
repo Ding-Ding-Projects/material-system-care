@@ -886,6 +886,13 @@
       "status": "source-linked-unverified",
       "actualNavigation": "Startup",
       "sourceCommit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e"
+    },
+    {
+      "id": "desktop.crash-diagnostics",
+      "title": "Blue-screen diagnostics workspace",
+      "status": "source-linked-unverified",
+      "actualNavigation": "Tools > Blue-screen diagnostics",
+      "sourceCommit": "fb128bc4acf89d9fe149150bd571c2351b91229e"
     }
   ],
   "requirements": [
@@ -25105,6 +25112,1317 @@
       "localizedCopy": [],
       "persistence": [],
       "tests": [],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "language",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/language.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "funny-emoji",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/funny-emoji.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "personal-vocabulary",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/personal-vocabulary.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "school-mode",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/school-mode.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "narration",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/narration.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "scheduled-settings",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/scheduled-settings.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "display-name",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/display-name.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "adhd-modes",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/adhd-modes.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "dim-sum",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/dim-sum.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "dim-sum-photo-source",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/dim-sum-photo-source.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "material-design",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/material-design.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "workflow-navigation",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/workflow-navigation.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "motion",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/motion.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "appearance-editor",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/appearance-editor.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "color-picker",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/color-picker.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "logo-customization",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/logo-customization.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "overlay-panels",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/overlay-panels.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "collapse-filters",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/collapse-filters.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "accessibility-sizing",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/accessibility-sizing.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "functional-ui",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/functional-ui.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "tabs",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/tabs.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "regex-search",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/regex-search.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "command-palette",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/command-palette.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "context-menus",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/context-menus.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "menu-shortcuts",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/menu-shortcuts.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "rich-controls",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/rich-controls.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "guided-forms",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/guided-forms.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "settings-explanations",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/settings-explanations.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "blank-editors",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/blank-editors.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "super-confirmation",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/super-confirmation.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "element-locks",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/element-locks.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "support-tickets",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/support-tickets.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "unlock-ladder",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/unlock-ladder.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "authenticator",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/authenticator.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "qr-pairing",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/qr-pairing.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "honest-monetization",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/honest-monetization.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "local-history",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/local-history.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "exports",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/exports.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "bulk-actions",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/bulk-actions.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "changelog",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/changelog.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "offline-docs",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/offline-docs.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "rendered-provider-text",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/rendered-provider-text.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "notifications",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/notifications.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "file-converter",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/file-converter.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "ollama-suite",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/ollama-suite.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "external-editor",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/external-editor.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "download-handoff",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/download-handoff.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "forge-publishing",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/forge-publishing.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "progress-recovery",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/progress-recovery.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "completeness-parity",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/completeness-parity.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "front-provenance",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/front-provenance.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "product-evidence",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/product-evidence.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "screen-recording",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/screen-recording.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "design-reference-parity",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/design-reference-parity.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "design-folder",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/design-folder.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "layout-matrix",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/layout-matrix.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "public-evidence-gallery",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/public-evidence-gallery.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "landing-site",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/landing-site.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "mobile-site",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/mobile-site.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "installer-download-button",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/installer-download-button.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "feature-articles",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/feature-articles.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "vendored-fonts",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/vendored-fonts.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "shared-link-embed",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/shared-link-embed.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "homepage-link",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/homepage-link.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "vocabulary-unlock-boundary",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/vocabulary-unlock-boundary.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "status-hub",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/status-hub.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "discord-status-bridge",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/discord-status-bridge.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "panic-webhooks",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/panic-webhooks.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
+      "interactions": [],
+      "captures": []
+    },
+    {
+      "surface": "desktop.crash-diagnostics",
+      "feature": "tidbyt-displays",
+      "status": "unimplemented",
+      "reason": "Read-only diagnostic workflow and a source-bound render are available. Full independent per-surface contract and interaction evidence remain incomplete.",
+      "implementation": [
+        "desktop/lib/crash_diagnostics.dart"
+      ],
+      "documentation": "docs/catalogue/universal/tidbyt-displays.md",
+      "localizedCopy": [
+        "desktop/lib/localization.dart"
+      ],
+      "persistence": [],
+      "tests": [
+        "desktop/test/crash_diagnostics_test.dart"
+      ],
       "interactions": [],
       "captures": []
     }

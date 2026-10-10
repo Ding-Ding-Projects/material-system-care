@@ -14,6 +14,7 @@ const materialComponents = <String>{
   'OutlinedButton',
   'TextButton',
   'IconButton',
+  'Tooltip',
   'PopupMenuButton',
   'TextField',
   'DropdownButtonFormField',
