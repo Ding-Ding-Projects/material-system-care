@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "file-use-idle-en-light-1264x681",
+  "route": "lowlevel-hidden-desktop-flutter-frame-export",
+  "scope": "render-only",
+  "sourceCommit": "003e9cdc499956d68e9ddcba2747866e81fff070",
+  "bundleSha256": "4caee096379eec48bacd2093cca299596b8f539d67e6a48907b8e4302145cff7",
+  "executableSha256": "466e9e330e4307321ebcd0cc88c2c89b8540ea7c078db2ebbe2178668287b178",
+  "buildReceiptSha256": "dba179ed5caacfba63c2b5e68c1f778a3842344855ef9d56af0e8a91db698da7",
+  "artifactBuiltAt": "2026-10-10T02:04:22.3174120Z",
+  "capture": {
+    "path": "docs/captures/file-use-idle.png",
+    "sha256": "d1230016670ca9aac230441637c7ff281d645cd2dbf6b46a136ddf73139342ed",
+    "bytes": 25511,
+    "width": 1264,
+    "height": 681,
+    "capturedAt": null,
+    "observedAt": "2026-10-10T02:06:57.372Z"
+  },
+  "state": {
+    "screen": "file-use",
+    "state": "idle",
+    "language": "en",
+    "theme": "light",
+    "scale": 1,
+    "preferences": "isolated-defaults",
+    "data": "No path chosen and no file inspection performed in this frame"
+  },
+  "privacy": {
+    "visibleDesktopUntouched": true,
+    "personalSettingsLoaded": false,
+    "pixelsInspected": true,
+    "sensitiveDataFound": false,
+    "handEdited": false
+  },
+  "verification": {
+    "nativeCompositor": false,
+    "inputHandling": false,
+    "engineCollection": false,
+    "fullLayoutMatrix": false
+  },
+  "limitations": [
+    "Actual painted Flutter frame, not native compositor capture.",
+    "This idle frame proves neither native picker behavior nor file-inspection results.",
+    "Exact capture instant unavailable; observation time recorded separately.",
+    "Populated owner records and the full interaction/appearance matrix remain unverified."
+  ]
+}

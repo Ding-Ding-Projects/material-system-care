@@ -75,3 +75,7 @@ Graceful-close review was also exercised against one owned disposable window: ca
 ![Built process workspace before collection](docs/captures/processes-idle.png)
 
 [Source and byte receipt](docs/captures/processes-idle.json). Actual painted production workspace on an isolated hidden desktop, render-only. No host records were collected and no process was closed.
+
+![Built File use workspace before file selection](docs/captures/file-use-idle.png)
+
+The [File use frame receipt](docs/captures/file-use-idle.json) binds this idle painted frame to source and bundle bytes. It is render-only evidence. A separate private result frame records an owned fixture query with an advisory empty result; it is not published because it contains a local path. Native picker interaction, populated records and the complete appearance matrix remain unverified.

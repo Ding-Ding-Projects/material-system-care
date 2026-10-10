@@ -6282,25 +6282,44 @@
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
       "status": "unverified",
-      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
+      "statusReason": "Read-only workspace, focused widgets and one owned-fixture advisory-empty interaction are evidenced. Complete lock inventory, mutation parity and full interface coverage remain unverified.",
       "intendedPage": "Files",
       "implementation": [
-        "engine/Modules/ProtectionModule.cs"
+        "engine/Modules/ProtectionModule.cs",
+        "desktop/lib/file_use.dart"
       ],
-      "tests": [],
-      "evidence": [],
+      "tests": [
+        "desktop/test/file_use_test.dart"
+      ],
+      "evidence": [
+        "docs/captures/file-use-idle.json",
+        "docs/verification/file-use.json"
+      ],
       "documentation": "docs/catalogue/unlocker.md",
       "implementationCoverage": "partial",
       "implementedEquivalent": "files.lockOwners",
-      "remainingGap": "Restart Manager diagnostic reports affected processes; no handle closure, complete handle inventory or unlock mutation. No desktop action is currently linked.",
+      "remainingGap": "Restart Manager reports affected processes, not every handle. No handle closure or unlock mutation. Native picker, populated owner records and full per-surface contracts remain unverified.",
       "sourceBindings": [
         {
-          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "commit": "003e9cdc499956d68e9ddcba2747866e81fff070",
           "path": "engine/Modules/ProtectionModule.cs",
           "role": "implementation",
           "symbol": "files.lockOwners"
+        },
+        {
+          "commit": "003e9cdc499956d68e9ddcba2747866e81fff070",
+          "path": "desktop/lib/file_use.dart",
+          "role": "interface",
+          "symbol": "FileUsePage"
+        },
+        {
+          "commit": "003e9cdc499956d68e9ddcba2747866e81fff070",
+          "path": "desktop/test/file_use_test.dart",
+          "role": "test",
+          "symbol": "focused widget fixtures"
         }
-      ]
+      ],
+      "actualNavigation": "Tools > File use"
     },
     {
       "id": "unlocker.02",

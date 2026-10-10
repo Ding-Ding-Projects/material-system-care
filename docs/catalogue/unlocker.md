@@ -21,3 +21,7 @@ No scan grants permission to mutate the device. Mutations need the selected stab
 ## Verification
 
 Coverage structure is checked by `node tests/coverage/catalogue.test.mjs`. Passing that test proves inventory integrity only. The release completeness check is `node tests/coverage/catalogue.test.mjs --release`; it intentionally fails until every in-scope capability has linked code, focused tests and reviewed built-artifact evidence. Unit fixtures alone do not prove a visible workflow.
+
+## Read-only workspace progress
+
+Tools > File use now exposes the existing Restart Manager query through explicit file selection, correlated results and advisory empty state. Focused widget checks, root builds and one owned-fixture empty-result interaction are recorded. Native picker, populated owner records, full surface contracts, handle closure and unlock mutations are not established. See [workflow documentation](../features/protection/file-use.md).

@@ -1,8 +1,14 @@
 # Continuation
 
+## Latest verified File-use milestone
+
+Root engine verification and desktop builds passed at 003e9cdc499956d68e9ddcba2747866e81fff070. A stale CMake cache selected a removed toolchain location; its generated directory was preserved and the exact root build succeeded after regeneration. Six File use and four process widget checks passed. A fresh isolated run produced an inspected idle frame and an actual owned-fixture query with a truthful advisory empty result. The fixture bytes remained unchanged. The result frame stays private because it contains a local path. Both owned processes and the hidden desktop were confirmed closed. The narrow verifiers checked 210 bundle files and rejected an altered capture hash before restored evidence passed. Native picker interaction, populated owner records and full appearance/input coverage remain unverified.
+
+The public capture is docs/captures/file-use-idle.png. Private interaction summary: docs/verification/file-use.json. Root website build and hosted delivery of this evidence update must be verified separately. The broader goal remains active.
+
 ## Latest File-use workspace source checkpoint
 
-Tools > File use is implemented with explicit file selection and read-only Restart Manager inspection. Exact requestedPath echo binds accepted results. Six focused widget checks and four existing process checks passed. Root builds and real File use capture are pending. Source: desktop/lib/file_use.dart; documentation: docs/features/protection/file-use.md. Complete surface contracts remain unverified.
+Tools > File use is implemented with explicit file selection and read-only Restart Manager inspection. Exact requestedPath echo binds accepted results. Six focused widget checks and four existing process checks passed. Root builds and owned-fixture interaction subsequently passed as recorded above. Source: desktop/lib/file_use.dart; documentation: docs/features/protection/file-use.md. Complete surface contracts remain unverified.
 
 ## Objective and latest request
 

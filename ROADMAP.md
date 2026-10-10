@@ -13,7 +13,9 @@
 
 ## Working suite
 
-- [ ] Verify the File use workspace in the real build: explicit selection, correlated read-only results, advisory empty state and stale-result clearing are implemented; focused fixtures passed. Full surface contracts remain pending.
+- [x] Inspect File use idle and owned-fixture advisory-empty states in the real build, retain source-bound evidence, verify fixture preservation and owned teardown. Native picker, populated results and full matrix remain separate.
+
+- [ ] Verify the File use workspace in the real build: explicit selection, correlated read-only results, advisory empty state and stale-result clearing are implemented; focused fixtures and the owned-fixture empty-result interaction passed. Native picker, populated records and full surface contracts remain pending.
 
 - [x] Inspect built default-period crash collection and one expanded event on a hidden desktop, retain private source-bound frames and verify owned teardown. Other periods, failure states, dump metadata section and full appearance coverage remain pending.
 

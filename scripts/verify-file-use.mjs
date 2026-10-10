@@ -1,0 +1,42 @@
+import assert from 'node:assert/strict';
+import {readFileSync, realpathSync} from 'node:fs';
+import {resolve, relative, isAbsolute} from 'node:path';
+import {createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
+
+const [rootArg, runArg, bundleArg] = process.argv.slice(2);
+assert(rootArg && runArg && bundleArg, 'Expected repository, private run and bundle');
+const root = realpathSync(rootArg), run = realpathSync(runArg);
+execFileSync(process.execPath, [resolve(root, 'scripts/verify-render-frame.mjs'), root, run, bundleArg, 'file-use-idle'], {stdio: 'inherit', windowsHide: true});
+const json = p => JSON.parse(readFileSync(p, 'utf8').replace(/^\uFEFF/, ''));
+const hash = b => createHash('sha256').update(b).digest('hex');
+const summary = json(resolve(root, 'docs/verification/file-use.json'));
+assert.equal(summary.sourceCommit, json(resolve(run, 'build-receipt.json')).source);
+assert.equal(summary.scope, 'owned-fixture-file-use-advisory-empty-result');
+assert.equal(summary.route, 'lowlevel-hidden-desktop-flutter-frame-export');
+assert.equal(summary.publishedPixels, false);
+assert.equal(summary.captureInstant, null);
+assert.deepEqual(Object.keys(summary.files), ['inputs.json', 'children.json', 'launch.json', 'teardown.json', 'fixture.txt', 'output/file-use-004.png']);
+for (const [name, entry] of Object.entries(summary.files)) {
+  const path = realpathSync(resolve(run, name));
+  const rel = relative(run, path);
+  assert(rel && !rel.startsWith('..') && !isAbsolute(rel));
+  const data = readFileSync(path);
+  assert.equal(data.length, entry.bytes);
+  assert.equal(hash(data), entry.sha256);
+}
+assert.equal(readFileSync(resolve(run, 'fixture.txt'), 'utf8'), 'Owned read-only file-use verification fixture.\n');
+const children = json(resolve(run, 'children.json'));
+assert.equal(children.children.length, 1);
+const hwnd = children.children[0].handle;
+const inputs = json(resolve(run, 'inputs.json'));
+const text = inputs.filter(i => i.name === 'type_text');
+assert.equal(text.map(i => i.params.text).join(''), resolve(run, 'fixture.txt').replaceAll('/', '\\'));
+assert(text.every(i => i.params.text.length === 1));
+assert.equal(inputs[0].name, 'mouse_click');
+assert(inputs.slice(1, 1 + text.length).every(i => i.name === 'type_text'));
+assert.deepEqual(inputs.filter(i => i.name === 'mouse_click').map(i => [i.params.x, i.params.y]), [[300,192],[850,450],[850,450],[300,192],[385,274]]);
+assert.equal(inputs.length, text.length + 5);
+for (const input of inputs) assert(input.status === 0 && input.params.hwnd === hwnd && input.result.ok && input.result.client_ok && input.result.mode === 'background' && input.result.target_hwnd === hwnd);
+assert.deepEqual(summary.review, {exactResultPathInspected:true, completedEngineResultInspected:true, advisoryEmptyResultInspected:true, fixtureUnchanged:true, ownedTeardown:true, nativePicker:false, populatedOwners:false, nativeCompositor:false, fullLayoutMatrix:false});
+console.log('PASS owned-file inspection receipts: exact single-character path, explicit query, unchanged fixture and private result hash. Visible result review remains a separate declaration.');

@@ -1,5 +1,9 @@
 # Implementation handoff
 
+## File-use built verification
+
+Root engine verification and desktop builds passed at 003e9cdc499956d68e9ddcba2747866e81fff070. A stale CMake cache selected a removed toolchain location; its generated directory was preserved and the exact root build succeeded after regeneration. Six File use and four process widget checks passed. A fresh isolated run produced an inspected idle frame and an actual owned-fixture query with a truthful advisory empty result. The fixture bytes remained unchanged. The result frame stays private because it contains a local path. Both owned processes and the hidden desktop were confirmed closed. The narrow verifiers checked 210 bundle files and rejected an altered capture hash before restored evidence passed. Native picker interaction, populated owner records and full appearance/input coverage remain unverified.
+
 ## File-use workspace source checkpoint
 
 Tools > File use now exposes the existing read-only Restart Manager query. It supports native file choice or typed path, explicit inspection, correlated request-path echo, advisory records and stale-result clearing. Six focused widget checks and four process regression checks passed. Root builds and genuine File use frames are pending at this checkpoint. No user process or file was changed.

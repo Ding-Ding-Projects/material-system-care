@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "003e9cdc499956d68e9ddcba2747866e81fff070",
+  "scope": "owned-fixture-file-use-advisory-empty-result",
+  "route": "lowlevel-hidden-desktop-flutter-frame-export",
+  "publishedPixels": false,
+  "withheldReason": "The result frame contains a local path.",
+  "captureInstant": null,
+  "observedAt": "2026-10-10T02:07:52.202Z",
+  "files": {
+    "inputs.json": {
+      "sha256": "661328d5deeff34f14d3dc2ffcd617a3c2c5b79b1a8fc4ec6dfc7eb2081cc115",
+      "bytes": 53591
+    },
+    "children.json": {
+      "sha256": "7bf7dce9a27fc09ccf7b1b8a99e6e0b2bb31f2fb971b6e9ebe5e85d3749a12d9",
+      "bytes": 239
+    },
+    "launch.json": {
+      "sha256": "cda56d295f7d69a1bff80641c467d01f9813dcfbe247408100fafec44a2ea49b",
+      "bytes": 899
+    },
+    "teardown.json": {
+      "sha256": "a04767c57bc26cdb0b29ad4dcc3af931a75f115ff92ea1d38195a52f25e5ee01",
+      "bytes": 239
+    },
+    "fixture.txt": {
+      "sha256": "0d4eb5b36870ae3fa36c4773b9e10192a3e7c5b19eb3be41789ffc0b0d9d9442",
+      "bytes": 47
+    },
+    "output/file-use-004.png": {
+      "sha256": "9897322ca9b8d682aeedf3889d9b1ba8c3f4120247b20f2c2be8019e368fcd09",
+      "bytes": 42633
+    }
+  },
+  "review": {
+    "exactResultPathInspected": true,
+    "completedEngineResultInspected": true,
+    "advisoryEmptyResultInspected": true,
+    "fixtureUnchanged": true,
+    "ownedTeardown": true,
+    "nativePicker": false,
+    "populatedOwners": false,
+    "nativeCompositor": false,
+    "fullLayoutMatrix": false
+  },
+  "limitations": [
+    "Pixel review is a declaration and is separate from receipt validation.",
+    "The text field horizontally scrolls long paths; the completed result displays the full selected path.",
+    "Early frames captured partial input and are excluded from completed-result claims.",
+    "No process or handle was closed and no file was unlocked."
+  ]
+}
