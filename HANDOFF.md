@@ -2,6 +2,8 @@
 
 ## Duplicate-analysis integration candidate
 
+Integrated source `baa4fca7483265b53d1c7fe472571c0c0584e90c` passed the exact root engine and desktop builds and a real 1280×1000 bilingual dark/reduced-motion duplicate run. The seven-file fixture returned two groups, five matching files, 128 hashed bytes and 64 potential duplicate bytes. Review cancellation, both expanded groups and root-edit result clearing were observed. All seven files remained unchanged. Minimum-size path focus was observed, but retained input and collection were not established; this input sequence remains unresolved. Both owned processes and desktops were closed. See `docs/verification/duplicate-analysis-observations.json`.
+
 Candidate `2c21195ab4c88d4da97f2330dc517ce0f53a33a0` adds a dedicated read-only duplicate-analysis page, reviewed root, exact-match groups, potential-space estimates, completeness counters and request-specific cancellation. The only engine change exposes the existing depth-exclusion counter. Ninety-six focused checks and two independent source reviews passed. Exact isolated engine verification passed after the primary released the shared user pipe, and the final desktop build passed. The symbolic-link fixture remains skipped for privilege 1314. Integrated build and real disposable duplicate analysis are next; no file removal is provided.
 
 ## Folder-analysis integration candidate

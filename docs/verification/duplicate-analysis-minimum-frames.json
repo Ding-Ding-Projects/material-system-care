@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "scope": "observed-flutter-hooks-and-bytes",
+  "sourceCommit": "baa4fca7483265b53d1c7fe472571c0c0584e90c",
+  "buildReceiptSha256": "d8e681f0d91242e85a3352643678e3dd7f7913ed75c1a8a151ce76769a9b852f",
+  "bundleManifestSha256": "21f304275d31d7dad1c1e2ac68b2d015f117ce67786d57bad7af56c53e84f8d8",
+  "frames": [
+    {
+      "png": "output/frame-001.png",
+      "sidecar": "output/frame-001.png.json",
+      "sha256": "0e5a1e34dfb88d03525fcac48a6ba9f90b30bdc4a949e9175c4961d4a149647d",
+      "sidecarSha256": "7737b11ad6992c67f824e4699f7a50ee33c2288b34f15c730dd580b87deff5c5",
+      "sequence": 1
+    },
+    {
+      "png": "output/frame-002.png",
+      "sidecar": "output/frame-002.png.json",
+      "sha256": "022aff14e9dd13b3859239f6770adeabe2f69093cf57e80814d27a67843136d5",
+      "sidecarSha256": "9813bff6e25f7cdb64a77bde2b218fb85f6da59aa6b570916d65d37d6a233d44",
+      "sequence": 2
+    },
+    {
+      "png": "output/frame-003.png",
+      "sidecar": "output/frame-003.png.json",
+      "sha256": "03bc30c68d209b01c8dfa963d9d1b7de395c13c8ca7993de891cc69aff6c38b5",
+      "sidecarSha256": "b29b8fed25408cbd9808130245172b0a43dc055126bd4e5ecb5bed3857cb6d6b",
+      "sequence": 3
+    },
+    {
+      "png": "output/frame-004.png",
+      "sidecar": "output/frame-004.png.json",
+      "sha256": "4f6006342fa82e15d3f07d8204ecc1495e48b8f6b6f547bd66c47bf57a733dfd",
+      "sidecarSha256": "f8426991f0ecf8d43c312b3a494bd4f887169b4e1fea44976cd967bae7c8385d",
+      "sequence": 4
+    },
+    {
+      "png": "output/frame-007.png",
+      "sidecar": "output/frame-007.png.json",
+      "sha256": "93173aeee064d90268ce5517c4a1a9d279351603d2744e74bb74ec50763df025",
+      "sidecarSha256": "69a9261c2a5271ca599074cce6819d202ee0317d3a28ad6448440aaf77f1e9b9",
+      "sequence": 7
+    },
+    {
+      "png": "output/frame-009.png",
+      "sidecar": "output/frame-009.png.json",
+      "sha256": "7163712b480403cfb458e39d779baf26ad17ad53a22d7bd5758c569351cb6599",
+      "sidecarSha256": "3f32f3599b275041b90739089cf5007da193a60f70e276ea1c99d57d7c3c68b2",
+      "sequence": 9
+    }
+  ],
+  "evidence": [
+    {
+      "role": "action",
+      "path": "duplicate-minimum-blur.json",
+      "sha256": "6f13b3c6a4546b55c16096b0c8dd4ef1d139a1feade4d71157da8a8046946198"
+    },
+    {
+      "role": "action",
+      "path": "duplicate-minimum-escape-focus.json",
+      "sha256": "326ed49e2ea331078739fc39a651e0367cd2abbb3e43549ae14709256036c194"
+    },
+    {
+      "role": "action",
+      "path": "duplicate-minimum-focus.json",
+      "sha256": "9445229a052b7ef35349c511a2fe357ec5b693e621d470955d4372314d265fef"
+    },
+    {
+      "role": "action",
+      "path": "duplicate-minimum-leave-field.json",
+      "sha256": "81dea3cb77bc0150a8ff9b3be8290f67d2b5ed83ef674d9ae29503e274888194"
+    },
+    {
+      "role": "action",
+      "path": "duplicate-minimum-page-after-blur.json",
+      "sha256": "fbe3bafed602bcf1297ee6d94e69ac89936298f9ec598f1023ad43b6f7d95743"
+    },
+    {
+      "role": "action",
+      "path": "duplicate-minimum-page-retry.json",
+      "sha256": "1dd9b54483b3fde5282bd1594986c973db84792a5183e4d16a5a15807ebe61e1"
+    },
+    {
+      "role": "action",
+      "path": "duplicate-minimum-page.json",
+      "sha256": "2a7384dc22fcf759a1eea3dde58760f6e80f4c8368b9d394fcaffe2a37f237ce"
+    },
+    {
+      "role": "action",
+      "path": "duplicate-minimum-path.json",
+      "sha256": "bc5d9495197bdeaf3ff22c135d3cff6b398f19456c553b17a2a48890714ba629"
+    },
+    {
+      "role": "action",
+      "path": "duplicate-minimum-return-field.json",
+      "sha256": "4b3f58099457ab7a8e72e3289247ebac558df051dc7ae170d1b322bb99c8fb73"
+    },
+    {
+      "role": "action",
+      "path": "duplicate-minimum-review.json",
+      "sha256": "ef77be85afefa5608e8805c37e3613f6b3f3164565c5675b3ed24443919266a4"
+    },
+    {
+      "role": "action",
+      "path": "duplicate-minimum-tab.json",
+      "sha256": "517e4b1d2705724d20f18cdb9bacdb3cbbbcc6da9f8150f0d7a6195979057ee2"
+    },
+    {
+      "role": "teardown",
+      "path": "teardown.json",
+      "sha256": "5daea820568790239cf77c22f75867f614030156219c586ce124e4e4a04662fb"
+    }
+  ]
+}
