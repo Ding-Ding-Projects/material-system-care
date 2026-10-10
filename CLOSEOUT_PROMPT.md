@@ -12,7 +12,7 @@ Lowlevel main is `00365b0e846e3eb031ea58b0c3ca316c2b1349a8`; sender code is `501
 
 ## In progress
 
-Startup stale-review protection from `785a79c10d8c3318dc8b6a69aa17562fd7e0ae74` is now integrated after its exact root engine and desktop builds, four focused Flutter checks, integrated engine fixtures, negative regression and independent review. Verify actual owned-entry registry/UI behavior separately. Protection is optimistic, not atomic compare-and-swap. The same owned branch is now preparing dedicated cleanup-result presentation, which remains incomplete.
+Startup stale-review protection from `785a79c10d8c3318dc8b6a69aa17562fd7e0ae74` is now integrated after its exact root engine and desktop builds, four focused Flutter checks, integrated engine fixtures, negative regression and independent review. Actual owned-entry registry stale rejection and exact disable/restore passed through the built engine request-file route, and the disposable entry was removed. GUI interaction remains separate. Protection is optimistic, not atomic compare-and-swap. The same owned branch is now preparing dedicated cleanup-result presentation, which remains incomplete.
 
 Retain the generated-file recovery branch `implement/desktop-ui` at `4e1ae07ef80ac38ca747948138f54c62f5906cdf`. No task-owned worktree or branch has been deleted.
 

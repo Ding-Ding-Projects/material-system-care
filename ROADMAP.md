@@ -119,4 +119,5 @@
 ## Startup review integrity
 
 - [x] Add deterministic reviewed-state revisions, reject stale changes before mutation, refresh without automatic retry, and verify with focused positive/negative fixtures and exact root builds.
-- [ ] Verify actual owned-entry registry disable/restore and stale-review behavior through the built desktop.
+- [x] Verify actual owned-entry registry stale-review rejection and exact command/kind disable/restore through the built engine; remove the disposable entry afterward.
+- [ ] Verify the startup review, refresh and mutation workflow through the built desktop.

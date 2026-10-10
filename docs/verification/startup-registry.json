@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "sourceCommit": "785a79c10d8c3318dc8b6a69aa17562fd7e0ae74",
+  "engineSha256": "40eb3e9a425a23f002a2daf51109f898c097ecffb6e3b34a07c516fb69096f47",
+  "startedAt": "2026-10-10T20:16:23.512858+00:00",
+  "endedAt": "2026-10-10T20:16:24.265674+00:00",
+  "staleReviewRejectedWithoutMutation": true,
+  "disablePreservedExactJournal": true,
+  "restorePreservedExactValueAndKind": true,
+  "ownedEntryRemoved": true,
+  "passed": true,
+  "route": "real-built-engine-request-file-with-disposable-current-user-registry-entry",
+  "evidence": {
+    "runtime.json": "54a72f76410fe48b7a8b073dbf713823441d24f7b65b094f914ce80cb6b74c9c",
+    "copied-engine.json": "b62b5e8f7112fa174ccef6b0659864573f588ce18a05507350212339f29243c6",
+    "desktop-build-receipt.json": "59a45218706aa8dc81c809956ca298a2f03b085304d6cbcbc3081524109ba521"
+  },
+  "scope": {
+    "guiVerified": false,
+    "atomicCompareAndSwap": false,
+    "existingEntriesModified": false,
+    "disposableEntryOnly": true
+  }
+}
