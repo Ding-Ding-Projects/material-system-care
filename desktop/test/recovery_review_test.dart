@@ -5,6 +5,156 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:material_system_care/main.dart';
 
 void main() {
+  for (final reduced in [true, false]) {
+    testWidgets(
+      'recovery history retains paging after controls leave viewport reduced=$reduced',
+      (tester) async {
+        tester.view.physicalSize = const Size(800, 600);
+        tester.view.devicePixelRatio = 1;
+        addTearDown(tester.view.resetPhysicalSize);
+        addTearDown(tester.view.resetDevicePixelRatio);
+        final calls = <String>[];
+        tester.binding.defaultBinaryMessenger.setMockMethodCallHandler(
+          Engine.channel,
+          (call) async {
+            final method = (call.arguments as Map)['method'] as String;
+            calls.add(method);
+            if (method == 'cleanup.details')
+              return {
+                'ok': true,
+                'result': {
+                  'receiptId': 'receipt-0',
+                  'recordedOnly': true,
+                  'mutationPerformed': false,
+                  'items': [
+                    {
+                      'path': r'C:\fixture\one.tmp',
+                      'size': 1,
+                      'state': 'quarantined',
+                    },
+                  ],
+                },
+              };
+            return {
+              'ok': true,
+              'result': {
+                'receipts': [
+                  for (var i = 0; i < 1; i++)
+                    {
+                      'id': 'receipt-$i',
+                      'itemCount': 2,
+                      'quarantined': 2,
+                      'restored': 0,
+                      'conflicts': 0,
+                      'skipped': 0,
+                    },
+                ],
+              },
+            };
+          },
+        );
+        addTearDown(
+          () => tester.binding.defaultBinaryMessenger.setMockMethodCallHandler(
+            Engine.channel,
+            null,
+          ),
+        );
+        await tester.pumpWidget(
+          CareApp(
+            cleanupFixture: true,
+            isolatedCapture: true,
+            capturePreferences: {
+              'language': 'both',
+              'theme': 'dark',
+              'textScale': 2.0,
+              'reducedMotion': reduced,
+            },
+          ),
+        );
+        await tester.pumpAndSettle();
+        await tester.scrollUntilVisible(
+          find.textContaining('Recovery history'),
+          180,
+          scrollable: find.byType(Scrollable).first,
+        );
+        await tester.ensureVisible(find.textContaining('Recovery history'));
+        await tester.pumpAndSettle();
+        await tester.tap(find.textContaining('Recovery history'));
+        await tester.pumpAndSettle();
+        if (find.byTooltip('Close').evaluate().isNotEmpty) {
+          await tester.tap(find.byTooltip('Close'));
+          await tester.pumpAndSettle();
+        }
+        final page = find.byType(WorkflowPage);
+        final refresh = find.descendant(
+          of: page,
+          matching: find.textContaining('Refresh records'),
+        );
+        await tester.ensureVisible(refresh);
+        await tester.pumpAndSettle();
+        Focus.of(tester.element(refresh)).requestFocus();
+        await tester.pump();
+        double offset() => tester
+            .stateList<ScrollableState>(
+              find.descendant(of: page, matching: find.byType(Scrollable)),
+            )
+            .where((s) => s.position.axis == Axis.vertical)
+            .fold(0.0, (v, s) => v + s.position.pixels);
+        final initial = offset();
+        await tester.sendKeyEvent(LogicalKeyboardKey.pageDown);
+        await tester.pump();
+        if (!reduced) {
+          await tester.pump(const Duration(milliseconds: 40));
+          expect(offset(), greaterThan(initial));
+        }
+        await tester.pumpAndSettle();
+        final first = offset();
+        expect(first, greaterThan(initial));
+        await tester.sendKeyEvent(LogicalKeyboardKey.pageDown);
+        await tester.pumpAndSettle();
+        expect(offset(), greaterThan(first));
+        for (
+          var i = 0;
+          i < 30 &&
+              find
+                  .textContaining('Review restoration')
+                  .hitTestable()
+                  .evaluate()
+                  .isEmpty;
+          i++
+        ) {
+          await tester.sendKeyEvent(LogicalKeyboardKey.pageDown);
+          await tester.pumpAndSettle();
+        }
+        expect(
+          find.textContaining('Review restoration').hitTestable(),
+          findsOneWidget,
+        );
+        await tester.tap(
+          find.textContaining('Review restoration').hitTestable(),
+        );
+        await tester.pumpAndSettle();
+        await tester.tap(
+          find.descendant(
+            of: find.byType(AlertDialog),
+            matching: find.textContaining('Cancel'),
+          ),
+        );
+        await tester.pumpAndSettle();
+        expect(find.byType(AlertDialog), findsNothing);
+        final down = offset();
+        await tester.sendKeyEvent(LogicalKeyboardKey.pageUp);
+        await tester.pumpAndSettle();
+        expect(offset(), lessThan(down));
+        expect(calls, ['cleanup.history', 'cleanup.details']);
+        await tester.pumpWidget(const SizedBox());
+        await tester.pumpAndSettle();
+        expect(tester.takeException(), isNull);
+      },
+      variant: TargetPlatformVariant.only(TargetPlatform.windows),
+    );
+  }
+
   for (final reduced in [true, false])
     for (final outcome in ['cancel', 'confirm', 'dispose']) {
       testWidgets(
