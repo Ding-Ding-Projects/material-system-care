@@ -105,7 +105,7 @@
 ## Expanded screenshot gallery
 
 - [ ] Publish a substantial reviewed screenshot set in SCREENSHOTS.md and the website, with per-image source and state evidence.
-- [ ] Verify startup review in the built application; three fixture checks pass and no host entry was changed.
+- [x] Verify startup review in the built application using one owned disposable entry, including cancellation, stale rejection and exact restoration.
 
 - [ ] Verify rebuilt wrapping search and selector labels; 17 focused widget/component checks pass, runtime captures pending.
 
@@ -120,7 +120,7 @@
 
 - [x] Add deterministic reviewed-state revisions, reject stale changes before mutation, refresh without automatic retry, and verify with focused positive/negative fixtures and exact root builds.
 - [x] Verify actual owned-entry registry stale-review rejection and exact command/kind disable/restore through the built engine; remove the disposable entry afterward.
-- [ ] Verify the startup review, refresh and mutation workflow through the built desktop.
+- [x] Verify the startup review, refresh and mutation workflow through the built desktop with an owned disposable entry.
 
 ## Typed cleanup results
 
@@ -134,6 +134,7 @@
 
 - [x] Replace the generic startup action menu with typed bilingual cards and explicit reviewed actions.
 - [x] Verify malformed-state rejection, cancellation, stale refresh and layout fixtures.
-- [ ] Build and drive the disposable-entry GUI flow, including stale review, exact restoration and owned teardown.
+- [x] Build and drive the disposable-entry GUI flow, including stale review, exact restoration and owned teardown.
 - [x] Verify the core disposable-entry GUI round trip at 1280×1000, including cancelled review, stale rejection and exact command/type restoration.
-- [ ] Rebuild and capture the corrected Cantonese stale-feedback state and minimum-size interaction.
+- [x] Rebuild and capture the corrected Cantonese stale-feedback state and minimum-size interaction at 800×600, bilingual dark and text scale 2.
+- [ ] Complete all startup themes, scales, focus paths, accessibility and motion-state verification.

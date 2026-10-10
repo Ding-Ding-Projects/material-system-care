@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "sourceCommit": "549ea20ebaccee35b7ee1334d8b27dd28807aa03",
+  "route": "cheap-lowlevel-headless",
+  "captureMethod": "flutter-repaint-boundary",
+  "buildReceipt": {
+    "source": "549ea20ebaccee35b7ee1334d8b27dd28807aa03",
+    "bundleSha256": "6bda25a9319b93560dd915688c3e9ac453f400676f79b7661a5ea95ee12cad08",
+    "manifestSha256": "7441c6b3c669a8d524ffe6d52ee29ada886d309385ac49b28fd6abdcb54e9d0b",
+    "version": "0.1.0",
+    "executableSha256": "88f29e90d474b5d2a23ddaaafba93c8e353c928aadebaef96f5ccd6c7d4eba1e",
+    "indexTree": "8e8a3540a9a97b1ebf107ed85b497291b6678b88",
+    "sourceTree": "8e8a3540a9a97b1ebf107ed85b497291b6678b88",
+    "builtUtc": "2026-10-10T20:34:21.3077367Z"
+  },
+  "tuple": {
+    "width": 800,
+    "height": 600,
+    "language": "both",
+    "theme": "dark",
+    "textScale": 2,
+    "motion": "reduced"
+  },
+  "evidence": {
+    "fixture.json": "a98511033b48fb1f0b79b9c11f354f221fe9649e530e696508358b994af217eb",
+    "change-independent.json": "f6c20ea4847b433b39c66eca5d9bddc530abf52c870fc331945cb9fcae3c7770",
+    "stale-independent.json": "6b6257851a949abbda121db6722573758620abfba4cd635bf167814f74ed0a8a",
+    "finish-independent.json": "c59c99662cf7779f8b4b8e254397273e6c63605cfbf64efa47dacab87034ab8e",
+    "minimum-page-down.json": "e60c005f69959054acbb3773adebf2688e26835d46d8612bc9cd339d94575184",
+    "minimum-review-click.json": "7ab1efd81f748bc70d866ce0a300482fa30195f9774e9f75f1f91e80bde72e40",
+    "minimum-stale-review-confirmed.json": "41b6a69e4b00b957e90e8dd2e7c340e7fd10b6c37861266247961062d9925324",
+    "minimum-feedback-page-up.json": "ee89e023b3c0b409a2ac3614b73cadfce8e8e1b2e03e5b2aadbb012ac11e7ff9",
+    "teardown.json": "303390911b7cd078b3780d63e4b885383b8b120600196a26a0a1d5287bca2527",
+    "bundle/build-receipt.json": "cbb5b85fda2567bbcaa8dd01f7e9a0a21b798340d0ccb1869b3a0c40bf854d87",
+    "output/frame-012.png": "02462f536d9786c34768695aec870497a5cdb1967f677f34ee88790516016bdc",
+    "output/frame-012.png.json": "833854aa16a9fd32df3f428e0dc30c6b53eff3cb247c2c098d44e0554f1734b9",
+    "output/frame-014.png": "9e7d4b8deda450d8014b217648780b9d96db83a8bc9ff5ef9c0c9b60904076df",
+    "output/frame-014.png.json": "491047c0bf0aad019f0ca611a9f32f070511dbee53e36e81d53465a16a56e0b0"
+  },
+  "checks": {
+    "keyboardPageDownAndPageUp": true,
+    "reviewButtonsVisible": true,
+    "staleReviewPreservedChangedEntry": true,
+    "noRecoveryJournalCreated": true,
+    "bilingualFeedbackVisible": true,
+    "ownedEntryRemoved": true,
+    "allOwnedProcessesAbsent": true,
+    "hiddenDesktopClosed": true
+  },
+  "frames": [
+    {
+      "path": "output/frame-012.png",
+      "sidecar": "output/frame-012.png.json",
+      "state": "review-confirmation",
+      "sha256": "02462f536d9786c34768695aec870497a5cdb1967f677f34ee88790516016bdc",
+      "capturedAt": "2026-10-10T20:35:44.772109Z",
+      "width": 800,
+      "height": 600,
+      "inspected": true,
+      "published": false
+    },
+    {
+      "path": "output/frame-014.png",
+      "sidecar": "output/frame-014.png.json",
+      "state": "bilingual-stale-feedback",
+      "sha256": "9e7d4b8deda450d8014b217648780b9d96db83a8bc9ff5ef9c0c9b60904076df",
+      "capturedAt": "2026-10-10T20:35:55.415094Z",
+      "width": 800,
+      "height": 600,
+      "inspected": true,
+      "published": false
+    }
+  ],
+  "limitations": [
+    "Native/framework diagnostics were not collected; these images are not promoted.",
+    "Painted frame output does not prove native compositor capture, physical DPI or complete accessibility.",
+    "This minimum-size run verifies stale review and feedback; the earlier full disable/restore run remains separately bound to bab873cb."
+  ]
+}

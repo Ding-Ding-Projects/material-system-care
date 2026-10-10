@@ -1,5 +1,14 @@
 # Implementation handoff
 
+## Verified startup minimum-size feedback
+
+The exact root desktop build passed at `549ea20ebaccee35b7ee1334d8b27dd28807aa03`. A fresh hidden run at 800×600, bilingual dark theme, text scale 2 and reduced motion verified the real review dialog and corrected English/Cantonese stale feedback. Page Down reached the lower controls and Page Up brought the complete feedback into view. The stale review preserved the changed disposable Run value and created no journal. The fixture entry was removed afterward, all owned bundle processes were absent and the hidden desktop closed. See `docs/verification/startup-minimum.json` and `scripts/verify-startup-minimum.mjs`.
+
+The earlier 1280×1000 run at `bab873cb655848ad8d4e13081ff8fd5ea46d50f8` independently verified cancellation, stale rejection, fresh disable and exact command/type restoration. Its historical missing-translation observation is retained, and this newer run verifies the correction. New frames remain private because native/framework diagnostic collection is not yet implemented. Full accessibility, motion, theme, scale and physical-DPI coverage remain incomplete.
+
+中文：800×600、雙語深色及兩倍文字嘅實際覆核按鈕可見；資料過期時保留已變更項目，冇建立復原記錄。Page Up 可讀到完整中英文提示。即棄項目已移除，專用程序及隱藏桌面已關閉。新畫面仍未公開，完整外觀及無障礙驗證仍待完成。
+
+
 ## Current website and compiler checkpoint
 
 Documentation deployment `38083772892` at `a303a5944ee82b3ac64ee06b46b04d97b9dc3f55` succeeded with 173 complete articles. All 723 deployed files matched the retained output. One initial gallery request returned HTTP 503; a single focused retry returned HTTP 200 and the expected SHA-256. Public visibility, workflow deployment from main and the exact About homepage `https://ding-ding-projects.github.io/material-system-care/` were read back. See `docs/verification/cards-live-delivery.json`.

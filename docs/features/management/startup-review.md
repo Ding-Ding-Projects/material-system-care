@@ -29,4 +29,13 @@ The built engine at `785a79c10d8c3318dc8b6a69aa17562fd7e0ae74` was exercised thr
 
 At `bab873cb655848ad8d4e13081ff8fd5ea46d50f8`, the actual 1280×1000 bilingual dark desktop completed cancelled review, stale-review rejection, a fresh disable review and exact command/type restoration for one uniquely named disposable current-user Run entry. Independent checks verified that stale review left the changed entry intact without a journal, disable preserved the reviewed raw command and `REG_EXPAND_SZ`, and restoration reproduced both. The owned entry and journal were removed afterward. All owned bundle processes and the hidden desktop were closed.
 
-The stale-feedback frame exposed a missing Cantonese translation. A focused source correction and visible-feedback regression were added; rebuilt verification remains pending. Inspected painted frames and their timestamped sidecars remain private pending complete diagnostic provenance. See `docs/verification/startup-gui.json`.
+The stale-feedback frame exposed a missing Cantonese translation. A focused source correction and visible-feedback regression were added; the corrected minimum-size runtime is recorded below. Inspected painted frames and their timestamped sidecars remain private pending complete diagnostic provenance. See `docs/verification/startup-gui.json`.
+
+## Verified startup minimum-size feedback
+
+The exact root desktop build passed at `549ea20ebaccee35b7ee1334d8b27dd28807aa03`. A fresh hidden run at 800×600, bilingual dark theme, text scale 2 and reduced motion verified the real review dialog and corrected English/Cantonese stale feedback. Page Down reached the lower controls and Page Up brought the complete feedback into view. The stale review preserved the changed disposable Run value and created no journal. The fixture entry was removed afterward, all owned bundle processes were absent and the hidden desktop closed. See `docs/verification/startup-minimum.json` and `scripts/verify-startup-minimum.mjs`.
+
+The earlier 1280×1000 run at `bab873cb655848ad8d4e13081ff8fd5ea46d50f8` independently verified cancellation, stale rejection, fresh disable and exact command/type restoration. Its historical missing-translation observation is retained, and this newer run verifies the correction. New frames remain private because native/framework diagnostic collection is not yet implemented. Full accessibility, motion, theme, scale and physical-DPI coverage remain incomplete.
+
+中文：800×600、雙語深色及兩倍文字嘅實際覆核按鈕可見；資料過期時保留已變更項目，冇建立復原記錄。Page Up 可讀到完整中英文提示。即棄項目已移除，專用程序及隱藏桌面已關閉。新畫面仍未公開，完整外觀及無障礙驗證仍待完成。
+

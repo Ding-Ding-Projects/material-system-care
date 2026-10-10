@@ -16,6 +16,8 @@ Recovery history reads the receipt's recorded file details before asking to rest
 
 A real [disposable cleanup/recovery round trip](docs/features/storage/cleanup-verification.md) verified selected-file movement, cancelled confirmation, conflict preservation and restoration of original bytes and identities. Its populated frames remain private because they contain local paths. The complete interface and installer lifecycle are still unverified.
 
+The dedicated [startup review workspace](docs/features/management/startup-review.md) has a verified disposable-entry cancellation, stale-review, disable and exact restoration round trip. A separate 800×600 bilingual run verified the corrected stale-feedback message and visible review controls. These bounded checks do not establish the complete accessibility or appearance matrix.
+
 A Windows 11 x64 maintenance and diagnostics workspace built with Flutter, .NET 10, and Material Design 3.
 
 **Development status:** implementation is in progress. No production installer or complete feature-parity claim is available yet.
