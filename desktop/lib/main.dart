@@ -8,6 +8,7 @@ import 'selection_localizations.dart';
 import 'storage_analysis.dart';
 import 'duplicate_analysis.dart';
 import 'system_overview.dart';
+import 'protection_status.dart';
 import 'labeled_controls.dart';
 import 'notifications.dart';
 import 'provenance.dart';
@@ -45,6 +46,7 @@ void main(List<String> arguments) {
   final storageAnalysis = arguments.contains('--storage-analysis');
   final duplicateAnalysis = arguments.contains('--duplicate-analysis');
   final systemOverview = arguments.contains('--system-overview');
+  final protectionStatus = arguments.contains('--protection-status');
   // Capture mode is explicit, starts at the selected real workspace, and
   // excludes persisted personal settings. It never injects diagnostic results.
   final exporting =
@@ -59,6 +61,7 @@ void main(List<String> arguments) {
             storageAnalysis,
             duplicateAnalysis,
             systemOverview,
+            protectionStatus,
             cleanupFixtureMode,
           ].where((selected) => selected).length ==
           1 &&
@@ -76,6 +79,7 @@ void main(List<String> arguments) {
     startStorageAnalysis: storageAnalysis,
     startDuplicateAnalysis: duplicateAnalysis,
     startSystemOverview: systemOverview,
+    startProtectionStatus: protectionStatus,
     isolatedCapture: captureRequested || cleanupFixtureMode,
     capturePreferences: exporting ? capturePreferences! : const {},
   );
@@ -149,6 +153,7 @@ class CareApp extends StatefulWidget {
     this.startStorageAnalysis = false,
     this.startDuplicateAnalysis = false,
     this.startSystemOverview = false,
+    this.startProtectionStatus = false,
     this.isolatedCapture = false,
     this.capturePreferences = const {},
   });
@@ -164,6 +169,7 @@ class CareApp extends StatefulWidget {
   final bool startStorageAnalysis;
   final bool startDuplicateAnalysis;
   final bool startSystemOverview;
+  final bool startProtectionStatus;
   final bool isolatedCapture;
   final Map<String, dynamic> capturePreferences;
   @override
@@ -281,6 +287,8 @@ class _CareAppState extends State<CareApp> {
                   ),
                 ),
               )
+            : widget.startProtectionStatus
+            ? ProtectionStatusPage(invoke: Engine.invoke)
             : widget.startSystemOverview
             ? SystemOverviewPage(invoke: Engine.invoke)
             : widget.startDuplicateAnalysis
@@ -541,7 +549,7 @@ class _WorkflowPageState extends State<WorkflowPage> {
             if (mounted) setState(() => provenance = value);
           })
           .catchError((Object _) {});
-    if (widget.index != 1 && widget.index != 6) load();
+    if (widget.index != 1 && widget.index != 4 && widget.index != 6) load();
   }
 
   @override
@@ -895,10 +903,21 @@ class _WorkflowPageState extends State<WorkflowPage> {
                                 ),
                               ),
                             )
+                          : widget.index == 4
+                          ? Navigator.of(context).push(
+                              MaterialPageRoute<void>(
+                                builder: (_) =>
+                                    ProtectionStatusPage(invoke: Engine.invoke),
+                              ),
+                            )
                           : load(),
                 icon: Icon(Icons.refresh),
                 label: UiText(
-                  widget.index == 1 ? 'Analyze folder' : 'Refresh records',
+                  widget.index == 1
+                      ? 'Analyze folder'
+                      : widget.index == 4
+                      ? 'Protection status'
+                      : 'Refresh records',
                 ),
               ),
             if (widget.index == 0 || widget.index == 1)
