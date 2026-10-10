@@ -25,6 +25,7 @@ import 'capture_diagnostics.dart';
 import 'wording_cache.dart';
 import 'cleanup.dart';
 import 'cleanup_workspace.dart';
+import 'recovery_review.dart';
 import 'startup.dart';
 import 'packages.dart';
 
@@ -807,6 +808,7 @@ class _WorkflowPageState extends State<WorkflowPage> {
   Future<void> rowAction(String method, Map<String, dynamic> row) async {
     if (busy) return;
     if (method == 'cleanup.restore') {
+      final previousFocus = FocusManager.instance.primaryFocus;
       final receiptId = row['receiptId'] ?? row['id'];
       setState(() {
         busy = true;
@@ -834,9 +836,22 @@ class _WorkflowPageState extends State<WorkflowPage> {
         setState(() => failure = 'This recovery record contains no files.');
         return;
       }
-      final review =
-          '${localize(context, "Review recorded files before restoration. Existing files will not be overwritten; availability is checked during restoration.")}\n\n${items.map((item) => '${item.path}\n${localize(context, "Recorded state")}: ${localize(context, cleanupStateLabel(item.state))}').join('\n\n')}';
-      if (await confirm('Review recovery files', review)) {
+      final preferences = CopyScope.of(context);
+      final accepted = await showDialog<bool>(
+        context: context,
+        builder: (_) => CopyScope(
+          preferences: preferences,
+          child: RecoveryReviewDialog(files: items),
+        ),
+      );
+      if (!mounted) return;
+      if (previousFocus?.context != null && previousFocus!.canRequestFocus) {
+        previousFocus.requestFocus();
+      } else {
+        FocusScope.of(context).requestFocus();
+      }
+      FocusManager.instance.applyFocusChangesIfNeeded();
+      if (accepted == true) {
         await load('cleanup.restore', {
           'receiptId': receiptId,
           'confirmed': true,

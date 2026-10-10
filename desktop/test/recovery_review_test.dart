@@ -1,8 +1,181 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_system_care/main.dart';
 
 void main() {
+  for (final reduced in [true, false])
+    for (final outcome in ['cancel', 'confirm', 'dispose']) {
+      testWidgets(
+        'minimum recovery modal paging reduced=$reduced outcome=$outcome',
+        (tester) async {
+          tester.view.physicalSize = const Size(800, 600);
+          tester.view.devicePixelRatio = 1;
+          addTearDown(tester.view.resetPhysicalSize);
+          addTearDown(tester.view.resetDevicePixelRatio);
+          final methods = <String>[];
+          final changes = <Map>[];
+          tester.binding.defaultBinaryMessenger.setMockMethodCallHandler(
+            Engine.channel,
+            (call) async {
+              final args = call.arguments as Map;
+              final method = args['method'] as String;
+              methods.add(method);
+              if (method == 'cleanup.history')
+                return {
+                  'ok': true,
+                  'result': {
+                    'receipts': [
+                      {
+                        'id': 'receipt-1',
+                        'itemCount': 12,
+                        'quarantined': 12,
+                        'restored': 0,
+                        'conflicts': 0,
+                        'skipped': 0,
+                      },
+                    ],
+                  },
+                };
+              if (method == 'cleanup.restore')
+                changes.add(Map.from(args['params'] as Map));
+              return {
+                'ok': true,
+                'result': {
+                  'receiptId': 'receipt-1',
+                  'recordedOnly': true,
+                  'mutationPerformed': false,
+                  'partial': false,
+                  'cancelled': false,
+                  'items': [
+                    for (var i = 0; i < 12; i++)
+                      {
+                        'path': r'C:\fixture\review\' + 'file-$i.tmp',
+                        'size': 1,
+                        'state': method == 'cleanup.restore'
+                            ? 'restored'
+                            : 'quarantined',
+                      },
+                  ],
+                },
+              };
+            },
+          );
+          addTearDown(
+            () => tester.binding.defaultBinaryMessenger
+                .setMockMethodCallHandler(Engine.channel, null),
+          );
+          await tester.pumpWidget(
+            CareApp(
+              cleanupFixture: true,
+              isolatedCapture: true,
+              capturePreferences: {
+                'language': 'both',
+                'theme': 'dark',
+                'textScale': 2.0,
+                'reducedMotion': reduced,
+              },
+            ),
+          );
+          await tester.pumpAndSettle();
+          Future<void> show(String label) async {
+            if (find.byTooltip('Close').evaluate().isNotEmpty) {
+              await tester.tap(find.byTooltip('Close'));
+              await tester.pumpAndSettle();
+            }
+            await tester.scrollUntilVisible(
+              find.textContaining(label),
+              180,
+              scrollable: find.byType(Scrollable).first,
+            );
+            await tester.ensureVisible(find.textContaining(label));
+            await tester.pumpAndSettle();
+          }
+
+          await show('Recovery history');
+          await tester.tap(find.textContaining('Recovery history'));
+          await tester.pumpAndSettle();
+          await show('Review restoration');
+          await tester.tap(find.textContaining('Review restoration'));
+          await tester.pumpAndSettle();
+          final dialog = find.byType(AlertDialog);
+          final position = tester
+              .state<ScrollableState>(
+                find
+                    .descendant(of: dialog, matching: find.byType(Scrollable))
+                    .first,
+              )
+              .position;
+          expect(position.maxScrollExtent, greaterThan(0));
+          await tester.sendKeyEvent(LogicalKeyboardKey.pageDown);
+          await tester.pump();
+          if (!reduced) {
+            await tester.pump(const Duration(milliseconds: 40));
+            expect(position.pixels, greaterThan(0));
+            expect(position.pixels, lessThan(position.viewportDimension * .8));
+          }
+          await tester.pumpAndSettle();
+          expect(position.pixels, greaterThan(0));
+          final cancel = find.descendant(
+            of: dialog,
+            matching: find.textContaining('Cancel'),
+          );
+          Focus.of(tester.element(cancel)).requestFocus();
+          await tester.pump();
+          final first = position.pixels;
+          await tester.sendKeyEvent(LogicalKeyboardKey.pageDown);
+          await tester.pumpAndSettle();
+          expect(position.pixels, greaterThan(first));
+          final second = position.pixels;
+          await tester.sendKeyEvent(LogicalKeyboardKey.pageUp);
+          await tester.pumpAndSettle();
+          expect(position.pixels, lessThan(second));
+          final editable = tester.widget<EditableText>(
+            find
+                .descendant(of: dialog, matching: find.byType(EditableText))
+                .first,
+          );
+          editable.focusNode.requestFocus();
+          await tester.pump();
+          final before = position.pixels;
+          await tester.sendKeyEvent(LogicalKeyboardKey.pageDown);
+          await tester.pumpAndSettle();
+          expect(position.pixels, before);
+          if (outcome == 'dispose') {
+            await tester.pumpWidget(const SizedBox());
+            await tester.pumpAndSettle();
+            expect(changes, isEmpty);
+          } else {
+            await tester.tap(
+              outcome == 'cancel'
+                  ? cancel
+                  : find.descendant(
+                      of: dialog,
+                      matching: find.textContaining('Confirm selected action'),
+                    ),
+            );
+            await tester.pumpAndSettle();
+            if (outcome == 'cancel') {
+              expect(changes, isEmpty);
+              expect(
+                FocusManager.instance.primaryFocus?.debugLabel,
+                isNot('Recovery review paging'),
+              );
+            } else {
+              expect(changes.single, {
+                'receiptId': 'receipt-1',
+                'confirmed': true,
+              });
+            }
+          }
+          expect(methods.take(2), ['cleanup.history', 'cleanup.details']);
+          expect(tester.takeException(), isNull);
+        },
+        variant: TargetPlatformVariant.only(TargetPlatform.windows),
+      );
+    }
+
   testWidgets(
     'restore reviews stored file details before explicit confirmation',
     (tester) async {
