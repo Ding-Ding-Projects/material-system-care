@@ -1,5 +1,15 @@
 # Implementation handoff
 
+## Observed package frames and remaining keyboard defect
+
+The root desktop build at `b5fdf1708080a1010647ca48359ab2e658847299` passed. Its 800×600 bilingual dark run with text scale 2 verified the corrected source popup, translated discovery title and a real 45-match discovery. The selected removal review also fit at 800×600 with visible cancellation/confirmation controls after being opened at a larger height. Cancellation returned without confirming removal, and all owned processes and the hidden desktop closed.
+
+Five inspected frames passed the narrow verifier at `c7d638962c05c5683ab438dafb59d1a894b852f0`: source, complete bundle bytes, PNG/sidecar hashes, timing and genuine zero observations from the two registered Flutter hooks. Fourteen supporting records are hash-bound, not semantically certified by that verifier. Global image promotion remains separate, so these frames remain private. Evidence: `docs/verification/packages-observed-frames.json`.
+
+After discovery, additional Tab/Page Down input did not reach lower cards. Independent Windows widget reproduction confirms a focus/scroll defect, not merely a transport limitation. The isolated lane is repairing it. A requested larger window was constrained by the desktop geometry; the actual intermediate frame was 800×1061, and it is not minimum-size evidence.
+
+The previous startup documentation deployment `38084415968` at `f1aeb4a` delivered all 730 files with matching bytes. These newer package changes still need their own deployment.
+
 ## Package discovery runtime and popup repair
 
 Combined source `bc8274a` passed the root desktop build and 24 focused package/capture tests. Its real 1280×1000 bilingual dark run completed discovery (45 matches), displayed a selected package review and cancelled it without confirming a mutation. The owned process and hidden desktop closed. Actual paired receipts recorded framework/platform observations. The popup route lost language preferences and the discovery title lacked a translation; source repairs pass an open-popup negative/positive regression and 15 focused checks. Rebuild and minimum-size acceptance remain pending.

@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "scope": "observed-flutter-hooks-and-bytes",
+  "sourceCommit": "b5fdf1708080a1010647ca48359ab2e658847299",
+  "buildReceiptSha256": "84271b68d054c27d9a79549be697aca05f42750546a7d85c38ad9bfe5863d340",
+  "bundleManifestSha256": "034f4a6eb3b8d48d73173b9ce84f2e7095fd5286c93a945d7994a50b3fc7c94a",
+  "frames": [
+    {
+      "png": "output/frame.png",
+      "sidecar": "output/frame.png.json",
+      "sha256": "de244bc6e2fabad26ff68f408fcf9110668ccd722b9d18bd55677631b2f18899",
+      "sidecarSha256": "24a6e2133b74cc87c6ebdd4260c9a92f45a6bfea9f6274c2730abd8a543bb204",
+      "sequence": 0
+    },
+    {
+      "png": "output/frame-003.png",
+      "sidecar": "output/frame-003.png.json",
+      "sha256": "c3b1a88d12378269547b9c3b8cff81fc3f987d0f16bdb25b35b00b2012f46473",
+      "sidecarSha256": "428cd6a370936d3f97126347d6aaf90a634a9796829e9587f75b6884bfd97059",
+      "sequence": 3
+    },
+    {
+      "png": "output/frame-005.png",
+      "sidecar": "output/frame-005.png.json",
+      "sha256": "8f9670f94fb8086f34a9d850b2a6b39915932695f59cec75e64e2b50ec879fa8",
+      "sidecarSha256": "d6144b20150b877c54f99da768fb5f6128788808d06b271a22a11cc29b779545",
+      "sequence": 5
+    },
+    {
+      "png": "output/frame-008.png",
+      "sidecar": "output/frame-008.png.json",
+      "sha256": "e5224cdae7d2ccdd314a6c36ebd0ec63ffc75659fc1e402929d4ee7b1856b3b1",
+      "sidecarSha256": "e214dffe5215e9f99248b3363012863dbc863289e8f8116a10b365a145209e31",
+      "sequence": 8
+    },
+    {
+      "png": "output/frame-016.png",
+      "sidecar": "output/frame-016.png.json",
+      "sha256": "ba7e6c11cf911d6e59c5b13f4b4b4b695a984631b804f8c78315fe89be1f6bc1",
+      "sidecarSha256": "0b0bc096506e171859c9bcba8bbbcfdb1af3b0761d5c51c8878997044efd023c",
+      "sequence": 16
+    }
+  ],
+  "evidence": [
+    {
+      "role": "action",
+      "path": "minimum-tab.json",
+      "sha256": "65e1edff3214f451573cd35bc143438ecb3b7f6f38164c7743e97c781852dad6"
+    },
+    {
+      "role": "action",
+      "path": "minimum-page-down.json",
+      "sha256": "5b679a18c28e1573862d767355ceddf6c84bdf73630e3bfb1c7d2d182df54e8d"
+    },
+    {
+      "role": "action",
+      "path": "minimum-popup-open.json",
+      "sha256": "7c22a3c83f2f2f90800c4ab4b68a180d1b28051137f2c93b46e9f0f2ba461b50"
+    },
+    {
+      "role": "action",
+      "path": "minimum-select-managed.json",
+      "sha256": "126b1bac9ac6efa7d72452fb3e250b5acac4ac25ce6b86ef5c72c9a3655b97d1"
+    },
+    {
+      "role": "action",
+      "path": "minimum-discovery-review.json",
+      "sha256": "e81d9728de045283fc40e60e0739c720649d62cb7370077e350d62a989474494"
+    },
+    {
+      "role": "action",
+      "path": "minimum-discovery-confirmed.json",
+      "sha256": "b27be213455675480814f1b451c9c870ada4b20d050026235b62e0f85d78bdfb"
+    },
+    {
+      "role": "action",
+      "path": "minimum-completed-tab.json",
+      "sha256": "381a6ce5bdd899c54f943e2c21d0f2680b45b2ed9aa5cf122910742ca6fdc1ed"
+    },
+    {
+      "role": "action",
+      "path": "minimum-results-page-down.json",
+      "sha256": "f0d87f3cc77ae9deb50491c77d1220783b4cb9c5885fe7d124cdb55d7dae7b77"
+    },
+    {
+      "role": "action",
+      "path": "minimum-card-page-down.json",
+      "sha256": "66e48321c1bacd41f4b4997aab3d3fe5914470c77ec5a27661af1eeefc8ef3d0"
+    },
+    {
+      "role": "action",
+      "path": "minimum-next-focus.json",
+      "sha256": "2cf5ea2408db54975dc4427934b106ce028354be6993da991c10d5793cec6571"
+    },
+    {
+      "role": "action",
+      "path": "minimum-action-focus.json",
+      "sha256": "76abcbc40b1a5457b884424f1df08c2971e02fdf0c2df50186850bf8a6a4cb3c"
+    },
+    {
+      "role": "action",
+      "path": "minimum-uninstall-review.json",
+      "sha256": "111c05289e43a3300a32703a7cd7d9ab20f0637671500b3938b55eb02cd71bd7"
+    },
+    {
+      "role": "action",
+      "path": "minimum-uninstall-cancelled.json",
+      "sha256": "009df5feb9a79cc3fa199242ee995bcd0b5ff7d78d62542ab21fbf3d69bbd39a"
+    },
+    {
+      "role": "teardown",
+      "path": "teardown.json",
+      "sha256": "9748e9ff9dba8e103c0788a5e460cd04bc147a1111761cb075fa704fb6a54dc2"
+    }
+  ]
+}
