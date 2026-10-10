@@ -3779,14 +3779,18 @@
       "intendedPage": "Applications",
       "implementation": [
         "engine/Modules/ManagementModule.cs",
-        "desktop/lib/main.dart"
+        "desktop/lib/main.dart",
+        "engine/Modules/PackageInventory.cs"
       ],
-      "tests": [],
+      "tests": [
+        "tests/management/ManagementFixtures.cs",
+        "desktop/test/managed_packages_test.dart"
+      ],
       "evidence": [],
       "documentation": "docs/catalogue/uninstaller.md",
       "implementationCoverage": "partial",
       "implementedEquivalent": "apps.list",
-      "remainingGap": "Registry and current-user AppX inventory only. Registry IDs are not WinGet IDs; AppX removal is unavailable.",
+      "remainingGap": "Registry and current-user AppX inventory plus explicit structured WinGet matches. Unmatched packages remain separate; AppX removal and complete built interaction evidence are unavailable.",
       "sourceBindings": [
         {
           "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
@@ -3795,10 +3799,28 @@
           "symbol": "apps.list"
         },
         {
-          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "commit": "15bda1d3c5ffad297f98ff5969c1e942e75e85b9",
+          "path": "engine/Modules/PackageInventory.cs",
+          "role": "implementation",
+          "symbol": "apps.managed"
+        },
+        {
+          "commit": "7cf40d1c9f8ed94eabefa4b0a4b6a1349abd32df",
           "path": "desktop/lib/main.dart",
           "role": "interface",
           "symbol": "Apps"
+        },
+        {
+          "commit": "7cf40d1c9f8ed94eabefa4b0a4b6a1349abd32df",
+          "path": "desktop/test/managed_packages_test.dart",
+          "role": "test",
+          "symbol": "managed discovery review and stale-row rejection"
+        },
+        {
+          "commit": "7cf40d1c9f8ed94eabefa4b0a4b6a1349abd32df",
+          "path": "tests/management/ManagementFixtures.cs",
+          "role": "test",
+          "symbol": "structured inventory validation and fixture isolation"
         }
       ],
       "actualNavigation": "Apps"
@@ -4621,14 +4643,18 @@
       "intendedPage": "Applications",
       "implementation": [
         "engine/Modules/ManagementModule.cs",
-        "desktop/lib/main.dart"
+        "desktop/lib/main.dart",
+        "engine/Modules/PackageInventory.cs"
       ],
-      "tests": [],
+      "tests": [
+        "tests/management/ManagementFixtures.cs",
+        "desktop/test/managed_packages_test.dart"
+      ],
       "evidence": [],
       "documentation": "docs/catalogue/updater.md",
       "implementationCoverage": "partial",
       "implementedEquivalent": "apps.updates",
-      "remainingGap": "Returns WinGet text output without guessed package records; no normalized per-application update model or vendor database.",
+      "remainingGap": "Structured WinGet matches expose installed versions. Available update versions remain unchecked; no vendor database or complete update inventory is claimed.",
       "sourceBindings": [
         {
           "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
@@ -4637,10 +4663,28 @@
           "symbol": "apps.updates"
         },
         {
-          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "commit": "15bda1d3c5ffad297f98ff5969c1e942e75e85b9",
+          "path": "engine/Modules/PackageInventory.cs",
+          "role": "implementation",
+          "symbol": "apps.managed"
+        },
+        {
+          "commit": "7cf40d1c9f8ed94eabefa4b0a4b6a1349abd32df",
           "path": "desktop/lib/main.dart",
           "role": "interface",
           "symbol": "Apps"
+        },
+        {
+          "commit": "7cf40d1c9f8ed94eabefa4b0a4b6a1349abd32df",
+          "path": "desktop/test/managed_packages_test.dart",
+          "role": "test",
+          "symbol": "managed discovery review and stale-row rejection"
+        },
+        {
+          "commit": "7cf40d1c9f8ed94eabefa4b0a4b6a1349abd32df",
+          "path": "tests/management/ManagementFixtures.cs",
+          "role": "test",
+          "symbol": "structured inventory validation and fixture isolation"
         }
       ],
       "actualNavigation": "Apps"
@@ -4667,16 +4711,18 @@
       "intendedPage": "Applications",
       "implementation": [
         "engine/Modules/ManagementModule.cs",
-        "desktop/lib/main.dart"
+        "desktop/lib/main.dart",
+        "engine/Modules/PackageInventory.cs"
       ],
       "tests": [
-        "tests/management/ManagementFixtures.cs"
+        "tests/management/ManagementFixtures.cs",
+        "desktop/test/managed_packages_test.dart"
       ],
       "evidence": [],
       "documentation": "docs/catalogue/updater.md",
       "implementationCoverage": "partial",
       "implementedEquivalent": "apps.upgrade",
-      "remainingGap": "Exact user-supplied WinGet package ID with consent; fixtures validate identifiers and consent, not actual installation. Current UI registry records cannot supply package IDs.",
+      "remainingGap": "Discovered exact package IDs reach separately reviewed upgrade actions. Consent and cancellation fixtures pass; actual installation and built interaction evidence remain unverified.",
       "sourceBindings": [
         {
           "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
@@ -4691,10 +4737,22 @@
           "symbol": "fixture assertions"
         },
         {
-          "commit": "d8280ec6bfd1396b3f1f90ed73b2c6cf7be9359e",
+          "commit": "15bda1d3c5ffad297f98ff5969c1e942e75e85b9",
+          "path": "engine/Modules/PackageInventory.cs",
+          "role": "implementation",
+          "symbol": "apps.managed"
+        },
+        {
+          "commit": "7cf40d1c9f8ed94eabefa4b0a4b6a1349abd32df",
           "path": "desktop/lib/main.dart",
           "role": "interface",
           "symbol": "Apps"
+        },
+        {
+          "commit": "7cf40d1c9f8ed94eabefa4b0a4b6a1349abd32df",
+          "path": "desktop/test/managed_packages_test.dart",
+          "role": "test",
+          "symbol": "managed discovery review and stale-row rejection"
         }
       ],
       "actualNavigation": "Apps",
@@ -8031,7 +8089,7 @@
       "documentation": "docs/catalogue/online.md",
       "implementationCoverage": "source-linked",
       "implementedEquivalent": "utilities.calculate: edpi",
-      "remainingGap": "Validated DPI \u00d7 sensitivity arithmetic exists in engine; current desktop Tools does not expose this calculator.",
+      "remainingGap": "Validated DPI × sensitivity arithmetic exists in engine; current desktop Tools does not expose this calculator.",
       "sourceBindings": [
         {
           "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",

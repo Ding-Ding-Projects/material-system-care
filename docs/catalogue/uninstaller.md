@@ -6,7 +6,7 @@ Intended workspace: **Applications**. Configuration is local and operations foll
 
 | ID | Required capability | Current status | Limit or next requirement |
 | --- | --- | --- | --- |
-| `uninstaller.01` | Installed application inventory | unverified | Registry and current-user AppX inventory only. Registry IDs are not WinGet IDs; AppX removal is unavailable. |
+| `uninstaller.01` | Installed application inventory | unverified | Registry and current-user AppX inventory plus explicit structured WinGet matches. Unmatched packages remain separate; AppX removal and complete built interaction evidence are unavailable. |
 | `uninstaller.02` | Batch uninstall | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `uninstaller.03` | Bundle detection | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
 | `uninstaller.04` | Installation change journal | unimplemented | Declared requirement only. No linked implementation and built interaction evidence has been reviewed for this row. |
