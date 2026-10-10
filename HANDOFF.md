@@ -1,5 +1,13 @@
 # Implementation handoff
 
+## Selected maintenance targets
+
+The cleanup workflow now requires checked targets, snapshots their original plan indices and exact paths for review, and sends only that subset. The engine validates nonempty unique in-range integers against its stored plan before creating a recovery receipt, persists the canonical selection, and rejects replay with a changed selection. Unchecked eligible files remain untouched. Legacy receipts represent the previous whole-plan selection; older clients omitting selection must be updated. Replay does not resume omitted work or preserve historical cancellation provenance.
+
+Thirty storage fixture checks passed, including invalid types/bounds/duplicates, no mutation before valid selection, unselected eligible files, replay expansion refusal, order-independent replay and existing recovery checks. The focused Flutter fixture passed with an active filter, proving original row index 1 reaches the engine after explicit review, while cancellation sends nothing. One existing symbolic-link fixture remains skipped for unavailable privilege. Independent bounded review found no concrete selection/recovery regression. Candidate root builds and genuine built selection interaction remain pending at this source checkpoint. No real user temporary files were moved.
+
+Diagnostic documentation deployment 38010171599 succeeded at 661e763198a28fd6eae8597e26edbebf70460ff8. Live home, script and result PNG returned 200; script/image bytes matched local output, and the public About homepage readback remained exact.
+
 ## Diagnostic interaction evidence
 
 Desktop source cfa86ebb78312984a90ccd26b814f4a4d00a58e9 passed the root desktop build and a real isolated Lowlevel background-input sequence. The operator entered public code 0x9F in the actual field and clicked the explanation control. The inspected painted output shows 0x0000009F, DRIVER_POWER_STATE_FAILURE and the completed local-engine response. Both idle and result PNGs, source/build/hash receipts, input/child receipts and owned teardown are retained. The narrow validator checked 210 bundle files and rejected a deliberately altered input-receipt hash before passing restored evidence. No real crash-history collection or dump read occurred in this sequence.

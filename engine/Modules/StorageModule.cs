@@ -191,7 +191,7 @@ public sealed class StorageModule : IEngineModule
     private sealed record Target(string Path, long Size, long ModifiedTicks, long CreatedTicks, string Hash, string Identity);
     private sealed record Plan(string Id, string Root, DateTime CreatedUtc, int MinimumAgeDays, List<Target> Targets);
     private sealed record RecoveryItem(Target Target, string QuarantinePath, string State, string? Reason);
-    private sealed record Receipt(string Id, string PlanId, DateTime CreatedUtc, List<RecoveryItem> Items);
+    private sealed record Receipt(string Id, string PlanId, DateTime CreatedUtc, List<RecoveryItem> Items, List<int>? SelectedIndexes = null);
     private static string Store(EngineContext c)
     {
         string path = Path.Combine(c.DataRoot, "cleanup");
@@ -285,19 +285,28 @@ public sealed class StorageModule : IEngineModule
         var plan = await Load<Plan>(Path.Combine(store, id + ".plan.json"), ct);
         if (plan.Id != id || plan.Targets == null || plan.Targets.Any(x => x == null) || plan.Targets.Count > 1000 || plan.MinimumAgeDays < 1 || plan.MinimumAgeDays > 365 || plan.CreatedUtc > DateTime.UtcNow || plan.CreatedUtc < DateTime.UtcNow.AddDays(-1) || !string.Equals(plan.Root, TempRoot(), StringComparison.OrdinalIgnoreCase))
             throw new EngineException("PLAN_EXPIRED", "The plan is expired or its approved scope changed. Scan again.");
+        if (!p.TryGetProperty("targetIndexes", out var requested) || requested.ValueKind != JsonValueKind.Array || requested.GetArrayLength() == 0 || requested.GetArrayLength() > 1000)
+            throw new EngineException("SELECTION_REQUIRED", "Select at least one target from the reviewed plan.");
+        var selected = new SortedSet<int>();
+        foreach (var value in requested.EnumerateArray())
+            if (value.ValueKind != JsonValueKind.Number || !value.TryGetInt32(out int index) || index < 0 || index >= plan.Targets.Count || !selected.Add(index))
+                throw new EngineException("INVALID_SELECTION", "Selection contains an invalid or repeated plan target.");
         string receiptPath = Path.Combine(store, id + ".receipt.json");
         if (File.Exists(receiptPath))
         {
             var existing = await Load<Receipt>(receiptPath, ct);
-            return new { receiptId = id, items = existing.Items, plannedCount = plan.Targets.Count, partial = existing.Items.Count(x => x.State == "quarantined") != plan.Targets.Count, cancelled = false, permanentDeletion = false };
+            var originalSelection = existing.SelectedIndexes ?? Enumerable.Range(0, plan.Targets.Count).ToList();
+            if (!selected.SequenceEqual(originalSelection)) throw new EngineException("SELECTION_CHANGED", "This plan already has a recovery record with a different selection. Scan again for remaining files.");
+            return new { receiptId = id, items = existing.Items, plannedCount = selected.Count, totalPlanCount = plan.Targets.Count, partial = existing.Items.Count(x => x.State == "quarantined") != selected.Count, cancelled = false, permanentDeletion = false };
         }
         string recovery = Path.Combine(store, id);
         Directory.CreateDirectory(recovery);
         StorageSafeFile.ValidateAncestors(recovery);
-        var receipt = new Receipt(id, id, DateTime.UtcNow, []);
+        var receipt = new Receipt(id, id, DateTime.UtcNow, [], selected.ToList());
         await SaveNew(receiptPath, receipt, ct);
-        foreach (var t in plan.Targets)
+        foreach (var selectedIndex in selected)
         {
+            var t = plan.Targets[selectedIndex];
             if (ct.IsCancellationRequested) break;
             string destination = Path.Combine(recovery, Guid.NewGuid().ToString("N") + ".recovery");
             int index = receipt.Items.Count;
@@ -315,8 +324,8 @@ public sealed class StorageModule : IEngineModule
             catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or EngineException) { receipt.Items[index] = new(t, destination, "skipped", ex is EngineException ee ? ee.Code : ex.InnerException is System.ComponentModel.Win32Exception native ? "FILE_UNAVAILABLE_WIN32_" + native.NativeErrorCode : "FILE_UNAVAILABLE"); }
             await SaveAtomic(receiptPath, receipt);
         }
-        await c.RecordAsync("cleanup.apply", new { receiptId = id, moved = receipt.Items.Count(x => x.State == "quarantined"), planned = plan.Targets.Count }, CancellationToken.None);
-        return new { receiptId = id, items = receipt.Items, plannedCount = plan.Targets.Count, partial = receipt.Items.Count(x => x.State == "quarantined") != plan.Targets.Count, cancelled = ct.IsCancellationRequested, permanentDeletion = false };
+        await c.RecordAsync("cleanup.apply", new { receiptId = id, moved = receipt.Items.Count(x => x.State == "quarantined"), planned = selected.Count, totalPlanCount = plan.Targets.Count }, CancellationToken.None);
+        return new { receiptId = id, items = receipt.Items, plannedCount = selected.Count, totalPlanCount = plan.Targets.Count, partial = receipt.Items.Count(x => x.State == "quarantined") != selected.Count, cancelled = ct.IsCancellationRequested, permanentDeletion = false };
     }
     private async Task<object> Restore(JsonElement p, EngineContext c, CancellationToken ct)
     {

@@ -12,6 +12,11 @@ class CopyScope extends InheritedWidget {
 }
 
 const translations = <String, String>{
+  'Only selected temporary files will move to recovery.': '只有已選取嘅暫存檔會移到復原儲存區。',
+  'Move selected temporary files to recovery?': '將已選取暫存檔移到復原儲存區？',
+  'Apply selected cleanup targets': '處理已選取清理項目',
+  'Select visible targets': '選取目前顯示項目',
+  'Clear selection': '清除選取',
   "Discover managed packages?": "探索可管理套件？",
   "Discover WinGet packages": "探索 WinGet 套件",
   "WinGet may contact its configured source to match installed packages. No packages will be changed, and new source agreements will not be accepted.":

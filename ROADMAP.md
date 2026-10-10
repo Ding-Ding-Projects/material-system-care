@@ -13,6 +13,8 @@
 
 ## Working suite
 
+- [ ] Verify selected temporary-file maintenance in the built workspace: explicit subset review, server-side selection and replay validation are implemented; 30 storage fixture checks and the filtered-selection Flutter fixture passed. Real user files were not moved.
+
 - [x] Verify manual stop-code entry and explanation through real isolated background input, retain the inspected painted result and source-bound receipts, and prove altered input evidence is rejected. This does not complete the native compositor or full interaction matrix.
 
 - [ ] Complete blue-screen diagnosis runtime verification: read-only engine and dedicated Tools workspace implemented; focused synthetic checks and a painted native frame pass; native input/compositor and full layout coverage remain pending.

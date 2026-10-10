@@ -510,7 +510,7 @@ class _WorkflowPageState extends State<WorkflowPage> {
                 widget.index == 1 ? 'Analyze folder' : 'Refresh records',
               ),
             ),
-            if (widget.index == 0)
+            if (widget.index == 0 || widget.index == 1)
               OutlinedButton.icon(
                 onPressed: busy ? null : () => load('cleanup.scan', {}),
                 icon: Icon(Icons.manage_search),
@@ -578,19 +578,38 @@ class _WorkflowPageState extends State<WorkflowPage> {
               ),
             if (data?['planId'] != null && data?['mutationPerformed'] == false)
               FilledButton.tonal(
-                onPressed: busy
+                onPressed: busy || chosen.isEmpty
                     ? null
                     : () async {
+                        final selected = chosen.toList()..sort();
+                        final planId = data!['planId'];
+                        final detail =
+                            '${localize(context, "Only selected temporary files will move to recovery.")}\n\n${selected.map((i) => records[i]['path']).join('\n')}';
                         if (await confirm(
-                          'Move approved temporary files to recovery?',
-                          'The engine will revalidate this cleanup plan and move eligible aged temporary files into recoverable storage. Documents are excluded.',
+                          'Move selected temporary files to recovery?',
+                          detail,
                         ))
                           load('cleanup.apply', {
-                            'planId': data!['planId'],
+                            'planId': planId,
+                            'targetIndexes': selected,
                             'confirmed': true,
                           });
                       },
-                child: UiText('Apply reviewed cleanup plan'),
+                child: UiText('Apply selected cleanup targets'),
+              ),
+            if (data?['planId'] != null && data?['mutationPerformed'] == false)
+              OutlinedButton(
+                onPressed: busy
+                    ? null
+                    : () => setState(
+                        () => chosen.addAll(filtered.map((entry) => entry.key)),
+                      ),
+                child: UiText('Select visible targets'),
+              ),
+            if (chosen.isNotEmpty)
+              TextButton(
+                onPressed: busy ? null : () => setState(chosen.clear),
+                child: UiText('Clear selection'),
               ),
           ],
         ),

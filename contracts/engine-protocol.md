@@ -26,6 +26,8 @@ public interface IEngineModule {
 
 ## Initial methods
 
+`cleanup.apply` requires `planId`, `confirmed:true`, and a nonempty `targetIndexes` array referring to the original scanned plan. Indices must be unique in-range integers. Omission is rejected rather than interpreted as all targets. Clients predating explicit selection must be updated with the engine. The stored recovery receipt binds the canonical selection; a different selection on replay requires a new scan. See [cleanup details](../docs/features/storage/cleanup.md).
+
 | Area | Methods | Minimum response |
 | --- | --- | --- |
 | Core | `engine.ping`, `system.snapshot`, `settings.get`, `settings.save`, `history.list` | Version/capabilities; CPU, memory and drives; settings object; chronological operation records |
