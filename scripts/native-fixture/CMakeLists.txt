@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.20)
 project(native_transport_fixture LANGUAGES CXX)
-add_executable(native_transport_fixture main.cpp ../../desktop/windows/runner/engine_transport.cpp ../../desktop/windows/runner/Runner.rc)
+add_executable(native_transport_fixture main.cpp capture_writer_tests.cpp ../../desktop/windows/runner/engine_transport.cpp ../../desktop/windows/runner/capture_writer.cpp ../../desktop/windows/runner/Runner.rc)
+target_link_libraries(native_transport_fixture PRIVATE bcrypt)
 target_compile_features(native_transport_fixture PRIVATE cxx_std_20)
 target_compile_definitions(native_transport_fixture PRIVATE NOMINMAX UNICODE _UNICODE)
 target_include_directories(native_transport_fixture PRIVATE ../../desktop/windows/runner)

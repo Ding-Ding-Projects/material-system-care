@@ -1,5 +1,7 @@
 # Captured application frames
 
+New explicit exports produce a [version-1 timing and byte receipt](../../contracts/capture-receipt.md) at `<png>.json`. It records direct render timestamps, a separate native PNG-write interval, monotonic durations, dimensions, sequence and the exact PNG hash. Success requires both files to be exclusively created and flushed. A saved PNG with an incomplete sidecar is retained and reported as incomplete. These receipts do not establish native-compositor capture, physical display DPI, source provenance or visual correctness by themselves. Historical frames below retain their documented unknown capture times; no time is inferred from file modification dates.
+
 | ID | Producer | Scope | State |
 | --- | --- | --- | --- |
 | `diagnostics-idle-en-light-1264x681` | `cfa86ebb78312984a90ccd26b814f4a4d00a58e9` | Actual painted Flutter frame, render-only | Diagnostic workspace, idle, English, light, 1264 × 681, scale 1 |

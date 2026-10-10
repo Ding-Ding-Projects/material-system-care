@@ -1,5 +1,6 @@
 #include "engine_bridge.h"
 #include "engine_transport.h"
+#include "capture_writer.h"
 #include <flutter/standard_method_codec.h>
 #include <sddl.h>
 #include <shobjidl.h>
@@ -12,27 +13,18 @@
 #include <cmath>
 
 namespace {
-std::string WriteCapture(const flutter::EncodableValue* arguments) {
+capture_writer::Result WriteCapture(const flutter::EncodableValue* arguments, const std::function<bool()>& cancelled) {
  const auto* map=arguments?std::get_if<flutter::EncodableMap>(arguments):nullptr;
- if(!map) { return "Expected capture data"; }
- auto pathIt=map->find(flutter::EncodableValue("path")); auto bytesIt=map->find(flutter::EncodableValue("bytes"));
- const auto* path=pathIt==map->end()?nullptr:std::get_if<std::string>(&pathIt->second);
- const auto* bytes=bytesIt==map->end()?nullptr:std::get_if<std::vector<uint8_t>>(&bytesIt->second);
- if(!path || path->size()<7 || path->size()>32760 || path->find('\0')!=std::string::npos || (*path)[1]!=':' || ((*path)[2]!='\\' && (*path)[2]!='/') || !bytes || bytes->size()<8 || bytes->size()>32*1024*1024) { return "Invalid capture path or size"; }
- static constexpr unsigned char png[]{137,80,78,71,13,10,26,10};
- if(!std::equal(std::begin(png),std::end(png),bytes->begin())) { return "Expected PNG data"; }
- int count=MultiByteToWideChar(CP_UTF8,MB_ERR_INVALID_CHARS,path->data(),static_cast<int>(path->size()),nullptr,0);
- if(count<=0) { return "Invalid capture path"; }
- std::wstring wide(count,0); MultiByteToWideChar(CP_UTF8,MB_ERR_INVALID_CHARS,path->data(),static_cast<int>(path->size()),wide.data(),count);
- if(_wcsicmp(wide.c_str()+wide.size()-4,L".png")!=0 || wide.find(L':',2)!=std::wstring::npos) { return "Expected a PNG file path"; }
- // CREATE_NEW and writing on the same unshared handle avoid a create/reopen
- // race. Caller-selected drive paths may still resolve to network storage.
- HANDLE file=CreateFileW(wide.c_str(),GENERIC_WRITE,0,nullptr,CREATE_NEW,FILE_ATTRIBUTE_NORMAL,nullptr);
- if(file==INVALID_HANDLE_VALUE) { return "Capture destination could not be exclusively created"; }
- DWORD written=0; bool ok=GetFileType(file)==FILE_TYPE_DISK && WriteFile(file,bytes->data(),static_cast<DWORD>(bytes->size()),&written,nullptr) && written==bytes->size() && FlushFileBuffers(file);
- CloseHandle(file);
- if(!ok) { return "Capture write did not complete"; }
- return {};
+ if(!map) return {false,false,"Expected capture data"};
+ auto value=[&](const char* key)->const flutter::EncodableValue* { auto found=map->find(flutter::EncodableValue(key)); return found==map->end()?nullptr:&found->second; };
+ auto text=[&](const char* key)->const std::string* { auto item=value(key); return item?std::get_if<std::string>(item):nullptr; };
+ auto number=[&](const char* key)->int64_t { auto item=value(key); if(!item) return -1; if(auto n=std::get_if<int32_t>(item)) return *n; if(auto n=std::get_if<int64_t>(item)) return *n; return -1; };
+ const auto* path=text("path"); const auto* started=text("captureStartedUtc"); const auto* completed=text("captureCompletedUtc");
+ const auto* bytesValue=value("bytes"); const auto* bytes=bytesValue?std::get_if<std::vector<uint8_t>>(bytesValue):nullptr;
+ const auto* ratioValue=value("pixelRatio"); const auto* ratio=ratioValue?std::get_if<double>(ratioValue):nullptr;
+ if(!path || !started || !completed || !bytes || !ratio) return {false,false,"Invalid capture metadata"};
+ capture_writer::Request request{*path,*bytes,*started,*completed,number("captureElapsedMicroseconds"),number("sequence"),number("width"),number("height"),*ratio};
+ return capture_writer::Write(request,cancelled);
 }
 std::string Quote(const std::string& text) {
  std::string out="\""; const char* hex="0123456789abcdef";
@@ -141,7 +133,7 @@ EngineBridge::EngineBridge(flutter::BinaryMessenger* messenger, HWND window):win
    auto data=*call.arguments(); auto done=std::make_shared<std::atomic<bool>>(false); auto cancelled=std::make_shared<std::atomic<bool>>(false);
    std::thread worker([this,data=std::move(data),result=std::move(result),done,cancelled]() mutable {
     auto reply=std::make_unique<Reply>(); reply->result=std::move(result); reply->errorCode="CAPTURE_WRITE_FAILED"; reply->nullSuccess=true;
-    try { reply->error=*cancelled?"Capture cancelled":WriteCapture(&data); } catch(...) { reply->error="Capture writer could not complete"; }
+    try { auto written=WriteCapture(&data,[&] { return cancelled->load(); }); reply->error=written.error; if(written.png_saved && !written.receipt_saved) reply->errorCode="CAPTURE_RECEIPT_INCOMPLETE"; } catch(...) { reply->error="Capture writer could not complete"; }
     { std::lock_guard<std::mutex> lock(mutex_); replies_.push_back(std::move(reply)); }
     if(!stopping_) PostMessageW(window_,kCompletion,0,0); *done=true;
    });
