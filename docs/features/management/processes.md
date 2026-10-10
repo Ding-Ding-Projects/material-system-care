@@ -9,3 +9,5 @@ The receipt distinguishes an accepted request from a declined request; neither p
 Official Material controls provide focus, hover and press states; operation transitions use the shared reduced-motion-aware component. Review does not display an execution spinner. English and Cantonese copy is registered and the route inherits current language and motion preferences.
 
 Three focused Flutter fixtures verify explicit collection, protected-row disabling, review cancellation, exact PID/start identity, accepted and declined receipts, and removal of stale actionable rows. No real process close was performed. Native build, real interaction capture and universal per-surface contracts remain unverified until separately evidenced.
+
+The root desktop and website builds passed at 48e92f927d338e45c7f913107daea145f15546ae. The first desktop attempt failed without detailed output; the single verbose retry succeeded without source changes, so the initial cause remains unestablished. Real process-workspace interaction and capture remain pending.

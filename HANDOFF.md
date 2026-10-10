@@ -2,7 +2,7 @@
 
 ## Process workspace
 
-The new Tools > Processes workspace exposes existing measured process inventory and exact-identity graceful-close review. It requires explicit collection and confirmation, distinguishes requested from terminated, clears actionable rows after a close attempt or failed refresh, and disables unavailable capabilities. Three focused Flutter checks passed; no actual process close was performed. Native build and real interaction evidence are pending. Universal surface completeness remains unverified.
+The new Tools > Processes workspace exposes existing measured process inventory and exact-identity graceful-close review. It requires explicit collection and confirmation, distinguishes requested from terminated, clears actionable rows after a close attempt or failed refresh, and disables unavailable capabilities. Three focused Flutter checks passed; no actual process close was performed. The root desktop and website builds passed at 48e92f927d338e45c7f913107daea145f15546ae. The first desktop attempt failed without detailed output; the single verbose retry succeeded without source changes, so the initial cause remains unestablished. Real process-workspace interaction and capture remain pending. Universal surface completeness remains unverified.
 
 ## Read-only scan cancellation
 
