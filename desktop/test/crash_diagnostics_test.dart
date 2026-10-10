@@ -3,8 +3,33 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_system_care/crash_diagnostics.dart';
+import 'package:material_system_care/main.dart';
+import 'package:material_system_care/localization.dart';
 
 void main() {
+  testWidgets(
+    'Tools route preserves the selected language and motion preferences',
+    (tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: CopyScope(
+            preferences: const {'language': 'yue', 'reducedMotion': true},
+            child: Scaffold(
+              body: ToolsEditor(
+                busy: false,
+                onRun: ([method, parameters]) async {},
+              ),
+            ),
+          ),
+        ),
+      );
+      await tester.tap(find.text('藍畫面診斷'));
+      await tester.pumpAndSettle();
+      expect(find.text('調查當機'), findsOneWidget);
+      final context = tester.element(find.byType(CrashDiagnosticsPage));
+      expect(CopyScope.of(context)['reducedMotion'], isTrue);
+    },
+  );
   for (final scenario in <(Object, String)>[
     (
       StateError('OPERATION_TIMEOUT: timed out'),

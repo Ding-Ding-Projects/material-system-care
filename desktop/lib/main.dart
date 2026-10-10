@@ -818,8 +818,10 @@ class _ToolsEditorState extends State<ToolsEditor> {
                 ? null
                 : () => Navigator.of(context).push(
                     MaterialPageRoute<void>(
-                      builder: (_) =>
-                          CrashDiagnosticsPage(invoke: Engine.invoke),
+                      builder: (_) => CopyScope(
+                        preferences: CopyScope.of(context),
+                        child: CrashDiagnosticsPage(invoke: Engine.invoke),
+                      ),
                     ),
                   ),
             icon: const Icon(Icons.monitor_heart_outlined),
