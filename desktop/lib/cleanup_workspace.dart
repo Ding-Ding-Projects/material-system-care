@@ -249,38 +249,26 @@ class _CleanupWorkspaceState extends State<CleanupWorkspace> {
     }
     final indexes = selected.toList()..sort();
     if (indexes.any((i) => i < 0 || i >= reviewed.result.files.length)) return;
+    final previousFocus = FocusManager.instance.primaryFocus;
+    final preferences = CopyScope.of(context);
     setState(() => reviewing = true);
     final accepted = await showDialog<bool>(
       context: context,
-      builder: (c) => AlertDialog(
-        title: const UiText('Move selected temporary files to recovery?'),
-        content: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const UiText(
-                'Only selected temporary files will move to recovery.',
-              ),
-              for (final i in indexes)
-                SelectableText(reviewed.result.files[i].path),
-            ],
-          ),
+      builder: (c) => CopyScope(
+        preferences: preferences,
+        child: _CleanupReviewDialog(
+          paths: [for (final i in indexes) reviewed.result.files[i].path],
         ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(c, false),
-            child: const UiText('Cancel'),
-          ),
-          FilledButton(
-            onPressed: () => Navigator.pop(c, true),
-            child: const UiText('Confirm selected action'),
-          ),
-        ],
       ),
     );
     if (!mounted) return;
     setState(() => reviewing = false);
+    if (previousFocus?.context != null && previousFocus!.canRequestFocus) {
+      previousFocus.requestFocus();
+    } else {
+      focus.requestFocus();
+    }
+    FocusManager.instance.applyFocusChangesIfNeeded();
     if (accepted != true) return;
     if (!identical(plan, reviewed) ||
         !reviewed.expires.isAfter(DateTime.now().toUtc())) {
@@ -495,4 +483,95 @@ class _CleanupWorkspaceState extends State<CleanupWorkspace> {
       ),
     );
   }
+}
+
+class _CleanupReviewDialog extends StatefulWidget {
+  const _CleanupReviewDialog({required this.paths});
+  final List<String> paths;
+  @override
+  State<_CleanupReviewDialog> createState() => _CleanupReviewDialogState();
+}
+
+class _CleanupReviewDialogState extends State<_CleanupReviewDialog> {
+  final _scroll = ScrollController();
+  final _focus = FocusNode(debugLabel: 'Cleanup review paging');
+  @override
+  void dispose() {
+    _scroll.dispose();
+    _focus.dispose();
+    super.dispose();
+  }
+
+  KeyEventResult _page(FocusNode node, KeyEvent event) {
+    if ((event is! KeyDownEvent && event is! KeyRepeatEvent) ||
+        !_scroll.hasClients ||
+        FocusManager.instance.primaryFocus?.context
+                ?.findAncestorWidgetOfExactType<EditableText>() !=
+            null)
+      return KeyEventResult.ignored;
+    final key = event.logicalKey;
+    if (key != LogicalKeyboardKey.pageDown && key != LogicalKeyboardKey.pageUp)
+      return KeyEventResult.ignored;
+    final position = _scroll.position;
+    final target =
+        (position.pixels +
+                position.viewportDimension *
+                    (key == LogicalKeyboardKey.pageDown ? .8 : -.8))
+            .clamp(position.minScrollExtent, position.maxScrollExtent);
+    _focus.requestFocus();
+    if (MediaQuery.disableAnimationsOf(context)) {
+      _scroll.jumpTo(target);
+    } else {
+      _scroll.animateTo(
+        target,
+        duration: const Duration(milliseconds: 200),
+        curve: Curves.easeOutCubic,
+      );
+    }
+    return KeyEventResult.handled;
+  }
+
+  @override
+  Widget build(BuildContext context) => Focus(
+    focusNode: _focus,
+    autofocus: true,
+    onKeyEvent: _page,
+    child: AlertDialog(
+      semanticLabel: localize(
+        context,
+        'Move selected temporary files to recovery?',
+      ),
+      content: SingleChildScrollView(
+        controller: _scroll,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Semantics(
+              header: true,
+              child: UiText(
+                'Move selected temporary files to recovery?',
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+            ),
+            const SizedBox(height: 16),
+            const UiText(
+              'Only selected temporary files will move to recovery.',
+            ),
+            for (final path in widget.paths) SelectableText(path),
+          ],
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context, false),
+          child: const UiText('Cancel'),
+        ),
+        FilledButton(
+          onPressed: () => Navigator.pop(context, true),
+          child: const UiText('Confirm selected action'),
+        ),
+      ],
+    ),
+  );
 }
