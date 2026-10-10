@@ -2,7 +2,7 @@
 
 ## Capture tuple preparation
 
-Bounded isolated language, theme, text-scale and reduced-motion controls are implemented. Invalid/repeated values disable export. Normal launches do not apply these overrides or change personal settings. Six focused checks passed including service regressions. Root build and actual tuple capture remain pending. Text-scale evidence is distinct from physical DPI. See docs/features/management/capture-tuples.md.
+Bounded isolated language, theme, text-scale and reduced-motion controls are implemented. Invalid/repeated/unknown values disable export while preserving isolation. Normal launches do not apply these overrides or change personal settings. Seven focused checks passed including service regressions. The invalid-request isolation regression rejected the previous behavior, then passed after restoration. Root build and actual tuple capture remain pending. Text-scale evidence is distinct from physical DPI. See docs/features/management/capture-tuples.md.
 
 ## Service review runtime milestone
 

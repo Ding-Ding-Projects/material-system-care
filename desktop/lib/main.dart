@@ -17,6 +17,8 @@ import 'capture_preferences.dart';
 import 'wording_cache.dart';
 
 void main(List<String> arguments) {
+  // Even a malformed capture request must never fall back to private settings.
+  final captureRequested = arguments.any((a) => a.startsWith('--capture-'));
   final capturePreferences = parseCapturePreferences(arguments);
   final capture = arguments
       .where((argument) => argument.startsWith('--capture-frame='))
@@ -45,7 +47,7 @@ void main(List<String> arguments) {
     startFileUse: fileUse,
     startScheduledTasks: scheduledTasks,
     startServices: services,
-    isolatedCapture: exporting,
+    isolatedCapture: captureRequested,
     capturePreferences: exporting ? capturePreferences! : const {},
   );
   runApp(

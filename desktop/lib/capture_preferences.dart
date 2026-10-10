@@ -1,6 +1,17 @@
 /// Bounded display-only overrides for an explicitly isolated capture run.
 /// These values never represent physical display DPI or injected records.
 Map<String, dynamic>? parseCapturePreferences(List<String> arguments) {
+  for (final argument in arguments.where((a) => a.startsWith('--capture-'))) {
+    if (argument == '--capture-on-input') continue;
+    if (![
+      'frame',
+      'language',
+      'theme',
+      'text-scale',
+      'motion',
+    ].any((name) => argument.startsWith('--capture-$name=')))
+      return null;
+  }
   const options = {
     'language': {'en': 'en', 'yue': 'yue', 'both': 'both'},
     'theme': {'light': 'light', 'dark': 'dark'},
