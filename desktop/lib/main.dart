@@ -8,9 +8,30 @@ import 'notifications.dart';
 import 'provenance.dart';
 import 'motion.dart';
 import 'crash_diagnostics.dart';
+import 'frame_capture.dart';
 import 'wording_cache.dart';
 
-void main() => runApp(CareApp());
+void main(List<String> arguments) {
+  final capture = arguments
+      .where((argument) => argument.startsWith('--capture-frame='))
+      .toList();
+  final diagnostics = arguments.contains('--diagnostics');
+  // Capture mode is explicit, starts at the real diagnostics workspace, and
+  // excludes persisted personal settings. It never injects diagnostic results.
+  final exporting = diagnostics && capture.length == 1;
+  final app = CareApp(
+    startDiagnostics: diagnostics,
+    isolatedCapture: exporting,
+  );
+  runApp(
+    exporting
+        ? FrameCapture(
+            output: capture.single.substring('--capture-frame='.length),
+            child: app,
+          )
+        : app,
+  );
+}
 
 class Engine {
   static const channel = MethodChannel('material_system_care/engine');
@@ -39,8 +60,15 @@ class Engine {
 }
 
 class CareApp extends StatefulWidget {
-  const CareApp({super.key, this.wordingCache});
+  const CareApp({
+    super.key,
+    this.wordingCache,
+    this.startDiagnostics = false,
+    this.isolatedCapture = false,
+  });
   final WordingCache? wordingCache;
+  final bool startDiagnostics;
+  final bool isolatedCapture;
   @override
   State<CareApp> createState() => _CareAppState();
 }
@@ -51,7 +79,7 @@ class _CareAppState extends State<CareApp> {
   @override
   void initState() {
     super.initState();
-    _restore();
+    if (!widget.isolatedCapture) _restore();
   }
 
   Future<void> _restore() async {
@@ -115,14 +143,16 @@ class _CareAppState extends State<CareApp> {
       ),
       home: CopyScope(
         preferences: settings,
-        child: Workspace(
-          settings: settings,
-          wordingCache: widget.wordingCache,
-          changed: (value) => setState(() {
-            _settingsRevision++;
-            settings = value;
-          }),
-        ),
+        child: widget.startDiagnostics
+            ? CrashDiagnosticsPage(invoke: Engine.invoke)
+            : Workspace(
+                settings: settings,
+                wordingCache: widget.wordingCache,
+                changed: (value) => setState(() {
+                  _settingsRevision++;
+                  settings = value;
+                }),
+              ),
       ),
     );
   }

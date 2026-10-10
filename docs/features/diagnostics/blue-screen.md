@@ -24,6 +24,8 @@ The standalone fixture project checks decimal/hex parsing, provider qualificatio
 
 Built runtime interaction, the complete appearance/accessibility matrix, and screenshots remain separate delivery gates. Fixture success does not establish those results.
 
+For isolated visual verification, the built executable accepts `--diagnostics --capture-frame=<absolute-new-png-path>`. This opens the same production diagnostic widget without loading persisted personal preferences and exports one actual painted Flutter frame. It never injects diagnostic results or automatically collects host events. The output must not already exist. Bind the file to the executable hash and hidden-desktop launch receipt, inspect its pixels, and label the route as Flutter frame export rather than native-window capture. The export alone proves neither input handling nor native compositor behavior.
+
 ## Sources
 
 - [Microsoft: troubleshoot unexpected reboots using event logs](https://learn.microsoft.com/en-us/troubleshoot/windows-server/performance/troubleshoot-unexpected-reboots-system-event-logs)
