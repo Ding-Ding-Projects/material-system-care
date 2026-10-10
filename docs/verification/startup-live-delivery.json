@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "home": "https://ding-ding-projects.github.io/material-system-care/",
+  "checkedAt": "2026-10-10T20:39:36.207Z",
+  "expectedManifestSha256": "45496ebbab54cc3fd693c79cc7e094b03edadc677521f2600bd764a2b96072d8",
+  "filesChecked": 730,
+  "failures": [],
+  "sourceCommit": "f1aeb4a666f8b19ad4bf589dfbbbb902c954f273",
+  "runId": 38084415968,
+  "completeArticles": 175,
+  "homepage": "https://ding-ding-projects.github.io/material-system-care/",
+  "deploymentSource": "workflow"
+}

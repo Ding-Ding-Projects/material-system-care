@@ -145,4 +145,4 @@
 - [ ] Verify real disclosed discovery, filtering, review cancellation, minimum-size interaction and owned teardown.
 - [ ] Verify package mutation against an owned disposable package; installed user packages are excluded from runtime verification.
 - [x] Verify the bilingual source popup and discovery title at 800×600 with doubled text; retain inspected observed-hook frame evidence.
-- [ ] Repair and verify post-discovery keyboard reachability to lower package cards; independent reproduction confirms focus remains outside the scrolling page.
+- [ ] Verify the integrated post-discovery keyboard repair in the real minimum-size workspace; focus restoration, bounded paging and reduced motion pass 15 focused tests and independent source review.

@@ -1,5 +1,13 @@
 # Implementation handoff
 
+## Package keyboard repair awaiting live acceptance
+
+The isolated repair at `1c6b7049f04979de209c87d02c1d787923c4e58d` is integrated into this candidate. The results list now owns a bounded Page Up/Page Down focus target. Discovery completion restores that target only when focus has not moved elsewhere, and cancellation restores an attached previous control or the results target. Normal paging uses a 200 ms eased animation; reduced motion moves immediately. Fifteen package tests and the exact root desktop build passed in the isolated producer. Independent source reviews found no concrete regression in either the focus change or the motion delta. The integrated candidate still needs its own build and real 800×600 keyboard verification.
+
+The last verified public deployment remains `38084415968` at `f1aeb4a666f8b19ad4bf589dfbbbb902c954f273`: 175 complete articles and 730 matching files, with exact About homepage readback. `docs/verification/startup-live-delivery.json` records that earlier delivery, not this candidate. No installed package was changed and no final release exists.
+
+中文：套件鍵盤修正已合併到候選版本，十五項指定測試及獨立建置通過，來源覆核未發現具體回歸。仍須重新建置合併版本，再以真正 800×600 雙語畫面驗證下方卡片、焦點及取消流程。沒有變更已安裝套件，亦未發佈最終版本。
+
 ## Observed package frames and remaining keyboard defect
 
 The root desktop build at `b5fdf1708080a1010647ca48359ab2e658847299` passed. Its 800×600 bilingual dark run with text scale 2 verified the corrected source popup, translated discovery title and a real 45-match discovery. The selected removal review also fit at 800×600 with visible cancellation/confirmation controls after being opened at a larger height. Cancellation returned without confirming removal, and all owned processes and the hidden desktop closed.
