@@ -4,7 +4,7 @@
 
 Complete the Windows 11 x64 Material System Care suite with Flutter/Dart, C#/.NET 10, narrowly scoped C++20, SQLite and the public GitHub Pages documentation site. Blue-screen diagnostics is implemented as an explicit read-only workflow; the wider goal remains active and incomplete. No explicit goal token budget was selected.
 
-Main was pushed and verified at 83b14dbd2e256c8e47a5527e52610d7b313ed9ef before this handoff update. Desktop producer eeaf858395cf171291faa31d0d85c3de206fdb4b passed root engine and desktop builds. The website build at 83b14db also passed.
+Main was pushed and verified at 7ab564c98f4009f2f64bdf44ca8a014de50a0bdc before this evidence update. Desktop producer eeaf858395cf171291faa31d0d85c3de206fdb4b passed root engine and desktop builds. The website build at 83b14db also passed.
 
 ## Implemented and verified
 
@@ -24,9 +24,15 @@ Continue the remaining supported workflows, per-surface contracts, real runtime 
 
 ## Delivery and external state
 
-The public About homepage was read back as https://ding-ding-projects.github.io/material-system-care/. Visibility is PUBLIC; Pages uses workflow deployment from main. Deployment 38019049831 and Windows build 38019049823 for 83b14db were in progress at the last observation. Layout Windows build 38018832663 succeeded; 38018912340 remained in progress. Earlier Windows runs through 28a4d91 succeeded. Do not infer a new deployment or release from a local build.
+The public About homepage was read back as https://ding-ding-projects.github.io/material-system-care/. Visibility is PUBLIC; Pages uses workflow deployment from main. Deployment 38019049831 for 83b14db succeeded. The live home, guide script, stylesheet, diagnostic image and capability data returned HTTP 200 and matched local bytes. Windows build 38019049823 remains pending at the last observation. Layout Windows build 38018832663 succeeded; 38018912340 remained in progress. Earlier Windows runs through 28a4d91 succeeded. Do not infer a new deployment or release from a local build.
 
 Issue milestone: https://github.com/Ding-Ding-Projects/material-system-care/issues/1#issuecomment-6093093153
 Discussion milestone: https://github.com/Ding-Ding-Projects/material-system-care/discussions/2#discussioncomment-18845906
 
 Status Hub enrollment credentials remain unavailable. Projects access and wiki availability remain limited. No unsupported external surface is claimed updated. Preserve active goal worktrees and ignored evidence; no repository deletion occurred. Next verify the current deployment and exact live assets, then continue lower-control runtime verification and remaining product work. Supported Lowlevel recovery is authorized; do not touch user focus, perform host power/login actions, expose private data or broaden process teardown.
+
+## New interaction evidence
+
+A second real run at producer eeaf858395cf171291faa31d0d85c3de206fdb4b verified manual 0x9F entry and a completed DRIVER_POWER_STATE_FAILURE explanation in bilingual mode, dark theme and text scale 2. The complete result was inspected at 1264×961 after resizing the same owned hidden window. It did not collect crash history or read dump contents. A background wheel message was accepted without visible scrolling, so no scroll verification is claimed. The exact bundle processes were absent and the owned desktop closed. The original rejected reuse attempt changed only an unreferenced launch-result log; all previously published evidence hashes still passed. The new run uses independent saved state.
+
+Evidence: docs/verification/diagnostics-bilingual-explained.json and docs/verification/inspection-guide-delivery.json. The new bilingual verifier checked 210 bundle files, rejected an altered input hash, then passed restored evidence. No live capture application remains from this turn. The last live website bytes matched the 83b14db deployment; this evidence-only update changes no website source.

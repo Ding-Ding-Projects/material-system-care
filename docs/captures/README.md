@@ -57,3 +57,11 @@ ID: `scheduled-tasks-minimum-bilingual`. Producer: `eeaf858395cf171291faa31d0d85
 ![Built scheduled-tasks initial viewport with bilingual enlarged text](scheduled-tasks-minimum-bilingual.png)
 
 [Shared source, byte and teardown receipt](../verification/inspection-minimum.json). Run `scripts/verify-inspection-minimum.mjs` with the repository and retained matrix run. Exact capture time is unavailable.
+
+## Enlarged bilingual stop-code interaction
+
+ID: `diagnostics-bilingual-explained`. A second real run at producer eeaf858395cf171291faa31d0d85c3de206fdb4b verified manual 0x9F entry and a completed DRIVER_POWER_STATE_FAILURE explanation in bilingual mode, dark theme and text scale 2. The complete result was inspected at 1264×961 after resizing the same owned hidden window. It did not collect crash history or read dump contents. A background wheel message was accepted without visible scrolling, so no scroll verification is claimed. The exact bundle processes were absent and the owned desktop closed. The original rejected reuse attempt changed only an unreferenced launch-result log; all previously published evidence hashes still passed. The new run uses independent saved state.
+
+![Actual bilingual enlarged stop-code result](diagnostics-bilingual-explained.png)
+
+[Source and input receipt](../verification/diagnostics-bilingual-explained.json). SHA-256: `de2c7048bf0a3e3393c41485c1fc4213a3182e8137f584f0d811093b55312af0`. Exact capture time is unavailable. `scripts/verify-diagnostics-bilingual.mjs` validates retained input and byte consistency; it does not replace pixel review.

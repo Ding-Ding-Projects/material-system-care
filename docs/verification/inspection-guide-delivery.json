@@ -1,0 +1,44 @@
+{
+  "source": "83b14dbd2e256c8e47a5527e52610d7b313ed9ef",
+  "workflowRun": 38019049831,
+  "workflowConclusion": "success",
+  "observedAt": "2026-10-10T03:04:23.062Z",
+  "homepage": "https://ding-ding-projects.github.io/material-system-care/",
+  "visibility": "PUBLIC",
+  "deploymentSource": {
+    "branch": "main",
+    "buildType": "workflow"
+  },
+  "files": [
+    {
+      "path": "index.html",
+      "status": 200,
+      "sha256": "20de1c23c9fa2d4d8a914b4f3299e7b6ff33fcb8b9a711daee6b31d1550b5a57",
+      "matches": true
+    },
+    {
+      "path": "assets/index-DoAdMjkK.js",
+      "status": 200,
+      "sha256": "8ddf989feafb768da76426147e72cc5338c53957b6077d9f920b697e7dafd6a2",
+      "matches": true
+    },
+    {
+      "path": "assets/index-BfXSrwoK.css",
+      "status": 200,
+      "sha256": "cad4c0bf1fb7a280dde81efe5db1ccc40f5840fca00b6fefae374d6c31b54e4b",
+      "matches": true
+    },
+    {
+      "path": "diagnostics-minimum-bilingual.png",
+      "status": 200,
+      "sha256": "abf66f45d838f7b15d945fcc3aa4c1767a60fe4cfa9faaf466f69fe6bfd438e7",
+      "matches": true
+    },
+    {
+      "path": "coverage.json",
+      "status": 200,
+      "sha256": "e6b182b50fcffab91b8f4d0fd04de79c454a2d6b043782afdf470f679cf0dae4",
+      "matches": true
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "sourceCommit": "eeaf858395cf171291faa31d0d85c3de206fdb4b",
+  "bundleSha256": "a5a336b7072f0f211faba5ebf33ba4263b99c78ea565941bbfdff65f9d13098b",
+  "executableSha256": "466e9e330e4307321ebcd0cc88c2c89b8540ea7c078db2ebbe2178668287b178",
+  "route": "lowlevel-compatibility-http-native-cpp-hidden-desktop-with-native-resize-and-flutter-painted-export",
+  "state": {
+    "screen": "diagnostics",
+    "language": "both",
+    "theme": "dark",
+    "textScale": 2,
+    "reducedMotionRequested": true,
+    "width": 1264,
+    "height": 961,
+    "stopCode": "0x9F",
+    "result": "0x0000009F · DRIVER_POWER_STATE_FAILURE"
+  },
+  "capture": {
+    "path": "docs/captures/diagnostics-bilingual-explained.png",
+    "sha256": "de2c7048bf0a3e3393c41485c1fc4213a3182e8137f584f0d811093b55312af0",
+    "bytes": 129382,
+    "capturedAt": null
+  },
+  "interaction": {
+    "explicitStopCodeEntry": true,
+    "explanationCompleted": true,
+    "localEventsCollected": false,
+    "dumpContentsRead": false,
+    "backgroundWheelMovedViewport": false
+  },
+  "privacy": {
+    "pixelsInspected": true,
+    "privateDataVisible": false,
+    "visibleDesktopUntouched": true
+  },
+  "teardown": {
+    "ownedOnly": true,
+    "processesAbsent": true,
+    "desktopClosed": true
+  },
+  "files": {
+    "build-receipt.json": "baec81eb129e72ed86b6752ef684a7e1d8683563a4f1348d6a027327bc7af7b2",
+    "request.json": "a4463c77969e8961a4cf20d843557c6225a99ddfbef964ea599e78fceafc8c94",
+    "launch.json": "0c8f9310e4ce8d526109afe6943d08e6a4603d76974b56850fe74f8e060f4e5d",
+    "window.json": "9b16f3706fb8a011f462073d8fe4240a288497982def750cc18184c598d985e6",
+    "children.json": "8c74b1932483b71abd524fafb2b83fd4529ae17d4ef9b6fabdbf905821efb40a",
+    "before-wheel.json": "224b1830ba4b8d80522ad925c9fda0049e33c9d4f632437f547e206e472810e0",
+    "wheel.json": "32603a46106d07970a1d16be005bf6daaa429a5ea79b066600047cb1210e28d9",
+    "capture-click.json": "e563a20225ddecc463eb6941cfd26874b879ba87429a0e7c483c9d1c642a52de",
+    "stop-code-input.json": "40163a48ffb19cf27192eedf98cb37ddb58a498d1e9c17004ec3cd766747f08a",
+    "before-resize.json": "fff4fa0399144a747edc81d3045d11ab259a0e7e9ff7bd103832f8861aabbd08",
+    "resize.json": "6f1e33a1bb87b82a40ec81ec2fe5f10486bc8d9123a678500f769303deb96223",
+    "children-expanded.json": "b22cbe317519115ae57843427666fcabd2c41eeeb686d7ba0818ea2d38f83826",
+    "all-inputs.json": "cb2eaef4874850d26491957f53f7ed90528dda13801211167c4880ad95cd690d",
+    "window-close.json": "d8232ec469c0cf086df561bb110196223919304e24c7cd782e61bbbfb67a2280",
+    "teardown.json": "c15eb889599d599dc1e022b269b831d4a5e9cfe86c2c2410d84339b9e1cefd91",
+    "output/diagnostics.png": "d46fdc93243860dc19e725f558c8b4b17d0ddc4af1096310572ba157ee656c74",
+    "output/diagnostics-001.png": "d46fdc93243860dc19e725f558c8b4b17d0ddc4af1096310572ba157ee656c74",
+    "output/diagnostics-002.png": "58748dfc778ca9877994dbb185304d50867649f2661f7d579821d4759eedb18d",
+    "output/diagnostics-003.png": "de2c7048bf0a3e3393c41485c1fc4213a3182e8137f584f0d811093b55312af0"
+  },
+  "limitations": [
+    "Exact capture timestamp unavailable.",
+    "Native compositor, physical DPI and complete keyboard/motion coverage unverified.",
+    "Wheel transport succeeded without visible scrolling; no scroll proof claimed."
+  ]
+}

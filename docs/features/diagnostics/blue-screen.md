@@ -41,3 +41,9 @@ A fresh hidden run of producer cfa86ebb78312984a90ccd26b814f4a4d00a58e9 complete
 - [Microsoft: troubleshoot unexpected reboots using event logs](https://learn.microsoft.com/en-us/troubleshoot/windows-server/performance/troubleshoot-unexpected-reboots-system-event-logs)
 - [Microsoft: interpret Kernel-Power event 41](https://learn.microsoft.com/en-us/troubleshoot/windows-client/performance/event-id-41-restart)
 - [Microsoft: bug-check code reference](https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/bug-check-code-reference2)
+
+## Enlarged bilingual result
+
+A second real run at producer eeaf858395cf171291faa31d0d85c3de206fdb4b verified manual 0x9F entry and a completed DRIVER_POWER_STATE_FAILURE explanation in bilingual mode, dark theme and text scale 2. The complete result was inspected at 1264×961 after resizing the same owned hidden window. It did not collect crash history or read dump contents. A background wheel message was accepted without visible scrolling, so no scroll verification is claimed. The exact bundle processes were absent and the owned desktop closed. The original rejected reuse attempt changed only an unreferenced launch-result log; all previously published evidence hashes still passed. The new run uses independent saved state.
+
+[Inspected result](../../captures/diagnostics-bilingual-explained.png) and [receipt](../../verification/diagnostics-bilingual-explained.json). The background wheel limitation remains open; the larger viewport is not evidence of minimum-size scrolling.

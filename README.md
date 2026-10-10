@@ -106,3 +106,5 @@ This [isolated display-tuple receipt](docs/captures/services-yue-dark-text2.json
 ![Blue-screen diagnostic initial viewport, bilingual dark theme at 800 by 600 and doubled text](docs/captures/diagnostics-minimum-bilingual.png)
 
 The complete title and lookback value are visible in this real rebuilt initial viewport. Lower content needs scrolling and is not established by this frame. See the [five-workspace evidence inventory](docs/captures/README.md#minimum-size-bilingual-inspection-workspaces) and its explicit limitations.
+
+The [enlarged bilingual stop-code result](docs/captures/diagnostics-bilingual-explained.png) separately verifies manual 0x9F input and its completed explanation at 1264×961. The new minimum-size guide image is publicly deployed; home, script, stylesheet, image and capability data matched the local build. See [delivery proof](docs/verification/inspection-guide-delivery.json).

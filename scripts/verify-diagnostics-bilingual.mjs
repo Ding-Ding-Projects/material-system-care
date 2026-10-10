@@ -1,0 +1,57 @@
+import assert from 'node:assert/strict';
+import {readFileSync,realpathSync} from 'node:fs';
+import {resolve,relative,isAbsolute} from 'node:path';
+import {createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
+
+// Retained-receipt consistency only. Pixel review is a separate observation.
+const [rootArg,runArg,bundleArg]=process.argv.slice(2);
+assert(rootArg&&runArg&&bundleArg,'Expected repository, run and bundle');
+const root=realpathSync(rootArg),run=realpathSync(runArg),bundle=realpathSync(bundleArg);
+const file=(base,name)=>{const p=realpathSync(resolve(base,name)),r=relative(base,p);assert(r&&!r.startsWith('..')&&!isAbsolute(r));return p;};
+const bytes=(base,name)=>readFileSync(file(base,name));
+const json=(base,name)=>JSON.parse(bytes(base,name).toString('utf8').replace(/^\uFEFF/,''));
+const hash=b=>createHash('sha256').update(b).digest('hex');
+const e=json(root,'docs/verification/diagnostics-bilingual-explained.json');
+assert.equal(e.version,1);
+assert.equal(e.route,'lowlevel-compatibility-http-native-cpp-hidden-desktop-with-native-resize-and-flutter-painted-export');
+assert.deepEqual(e.state,{screen:'diagnostics',language:'both',theme:'dark',textScale:2,reducedMotionRequested:true,width:1264,height:961,stopCode:'0x9F',result:'0x0000009F · DRIVER_POWER_STATE_FAILURE'});
+assert.deepEqual(e.interaction,{explicitStopCodeEntry:true,explanationCompleted:true,localEventsCollected:false,dumpContentsRead:false,backgroundWheelMovedViewport:false});
+assert.deepEqual(e.privacy,{pixelsInspected:true,privateDataVisible:false,visibleDesktopUntouched:true});
+assert.deepEqual(e.teardown,{ownedOnly:true,processesAbsent:true,desktopClosed:true});
+const required=['build-receipt.json','request.json','launch.json','window.json','children.json','before-wheel.json','wheel.json','capture-click.json','stop-code-input.json','before-resize.json','resize.json','children-expanded.json','all-inputs.json','window-close.json','teardown.json','output/diagnostics.png','output/diagnostics-001.png','output/diagnostics-002.png','output/diagnostics-003.png'];
+assert.deepEqual(Object.keys(e.files),required);
+for(const [p,digest] of Object.entries(e.files))assert.equal(hash(bytes(run,p)),digest);
+const build=json(run,'build-receipt.json');
+assert.equal(build.source,e.sourceCommit);assert.equal(build.bundleSha256,e.bundleSha256);
+assert.equal(build.sourceTree,build.indexTree);
+assert.equal(hash(bytes(bundle,'material_system_care.exe')),e.executableSha256);
+const manifest=json(bundle,'bundle-manifest.json');
+assert.equal(manifest.bundleSha256,e.bundleSha256);
+for(const f of manifest.files){const b=bytes(bundle,f.path);assert.equal(b.length,f.bytes);assert.equal(hash(b),f.sha256);}
+execFileSync('git',['cat-file','-e',e.sourceCommit+'^{commit}'],{cwd:root,windowsHide:true});
+const launch=json(run,'launch.json');
+assert(launch.created&&launch.pid===launch.process.pid);
+assert.equal(realpathSync(launch.process.executablePath),file(bundle,'material_system_care.exe'));
+assert.deepEqual(json(run,'request.json').arguments,['--diagnostics','--capture-frame='+resolve(run,'output/diagnostics.png').replaceAll('\\','/'),'--capture-on-input','--capture-language=both','--capture-theme=dark','--capture-text-scale=2','--capture-motion=reduced']);
+const child=json(run,'children.json').children[0];
+const inputs=json(run,'all-inputs.json');
+assert.equal(inputs.length,7);
+assert.deepEqual(inputs.map(x=>x.name),['mouse_click',...Array(4).fill('type_text'),'mouse_click','mouse_click']);
+assert.deepEqual(inputs.map(x=>x.params),[{hwnd:child.handle,x:280,y:620,button:'left'},...Array.from('0x9F',text=>({hwnd:child.handle,text})),{hwnd:child.handle,x:600,y:631,button:'left'},{hwnd:child.handle,x:1200,y:900,button:'left'}]);
+for(const i of inputs)assert.equal(i.result.client_ok,true);
+const expanded=json(run,'children-expanded.json').children[0];
+assert.equal(expanded.handle,child.handle);assert.equal(expanded.width,1264);assert.equal(expanded.height,961);
+const teardown=json(run,'teardown.json');
+assert.equal(teardown.processesAbsent,true);assert.equal(teardown.result.closed,true);assert.equal(teardown.result.name,launch.desktop);
+const raw=bytes(run,'output/diagnostics-003.png');
+assert.equal(e.capture.path,'docs/captures/diagnostics-bilingual-explained.png');
+assert.equal(e.capture.capturedAt,null);assert.equal(hash(raw),e.capture.sha256);assert.equal(raw.length,e.capture.bytes);
+assert(raw.equals(bytes(root,e.capture.path)));
+assert(raw.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10])));
+assert.equal(raw.readUInt32BE(16),1264);assert.equal(raw.readUInt32BE(20),961);
+let ended=false;
+for(let o=8;o<raw.length;){const end=o+12+raw.readUInt32BE(o);assert(end<=raw.length);const type=raw.toString('ascii',o+4,o+8);assert(!['tEXt','iTXt','zTXt','eXIf'].includes(type));o=end;if(type==='IEND'){assert.equal(o,raw.length);ended=true;break;}}
+assert(ended);
+assert(bytes(root,'docs/captures/README.md').toString().includes('(diagnostics-bilingual-explained.png)'));
+console.log(`PASS: bilingual stop-code receipts, unchanged frame and ${manifest.files.length} bundle files; pixel review remains separate.`);

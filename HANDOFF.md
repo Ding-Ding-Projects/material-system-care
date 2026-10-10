@@ -1,5 +1,11 @@
 # Implementation handoff
 
+## Bilingual interaction and public delivery
+
+A second real run at producer eeaf858395cf171291faa31d0d85c3de206fdb4b verified manual 0x9F entry and a completed DRIVER_POWER_STATE_FAILURE explanation in bilingual mode, dark theme and text scale 2. The complete result was inspected at 1264×961 after resizing the same owned hidden window. It did not collect crash history or read dump contents. A background wheel message was accepted without visible scrolling, so no scroll verification is claimed. The exact bundle processes were absent and the owned desktop closed. The original rejected reuse attempt changed only an unreferenced launch-result log; all previously published evidence hashes still passed. The new run uses independent saved state.
+
+Documentation deployment 38019049831 for 83b14dbd2e256c8e47a5527e52610d7b313ed9ef succeeded. Live home, guide script, stylesheet, diagnostic image and coverage data returned HTTP 200 and matched the local build. Public visibility, workflow/main Pages source and exact About homepage were read back. New package runs remain separate and pending.
+
 ## Minimum-size runtime evidence
 
 Root engine and desktop builds passed at eeaf858395cf171291faa31d0d85c3de206fdb4b. Five real idle workspaces were inspected at an 800×600 client area, English/Cantonese bilingual mode, dark theme, text scale 2 and requested reduced motion. All five complete titles are visible. Content extends below the viewport; these frames do not prove the lower controls, popups, full keyboard flow, physical DPI or motion. Background Page Down did not scroll the service view. Exact bundle processes were absent and all five owned desktops closed. The route used compatibility HTTP/native C++ with identity-checked native resizing and unchanged Flutter painted output, not native compositor capture. See docs/verification/inspection-minimum.json.

@@ -82,3 +82,6 @@
 
 - [x] Verify five rebuilt initial viewports at 800×600, bilingual dark theme and doubled text, with complete titles and owned teardown.
 - [ ] Verify lower controls, popup states, keyboard scrolling and the full physical-DPI matrix; initial frames do not establish these.
+
+- [x] Verify explicit stop-code entry and completed explanation in enlarged bilingual dark mode at 1264×961.
+- [x] Verify public delivery of the minimum-size diagnostic guide image and required guide assets.
