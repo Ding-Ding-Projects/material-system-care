@@ -20,9 +20,12 @@ public sealed class EngineContext
     public string DataRoot { get; }
     public bool IsElevated { get; }
     public bool IsFixture { get; }
+    public CleanupFixture? CleanupFixture { get; }
     private readonly string connectionString;
-    public EngineContext(string? dataRoot = null)
+    public EngineContext(string? dataRoot = null, CleanupFixture? cleanupFixture = null)
     {
+        CleanupFixture = cleanupFixture;
+        cleanupFixture?.Validate();
         IsFixture = dataRoot != null;
         DataRoot = Path.GetFullPath(dataRoot ?? Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MaterialSystemCare"));
         Directory.CreateDirectory(DataRoot);

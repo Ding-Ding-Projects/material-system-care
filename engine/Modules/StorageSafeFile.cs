@@ -77,7 +77,7 @@ internal static class StorageSafeFile
         }
         finally { Marshal.FreeHGlobal(buffer); }
     }
-    private sealed class DestinationLocks : IDisposable
+    internal sealed class DestinationLocks : IDisposable
     {
         private readonly List<(string Path, SafeFileHandle Handle)> handles = [];
         public DestinationLocks(string parent)

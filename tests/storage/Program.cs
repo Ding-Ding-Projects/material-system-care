@@ -7,6 +7,32 @@ Directory.CreateDirectory(sandbox);
 int passed = 0;
 try
 {
+    string launchRoot = Path.Combine(Path.GetTempPath(), "MaterialSystemCare-cleanup-fixtures", Guid.NewGuid().ToString("N"));
+    Directory.CreateDirectory(Path.Combine(launchRoot, "temp"));
+    Directory.CreateDirectory(Path.Combine(launchRoot, "records"));
+    try {
+        File.WriteAllText(Path.Combine(launchRoot, CleanupFixture.MarkerName), CleanupFixture.Marker);
+        using (var launch = new CleanupFixture(launchRoot)) {
+            var isolated = new EngineContext(launch.Records, launch);
+            var launchModules = new IEngineModule[] { new SystemModule(), (StorageModule)Activator.CreateInstance(typeof(StorageModule), System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic, null, [launch.Temp], null)! };
+            string request(string method) => JsonSerializer.Serialize(new { version = 1, id = "fixture", method, @params = new { } });
+            var denied = JsonDocument.Parse(await MaterialSystemCare.Engine.Program.DispatchAsync(request("system.snapshot"), isolated, launchModules, CancellationToken.None));
+            if (denied.RootElement.GetProperty("error").GetProperty("code").GetString() != "FIXTURE_METHOD_DENIED") throw new Exception("Fixture allowed host collection");
+            var ping = JsonDocument.Parse(await MaterialSystemCare.Engine.Program.DispatchAsync(request("engine.ping"), isolated, launchModules, CancellationToken.None));
+            if (!ping.RootElement.GetProperty("result").GetProperty("cleanupFixture").GetBoolean()) throw new Exception("Fixture identity missing");
+            try { Directory.Move(launch.Temp, launch.Temp + "-moved"); throw new Exception("Fixture directory was replaceable"); } catch (IOException) { }
+            try { File.WriteAllText(Path.Combine(launchRoot, CleanupFixture.MarkerName), "changed"); throw new Exception("Fixture marker was replaceable"); } catch (IOException) { }
+            launch.Validate();
+            Console.WriteLine("PASS fixture scope, restricted dispatch, identity and replacement locks");
+        }
+        File.WriteAllText(Path.Combine(launchRoot, CleanupFixture.MarkerName), "invalid");
+        try { using var invalid = new CleanupFixture(launchRoot); throw new Exception("Invalid marker accepted"); } catch (EngineException e) when (e.Code == "INVALID_FIXTURE") { }
+        try { using var invalid = new CleanupFixture(sandbox); throw new Exception("Outside scope accepted"); } catch (EngineException e) when (e.Code == "INVALID_FIXTURE") { }
+        Console.WriteLine("PASS invalid fixture marker and parent rejected");
+    } finally {
+        Microsoft.Data.Sqlite.SqliteConnection.ClearAllPools();
+        Directory.Delete(launchRoot, true);
+    }
     string selected = Path.Combine(sandbox, "selected"), temp = Path.Combine(sandbox, "temp"), data = Path.Combine(sandbox, "data");
     Directory.CreateDirectory(selected); Directory.CreateDirectory(temp); Directory.CreateDirectory(data);
     Directory.CreateDirectory(Path.Combine(selected, "empty"));

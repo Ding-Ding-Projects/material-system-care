@@ -16,7 +16,7 @@ public sealed class SystemModule : IEngineModule
                 JsonElement? buildReceipt = null;
                 var receiptPath = Path.Combine(AppContext.BaseDirectory, "build-receipt.json");
                 if (File.Exists(receiptPath)) buildReceipt = JsonSerializer.Deserialize<JsonElement>(await File.ReadAllTextAsync(receiptPath, cancellationToken));
-                return new { protocolVersion = 1, manifest, buildReceipt, fixture = context.IsFixture, elevated = context.IsElevated, capabilities = Program.Capabilities };
+                return new { protocolVersion = 1, manifest, buildReceipt, fixture = context.IsFixture, cleanupFixture = context.CleanupFixture != null, elevated = context.IsElevated, capabilities = context.CleanupFixture == null ? Program.Capabilities : CleanupFixture.Methods };
             case "settings.get":
                 if (parameters.TryGetProperty("key", out var key) && key.ValueKind == JsonValueKind.String) return await context.ReadSettingAsync(key.GetString()!, cancellationToken);
                 return await context.ReadSettingsAsync(cancellationToken);

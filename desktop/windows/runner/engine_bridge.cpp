@@ -3,6 +3,7 @@
 #include <flutter/standard_method_codec.h>
 #include <sddl.h>
 #include <shobjidl.h>
+#include <shellapi.h>
 #include <array>
 #include <algorithm>
 #include <stdexcept>
@@ -98,12 +99,32 @@ std::wstring CurrentPipe() {
 }
 }
 EngineBridge::EngineBridge(flutter::BinaryMessenger* messenger, HWND window):window_(window),pipe_(CurrentPipe()) {
+ std::wstring fixtureArguments;
+ int argc=0; auto argv=CommandLineToArgvW(GetCommandLineW(),&argc);
+ bool fixtureRequested=false; int fixtureIndex=-1;
+ if(!argv) throw std::runtime_error("Cannot read launch arguments");
+ for(int i=1;i<argc;i++) if(std::wstring(argv[i]).find(L"--cleanup-fixture")==0) {
+  fixtureRequested=true;
+  if(std::wstring(argv[i])!=L"--cleanup-fixture-root" || fixtureIndex!=-1 || i+1>=argc) { LocalFree(argv); throw std::runtime_error("Invalid cleanup fixture arguments"); }
+  fixtureIndex=i++;
+ }
+ if(fixtureRequested) {
+  std::wstring root=argv[fixtureIndex+1];
+  if(root.empty() || root.find(L'"')!=std::wstring::npos || root.back()==L'\\' || root.back()==L'/' || root.find(L"--")==0) { LocalFree(argv); throw std::runtime_error("Invalid cleanup fixture root"); }
+  GUID guid{}; wchar_t value[40]{};
+  if(FAILED(CoCreateGuid(&guid)) || !StringFromGUID2(guid,value,40)) { LocalFree(argv); throw std::runtime_error("Cannot isolate cleanup fixture transport"); }
+  std::wstring suffix;
+  for(wchar_t c:std::wstring(value)) if(iswxdigit(c)) suffix+=c;
+  pipe_+=L".fixture."+suffix;
+  fixtureArguments=L" --cleanup-fixture-root \""+root+L"\" --cleanup-fixture-pipe "+suffix;
+ }
+ LocalFree(argv);
  wchar_t executable[32768]{}; GetModuleFileNameW(nullptr,executable,32768);
  std::wstring base(executable); base.resize(base.find_last_of(L"\\/"));
  std::wstring engine=base+L"\\engine\\MaterialSystemCare.Engine.exe";
  if(GetFileAttributesW(engine.c_str())!=INVALID_FILE_ATTRIBUTES) {
   STARTUPINFOW startup{}; startup.cb=sizeof(startup); PROCESS_INFORMATION process{};
-  std::wstring command=L"\""+engine+L"\"";
+  std::wstring command=L"\""+engine+L"\""+fixtureArguments;
   if(CreateProcessW(engine.c_str(),command.data(),nullptr,nullptr,FALSE,CREATE_NO_WINDOW|CREATE_SUSPENDED,nullptr,base.c_str(),&startup,&process)) {
    process_=process.hProcess; process_id_=process.dwProcessId;
    job_=CreateJobObjectW(nullptr,nullptr); JOBOBJECT_EXTENDED_LIMIT_INFORMATION limits{}; limits.BasicLimitInformation.LimitFlags=JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE;

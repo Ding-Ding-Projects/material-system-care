@@ -17,7 +17,10 @@ import 'frame_capture.dart';
 import 'capture_preferences.dart';
 import 'wording_cache.dart';
 
+bool cleanupFixtureMode = false;
+
 void main(List<String> arguments) {
+  cleanupFixtureMode = arguments.any((a) => a.startsWith('--cleanup-fixture'));
   // Even a malformed capture request must never fall back to private settings.
   final captureRequested = arguments.any((a) => a.startsWith('--capture-'));
   final capturePreferences = parseCapturePreferences(arguments);
@@ -48,7 +51,7 @@ void main(List<String> arguments) {
     startFileUse: fileUse,
     startScheduledTasks: scheduledTasks,
     startServices: services,
-    isolatedCapture: captureRequested,
+    isolatedCapture: captureRequested || cleanupFixtureMode,
     capturePreferences: exporting ? capturePreferences! : const {},
   );
   runApp(
@@ -175,7 +178,18 @@ class _CareAppState extends State<CareApp> {
               settings['reducedMotion'] == true ||
               MediaQuery.disableAnimationsOf(context),
         ),
-        child: child!,
+        child: cleanupFixtureMode
+            ? Column(children: [
+                Material(
+                  color: Theme.of(context).colorScheme.tertiaryContainer,
+                  child: const SafeArea(bottom: false, child: Padding(
+                    padding: EdgeInsets.all(8),
+                    child: Text('Disposable cleanup verification only · 僅供即棄清理驗證', textAlign: TextAlign.center),
+                  )),
+                ),
+                Expanded(child: child!),
+              ])
+            : child!,
       ),
       themeMode: mode == 'dark'
           ? ThemeMode.dark
@@ -198,7 +212,12 @@ class _CareAppState extends State<CareApp> {
       ),
       home: CopyScope(
         preferences: settings,
-        child: widget.startDiagnostics
+        child: cleanupFixtureMode
+            ? Scaffold(
+                appBar: AppBar(title: const Text('Cleanup verification · 清理驗證')),
+                body: Padding(padding: const EdgeInsets.all(24), child: WorkflowPage(index: 1, title: 'Disposable cleanup · 即棄清理')),
+              )
+            : widget.startDiagnostics
             ? CrashDiagnosticsPage(invoke: Engine.invoke)
             : widget.startProcesses
             ? ProcessesPage(invoke: Engine.invoke)
@@ -273,7 +292,7 @@ class Workspace extends StatefulWidget {
 }
 
 class _WorkspaceState extends State<Workspace> {
-  int selected = 0;
+  int selected = cleanupFixtureMode ? 1 : 0;
   String name(int i) => localize(context, destinations[i]);
   @override
   Widget build(BuildContext context) {
@@ -705,7 +724,7 @@ class _WorkflowPageState extends State<WorkflowPage> {
                   cancelRequested ? 'Cancellation requested…' : 'Cancel scan',
                 ),
               ),
-            FilledButton.icon(
+            if (!cleanupFixtureMode) FilledButton.icon(
               onPressed: busy
                   ? null
                   : () => widget.index == 1
@@ -722,7 +741,7 @@ class _WorkflowPageState extends State<WorkflowPage> {
                 icon: Icon(Icons.manage_search),
                 label: UiText('Scan recoverable cleanup'),
               ),
-            if (widget.index == 1)
+            if (widget.index == 1 && !cleanupFixtureMode)
               OutlinedButton(
                 onPressed: busy
                     ? null
@@ -770,7 +789,7 @@ class _WorkflowPageState extends State<WorkflowPage> {
                 onPressed: busy ? null : () => load('cleanup.history'),
                 child: UiText('Recovery history'),
               ),
-            if (widget.index == 1)
+            if (widget.index == 1 && !cleanupFixtureMode)
               OutlinedButton.icon(
                 onPressed: busy
                     ? null
@@ -819,7 +838,7 @@ class _WorkflowPageState extends State<WorkflowPage> {
               ),
           ],
         ),
-        if (widget.index == 1)
+        if (widget.index == 1 && !cleanupFixtureMode)
           Padding(
             padding: EdgeInsets.only(top: 12),
             child: TextField(
