@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "003e9cdc499956d68e9ddcba2747866e81fff070",
+  "fixtureSource": "055478b5be9eb8dea54b25c42eb73ea23b5f18ea",
+  "bundleSha256": "4caee096379eec48bacd2093cca299596b8f539d67e6a48907b8e4302145cff7",
+  "scope": "owned-file-holder-inventory-and-refresh-after-release",
+  "route": "lowlevel-hidden-desktop-flutter-frame-export",
+  "publishedPixels": false,
+  "withheldReason": "Frames contain local file paths and runtime process identifiers.",
+  "captureInstant": null,
+  "observedAt": "2026-10-10T02:17:10.991Z",
+  "files": {
+    "build-receipt.json": {
+      "sha256": "dba179ed5caacfba63c2b5e68c1f778a3842344855ef9d56af0e8a91db698da7",
+      "bytes": 544
+    },
+    "request.json": {
+      "sha256": "f862748d9dbec0f39649d9b489ff0d9d5f38fa44e71d11a513be0a773ee805b4",
+      "bytes": 832
+    },
+    "launch.json": {
+      "sha256": "a1a85907ccd3d0f66074f03645666daa33db27c9839b9c029fe26fa99b55b010",
+      "bytes": 905
+    },
+    "window.json": {
+      "sha256": "694662483abfaaf8543be8afe888c30b50fd8035cacb1ec80a02fc0232bdb75d",
+      "bytes": 588
+    },
+    "children.json": {
+      "sha256": "ee486744f4295bfe634ab47204d510070d177cb29f4ff5fe05b8d326388d0b56",
+      "bytes": 239
+    },
+    "inputs.json": {
+      "sha256": "0266d1c106beed79f06739023a0e3ead54d63797b9d02384c7f93a385d6265a5",
+      "bytes": 61457
+    },
+    "parent-check.json": {
+      "sha256": "d17a89ff1fa61a0a5609b57a80be7f082997565b9554cddf846c281ee8632acb",
+      "bytes": 55
+    },
+    "fixture-build.json": {
+      "sha256": "6db873a3ee351fd1a568e197d16148e52f77a0326ac96cc153bf7b408ebbe584",
+      "bytes": 260
+    },
+    "fixture-launch.json": {
+      "sha256": "171df9047984b0ff50eb9a34007efd310f455db28d661c83abe7fcd11009cf14",
+      "bytes": 662
+    },
+    "fixture-identity-before.json": {
+      "sha256": "4b4259142da62868c6bdf7d6c6d58acfa78124ef0b2a54f4aad23caecc419937",
+      "bytes": 314
+    },
+    "fixture-identity-after-query.json": {
+      "sha256": "0c06015657fbb8d58aaf797b4c2fc3e89cf541d2c41d51cedfdddbaef9e11c4c",
+      "bytes": 314
+    },
+    "fixture-state.json": {
+      "sha256": "645ce6c3fe9b8ae1ff126e5a21e44e84066afd31aa092533f9d6103e92929378",
+      "bytes": 383
+    },
+    "fixture-closed.json": {
+      "sha256": "9552bbd2cef3186824479ba45f1b12cea3ff10661fa4ff39b0aa577b91ac5e96",
+      "bytes": 205
+    },
+    "teardown.json": {
+      "sha256": "5f0b2b2e32820b4e968c6352c87fdb2d96e5f12047516e0e02209cb7a3979a90",
+      "bytes": 239
+    },
+    "output/file-use-004.png": {
+      "sha256": "64b6d32fcecdd6714d198529d4ba6ffdbfdc8ed8cf459f0e30c0f03e51077e0b",
+      "bytes": 44708
+    },
+    "output/file-use-005.png": {
+      "sha256": "635269dcf867bb92fd666fd368da814792c7a35f5bbb57cea87cff6cc853ea04",
+      "bytes": 42240
+    },
+    "fixture-windows.json": {
+      "sha256": "e289e4ffb68a5f9efcc57062ddb3e30d79a1bef5a94094291a0f3da2f33d7b04",
+      "bytes": 1966
+    }
+  },
+  "review": {
+    "fullResultPathInspected": true,
+    "populatedOwnerInspected": true,
+    "displayedPidMatchesOwnedFixture": true,
+    "identityStableAcrossQuery": true,
+    "emptyAfterOwnedReleaseInspected": true,
+    "fixtureFileRetainedUnchanged": true,
+    "ownedTeardown": true,
+    "nativePicker": false,
+    "nativeCompositor": false,
+    "fullAppearanceMatrix": false
+  },
+  "limitations": [
+    "Pixel inspection establishes visible content; the verifier validates supplied declarations and byte/identity consistency, not image recognition.",
+    "One exclusive owned file holder was observed. This is not an exhaustive handle inventory or a general unlock capability.",
+    "The holder was closed by the verification route, not by a product action.",
+    "The five-minute timer bounds the running fixture window under normal message processing, not total startup or blocked I/O duration.",
+    "Native picker, multiple owners, service owners, busy/error paths and full appearance/accessibility coverage remain unverified."
+  ]
+}

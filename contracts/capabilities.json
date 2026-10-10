@@ -6282,7 +6282,7 @@
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
       "status": "unverified",
-      "statusReason": "Read-only workspace, focused widgets and one owned-fixture advisory-empty interaction are evidenced. Complete lock inventory, mutation parity and full interface coverage remain unverified.",
+      "statusReason": "Read-only workspace, focused widgets and owned-file empty/populated/after-release interactions are evidenced. Complete handle inventory, mutation parity and full interface coverage remain unverified.",
       "intendedPage": "Files",
       "implementation": [
         "engine/Modules/ProtectionModule.cs",
@@ -6293,12 +6293,13 @@
       ],
       "evidence": [
         "docs/captures/file-use-idle.json",
-        "docs/verification/file-use.json"
+        "docs/verification/file-use.json",
+        "docs/verification/file-use-holder.json"
       ],
       "documentation": "docs/catalogue/unlocker.md",
       "implementationCoverage": "partial",
       "implementedEquivalent": "files.lockOwners",
-      "remainingGap": "Restart Manager reports affected processes, not every handle. No handle closure or unlock mutation. Native picker, populated owner records and full per-surface contracts remain unverified.",
+      "remainingGap": "Restart Manager reports affected processes, not every handle. No handle closure or unlock mutation. Native picker, multiple/service owners and full per-surface contracts remain unverified.",
       "sourceBindings": [
         {
           "commit": "003e9cdc499956d68e9ddcba2747866e81fff070",

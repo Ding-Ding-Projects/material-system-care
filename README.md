@@ -78,4 +78,4 @@ Graceful-close review was also exercised against one owned disposable window: ca
 
 ![Built File use workspace before file selection](docs/captures/file-use-idle.png)
 
-The [File use frame receipt](docs/captures/file-use-idle.json) binds this idle painted frame to source and bundle bytes. It is render-only evidence. A separate private result frame records an owned fixture query with an advisory empty result; it is not published because it contains a local path. Native picker interaction, populated records and the complete appearance matrix remain unverified.
+The [File use frame receipt](docs/captures/file-use-idle.json) binds this idle painted frame to source and bundle bytes. It is render-only evidence. A separate private result frame records an owned fixture query with an advisory empty result; it is not published because it contains a local path. A subsequent [owned-holder exercise](docs/verification/file-use-holder.json) verified one populated result and its removal on refresh after the verification route released the holder. Native picker interaction, multiple/service owners and the complete appearance matrix remain unverified.
