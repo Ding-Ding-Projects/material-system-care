@@ -45,3 +45,9 @@ The interface source a5aaea8b27946e958d2de49bad06fbbec970a4f0 and capture docume
 The main checkout was clean before this checkpoint. Ten existing worktrees and eleven local branches remain retained for the active broad goal; no stash or cleanup deletion was created. Global instruction issues 49, 45, 25 and 22 were read, with no unrelated backlog adopted. The canonical complete-documentation rule is preserved in c770ae0; its latest remote main is 66d1f12822110e8fa752489a55d83be64a7e06fc. Its full historical sweep was not wholly green.
 
 Next: verify keyboard and lower-control scrolling at 800x600, finish the complete interface/state/motion matrix, continue the supported suite capabilities and installer lifecycle. The goal remains active and incomplete.
+
+## Resource closeout
+
+The user requested preservation and task-owned cleanup with 7% account allowance remaining. New implementation stopped. The new Windows keyboard regression passes for service, scheduled-task and process views after Tab then Page Down at 800x600 with doubled bilingual text. The real hidden service view moved partly, but complete lower-control runtime verification remains unfinished. Its owned process exited and named desktop closed.
+
+The final read-only publication audit verified the forty-frame gallery and all three newer article attachments with exact image hashes. No publication omission was found in those frames. The broad goal remains active and incomplete. Existing branches and worktrees are inventoried for archive-backed cleanup; retain any unmerged recovery state.
