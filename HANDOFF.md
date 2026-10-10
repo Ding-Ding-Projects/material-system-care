@@ -1,5 +1,13 @@
 # Implementation handoff
 
+## Protection status and current public gallery
+
+Integrated source `6803337b701c5be2f945e879ff5449223e84b2c6` passed the exact root desktop build and live read-only protection inspection at 1280×1000 and 800×600 with doubled bilingual text, dark theme and reduced motion. Explicit refresh, loading/completion, receipt/provider timestamps, missing values, three firewall profiles, Domain expansion and repeated/reverse paging were inspected. Twenty-two selected frames and twenty-four supporting hashes passed the narrow verifier. Populated host status stays private. Owned processes and desktops were closed. Full appearance, keyboard order, physical DPI and unavailable responses remain pending.
+
+Public source `537a40b52ab85f003cf5ad4abb4abe4e77c71c02`, successful run `38087617108`, delivered 770 of 770 matching files, 180 complete articles and 42 gallery images. Repository visibility, workflow deployment and exact About homepage were read back. The gallery was inspected at 1440×1000, 390×844 and 320×800: all images loaded, observed browser errors and unnamed inspected controls were zero, and Tab focus was visible. Browser processes, port and hidden desktop closed; profile disposal remains unverified after the earlier automatic approval rejection. An extra caption inspection overwrote one private ownership snapshot and used a wider actual layout, so it does not count as complete ownership or minimum-width proof. See `docs/verification/gallery-live-delivery.json`.
+
+中文：防護狀態已完成兩種尺寸嘅限定實際檢查，完整外觀及無障礙仍未完成。公開文件版本有 180 篇完整文章同 42 張圖，770 個檔案全部核對一致。圖庫三種尺寸載入正常，專用瀏覽器已關閉；私人設定檔仍保留，因此唔聲稱完整生命週期驗證。
+
 ## Machine overview and current painted evidence
 
 Integrated source `e8e692bb386f9a7eb0cf4746fc3b044822bafd8b` passed its exact root desktop build, two independent source reviews and real bilingual dark/reduced-motion checks at normal size and 800×600 with doubled text. Explicit refresh and a second new sample, memory values, expanded drive details, repeated Page Down and reverse movement were inspected. All owned bundle processes and desktops were closed. Host measurements remain private. Two minimum-size idle/control frames were staged byte-for-byte and validated through the explicit version-2 Flutter promotion contract, including original sidecars, source/build binding, input receipts, privacy and teardown. Their scope excludes native compositor, native stderr and browser observation.

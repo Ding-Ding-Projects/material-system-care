@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "537a40b52ab85f003cf5ad4abb4abe4e77c71c02",
+  "workflowRun": "https://github.com/Ding-Ding-Projects/material-system-care/actions/runs/38087617108",
+  "home": "https://ding-ding-projects.github.io/material-system-care/",
+  "checkedAt": "2026-10-10T21:29:30.365077+00:00",
+  "fileCount": 770,
+  "matchingFileCount": 770,
+  "failures": [],
+  "completeArticles": 180,
+  "galleryImages": 42,
+  "repositoryPublic": true,
+  "homepageMatches": true,
+  "deployment": "GitHub Actions from main",
+  "browser": {
+    "route": "persistent Lowlevel hidden desktop with isolated Edge guest profile and exact CDP target",
+    "galleryTuples": [{"width": 1440, "height": 1000}, {"width": 390, "height": 844}, {"width": 320, "height": 800}],
+    "language": "both",
+    "theme": "light",
+    "motion": "reduced",
+    "all42ImagesLoadedAtEveryTuple": true,
+    "horizontalBodyOverflow": false,
+    "observedConsoleErrors": 0,
+    "observedExceptions": 0,
+    "observedResourceFailures": 0,
+    "unnamedInspectedControls": 0,
+    "visibleTabFocus": true,
+    "ownedProcessesAbsent": true,
+    "ownedPortClosed": true,
+    "hiddenDesktopClosed": true,
+    "profileRetained": true,
+    "completeCanonicalLifecycle": false
+  },
+  "limits": [
+    "The profile remains retained after an earlier automatic approval rejection of profile disposal; this is not a complete canonical lifecycle audit.",
+    "An additional caption inspection overwrote one private ownership snapshot. Target receipts remain preserved, but that extra pass is excluded from complete ownership proof.",
+    "The separate caption inspection used a wider actual layout and is not minimum-width evidence.",
+    "This gallery sample does not establish all article interaction paths, full accessibility or the complete appearance matrix.",
+    "No final installer download or production release is claimed."
+  ]
+}
