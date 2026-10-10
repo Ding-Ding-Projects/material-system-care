@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "id": "services-idle-en-light-1264x681",
+  "route": "lowlevel-hidden-desktop-flutter-frame-export",
+  "scope": "render-only",
+  "sourceCommit": "74b1f41232e987687524c0aa1ef228ede9e06ed8",
+  "bundleSha256": "29da7244801d81d4102f862ebcf35f2200b1683536b4cfa92239d44d48b1fb81",
+  "executableSha256": "466e9e330e4307321ebcd0cc88c2c89b8540ea7c078db2ebbe2178668287b178",
+  "buildReceiptSha256": "98a440567315cd214342e52342fe2e9e0087fd89ebab0af21949dc07d2563017",
+  "artifactBuiltAt": "2026-10-10T02:51:35.6282491Z",
+  "capture": {
+    "path": "docs/captures/services-idle.png",
+    "sha256": "d5357efae3bf04479012b351d444b4fcf7a73963028d377656dbad61009dd8bd",
+    "bytes": 30192,
+    "width": 1264,
+    "height": 681,
+    "capturedAt": null,
+    "observedAt": "2026-10-10T02:52:05.386Z"
+  },
+  "state": {
+    "screen": "services",
+    "state": "idle",
+    "language": "en",
+    "theme": "light",
+    "scale": 1,
+    "preferences": "isolated-defaults",
+    "data": "No service records collected in this frame"
+  },
+  "privacy": {
+    "visibleDesktopUntouched": true,
+    "personalSettingsLoaded": false,
+    "pixelsInspected": true,
+    "sensitiveDataFound": false,
+    "handEdited": false
+  },
+  "verification": {
+    "nativeCompositor": false,
+    "inputHandling": false,
+    "engineCollection": false,
+    "fullLayoutMatrix": false
+  },
+  "limitations": [
+    "Actual painted Flutter frame, not native compositor capture.",
+    "This idle frame does not establish service collection or complete interface coverage.",
+    "Exact capture instant unavailable; observation time recorded separately."
+  ]
+}

@@ -1,8 +1,8 @@
 # Continuation
 
-## Service review source checkpoint
+## Service review runtime milestone
 
-Tools > Services now exposes existing read-only engine records through explicit refresh, text/state filters and expandable factual metadata. Singleton PowerShell output is normalized; duplicate identities and invalid responses are rejected without stale records. Four focused widget checks passed. Root builds, actual service collection and captures remain pending. No service mutation was added.
+Root engine and desktop builds passed at 74b1f41232e987687524c0aa1ef228ede9e06ed8. Four focused widget checks passed. A genuine hidden-desktop run collected 294 service records, filtered the loaded set, expanded one record and excluded that stopped record under the Running filter. The observed count is account- and time-specific, not an exhaustive access guarantee. All owned bundle processes were absent and the hidden desktop closed. Populated frames remain private; only the inspected idle image is public. The narrow verifier checked 210 bundle files and rejected an altered input-receipt hash before restored evidence passed. Complete language, accessibility, appearance and export contracts remain unverified.
 
 ## Live guide verification
 

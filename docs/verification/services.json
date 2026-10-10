@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "74b1f41232e987687524c0aa1ef228ede9e06ed8",
+  "scope": "read-only-service-review",
+  "route": "lowlevel-hidden-desktop-flutter-frame-export",
+  "publishedPixels": false,
+  "withheldReason": "Result frames contain local service names and identifiers.",
+  "captureInstant": null,
+  "observedAt": "2026-10-10T02:52:05.387Z",
+  "files": {
+    "inputs.json": {
+      "sha256": "d3916d4bd96a4dacfa12018aedc0796e95e3e8812b5a9f20216098cc1cc0ec92",
+      "bytes": 4926
+    },
+    "children.json": {
+      "sha256": "52a8c3c3f44ac4bc2134e955c43b4f700f1ff7ec9c356e84c54108b595a7e28a",
+      "bytes": 238
+    },
+    "launch.json": {
+      "sha256": "76b9bdb35bfaac5ccdb4bfff6d6575ba23a8db998f96c039725b9da67650575e",
+      "bytes": 899
+    },
+    "teardown.json": {
+      "sha256": "3ad7df33f7cca41c2cb4c270f562190cec962ebfb9f30740cf7f4ed8144a678b",
+      "bytes": 260
+    },
+    "output/services-001.png": {
+      "sha256": "5993300c7165f19bf76c247296a5b86c55ec748659543ba32ac303ea2a593149",
+      "bytes": 46965
+    },
+    "output/services-003.png": {
+      "sha256": "f9e464daeeb20b24651cb8b6d7df1321077abdf763599e051e8793a0c1058a26",
+      "bytes": 39192
+    },
+    "output/services-004.png": {
+      "sha256": "393e78b86ae6e2cbff972146e5f22cc392fdf3e266db2bd6f0ef7a39ec64340c",
+      "bytes": 45704
+    },
+    "output/services-006.png": {
+      "sha256": "eeaa7bce9bfe22ca9a82e6608e59728e4432ae21e91b83577e56425805afee6f",
+      "bytes": 36232
+    }
+  },
+  "review": {
+    "completedCollection": true,
+    "expandedRecord": true,
+    "loadedTextFilter": true,
+    "loadedStateFilter": true,
+    "ownedTeardown": true,
+    "serviceMutation": false,
+    "nativeCompositor": false,
+    "fullLayoutMatrix": false
+  },
+  "limitations": [
+    "Pixel review is a declaration, separate from receipt validation.",
+    "Collected states are point-in-time observations, not advice to disable services.",
+    "Full language, scale, keyboard and appearance coverage remains unverified."
+  ],
+  "observedRecordCount": 294
+}

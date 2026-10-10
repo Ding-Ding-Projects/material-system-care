@@ -27,3 +27,5 @@ Coverage structure is checked by `node tests/coverage/catalogue.test.mjs`. Passi
 ## Scheduled-task implementation evidence
 
 The independent tasks.list workflow is available under Tools > Scheduled tasks. See [behavior and bounds](../features/management/scheduled-tasks.md), [idle frame](../captures/scheduled-tasks-idle.json) and [runtime receipt](../verification/scheduled-tasks.json). The row remains partially implemented and unverified for full parity.
+
+Service review now has a dedicated read-only workspace under Tools > Services. See [behavior](../features/management/services.md) and [runtime evidence](../verification/services.json). Full parity remains unverified.

@@ -837,25 +837,44 @@
       ],
       "safetyBoundary": "Analyze first; require explicit target confirmation before changes; record factual outcome; keep user data local.",
       "status": "unverified",
-      "statusReason": "Source-linked independent subset. Focused fixture assertions are referenced where present; no reviewed built interaction or capture proves delivery.",
+      "statusReason": "Read-only service workspace and real collection, expansion, text/state filtering are evidenced. Complete per-surface contracts remain unverified.",
       "intendedPage": "Performance",
       "implementation": [
-        "engine/Modules/ManagementModule.cs"
+        "engine/Modules/ManagementModule.cs",
+        "desktop/lib/services.dart"
       ],
-      "tests": [],
-      "evidence": [],
+      "tests": [
+        "desktop/test/services_test.dart"
+      ],
+      "evidence": [
+        "docs/captures/services-idle.json",
+        "docs/verification/services.json"
+      ],
       "documentation": "docs/catalogue/asc-speed.md",
       "implementationCoverage": "partial",
       "implementedEquivalent": "services.list",
-      "remainingGap": "Read-only service inventory; no service stop, disable, profile or boost operation.",
+      "remainingGap": "Read-only service metadata with no service mutation. Full language, appearance, export and accessibility contracts remain unverified.",
       "sourceBindings": [
         {
-          "commit": "f890a84ae27a97628fe001fa69d34ed47af0563a",
+          "commit": "74b1f41232e987687524c0aa1ef228ede9e06ed8",
           "path": "engine/Modules/ManagementModule.cs",
           "role": "implementation",
           "symbol": "services.list"
+        },
+        {
+          "commit": "74b1f41232e987687524c0aa1ef228ede9e06ed8",
+          "path": "desktop/lib/services.dart",
+          "role": "interface",
+          "symbol": "ServicesPage"
+        },
+        {
+          "commit": "74b1f41232e987687524c0aa1ef228ede9e06ed8",
+          "path": "desktop/test/services_test.dart",
+          "role": "test",
+          "symbol": "focused service widget fixtures"
         }
-      ]
+      ],
+      "actualNavigation": "Tools > Services"
     },
     {
       "id": "asc-speed.06",

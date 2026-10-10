@@ -67,4 +67,5 @@
 
 - [x] Inspect the deployed scheduled-task guide at desktop and emulated mobile sizes and verify source/image bytes. Keyboard paths, the full matrix and complete canonical teardown proof remain separate.
 
-- [ ] Verify the dedicated service review workspace in the real build and finish its per-surface contracts. Four focused widget checks passed.
+- [x] Verify service collection, text/state filtering, expanded metadata and owned teardown in the real build.
+- [ ] Finish service per-surface language, accessibility, appearance and export contracts.
