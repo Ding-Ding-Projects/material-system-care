@@ -1,0 +1,213 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "d5a7c6908513baeb7fbe38d1c182c0ff5bd16ca9",
+  "url": "https://ding-ding-projects.github.io/material-system-care/#/docs/tasks",
+  "route": "lowlevel-compatibility-http-cdp-page-capture",
+  "sourceVerified": true,
+  "rendering": "live GitHub Pages deployment",
+  "language": "en",
+  "theme": "light",
+  "scale": 1,
+  "captures": [
+    {
+      "path": "docs/captures/site-scheduled-tasks-desktop.png",
+      "sha256": "ee6d9c4e230883f57e9eb13926c9ffbc73b6169f761d4679b532780a66512702",
+      "bytes": 151647,
+      "width": 1440,
+      "height": 1000,
+      "viewport": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 1000,
+        "mobile": false
+      },
+      "captureStartedAt": "2026-10-10T02:46:15.273Z",
+      "capturedAt": "2026-10-10T02:46:15.324Z",
+      "observedCounts": {
+        "consoleErrors": 0,
+        "exceptions": 0,
+        "logErrors": 0,
+        "resourceFailures": 0,
+        "badResponses": 0,
+        "unexpectedThirdParty": 0
+      },
+      "body": {
+        "clientWidth": 1425,
+        "scrollWidth": 1425,
+        "heading": "Scheduled tasks",
+        "images": [
+          {
+            "complete": true,
+            "width": 1264,
+            "height": 681
+          }
+        ]
+      },
+      "accessibility": {
+        "rootFound": true,
+        "controlCount": 19,
+        "unnamed": [],
+        "keyboardVerified": false
+      }
+    },
+    {
+      "path": "docs/captures/site-scheduled-tasks-mobile.png",
+      "sha256": "62162b52e56615e6b7b86886ff3956e5582a28b987acf4235284a72b649f3035",
+      "bytes": 45200,
+      "width": 390,
+      "height": 844,
+      "viewport": {
+        "name": "mobile",
+        "width": 390,
+        "height": 844,
+        "mobile": true
+      },
+      "captureStartedAt": "2026-10-10T02:46:19.055Z",
+      "capturedAt": "2026-10-10T02:46:19.087Z",
+      "observedCounts": {
+        "consoleErrors": 0,
+        "exceptions": 0,
+        "logErrors": 0,
+        "resourceFailures": 0,
+        "badResponses": 0,
+        "unexpectedThirdParty": 0
+      },
+      "body": {
+        "clientWidth": 390,
+        "scrollWidth": 390,
+        "heading": "Scheduled tasks",
+        "images": [
+          {
+            "complete": true,
+            "width": 1264,
+            "height": 681
+          }
+        ]
+      },
+      "accessibility": {
+        "rootFound": true,
+        "controlCount": 19,
+        "unnamed": [],
+        "keyboardVerified": false
+      }
+    }
+  ],
+  "privacy": {
+    "pixelsInspected": true,
+    "sensitiveDataFound": false,
+    "visibleDesktopUntouched": true,
+    "isolatedGuestProfile": true
+  },
+  "teardown": {
+    "normalCloseMessagePosted": true,
+    "rootAbsent": true,
+    "exactEdgeProfileProcessesAbsent": true,
+    "cdpPortAbsent": true,
+    "desktopWindowsAbsent": true,
+    "desktopClosed": true,
+    "profileRetained": true,
+    "genericLifecycleVerdict": "UNKNOWN_PROCESS_TREE"
+  },
+  "limitations": [
+    "Page-only CDP pixels, not native compositor or physical mobile-device evidence.",
+    "The mobile initial viewport shows navigation; the guide article is below the fold.",
+    "Accessible-name and root checks do not establish keyboard paths, focus appearance or full accessibility.",
+    "Only English/light/scale 1 at two viewports was inspected; the full layout matrix remains unverified.",
+    "Generic cleanup could not reconstruct detached-child ownership after the saved root exited. Product-specific checks verified root, exact Edge profile processes, listening port and desktop windows absent. The isolated profile remains retained privately.",
+    "The canonical full site-audit receipt is not claimed; its keyboard and profile-removal conditions are incomplete."
+  ],
+  "files": {
+    "absence-final.json": {
+      "sha256": "8ac3dd716ef00b85e79fae22e9e1c604364d2c3b62d615ce47ec5ecfe26db2a3",
+      "bytes": 113
+    },
+    "cleanup-final.json": {
+      "sha256": "72e32318f29c627d67deb3e6141550479cdca8d50ae71c7e9f859a0fb75cab10",
+      "bytes": 177
+    },
+    "delivery.json": {
+      "sha256": "70a23e742892e613d48bdc9e0f62ae50329c6e2b9ae59d8c2fd5985320137a37",
+      "bytes": 822
+    },
+    "desktop-close.json": {
+      "sha256": "4db1034b108fc39c8f3e30a60266836e8cbc582f727b3248fd588ca9ace9bb5f",
+      "bytes": 132
+    },
+    "desktop-raw.json": {
+      "sha256": "2e618036b6e1019384fb9f936916fd4fb873c1d3b646a61d4b5ac96b583349f6",
+      "bytes": 378755
+    },
+    "desktop-summary.json": {
+      "sha256": "c993373cbd676cda3bd437e815e9b03d146c3762bee1351ad4ca71748aa38f37",
+      "bytes": 1139
+    },
+    "mobile-raw.json": {
+      "sha256": "8b50e0fe38ea1c65e0f62ff3e3ff985fa532fb2e74de9c3dd3b90593333f8f5a",
+      "bytes": 386239
+    },
+    "mobile-summary.json": {
+      "sha256": "ed0969fb5f63c31059e4b5d4fe3b127b767c3dcea2d83a3b23fa9c14ca5bc5e1",
+      "bytes": 1129
+    },
+    "ownership-0.json": {
+      "sha256": "465858118d8c3c28d4d68f0ae41901ad38a126c20cc01b8b45b3e166aecd5920",
+      "bytes": 159
+    },
+    "ownership-1.json": {
+      "sha256": "465858118d8c3c28d4d68f0ae41901ad38a126c20cc01b8b45b3e166aecd5920",
+      "bytes": 159
+    },
+    "ownership-2.json": {
+      "sha256": "465858118d8c3c28d4d68f0ae41901ad38a126c20cc01b8b45b3e166aecd5920",
+      "bytes": 159
+    },
+    "ownership-3.json": {
+      "sha256": "465858118d8c3c28d4d68f0ae41901ad38a126c20cc01b8b45b3e166aecd5920",
+      "bytes": 159
+    },
+    "ownership-4.json": {
+      "sha256": "465858118d8c3c28d4d68f0ae41901ad38a126c20cc01b8b45b3e166aecd5920",
+      "bytes": 159
+    },
+    "ownership-5.json": {
+      "sha256": "465858118d8c3c28d4d68f0ae41901ad38a126c20cc01b8b45b3e166aecd5920",
+      "bytes": 159
+    },
+    "ownership-6.json": {
+      "sha256": "465858118d8c3c28d4d68f0ae41901ad38a126c20cc01b8b45b3e166aecd5920",
+      "bytes": 159
+    },
+    "target-0-preflight.json": {
+      "sha256": "a5b3eed1c1fa46ad6a2d015ae29e11d25a7000459b919567d978e086ed0322f1",
+      "bytes": 768
+    },
+    "target-1-interaction.json": {
+      "sha256": "45e091b0e2fe6c586fa450d0ca0281ee867c15fc9684e3652deed880570172c5",
+      "bytes": 770
+    },
+    "target-2-capture.json": {
+      "sha256": "7edfc97aee6b961ee8f3aea8cfbf5f1f4b08e8aa856702fcf278b06ebfcdd611",
+      "bytes": 766
+    },
+    "target-3-final.json": {
+      "sha256": "18b9860d9343651087299632d731b92fbe991b2a8d4f57738aeb6283268dfd79",
+      "bytes": 764
+    },
+    "target-4-interaction.json": {
+      "sha256": "25c95937afcf6b6a18aef04a019823732d584953d52dc9498ef4e64c105fa21c",
+      "bytes": 770
+    },
+    "target-5-capture.json": {
+      "sha256": "ad295e4a622e0571bde64108cf52b5c3a0a4fb45a4f43dfca8c2e8f11e9abe14",
+      "bytes": 766
+    },
+    "target-6-final.json": {
+      "sha256": "a1e53d3544e758678131c3a146eb8c0e07304df5f4f505a2bcf3bf03e05a707c",
+      "bytes": 764
+    },
+    "windows-after-close.json": {
+      "sha256": "24b7b46d4a5282549940b59c556fc749b148d7af42e7e4819ee726de6badf011",
+      "bytes": 118
+    }
+  }
+}

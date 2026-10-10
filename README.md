@@ -84,3 +84,7 @@ The [File use frame receipt](docs/captures/file-use-idle.json) binds this idle p
 ![Built scheduled-task workspace before collection](docs/captures/scheduled-tasks-idle.png)
 
 The [scheduled-task frame receipt](docs/captures/scheduled-tasks-idle.json) binds this render-only idle image to the actual producer. A separate [private runtime receipt](docs/verification/scheduled-tasks.json) records real collection, record expansion and filtering. Local task records remain private; complete appearance and accessibility coverage remains unverified.
+
+![Live scheduled-task guide at desktop size](docs/captures/site-scheduled-tasks-desktop.png)
+
+The [live guide receipt](docs/verification/site-scheduled-tasks.json) records inspected desktop and [emulated mobile](docs/captures/site-scheduled-tasks-mobile.png) page pixels from the verified public deployment. These are partial page-level observations, not a complete accessibility or layout verdict.

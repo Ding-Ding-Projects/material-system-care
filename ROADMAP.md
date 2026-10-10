@@ -64,3 +64,5 @@
 
 - [x] Deploy the project-path-compatible static output to GitHub Pages and verify the live home page, assets, deployment source, and About homepage at source `66880b5904726afb5f2444950964e8b147d5d929`.
 - [ ] Capture genuine current desktop and public documentation screens through the restored isolated Lowlevel route.
+
+- [x] Inspect the deployed scheduled-task guide at desktop and emulated mobile sizes and verify source/image bytes. Keyboard paths, the full matrix and complete canonical teardown proof remain separate.
