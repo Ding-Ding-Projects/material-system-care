@@ -1,5 +1,9 @@
 # Implementation handoff
 
+## Scheduled-task source checkpoint
+
+A new tasks.list method and Tools > Scheduled tasks workspace expose explicit bounded task metadata. Commands, arguments and principals are excluded; no task mutation exists. Three focused widget checks passed, with parser/privacy fixture additions awaiting root engine verification. Root builds, genuine collection and captures remain pending. Independent source review found no concrete blocker and noted access, ordering, nontransactional timing and private-name limits.
+
 ## Populated File use milestone
 
 A populated File use result was verified against file_use_fixture built at 055478b5be9eb8dea54b25c42eb73ea23b5f18ea. The desktop producer remains 003e9cdc499956d68e9ddcba2747866e81fff070. The fixture created one new file in a checked task-owned local directory and held it exclusively. The visible owner name and PID matched the independently inspected fixture identity, which remained stable across the query. After the verification route closed that fixture, an explicit refresh showed the advisory empty result and removed the old owner card. Exact holder absence was observed 52.849 seconds after creation, before its five-minute timer, and the retained file bytes matched the fixed fixture content. The product did not close a process, close a handle or unlock a file. All three owned process paths were absent and the hidden desktop closed. Path-bearing result frames remain private. The narrow verifier checks 210 bundle files, 17 retained evidence files and declared identity/input/teardown consistency; an altered identity-receipt hash was rejected before restored evidence passed. Pixel review remains separate from these byte checks. Native picker, multiple/service owners, busy/error paths and full appearance/accessibility coverage remain pending.

@@ -59,3 +59,7 @@ The Flutter method channel accepts an explicit request `id` for invocation and a
 ### File-use result correlation
 
 `files.lockOwners` returns the exact submitted `requestedPath` plus the normalized `path` and advisory `owners`. The desktop requires the request-path echo before accepting a result. An older engine without that field is reported unavailable by this workspace; no stale result is retained. This read-only operation never closes a process or handle.
+
+### Scheduled-task inspection
+
+`tasks.list` accepts optional integer `limit` (1..1000, default 200). It returns projected `records`, `truncated`, UTC `observedAt` and an access/timing limitation. Record fields are `name`, `path`, `state`, nullable `enabled`, nullable timezone-unspecified `lastRun`/`nextRun`, nullable unsigned-32-bit `lastResult`, and `infoAvailable`. This method is read-only and unavailable to real host collection from fixture contexts. It never returns action commands or principals.

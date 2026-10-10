@@ -13,6 +13,8 @@
 
 ## Working suite
 
+- [ ] Verify the new scheduled-task review workspace: bounded read-only source and focused widgets are implemented; root builds, real collection and full surface contracts remain pending.
+
 - [x] Verify a populated File use result against an owned holder, stable identity, refresh after holder release, retained fixture bytes and complete owned teardown. This does not establish an exhaustive handle inventory or unlock behavior.
 
 - [x] Inspect File use idle and owned-fixture advisory-empty states in the real build, retain source-bound evidence, verify fixture preservation and owned teardown. Native picker, populated results and full matrix remain separate.

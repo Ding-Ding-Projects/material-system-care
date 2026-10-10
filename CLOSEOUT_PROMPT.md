@@ -1,5 +1,9 @@
 # Continuation
 
+## Latest scheduled-task source checkpoint
+
+New read-only tasks.list and Tools > Scheduled tasks workspace are implemented. Three focused Flutter checks passed. Parser/privacy fixture additions, root builds, actual collection and screenshots are pending. No task was run or changed. Preserve the bounded output, current-account access, timezone-unspecified times and no-action-command disclosure boundaries. Continue from this source before claiming runtime delivery.
+
 ## Objective and current state
 
 Continue the authorized Windows 11 x64 Material System Care suite using Flutter/Dart, C#/.NET 10, narrow C++ integration, SQLite and a public Lit/Material Web GitHub Pages website. The goal remains active and incomplete. The latest explicit user addition, blue-screen diagnosis, has a bounded read-only implementation and genuine runtime evidence. No user-chosen token budget exists.

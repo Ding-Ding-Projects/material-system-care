@@ -12,6 +12,38 @@ class CopyScope extends InheritedWidget {
 }
 
 const translations = <String, String>{
+  "Scheduled tasks": "排程工作",
+  "Review scheduled tasks": "檢視排程工作",
+  "Inspect tasks visible to this account. This workspace never runs, enables, disables or changes a task.":
+      "檢視此帳戶可見的排程工作。此工作區不會執行、啟用、停用或更改任何工作。",
+  "Maximum records": "最多記錄數",
+  "Read scheduled tasks": "讀取排程工作",
+  "Filter loaded tasks by name, folder or state": "按名稱、資料夾或狀態篩選已載入工作",
+  "No task inventory collected. Start an explicit read above.":
+      "尚未收集工作清單，請在上方明確開始讀取。",
+  "Collected at UTC": "收集時間（UTC）",
+  "The record limit was reached. Filtering searches only the loaded subset; increase the limit for a broader view.":
+      "已達記錄上限。篩選只搜尋已載入的部分；增加上限可查看更多記錄。",
+  "Task visibility depends on account access. Reported run times have no timezone; missing times do not prove a task never ran.":
+      "可見工作取決於帳戶權限。回報時間沒有時區；缺少時間不代表工作從未執行。",
+  "No matching loaded tasks.": "已載入工作沒有符合項目。",
+  "Enabled state unavailable": "無法取得啟用狀態",
+  "Run-time details are unavailable for this task.": "無法取得此工作的執行時間資料。",
+  "Reported last run": "回報的上次執行",
+  "Reported next run": "回報的下次執行",
+  "Last result code": "上次結果代碼",
+  "Result codes can describe scheduler status. A nonzero value alone is not a diagnosis.":
+      "結果代碼可能表示排程器狀態，單憑非零值不能作出診斷。",
+  "Action commands, arguments, principals and credentials are excluded. Results are not uploaded or automatically saved.":
+      "不包含動作指令、參數、執行身分或憑證。結果不會上傳或自動儲存。",
+  "Scheduled-task inspection exceeded twenty seconds. Try a smaller limit.":
+      "排程工作檢查超過二十秒，請嘗試較小上限。",
+  "Inspection stopped waiting, but query-process exit is unverified. No task change was requested.":
+      "檢查已停止等待，但尚未確認查詢程序退出，沒有要求更改排程工作。",
+  "Task Scheduler returned an invalid or oversized inventory. No partial result is shown.":
+      "工作排程器回傳無效或過大的清單，不會顯示部分結果。",
+  "Scheduled-task inventory is unavailable for this account. No task was run or changed.":
+      "此帳戶無法取得排程工作清單，沒有執行或更改任何工作。",
   "File use": "檔案使用情況",
   "Inspect a file in use": "檢視檔案使用情況",
   "Restart Manager reports affected applications and services, not every possible file handle. Results can change after inspection.":

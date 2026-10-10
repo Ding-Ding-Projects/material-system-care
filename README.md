@@ -32,6 +32,7 @@ The current source provides a working foundation, with these operation families:
 - Explicit WinGet package discovery supplies real matched identifiers for reviewed upgrade and uninstall actions, without guessing from registry names.
 - Supported security scanning and driver operations with explicit elevation requirements. These have not been exercised against this host's security or drivers.
 - Selected-file hashing, strict text and JSON conversion, password generation, network diagnostics and opt-in local provider access.
+- [Scheduled-task review](docs/features/management/scheduled-tasks.md) provides explicit account-visible task metadata without running or changing tasks.
 - [File-use inspection](docs/features/protection/file-use.md) exposes advisory Restart Manager records through an explicit read-only workspace.
 - [Blue-screen investigation](docs/features/diagnostics/blue-screen.md) with provider-qualified local events, stop-code lookup and dump metadata. No root-cause certainty, dump-content analysis or automatic repair is claimed.
 - Flutter Material workspaces, local appearance preferences, an operation history, contextual confirmations and honest unavailable states.

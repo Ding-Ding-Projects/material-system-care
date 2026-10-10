@@ -11,7 +11,7 @@ public sealed class ManagementModule : IEngineModule
     private readonly ManagementPlatform platform;
     public ManagementModule() : this(new ManagementPlatform()) { }
     public ManagementModule(ManagementPlatform platform) => this.platform = platform;
-    public bool CanHandle(string method) => method is "apps.list" or "apps.managed" or "apps.updates" or "apps.upgrade" or "apps.uninstall" or "startup.list" or "startup.set" or "processes.list" or "processes.stop" or "services.list";
+    public bool CanHandle(string method) => method is "apps.list" or "apps.managed" or "apps.updates" or "apps.upgrade" or "apps.uninstall" or "startup.list" or "startup.set" or "processes.list" or "processes.stop" or "services.list" or "tasks.list";
     public async Task<object?> HandleAsync(string method, JsonElement parameters, EngineContext context, CancellationToken cancellationToken)
     {
         if (!OperatingSystem.IsWindows() && platform.GetType() == typeof(ManagementPlatform))
@@ -46,6 +46,11 @@ public sealed class ManagementModule : IEngineModule
                 await context.RecordAsync(method, new { pid = processId, stopped }, cancellationToken);
                 return stopped;
             case "services.list": return await platform.ServicesAsync(cancellationToken);
+            case "tasks.list":
+                if (context.IsFixture && platform.GetType() == typeof(ManagementPlatform)) throw new EngineException("LIVE_COLLECTION_DISABLED", "Fixture contexts cannot inspect host scheduled tasks.");
+                int limit = 200;
+                if (parameters.TryGetProperty("limit", out var supplied) && (supplied.ValueKind != JsonValueKind.Number || !supplied.TryGetInt32(out limit) || limit is < 1 or > 1000)) throw new EngineException("INVALID_PARAMETERS", "limit must be between 1 and 1000.");
+                return await platform.TasksAsync(limit, cancellationToken);
             default: throw new ArgumentException("Unknown management method.");
         }
     }
@@ -66,6 +71,7 @@ public static class ManagementPolicy
 
 public class ManagementPlatform
 {
+    public virtual Task<ScheduledTaskInventory.Inventory> TasksAsync(int limit, CancellationToken ct) => ScheduledTaskInventory.CollectAsync(limit, ct);
     public virtual Task<object> ManagedAppsAsync(CancellationToken ct) => PackageInventory.CollectAsync(ct);
     private const string RunKey = @"Software\Microsoft\Windows\CurrentVersion\Run";
     public virtual async Task<object> AppsAsync(CancellationToken ct)
