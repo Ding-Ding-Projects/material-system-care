@@ -45,3 +45,11 @@ The installed client rejected an export path under the application's LocalAppDat
 Integrated fixtures verify exact-ID projection, unknown update status, omitted custom switches, malformed/duplicate/oversized export rejection, fixture isolation and mutation consent. The Flutter fixture proves that discovery waits for explicit review, cancelling the selected upgrade review makes no mutation request, and an unavailable refresh removes stale actionable rows. A built read-only query returned 45 matches with explicit incomplete-inventory and unchecked-update states, followed by zero remaining request-owned export directories. No installed package was changed during these checks. Source bindings and pending visual interaction are separately tracked in the handoff.
 
 Sources: [Microsoft's export command](https://learn.microsoft.com/en-us/windows/package-manager/winget/export) and [the official package-export schema](https://github.com/microsoft/winget-cli/blob/master/schemas/JSON/packages/packages.schema.2.0.json).
+
+## Keyboard review dialogs
+
+Package discovery and selected-package review dialogs own a separate scroll controller and keyboard paging target. Page Down and Page Up from dialog actions or non-editing content scroll only the dialog, and repeated paging retains that target. Editable text keeps its standard selection and editing keys. Normal paging animates for 200 milliseconds with ease-out cubic easing; reduced motion scrolls immediately.
+
+Cancel and confirmation keep their existing result semantics. Cancelling a review makes no package-change request. Both dialog outcomes restore the prior usable focus target, or the package-results target when the original control is no longer available, before continuing the existing workflow. The dialog disposes its own scrolling and focus resources when closed. This behavior does not add any package operation or change the exact-ID consent boundary.
+
+Focused widget checks use the actual isolated application at 800 by 600, bilingual dark preferences and 200% text size. They exercise repeated and reverse paging, both motion modes, editing exclusion, cancel without mutation and dialog disposal. These checks are not new live runtime evidence.

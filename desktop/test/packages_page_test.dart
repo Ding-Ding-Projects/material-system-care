@@ -59,6 +59,141 @@ Future<void> discover(WidgetTester tester) async {
 }
 
 void main() {
+  for (final reduced in [true, false])
+    for (final disposeDialog in [false, true])
+      testWidgets(
+        'minimum bilingual package review supports repeated keyboard paging reduced=$reduced dispose=$disposeDialog',
+        (tester) async {
+          tester.view.physicalSize = const Size(800, 600);
+          tester.view.devicePixelRatio = 1;
+          addTearDown(tester.view.resetPhysicalSize);
+          addTearDown(tester.view.resetDevicePixelRatio);
+          final methods = <String>[];
+          tester.binding.defaultBinaryMessenger.setMockMethodCallHandler(
+            care.Engine.channel,
+            (call) async {
+              final method = (call.arguments as Map)['method'] as String;
+              methods.add(method);
+              return {'ok': true, 'result': inventory()};
+            },
+          );
+          addTearDown(
+            () => tester.binding.defaultBinaryMessenger
+                .setMockMethodCallHandler(care.Engine.channel, null),
+          );
+          await tester.pumpWidget(
+            care.CareApp(
+              startPackages: true,
+              isolatedCapture: true,
+              capturePreferences: {
+                'language': 'both',
+                'theme': 'dark',
+                'textScale': 2.0,
+                'reducedMotion': reduced,
+              },
+            ),
+          );
+          await tester.pumpAndSettle();
+          final pageScroll = find
+              .descendant(
+                of: find.byType(PackagesPage),
+                matching: find.byType(Scrollable),
+              )
+              .first;
+          await tester.scrollUntilVisible(
+            find.byType(DropdownButtonFormField<bool>),
+            200,
+            scrollable: pageScroll,
+          );
+          await tester.ensureVisible(
+            find.byType(DropdownButtonFormField<bool>),
+          );
+          await tester.pumpAndSettle();
+          await selectManaged(tester);
+          await tester.scrollUntilVisible(
+            find.textContaining('Discover WinGet packages'),
+            200,
+            scrollable: pageScroll,
+          );
+          await tester.ensureVisible(
+            find.textContaining('Discover WinGet packages'),
+          );
+          await tester.pumpAndSettle();
+          await discover(tester);
+          await tester.scrollUntilVisible(
+            find.textContaining('Review uninstall'),
+            200,
+            scrollable: pageScroll,
+          );
+          await tester.ensureVisible(find.textContaining('Review uninstall'));
+          await tester.pumpAndSettle();
+          await tester.tap(find.textContaining('Review uninstall'));
+          await tester.pumpAndSettle();
+          final dialog = find.byType(AlertDialog);
+          final scrolling = find.descendant(
+            of: dialog,
+            matching: find.byType(Scrollable),
+          );
+          final position = tester
+              .state<ScrollableState>(scrolling.first)
+              .position;
+          expect(position.maxScrollExtent, greaterThan(0));
+          await tester.sendKeyEvent(LogicalKeyboardKey.pageDown);
+          await tester.pumpAndSettle();
+          expect(position.pixels, greaterThan(0));
+          await tester.sendKeyEvent(LogicalKeyboardKey.pageUp);
+          await tester.pumpAndSettle();
+          expect(position.pixels, 0);
+          final cancel = find.descendant(
+            of: dialog,
+            matching: find.textContaining('Cancel'),
+          );
+          Focus.of(tester.element(cancel)).requestFocus();
+          await tester.pump();
+          await tester.sendKeyEvent(LogicalKeyboardKey.pageDown);
+          await tester.pump();
+          if (!reduced) {
+            await tester.pump(const Duration(milliseconds: 40));
+            expect(position.pixels, greaterThan(0));
+            expect(position.pixels, lessThan(position.viewportDimension * .8));
+          }
+          await tester.pumpAndSettle();
+          expect(position.pixels, greaterThan(0));
+          final first = position.pixels;
+          await tester.sendKeyEvent(LogicalKeyboardKey.pageDown);
+          await tester.pumpAndSettle();
+          expect(position.pixels, greaterThan(first));
+          final second = position.pixels;
+          await tester.sendKeyEvent(LogicalKeyboardKey.pageUp);
+          await tester.pumpAndSettle();
+          expect(position.pixels, lessThan(second));
+          final editing = tester.widget<EditableText>(
+            find
+                .descendant(of: dialog, matching: find.byType(EditableText))
+                .first,
+          );
+          editing.focusNode.requestFocus();
+          await tester.pump();
+          final beforeEditing = position.pixels;
+          await tester.sendKeyEvent(LogicalKeyboardKey.pageDown);
+          await tester.pumpAndSettle();
+          expect(position.pixels, beforeEditing);
+          if (disposeDialog) {
+            await tester.pumpWidget(const SizedBox());
+            await tester.pumpAndSettle();
+            expect(methods, ['apps.managed']);
+            expect(tester.takeException(), isNull);
+            return;
+          }
+          await tester.tap(cancel);
+          await tester.pumpAndSettle();
+          expect(methods, ['apps.managed']);
+          expect(find.byType(AlertDialog), findsNothing);
+          expect(tester.takeException(), isNull);
+        },
+        variant: TargetPlatformVariant.only(TargetPlatform.windows),
+      );
+
   testWidgets(
     'Windows minimum-size package cards remain keyboard reachable after discovery',
     (tester) async {
