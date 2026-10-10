@@ -76,12 +76,12 @@ export function verifyObservedFlutterFrame(repoArg, runArg, bundleArg, manifestA
   const projection = manifest.files.map(f => `${f.path}\0${f.bytes}\0${f.sha256}\n`).join('');
   assert.equal(hash(projection), manifest.bundleSha256); assert.equal(build.bundleSha256, manifest.bundleSha256);
   assert.equal(hash(read(bundle, 'material_system_care.exe')), build.executableSha256);
-  assert(Array.isArray(m.frames) && m.frames.length > 0 && m.frames.length <= 20);
+  assert(Array.isArray(m.frames) && m.frames.length > 0 && m.frames.length <= 64);
   const sequences = new Set(), paths = new Set();
   for (const frame of m.frames) {
     keys(frame, ['png', 'sidecar', 'sha256', 'sidecarSha256', 'sequence']);
     name(frame.png); assert(frame.png.endsWith('.png')); assert.equal(frame.sidecar, frame.png + '.json');
-    integer(frame.sequence, 0, 19); assert(!sequences.has(frame.sequence) && !paths.has(frame.png), 'Duplicate frame');
+    integer(frame.sequence, 0, 63); assert(!sequences.has(frame.sequence) && !paths.has(frame.png), 'Duplicate frame');
     sequences.add(frame.sequence); paths.add(frame.png);
     if (frame.sequence > 0) assert(frame.png.endsWith(`-${String(frame.sequence).padStart(3, '0')}.png`), 'Frame filename sequence mismatch');
     const png = read(run, frame.png), sidecarBytes = read(run, frame.sidecar), s = parse(sidecarBytes);

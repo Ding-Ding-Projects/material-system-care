@@ -10,7 +10,7 @@ Each successful explicit Flutter frame export creates `<png>.json` beside the PN
 | `captureElapsedMicroseconds` | Monotonic duration of that render call |
 | `writeStartedUtc`, `writeCompletedUtc` | UTC around native exclusive PNG creation, write and flush; the sidecar is written afterward |
 | `writeElapsedMicroseconds` | Monotonic duration of the PNG write interval |
-| `sequence` | Integer 0–19; subsequent PNG names use `-001.png` through `-019.png` |
+| `sequence` | Integer 0–63; subsequent PNG names use `-001.png` through `-063.png` |
 | `width`, `height` | Rendered image dimensions, independently matched to the PNG IHDR |
 | `pixelRatio` | `1`; this is not physical display DPI |
 | `pngBytes` | Number of exact PNG bytes written |
@@ -60,3 +60,5 @@ and images are never changed; an absent historical field remains unverified.
 The [narrow observed-frame verifier](observed-flutter-frame.md) checks the
 source/bundle/frame byte chain and zero-error observed-hook snapshot. Its
 verdict is separate from global UI-evidence promotion and visual acceptance.
+
+An explicit painted-capture session allows at most 64 attempts, with sequences 0 through 63. Failed attempts still consume a sequence. Debouncing, one active writer, immutable output, 32 MiB PNG limits and diagnostic coverage requirements are unchanged. Historical receipts retain their original sequence and provenance.

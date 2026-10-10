@@ -62,7 +62,7 @@ Result Write(const Request& request,const std::function<bool()>& cancelled) {
   if(path.size()<7 || path.size()>32760 || path.find('\0')!=std::string::npos || path[1]!=':' || (path[2]!='\\' && path[2]!='/') || bytes.size()<33 || bytes.size()>32*1024*1024) return fail("Invalid capture path or size");
   static const uint8_t signature[]{137,80,78,71,13,10,26,10};
   if(!std::equal(std::begin(signature),std::end(signature),bytes.begin()) || BigEndian(bytes,8)!=13 || bytes[12]!='I' || bytes[13]!='H' || bytes[14]!='D' || bytes[15]!='R') return fail("Invalid PNG header");
-  if(request.width<1 || request.width>32768 || request.height<1 || request.height>32768 || request.width*request.height>100000000 || BigEndian(bytes,16)!=request.width || BigEndian(bytes,20)!=request.height || request.pixel_ratio!=1 || request.sequence<0 || request.sequence>=20) return fail("Capture dimensions, ratio or sequence are invalid");
+  if(request.width<1 || request.width>32768 || request.height<1 || request.height>32768 || request.width*request.height>100000000 || BigEndian(bytes,16)!=request.width || BigEndian(bytes,20)!=request.height || request.pixel_ratio!=1 || request.sequence<0 || request.sequence>=64) return fail("Capture dimensions, ratio or sequence are invalid");
   uint64_t started=0,completed=0;
   if(!ParseUtc(request.capture_started_utc,started) || !ParseUtc(request.capture_completed_utc,completed) || completed<started || request.capture_elapsed_microseconds<0 || request.capture_elapsed_microseconds>600000000 || completed-started>6000000000ULL) return fail("Capture timestamps or elapsed duration are invalid");
   if(request.diagnostics) {

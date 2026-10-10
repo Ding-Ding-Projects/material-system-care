@@ -3,6 +3,9 @@ import 'package:flutter/foundation.dart';
 
 /// Counts only errors delivered to these hooks during explicit frame capture.
 /// Original handlers retain their behavior; no messages or stacks are retained.
+/// Maximum capture attempts per explicit capture session (sequences 0 through 63).
+const maximumPaintedCaptureAttempts = 64;
+
 class CaptureDiagnostics {
   CaptureDiagnostics({DateTime Function()? clock})
     : _clock = clock ?? DateTime.now;
@@ -52,7 +55,7 @@ class CaptureDiagnostics {
     final started = _started;
     if (started == null ||
         sequence < 0 ||
-        sequence >= 20 ||
+        sequence >= maximumPaintedCaptureAttempts ||
         completed.toUtc().isBefore(started)) {
       throw StateError('Capture diagnostic interval is invalid.');
     }
