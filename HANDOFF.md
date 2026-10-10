@@ -1,5 +1,9 @@
 # Implementation handoff
 
+## Owned close verification fixture
+
+A native task-owned graceful-close fixture is being added under scripts/native-fixture. It creates one ordinary window, reads no user data, performs no host action and self-exits after five minutes. It is built through build.bat /s --target=native --resource-only and is not a production product surface or installer payload. Launch it only on the explicitly owned hidden desktop. Actual UI-close verification is pending; do not claim a close from source or compilation alone.
+
 ## Verified paced read-only inventory
 
 A fresh hidden run completed the actual filtered process-inventory path at producer a9975e2d639f0fe37b4fc3c699ad05f9df2a2aee. Delivering the exact filter one character at a time, then inspecting the settled text before refresh, produced a real engine row with memory, cumulative CPU time, UTC start identity and a disabled close control. The native engine start time and owned executable/parent matched the visible row. CIM lost submicrosecond precision, so it was not treated as the exact start-time comparison. No process-close action was invoked. Private frames and input/identity/teardown receipts are retained; runtime identifiers and measurements are not published. Both owned executable paths and the hidden desktop were confirmed closed. The narrow verifier checked 210 bundle files and rejected an altered input-receipt hash before passing restored evidence. Earlier bulk input and modifier-editing attempts remain unsuccessful; this does not prove a full input matrix, close behavior or native compositor capture.

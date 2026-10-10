@@ -4,3 +4,8 @@ add_executable(native_transport_fixture main.cpp ../../desktop/windows/runner/en
 target_compile_features(native_transport_fixture PRIVATE cxx_std_20)
 target_compile_definitions(native_transport_fixture PRIVATE NOMINMAX UNICODE _UNICODE)
 target_include_directories(native_transport_fixture PRIVATE ../../desktop/windows/runner)
+
+add_executable(process_close_fixture WIN32 close_window.cpp)
+target_compile_features(process_close_fixture PRIVATE cxx_std_20)
+target_compile_definitions(process_close_fixture PRIVATE NOMINMAX UNICODE _UNICODE)
+target_link_libraries(process_close_fixture PRIVATE user32 gdi32)
