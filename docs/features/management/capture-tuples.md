@@ -11,3 +11,7 @@ Three focused checks cover invalid/repeated values and a dark Cantonese doubled-
 ## Inspected runtime tuple
 
 Root engine and desktop builds passed at 5921f9005cc878ff6ef5753d71b27f8d748f0578. An actual isolated service view in Cantonese, dark theme, text scale 2 and requested reduced motion was inspected at 1264x681. All idle explanatory text and controls fit that viewport. Its receipt verified 210 bundle files; owned processes were absent and the hidden desktop closed. This is one painted idle tuple, not physical DPI, keyboard or motion-transition proof. See docs/captures/services-yue-dark-text2.json.
+
+## Adaptive inspection titles
+
+Inspection title height now follows measured localized text at the requested text scale, using the official AppBar component. Service, scheduled-task and blue-screen selectors use expanded width and intrinsic item height. The original service title fixture measured top -9; the repaired suite passes 240 title combinations (five workspaces, two sizes, three languages, two themes, four text scales) and the selected-value regression. These are widget checks; final rebuilt minimum-size pixels remain pending. A prior real intermediate frame verified the service selector repair while retaining the title defect.

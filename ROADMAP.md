@@ -75,3 +75,5 @@
 - [x] Inspect an isolated Cantonese/dark/text-scale-2 service idle frame and verify its source bytes and owned teardown. This does not complete the physical display-scale matrix.
 
 - [ ] Verify the rebuilt bilingual service-state selector at the exact minimum 800x600 client area and text scale 2; the focused overflow regression passes.
+
+- [ ] Verify adaptive inspection titles in the rebuilt minimum-size bilingual view. The 240-combination widget title suite and selector regression pass.

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'localization.dart';
+import 'inspection_app_bar.dart';
 import 'motion.dart';
 
 typedef DiagnosticInvoke =
@@ -92,7 +93,7 @@ class _CrashDiagnosticsPageState extends State<CrashDiagnosticsPage> {
         MediaQuery.disableAnimationsOf(context) ||
         CopyScope.of(context)['reducedMotion'] == true;
     return Scaffold(
-      appBar: AppBar(title: UiText('Blue-screen diagnostics')),
+      appBar: inspectionAppBar(context, 'Blue-screen diagnostics'),
       body: Align(
         alignment: Alignment.topCenter,
         child: ConstrainedBox(
@@ -117,6 +118,9 @@ class _CrashDiagnosticsPageState extends State<CrashDiagnosticsPage> {
                   SizedBox(
                     width: 240,
                     child: DropdownButtonFormField<int>(
+                      isExpanded: true,
+                      isDense: false,
+                      itemHeight: null,
                       initialValue: days,
                       decoration: InputDecoration(
                         labelText: localize(context, 'Event lookback'),

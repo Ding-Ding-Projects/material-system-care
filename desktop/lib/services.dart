@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'localization.dart';
+import 'inspection_app_bar.dart';
 import 'motion.dart';
 
 typedef ServicesInvoke =
@@ -87,7 +88,7 @@ class _ServicesPageState extends State<ServicesPage> {
         )
         .toList();
     return Scaffold(
-      appBar: AppBar(title: const UiText('Services')),
+      appBar: inspectionAppBar(context, 'Services'),
       body: Align(
         alignment: Alignment.topCenter,
         child: ConstrainedBox(

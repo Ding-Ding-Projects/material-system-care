@@ -1,5 +1,9 @@
 # Implementation handoff
 
+## Inspection layout repair verification
+
+Inspection title height now follows measured localized text at the requested text scale, using the official AppBar component. Service, scheduled-task and blue-screen selectors use expanded width and intrinsic item height. The original service title fixture measured top -9; the repaired suite passes 240 title combinations (five workspaces, two sizes, three languages, two themes, four text scales) and the selected-value regression. These are widget checks; final rebuilt minimum-size pixels remain pending. A prior real intermediate frame verified the service selector repair while retaining the title defect.
+
 ## Minimum-size service layout repair
 
 A real 800x600 bilingual dark service view at text scale 2 exposed a clipped selected translation in the service-state selector. The original fixed-height selector also failed the focused layout fixture with a horizontal overflow. The selector now expands and uses intrinsic item height. The focused fixture passes; an identical rebuilt runtime capture remains pending.

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'localization.dart';
+import 'inspection_app_bar.dart';
 import 'motion.dart';
 
 typedef FileUseInvoke =
@@ -123,7 +124,7 @@ class _FileUsePageState extends State<FileUsePage> {
         MediaQuery.disableAnimationsOf(context) ||
         CopyScope.of(context)['reducedMotion'] == true;
     return Scaffold(
-      appBar: AppBar(title: const UiText('File use')),
+      appBar: inspectionAppBar(context, 'File use'),
       body: Align(
         alignment: Alignment.topCenter,
         child: ConstrainedBox(

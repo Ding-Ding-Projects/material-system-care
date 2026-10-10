@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'localization.dart';
+import 'inspection_app_bar.dart';
 import 'motion.dart';
 
 typedef ProcessInvoke =
@@ -150,7 +151,7 @@ class _ProcessesPageState extends State<ProcessesPage> {
         )
         .toList();
     return Scaffold(
-      appBar: AppBar(title: const UiText('Processes')),
+      appBar: inspectionAppBar(context, 'Processes'),
       body: ListView(
         padding: const EdgeInsets.all(24),
         children: [

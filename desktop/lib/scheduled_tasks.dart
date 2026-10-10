@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'localization.dart';
+import 'inspection_app_bar.dart';
 import 'motion.dart';
 
 typedef ScheduledTasksInvoke =
@@ -95,7 +96,7 @@ class _ScheduledTasksPageState extends State<ScheduledTasksPage> {
         )
         .toList();
     return Scaffold(
-      appBar: AppBar(title: const UiText('Scheduled tasks')),
+      appBar: inspectionAppBar(context, 'Scheduled tasks'),
       body: Align(
         alignment: Alignment.topCenter,
         child: ConstrainedBox(
@@ -120,6 +121,9 @@ class _ScheduledTasksPageState extends State<ScheduledTasksPage> {
                   SizedBox(
                     width: 220,
                     child: DropdownButtonFormField<int>(
+                      isExpanded: true,
+                      isDense: false,
+                      itemHeight: null,
                       initialValue: limit,
                       decoration: InputDecoration(
                         labelText: localize(context, 'Maximum records'),
