@@ -38,7 +38,7 @@
 
 - [x] Retain and inspect an idle process-workspace painted frame from the exact built source, verify byte/source binding and owned teardown, and reject an altered capture hash. This does not complete native interaction or the appearance matrix.
 
-- [ ] Verify the dedicated process workspace in the built application: explicit inventory, exact-identity review and accepted/declined close receipts are implemented; three focused Flutter fixtures passed. No actual process close was performed.
+- [ ] Complete remaining process-workspace input, appearance and accessibility coverage. Owned-fixture graceful close and independent exit observation are verified; arbitrary application close behavior remains unverified.
 
 - [x] Verify real cleanup-read cancellation and a fresh scan over owned disposable data, with unchanged file hashes/identities and exact process/desktop disposal. This establishes stopped-waiting behavior, not immediate engine termination.
 - [ ] Verify cancellation of folder analysis and duplicate scanning, and remaining cancellation appearance/accessibility states.
@@ -55,10 +55,10 @@
 - [x] Verify explicit machine-overview sampling, memory and expanded drive capacity, repeated minimum-size bilingual paging and reverse movement at source `e8e692b`. Full appearance, unavailable states and accessibility remain separate.
 - [x] Verify explicit read-only protection refresh, timestamps, missing values, three firewall profiles, expanded details and repeated/reverse bilingual paging at source `6803337`. Other appearance states, full keyboard order, physical DPI and unavailable responses remain separate.
 - [ ] Deliver reversible temporary-file maintenance, duplicate analysis, storage inventory, and recovery records.
-- [ ] Verify the dedicated read-only duplicate-analysis workspace in the real build. Typed source, 96 focused checks, isolated engine/desktop verification and independent reviews passed.
+- [ ] Complete duplicate-analysis cancellation, full second-group path traversal, reverse paging and remaining appearance/accessibility coverage. Bounded normal and minimum-size collection evidence is recorded below.
 - [x] Verify normal-view read-only duplicate collection, both expanded groups, root-edit result clearing and unchanged seven-file fixture at source `baa4fca`. Minimum-size retained input, cancellation and full appearance/accessibility remain separate.
 - [x] Verify duplicate collection, correct totals, both expansions and repeated paging at 800×600 with doubled bilingual text using retained source `6803337`. Full second-group path traversal, reverse movement and pending-read cancellation remain separate.
-- [ ] Verify the dedicated typed read-only folder-analysis workflow with an owned disposable folder. Source, focused checks, independent reviews and isolated root build passed; integrated runtime is pending.
+- [ ] Complete folder-analysis freshness, pending-read cancellation and remaining appearance/accessibility coverage. Integrated bounded totals and details are verified below.
 - [x] Verify bounded real folder totals, largest-file order, expanded normal-view paths/timestamp and unchanged disposable fixture at source `c2fd97e`. Freshness, cancellation and complete appearance/accessibility remain separate.
 - [ ] Deliver application, startup, process, security, and driver workflows using supported APIs.
 - [x] Verify explicit read-only driver-store collection, reported metadata, signer limitations and forward/reverse paging at normal and minimum doubled-bilingual sizes, source `83f6503`. Full driver management and complete appearance/accessibility remain separate.
@@ -74,13 +74,16 @@
 - [ ] Verify actual installation, uninstall and update behavior through the approved runtime route.
 - [ ] Publish the Material website with real captures and verified downloads.
 - [x] Publish the development documentation and capability explorer; verify public delivery and exact About homepage.
-- [ ] Add genuine current screenshots and verified installer downloads when their separate evidence is available.
+- [x] Publish reviewed current overview idle screenshots with exact source/build provenance in the existing documentation gallery.
+- [ ] Verify deployed delivery of the newly integrated driver-workspace idle screenshot and article; local promotion and root website build passed.
+- [ ] Publish verified installer downloads after installation and update verification.
 - [ ] Verify the repository homepage, documentation, release evidence, and final handoff.
 
 ## GitHub Pages delivery
 
 - [x] Deploy the project-path-compatible static output to GitHub Pages and verify the live home page, assets, deployment source, and About homepage at source `66880b5904726afb5f2444950964e8b147d5d929`.
-- [ ] Capture genuine current desktop and public documentation screens through the restored isolated Lowlevel route.
+- [x] Retain genuine bounded desktop and public-documentation captures through the restored isolated Lowlevel route, with source/byte checks and explicit evidence limitations.
+- [ ] Complete the full desktop and public-documentation appearance, interaction and accessibility capture matrix.
 
 - [x] Inspect the deployed scheduled-task guide at desktop and emulated mobile sizes and verify source/image bytes. Keyboard paths, the full matrix and complete canonical teardown proof remain separate.
 
