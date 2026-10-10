@@ -13,6 +13,8 @@
 
 ## Working suite
 
+- [x] Verify the read-only process inventory with paced hidden input, exact visible filter, owned engine identity and verified teardown. Runtime record pixels remain private; close behavior and full input coverage remain pending.
+
 - [x] Retain and inspect an idle process-workspace painted frame from the exact built source, verify byte/source binding and owned teardown, and reject an altered capture hash. This does not complete native interaction or the appearance matrix.
 
 - [ ] Verify the dedicated process workspace in the built application: explicit inventory, exact-identity review and accepted/declined close receipts are implemented; three focused Flutter fixtures passed. No actual process close was performed.

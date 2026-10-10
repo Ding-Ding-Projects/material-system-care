@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "a9975e2d639f0fe37b4fc3c699ad05f9df2a2aee",
+  "bundleSha256": "d596cb3821d1783ff7a09b43b69b7ce856ec957f9cfe844108f95c680479d070",
+  "route": "lowlevel-hidden-desktop-flutter-frame-export",
+  "scope": "read-only-filtered-process-inventory",
+  "publishedPixels": false,
+  "withheldReason": "Runtime process identifiers, timestamps and measurements remain in private evidence.",
+  "captureSha256": "2394a42f5101db0c3431f0488dc7569eda90174acd23d219fe1ad282c178b94c",
+  "width": 1264,
+  "height": 681,
+  "inputReceiptSha256": "b7524167c92a02fbe3b6adeb4ea5aa0371a808b638b844b28e97ee97fdc945c7",
+  "identityReceiptSha256": "81bcb8a7085ba5a8388c2621cb637a58677fae10c8755e5ef7e719cb0476d2cf",
+  "teardownReceiptSha256": "10652aacf6212a08aa82063b552dbe889242c54766869bdcdf6dec425e748e73",
+  "verified": {
+    "filterTextVisuallyInspected": true,
+    "measuredEngineRowVisuallyInspected": true,
+    "rowMatchesNativeIdentity": true,
+    "closeControlDisabled": true,
+    "processCloseActionInvoked": false,
+    "ownedTeardown": true,
+    "nativeCompositor": false,
+    "fullInputMatrix": false
+  },
+  "limitations": [
+    "Paced character delivery worked in this run. Earlier bulk input and modifier editing remain unverified.",
+    "Process identity used the full-precision native start time; CIM timestamps did not preserve the final submicrosecond digit.",
+    "No application close, termination, performance optimization or full layout claim."
+  ]
+}

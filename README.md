@@ -65,6 +65,8 @@ The public documentation is deployed from `website/dist` to https://ding-ding-pr
 
 Relative Vite assets, metadata fetches, and the logo resolve beneath the project path. The canonical URL, sitemap, and crawler declaration use the GitHub Pages URL. The previous external deployment is historical and does not satisfy the hosting requirement. Verify the live home page, asset responses, deployment commit, and repository homepage before claiming delivery. Browser screenshots and the full desktop release remain separately unverified.
 
+The actual filtered process-inventory path also passed a bounded hidden-input check using paced character delivery. Its runtime records remain private; the public frame below is the separate idle state. [Evidence summary](docs/verification/process-inventory.json).
+
 ## Process workspace frame
 
 ![Built process workspace before collection](docs/captures/processes-idle.png)
