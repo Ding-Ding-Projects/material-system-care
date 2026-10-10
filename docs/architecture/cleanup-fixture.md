@@ -6,7 +6,9 @@ The desktop accepts `--cleanup-fixture-root <absolute-directory>` only as an exp
 {"schemaVersion":1,"purpose":"MaterialSystemCare.cleanup-verification"}
 ```
 
-Put disposable aged test files in `temp`. The engine stores its isolated SQLite database, plans, and recovery records in `records`. The mode never seeds files or infers a fixture from normal startup. Invalid or missing arguments, marker, directories, UNC/device paths, or reparse ancestors prevent startup; they never select production storage. Do not use real personal data in the fixture.
+Put disposable aged test files in `temp`. The engine stores its isolated SQLite database, plans, and recovery records in `records`. The mode never seeds files or infers a fixture from normal startup. Invalid or missing arguments, marker, directories, UNC/device paths, or reparse ancestors prevent engine startup; they never select production storage. Native argument-shape errors exit the desktop, while an invalid filesystem root can leave the desktop open with an unavailable-engine response. Do not use real personal data in the fixture.
+
+For frame export, use the fixture-root arguments with one `--capture-frame=<absolute-png-path>` and the existing capture language, theme, text-scale, and motion options. Fixture mode counts as one capture destination. Adding another destination such as `--services` disables export and display overrides, retaining isolated fixture behavior.
 
 The native bridge supplies a newly generated pipe suffix internally and still requires the server PID to equal its launched child. The engine permits only ping, settings, general history, and cleanup scan/apply/restore/history/details. Host inventory and arbitrary path analysis are unavailable. The desktop shows a bilingual verification banner and the cleanup workspace without normal navigation or personal wording-cache loading.
 
