@@ -40,7 +40,8 @@
 
 - [ ] Verify the dedicated process workspace in the built application: explicit inventory, exact-identity review and accepted/declined close receipts are implemented; three focused Flutter fixtures passed. No actual process close was performed.
 
-- [ ] Verify read-only scan cancellation in the built workspace: request-specific control, completion-race handling and truthful stop-waiting state are implemented; focused Flutter checks passed.
+- [x] Verify real cleanup-read cancellation and a fresh scan over owned disposable data, with unchanged file hashes/identities and exact process/desktop disposal. This establishes stopped-waiting behavior, not immediate engine termination.
+- [ ] Verify cancellation of folder analysis and duplicate scanning, and remaining cancellation appearance/accessibility states.
 
 - [x] Verify receipt-specific recovery review with owned disposable files in the built workspace, including conflict preservation and successful retry. Original bytes, identities and modification times were restored; private paths remain unpublished. Full interface coverage remains separate.
 

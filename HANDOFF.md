@@ -1,5 +1,13 @@
 # Implementation handoff
 
+## Verified disposable read cancellation
+
+At source `1c6b7049f04979de209c87d02c1d787923c4e58d`, the real cleanup fixture route showed a pending scan, one Cancel input, the stopped-waiting state and a completed fresh scan. Independent review inspected the decisive images, matched all 27 frame/sidecar/supporting hashes and rechecked all 9,001 fixture entries against length, modification time, identity and SHA-256. Eligible content was 500 MiB; the fresh plan disclosed its 1,000-target cap. No cleanup mutation was requested. A completion-winning attempt is explicitly excluded from successful cancellation evidence. Engine plan records may still be written, so no immediate engine-stop claim is made.
+
+The earlier generic lifecycle helper remained incomplete. Separately verified identity-bound WM_CLOSE, absence of bundle/root/direct-child processes, an empty desktop and successful desktop close completed disposal. Raw paths and populated images remain private. Eight frames pass the narrow two-hook/source/bundle verifier. Evidence: `docs/verification/scan-cancellation-frames.json` and `scan-cancellation-observations.json`. Folder analysis, duplicate scanning and full appearance/accessibility verification remain pending.
+
+中文：隔離取消掃描及重新掃描已完成限定實際驗證，九千零一個檔案均保持原狀。完成先到嗰次不計作取消證據，停止等待亦不等於引擎立即停止。專用程序及隱藏桌面已獨立確認關閉，原始路徑及清單畫面不公開。
+
 ## Verified package keyboard repair
 
 The isolated repair at `1c6b7049f04979de209c87d02c1d787923c4e58d` is integrated at `6d3695e738b0902390e473f6aaf1fb153c30f106`, whose exact root desktop build passed. At 800×600, bilingual dark mode, doubled text and reduced motion, real discovery returned 45 matches. Page Down reached later package cards, Tab visibly focused their actions, and Enter opened the exact selected removal review. Its title, identity, version, consequence and both actions were visible. The explicit Cancel button returned to records; Page Down and Page Up then moved through later cards. No upgrade or removal was confirmed. Escape did not dismiss the review and is recorded as an unsuccessful attempt, not cancellation proof.

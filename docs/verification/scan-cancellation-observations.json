@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "1c6b7049f04979de209c87d02c1d787923c4e58d",
+  "bundleSha256": "e28208acae88c585ef3938be1ca86fdab5831363f9270be339837b8a4e2d7254",
+  "frameManifest": "docs/verification/scan-cancellation-frames.json",
+  "viewport": {"width": 1264, "height": 681},
+  "language": "both",
+  "theme": "dark",
+  "textScale": 1,
+  "motion": "reduced",
+  "method": "cleanup.scan",
+  "attempts": [
+    {"number": 1, "outcome": "stopped-waiting", "busyNativeImages": "blank-rejected"},
+    {"number": 2, "outcome": "completion-won", "lateClick": "started-another-read", "countedAsCancellation": false},
+    {"number": 3, "outcome": "stopped-waiting", "busyFrame": "output/frame-004.png", "cancelInputUtc": "2026-10-10T20:48:44.637593Z", "settledFrame": "output/frame-005.png"}
+  ],
+  "freshScan": {"completed": true, "frame": "output/frame-007.png", "planTargets": 1000, "truncated": true, "selectedTargets": 0},
+  "fixtureIntegrity": {"checkedFiles": 9001, "eligibleFiles": 9000, "eligibleBytes": 524288000, "includingMarkerBytes": 524288071, "fields": ["length", "lastWriteTime", "fileIdentity", "sha256"], "allMatched": true, "operationRecordsExcluded": true},
+  "teardown": {"route": "identity-checked-WM_CLOSE-then-process-and-desktop-absence", "bundleExecutablesAbsent": true, "rootAndDirectChildrenAbsent": true, "desktopEmpty": true, "desktopClosed": true, "genericHelperCompleted": false},
+  "limitations": [
+    "The desktop stopped waiting and requested cancellation. Immediate termination of all engine work was not proved; recorded plan files may still be created.",
+    "The final sequence and fresh result were independently inspected. Hash verification of input records does not certify their semantics.",
+    "The two registered Flutter hooks reported healthy zero observations. This is not native-stderr, browser or universal error coverage.",
+    "The earlier generic lifecycle helper remained incomplete. The separately verified identity-bound close and absence proof completed disposal.",
+    "No cleanup mutation or recovery operation was requested. Raw fixture paths and populated result images remain private.",
+    "Folder analysis, duplicate scanning, full accessibility, physical DPI and remaining appearance tuples require separate verification."
+  ]
+}
