@@ -1,9 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:material_system_care/main.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_system_care/processes.dart';
 import 'package:material_system_care/localization.dart';
 
 void main() {
+  testWidgets(
+    'isolated process entry performs no collection or settings read',
+    (tester) async {
+      final calls = <String>[];
+      final messenger =
+          TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
+      messenger.setMockMethodCallHandler(Engine.channel, (call) async {
+        calls.add(call.method);
+        return null;
+      });
+      addTearDown(
+        () => messenger.setMockMethodCallHandler(Engine.channel, null),
+      );
+      await tester.pumpWidget(
+        const CareApp(startProcesses: true, isolatedCapture: true),
+      );
+      await tester.pumpAndSettle();
+      expect(find.byType(ProcessesPage), findsOneWidget);
+      expect(calls, isEmpty);
+    },
+  );
+
   testWidgets('close review preserves Cantonese wording', (tester) async {
     await tester.pumpWidget(
       MaterialApp(

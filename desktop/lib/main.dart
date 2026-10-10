@@ -17,11 +17,13 @@ void main(List<String> arguments) {
       .where((argument) => argument.startsWith('--capture-frame='))
       .toList();
   final diagnostics = arguments.contains('--diagnostics');
-  // Capture mode is explicit, starts at the real diagnostics workspace, and
+  final processes = arguments.contains('--processes');
+  // Capture mode is explicit, starts at the selected real workspace, and
   // excludes persisted personal settings. It never injects diagnostic results.
-  final exporting = diagnostics && capture.length == 1;
+  final exporting = (diagnostics != processes) && capture.length == 1;
   final app = CareApp(
     startDiagnostics: diagnostics,
+    startProcesses: processes,
     isolatedCapture: exporting,
   );
   runApp(
@@ -78,10 +80,12 @@ class CareApp extends StatefulWidget {
     super.key,
     this.wordingCache,
     this.startDiagnostics = false,
+    this.startProcesses = false,
     this.isolatedCapture = false,
   });
   final WordingCache? wordingCache;
   final bool startDiagnostics;
+  final bool startProcesses;
   final bool isolatedCapture;
   @override
   State<CareApp> createState() => _CareAppState();
@@ -159,6 +163,8 @@ class _CareAppState extends State<CareApp> {
         preferences: settings,
         child: widget.startDiagnostics
             ? CrashDiagnosticsPage(invoke: Engine.invoke)
+            : widget.startProcesses
+            ? ProcessesPage(invoke: Engine.invoke)
             : Workspace(
                 settings: settings,
                 wordingCache: widget.wordingCache,
