@@ -37,3 +37,11 @@ Use the supported persistent Lowlevel hidden route and isolated profiles. Keep t
 Separate wrapping Material labels have been added to search fields and the service-state/maximum-record selectors. Seventeen focused tests pass. Build and new source-bound screenshots remain pending. The c434189 Windows build subsequently completed successfully.
 
 The root desktop and engine builds passed at a5aaea8b27946e958d2de49bad06fbbec970a4f0. Three 1280x900 bilingual dark doubled-text captures were inspected. Exact bundle files verified; bundle processes and named hidden desktops are absent. See docs/verification/wrapping-labels.json. Minimum-size lower controls remain unverified because background wheel input did not move the viewport.
+
+## Verified delivery checkpoint
+
+The interface source a5aaea8b27946e958d2de49bad06fbbec970a4f0 and capture documentation f69279d2dcc5f2958eb41ad632a77bbe0fa6fb5a are on remote main. Documentation deployment 38021026357 succeeded; all 697 live files matched its retained output, including the three new label screenshots. The dedicated gallery retains its 40 earlier bilingual frames; the three current label frames appear in the complete screenshot article and relevant documentation. This verification record is a subsequent documentation-only checkpoint.
+
+The main checkout was clean before this checkpoint. Ten existing worktrees and eleven local branches remain retained for the active broad goal; no stash or cleanup deletion was created. Global instruction issues 49, 45, 25 and 22 were read, with no unrelated backlog adopted. The canonical complete-documentation rule is preserved in c770ae0; its latest remote main is 66d1f12822110e8fa752489a55d83be64a7e06fc. Its full historical sweep was not wholly green.
+
+Next: verify keyboard and lower-control scrolling at 800x600, finish the complete interface/state/motion matrix, continue the supported suite capabilities and installer lifecycle. The goal remains active and incomplete.

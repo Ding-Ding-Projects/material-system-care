@@ -79,5 +79,15 @@
         "stage.json": "69eb391e65783455e03a01d8273cb1769584493b89f34696b6a82f3c783e655a"
       }
     }
-  ]
+  ],
+  "websiteDelivery": {
+    "version": 1,
+    "home": "https://ding-ding-projects.github.io/material-system-care/",
+    "checkedAt": "2026-10-10T03:36:57.320Z",
+    "expectedManifestSha256": "1b8908a5dc82eddaecd32fa32e103ed0f90ae768ee0762262d80b81901198647",
+    "filesChecked": 697,
+    "failures": [],
+    "deploymentRun": 38021026357,
+    "sourceCommit": "f69279d2dcc5f2958eb41ad632a77bbe0fa6fb5a"
+  }
 }
