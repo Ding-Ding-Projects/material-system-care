@@ -52,4 +52,8 @@ Package discovery and selected-package review dialogs own a separate scroll cont
 
 Cancel and confirmation keep their existing result semantics. Cancelling a review makes no package-change request. Both dialog outcomes restore the prior usable focus target, or the package-results target when the original control is no longer available, before continuing the existing workflow. The dialog disposes its own scrolling and focus resources when closed. This behavior does not add any package operation or change the exact-ID consent boundary.
 
-Focused widget checks use the actual isolated application at 800 by 600, bilingual dark preferences and 200% text size. They exercise repeated and reverse paging, both motion modes, editing exclusion, cancel without mutation and dialog disposal. These checks are not new live runtime evidence.
+Focused widget checks use the actual isolated application at 800 by 600, bilingual dark preferences and 200% text size. They exercise repeated and reverse paging, both motion modes, editing exclusion, cancel without mutation and dialog disposal.
+
+Integrated source `e6bfd4994f00fc4d03875f687c12a2ddd5250d5b` also passed real 800×600, bilingual dark, doubled-text, reduced-motion inspection. Page Down from initial and Cancel focus reached the complete lower upgrade disclosure; Page Up reversed movement. Escape cancelled the review and returned to the records without confirming an upgrade. The earlier minimum-size limitation is historical. See [runtime observations](../../verification/package-dialog-repair-observations.json). Removal/discovery share the component but their complete repaired scroll paths, normal motion, physical DPI and full accessibility were not separately established by this sample.
+
+中文：整合版本已喺真正細尺寸雙語畫面重驗，初始及取消掣焦點可以到達完整升級說明，下翻、上翻及取消後返回記錄均已觀察；冇確認升級。移除及探索雖然共用同一元件，仍須各自補充完整實際驗證。

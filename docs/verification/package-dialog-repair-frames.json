@@ -1,0 +1,194 @@
+{
+  "schemaVersion": 1,
+  "scope": "observed-flutter-hooks-and-bytes",
+  "sourceCommit": "e6bfd4994f00fc4d03875f687c12a2ddd5250d5b",
+  "buildReceiptSha256": "e8be9e4fb73e6acc568c93f0529460b5209b5aa5a7d18ccee2f9edfed70ba228",
+  "bundleManifestSha256": "542e8de743fc216593225829f87d78fd39ba9922411fde3a4d7bae5f4d32022a",
+  "frames": [
+    {
+      "png": "output/frame.png",
+      "sidecar": "output/frame.png.json",
+      "sha256": "de244bc6e2fabad26ff68f408fcf9110668ccd722b9d18bd55677631b2f18899",
+      "sidecarSha256": "ee57dadb0cb804ae97c3221fa26cb0004332ff83a6af159d037d8561f819a0b8",
+      "sequence": 0
+    },
+    {
+      "png": "output/frame-002.png",
+      "sidecar": "output/frame-002.png.json",
+      "sha256": "16f4d6a885ec4ae375f819114a81e3f8ee8b50230ff96b71bc1eb09097a7affd",
+      "sidecarSha256": "0e189f9109ba746834b55cc23ac26ccf3e38b8140a9d1e535a716efd2be829d5",
+      "sequence": 2
+    },
+    {
+      "png": "output/frame-003.png",
+      "sidecar": "output/frame-003.png.json",
+      "sha256": "c41dd1358db7bd29e11af5f991fadae200d5953baaeb734ac44a34eb6cdb756d",
+      "sidecarSha256": "6754c100d55e0d945372ddd2404214fa9a07b8ab07ad079ae5a723ba4a2c4041",
+      "sequence": 3
+    },
+    {
+      "png": "output/frame-005.png",
+      "sidecar": "output/frame-005.png.json",
+      "sha256": "7ce8e258ac4ae4840ee23ccf0e9d978661de3b7e2c3f36b71b39969ef46e5d41",
+      "sidecarSha256": "3e67f488171ed1f4e7b07c29865d5d20bb4dbceb7d6a77060f0048792ea65c6b",
+      "sequence": 5
+    },
+    {
+      "png": "output/frame-007.png",
+      "sidecar": "output/frame-007.png.json",
+      "sha256": "9eb92a731a1979d5a09882f232b1822c7eaee097d4af9ea9dff3e7c76384dea2",
+      "sidecarSha256": "6bb6dd672aa5da18c858096a2bd851be3545ee2040d3dc8b9b2a093e06c3cd5d",
+      "sequence": 7
+    },
+    {
+      "png": "output/frame-008.png",
+      "sidecar": "output/frame-008.png.json",
+      "sha256": "398f7aa01a0b97f8c152997ef59c20dd53c46f84421329fbd31f19c0ee86702c",
+      "sidecarSha256": "d100155f7da2cde175e5113c191b365178a7e482d0c23f33a52837c6ab0ca58b",
+      "sequence": 8
+    },
+    {
+      "png": "output/frame-009.png",
+      "sidecar": "output/frame-009.png.json",
+      "sha256": "f4026f0af14e70461410b4326efada0824239261266e78e2b3d24347d475d2a4",
+      "sidecarSha256": "6299c80a86020f03508b683ea5e7b453a722da013a19258c4d6501f31b1a58b1",
+      "sequence": 9
+    },
+    {
+      "png": "output/frame-010.png",
+      "sidecar": "output/frame-010.png.json",
+      "sha256": "e08b1be408275654755afff0711afc6c3f5e38841fea88b887535924e22d4fdb",
+      "sidecarSha256": "3022173b7a52420faa73dfe062a2b5ae550dd53a4d6b1a8dd5838df8459746be",
+      "sequence": 10
+    },
+    {
+      "png": "output/frame-011.png",
+      "sidecar": "output/frame-011.png.json",
+      "sha256": "58636cfaa5606c6193a8212f0ecedc4f256352b04d835b4c6e089704afb0a69f",
+      "sidecarSha256": "b95947624fa12607c0a3e88cbf03952003046bfafd85ab96e9a7b8f1fca7cde1",
+      "sequence": 11
+    },
+    {
+      "png": "output/frame-012.png",
+      "sidecar": "output/frame-012.png.json",
+      "sha256": "70e927219467b1f310e11d4b4c4e9177682ad95ecf1f214de981bcda3175cfb4",
+      "sidecarSha256": "843ecd341a565bdce47fff7b33921e30a9194f80b9b26fbce0010968dac5fa89",
+      "sequence": 12
+    },
+    {
+      "png": "output/frame-013.png",
+      "sidecar": "output/frame-013.png.json",
+      "sha256": "2a2b4004a2ce0f3e5c192449d9532bb46094fafeed83269de641d844584fd7de",
+      "sidecarSha256": "52a7193dcd2bea4646fb84e164d8fb6a0f4db881a96b505fa49bac4bc4f137e4",
+      "sequence": 13
+    },
+    {
+      "png": "output/frame-014.png",
+      "sidecar": "output/frame-014.png.json",
+      "sha256": "6416f1c5100a5022425cb110c093e2e3c5c79b33f446c9a080f9218f45fc6427",
+      "sidecarSha256": "bb3f499686296ba8fb38018426550646a27b7928326d403527e4df7099211e78",
+      "sequence": 14
+    },
+    {
+      "png": "output/frame-015.png",
+      "sidecar": "output/frame-015.png.json",
+      "sha256": "b7dc623d8d4ab7c01bd50cfd9fc366b75f45df3ddfc59b80b2312a75f6b663bd",
+      "sidecarSha256": "f8074ecf88c97f91657328dcb3e261c41a77359b67082f162113c530d31d506e",
+      "sequence": 15
+    },
+    {
+      "png": "output/frame-016.png",
+      "sidecar": "output/frame-016.png.json",
+      "sha256": "c318b6c7681f360fd321c009501b57f0c8993e2e504a020f6158a334d7f4a902",
+      "sidecarSha256": "f29b7e326eda4e86690623333e53c7a127565bb367d2ee284691b7ae66995547",
+      "sequence": 16
+    }
+  ],
+  "evidence": [
+    {
+      "role": "action",
+      "path": "packages-repair-actions-page.json",
+      "sha256": "789f519fd2d88d40de58b07e993ff3d5325f02c8fd239690538090ce693e15e6"
+    },
+    {
+      "role": "action",
+      "path": "packages-repair-dialog-action-focus.json",
+      "sha256": "ce3b88c813baf25bbae71c55f7d7b48ff5d09f4800157885e4f6eb7caf14ad0a"
+    },
+    {
+      "role": "action",
+      "path": "packages-repair-dialog-bottom.json",
+      "sha256": "104b1effbdaeda2d9f55b475f5974a030ba4a5148611f8c5a35c60a2c5b13663"
+    },
+    {
+      "role": "action",
+      "path": "packages-repair-dialog-cancel.json",
+      "sha256": "4f9b57df770604df72ed0c5069872a8bc02a723a7efded92575e63e7aba32516"
+    },
+    {
+      "role": "action",
+      "path": "packages-repair-dialog-forward.json",
+      "sha256": "05002c324cd2673bc4735c68e2f84603ec4f4f6d0386eb8065b537376946f867"
+    },
+    {
+      "role": "action",
+      "path": "packages-repair-dialog-from-action.json",
+      "sha256": "4605a683ddde5946823491ef9521b2b9e4ddd1926a8c85923c0354e2543cbdb4"
+    },
+    {
+      "role": "action",
+      "path": "packages-repair-dialog-reverse.json",
+      "sha256": "e78192ecb3f9e66fe918a3505bd8ecbbf173ee50d770d67657bcb6d1cdd20e1b"
+    },
+    {
+      "role": "action",
+      "path": "packages-repair-discovery-confirm.json",
+      "sha256": "0e3bd5002f67689e4695cdd9421bfb64c4fe00af3010117fe0cce2687332a324"
+    },
+    {
+      "role": "action",
+      "path": "packages-repair-discovery-review.json",
+      "sha256": "bb2de155b36f5bb65e310b9c7a7c2eb597308c20415027aa5af8ab53a8f82634"
+    },
+    {
+      "role": "action",
+      "path": "packages-repair-focus.json",
+      "sha256": "520b6ea79ef0a0c4300c49901d79db4cd3c55006ede869a5104d5d7af9ed8684"
+    },
+    {
+      "role": "action",
+      "path": "packages-repair-record-page.json",
+      "sha256": "a1f1bc1270dd11b489eaa47e9230f3b526e220de6edddc9d48253dbed59f1370"
+    },
+    {
+      "role": "action",
+      "path": "packages-repair-result-page.json",
+      "sha256": "cf605bb75be63bf159c5ebc1b5394e375a29c35134facd6a24b0dd65b27250eb"
+    },
+    {
+      "role": "action",
+      "path": "packages-repair-source-menu.json",
+      "sha256": "eb4535cc399ac0f726a9eb5caeeac51c937651ef0e079fa5262f18b1dc432ad1"
+    },
+    {
+      "role": "action",
+      "path": "packages-repair-source-page.json",
+      "sha256": "77083aebffab9317ba097484c05ea0c8b71e5af01678cf6e6042a0e58ce9bbc2"
+    },
+    {
+      "role": "action",
+      "path": "packages-repair-source-selected.json",
+      "sha256": "0fccf2514863f497cd417c36f4ed3aaebac34725d94d4b2c9c44ebf7b8cc2936"
+    },
+    {
+      "role": "action",
+      "path": "packages-repair-upgrade-review.json",
+      "sha256": "c194940cbc7ad5016951aef6e676e4d91f48240bca14feb8f039706963880fdd"
+    },
+    {
+      "role": "teardown",
+      "path": "teardown.json",
+      "sha256": "27d7ba381720289dec9e176de50c5e6ec6a3558f699455f72988884f21216859"
+    }
+  ]
+}

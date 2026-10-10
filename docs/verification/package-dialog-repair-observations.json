@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "e6bfd4994f00fc4d03875f687c12a2ddd5250d5b",
+  "width": 800,
+  "height": 600,
+  "textScale": 2,
+  "language": "both",
+  "theme": "dark",
+  "reducedMotion": true,
+  "matchedEntries": 45,
+  "observed": [
+    "network disclosure and explicit discovery",
+    "selected exact-ID upgrade review",
+    "Page Down from initial focus reveals lower disclosure",
+    "Page Up reverses movement",
+    "visible Cancel focus",
+    "Page Down from Cancel moves content",
+    "repeated Page Down reaches complete bilingual lower disclosure",
+    "Escape cancels review and returns to records"
+  ],
+  "upgradeConfirmed": false,
+  "ownedProcessesAndDesktopClosed": true,
+  "publicPixels": false,
+  "limits": [
+    "This repair run did not confirm a package mutation.",
+    "Removal and discovery use the same dialog component but their complete repaired scroll paths were not separately repeated.",
+    "Editable-text paging, normal motion, physical DPI and full accessibility remain outside this runtime sample."
+  ]
+}

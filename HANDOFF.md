@@ -4,6 +4,12 @@ This file retains earlier candidate states as historical evidence. A later sourc
 
 本檔案保留早期候選版本作歷史記錄。後來嘅實際驗證只會取代有明確證據嗰部分，未完成清單仍以路線圖為準，唔會將部分檢查當成整套完成。
 
+## Package dialog runtime repair acceptance
+
+Integrated source `e6bfd4994f00fc4d03875f687c12a2ddd5250d5b` passed real 800×600 doubled-bilingual inspection. Managed discovery returned 45 matches. The selected upgrade dialog scrolled from initial focus and visible Cancel focus, reversed with Page Up, and reached the complete lower bilingual disclosure through repeated Page Down. Escape cancelled the review and returned to the same records. No upgrade was confirmed. Fourteen inspected frames and their supporting receipts passed the narrow verifier, and owned processes and desktop closed. Removal/discovery share the repaired component, but their complete repaired scroll paths were not separately repeated. Normal motion, physical DPI and full accessibility remain open. See `docs/verification/package-dialog-repair-observations.json`.
+
+中文：整合版本已喺 800×600、雙語兩倍文字重驗，對話框可由初始及取消掣焦點上下翻頁，完整下半段說明已可到達。Escape 取消並返回原有記錄，沒有確認升級。其他動態、實際 DPI 及完整無障礙仍待驗證。
+
 ## Bounded extended painted capture
 
 Candidate `6470a34cb6785c5d9d5a6875e0fe71c574619008` raises the painted-frame producer and local verifier to 64 attempts, sequences 0 through 63. All file immutability, byte, timing, diagnostic and source checks remain unchanged. Eight Dart checks, thirty-three synthetic Node checks, thirty-six native capture assertions, twenty-four lifecycle checks and five transport cases passed. Both candidate root native and desktop builds passed. Boundary checks were observed failing before the repair. Two independent source reviews were dry. Integrated production, a real frame beyond the earlier boundary and the separate promotion-validator deployment remain pending. Historical twenty-frame runs retain their original limits.
