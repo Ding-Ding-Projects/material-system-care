@@ -56,3 +56,7 @@ Native persistence failure remains a failed capture, not a zero native count.
 Requests without a snapshot retain compatibility but write
 `diagnosticStatus: "legacy-unverified"` and `diagnostics: null`. Existing receipts
 and images are never changed; an absent historical field remains unverified.
+
+The [narrow observed-frame verifier](observed-flutter-frame.md) checks the
+source/bundle/frame byte chain and zero-error observed-hook snapshot. Its
+verdict is separate from global UI-evidence promotion and visual acceptance.
