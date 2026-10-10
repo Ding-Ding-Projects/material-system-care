@@ -2,6 +2,8 @@
 
 Temporary-file maintenance now requires an explicit selected subset of the scanned plan. Review the exact selected paths before moving them to recovery; unchecked eligible files remain untouched. See [selected cleanup and recovery](docs/features/storage/cleanup.md) for protocol compatibility and replay limits.
 
+Recovery history reads the receipt's recorded file details before asking to restore. Missing details block that action; restoration still checks actual identity, content and occupied destinations before moving anything.
+
 A Windows 11 x64 maintenance and diagnostics workspace built with Flutter, .NET 10, and Material Design 3.
 
 **Development status:** implementation is in progress. No production installer or complete feature-parity claim is available yet.

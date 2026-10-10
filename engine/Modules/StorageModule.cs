@@ -10,7 +10,7 @@ public sealed class StorageModule : IEngineModule
     private readonly string? fixtureTempRoot;
     public StorageModule() { }
     internal StorageModule(string fixtureTempRoot) { this.fixtureTempRoot = Path.GetFullPath(fixtureTempRoot); }
-    public bool CanHandle(string method) => method is "storage.analyze" or "storage.duplicates" or "cleanup.scan" or "cleanup.apply" or "cleanup.restore" or "cleanup.history";
+    public bool CanHandle(string method) => method is "storage.analyze" or "storage.duplicates" or "cleanup.scan" or "cleanup.apply" or "cleanup.restore" or "cleanup.history" or "cleanup.details";
 
     public async Task<object?> HandleAsync(string method, JsonElement parameters, EngineContext context, CancellationToken cancellationToken)
     {
@@ -24,6 +24,7 @@ public sealed class StorageModule : IEngineModule
                 "cleanup.apply" => await Apply(parameters, context, cancellationToken),
                 "cleanup.restore" => await Restore(parameters, context, cancellationToken),
                 "cleanup.history" => await History(context, cancellationToken),
+                "cleanup.details" => await Details(parameters, context, cancellationToken),
                 _ => throw new EngineException("METHOD_NOT_FOUND", "Unknown storage method.")
             };
         }
@@ -326,6 +327,18 @@ public sealed class StorageModule : IEngineModule
         }
         await c.RecordAsync("cleanup.apply", new { receiptId = id, moved = receipt.Items.Count(x => x.State == "quarantined"), planned = selected.Count, totalPlanCount = plan.Targets.Count }, CancellationToken.None);
         return new { receiptId = id, items = receipt.Items, plannedCount = selected.Count, totalPlanCount = plan.Targets.Count, partial = receipt.Items.Count(x => x.State == "quarantined") != selected.Count, cancelled = ct.IsCancellationRequested, permanentDeletion = false };
+    }
+    private static async Task<object> Details(JsonElement p, EngineContext c, CancellationToken ct)
+    {
+        string id = Id(p, "receiptId");
+        var receipt = await Load<Receipt>(Path.Combine(Store(c), id + ".receipt.json"), ct);
+        if (receipt.Id != id || receipt.Items == null || receipt.Items.Count > 1000 || receipt.Items.Any(item => item == null || item.Target == null || string.IsNullOrEmpty(item.Target.Path) || item.Target.Path.Length > 1024))
+            throw new EngineException("INVALID_PLAN", "Invalid recovery record.");
+        // Stored metadata only. Availability and content are revalidated during
+        // a separately confirmed restore, never inferred from this read.
+        return new { receiptId = id, createdUtc = receipt.CreatedUtc, recordedOnly = true,
+            items = receipt.Items.Select(item => new { path = item.Target.Path, size = item.Target.Size, state = item.State, reason = item.Reason }),
+            mutationPerformed = false };
     }
     private async Task<object> Restore(JsonElement p, EngineContext c, CancellationToken ct)
     {

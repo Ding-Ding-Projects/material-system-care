@@ -54,6 +54,10 @@ try
     foreach (var item in applied.GetProperty("items").EnumerateArray()) Console.WriteLine("Fixture cleanup state: " + item.GetProperty("state").GetString() + "; reason: " + item.GetProperty("reason").ToString());
     Check(!File.Exists(old) && File.Exists(changed) && File.Exists(recent) && applied.GetProperty("partial").GetBoolean(), "changed target skipped and eligible target quarantined");
     Check(await File.ReadAllTextAsync(unselected) == "leave this file alone" && applied.GetProperty("plannedCount").GetInt32() == 2 && applied.GetProperty("totalPlanCount").GetInt32() == 3, "unselected eligible target remains untouched");
+    var details = await Call("cleanup.details", new { receiptId = planId });
+    Check(details.GetProperty("recordedOnly").GetBoolean() && !details.GetProperty("mutationPerformed").GetBoolean() && details.GetProperty("items").GetArrayLength() == 2 && !File.Exists(old), "recovery details read stored metadata without restoring");
+    Check(details.GetProperty("items").EnumerateArray().All(item => !item.TryGetProperty("hash", out _) && !item.TryGetProperty("quarantinePath", out _)), "recovery review omits internal hashes and storage paths");
+    await Reject("cleanup.details", new { receiptId = "../other" }, "INVALID_ARGUMENT");
     await Reject("cleanup.apply", new { planId, confirmed = true, targetIndexes = new[] { 0, 1, 2 } }, "SELECTION_CHANGED");
     Check(File.Exists(unselected), "replay cannot expand an applied selection");
     await File.WriteAllTextAsync(old, "new occupant");

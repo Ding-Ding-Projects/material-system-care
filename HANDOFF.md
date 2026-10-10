@@ -1,5 +1,11 @@
 # Implementation handoff
 
+## Recovery file review
+
+The engine now exposes read-only cleanup.details for a validated receipt ID. It returns recorded path, size, state and reason without internal hashes or quarantine locations. The desktop reads matching details before restore confirmation, shows the recorded files, blocks unavailable or empty details, and sends only the reviewed receipt ID with explicit confirmation. Stored state is a snapshot; current availability and destination conflicts remain governed by actual restore-time validation. Skipped/already-restored items can appear in review without being moved again.
+
+Thirty-three storage checks and the focused recovery-review Flutter check passed. Tests cover metadata-only behavior, omitted internal fields, traversal rejection, unavailable-detail blocking, cancellation without restoration and receipt-specific confirmation. Independent bounded review found no concrete correctness/privacy/scope regression. Candidate root builds and genuine built recovery interaction remain pending. No real user files were restored.
+
 ## Selected maintenance targets
 
 The cleanup workflow now requires checked targets, snapshots their original plan indices and exact paths for review, and sends only that subset. The engine validates nonempty unique in-range integers against its stored plan before creating a recovery receipt, persists the canonical selection, and rejects replay with a changed selection. Unchecked eligible files remain untouched. Legacy receipts represent the previous whole-plan selection; older clients omitting selection must be updated. Replay does not resume omitted work or preserve historical cancellation provenance.

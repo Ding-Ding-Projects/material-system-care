@@ -12,6 +12,12 @@ class CopyScope extends InheritedWidget {
 }
 
 const translations = <String, String>{
+  'Review recovery files': '覆核復原檔案',
+  'Recorded state': '已記錄狀態',
+  'Recovery details are unavailable.': '未能讀取復原詳情。',
+  'This recovery record contains no files.': '此復原記錄冇任何檔案。',
+  'Review recorded files before restoration. Existing files will not be overwritten; availability is checked during restoration.':
+      '復原前請覆核已記錄檔案。現有檔案唔會被覆蓋；復原時會重新檢查可用狀態。',
   'Only selected temporary files will move to recovery.': '只有已選取嘅暫存檔會移到復原儲存區。',
   'Move selected temporary files to recovery?': '將已選取暫存檔移到復原儲存區？',
   'Apply selected cleanup targets': '處理已選取清理項目',

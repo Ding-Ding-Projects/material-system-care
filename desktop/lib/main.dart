@@ -446,6 +446,43 @@ class _WorkflowPageState extends State<WorkflowPage> {
       ) ??
       false;
   Future<void> rowAction(String method, Map<String, dynamic> row) async {
+    if (busy) return;
+    if (method == 'cleanup.restore') {
+      final receiptId = row['receiptId'] ?? row['id'];
+      setState(() {
+        busy = true;
+        failure = null;
+      });
+      Map<String, dynamic> details;
+      try {
+        details = await Engine.invoke('cleanup.details', {
+          'receiptId': receiptId,
+        });
+        if (details['receiptId'] != receiptId || details['items'] is! List) {
+          throw StateError('Recovery details are unavailable.');
+        }
+      } catch (error) {
+        if (mounted) setState(() => failure = error.toString());
+        return;
+      } finally {
+        if (mounted) setState(() => busy = false);
+      }
+      if (!mounted) return;
+      final items = details['items'] as List;
+      if (items.isEmpty) {
+        setState(() => failure = 'This recovery record contains no files.');
+        return;
+      }
+      final review =
+          '${localize(context, "Review recorded files before restoration. Existing files will not be overwritten; availability is checked during restoration.")}\n\n${items.map((item) => '${item['path']}\n${localize(context, "Recorded state")}: ${item['state']}').join('\n\n')}';
+      if (await confirm('Review recovery files', review)) {
+        await load('cleanup.restore', {
+          'receiptId': receiptId,
+          'confirmed': true,
+        });
+      }
+      return;
+    }
     if (method == 'drivers.export') {
       final folder = await Engine.channel.invokeMethod<String>(
         'pickDirectory',
