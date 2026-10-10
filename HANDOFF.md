@@ -1,5 +1,9 @@
 # Implementation handoff
 
+## General inventory display-quality candidate
+
+The real general-inventory read at source `6d3695e` returned 741 records, including four registry display names with embedded NUL characters followed by more text. Rejecting one such field discarded the whole desktop result. Candidate `93caee65ea2026983ec2f705b63e70767f70d98f` preserves strict identifiers, sources, scope and read-only capability checks while discarding invalid general display values and using localized unavailable labels. Affected-record counts are separate from unavailable-source warnings, and managed validation remains strict. Eighteen focused tests, the isolated root desktop build and independent source review passed. This integrated candidate still requires its own build and real inventory/filter verification. Raw host values remain private.
+
 ## Diagnostic paging acceptance
 
 Integrated source `f310e7684c9ebdf621bc656f2f98bfa3a47c12bc` passed the root desktop build and a fresh 800×600 doubled-bilingual run. Fifteen consecutive Page Down inputs moved from the original selector through the final event rows without another Tab. Six representative frames were inspected and passed the narrow source/bundle/two-hook verifier. All twenty originals remain private. The capture cap prevented a further minimum-size dump-section or reverse-paging frame, so those claims remain pending. All owned bundle executables were absent and the hidden desktop closed.

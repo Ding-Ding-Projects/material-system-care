@@ -23,6 +23,24 @@ String _text(Object? value, {int limit = 1024}) {
 String? _optionalText(Object? value, {int limit = 1024}) =>
     value == null || value == '' ? null : _text(value, limit: limit);
 
+enum PackageDisplayQuality { available, notProvided, invalid }
+
+(String?, PackageDisplayQuality) _displayText(
+  Object? value,
+  int limit, {
+  bool mandatory = false,
+}) {
+  if (!mandatory && (value == null || value == ''))
+    return (null, PackageDisplayQuality.notProvided);
+  try {
+    final text = _text(value, limit: limit);
+    if (text.trim().isEmpty) return (null, PackageDisplayQuality.invalid);
+    return (text, PackageDisplayQuality.available);
+  } on FormatException {
+    return (null, PackageDisplayQuality.invalid);
+  }
+}
+
 class PackageRecord {
   const PackageRecord({
     required this.id,
@@ -34,10 +52,33 @@ class PackageRecord {
     this.packageId,
     this.canUpgrade = false,
     this.canUninstall = false,
+    this.nameQuality = PackageDisplayQuality.available,
+    this.versionQuality = PackageDisplayQuality.available,
+    this.publisherQuality = PackageDisplayQuality.available,
   });
   final String id, name, source;
   final String? version, publisher, scope, packageId;
   final bool canUpgrade, canUninstall;
+  final PackageDisplayQuality nameQuality, versionQuality, publisherQuality;
+  bool get degraded => [
+    nameQuality,
+    versionQuality,
+    publisherQuality,
+  ].contains(PackageDisplayQuality.invalid);
+  String displayName(BuildContext context) =>
+      nameQuality == PackageDisplayQuality.invalid
+      ? localize(context, 'Display name unavailable')
+      : name;
+  String displayVersion(BuildContext context) =>
+      versionQuality == PackageDisplayQuality.invalid
+      ? localize(context, 'Version unavailable')
+      : version ?? localize(context, 'Unavailable');
+  String? displayPublisher(BuildContext context) =>
+      publisherQuality == PackageDisplayQuality.invalid
+      ? localize(context, 'Publisher unavailable')
+      : publisher;
+  String searchText(BuildContext context) =>
+      '${displayName(context)} $id ${displayVersion(context)} ${displayPublisher(context) ?? ''}';
 
   static List<PackageRecord> parse(
     Map<String, dynamic> result, {
@@ -56,11 +97,11 @@ class PackageRecord {
     return raw.map((value) {
       if (value is! Map) throw const FormatException();
       final id = _text(value['id'], limit: 2048);
-      final name = _text(value['name']);
       final source = _text(value['source'], limit: 64);
       if (!ids.add(managed ? id.toLowerCase() : id))
         throw const FormatException();
       if (managed) {
+        final name = _text(value['name']);
         final packageId = _text(value['packageId'], limit: 256);
         if (!RegExp(r'^[A-Za-z0-9][A-Za-z0-9._+-]*$').hasMatch(packageId) ||
             id != 'winget:$packageId' ||
@@ -84,15 +125,29 @@ class PackageRecord {
       if ((source != 'appx' && source != 'uninstallRegistry') ||
           !id.startsWith(source == 'appx' ? 'appx:' : 'registry:') ||
           (scope != 'user' && scope != 'machine') ||
-          value['canUninstall'] != false)
+          value['canUninstall'] != false ||
+          (value.containsKey('canUpgrade') && value['canUpgrade'] != false))
         throw const FormatException();
+      final (name, nameQuality) = _displayText(
+        value['name'],
+        1024,
+        mandatory: true,
+      );
+      final (version, versionQuality) = _displayText(value['version'], 256);
+      final (publisher, publisherQuality) = _displayText(
+        value['publisher'],
+        2048,
+      );
       return PackageRecord(
         id: id,
-        name: name,
+        name: name ?? '',
         source: source,
         scope: scope,
-        version: _optionalText(value['version'], limit: 256),
-        publisher: _optionalText(value['publisher'], limit: 2048),
+        version: version,
+        publisher: publisher,
+        nameQuality: nameQuality,
+        versionQuality: versionQuality,
+        publisherQuality: publisherQuality,
       );
     }).toList();
   }
@@ -336,10 +391,7 @@ class _PackagesPageState extends State<PackagesPage> {
     final needle = query.toLowerCase();
     final shown = (records ?? <PackageRecord>[])
         .where(
-          (record) =>
-              '${record.name} ${record.id} ${record.version ?? ''} ${record.publisher ?? ''}'
-                  .toLowerCase()
-                  .contains(needle),
+          (record) => record.searchText(context).toLowerCase().contains(needle),
         )
         .toList();
     return Scaffold(
@@ -449,6 +501,11 @@ class _PackagesPageState extends State<PackagesPage> {
                   const UiText(
                     'Some inventory sources could not be read. Displayed records are incomplete.',
                   ),
+                if (records != null &&
+                    records!.any((record) => record.degraded))
+                  Text(
+                    '${localize(context, 'Records with unavailable display metadata')}: ${records!.where((record) => record.degraded).length}',
+                  ),
                 if (managed)
                   const UiText(
                     'Only installed WinGet matches are listed. Available update versions have not been checked.',
@@ -473,16 +530,16 @@ class _PackagesPageState extends State<PackagesPage> {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           SelectableText(
-                            record.name,
+                            record.displayName(context),
                             style: Theme.of(context).textTheme.titleMedium,
                           ),
                           const SizedBox(height: 8),
                           Text(
-                            '${localize(context, 'Installed version')}: ${record.version ?? localize(context, 'Unavailable')}',
+                            '${localize(context, 'Installed version')}: ${record.displayVersion(context)}',
                           ),
-                          if (record.publisher != null)
+                          if (record.displayPublisher(context) != null)
                             Text(
-                              '${localize(context, 'Publisher')}: ${record.publisher}',
+                              '${localize(context, 'Publisher')}: ${record.displayPublisher(context)}',
                             ),
                           UiText(
                             record.source == 'winget'

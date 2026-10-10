@@ -4,6 +4,10 @@ In **Apps**, choose **WinGet matches** in the inventory-source selector, select 
 
 Each managed card contains the exact package identifier and optional installed version. Select **Review upgrade** or **Review uninstall** and review the exact target before proceeding. Discovery changes no installed package, accepts no new source agreement, and does not imply consent to a later operation. Existing source agreements and a working WinGet installation are required; a missing client or unsuccessful discovery has an explicit unavailable result and its bounded cause. Invalid data is distinguished from a valid unavailable response and a successful empty inventory.
 
+General installed-inventory display metadata has separate quality states. An invalid name, version or publisher is discarded and rendered with a fixed localized unavailable label; it is not truncated, repaired or used in search. Stable identifiers, source, scope and read-only capability checks remain strict. The workspace counts affected records separately from inaccessible inventory sources. Managed-package records retain their original strict validation and never become actionable through display fallbacks.
+
+中文：一般已安裝清單會分開處理顯示資料品質。名稱、版本或發行者無效時，原值會捨棄，改用固定本地化提示，不會截短或猜測內容。識別碼、來源、範圍及唯讀限制仍嚴格驗證；受影響記錄數與來源不可讀警告分開顯示。WinGet 操作資料仍維持原本嚴格規則。
+
 Confirmation sends only the exact package identifier and consent. A result must match that identifier, contain a consistent completion/exit-code pair and explicitly state that no restart was initiated before success is reported. Every attempted mutation refreshes discovery without automatically repeating the mutation. A failed refresh removes prior actions. The engine does not compare the installed version to its reviewed value, so concurrent changes remain possible. Removal creates no rollback copy. These limits are repeated in the review dialog.
 
 中文：應用程式工作區分開一般唯讀清單及 WinGet 配對。探索、升級同移除各自要覆核；只有確實配對識別碼可以發送操作。來源不可用會保留實際原因，唔會同空清單或無效資料混埋。移除不會建立復原副本，覆核後版本亦可能被其他程序改變。
