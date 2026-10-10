@@ -12,6 +12,55 @@ class CopyScope extends InheritedWidget {
 }
 
 const translations = <String, String>{
+  'Folder analysis': '資料夾分析',
+  'Understand one folder': '了解一個資料夾',
+  'Read-only analysis counts observed files and lists the largest files and empty folders. Nothing is collected until you review a folder.':
+      '唯讀分析會統計觀察到嘅檔案，並列出最大檔案同空資料夾。檢閱資料夾之前唔會收集資料。',
+  'Folder path': '資料夾路徑',
+  'Review folder analysis': '檢閱資料夾分析',
+  'Only this folder will be read. No files will be moved, changed or deleted.':
+      '只會讀取呢個資料夾。唔會搬移、修改或刪除任何檔案。',
+  'Analyze selected folder': '分析所選資料夾',
+  'The folder picker is unavailable. Enter a full folder path.':
+      '資料夾選擇器無法使用。請輸入完整資料夾路徑。',
+  'Enter a full absolute folder path.': '請輸入完整嘅絕對資料夾路徑。',
+  'Cancellation requested. Waiting for the current read to settle.':
+      '已要求取消，正等候目前讀取結束。',
+  'Cancellation could not be requested. The current read may still complete.':
+      '未能要求取消。目前讀取仍然可能完成。',
+  'Stopped waiting for analysis. This does not prove that all engine reads have stopped.':
+      '已停止等候分析，但唔代表引擎已停止所有讀取。',
+  'Folder analysis response is invalid. No result was accepted.':
+      '資料夾分析回應無效，未有接納任何結果。',
+  'The selected folder is unavailable or unsupported. Check the path and access, then retry.':
+      '所選資料夾無法使用或不受支援。請檢查路徑同存取權限，然後重試。',
+  'Folder analysis could not complete. No files were changed. Retry when the engine is available.':
+      '未能完成資料夾分析，冇修改任何檔案。請喺引擎可用時重試。',
+  'Analyzed folder': '已分析資料夾',
+  'Incomplete view: some entries were not examined.': '檢視未完整：部分項目未經檢查。',
+  'The selected folder traversal completed.': '已完成遍歷所選資料夾。',
+  'Point-in-time metadata only. Files may change after analysis. No files were changed.':
+      '只係當時嘅中繼資料。分析後檔案可能改變，呢次分析冇修改任何檔案。',
+  'Observed files': '觀察到嘅檔案',
+  'Observed bytes': '觀察到嘅位元組',
+  'Observed empty folders': '觀察到嘅空資料夾',
+  'Inaccessible entries': '無法存取嘅項目',
+  'Reparse points skipped': '已略過嘅重新剖析點',
+  'Folders beyond depth limit': '超過深度上限嘅資料夾',
+  'The 20,000-entry traversal limit was reached. Totals describe only observed entries.':
+      '已達到 20,000 個項目嘅遍歷上限。總數只包括觀察到嘅項目。',
+  'Largest files': '最大檔案',
+  'Shown files': '已列出檔案',
+  'Only the largest 100 observed files are listed.': '只列出觀察到嘅最大 100 個檔案。',
+  'No files were observed.': '未觀察到任何檔案。',
+  'Full path': '完整路徑',
+  'Empty folders': '空資料夾',
+  'Shown folders': '已列出資料夾',
+  'Only the first 1,000 observed empty folders are listed.':
+      '只列出首 1,000 個觀察到嘅空資料夾。',
+  'Empty means no entries were observed, including hidden entries. Inaccessible folders are not declared empty.':
+      '空代表未觀察到任何項目，包括隱藏項目。無法存取嘅資料夾唔會當成空資料夾。',
+  'No empty folders were observed.': '未觀察到任何空資料夾。',
   'Copy': '複製',
   'Cut': '剪下',
   'Paste': '貼上',

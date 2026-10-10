@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'settings.dart';
 import 'localization.dart';
 import 'selection_localizations.dart';
+import 'storage_analysis.dart';
 import 'labeled_controls.dart';
 import 'notifications.dart';
 import 'provenance.dart';
@@ -39,6 +40,7 @@ void main(List<String> arguments) {
   final services = arguments.contains('--services');
   final startup = arguments.contains('--startup');
   final packages = arguments.contains('--packages');
+  final storageAnalysis = arguments.contains('--storage-analysis');
   // Capture mode is explicit, starts at the selected real workspace, and
   // excludes persisted personal settings. It never injects diagnostic results.
   final exporting =
@@ -50,6 +52,7 @@ void main(List<String> arguments) {
             services,
             startup,
             packages,
+            storageAnalysis,
             cleanupFixtureMode,
           ].where((selected) => selected).length ==
           1 &&
@@ -64,6 +67,7 @@ void main(List<String> arguments) {
     startServices: services,
     startStartup: startup,
     startPackages: packages,
+    startStorageAnalysis: storageAnalysis,
     isolatedCapture: captureRequested || cleanupFixtureMode,
     capturePreferences: exporting ? capturePreferences! : const {},
   );
@@ -134,6 +138,7 @@ class CareApp extends StatefulWidget {
     this.startServices = false,
     this.startStartup = false,
     this.startPackages = false,
+    this.startStorageAnalysis = false,
     this.isolatedCapture = false,
     this.capturePreferences = const {},
   });
@@ -146,6 +151,7 @@ class CareApp extends StatefulWidget {
   final bool startServices;
   final bool startStartup;
   final bool startPackages;
+  final bool startStorageAnalysis;
   final bool isolatedCapture;
   final Map<String, dynamic> capturePreferences;
   @override
@@ -262,6 +268,12 @@ class _CareAppState extends State<CareApp> {
                     cleanupFixture: true,
                   ),
                 ),
+              )
+            : widget.startStorageAnalysis
+            ? StorageAnalysisPage(
+                invoke: (method, parameters, {required requestId}) =>
+                    Engine.invoke(method, parameters, requestId: requestId),
+                cancel: Engine.cancel,
               )
             : widget.startDiagnostics
             ? CrashDiagnosticsPage(invoke: Engine.invoke)
@@ -844,7 +856,23 @@ class _WorkflowPageState extends State<WorkflowPage> {
                 onPressed: busy
                     ? null
                     : () => widget.index == 1
-                          ? load('storage.analyze', {'path': input.text})
+                          ? Navigator.of(context).push(
+                              MaterialPageRoute<void>(
+                                builder: (_) => StorageAnalysisPage(
+                                  invoke:
+                                      (
+                                        method,
+                                        parameters, {
+                                        required requestId,
+                                      }) => Engine.invoke(
+                                        method,
+                                        parameters,
+                                        requestId: requestId,
+                                      ),
+                                  cancel: Engine.cancel,
+                                ),
+                              ),
+                            )
                           : load(),
                 icon: Icon(Icons.refresh),
                 label: UiText(
