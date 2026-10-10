@@ -7,6 +7,7 @@ import 'localization.dart';
 import 'selection_localizations.dart';
 import 'storage_analysis.dart';
 import 'duplicate_analysis.dart';
+import 'system_overview.dart';
 import 'labeled_controls.dart';
 import 'notifications.dart';
 import 'provenance.dart';
@@ -43,6 +44,7 @@ void main(List<String> arguments) {
   final packages = arguments.contains('--packages');
   final storageAnalysis = arguments.contains('--storage-analysis');
   final duplicateAnalysis = arguments.contains('--duplicate-analysis');
+  final systemOverview = arguments.contains('--system-overview');
   // Capture mode is explicit, starts at the selected real workspace, and
   // excludes persisted personal settings. It never injects diagnostic results.
   final exporting =
@@ -56,6 +58,7 @@ void main(List<String> arguments) {
             packages,
             storageAnalysis,
             duplicateAnalysis,
+            systemOverview,
             cleanupFixtureMode,
           ].where((selected) => selected).length ==
           1 &&
@@ -72,6 +75,7 @@ void main(List<String> arguments) {
     startPackages: packages,
     startStorageAnalysis: storageAnalysis,
     startDuplicateAnalysis: duplicateAnalysis,
+    startSystemOverview: systemOverview,
     isolatedCapture: captureRequested || cleanupFixtureMode,
     capturePreferences: exporting ? capturePreferences! : const {},
   );
@@ -144,6 +148,7 @@ class CareApp extends StatefulWidget {
     this.startPackages = false,
     this.startStorageAnalysis = false,
     this.startDuplicateAnalysis = false,
+    this.startSystemOverview = false,
     this.isolatedCapture = false,
     this.capturePreferences = const {},
   });
@@ -158,6 +163,7 @@ class CareApp extends StatefulWidget {
   final bool startPackages;
   final bool startStorageAnalysis;
   final bool startDuplicateAnalysis;
+  final bool startSystemOverview;
   final bool isolatedCapture;
   final Map<String, dynamic> capturePreferences;
   @override
@@ -275,6 +281,8 @@ class _CareAppState extends State<CareApp> {
                   ),
                 ),
               )
+            : widget.startSystemOverview
+            ? SystemOverviewPage(invoke: Engine.invoke)
             : widget.startDuplicateAnalysis
             ? DuplicateAnalysisPage(
                 invoke: (method, parameters, {required requestId}) =>
@@ -432,6 +440,8 @@ class _WorkspaceState extends State<Workspace> {
                       ? StartupPage(invoke: Engine.invoke)
                       : selected == 2
                       ? PackagesPage(invoke: Engine.invoke)
+                      : selected == 0
+                      ? SystemOverviewPage(invoke: Engine.invoke)
                       : WorkflowPage(index: selected, title: name(selected)),
                 ),
               ),
