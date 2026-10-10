@@ -27,14 +27,14 @@ std::optional<std::wstring> UpdaterPath(const std::wstring& executable) {
   // Normalize separators only after validating the absolute drive prefix.
   std::wstring path = executable;
   for (auto& character : path) {
-    if (character == L'/') character = L'\';
+    if (character == L'/') character = wchar_t{0x5c};
   }
-  const auto filename = path.find_last_of(L'\');
+  const auto filename = path.find_last_of(wchar_t{0x5c});
   if (filename == std::wstring::npos ||
       path.substr(filename + 1) != L"material_system_care.exe") return std::nullopt;
   size_t start = 3;
   while (start < path.size()) {
-    const auto end = path.find(L'\', start);
+    const auto end = path.find(wchar_t{0x5c}, start);
     const auto component = path.substr(start, end - start);
     if (component == L"." || component == L"..") return std::nullopt;
     if (end == std::wstring::npos) break;
@@ -42,12 +42,12 @@ std::optional<std::wstring> UpdaterPath(const std::wstring& executable) {
   }
   // Skip repeated separators, as Windows path decomposition does.
   size_t version_end = filename;
-  while (version_end > 3 && path[version_end - 1] == L'\') --version_end;
+  while (version_end > 3 && path[version_end - 1] == wchar_t{0x5c}) --version_end;
   if (version_end <= 3) return std::nullopt;
-  const auto version_start = path.find_last_of(L'\', version_end - 1);
+  const auto version_start = path.find_last_of(wchar_t{0x5c}, version_end - 1);
   if (version_start == std::wstring::npos || version_start <= 2) return std::nullopt;
   size_t base_end = version_start;
-  while (base_end > 3 && path[base_end - 1] == L'\') --base_end;
+  while (base_end > 3 && path[base_end - 1] == wchar_t{0x5c}) --base_end;
   if (base_end <= 3) return std::nullopt;
   return path.substr(0, base_end) + L"\\Update.exe";
 }
