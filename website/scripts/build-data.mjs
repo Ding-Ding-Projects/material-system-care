@@ -20,8 +20,14 @@ for(const file of documents){
   articles.push({path:file,title,html:renderArticle(markdown,file,inventory),text:markdown});
 }
 await writeFile(new URL('articles.json',publicRoot),JSON.stringify({version:1,articles}));
+const referencedFiles=new Set();
+for(const article of articles) for(const match of article.html.matchAll(/(?:href|src)="\.\/source-files\/([^"#]+)(?:#[^"]*)?"/g)) {
+  const file=match[1].replaceAll('&amp;','&');
+  if(!tracked.includes(file)) throw Error('Article references an unpublished file: '+file);
+  referencedFiles.add(file);
+}
 // Copy only tracked public documentation assets. No private build or capture receipts.
-for(const file of tracked.filter(p=>/^(docs|contracts|design)\//.test(p) && /\.(png|jpg|jpeg|svg|json|md)$/i.test(p))){
+for(const file of new Set([...referencedFiles,...tracked.filter(p=>/^(docs|contracts|design)\//.test(p) && /\.(png|jpg|jpeg|svg|json|md)$/i.test(p))])){
   const destination=new URL('source-files/'+file,publicRoot);
   await mkdir(new URL('.',destination),{recursive:true});
   await writeFile(destination,await readFile(new URL(file,root)));
