@@ -1,5 +1,13 @@
 # Implementation handoff
 
+## Diagnostic interaction evidence
+
+Desktop source cfa86ebb78312984a90ccd26b814f4a4d00a58e9 passed the root desktop build and a real isolated Lowlevel background-input sequence. The operator entered public code 0x9F in the actual field and clicked the explanation control. The inspected painted output shows 0x0000009F, DRIVER_POWER_STATE_FAILURE and the completed local-engine response. Both idle and result PNGs, source/build/hash receipts, input/child receipts and owned teardown are retained. The narrow validator checked 210 bundle files and rejected a deliberately altered input-receipt hash before passing restored evidence. No real crash-history collection or dump read occurred in this sequence.
+
+Opt-in capture-on-input uses an 800 ms debounce and at most twenty attempts. The native writer uses CREATE_NEW and one unshared handle, with I/O on an owned worker and completion on the platform thread. Review found no new blocking worker regression. Network destination and bounded network teardown are not established; shutdown cancellation is best effort and joining can still wait on unresponsive storage. Capture existence alone never proves success. Native compositor, complete input/motion/layout/accessibility coverage and full suite completion remain unverified.
+
+Hosted build 38009212969 succeeded for the preceding main revision 6c7ebaa333c84968cabe6692d5e2fb402ffd6e64. The newly saved diagnostic guide and result image require their own deployment readback.
+
 ## Managed package discovery candidate
 
 The Apps workflow now exposes explicit WinGet discovery after a network disclosure. `apps.managed` reads structured export records, validates exact package identifiers and source identity, and returns unknown update availability honestly. A selected row uses the existing separately reviewed upgrade/uninstall operation. Discovery never accepts a new source agreement or changes installed packages. Bounds include a ninety-second collection deadline, monitored export growth, final 2 MiB JSON validation, and separately bounded process teardown. Cleanup failures disclose possible retained local inventory.

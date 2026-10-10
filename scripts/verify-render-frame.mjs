@@ -6,7 +6,8 @@ import {execFileSync} from 'node:child_process';
 
 // A deliberately narrow validator for painted native Flutter output. It cannot
 // certify native compositor capture, input, accessibility, or event collection.
-const [rootArg, runArg, bundleArg] = process.argv.slice(2);
+const [rootArg, runArg, bundleArg, mode = 'idle'] = process.argv.slice(2);
+assert(['idle','explained'].includes(mode), 'Unknown frame state');
 assert(rootArg && runArg && bundleArg, 'Expected repository, owned capture run, and built bundle paths');
 const root = realpathSync(rootArg), run = realpathSync(runArg), bundle = realpathSync(bundleArg);
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
@@ -17,11 +18,11 @@ const contained = (base, path) => {
   assert(rel && !rel.startsWith('..') && !isAbsolute(rel), 'Path must remain in its owned root');
   return result;
 };
-const receipt = json(resolve(root, 'docs/captures/diagnostics-idle.json'));
+const receipt = json(resolve(root, `docs/captures/diagnostics-${mode}.json`));
 assert.equal(receipt.route, 'lowlevel-hidden-desktop-flutter-frame-export');
-assert.equal(receipt.scope, 'render-only');
-assert(Object.values(receipt.verification).every(value => value === false), 'Render-only receipt cannot claim behavioral verification');
-const raw = readFileSync(contained(run, 'output/diagnostics.png'));
+assert.equal(receipt.scope, mode === 'idle' ? 'render-only' : 'painted-frame-with-background-input');
+for (const [key,value] of Object.entries(receipt.verification)) assert.equal(value, mode === 'explained' && key === 'inputHandling', 'Unsupported verification claim');
+const raw = readFileSync(contained(run, mode === 'idle' ? 'output/diagnostics.png' : 'output/diagnostics-002.png'));
 const saved = readFileSync(contained(root, receipt.capture.path));
 assert(raw.equals(saved), 'Published bytes differ from the original render');
 assert.equal(hash(raw), receipt.capture.sha256);
@@ -56,9 +57,21 @@ execFileSync('git', ['cat-file', '-e', `${receipt.sourceCommit}^{commit}`], {cwd
 const launch = json(contained(run, 'launch.json'));
 assert(launch.created && launch.hwnd > 0 && launch.process.pid === launch.pid);
 assert.equal(realpathSync(launch.process.executablePath), contained(bundle, 'material_system_care.exe'));
+if (mode === 'explained') {
+ const inputBytes = readFileSync(contained(run, 'inputs.json')), childBytes = readFileSync(contained(run, 'children.json'));
+ assert.equal(hash(inputBytes), receipt.interaction.inputReceiptSha256); assert.equal(hash(childBytes), receipt.interaction.childReceiptSha256);
+ const children = JSON.parse(childBytes), inputs = JSON.parse(inputBytes);
+ assert(children.ok && children.client_ok && children.parent_hwnd === launch.hwnd); assert.equal(children.children.length, 1);
+ const child = children.children[0]; assert.equal(child.class, 'FLUTTERVIEW');
+ assert.deepEqual(inputs.map(item => item.name), ['mouse_click','type_text','mouse_click']); assert.equal(inputs[1].params.text, '0x9F');
+ assert.equal(inputs[2].params.x, 555); assert.equal(inputs[2].params.y, 274);
+ for (const input of inputs) assert(input.params.hwnd === child.handle && input.result.ok && input.result.client_ok && input.result.mode === 'background' && input.result.target_hwnd === child.handle);
+ assert.equal(receipt.interaction.expectedText, '0x0000009F · DRIVER_POWER_STATE_FAILURE');
+ // This checks receipt consistency. Pixel inspection establishes visible text.
+}
 const teardown = json(contained(run, 'teardown.json'));
 assert(teardown.processesAbsent && JSON.parse(teardown.result).closed === true);
 assert(receipt.privacy.visibleDesktopUntouched && receipt.privacy.pixelsInspected && !receipt.privacy.sensitiveDataFound && !receipt.privacy.handEdited);
 const readme = readFileSync(resolve(root, 'README.md'), 'utf8');
 assert(readme.includes(receipt.capture.path) && readme.includes('render-only'), 'README must show and qualify the frame');
-console.log(`PASS render-only frame: ${receipt.capture.width}x${receipt.capture.height}, ${receipt.capture.sha256}; ${manifest.files.length} bundle files verified. Native input/compositor remain unverified.`);
+console.log(`PASS ${mode} frame: ${receipt.capture.width}x${receipt.capture.height}, ${receipt.capture.sha256}; ${manifest.files.length} bundle files verified. Native compositor and full interaction coverage remain unverified.`);

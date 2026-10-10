@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "id": "diagnostics-idle-en-light-1264x681",
+  "id": "diagnostics-stop-code-en-light-1264x681",
   "route": "lowlevel-hidden-desktop-flutter-frame-export",
-  "scope": "render-only",
+  "scope": "painted-frame-with-background-input",
   "sourceCommit": "cfa86ebb78312984a90ccd26b814f4a4d00a58e9",
   "bundleSha256": "1c55f3367c64c046fa41f4a740d9cf21e6588b51e4803bbae2b7a55f6e42e4d1",
   "executableSha256": "5109e90f48b85da683f596b16e3ab764e8d87d27b3b072a9edc0e764b4dbb01a",
   "buildReceiptSha256": "0dc138204304aed753f9940fec948e35401e01f233fb5f3e2eabd65f664b9e28",
   "artifactBuiltAt": "2026-10-10T00:37:22.7568942Z",
   "capture": {
-    "path": "docs/captures/diagnostics-idle.png",
-    "sha256": "ae81d30b57c848cd944b13c604155cb906ee61a8f239ce1b56df01914a0f2ee9",
-    "bytes": 38296,
+    "path": "docs/captures/diagnostics-explained.png",
+    "sha256": "df0af7e36624f3d572095c7d1143cd86e3aa7670aa089d07cd408a6d75c9716a",
+    "bytes": 46474,
     "width": 1264,
     "height": 681,
     "capturedAt": null,
@@ -19,12 +19,12 @@
   },
   "state": {
     "screen": "blue-screen-diagnostics",
-    "state": "idle",
+    "state": "stop-code-explained",
     "language": "en",
     "theme": "light",
     "scale": 1,
     "preferences": "isolated-defaults",
-    "data": "no host collection or injected results"
+    "data": "manually entered public stop code 0x9F; no crash-event collection"
   },
   "privacy": {
     "visibleDesktopUntouched": true,
@@ -35,13 +35,20 @@
   },
   "verification": {
     "nativeCompositor": false,
-    "inputHandling": false,
+    "inputHandling": true,
     "engineCollection": false,
     "fullLayoutMatrix": false
   },
   "limitations": [
-    "Actual painted Flutter frame from the built native application; not a native-window screenshot.",
-    "Exact capture timestamp unavailable; observation timestamp is recorded independently.",
-    "No conclusion about input, crash-event collection or complete layout coverage."
-  ]
+    "Actual painted Flutter frame, not native compositor capture.",
+    "Input proof covers the reviewed manual stop-code path only.",
+    "Exact capture instant unavailable; observation time recorded separately.",
+    "No host crash history, dump analysis, culprit-driver conclusion or full layout matrix was verified."
+  ],
+  "interaction": {
+    "inputReceiptSha256": "9434a79c53afd2c03153ea9c19df646afbd8db4bff7fcae3c776323390b1a7b5",
+    "childReceiptSha256": "529eeb21978dcb7c7e9b8d79f67848ded3ad45ba3011fc213e0e4a8cefcac189",
+    "expectedText": "0x0000009F · DRIVER_POWER_STATE_FAILURE",
+    "observedEngineState": "Result received from local engine"
+  }
 }

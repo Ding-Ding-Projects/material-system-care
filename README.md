@@ -33,6 +33,10 @@ This list describes source behavior. It does not establish complete reference-pr
 
 ![Built blue-screen diagnostics workspace in English and light theme](docs/captures/diagnostics-idle.png)
 
+![Real stop-code explanation after background input](docs/captures/diagnostics-explained.png)
+
+The [interaction receipt](docs/captures/diagnostics-explained.json) binds manually entered `0x9F` and the actual explanation click to the inspected painted result. This narrow path passed; native compositor capture, dump analysis and full interaction coverage remain separate.
+
 This is an actual painted frame from the native build at `fb128bc4acf89d9fe149150bd571c2351b91229e`, exported on an isolated desktop. Its evidence is **render-only**, not native-compositor or input verification. No diagnostic data was injected. See the [capture receipt and limitations](docs/captures/README.md).
 
 ## Project records

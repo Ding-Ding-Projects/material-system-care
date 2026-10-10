@@ -13,6 +13,8 @@
 
 ## Working suite
 
+- [x] Verify manual stop-code entry and explanation through real isolated background input, retain the inspected painted result and source-bound receipts, and prove altered input evidence is rejected. This does not complete the native compositor or full interaction matrix.
+
 - [ ] Complete blue-screen diagnosis runtime verification: read-only engine and dedicated Tools workspace implemented; focused synthetic checks and a painted native frame pass; native input/compositor and full layout coverage remain pending.
 - [x] Build the read-only diagnostic engine and workspace, verify a bounded real event query, and preserve a source-bound painted native frame. Native compositor/input and the full appearance matrix remain separate requirements.
 - [ ] Deliver real health and diagnostics workflows.
