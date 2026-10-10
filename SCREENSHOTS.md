@@ -1,5 +1,17 @@
 # Bilingual screenshot gallery · 雙語畫面集
 
+## Current machine overview · 本機總覽
+
+Source: `e8e692bb386f9a7eb0cf4746fc3b044822bafd8b`. Both original 800 × 600 painted frames use bilingual dark mode, doubled text and reduced motion. The first shows idle build provenance; Page Down reveals the explicit refresh control in the second. They contain no machine inventory. The version-2 promotion records bind the actual Flutter framework/platform hooks, source, build, original PNG bytes, actions and owned teardown. They do not establish native-compositor output, physical DPI or the full interface matrix. [Exact inventory](docs/verification/painted-frame-inventory.json).
+
+來源版本如上。兩張原始畫面分別顯示待命建置資料，同向下翻頁後嘅重新整理按鈕；全部使用雙語、深色、放大文字同減少動態效果，冇包含本機清單。實際取樣、容量同反向翻頁另有私人證據，唔會將呢兩張圖片當成全部操作或實體 DPI 驗證。
+
+![Bilingual machine overview, minimum size, view 1](docs/captures/overview-minimum-1.png)
+
+![Bilingual machine overview, minimum size, view 2](docs/captures/overview-minimum-2.png)
+
+## Earlier forty-view matrix · 早前四十個畫面矩陣
+
 40 real views from the Windows build. Every view uses English and Cantonese together.
 
 共 40 個實際 Windows 建置畫面，全部使用英文及廣東話雙語模式。

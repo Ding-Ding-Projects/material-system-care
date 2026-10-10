@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "e8e692bb386f9a7eb0cf4746fc3b044822bafd8b",
+  "manifests": ["system-overview-normal-frames.json", "system-overview-minimum-frames.json"],
+  "tuples": [{"width": 1280, "height": 1000, "textScale": 1}, {"width": 800, "height": 600, "textScale": 2}],
+  "language": "both",
+  "theme": "dark",
+  "motion": "reduced",
+  "observed": {"explicitRefresh": true, "newSampleAfterSecondRefresh": true, "distinctBuildAndSampleTimes": true, "memoryMeasurements": true, "driveExpansion": true, "minimumRepeatedPaging": true, "reversePaging": true},
+  "ownedProcessesAbsent": true,
+  "hiddenDesktopsClosed": true,
+  "publicFrames": ["overview-minimum-1", "overview-minimum-2"],
+  "limits": [
+    "Measured host information remains in private evidence; public frames contain idle product labels and build provenance only.",
+    "No benchmark, CPU utilization, disk-health or security verdict was produced.",
+    "Other themes, normal motion, physical DPI, complete keyboard focus order and invalid/unavailable response states retain separate verification requirements.",
+    "The narrow frame verifier checks source and bytes, not semantic interaction or complete lifecycle correctness. The two promoted frames additionally pass the explicit version-2 Flutter promotion contract."
+  ]
+}

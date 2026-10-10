@@ -52,6 +52,7 @@
 - [ ] Complete blue-screen diagnosis runtime verification: read-only engine and dedicated Tools workspace implemented; focused synthetic checks and a painted native frame pass; manual stop-code input passed, and default-period collection with one expanded event subsequently passed; remaining interaction paths, native compositor and full layout coverage remain pending.
 - [x] Build the read-only diagnostic engine and workspace, verify a bounded real event query, and preserve a source-bound painted native frame. Manual stop-code input subsequently passed; native compositor and the full appearance matrix remain separate requirements.
 - [ ] Deliver real health and diagnostics workflows.
+- [x] Verify explicit machine-overview sampling, memory and expanded drive capacity, repeated minimum-size bilingual paging and reverse movement at source `e8e692b`. Full appearance, unavailable states and accessibility remain separate.
 - [ ] Deliver reversible temporary-file maintenance, duplicate analysis, storage inventory, and recovery records.
 - [ ] Verify the dedicated read-only duplicate-analysis workspace in the real build. Typed source, 96 focused checks, isolated engine/desktop verification and independent reviews passed.
 - [x] Verify normal-view read-only duplicate collection, both expanded groups, root-edit result clearing and unchanged seven-file fixture at source `baa4fca`. Minimum-size retained input, cancellation and full appearance/accessibility remain separate.

@@ -1,6 +1,8 @@
 import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import {execFileSync} from 'node:child_process';
+import {currentGallery} from './current-gallery.mjs';
 import {fileURLToPath} from 'node:url';
+import {relative,isAbsolute} from 'node:path';
 import {renderArticle} from './articles.mjs';
 const root = new URL('../../', import.meta.url);
 const ledgerPath = new URL('contracts/capabilities.json', root);
@@ -34,9 +36,20 @@ for(const file of new Set([...referencedFiles,...tracked.filter(p=>/^(docs|contr
 }
 const gallery=JSON.parse(await readFile(new URL('docs/captures/gallery.json',root),'utf8'));
 if(gallery.screenshots.length!==40 || gallery.screenshots.some(s=>s.language!=='both')) throw Error('Expected forty reviewed bilingual screenshots.');
+for(const shot of gallery.screenshots) shot.sourceCommit ??= gallery.sourceCommit;
+const current=JSON.parse(await readFile(new URL('docs/verification/painted-frame-inventory.json',root),'utf8'));
+const ids=new Set(gallery.screenshots.map(s=>s.id));
+const additions=await currentGallery(current.records,path=>readFile(new URL(path,root)));
+for(const record of additions){
+  if(ids.has(record.id)) throw Error('Duplicate gallery identity.');
+  ids.add(record.id);
+}
+gallery.screenshots.unshift(...additions);
 await writeFile(new URL('gallery.json',publicRoot),JSON.stringify(gallery));
 for(const shot of gallery.screenshots){
   const destination=new URL(shot.webPath,publicRoot);
+  const withinGallery=relative(fileURLToPath(new URL('gallery/',publicRoot)),fileURLToPath(destination));
+  if(!withinGallery || withinGallery.startsWith('..') || isAbsolute(withinGallery)) throw Error('Gallery destination escapes its output directory.');
   await mkdir(new URL('.',destination),{recursive:true});
   await writeFile(destination,await readFile(new URL(shot.path,root)));
 }

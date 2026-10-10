@@ -1,8 +1,14 @@
 # Implementation handoff
 
+## Machine overview and current painted evidence
+
+Integrated source `e8e692bb386f9a7eb0cf4746fc3b044822bafd8b` passed its exact root desktop build, two independent source reviews and real bilingual dark/reduced-motion checks at normal size and 800×600 with doubled text. Explicit refresh and a second new sample, memory values, expanded drive details, repeated Page Down and reverse movement were inspected. All owned bundle processes and desktops were closed. Host measurements remain private. Two minimum-size idle/control frames were staged byte-for-byte and validated through the explicit version-2 Flutter promotion contract, including original sidecars, source/build binding, input receipts, privacy and teardown. Their scope excludes native compositor, native stderr and browser observation.
+
+The earlier duplicate minimum-input interpretation is corrected: original-resolution numbered frames show the retained root and enabled Analyze control. Collection remains unverified at minimum size. The public issue and rolling Discussion carry the correction.
+
 ## Duplicate-analysis integration candidate
 
-Integrated source `baa4fca7483265b53d1c7fe472571c0c0584e90c` passed the exact root engine and desktop builds and a real 1280×1000 bilingual dark/reduced-motion duplicate run. The seven-file fixture returned two groups, five matching files, 128 hashed bytes and 64 potential duplicate bytes. Review cancellation, both expanded groups and root-edit result clearing were observed. All seven files remained unchanged. Minimum-size path focus was observed, but retained input and collection were not established; this input sequence remains unresolved. Both owned processes and desktops were closed. See `docs/verification/duplicate-analysis-observations.json`.
+Integrated source `baa4fca7483265b53d1c7fe472571c0c0584e90c` passed the exact root engine and desktop builds and a real 1280×1000 bilingual dark/reduced-motion duplicate run. The seven-file fixture returned two groups, five matching files, 128 hashed bytes and 64 potential duplicate bytes. Review cancellation, both expanded groups and root-edit result clearing were observed. All seven files remained unchanged. Original-resolution minimum-size frames show retained root input and an enabled Analyze control, correcting the earlier reused-preview report. Minimum-size collection remains unverified. Both owned processes and desktops were closed. See `docs/verification/duplicate-analysis-observations.json`.
 
 Candidate `2c21195ab4c88d4da97f2330dc517ce0f53a33a0` adds a dedicated read-only duplicate-analysis page, reviewed root, exact-match groups, potential-space estimates, completeness counters and request-specific cancellation. The only engine change exposes the existing depth-exclusion counter. Ninety-six focused checks and two independent source reviews passed. Exact isolated engine verification passed after the primary released the shared user pipe, and the final desktop build passed. The symbolic-link fixture remains skipped for privilege 1314. Integrated build and real disposable duplicate analysis are next; no file removal is provided.
 

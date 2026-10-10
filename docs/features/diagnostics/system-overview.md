@@ -16,4 +16,6 @@ Controls use official Flutter Material components. Capacity indicators animate f
 
 Focused parser and widget tests cover malformed snapshots, partial availability, future timestamps, explicit refresh, stale-data removal, pending completion after disposal, build provenance, indicator and expansion motion, and bilingual 800 × 600 layout at text scale 2. These are source-level checks, not a claim of live machine or physical-display verification.
 
+The integrated build at `e8e692bb386f9a7eb0cf4746fc3b044822bafd8b` passed real hidden-desktop checks at 1280 × 1000 and 800 × 600, in bilingual dark mode with reduced motion and text scales 1 and 2 respectively. Explicit refresh produced a timestamped sample; another refresh produced a new timestamp. Repeated Page Down reached memory and drive details, drive expansion exposed capacity fields, and Page Up reversed movement. Both owned desktops and bundle processes were closed. Host measurements remain private. [Bounded observations](../../verification/system-overview-observations.json) distinguish this result from the outstanding full appearance and accessibility matrix.
+
 中文：本機總覽只會喺按「重新整理量度數據」之後取樣，唔會自動輪詢或估算 CPU 使用率、健康分數。記憶體同磁碟容量都係當時讀數，唔代表健康或可回收空間。部分資料無法提供會清楚顯示，無效新回應會清除舊資料。建置更新時間同取樣時間分開處理。
