@@ -26,6 +26,10 @@ Cancellation requests termination of the owned discovery process tree and observ
 
 ## Verification
 
+The display-quality repair passed the integrated root desktop build at `6ec050099d6239b5b230b9d703a28b55b732ddfc`. Real general inventory then displayed 741 records with four explicit degraded-display warnings. Searching the localized fallback returned exactly four records; a nonmatching query returned zero; the actual Select all context-menu action and Backspace restored all 741. No package mutation was requested. Six representative private frames passed the narrow source/bundle/two-hook verifier. See [bounded observations](../../verification/package-display-quality-observations.json). The text-selection menu itself remained English-only in bilingual mode, so complete menu localization is still unfinished. Synthetic Ctrl+A did not select all and is not counted as shortcut proof.
+
+中文：顯示品質修正嘅實際清單有七百四十一項，四項清楚標示顯示資料不可用。搜尋提示字得到四項，不符合查詢得到零項，透過實際選單全選及退格清除後恢復全部記錄。沒有要求更改任何套件。文字選取選單仍只有英文，完整選單本地化尚未完成。
+
 The combined desktop at `bc8274a0bdf0ec984ee6cadbf3c01cda52facfc7` completed explicit real discovery with 45 matched packages at the time of the run. A selected package's upgrade review displayed its exact identifier and installed version, and the review was cancelled. No upgrade or uninstall was confirmed. The owned process and hidden desktop were closed. New frame receipts contain observed framework/platform diagnostic intervals; this is not universal native-error coverage.
 
 That run exposed an English-only popup and an untranslated discovery title in bilingual mode. The navigator now inherits the same language preferences and the title has a Cantonese translation. The regression opens the actual popup in bilingual and Cantonese-only modes; the old source failed and the corrected source passed. A subsequent real minimum-size run verified both corrected surfaces.

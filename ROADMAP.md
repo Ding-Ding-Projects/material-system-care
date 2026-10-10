@@ -151,3 +151,5 @@
 - [x] Verify the bilingual source popup and discovery title at 800×600 with doubled text; retain inspected observed-hook frame evidence.
 - [x] Verify integrated post-discovery paging, visible action focus, keyboard-opened review and explicit cancellation at 800×600 with doubled bilingual text; retain 15 inspected frames and exact owned teardown.
 - [ ] Complete package filtering, general installed-inventory interaction, remaining motion/theme/scale tuples and full accessibility verification.
+- [x] Verify real general-inventory display quality, fallback filtering, zero matches and clearing: 741 records retained with four explicit degraded-display warnings.
+- [ ] Complete bilingual text-selection menus and real Ctrl+A shortcut coverage, plus remaining general-inventory appearance/accessibility states.

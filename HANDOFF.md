@@ -1,5 +1,9 @@
 # Implementation handoff
 
+## Verified general-inventory display quality
+
+Integrated source `6ec050099d6239b5b230b9d703a28b55b732ddfc` passed the root desktop build and real 1280×1000 bilingual inventory/filter verification: 741 records, four explicit degraded records, four fallback-query matches, zero nonmatching-query matches and 741 after clearing through the actual context-menu action. Six private frames and fourteen supporting hashes passed the narrow verifier. Owned executables were absent and the hidden desktop closed. Synthetic Ctrl+A did not select all; the text-selection menu remained English-only. Neither gap is represented as completed keyboard/localization coverage. No package was changed.
+
 ## General inventory display-quality candidate
 
 The real general-inventory read at source `6d3695e` returned 741 records, including four registry display names with embedded NUL characters followed by more text. Rejecting one such field discarded the whole desktop result. Candidate `93caee65ea2026983ec2f705b63e70767f70d98f` preserves strict identifiers, sources, scope and read-only capability checks while discarding invalid general display values and using localized unavailable labels. Affected-record counts are separate from unavailable-source warnings, and managed validation remains strict. Eighteen focused tests, the isolated root desktop build and independent source review passed. This integrated candidate still requires its own build and real inventory/filter verification. Raw host values remain private.
