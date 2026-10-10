@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_system_care/cleanup_workspace.dart';
@@ -69,6 +70,162 @@ Future<void> start(WidgetTester t) async {
 }
 
 void main() {
+  for (final reduced in [true, false]) {
+    for (final outcome in ['cancel', 'confirm', 'dispose']) {
+      testWidgets(
+        'minimum cleanup modal pages reduced=$reduced outcome=$outcome',
+        (t) async {
+          t.view.physicalSize = const Size(800, 600);
+          t.view.devicePixelRatio = 1;
+          addTearDown(t.view.resetPhysicalSize);
+          addTearDown(t.view.resetDevicePixelRatio);
+          final requests = <Map>[];
+          t.binding.defaultBinaryMessenger.setMockMethodCallHandler(
+            entry.Engine.channel,
+            (call) async {
+              final args = call.arguments as Map;
+              if (args['method'] == 'cleanup.scan')
+                return {'ok': true, 'result': scan(12)};
+              requests.add(Map.from(args['params'] as Map));
+              return {
+                'ok': true,
+                'result': {
+                  'receiptId': 'a' * 32,
+                  'plannedCount': 12,
+                  'partial': false,
+                  'cancelled': false,
+                  'permanentDeletion': false,
+                  'items': [
+                    for (var i = 0; i < 12; i++)
+                      {
+                        'target': {
+                          'path': r'C:\fixture\' + 'file$i.tmp',
+                          'size': 1,
+                        },
+                        'state': 'quarantined',
+                      },
+                  ],
+                },
+              };
+            },
+          );
+          addTearDown(
+            () => t.binding.defaultBinaryMessenger.setMockMethodCallHandler(
+              entry.Engine.channel,
+              null,
+            ),
+          );
+          await t.pumpWidget(
+            entry.CareApp(
+              cleanupFixture: true,
+              isolatedCapture: true,
+              capturePreferences: {
+                'language': 'both',
+                'theme': 'dark',
+                'textScale': 2.0,
+                'reducedMotion': reduced,
+              },
+            ),
+          );
+          await t.pumpAndSettle();
+          Future<void> showButton(String label) async {
+            if (find.byTooltip('Close').evaluate().isNotEmpty) {
+              await t.tap(find.byTooltip('Close'));
+              await t.pumpAndSettle();
+            }
+            await t.scrollUntilVisible(
+              find.textContaining(label),
+              180,
+              scrollable: find.byType(Scrollable).first,
+            );
+            await t.ensureVisible(find.textContaining(label));
+            await t.pumpAndSettle();
+          }
+
+          await showButton('Scan recoverable cleanup');
+          await t.tap(find.textContaining('Scan recoverable cleanup'));
+          await t.pumpAndSettle();
+          await showButton('Select visible targets');
+          await t.tap(find.textContaining('Select visible targets'));
+          await t.pumpAndSettle();
+          await showButton('Apply selected cleanup targets');
+          await t.tap(find.textContaining('Apply selected cleanup targets'));
+          await t.pumpAndSettle();
+          final dialog = find.byType(AlertDialog);
+          final scrolling = find
+              .descendant(of: dialog, matching: find.byType(Scrollable))
+              .first;
+          final position = t.state<ScrollableState>(scrolling).position;
+          expect(position.maxScrollExtent, greaterThan(0));
+          await t.sendKeyEvent(LogicalKeyboardKey.pageDown);
+          await t.pump();
+          if (!reduced) {
+            await t.pump(const Duration(milliseconds: 40));
+            expect(position.pixels, greaterThan(0));
+            expect(position.pixels, lessThan(position.viewportDimension * .8));
+          }
+          await t.pumpAndSettle();
+          expect(position.pixels, greaterThan(0));
+          final cancel = find.descendant(
+            of: dialog,
+            matching: find.textContaining('Cancel'),
+          );
+          Focus.of(t.element(cancel)).requestFocus();
+          await t.pump();
+          final first = position.pixels;
+          await t.sendKeyEvent(LogicalKeyboardKey.pageDown);
+          await t.pumpAndSettle();
+          expect(position.pixels, greaterThan(first));
+          final second = position.pixels;
+          await t.sendKeyEvent(LogicalKeyboardKey.pageUp);
+          await t.pumpAndSettle();
+          expect(position.pixels, lessThan(second));
+          final editing = t.widget<EditableText>(
+            find
+                .descendant(of: dialog, matching: find.byType(EditableText))
+                .first,
+          );
+          editing.focusNode.requestFocus();
+          await t.pump();
+          final before = position.pixels;
+          await t.sendKeyEvent(LogicalKeyboardKey.pageDown);
+          await t.pumpAndSettle();
+          expect(position.pixels, before);
+          if (outcome == 'dispose') {
+            await t.pumpWidget(const SizedBox());
+            await t.pumpAndSettle();
+            expect(requests, isEmpty);
+          } else {
+            await t.tap(
+              outcome == 'cancel'
+                  ? cancel
+                  : find.descendant(
+                      of: dialog,
+                      matching: find.textContaining('Confirm selected action'),
+                    ),
+            );
+            await t.pumpAndSettle();
+            if (outcome == 'cancel') {
+              expect(requests, isEmpty);
+              expect(
+                FocusManager.instance.primaryFocus?.debugLabel,
+                isNot('Cleanup review paging'),
+              );
+            } else {
+              expect(requests.single, {
+                'planId': 'a' * 32,
+                'targetIndexes': List.generate(12, (i) => i),
+                'confirmed': true,
+              });
+            }
+          }
+          expect(t.takeException(), isNull);
+        },
+        variant: TargetPlatformVariant.only(TargetPlatform.windows),
+      );
+    }
+  }
+
   test('strict plan preserves scope and indexes', () {
     final p = CleanupPlan.parse(scan(), fixture: true);
     expect(p.result.files.map((f) => f.index), [0, 1]);
