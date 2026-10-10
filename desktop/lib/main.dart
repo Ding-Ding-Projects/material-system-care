@@ -369,6 +369,21 @@ class WorkflowPage extends StatefulWidget {
   State<WorkflowPage> createState() => _WorkflowPageState();
 }
 
+bool canChangeStartupRecord(Map<String, dynamic> row) {
+  final id = row['id'];
+  return row['canChange'] == true &&
+      row['recoveryRequired'] != true &&
+      row['scope'] == 'user' &&
+      row['enabled'] is bool &&
+      id is String &&
+      id.isNotEmpty &&
+      id.length <= 256 &&
+      !id.runes.any((c) => c < 32 || c == 127) &&
+      (row['enabled'] == true
+          ? row['source'] == 'HKCU.Run'
+          : row['source'] == 'originalStateJournal');
+}
+
 class _WorkflowPageState extends State<WorkflowPage> {
   Map<String, dynamic>? data;
   Map<String, dynamic>? provenance;
@@ -613,7 +628,31 @@ class _WorkflowPageState extends State<WorkflowPage> {
       row = {...row, 'destination': folder};
     }
     if (method == 'startup.set') {
-      row = {...row, 'enabled': row['enabled'] != true};
+      if (!canChangeStartupRecord(row)) {
+        setState(
+          () => failure =
+              'This startup entry cannot be changed. Refresh its state before continuing.',
+        );
+        return;
+      }
+      final enabled = row['enabled'] != true;
+      final title = enabled
+          ? 'Enable selected startup entry'
+          : 'Disable selected startup entry';
+      final effect = enabled
+          ? 'Restore the saved original startup command for this user. An existing entry with the same name will not be overwritten.'
+          : 'Remove this user startup entry after saving its original command for restoration.';
+      final details =
+          '${row['id']}\n\n${localize(context, effect)}\n\n${localize(context, 'This changes future sign-in behavior. It does not start or stop a running process.')}';
+      if (await confirm(title, details)) {
+        if (!mounted) return;
+        await load('startup.set', {
+          'id': row['id'],
+          'enabled': enabled,
+          'confirmed': true,
+        });
+      }
+      return;
     }
     if (!await confirm(
       'Review selected action',
@@ -963,10 +1002,25 @@ class _WorkflowPageState extends State<WorkflowPage> {
                                 value: 'apps.upgrade',
                                 child: UiText('Upgrade selected app'),
                               ),
-                            if (widget.index == 3)
+                            if (widget.index == 3 &&
+                                canChangeStartupRecord(row))
                               PopupMenuItem(
                                 value: 'startup.set',
-                                child: UiText('Change selected startup entry'),
+                                child: UiText(
+                                  row['enabled'] == true
+                                      ? 'Disable selected startup entry'
+                                      : 'Enable selected startup entry',
+                                ),
+                              ),
+                            if (widget.index == 3 &&
+                                !canChangeStartupRecord(row))
+                              PopupMenuItem(
+                                enabled: false,
+                                child: UiText(
+                                  row['recoveryRequired'] == true
+                                      ? 'Resolve the existing-entry conflict before restoration.'
+                                      : 'This startup entry is read-only.',
+                                ),
                               ),
                             if (widget.index == 5)
                               PopupMenuItem(

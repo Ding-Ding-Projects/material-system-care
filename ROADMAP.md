@@ -92,3 +92,8 @@
 
 - [x] Verify the rebuilt diagnostic lookup guidance and successful live collection under response validation; preserve source-bound evidence.
 - [ ] Verify the reference-copy action, individual dump rows and complete diagnostic input/display matrix.
+
+## Expanded screenshot gallery
+
+- [ ] Publish a substantial reviewed screenshot set in SCREENSHOTS.md and the website, with per-image source and state evidence.
+- [ ] Verify startup review in the built application; three fixture checks pass and no host entry was changed.

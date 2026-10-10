@@ -12,6 +12,19 @@ class CopyScope extends InheritedWidget {
 }
 
 const translations = <String, String>{
+  'Enable selected startup entry': '啟用所選登入啟動項目',
+  'Disable selected startup entry': '停用所選登入啟動項目',
+  'This startup entry cannot be changed. Refresh its state before continuing.':
+      '此登入啟動項目無法更改。請先重新讀取狀態。',
+  'Restore the saved original startup command for this user. An existing entry with the same name will not be overwritten.':
+      '還原此使用者已儲存的原始登入啟動命令，不會覆寫同名的現有項目。',
+  'Remove this user startup entry after saving its original command for restoration.':
+      '先儲存原始命令以供還原，再移除此使用者的登入啟動項目。',
+  'This changes future sign-in behavior. It does not start or stop a running process.':
+      '這會更改日後登入時的行為，不會啟動或停止目前執行中的程序。',
+  'Resolve the existing-entry conflict before restoration.':
+      '請先解決現有項目的衝突，再進行還原。',
+  'This startup entry is read-only.': '此登入啟動項目只供檢視。',
   'Code category': '代碼類別',
   'Memory or driver condition': '記憶體或驅動程式狀況',
   'Memory condition': '記憶體狀況',

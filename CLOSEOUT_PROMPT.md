@@ -1,5 +1,11 @@
 # Continuation handoff
 
+## Startup review and screenshot-gallery direction
+
+Startup record actions now name the enable or disable effect, explain future sign-in behavior and block unavailable or conflicting records. Confirmation sends only the selected id, desired enabled state and explicit consent. Three fixture checks passed for eligibility, cancellation and exact requests. No host startup entry was changed; built interaction remains pending.
+
+The current request also requires a substantial source-bound screenshot gallery in SCREENSHOTS.md and the public website. Capture English, Cantonese and bilingual inspection workspaces in both themes and normal/minimum sizes. Keep host-record frames private. This gallery work is pending.
+
 ## Rebuilt diagnostic guidance evidence
 
 Root engine and desktop builds passed at 5dbf2884901cbbad61a3c763c120b19d997928e8. A real English/light run verified manual 0x9F lookup, visible code category, confidence limit, four next checks and the fixed Microsoft reference at 1264×961. A subsequent live collection passed the new response validator and displayed collection time and timestamp meaning. Populated frames remain private. The guidance-only frame and 210 bundle files passed the shared evidence verifier; altered input evidence was rejected before restoration passed. Owned processes were absent and the hidden desktop closed. Copy-reference, individual dump rows and the full display/input matrix remain unverified.
