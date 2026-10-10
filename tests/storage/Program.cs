@@ -67,6 +67,11 @@ try
     Check(analyzed.GetProperty("fileCount").GetInt32() == 3 && analyzed.GetProperty("emptyFolderCount").GetInt32() == 1, "selected folder totals and empty directories");
     var duplicates = await Call("storage.duplicates", new { path = selected });
     Check(duplicates.GetProperty("groups").GetArrayLength() == 1, "exact bytes group only");
+    Check(duplicates.GetProperty("tooDeep").GetInt32() == 0, "duplicate analysis reports no depth exclusions");
+    string deepRoot = Path.Combine(sandbox, "deep"), deep = deepRoot;
+    for (int depth = 0; depth < 66; depth++) { Directory.CreateDirectory(deep); deep = Path.Combine(deep, "d"); }
+    var deepDuplicates = await Call("storage.duplicates", new { path = deepRoot });
+    Check(deepDuplicates.GetProperty("tooDeep").GetInt32() == 1 && !deepDuplicates.GetProperty("mutationPerformed").GetBoolean(), "duplicate analysis reports depth exclusions without mutation");
     var bounded = await Call("storage.analyze", new { path = selected, maxEntries = 1 });
     Check(bounded.GetProperty("truncated").GetBoolean(), "enumeration entry limit");
     await Reject("storage.analyze", new { path = selected, maxEntries = 0 }, "INVALID_ARGUMENT");

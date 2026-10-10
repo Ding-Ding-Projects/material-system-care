@@ -168,7 +168,7 @@ public sealed class StorageModule : IEngineModule
                 }
             }
         }
-        return new { root, groups, hashedBytes, budgetReached, changedOrUnavailable, scan.Inaccessible, scan.ReparseSkipped, scan.Truncated, mutationPerformed = false };
+        return new { root, groups, hashedBytes, budgetReached, changedOrUnavailable, scan.Inaccessible, scan.ReparseSkipped, scan.TooDeep, scan.Truncated, mutationPerformed = false };
     }
     private static bool Matches(Entry e, FileStream stream)
     {

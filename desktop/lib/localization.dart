@@ -12,6 +12,40 @@ class CopyScope extends InheritedWidget {
 }
 
 const translations = <String, String>{
+  'Duplicate analysis': '重複檔案分析',
+  'Review exact duplicate files': '檢閱完全相同嘅重複檔案',
+  'Read up to 10,000 entries and hash up to 512 MiB in one selected folder. Byte comparison verifies matches. This page never deletes files.':
+      '讀取所選資料夾內最多 10,000 個項目，並計算最多 512 MiB 嘅雜湊。逐位元組比較會驗證配對，呢個頁面唔會刪除檔案。',
+  'Review duplicate analysis': '檢閱重複檔案分析',
+  'Analyze duplicates': '分析重複檔案',
+  'Duplicate analysis response is invalid. No result was accepted.':
+      '重複檔案分析回應無效，未有接納任何結果。',
+  'Duplicate analysis could not complete. No files were changed. Retry when the engine is available.':
+      '未能完成重複檔案分析，冇修改任何檔案。請喺引擎可用時重試。',
+  'Incomplete duplicate view: some comparisons may be missing.':
+      '重複檔案檢視未完整，可能缺少部分比較。',
+  'The bounded duplicate analysis completed.': '已完成指定上限內嘅重複檔案分析。',
+  'Matches were verified with SHA-256 and byte-for-byte comparison. Files may change after analysis.':
+      '配對已經 SHA-256 同逐位元組比較驗證。分析後檔案仍然可能改變。',
+  'Duplicate groups': '重複檔案組別',
+  'Hashed bytes': '已計算雜湊嘅位元組',
+  'Potential duplicate bytes': '可能多佔嘅位元組',
+  'Potential space is an estimate from reported matches, not recovered space. No files were deleted or changed.':
+      '可能節省空間只係按回報配對估算，唔係已回收空間。冇刪除或修改任何檔案。',
+  'Changed or unavailable checks': '已改變或無法使用嘅檢查次數',
+  'The 10,000-entry traversal limit was reached. Unvisited entries may contain more duplicates.':
+      '已達到 10,000 個項目嘅遍歷上限，未讀取項目可能包含更多重複檔案。',
+  'The hash budget or group limit was reached. More matches may exist.':
+      '已達到雜湊預算或組別上限，可能仍有更多配對。',
+  'Verified duplicate groups': '已驗證重複檔案組別',
+  'No exact duplicate groups were reported within these limits. This does not prove that the folder has no duplicates.':
+      '喺指定上限內未有回報完全相同嘅重複檔案組別，唔代表資料夾一定冇重複檔案。',
+  'Duplicate group': '重複檔案組別',
+  'Matching files': '配對檔案',
+  'Bytes per file': '每個檔案嘅位元組',
+  'Verified: SHA-256 and byte-for-byte comparison': '已驗證：SHA-256 及逐位元組比較',
+  'Only the first 20 matching paths are shown.': '只顯示首 20 個配對路徑。',
+  'Full paths': '完整路徑',
   'Folder analysis': '資料夾分析',
   'Understand one folder': '了解一個資料夾',
   'Read-only analysis counts observed files and lists the largest files and empty folders. Nothing is collected until you review a folder.':

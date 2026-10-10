@@ -6,6 +6,7 @@ import 'settings.dart';
 import 'localization.dart';
 import 'selection_localizations.dart';
 import 'storage_analysis.dart';
+import 'duplicate_analysis.dart';
 import 'labeled_controls.dart';
 import 'notifications.dart';
 import 'provenance.dart';
@@ -41,6 +42,7 @@ void main(List<String> arguments) {
   final startup = arguments.contains('--startup');
   final packages = arguments.contains('--packages');
   final storageAnalysis = arguments.contains('--storage-analysis');
+  final duplicateAnalysis = arguments.contains('--duplicate-analysis');
   // Capture mode is explicit, starts at the selected real workspace, and
   // excludes persisted personal settings. It never injects diagnostic results.
   final exporting =
@@ -53,6 +55,7 @@ void main(List<String> arguments) {
             startup,
             packages,
             storageAnalysis,
+            duplicateAnalysis,
             cleanupFixtureMode,
           ].where((selected) => selected).length ==
           1 &&
@@ -68,6 +71,7 @@ void main(List<String> arguments) {
     startStartup: startup,
     startPackages: packages,
     startStorageAnalysis: storageAnalysis,
+    startDuplicateAnalysis: duplicateAnalysis,
     isolatedCapture: captureRequested || cleanupFixtureMode,
     capturePreferences: exporting ? capturePreferences! : const {},
   );
@@ -139,6 +143,7 @@ class CareApp extends StatefulWidget {
     this.startStartup = false,
     this.startPackages = false,
     this.startStorageAnalysis = false,
+    this.startDuplicateAnalysis = false,
     this.isolatedCapture = false,
     this.capturePreferences = const {},
   });
@@ -152,6 +157,7 @@ class CareApp extends StatefulWidget {
   final bool startStartup;
   final bool startPackages;
   final bool startStorageAnalysis;
+  final bool startDuplicateAnalysis;
   final bool isolatedCapture;
   final Map<String, dynamic> capturePreferences;
   @override
@@ -268,6 +274,12 @@ class _CareAppState extends State<CareApp> {
                     cleanupFixture: true,
                   ),
                 ),
+              )
+            : widget.startDuplicateAnalysis
+            ? DuplicateAnalysisPage(
+                invoke: (method, parameters, {required requestId}) =>
+                    Engine.invoke(method, parameters, requestId: requestId),
+                cancel: Engine.cancel,
               )
             : widget.startStorageAnalysis
             ? StorageAnalysisPage(
@@ -889,7 +901,20 @@ class _WorkflowPageState extends State<WorkflowPage> {
               OutlinedButton(
                 onPressed: busy
                     ? null
-                    : () => load('storage.duplicates', {'path': input.text}),
+                    : () => Navigator.of(context).push(
+                        MaterialPageRoute<void>(
+                          builder: (_) => DuplicateAnalysisPage(
+                            invoke:
+                                (method, parameters, {required requestId}) =>
+                                    Engine.invoke(
+                                      method,
+                                      parameters,
+                                      requestId: requestId,
+                                    ),
+                            cancel: Engine.cancel,
+                          ),
+                        ),
+                      ),
                 child: UiText('Find exact duplicates'),
               ),
             if (widget.index == 2)
