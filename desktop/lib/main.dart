@@ -13,9 +13,11 @@ import 'file_use.dart';
 import 'scheduled_tasks.dart';
 import 'services.dart';
 import 'frame_capture.dart';
+import 'capture_preferences.dart';
 import 'wording_cache.dart';
 
 void main(List<String> arguments) {
+  final capturePreferences = parseCapturePreferences(arguments);
   final capture = arguments
       .where((argument) => argument.startsWith('--capture-frame='))
       .toList();
@@ -35,7 +37,8 @@ void main(List<String> arguments) {
             services,
           ].where((selected) => selected).length ==
           1 &&
-      capture.length == 1;
+      capture.length == 1 &&
+      capturePreferences != null;
   final app = CareApp(
     startDiagnostics: diagnostics,
     startProcesses: processes,
@@ -43,6 +46,7 @@ void main(List<String> arguments) {
     startScheduledTasks: scheduledTasks,
     startServices: services,
     isolatedCapture: exporting,
+    capturePreferences: exporting ? capturePreferences! : const {},
   );
   runApp(
     exporting
@@ -103,6 +107,7 @@ class CareApp extends StatefulWidget {
     this.startScheduledTasks = false,
     this.startServices = false,
     this.isolatedCapture = false,
+    this.capturePreferences = const {},
   });
   final WordingCache? wordingCache;
   final bool startDiagnostics;
@@ -111,6 +116,7 @@ class CareApp extends StatefulWidget {
   final bool startScheduledTasks;
   final bool startServices;
   final bool isolatedCapture;
+  final Map<String, dynamic> capturePreferences;
   @override
   State<CareApp> createState() => _CareAppState();
 }
@@ -121,7 +127,11 @@ class _CareAppState extends State<CareApp> {
   @override
   void initState() {
     super.initState();
-    if (!widget.isolatedCapture) _restore();
+    if (widget.isolatedCapture) {
+      settings = Map.of(widget.capturePreferences);
+    } else {
+      _restore();
+    }
   }
 
   Future<void> _restore() async {

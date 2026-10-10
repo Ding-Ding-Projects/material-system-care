@@ -69,3 +69,5 @@
 
 - [x] Verify service collection, text/state filtering, expanded metadata and owned teardown in the real build.
 - [ ] Finish service per-surface language, accessibility, appearance and export contracts.
+
+- [ ] Verify all required workspace appearance tuples using the new isolated capture controls. Parser and isolated-widget checks pass; physical display scaling remains separate.

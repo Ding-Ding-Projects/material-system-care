@@ -1,5 +1,9 @@
 # Continuation
 
+## Capture tuple preparation
+
+Bounded isolated language, theme, text-scale and reduced-motion controls are implemented. Invalid/repeated values disable export. Normal launches do not apply these overrides or change personal settings. Six focused checks passed including service regressions. Root build and actual tuple capture remain pending. Text-scale evidence is distinct from physical DPI. See docs/features/management/capture-tuples.md.
+
 ## Service review runtime milestone
 
 Root engine and desktop builds passed at 74b1f41232e987687524c0aa1ef228ede9e06ed8. Four focused widget checks passed. A genuine hidden-desktop run collected 294 service records, filtered the loaded set, expanded one record and excluded that stopped record under the Running filter. The observed count is account- and time-specific, not an exhaustive access guarantee. All owned bundle processes were absent and the hidden desktop closed. Populated frames remain private; only the inspected idle image is public. The narrow verifier checked 210 bundle files and rejected an altered input-receipt hash before restored evidence passed. Complete language, accessibility, appearance and export contracts remain unverified.

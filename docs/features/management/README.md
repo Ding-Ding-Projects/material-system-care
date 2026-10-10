@@ -29,3 +29,5 @@ All external commands use full fixed paths, no shell, and separate `ArgumentList
 - [Scheduled-task review](scheduled-tasks.md): bounded, read-only task metadata and interpretation limits.
 
 - [Service review](services.md): explicit read-only inventory, state filters and configured-start metadata.
+
+- [Isolated capture tuples](capture-tuples.md): display-only verification controls and their limits.

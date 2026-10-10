@@ -94,3 +94,5 @@ Service review is available under Tools > Services with explicit collection and 
 ![Built service workspace before collection](docs/captures/services-idle.png)
 
 The [service frame receipt](docs/captures/services-idle.json) binds the render-only idle image to its built source. [Private runtime evidence](docs/verification/services.json) records actual collection, expansion, text and state filtering, plus owned teardown. Complete interface coverage remains unverified.
+
+Isolated workspace captures support [bounded language, theme, text-scale and motion overrides](docs/features/management/capture-tuples.md), without changing personal settings. Text-scale evidence does not establish physical monitor DPI.
