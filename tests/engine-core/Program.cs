@@ -10,6 +10,7 @@ try {
     var context = new EngineContext(root);
     Check(!context.IsElevated && context.IsFixture, "Fixture cannot acquire elevation");
     ManagementFixtures.PolicyChecks(); count++;
+    count += await MaintenanceJobFixtures.RunAsync(root);
     await ManagementFixtures.ConsentChecksAsync(context); count++;
     Check(ProtectionModule.ParseDriverXml("<pnputil><driver DriverName='oem42.inf'><ProviderName>Fixture</ProviderName></driver></pnputil>").Single().Id == "oem42.inf", "Driver schema");
     foreach (var xml in new[] { "not xml", "<wrong/>", "<!DOCTYPE pnputil [<!ENTITY x SYSTEM 'file:///not-read'>]><pnputil>&x;</pnputil>" }) {
@@ -44,7 +45,7 @@ try {
     catch (EngineException ex) { Check(ex.Code == "RESULT_TOO_LARGE", "Global response serialization is bounded"); }
     var actualModules = MaterialSystemCare.Engine.Program.CreateModules();
     var advertised = MaterialSystemCare.Engine.Program.Capabilities;
-    Check(actualModules.Length == 6 && advertised.Length == 40 && advertised.Contains("tasks.list") && advertised.Distinct().Count() == advertised.Length, "Explicit module inventory");
+    Check(actualModules.Length == 6 && advertised.Length == 44 && advertised.Contains("tasks.list") && advertised.Contains("jobs.start") && advertised.Distinct().Count() == advertised.Length, "Explicit module inventory");
     Check(advertised.All(method => actualModules.Count(module => module.CanHandle(method)) == 1), "Every advertised method has one real owner");
     Check(!advertised.Contains("host.shutdown") && !advertised.Contains("security.disable"), "Unsupported operations absent");
     using var ping = JsonDocument.Parse(await MaterialSystemCare.Engine.Program.DispatchAsync("{\"version\":1,\"id\":\"inventory\",\"method\":\"engine.ping\",\"params\":{}}", context, actualModules, default));
