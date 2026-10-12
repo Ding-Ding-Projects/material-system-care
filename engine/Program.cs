@@ -25,6 +25,11 @@ public static class Program
         using var shutdown = new CancellationTokenSource();
         Console.CancelKeyPress += (_, e) => { e.Cancel = true; shutdown.Cancel(); };
         try {
+            if(args.Length==1 && args[0]=="--system-inventory-diagnostic") {
+                var observed=await SystemInventory.CollectAsync(shutdown.Token);
+                Console.WriteLine(JsonSerializer.Serialize(new {observed.SchemaVersion,observed.ObservedAt,totalRecords=observed.Records.Length,providers=observed.Providers,sensors=observed.Sensors,observed.PrivacyExclusions,hardwareValuesPrinted=false,localRecordsWritten=false,observed.MutationPerformed},JsonOptions));
+                return observed.Providers.Any(provider=>provider.Available) ? 0 : 2;
+            }
             string? Option(string name) { var i = Array.IndexOf(args, name); if (i < 0) return null; if (i + 1 >= args.Length) throw new EngineException("INVALID_ARGUMENT", "An option value is missing."); return args[i + 1]; }
             var fixtureRequested = args.Any(a => a.StartsWith("--cleanup-fixture", StringComparison.Ordinal));
             if (fixtureRequested && (args.Length != 4 || args[0] != "--cleanup-fixture-root" || args[2] != "--cleanup-fixture-pipe" || args[3].Length != 32 || !args[3].All(char.IsAsciiHexDigit)))

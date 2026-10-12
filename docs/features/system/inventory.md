@@ -16,6 +16,8 @@ Temperature, GPU utilization and SMART-health entries are explicitly unavailable
 
 Fixture contexts never fall through to real host inventory. Integrated fixtures inject synthetic allowlisted providers and measurements, then verify counts, pagination, malformed output, sensitive-field rejection, missing/denied/timed-out providers, report expiry and capacity. Built workspace interaction and live provider verification remain separate evidence.
 
+The published engine's `--system-inventory-diagnostic` route performs the same bounded live read but prints only provider states/counts, unavailable sensor declarations and privacy exclusions. It does not construct an engine context, retain observations or print hardware values. It returns 0 when at least one provider is available, 2 when every provider is unavailable and 1 on an invalid query result. This route supports privacy-preserving live adapter verification independently of disposable fixtures.
+
 ## Official references
 
 - [Get-CimInstance](https://learn.microsoft.com/en-us/powershell/module/cimcmdlets/get-ciminstance)

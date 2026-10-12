@@ -73,6 +73,7 @@ public sealed class SystemReportService(EngineContext context)
             await output.WriteAsync(bytes,ct); output.Flush(true);
             if(context.BeforeReportPublication is {} beforePublication)await beforePublication(ct);
             ct.ThrowIfCancellationRequested(); locks.Validate();
+            if(DateTimeOffset.ParseExact(review.ExpiresAt,"O",CultureInfo.InvariantCulture)<=Now)throw new EngineException("REPORT_EXPIRED","The report expired before publication. Capture and review a new report.");
             StorageSafeFile.Move(output,review.Destination); published=true;
             return new { reportId=selected.ReportId,revision=selected.Revision,path=review.Destination,format=review.Format,bytes=bytes.Length,sha256=Convert.ToHexString(SHA256.HashData(bytes)),overwritten=false,exportedAt=Now.ToString("O"),fixture=selected.Fixture,localOnly=true };
         } catch (IOException) { throw new EngineException("REPORT_EXPORT_IO","Report publication failed. Existing destination content was never replaced."); }
