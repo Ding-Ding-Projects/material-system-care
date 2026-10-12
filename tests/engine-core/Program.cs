@@ -52,6 +52,7 @@ try {
     Check(PerformanceSample.CpuPercent(100, 200, 100, 100, 200, 100) == null, "Zero accounting interval remains unavailable");
     Check(PerformanceSample.CpuPercent(100, 200, 100, 99, 300, 200) == null, "Counter reversal remains unavailable");
     Check(PerformanceSample.CpuPercent(0, 0, 0, 300, 100, 100) == null, "Impossible idle accounting remains unavailable");
+    Check(PerformanceSample.CpuPercent(0, 0, 0, 150, 100, 100) == null, "Idle cannot exceed its containing kernel accounting");
     Check(PerformanceSample.CpuPercent(0, 0, 0, 0, ulong.MaxValue, 1) == null, "Overflow accounting remains unavailable");
     foreach (var value in new object[] { 249, 2001, 500.5, "500" }) {
         try { await PerformanceSample.ReadAsync(JsonSerializer.SerializeToElement(new { intervalMs = value }), true, default); throw new Exception("Invalid sample interval accepted"); }
