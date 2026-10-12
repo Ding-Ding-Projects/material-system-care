@@ -17,8 +17,19 @@ public sealed class EngineException(string code, string message) : Exception(mes
 
 public sealed class EngineContext : IDisposable
 {
-    private readonly Lazy<MaintenanceJobs> jobs;
-    public MaintenanceJobs Jobs => jobs.Value;
+    private readonly object jobsSync = new();
+    private MaintenanceJobs? jobs;
+    private bool disposed;
+    internal Func<CancellationToken, Task>? BeforeJobExecution { get; init; }
+    public MaintenanceJobs Jobs {
+        get {
+            lock (jobsSync) {
+                ObjectDisposedException.ThrowIf(disposed, this);
+                // Publish only successfully acquired managers. Transient lease failures remain retryable.
+                return jobs ??= new MaintenanceJobs(this);
+            }
+        }
+    }
     public string DataRoot { get; }
     public bool IsElevated { get; }
     public bool IsFixture { get; }
@@ -38,9 +49,8 @@ public sealed class EngineContext : IDisposable
         using var migration = db.CreateCommand();
         migration.CommandText = "PRAGMA journal_mode=WAL; PRAGMA synchronous=FULL; CREATE TABLE IF NOT EXISTS settings (key TEXT PRIMARY KEY, value TEXT NOT NULL); CREATE TABLE IF NOT EXISTS history (id INTEGER PRIMARY KEY AUTOINCREMENT, occurred_at TEXT NOT NULL, operation TEXT NOT NULL, details TEXT NOT NULL); PRAGMA user_version=1;";
         migration.ExecuteNonQuery();
-        jobs = new Lazy<MaintenanceJobs>(() => new MaintenanceJobs(this));
     }
-    public void Dispose() { if (jobs.IsValueCreated) jobs.Value.Dispose(); }
+    public void Dispose() { lock (jobsSync) { if (disposed) return; disposed = true; jobs?.Dispose(); } }
     private SqliteConnection Open() { var db = new SqliteConnection(connectionString); db.Open(); using var command = db.CreateCommand(); command.CommandText = "PRAGMA busy_timeout=5000; PRAGMA synchronous=FULL;"; command.ExecuteNonQuery(); return db; }
     private static bool Sensitive(string key) => new[] { "password", "secret", "token", "credential", "vocabulary", "private" }.Any(x => key.Contains(x, StringComparison.OrdinalIgnoreCase));
     public async Task RecordAsync(string operation, object details, CancellationToken ct)

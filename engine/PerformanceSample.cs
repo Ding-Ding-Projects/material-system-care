@@ -39,7 +39,7 @@ public static class PerformanceSample
                 unavailableReason = percent == null ? "CPU accounting is unavailable or changed during the measurement. No percentage was inferred." : null },
             memory = new { available, totalBytes = available ? (ulong?)memory.TotalPhysical : null, availableBytes = available ? (ulong?)memory.AvailablePhysical : null, loadPercent = available ? (uint?)memory.MemoryLoad : null,
                 measurementSource = "GlobalMemoryStatusEx", unavailableReason = available ? null : "Physical memory accounting is unavailable. No values were inferred." },
-            mutationPerformed = false, limitation = "CPU is sampled from GetSystemTimes. On hosts above 64 logical processors this API covers the calling thread processor group, not guaranteed whole-host usage. Memory is one end-of-interval snapshot. No GPU, temperature, per-process or disk throughput measurement is provided."
+            mutationPerformed = false, limitation = "CPU is sampled from GetSystemTimes. On hosts above 64 logical processors this API covers the calling thread primary processor group, not guaranteed whole-host usage. Memory is one end-of-interval snapshot. No GPU, temperature, per-process or disk throughput measurement is provided."
         };
     }
     [StructLayout(LayoutKind.Sequential)] private struct MemoryStatus { public uint Length, MemoryLoad; public ulong TotalPhysical, AvailablePhysical, TotalPageFile, AvailablePageFile, TotalVirtual, AvailableVirtual, AvailableExtendedVirtual; }

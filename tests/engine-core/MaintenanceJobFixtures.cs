@@ -34,9 +34,9 @@ public static class MaintenanceJobFixtures
         using var duplicateArguments = JsonDocument.Parse("{\"limit\":1,\"limit\":2}");
         try { context.Jobs.Handle("jobs.list", duplicateArguments.RootElement, default); throw new Exception("Duplicate field accepted"); }
         catch (EngineException ex) { Check(ex.Code == "INVALID_ARGUMENT", "Duplicate arguments rejected"); }
-        async Task<JsonElement> Terminal(string id) {
+        async Task<JsonElement> Terminal(string id, EngineContext? owner = null) {
             for (int attempt = 0; attempt < 200; attempt++) {
-                var record = Call("jobs.status", new { jobId = id });
+                var record = owner == null ? Call("jobs.status", new { jobId = id }) : JsonSerializer.SerializeToElement(owner.Jobs.Handle("jobs.status", JsonSerializer.SerializeToElement(new { jobId = id }), default), MaterialSystemCare.Engine.Program.JsonOptions);
                 if (record.GetProperty("state").GetString() is not ("queued" or "running")) return record;
                 await Task.Delay(10);
             }
@@ -49,32 +49,45 @@ public static class MaintenanceJobFixtures
         Check(completed.GetProperty("parameters").GetProperty("path").GetString() == Path.GetFullPath(files), "Selected target retained canonically");
         var duplicate = Call("jobs.start", new { method = "storage.duplicates", parameters = new { path = files } });
         Check((await Terminal(duplicate.GetProperty("jobId").GetString()!)).GetProperty("result").GetProperty("groups").GetArrayLength() == 1, "Actual duplicate comparison available");
-        Check(Call("jobs.cancel", new { jobId = id }).GetProperty("state").GetString() == "succeeded", "Late cancellation preserves success");
-        var cancelTarget = Path.Combine(parent, "cancel-target"); Directory.CreateDirectory(cancelTarget);
-        var bytes = new byte[1024 * 1024];
-        for (var i = 0; i < 32; i++) await File.WriteAllBytesAsync(Path.Combine(cancelTarget, i + ".bin"), bytes);
-        var cancellable = Call("jobs.start", new { method = "storage.duplicates", parameters = new { path = cancelTarget } });
-        var cancelId = cancellable.GetProperty("jobId").GetString()!;
-        Check(Call("jobs.cancel", new { jobId = cancelId }).GetProperty("cancellationRequested").GetBoolean(), "Active cancellation request persisted");
-        var cancelOutcome = await Terminal(cancelId);
-        Check(cancelOutcome.GetProperty("state").GetString() == "cancelled" && cancelOutcome.GetProperty("result").ValueKind == JsonValueKind.Null, "Worker observes cancellation without incomplete success");
+        var successWins = Call("jobs.cancel", new { jobId = id });
+        Check(successWins.GetProperty("state").GetString() == "succeeded" && !successWins.GetProperty("cancellationRequested").GetBoolean(), "Success before cancellation preserves its terminal receipt");
+        var entered = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
+        using (var cancelContext = new EngineContext(Path.Combine(parent, "cancel-records")) {
+            BeforeJobExecution = ct => { entered.TrySetResult(); return Task.Delay(Timeout.Infinite, ct); }
+        }) {
+            JsonElement CancelCall(string method, object parameters) => JsonSerializer.SerializeToElement(cancelContext.Jobs.Handle(method, JsonSerializer.SerializeToElement(parameters), default), MaterialSystemCare.Engine.Program.JsonOptions);
+            var cancellable = CancelCall("jobs.start", new { method = "storage.duplicates", parameters = new { path = files } });
+            var cancelId = cancellable.GetProperty("jobId").GetString()!;
+            await entered.Task.WaitAsync(TimeSpan.FromSeconds(2));
+            Check(CancelCall("jobs.cancel", new { jobId = cancelId }).GetProperty("cancellationRequested").GetBoolean(), "Active cancellation request persisted while worker held deterministically");
+            var cancelOutcome = await Terminal(cancelId, cancelContext);
+            Check(cancelOutcome.GetProperty("state").GetString() == "cancelled" && cancelOutcome.GetProperty("result").ValueKind == JsonValueKind.Null, "Worker observes cancellation without incomplete success");
+        }
         var listing = Call("jobs.list", new { limit = 1 });
         Check(listing.GetProperty("records").GetArrayLength() == 1 && listing.GetProperty("records")[0].GetProperty("result").ValueKind == JsonValueKind.Null && listing.GetProperty("records")[0].GetProperty("parameters").ValueKind == JsonValueKind.Null, "List excludes large results and target paths");
-        using (var second = new EngineContext(data)) {
-            try { _ = second.Jobs; throw new Exception("Concurrent store owner accepted"); }
-            catch (EngineException ex) { Check(ex.Code == "JOBS_IN_USE", "Exclusive store owner enforced"); }
+        using var second = new EngineContext(data);
+        {
+            for (var attempt = 0; attempt < 2; attempt++) {
+                try { _ = second.Jobs; throw new Exception("Concurrent store owner accepted"); }
+                catch (EngineException ex) { Check(ex.Code == "JOBS_IN_USE", "Exclusive store owner enforced without caching transient failure"); }
+            }
         }
         var interrupted = Guid.NewGuid().ToString("N");
         using (var db = new SqliteConnection(new SqliteConnectionStringBuilder { DataSource = Path.Combine(data, "records.db") }.ToString())) {
             db.Open(); using var command = db.CreateCommand(); command.CommandText = "INSERT INTO maintenance_jobs(id,method,parameters,state,created_at,updated_at) VALUES($id,'storage.analyze','{}','running','2026-01-01T00:00:00Z','2026-01-01T00:00:00Z')"; command.Parameters.AddWithValue("$id", interrupted); command.ExecuteNonQuery();
         }
         context.Dispose();
-        using (var reconnect = new EngineContext(data)) {
-            JsonElement Read(string value) => JsonSerializer.SerializeToElement(reconnect.Jobs.Handle("jobs.status", JsonSerializer.SerializeToElement(new { jobId = value }), default), MaterialSystemCare.Engine.Program.JsonOptions);
+        {
+            JsonElement Read(string value) => JsonSerializer.SerializeToElement(second.Jobs.Handle("jobs.status", JsonSerializer.SerializeToElement(new { jobId = value }), default), MaterialSystemCare.Engine.Program.JsonOptions);
+            var acquired = await Task.WhenAll(Enumerable.Range(0, 8).Select(_ => Task.Run(() => second.Jobs)));
+            Check(acquired.All(manager => ReferenceEquals(manager, acquired[0])), "Concurrent retry after lease release publishes one successful manager");
             Check(Read(id).GetProperty("result").GetProperty("fileCount").GetInt32() == 2, "Completed receipt survives restart");
             var recovery = Read(interrupted);
             Check(recovery.GetProperty("state").GetString() == "interrupted" && recovery.GetProperty("error").GetProperty("code").GetString() == "ENGINE_INTERRUPTED", "Unfinished receipt interrupted, never replayed");
         }
+        second.Dispose();
+        try { _ = second.Jobs; throw new Exception("Disposed context initialized jobs"); }
+        catch (ObjectDisposedException) { Check(true, "Disposed context cannot reacquire job lease"); }
         Check(Directory.GetFiles(files).Length == 2 && await File.ReadAllTextAsync(Path.Combine(files, "one.txt")) == "exact duplicate", "Data never mutated");
         return count;
     }

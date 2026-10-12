@@ -109,6 +109,7 @@ public sealed class MaintenanceJobs : IDisposable
         try {
             lock (sync) { Update(id, "running", null, null, null); }
             cancellation.Token.ThrowIfCancellationRequested();
+            if (context.BeforeJobExecution is { } beforeExecution) await beforeExecution(cancellation.Token);
             var value = await new StorageModule().HandleAsync(method, p, context, cancellation.Token);
             result = JsonSerializer.Serialize(value, Program.JsonOptions);
             if (Encoding.UTF8.GetByteCount(result) > 3 * 1024 * 1024) throw new EngineException("RESULT_TOO_LARGE", "The analysis result exceeded the durable result limit. Narrow the target.");
