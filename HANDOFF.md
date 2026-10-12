@@ -2,11 +2,13 @@
 
 ## Automatic release publication
 
-The release workflow now publishes a normal release after a successful `main` push and keeps other branch pushes build-only. Manual dispatch remains available on `main` when publication is selected and the supplied SHA matches the exact commit built. Capability status is no longer a publication gate. The workflow targets the built SHA and retains the existing Squirrel installer assets and unsigned-installer warning. The updated workflow and documentation are not yet on `main` at the remote; the GitHub Actions run, normal-release readback, tag-to-source proof, and asset readback remain pending.
+The release workflow publishes a normal release after each successful `main` push and leaves other branch pushes build-only. Manual dispatch remains available on `main` when publication is selected and the supplied SHA matches the exact commit built. Capability status is no longer a publication gate. The workflow targets the built SHA and retains the Squirrel installer assets and unsigned-installer warning. The release implementation was pushed at `4bd2a144c993d0bfa7ccaa10d7df92cc8dfc66a9`; Windows run `38200931956` and documentation deployment `38200931940` are in progress. Release readback, tag-to-source proof, assets, and live deployment remain pending.
+
+Local `main` also includes ancestry merge `9a2555b`, which records the generated Flutter registration commit whose files already match the current tree. This merge has not yet been pushed. The maintenance-engine branch remains preserved at `462bd4e52240ae74fe2f02d392ad64d3b74b15c1` because it adds product protocol operations excluded by this task.
 
 The selected workflow runs no tests or lint. A successful run will establish build and package publication only. Actual installation, update, uninstall, and complete product behavior remain unverified.
 
-中文：`main` 成功建置後會發佈正常版本，其他分支仍只建置；手動路徑要求候選 SHA 同建置來源完全一致。能力狀態不再阻擋發佈。工作流程及文件仍待整合與推送，正式版本、來源 SHA、安裝資產讀回同 GitHub Actions 結果尚未驗證。成功發佈只證明建置及套件流程，實際安裝、更新及解除安裝仍未驗證。
+中文：`main` 成功建置後會發佈正常版本，其他分支仍只建置；手動路徑要求候選 SHA 同建置來源完全一致。能力狀態不再阻擋發佈。`4bd2a144c993d0bfa7ccaa10d7df92cc8dfc66a9` 已推送，建置及文件部署仍在執行。正式版本、來源 SHA、安裝資產及公開文件仍待讀回；成功發佈只證明建置及套件流程，實際安裝、更新及解除安裝仍未驗證。
 
 ## 2026-10-11 required-feature reconciliation
 
