@@ -31,6 +31,7 @@ import 'startup.dart';
 import 'packages.dart';
 
 void main(List<String> arguments) {
+  final workspaceMode = arguments.contains('--workspace');
   final cleanupFixtureMode = arguments.any(
     (a) => a.startsWith('--cleanup-fixture'),
   );
@@ -68,13 +69,15 @@ void main(List<String> arguments) {
             systemOverview,
             protectionStatus,
             driverInventory,
-            cleanupFixtureMode,
+            cleanupFixtureMode && !workspaceMode,
+            workspaceMode,
           ].where((selected) => selected).length ==
           1 &&
       capture.length == 1 &&
       capturePreferences != null;
   final app = CareApp(
     cleanupFixture: cleanupFixtureMode,
+    startWorkspace: workspaceMode,
     startDiagnostics: diagnostics,
     startProcesses: processes,
     startFileUse: fileUse,
@@ -173,6 +176,7 @@ class CareApp extends StatefulWidget {
     super.key,
     this.wordingCache,
     this.cleanupFixture = false,
+    this.startWorkspace = false,
     this.startDiagnostics = false,
     this.startProcesses = false,
     this.startFileUse = false,
@@ -190,6 +194,7 @@ class CareApp extends StatefulWidget {
   });
   final WordingCache? wordingCache;
   final bool cleanupFixture;
+  final bool startWorkspace;
   final bool startDiagnostics;
   final bool startProcesses;
   final bool startFileUse;
@@ -308,7 +313,7 @@ class _CareAppState extends State<CareApp> {
       ),
       home: CopyScope(
         preferences: settings,
-        child: widget.cleanupFixture
+        child: widget.cleanupFixture && !widget.startWorkspace
             ? Scaffold(
                 appBar: AppBar(
                   title: const Text('Cleanup verification · 清理驗證'),

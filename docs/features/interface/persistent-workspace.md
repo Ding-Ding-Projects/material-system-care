@@ -20,6 +20,10 @@ Flutter renders accessible Material caption buttons and a dedicated title gestur
 
 The shell opens the existing `CleanupWorkspace` directly. It preserves `cleanup.scan`, server-issued plan scope and expiry, original target indexes, per-target review, `cleanup.apply`, exact request cancellation, per-record outcome validation and receipt-bound recovery. Switching tabs does not discard an active review or request. No generic command field or implicit all-target selection is introduced.
 
+## Isolated painted capture
+
+`--workspace` selects the real shared shell for explicit painted-frame exports. Combined with the existing `--cleanup-fixture-root` native argument, it retains an isolated disposable engine pipe and the visible fixture banner. No result injection occurs. Capture preferences exclude saved personal preferences and private wording. With no fixture engine available, the shell honestly shows unavailable measurements and save state. A painted export proves Flutter render bytes and timing, not native compositor capture or physical input.
+
 ## Verification and remaining acceptance
 
 Focused routing tests prove bounded round trips, invalid cache rejection, retained drafts and exclusion of draft text from saved metadata. The updated workspace test checks explicit navigation and honest unavailable state. Existing cleanup checks cover scope, target/receipt identity, cancellation races, stale review and minimum bilingual/reduced-motion layouts.
