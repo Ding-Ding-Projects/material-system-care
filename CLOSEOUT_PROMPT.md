@@ -6,7 +6,7 @@ Publish one normal GitHub Release after each successful push build from `main`. 
 
 ## Current source state
 
-The release workflow and documentation are on the remote `main` at `4bd2a144c993d0bfa7ccaa10d7df92cc8dfc66a9`. Windows run `38200931956` is building and documentation run `38200931940` is deploying. The first normal release, exact tag target, expected files, photo attribution, and live documentation remain unverified. No tests or lint run were added. Local `main` also has unpushed ancestry merge `9a2555b`.
+Normal release `v0.117.1` was published from exact source `5abc3f9d82f2400dade7b4e27e592be8690c0b1a` after successful run `38201159732`; its tag, normal-release flags, four expected files, and unsigned-installer disclosure were read back. Earlier release `v0.116.1` also passed the same checks from `4bd2a144c993d0bfa7ccaa10d7df92cc8dfc66a9`. Both releases' timing notes were corrected to the verified package-job start and published timestamps. Documentation run `38201159733` succeeded; the current homepage, release article, and three local assets returned HTTP 200, and the stored About homepage matches the deployed URL. A workflow timing correction is prepared locally; the next normal release must verify its automatic timestamp calculation. No tests or lint run were added.
 
 The workflow publishes `Setup.exe`, `RELEASES`, the full `.nupkg`, and the tracked catalog photo after its catalog, checksum, tracking, and image-decoding checks. The image's attribution and license are recorded in the catalog and release notes. Actual installation, update, and uninstall behavior remain unverified.
 

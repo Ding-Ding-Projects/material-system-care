@@ -92,7 +92,8 @@
 
 ## Delivery
 
-- [ ] Publish and read back one normal release from the first successful `main` build using the exact built source SHA and the expected Squirrel.Windows assets. The workflow change is implemented; remote verification remains pending.
+- [x] Publish and read back normal releases `v0.116.1` and `v0.117.1` from successful runs `38200931956` and `38201159732`, using exact sources `4bd2a144c993d0bfa7ccaa10d7df92cc8dfc66a9` and `5abc3f9d82f2400dade7b4e27e592be8690c0b1a`. Both releases are neither drafts nor prereleases, each tag resolves to its source SHA, and each includes `Setup.exe`, `RELEASES`, the full `.nupkg`, and the catalogued licensed photo.
+- [ ] Derive release-note timing from the package job's GitHub start time and the published release timestamp, then verify the next automatic release.
 - [x] Verify hosted Squirrel package bytes for source `4214c848`: run `38090507169` passed, 209 payload files and embedded receipts matched. This does not complete installation, update, uninstall or release verification.
 - [x] Verify anonymous delivery of source `4214c848`: 806 files, 44 bilingual gallery images and 184 complete articles matched, with the exact About homepage read back.
 - [ ] Verify the built desktop and its motion, accessibility, scaling, and failure states.

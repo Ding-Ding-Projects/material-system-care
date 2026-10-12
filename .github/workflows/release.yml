@@ -20,15 +20,15 @@ jobs:
       GH_TOKEN: ${{ secrets.RELEASE_TOKEN || secrets.ORG_TOKEN || secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v4
-      - name: Record start and unique version
+      - name: Record unique version
         shell: pwsh
         run: |
-          "WORKFLOW_STARTED=$([DateTime]::UtcNow.ToString('o'))" >> $env:GITHUB_ENV
           "BUILD_VERSION=0.${{ github.run_number }}.${{ github.run_attempt }}" >> $env:GITHUB_ENV
       - name: Build and package
         shell: cmd
         run: build-installer.bat /s
       - name: Validate indexed release photo
+        if: ${{ github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.publish_release)) }}
         shell: pwsh
         run: |
           $catalogPath = 'packaging/assets/dim-sum-catalog.json'
@@ -57,11 +57,28 @@ jobs:
           if ($env:GITHUB_EVENT_NAME -eq 'workflow_dispatch' -and $env:SELECTED_CANDIDATE -ne $env:GITHUB_SHA) {
             throw "The selected candidate must match the exact source SHA built by this run."
           }
-          $end=[DateTime]::UtcNow
-          $elapsed=$end-[DateTime]::Parse($env:WORKFLOW_STARTED)
-          $notes="Unsigned Squirrel.Windows installer. Unknown-publisher and SmartScreen warnings may appear.`n`nDim sum photo: $($catalog.entries[0].dish), by $($catalog.entries[0].creator), licensed $($catalog.entries[0].license). Source: $($catalog.entries[0].source)`n`nWorkflow started: $env:WORKFLOW_STARTED`nWorkflow completed: $($end.ToString('o'))`nWorkflow duration: $($elapsed.ToString('hh\:mm\:ss'))`n`nThis workflow builds and packages the exact source commit shown for this run. It runs no tests or lint."
+          $tag = "v$env:BUILD_VERSION"
+          $notes = "Unsigned Squirrel.Windows installer. Unknown-publisher and SmartScreen warnings may appear.`n`nDim sum photo: $($catalog.entries[0].dish), by $($catalog.entries[0].creator), licensed $($catalog.entries[0].license). Source: $($catalog.entries[0].source)`n`nThis workflow builds and packages the exact source commit shown for this run. It runs no tests or lint."
           $notes | Set-Content release-notes.txt
-          gh release create "v$env:BUILD_VERSION" artifacts/installer/releases/Setup.exe artifacts/installer/releases/RELEASES artifacts/installer/releases/*-full.nupkg $env:DIM_SUM_IMAGE --target "$env:GITHUB_SHA" --title "Material System Care $env:BUILD_VERSION" --notes-file release-notes.txt
+          gh release create $tag artifacts/installer/releases/Setup.exe artifacts/installer/releases/RELEASES artifacts/installer/releases/*-full.nupkg $env:DIM_SUM_IMAGE --target "$env:GITHUB_SHA" --title "Material System Care $env:BUILD_VERSION" --notes-file release-notes.txt
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          $runJson = gh run view "$env:GITHUB_RUN_ID" --repo "$env:GITHUB_REPOSITORY" --json jobs
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          $run = $runJson | ConvertFrom-Json
+          $package = $run.jobs | Where-Object { $_.name -eq 'package' } | Select-Object -First 1
+          if (-not $package -or -not $package.startedAt) { throw 'The package job start timestamp is unavailable.' }
+          $releaseJson = gh release view $tag --repo "$env:GITHUB_REPOSITORY" --json publishedAt
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          $release = $releaseJson | ConvertFrom-Json
+          if (-not $release.publishedAt) { throw 'The published release timestamp is unavailable.' }
+          $started = [DateTimeOffset]::Parse($package.startedAt).ToUniversalTime()
+          $completed = [DateTimeOffset]::Parse($release.publishedAt).ToUniversalTime()
+          $elapsed = $completed - $started
+          if ($elapsed.TotalSeconds -lt 0) { throw 'The release timestamp precedes the package job start.' }
+          $duration = '{0:00}:{1:00}:{2:00}' -f [Math]::Floor($elapsed.TotalHours), $elapsed.Minutes, $elapsed.Seconds
+          $notes = "Unsigned Squirrel.Windows installer. Unknown-publisher and SmartScreen warnings may appear.`n`nDim sum photo: $($catalog.entries[0].dish), by $($catalog.entries[0].creator), licensed $($catalog.entries[0].license). Source: $($catalog.entries[0].source)`n`nWorkflow started: $($started.ToString('o'))`nWorkflow completed: $($completed.ToString('o'))`nWorkflow duration: $duration`n`nThis workflow builds and packages the exact source commit shown for this run. It runs no tests or lint."
+          $notes | Set-Content release-notes.txt
+          gh release edit $tag --repo "$env:GITHUB_REPOSITORY" --notes-file release-notes.txt
           if ($LASTEXITCODE) { exit $LASTEXITCODE }
       - name: Collect safe build evidence
         if: always()
