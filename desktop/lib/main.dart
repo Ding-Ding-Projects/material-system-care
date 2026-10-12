@@ -272,6 +272,7 @@ class _CareAppState extends State<CareApp> {
           preferences: settings,
           child: widget.cleanupFixture
               ? Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Material(
                       color: Theme.of(context).colorScheme.tertiaryContainer,

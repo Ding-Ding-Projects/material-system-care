@@ -40,6 +40,10 @@ bool FlutterWindow::OnCreate() {
     return false;
   }
 
+  // Creation initially calculates the stock overlapped client rectangle before
+  // the custom nonclient handler is active. Recalculate without moving/focusing.
+  SetWindowPos(GetHandle(), nullptr, 0, 0, 0, 0,
+               SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_NOACTIVATE | SWP_FRAMECHANGED);
   RECT frame = GetClientArea();
 
   // The size here must match the window dimensions to avoid unnecessary surface
