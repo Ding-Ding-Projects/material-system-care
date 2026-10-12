@@ -5,10 +5,13 @@ namespace MaterialSystemCare.Engine;
 
 public sealed class SystemModule : IEngineModule
 {
-    public bool CanHandle(string method) => method is "engine.ping" or "system.snapshot" or "settings.get" or "settings.save" or "history.list";
+    public bool CanHandle(string method) => method is "engine.ping" or "system.snapshot" or "system.performance" or "settings.get" or "settings.save" or "history.list" or "jobs.start" or "jobs.status" or "jobs.list" or "jobs.cancel";
     public async Task<object?> HandleAsync(string method, JsonElement parameters, EngineContext context, CancellationToken cancellationToken)
     {
         switch (method) {
+            case "system.performance": return await PerformanceSample.ReadAsync(parameters, context.IsFixture, cancellationToken);
+            case "jobs.start": case "jobs.status": case "jobs.list": case "jobs.cancel":
+                return context.Jobs.Handle(method, parameters, cancellationToken);
             case "engine.ping":
                 JsonElement? manifest = null;
                 var manifestPath = Path.Combine(AppContext.BaseDirectory, "build-manifest.json");

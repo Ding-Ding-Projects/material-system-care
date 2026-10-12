@@ -8,3 +8,5 @@ Storage analysis reads only a selected folder. Cleanup is a separate consent wor
 - [Verified disposable cleanup and recovery round trip](cleanup-verification.md)
 
 The local named-pipe protocol is documented in `contracts/engine-protocol.md`. These methods are not HTTP endpoints, so a Postman collection is not applicable.
+
+- [Durable selected-folder analysis](maintenance-jobs.md)

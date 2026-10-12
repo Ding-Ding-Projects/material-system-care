@@ -11,7 +11,7 @@ public static class Program
     public const int MaximumResponseBytes = 4 * 1024 * 1024;
     public static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web);
     private static readonly (Type Type, string[] Methods)[] ModuleInventory = [
-        (typeof(SystemModule), ["engine.ping", "system.snapshot", "settings.get", "settings.save", "history.list"]),
+        (typeof(SystemModule), ["engine.ping", "system.snapshot", "system.performance", "settings.get", "settings.save", "history.list", "jobs.start", "jobs.status", "jobs.list", "jobs.cancel"]),
         (typeof(CrashDiagnosticsModule), ["diagnostics.crashes", "diagnostics.explainStopCode"]),
         (typeof(StorageModule), ["storage.analyze", "storage.duplicates", "cleanup.scan", "cleanup.apply", "cleanup.restore", "cleanup.history", "cleanup.details"]),
         (typeof(ManagementModule), ["apps.list", "apps.managed", "apps.updates", "apps.upgrade", "apps.uninstall", "startup.list", "startup.set", "processes.list", "processes.stop", "services.list", "tasks.list"]),
@@ -30,7 +30,7 @@ public static class Program
             if (fixtureRequested && (args.Length != 4 || args[0] != "--cleanup-fixture-root" || args[2] != "--cleanup-fixture-pipe" || args[3].Length != 32 || !args[3].All(char.IsAsciiHexDigit)))
                 throw new EngineException("INVALID_ARGUMENT", "Invalid cleanup fixture launch arguments.");
             using var fixture = fixtureRequested ? new CleanupFixture(args[1]) : null;
-            var context = new EngineContext(fixture?.Records ?? Option("--data-root"), fixture);
+            using var context = new EngineContext(fixture?.Records ?? Option("--data-root"), fixture);
             var modules = fixture == null ? CreateModules() : new IEngineModule[] { new SystemModule(), new StorageModule(fixture.Temp) };
             if (Option("--request-file") is { } file) {
                 await using var input = File.OpenRead(file);
