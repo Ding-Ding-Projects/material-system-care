@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'retained_workspace.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -232,10 +233,13 @@ class _CareAppState extends State<CareApp> {
       final saved = await Engine.invoke('settings.get', {
         'key': 'workspacePreferences',
       });
+      final values = saved['value'] is Map
+          ? Map<String, dynamic>.from(saved['value'] as Map)
+          : saved;
       if (mounted &&
           revision == _settingsRevision &&
-          !saved.containsKey('items'))
-        setState(() => settings = {...saved, 'privateVocabulary': wording});
+          !values.containsKey('items'))
+        setState(() => settings = {...values, 'privateVocabulary': wording});
     } catch (_) {}
   }
 
@@ -414,101 +418,45 @@ class Workspace extends StatefulWidget {
 }
 
 class _WorkspaceState extends State<Workspace> {
-  int selected = 0;
-  String name(int i) => localize(context, destinations[i]);
   @override
-  Widget build(BuildContext context) {
-    final reduced =
-        widget.settings['reducedMotion'] == true ||
-        MediaQuery.disableAnimationsOf(context);
-    return Scaffold(
-      endDrawer: NotificationPanel(),
-      appBar: AppBar(
-        title: UiText('Material System Care'),
-        actions: [
-          Builder(
-            builder: (context) => IconButton(
-              tooltip: localize(context, 'Notifications'),
-              onPressed: () => Scaffold.of(context).openEndDrawer(),
-              icon: Icon(Icons.notifications_outlined),
-            ),
-          ),
-          IconButton(
-            tooltip: localize(context, 'Refresh workspace'),
-            onPressed: () => setState(() {}),
-            icon: Icon(Icons.refresh),
-          ),
-          IconButton(
-            tooltip: localize(context, 'Help'),
-            onPressed: () => setState(() => selected = 9),
-            icon: Icon(Icons.help_outline),
-          ),
-        ],
+  Widget build(BuildContext context) => RetainedWorkspace(
+    invoke: Engine.invoke,
+    page: (context, route) => switch (route) {
+      'overview' => SystemOverviewPage(invoke: Engine.invoke),
+      'cleanup' => buildCleanupWorkspace(context),
+      'storage' => StorageAnalysisPage(
+        invoke: (method, params, {required requestId}) =>
+            Engine.invoke(method, params, requestId: requestId),
+        cancel: Engine.cancel,
       ),
-      body: LayoutBuilder(
-        builder: (context, bounds) => Row(
-          children: [
-            if (bounds.maxWidth >= 700)
-              NavigationRail(
-                extended: bounds.maxWidth >= 1150,
-                selectedIndex: selected,
-                onDestinationSelected: (i) => setState(() => selected = i),
-                destinations: List.generate(
-                  destinations.length,
-                  (i) => NavigationRailDestination(
-                    icon: Icon(destinationIcons[i]),
-                    label: Text(name(i)),
-                  ),
-                ),
-              ),
-            if (bounds.maxWidth >= 700) VerticalDivider(width: 1),
-            Expanded(
-              child: AnimatedSwitcher(
-                duration: reduced ? Duration.zero : Duration(milliseconds: 250),
-                child: Padding(
-                  key: ValueKey(selected),
-                  padding: EdgeInsets.all(24),
-                  child: selected == 8
-                      ? SettingsPanel(
-                          wordingCache: widget.wordingCache,
-                          invoke: Engine.invoke,
-                          onChanged: widget.changed,
-                        )
-                      : selected == 9
-                      ? HelpPanel()
-                      : selected == 3
-                      ? StartupPage(invoke: Engine.invoke)
-                      : selected == 2
-                      ? PackagesPage(invoke: Engine.invoke)
-                      : selected == 5
-                      ? DriverInventoryPage(invoke: Engine.invoke)
-                      : selected == 0
-                      ? SystemOverviewPage(invoke: Engine.invoke)
-                      : WorkflowPage(index: selected, title: name(selected)),
-                ),
-              ),
-            ),
-          ],
-        ),
+      'duplicates' => DuplicateAnalysisPage(
+        invoke: (method, params, {required requestId}) =>
+            Engine.invoke(method, params, requestId: requestId),
+        cancel: Engine.cancel,
       ),
-      bottomNavigationBar: MediaQuery.sizeOf(context).width < 700
-          ? SafeArea(
-              child: DropdownButtonFormField<int>(
-                initialValue: selected,
-                decoration: InputDecoration(
-                  labelText: localize(context, 'Workspace'),
-                  border: OutlineInputBorder(),
-                ),
-                items: List.generate(
-                  destinations.length,
-                  (i) => DropdownMenuItem(value: i, child: Text(name(i))),
-                ),
-                onChanged: (i) => setState(() => selected = i ?? 0),
-              ),
-            )
-          : null,
-    );
-  }
+      'apps' => PackagesPage(invoke: Engine.invoke),
+      'startup' => StartupPage(invoke: Engine.invoke),
+      'protection' => ProtectionStatusPage(invoke: Engine.invoke),
+      'drivers' => DriverInventoryPage(invoke: Engine.invoke),
+      'processes' => ProcessesPage(invoke: Engine.invoke),
+      'services' => ServicesPage(invoke: Engine.invoke),
+      'tasks' => ScheduledTasksPage(invoke: Engine.invoke),
+      'diagnostics' => CrashDiagnosticsPage(invoke: Engine.invoke),
+      'file-use' => FileUsePage(invoke: Engine.invoke),
+      'settings' => SettingsPanel(
+        wordingCache: widget.wordingCache,
+        invoke: Engine.invoke,
+        onChanged: widget.changed,
+      ),
+      'help' => HelpPanel(),
+      'tools' => WorkflowPage(index: 6, title: localize(context, 'Tools')),
+      'activity' => WorkflowPage(
+        index: 7,
+        title: localize(context, 'Activity'),
+      ),
+      _ => const Center(child: UiText('Workspace unavailable')),
+    },
+  );
 }
 
 class WorkflowPage extends StatefulWidget {
