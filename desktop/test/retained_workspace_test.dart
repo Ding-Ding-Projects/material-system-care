@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_system_care/retained_workspace.dart';
 import 'package:material_system_care/workspace_tabs.dart';
+import 'package:material_system_care/localization.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -107,4 +108,42 @@ void main() {
     expect(cache.toString(), isNot(contains('review remains local')));
     expect(tester.takeException(), isNull);
   });
+  for (final language in ['en', 'yue', 'both']) {
+    testWidgets(
+      'minimum shell at double text scale $language has no framework overflow',
+      (tester) async {
+        tester.view.physicalSize = const Size(800, 600);
+        tester.view.devicePixelRatio = 1;
+        addTearDown(tester.view.resetPhysicalSize);
+        addTearDown(tester.view.resetDevicePixelRatio);
+        await tester.pumpWidget(
+          MaterialApp(
+            builder: (context, child) => MediaQuery(
+              data: MediaQuery.of(context).copyWith(
+                textScaler: const TextScaler.linear(2),
+                disableAnimations: true,
+              ),
+              child: CopyScope(
+                preferences: {'language': language},
+                child: child!,
+              ),
+            ),
+            home: RetainedWorkspace(
+              invoke: (_, __) async => {},
+              page: (_, route) => ListView(children: [Text(route)]),
+            ),
+          ),
+        );
+        await tester.pumpAndSettle();
+        expect(tester.takeException(), isNull);
+        await tester.tap(
+          find.byTooltip(
+            localizePreferences({'language': language}, 'Workspace help'),
+          ),
+        );
+        await tester.pumpAndSettle();
+        expect(tester.takeException(), isNull);
+      },
+    );
+  }
 }
