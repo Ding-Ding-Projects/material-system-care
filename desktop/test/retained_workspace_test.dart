@@ -4,6 +4,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:material_system_care/retained_workspace.dart';
 import 'package:material_system_care/workspace_tabs.dart';
 import 'package:material_system_care/localization.dart';
+import 'package:material_system_care/main.dart';
+import 'package:material_system_care/cleanup_workspace.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -146,4 +148,42 @@ void main() {
       },
     );
   }
+  testWidgets(
+    'disposable shell retains fixture scope in the typed cleanup route',
+    (tester) async {
+      tester.view.physicalSize = const Size(1280, 900);
+      tester.view.devicePixelRatio = 1;
+      addTearDown(tester.view.resetPhysicalSize);
+      addTearDown(tester.view.resetDevicePixelRatio);
+      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+          .setMockMethodCallHandler(
+            Engine.channel,
+            (_) async => {'ok': true, 'result': {}},
+          );
+      addTearDown(
+        () => TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+            .setMockMethodCallHandler(Engine.channel, null),
+      );
+      await tester.pumpWidget(
+        const CareApp(
+          cleanupFixture: true,
+          startWorkspace: true,
+          isolatedCapture: true,
+        ),
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Open workspace'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Recoverable cleanup'));
+      await tester.pumpAndSettle();
+      final cleanup = tester.widget<CleanupWorkspace>(
+        find.byType(CleanupWorkspace),
+      );
+      expect(cleanup.fixture, isTrue);
+      expect(
+        find.textContaining('Disposable cleanup verification only'),
+        findsOneWidget,
+      );
+    },
+  );
 }

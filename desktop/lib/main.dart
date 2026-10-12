@@ -361,6 +361,7 @@ class _CareAppState extends State<CareApp> {
             ? PackagesPage(invoke: Engine.invoke)
             : Workspace(
                 settings: settings,
+                cleanupFixture: widget.cleanupFixture,
                 wordingCache: widget.wordingCache,
                 changed: (value) => setState(() {
                   _settingsRevision++;
@@ -410,6 +411,7 @@ final destinationIcons = [
 ];
 
 class Workspace extends StatefulWidget {
+  final bool cleanupFixture;
   final Map<String, dynamic> settings;
   final ValueChanged<Map<String, dynamic>> changed;
   final WordingCache? wordingCache;
@@ -417,6 +419,7 @@ class Workspace extends StatefulWidget {
     super.key,
     required this.settings,
     required this.changed,
+    this.cleanupFixture = false,
     this.wordingCache,
   });
   @override
@@ -429,7 +432,10 @@ class _WorkspaceState extends State<Workspace> {
     invoke: Engine.invoke,
     page: (context, route) => switch (route) {
       'overview' => SystemOverviewPage(invoke: Engine.invoke),
-      'cleanup' => buildCleanupWorkspace(context),
+      'cleanup' => buildCleanupWorkspace(
+        context,
+        fixture: widget.cleanupFixture,
+      ),
       'storage' => StorageAnalysisPage(
         invoke: (method, params, {required requestId}) =>
             Engine.invoke(method, params, requestId: requestId),
