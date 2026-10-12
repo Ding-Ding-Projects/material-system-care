@@ -1,5 +1,15 @@
 # Roadmap
 
+## 2026-10-11 complete-suite implementation
+
+- [x] Reconcile105 required features, including28 application-scoped server-manager rows, with 223 negative inventory mutations.
+- [ ] Integrate reviewed durable analysis jobs and real CPU/memory sampling, preserving unverified visible workflow status.
+- [ ] Integrate and independently verify the retained desktop workspace and native chrome.
+- [ ] Complete every supported maintenance workflow and all applicable required features.
+- [ ] Integrate the optional Material Companion adapter and verify the complete public documentation deployment.
+- [ ] Complete all native, visual, accessibility, privacy and packaging acceptance with publication disabled.
+
+
 ## Complete documentation and bilingual gallery
 
 - [x] Verify real painted-frame output beyond sequence 19 under the bounded 64-attempt producer, with 21 immutable real frames and unchanged disposable originals.

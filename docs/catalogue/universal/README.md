@@ -46,6 +46,7 @@ The fixed contract list is hand-enumerated in `tests/coverage/expected-universal
 - [Isolated markup rendering](rendered-provider-text.md)
 - [Non-blocking notification center](notifications.md)
 - [Local file conversion](file-converter.md)
+- [Minecraft server creation and management](minecraft-server-manager.md)
 - [Local model suite manager](ollama-suite.md)
 - [External editor handoff](external-editor.md)
 - [Download start progress and completion](download-handoff.md)

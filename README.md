@@ -1,5 +1,10 @@
 # Material System Care
 
+## Current implementation pass
+
+The required-feature inventory now tracks105 entries and 2374 per-surface rows. [Minecraft server management](docs/catalogue/universal/minecraft-server-manager.md) is explicitly required for the installed suite and remains unimplemented. The static website documents its scope and local mediation boundary. All 295 maintenance capabilities and their exclusions remain preserved. The broader suite and separate Material Companion work are in progress; no new installer release or browser-store submission is included.
+
+
 The recovery workspace now keeps its controls and receipt cards on one keyboard-scrollable surface. A real disposable round trip at 800 × 600 with doubled bilingual text verified complete path review, cancellation, selected-file movement and restoration of original bytes, identities and modification times. This later 1280 × 1061 painted view shows the two restored fixture files; no private paths are visible.
 
 復原介面嘅控制同收據卡片共用一個可鍵盤翻頁嘅頁面。真正 800 × 600、雙語兩倍文字操作已驗證完整路徑覆核、取消、所選檔案移動同原本內容、身份及修改時間復原。以下較大畫面顯示兩個已還原測試檔案，冇包含私人路徑。

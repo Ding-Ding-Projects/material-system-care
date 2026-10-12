@@ -5,9 +5,10 @@ export function validateUniversal(data,release=false) {
   invariant(data.schemaVersion===1,'Wrong surface inventory version');
   exactSet(data.features.map(x=>x.id),expected.features,'canonical contract inventory');
   exactSet(data.surfaces.map(x=>x.id),expected.surfaces,'surface inventory');
-  exactSet(data.requirements.map(x=>`${x.surface}:${x.feature}`),expected.surfaces.flatMap(s=>expected.surfaceFeatures.map(f=>`${s}:${f}`)),'surface requirements');
+  exactSet(data.requirements.map(x=>`${x.surface}:${x.feature}`),expected.surfaces.flatMap(s=>expected.surfaceFeatures.filter(f=>!expected.surfaceApplicability?.[f]||expected.surfaceApplicability[f].includes(s)).map(f=>`${s}:${f}`)),'surface requirements');
   exactSet(data.deliveryRequirements.map(x=>x.feature),expected.features.filter(x=>!expected.surfaceFeatures.includes(x)),'delivery requirements');
   for(const feature of data.features)localFile(feature.documentation);
+  invariant(data.features.find(x=>x.id==='minecraft-server-manager')?.scope==='application','Server manager application scope is required');
   for(const row of data.requirements) {
     invariant(['unimplemented','verified'].includes(row.status),'Invalid surface status');
     invariant(typeof row.reason==='string'&&row.reason.length>0,'Missing surface explanation');
@@ -38,6 +39,8 @@ for(const feature of expected.features)rejects(x=>{x.features=x.features.filter(
 for(const surface of expected.surfaces)rejects(x=>{x.surfaces=x.surfaces.filter(s=>s.id!==surface);});
 for(const feature of expected.surfaceFeatures)rejects(x=>{x.requirements=x.requirements.filter(r=>r.feature!==feature);});
 for(const key of ['implementation','documentation','localizedCopy','persistence','tests','interactions','captures'])rejects(x=>{delete x.requirements[0][key];});
+rejects(x=>{x.features.find(f=>f.id==='minecraft-server-manager').scope='surface';});
+rejects(x=>{const r=structuredClone(x.requirements.find(r=>r.feature==='minecraft-server-manager'));r.surface='website.home';x.requirements.push(r);});
 rejects(x=>{x.requirements[0].status='verified';});rejects(x=>{x.requirements[0].status='not-applicable';});
 rejects(x=>{x.requirements[0].captures=['docs/catalogue/README.md'];x.requirements[0].status='verified';});
 rejects(x=>{x.requirements.push(structuredClone(x.requirements[0]));});
