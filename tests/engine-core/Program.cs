@@ -45,9 +45,29 @@ try {
     catch (EngineException ex) { Check(ex.Code == "RESULT_TOO_LARGE", "Global response serialization is bounded"); }
     var actualModules = MaterialSystemCare.Engine.Program.CreateModules();
     var advertised = MaterialSystemCare.Engine.Program.Capabilities;
-    Check(actualModules.Length == 6 && advertised.Length == 44 && advertised.Contains("tasks.list") && advertised.Contains("jobs.start") && advertised.Distinct().Count() == advertised.Length, "Explicit module inventory");
+    Check(actualModules.Length == 6 && advertised.Length == 45 && advertised.Contains("tasks.list") && advertised.Contains("jobs.start") && advertised.Contains("system.performance") && advertised.Distinct().Count() == advertised.Length, "Explicit module inventory");
     Check(advertised.All(method => actualModules.Count(module => module.CanHandle(method)) == 1), "Every advertised method has one real owner");
     Check(!advertised.Contains("host.shutdown") && !advertised.Contains("security.disable"), "Unsupported operations absent");
+    Check(PerformanceSample.CpuPercent(100, 200, 100, 150, 300, 200) == 75, "CPU delta accounts for kernel idle time");
+    Check(PerformanceSample.CpuPercent(100, 200, 100, 100, 200, 100) == null, "Zero accounting interval remains unavailable");
+    Check(PerformanceSample.CpuPercent(100, 200, 100, 99, 300, 200) == null, "Counter reversal remains unavailable");
+    Check(PerformanceSample.CpuPercent(0, 0, 0, 300, 100, 100) == null, "Impossible idle accounting remains unavailable");
+    Check(PerformanceSample.CpuPercent(0, 0, 0, 0, ulong.MaxValue, 1) == null, "Overflow accounting remains unavailable");
+    foreach (var value in new object[] { 249, 2001, 500.5, "500" }) {
+        try { await PerformanceSample.ReadAsync(JsonSerializer.SerializeToElement(new { intervalMs = value }), true, default); throw new Exception("Invalid sample interval accepted"); }
+        catch (EngineException ex) { Check(ex.Code == "INVALID_ARGUMENT", "Sample interval validation"); }
+    }
+    using (var sampleRequest = JsonDocument.Parse("{\"intervalMs\":250}")) {
+        var sample = JsonSerializer.SerializeToElement(await PerformanceSample.ReadAsync(sampleRequest.RootElement, true, default), MaterialSystemCare.Engine.Program.JsonOptions);
+        Check(sample.GetProperty("measuredIntervalMs").GetDouble() >= 200 && !sample.GetProperty("mutationPerformed").GetBoolean() && sample.GetProperty("fixtureDataRoot").GetBoolean(), "Real timed sample is explicitly labelled and read-only");
+        var cpu = sample.GetProperty("cpu");
+        Check(!cpu.GetProperty("available").GetBoolean() || cpu.GetProperty("usagePercent").GetDouble() is >= 0 and <= 100, "Measured CPU percentage or explicit unavailable state");
+    }
+    using (var cancelSample = new CancellationTokenSource()) {
+        cancelSample.Cancel();
+        try { await PerformanceSample.ReadAsync(JsonSerializer.SerializeToElement(new { intervalMs = 250 }), true, cancelSample.Token); throw new Exception("Sample cancellation ignored"); }
+        catch (OperationCanceledException) { Check(true, "Sampling observes cancellation"); }
+    }
     using var ping = JsonDocument.Parse(await MaterialSystemCare.Engine.Program.DispatchAsync("{\"version\":1,\"id\":\"inventory\",\"method\":\"engine.ping\",\"params\":{}}", context, actualModules, default));
     Check(ping.RootElement.GetProperty("result").GetProperty("capabilities").EnumerateArray().Select(x => x.GetString()).SequenceEqual(advertised), "Ping inventory matches registration");
     using var counted = new CountingStream(System.Text.Encoding.UTF8.GetBytes(new string('a', 1024 * 1024)));

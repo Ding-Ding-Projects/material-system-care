@@ -22,7 +22,7 @@ public interface IEngineModule {
 }
 ```
 
-`EngineContext` exposes `string DataRoot`, `bool IsElevated`, `Task RecordAsync(string operation, object details, CancellationToken ct)`, and `Task<object?> ReadSettingAsync(string key, CancellationToken ct)`. Modules must not share mutable static request state. `Program.ModuleInventory` explicitly registers six module types and 44 allowed methods. It drives construction, dispatch ownership and `engine.ping.capabilities`; arbitrary assembly/plugin discovery is not supported. Additional methods must enter that inventory and its consistency regression before integration.
+`EngineContext` exposes `string DataRoot`, `bool IsElevated`, `Task RecordAsync(string operation, object details, CancellationToken ct)`, and `Task<object?> ReadSettingAsync(string key, CancellationToken ct)`. Modules must not share mutable static request state. `Program.ModuleInventory` explicitly registers six module types and 45 allowed methods. It drives construction, dispatch ownership and `engine.ping.capabilities`; arbitrary assembly/plugin discovery is not supported. Additional methods must enter that inventory and its consistency regression before integration.
 
 ## Initial methods
 
@@ -75,4 +75,9 @@ Each actionable `startup.list` record includes a deterministic uppercase 64-hex 
 ## Durable read-only maintenance jobs
 
 The four registered methods `jobs.start`, `jobs.status`, `jobs.list` and `jobs.cancel` expose durable selected-folder analysis. Only `storage.analyze` and `storage.duplicates` may detach. See [job states, bounds and recovery](../docs/features/storage/maintenance-jobs.md). Request disconnect does not cancel detached jobs. Terminal state, cancellation request and restart interruption are separate factual states.
+
+
+## Resource interval sample
+
+`system.performance` accepts optional integer `intervalMs` (250..2000, default 500). It returns actual CPU accounting deltas, one physical-memory snapshot and explicit scope/unavailable reasons. See [read-only resource sampling](../docs/features/management/resource-monitor.md). No optimization or host power change is performed.
 
