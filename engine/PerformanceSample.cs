@@ -14,7 +14,7 @@ public static class PerformanceSample
         // Kernel time includes idle time. Reject impossible deltas rather than display invented percentages.
         if (ulong.MaxValue - kernel < user) return null;
         var total = kernel + user;
-        if (total == 0 || idle > total) return null;
+        if (total == 0 || idle > kernel) return null;
         return Math.Round(100.0 * (total - idle) / total, 2);
     }
     public static async Task<object> ReadAsync(JsonElement parameters, bool fixtureDataRoot, CancellationToken ct)
