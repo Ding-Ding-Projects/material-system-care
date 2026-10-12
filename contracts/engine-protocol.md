@@ -22,7 +22,7 @@ public interface IEngineModule {
 }
 ```
 
-`EngineContext` exposes `string DataRoot`, `bool IsElevated`, `Task RecordAsync(string operation, object details, CancellationToken ct)`, and `Task<object?> ReadSettingAsync(string key, CancellationToken ct)`. Modules must not share mutable static request state. `Program.ModuleInventory` explicitly registers six module types and 45 allowed methods. It drives construction, dispatch ownership and `engine.ping.capabilities`; arbitrary assembly/plugin discovery is not supported. Additional methods must enter that inventory and its consistency regression before integration.
+`EngineContext` exposes `string DataRoot`, `bool IsElevated`, `Task RecordAsync(string operation, object details, CancellationToken ct)`, and `Task<object?> ReadSettingAsync(string key, CancellationToken ct)`. Modules must not share mutable static request state. `Program.ModuleInventory` explicitly registers six module types and 50 allowed methods. It drives construction, dispatch ownership and `engine.ping.capabilities`; arbitrary assembly/plugin discovery is not supported. Additional methods must enter that inventory and its consistency regression before integration.
 
 ## Initial methods
 
@@ -80,4 +80,13 @@ The four registered methods `jobs.start`, `jobs.status`, `jobs.list` and `jobs.c
 ## Resource interval sample
 
 `system.performance` accepts optional integer `intervalMs` (250..2000, default 500). It returns actual CPU accounting deltas, one physical-memory snapshot and explicit scope/unavailable reasons. See [read-only resource sampling](../docs/features/management/resource-monitor.md). No optimization or host power change is performed.
+
+
+## Immutable system reports and measured thresholds
+
+`system.inventory` accepts integer `offset` (default 0) and `limit` (1..200, default 100), captures an immutable local report and returns paginated allowlisted hardware/provider records. `system.inventory.page` requires `reportId` (32 hex) and `revision` (64 hex), accepts pagination plus optional registered `category`, and reads the same observations. Reports expire after 24 hours; at most 30 unexpired 2 MiB reports are retained. See [inventory](../docs/features/system/inventory.md).
+
+`system.monitor` accepts `intervalMs` (250..2000) and optional nonempty finite-percentage `thresholds` for CPU, memory and fixed-volume usage. It returns actual measured values plus threshold-reached, below-threshold or unavailable evaluations. See [measured thresholds](../docs/features/system/monitoring.md).
+
+`system.report.review` requires `reportId`, `revision`, `format` (json/csv/markdown), `outputFolder` and matching `fileName`; it returns `reviewRevision` and the exact selected target. `system.report.export` requires the same fields plus `reviewRevision` and `confirmed:true`. It never overwrites, accepts network output or replays an expired report. See [reviewed local export](../docs/features/system/report-export.md).
 

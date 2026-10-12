@@ -18,6 +18,23 @@ internal static class StorageSafeFile
         }
     }
     public static FileStream OpenRead(string path) => Open(path, false);
+    public static FileStream CreateForMove(string path)
+    {
+        if (!OperatingSystem.IsWindows()) throw new EngineException("PLATFORM_UNSUPPORTED", "Handle-bound report export requires Windows.");
+        ValidateAncestors(Path.GetDirectoryName(Path.GetFullPath(path))!);
+        var handle = CreateFileW(path, 0xC0010000u, 0, IntPtr.Zero, 1, 0x00200000, IntPtr.Zero);
+        if (handle.IsInvalid) { handle.Dispose(); throw new IOException("Unable to exclusively create report staging storage.", new Win32Exception(Marshal.GetLastWin32Error())); }
+        try {
+            if (!GetFileInformationByHandle(handle, out var info) || (info.Attributes & 0x410) != 0 || info.Links != 1) throw new EngineException("TARGET_CHANGED", "Report staging is not a new regular file.");
+            return new FileStream(handle, FileAccess.ReadWrite, 65536, false);
+        } catch { handle.Dispose(); throw; }
+    }
+    public static void DiscardCreated(FileStream file)
+    {
+        IntPtr disposition = Marshal.AllocHGlobal(4);
+        try { Marshal.WriteInt32(disposition, 1); if (!SetFileInformationByHandle(file.SafeFileHandle, 4, disposition, 4)) throw new IOException("Unable to remove the owned report staging file.", new Win32Exception(Marshal.GetLastWin32Error())); }
+        finally { Marshal.FreeHGlobal(disposition); }
+    }
     public static FileStream OpenForMove(string path)
     {
         if (!OperatingSystem.IsWindows()) throw new EngineException("PLATFORM_UNSUPPORTED", "Handle-bound recovery requires Windows.");
@@ -108,6 +125,12 @@ internal static class StorageSafeFile
                     if (length == 0 || length >= resolved.Capacity || !string.Equals(item.Path.TrimEnd('\\'), final.TrimEnd('\\'), StringComparison.OrdinalIgnoreCase))
                         throw new EngineException("TARGET_CHANGED", "A recovery ancestor changed.");
                 }
+        }
+        public string Identity {
+            get {
+                if (!GetFileInformationByHandle(handles[0].Handle, out var info)) throw new IOException("Unable to identify the selected export folder.");
+                return $"{info.Volume:X8}:{info.IndexHigh:X8}{info.IndexLow:X8}";
+            }
         }
         public void Dispose() { foreach (var item in handles) item.Handle.Dispose(); handles.Clear(); }
     }

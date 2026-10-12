@@ -11,7 +11,7 @@ public static class Program
     public const int MaximumResponseBytes = 4 * 1024 * 1024;
     public static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web);
     private static readonly (Type Type, string[] Methods)[] ModuleInventory = [
-        (typeof(SystemModule), ["engine.ping", "system.snapshot", "system.performance", "settings.get", "settings.save", "history.list", "jobs.start", "jobs.status", "jobs.list", "jobs.cancel"]),
+        (typeof(SystemModule), ["engine.ping", "system.snapshot", "system.performance", "system.inventory", "system.inventory.page", "system.monitor", "system.report.review", "system.report.export", "settings.get", "settings.save", "history.list", "jobs.start", "jobs.status", "jobs.list", "jobs.cancel"]),
         (typeof(CrashDiagnosticsModule), ["diagnostics.crashes", "diagnostics.explainStopCode"]),
         (typeof(StorageModule), ["storage.analyze", "storage.duplicates", "cleanup.scan", "cleanup.apply", "cleanup.restore", "cleanup.history", "cleanup.details"]),
         (typeof(ManagementModule), ["apps.list", "apps.managed", "apps.updates", "apps.upgrade", "apps.uninstall", "startup.list", "startup.set", "processes.list", "processes.stop", "services.list", "tasks.list"]),

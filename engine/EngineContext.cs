@@ -21,6 +21,10 @@ public sealed class EngineContext : IDisposable
     private MaintenanceJobs? jobs;
     private bool disposed;
     internal Func<CancellationToken, Task>? BeforeJobExecution { get; init; }
+    internal Func<CancellationToken, Task<SystemInventory.Snapshot>>? InventoryCollector { get; init; }
+    internal Func<int, CancellationToken, Task<SystemMonitor.Measurement>>? MonitorCollector { get; init; }
+    internal Func<DateTimeOffset>? ReportClock { get; init; }
+    internal Func<CancellationToken, Task>? BeforeReportPublication { get; init; }
     public MaintenanceJobs Jobs {
         get {
             lock (jobsSync) {

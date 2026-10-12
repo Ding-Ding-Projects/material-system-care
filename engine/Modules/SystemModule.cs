@@ -5,10 +5,12 @@ namespace MaterialSystemCare.Engine;
 
 public sealed class SystemModule : IEngineModule
 {
-    public bool CanHandle(string method) => method is "engine.ping" or "system.snapshot" or "system.performance" or "settings.get" or "settings.save" or "history.list" or "jobs.start" or "jobs.status" or "jobs.list" or "jobs.cancel";
+    public bool CanHandle(string method) => method is "engine.ping" or "system.snapshot" or "system.performance" or "system.inventory" or "system.inventory.page" or "system.monitor" or "system.report.review" or "system.report.export" or "settings.get" or "settings.save" or "history.list" or "jobs.start" or "jobs.status" or "jobs.list" or "jobs.cancel";
     public async Task<object?> HandleAsync(string method, JsonElement parameters, EngineContext context, CancellationToken cancellationToken)
     {
         switch (method) {
+            case "system.inventory": case "system.inventory.page": case "system.monitor": case "system.report.review": case "system.report.export":
+                return await new SystemReportService(context).HandleAsync(method,parameters,cancellationToken);
             case "system.performance": return await PerformanceSample.ReadAsync(parameters, context.IsFixture, cancellationToken);
             case "jobs.start": case "jobs.status": case "jobs.list": case "jobs.cancel":
                 return context.Jobs.Handle(method, parameters, cancellationToken);

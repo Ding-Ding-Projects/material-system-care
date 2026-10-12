@@ -1,0 +1,9 @@
+# Measured resource thresholds
+
+`system.monitor` accepts optional integer `intervalMs` (250..2000, default 500) and optional `thresholds` containing selected `cpuPercent`, `memoryPercent` and `diskUsedPercent`. A submitted thresholds object must be nonempty; each value must be a finite percentage from 0 through 100. Unknown metrics, duplicate fields, invalid intervals and unsupported sensor thresholds are rejected before measurement.
+
+CPU uses two `GetSystemTimes` readings and actual monotonic elapsed time. Memory uses an end-of-interval physical-memory snapshot. Fixed-volume capacity uses total and available bytes; optical, network and removable drives are not probed as performance targets. These are capacity snapshots, not disk throughput. On hosts above 64 logical processors, CPU accounting is scoped to the calling thread's primary processor group. No temperature, GPU-load or SMART-health provider is bundled.
+
+Each explicitly selected threshold is evaluated against its actual value. Values at or above the threshold return `threshold-reached`; lower values return `below-threshold`. An unavailable measure returns `unavailable`, null value and the actual reason. Missing telemetry never implies good health. Results include measurement time, requested and measured interval, nullable values, fixed-volume records, limitations and evaluations. No stored setting substitutes for a measurement.
+
+This endpoint takes one sample. It does not create a background subscription, send notifications or perform automatic remediation. A consumer can display fresh evaluations, disclose sample age and request another bounded sample. Cancellation interrupts collection. Fixture mode returns unavailable measurements unless its internal fixture-only collector is supplied; fixtures use synthetic measures to prove threshold arithmetic and unavailable behavior without querying real host data.
