@@ -34,6 +34,7 @@ class FlutterWindow : public Win32Window {
   std::unique_ptr<EngineBridge> engine_bridge_;
   std::unique_ptr<flutter::MethodChannel<flutter::EncodableValue>> window_channel_;
   bool close_approved_ = false;
+  bool shell_owned_ = false;
 };
 
 #endif  // RUNNER_FLUTTER_WINDOW_H_

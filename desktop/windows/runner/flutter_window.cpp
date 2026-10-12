@@ -40,10 +40,6 @@ bool FlutterWindow::OnCreate() {
     return false;
   }
 
-  // Creation initially calculates the stock overlapped client rectangle before
-  // the custom nonclient handler is active. Recalculate without moving/focusing.
-  SetWindowPos(GetHandle(), nullptr, 0, 0, 0, 0,
-               SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_NOACTIVATE | SWP_FRAMECHANGED);
   RECT frame = GetClientArea();
 
   // The size here must match the window dimensions to avoid unnecessary surface
@@ -62,8 +58,6 @@ bool FlutterWindow::OnCreate() {
     return false;
   }
   SetChildContent(flutter_controller_->view()->GetNativeWindow());
-  SetWindowSubclass(flutter_controller_->view()->GetNativeWindow(), ResizeHitTest,
-                    1, reinterpret_cast<DWORD_PTR>(GetHandle()));
   window_channel_ = std::make_unique<flutter::MethodChannel<flutter::EncodableValue>>(
       flutter_controller_->engine()->messenger(), "material_system_care/window",
       &flutter::StandardMethodCodec::GetInstance());
@@ -75,6 +69,18 @@ bool FlutterWindow::OnCreate() {
         {flutter::EncodableValue("maximized"), flutter::EncodableValue(IsZoomed(hwnd) != FALSE)}}));
       return;
     }
+    if (method == "claimShell" || method == "releaseShell") {
+      shell_owned_ = method == "claimShell";
+      close_approved_ = false;
+      const HWND child = flutter_controller_->view()->GetNativeWindow();
+      if (shell_owned_) SetWindowSubclass(child, ResizeHitTest, 1, reinterpret_cast<DWORD_PTR>(hwnd));
+      else RemoveWindowSubclass(child, ResizeHitTest, 1);
+      SetWindowPos(hwnd, nullptr, 0, 0, 0, 0,
+        SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_NOACTIVATE | SWP_FRAMECHANGED);
+      result->Success();
+      return;
+    }
+    if (!shell_owned_) { result->Error("SHELL_NOT_READY", "Native caption has no shell owner"); return; }
     if (method == "minimize") ShowWindow(hwnd, SW_MINIMIZE);
     else if (method == "toggleMaximize") ShowWindow(hwnd, IsZoomed(hwnd) ? SW_RESTORE : SW_MAXIMIZE);
     else if (method == "close") { close_approved_ = true; PostMessage(hwnd, WM_CLOSE, 0, 0); }
@@ -117,13 +123,13 @@ LRESULT
 FlutterWindow::MessageHandler(HWND hwnd, UINT const message,
                               WPARAM const wparam,
                               LPARAM const lparam) noexcept {
-  if (message == WM_CLOSE && window_channel_ && !close_approved_) {
+  if (message == WM_CLOSE && shell_owned_ && window_channel_ && !close_approved_) {
     window_channel_->InvokeMethod("closeRequested", nullptr);
     return 0;
   }
-  if (message == WM_SIZE && window_channel_) window_channel_->InvokeMethod("stateChanged", nullptr);
-  if (message == WM_NCCALCSIZE && wparam) return 0;
-  if (message == WM_GETMINMAXINFO) {
+  if (message == WM_SIZE && shell_owned_ && window_channel_) window_channel_->InvokeMethod("stateChanged", nullptr);
+  if (message == WM_NCCALCSIZE && shell_owned_ && wparam) return 0;
+  if (message == WM_GETMINMAXINFO && shell_owned_) {
     const auto info = reinterpret_cast<MINMAXINFO*>(lparam);
     const UINT dpi = GetDpiForWindow(hwnd);
     info->ptMinTrackSize = {MulDiv(800, dpi, 96), MulDiv(600, dpi, 96)};
@@ -137,7 +143,7 @@ FlutterWindow::MessageHandler(HWND hwnd, UINT const message,
     }
     return 0;
   }
-  if (message == WM_NCHITTEST && !IsZoomed(hwnd)) {
+  if (message == WM_NCHITTEST && shell_owned_ && !IsZoomed(hwnd)) {
     RECT rect{}; GetWindowRect(hwnd, &rect);
     const int border = MulDiv(8, GetDpiForWindow(hwnd), 96);
     const int x = GET_X_LPARAM(lparam), y = GET_Y_LPARAM(lparam);

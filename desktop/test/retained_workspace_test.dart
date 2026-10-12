@@ -186,4 +186,115 @@ void main() {
       );
     },
   );
+  testWidgets(
+    'live route state survives every dock position without disposal',
+    (tester) async {
+      tester.view.physicalSize = const Size(1280, 900);
+      tester.view.devicePixelRatio = 1;
+      addTearDown(tester.view.resetPhysicalSize);
+      addTearDown(tester.view.resetDevicePixelRatio);
+      var disposed = 0;
+      await tester.pumpWidget(
+        MaterialApp(
+          home: RetainedWorkspace(
+            invoke: (_, __) async => {},
+            page: (_, route) =>
+                DockSentinel(key: ValueKey(route), onDispose: () => disposed++),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      final original = tester.state<DockSentinelState>(
+        find.byType(DockSentinel),
+      );
+      await tester.enterText(
+        find.byType(TextField).last,
+        'keep this exact draft',
+      );
+      for (final dock in ['right', 'top', 'bottom', 'left']) {
+        await tester.tap(find.byTooltip('Dock tabs'));
+        await tester.pumpAndSettle();
+        await tester.tap(find.text('Dock $dock'));
+        await tester.pumpAndSettle();
+        expect(
+          identical(
+            tester.state<DockSentinelState>(find.byType(DockSentinel)),
+            original,
+          ),
+          isTrue,
+          reason: 'State identity at $dock',
+        );
+        expect(original.controller.text, 'keep this exact draft');
+        expect(disposed, 0, reason: 'No route disposal at $dock');
+        expect(tester.takeException(), isNull);
+      }
+    },
+  );
+  testWidgets('only the retained shell claims and releases native chrome', (
+    tester,
+  ) async {
+    final calls = <String>[];
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(
+          const MethodChannel('material_system_care/window'),
+          (call) async {
+            calls.add(call.method);
+            return call.method == 'state' ? {'maximized': false} : null;
+          },
+        );
+    await tester.pumpWidget(
+      MaterialApp(
+        home: RetainedWorkspace(
+          invoke: (_, __) async => {},
+          page: (_, route) => Text(route),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(calls, contains('claimShell'));
+    await tester.pumpWidget(const SizedBox());
+    await tester.pumpAndSettle();
+    expect(calls, contains('releaseShell'));
+    calls.clear();
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(
+          Engine.channel,
+          (_) async => {'ok': true, 'result': {}},
+        );
+    addTearDown(
+      () => TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+          .setMockMethodCallHandler(Engine.channel, null),
+    );
+    await tester.pumpWidget(
+      const CareApp(cleanupFixture: true, isolatedCapture: true),
+    );
+    await tester.pumpAndSettle();
+    expect(calls, isNot(contains('claimShell')));
+    expect(find.byType(CleanupWorkspace), findsOneWidget);
+    await tester.pumpWidget(
+      const CareApp(startDiagnostics: true, isolatedCapture: true),
+    );
+    await tester.pumpAndSettle();
+    expect(calls, isNot(contains('claimShell')));
+  });
+}
+
+class DockSentinel extends StatefulWidget {
+  const DockSentinel({super.key, required this.onDispose});
+  final VoidCallback onDispose;
+  @override
+  State<DockSentinel> createState() => DockSentinelState();
+}
+
+class DockSentinelState extends State<DockSentinel> {
+  final controller = TextEditingController();
+  @override
+  void dispose() {
+    widget.onDispose();
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => TextField(controller: controller);
 }

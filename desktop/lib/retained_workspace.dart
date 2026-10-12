@@ -64,12 +64,21 @@ class _RetainedWorkspaceState extends State<RetainedWorkspace> {
       if (call.method == 'closeRequested') await windowAction('close');
       if (call.method == 'stateChanged') await refreshWindow();
     });
+    window
+        .invokeMethod<void>('claimShell')
+        .then((_) => refreshWindow())
+        .catchError((Object _) {
+          if (mounted)
+            setState(
+              () => windowError = 'The native window action is unavailable.',
+            );
+        });
     restore();
-    refreshWindow();
   }
 
   @override
   void dispose() {
+    window.invokeMethod<void>('releaseShell').catchError((Object _) {});
     window.setMethodCallHandler(null);
     search.dispose();
     super.dispose();
@@ -564,6 +573,7 @@ class _RetainedWorkspaceState extends State<RetainedWorkspace> {
   Widget build(BuildContext context) {
     final vertical = state.dock == 'left' || state.dock == 'right';
     final content = Expanded(
+      key: const ValueKey('retained-workspace-content'),
       child: RegisteredElement(
         id: 'shell.content',
         child: IndexedStack(
@@ -582,7 +592,10 @@ class _RetainedWorkspaceState extends State<RetainedWorkspace> {
         ),
       ),
     );
-    final tabStrip = strip(vertical);
+    final tabStrip = KeyedSubtree(
+      key: const ValueKey('retained-workspace-tabs'),
+      child: strip(vertical),
+    );
     return CallbackShortcuts(
       bindings: {
         const SingleActivator(LogicalKeyboardKey.keyT, control: true): () =>
@@ -616,21 +629,16 @@ class _RetainedWorkspaceState extends State<RetainedWorkspace> {
                 ),
               if (saving) const LinearProgressIndicator(),
               Expanded(
-                child: vertical
-                    ? Row(
-                        children: [
-                          if (state.dock == 'left') tabStrip,
-                          content,
-                          if (state.dock == 'right') tabStrip,
-                        ],
-                      )
-                    : Column(
-                        children: [
-                          if (state.dock == 'top') tabStrip,
-                          content,
-                          if (state.dock == 'bottom') tabStrip,
-                        ],
-                      ),
+                key: const ValueKey('retained-workspace-layout'),
+                child: Flex(
+                  direction: vertical ? Axis.horizontal : Axis.vertical,
+                  children: [
+                    if (state.dock == 'left' || state.dock == 'top') tabStrip,
+                    content,
+                    if (state.dock == 'right' || state.dock == 'bottom')
+                      tabStrip,
+                  ],
+                ),
               ),
             ],
           ),
