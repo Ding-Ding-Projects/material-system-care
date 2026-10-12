@@ -12,6 +12,46 @@ class CopyScope extends InheritedWidget {
 }
 
 const translations = <String, String>{
+  "Minimize": "最小化",
+  "Maximize": "最大化",
+  "Restore window": "還原視窗",
+  "Close application": "關閉應用程式",
+  "Close application?": "關閉應用程式？",
+  "Close workspace?": "關閉工作區？",
+  "Close workspace": "關閉工作區",
+  "Workspace help": "工作區說明",
+  "Open workspace": "開啟工作區",
+  "Find tabs": "尋找分頁",
+  "Clear search": "清除搜尋",
+  "Tab actions": "分頁操作",
+  "Tab group": "分頁群組",
+  "Group name": "群組名稱",
+  "Leave empty to remove the group.": "留空即可移除群組。",
+  "Pin tab": "固定分頁",
+  "Unpin tab": "取消固定分頁",
+  "Move earlier": "移前",
+  "Move later": "移後",
+  "Dock tabs": "分頁位置",
+  "Dock left": "靠左",
+  "Dock right": "靠右",
+  "Dock top": "靠上",
+  "Dock bottom": "靠下",
+  "No matching tabs.": "冇相符分頁。",
+  "Keep open": "保持開啟",
+  "Save": "儲存",
+  "Retry saving": "重試儲存",
+  "Workspace unavailable": "工作區無法提供",
+  "Close a workspace tab before opening another.": "請先關閉一個工作區分頁，再開另一個。",
+  "Saved tabs could not be loaded. The current session remains available.":
+      "未能讀取已儲存分頁。目前工作階段仍然可用。",
+  "Tabs were not saved. Retry saving the current session.":
+      "分頁未儲存。請重試儲存目前工作階段。",
+  "The native window action is unavailable.": "原生視窗操作無法提供。",
+  "Closing discards this session’s selections and review. A running request may still be finishing in the local engine. Keep the workspace open to inspect its outcome.":
+      "關閉會捨棄本次工作階段嘅選擇同檢視內容。正在執行嘅請求可能仍由本機引擎處理。請保持工作區開啟以查看結果。",
+  "Open a dedicated task from the workspace menu. Tabs keep live filters, selections and reviews while this session is open. Saved tabs restore navigation only after restart, never an old operation or cleanup plan. Pin a tab to protect it from closing. Groups organize tabs; use their heading to collapse the list. Caption controls act on this application only. Double-click the title to maximize or restore, and right-click it for the native window menu.":
+      "由工作區選單開啟專用工作。工作階段開啟期間，分頁保留篩選、選擇同檢視內容。重新啟動後，已儲存分頁只還原導覽，唔會還原舊操作或清理計劃。固定分頁可防止關閉。群組整理分頁，按群組標題可摺疊清單。標題控制只影響本程式。連按兩次標題可最大化或還原，右按可開啟原生視窗選單。",
+
   "Cleanup verification · 清理驗證": "清理驗證",
   "Stopped waiting for cleanup scan. This does not prove that all engine reads have stopped.":
       "已停止等待清理掃描，但唔代表所有引擎讀取已停止。",

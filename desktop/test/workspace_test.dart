@@ -25,11 +25,17 @@ void main() {
       addTearDown(tester.view.resetDevicePixelRatio);
       await tester.pumpWidget(const CareApp());
       await tester.pumpAndSettle();
-      expect(find.byType(NavigationRail), findsOneWidget);
+      expect(find.text('Open workspace'), findsOneWidget);
       expect(find.text('Overview'), findsWidgets);
       expect(find.textContaining('provenance unavailable'), findsOneWidget);
-      expect(find.textContaining('not connected'), findsOneWidget);
-      expect(find.byType(SearchBar), findsOneWidget);
+      expect(find.text('Refresh measurements'), findsOneWidget);
+      expect(
+        find.textContaining('Saved tabs could not be loaded'),
+        findsOneWidget,
+      );
+      expect(find.text('Find tabs'), findsOneWidget);
+      await tester.tap(find.text('Open workspace'));
+      await tester.pumpAndSettle();
       await tester.tap(find.text('Tools'));
       await tester.pumpAndSettle();
       expect(find.byType(SegmentedButton<int>), findsOneWidget);
