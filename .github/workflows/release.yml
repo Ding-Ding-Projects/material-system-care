@@ -4,11 +4,11 @@ on:
   workflow_dispatch:
     inputs:
       publish_release:
-        description: Publish the explicitly verified main candidate
+        description: Publish this exact main commit after packaging succeeds
         type: boolean
         default: false
       candidate_sha:
-        description: Exact verified main commit SHA required for publication
+        description: Must exactly match the commit checked out by this run
         type: string
         required: false
 permissions:
@@ -28,19 +28,40 @@ jobs:
       - name: Build and package
         shell: cmd
         run: build-installer.bat /s
+      - name: Validate indexed release photo
+        shell: pwsh
+        run: |
+          $catalogPath = 'packaging/assets/dim-sum-catalog.json'
+          $catalog = Get-Content -Raw $catalogPath | ConvertFrom-Json
+          if ($catalog.schemaVersion -ne 1 -or $catalog.entries.Count -lt 1) { throw 'The release photo catalog is invalid or empty.' }
+          $entry = $catalog.entries[0]
+          if ($entry.id -ne 'dim-sum-assortment-benreis-2010' -or $entry.license -ne 'CC BY-SA 3.0') { throw 'The selected release photo does not match its reviewed catalog record.' }
+          $imagePath = $entry.asset
+          git ls-files --error-unmatch -- $imagePath | Out-Null
+          if ($LASTEXITCODE) { throw 'The selected release photo is not tracked in the source tree.' }
+          $hash = (Get-FileHash -LiteralPath $imagePath -Algorithm SHA256).Hash.ToLowerInvariant()
+          if ($hash -ne $entry.sha256) { throw 'The selected release photo does not match its catalog SHA-256.' }
+          Add-Type -AssemblyName System.Drawing
+          $image = [System.Drawing.Image]::FromFile((Join-Path (Get-Location) $imagePath))
+          try {
+            if ($image.Width -lt 320 -or $image.Height -lt 240) { throw 'The selected release photo dimensions are too small.' }
+          } finally { $image.Dispose() }
+          "DIM_SUM_IMAGE=$imagePath" >> $env:GITHUB_ENV
       - name: Publish unique release
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.publish_release && github.ref == 'refs/heads/main' }}
+        if: ${{ github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.publish_release)) }}
         shell: pwsh
         env:
           SELECTED_CANDIDATE: ${{ inputs.candidate_sha }}
         run: |
-          & ./scripts/check-release-readiness.ps1 -Candidate $env:SELECTED_CANDIDATE
-          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          $catalog = Get-Content -Raw 'packaging/assets/dim-sum-catalog.json' | ConvertFrom-Json
+          if ($env:GITHUB_EVENT_NAME -eq 'workflow_dispatch' -and $env:SELECTED_CANDIDATE -ne $env:GITHUB_SHA) {
+            throw "The selected candidate must match the exact source SHA built by this run."
+          }
           $end=[DateTime]::UtcNow
           $elapsed=$end-[DateTime]::Parse($env:WORKFLOW_STARTED)
-          $notes="Unsigned Squirrel.Windows installer. Unknown-publisher and SmartScreen warnings may appear.`n`nWorkflow started: $env:WORKFLOW_STARTED`nWorkflow completed: $($end.ToString('o'))`nWorkflow duration: $($elapsed.ToString('hh\:mm\:ss'))`n`nThis workflow builds and packages. It runs no tests or lint. Publication requires explicit selection of this verified main candidate and its recorded capability evidence."
+          $notes="Unsigned Squirrel.Windows installer. Unknown-publisher and SmartScreen warnings may appear.`n`nDim sum photo: $($catalog.entries[0].dish), by $($catalog.entries[0].creator), licensed $($catalog.entries[0].license). Source: $($catalog.entries[0].source)`n`nWorkflow started: $env:WORKFLOW_STARTED`nWorkflow completed: $($end.ToString('o'))`nWorkflow duration: $($elapsed.ToString('hh\:mm\:ss'))`n`nThis workflow builds and packages the exact source commit shown for this run. It runs no tests or lint."
           $notes | Set-Content release-notes.txt
-          gh release create "v$env:BUILD_VERSION" artifacts/installer/releases/Setup.exe artifacts/installer/releases/RELEASES artifacts/installer/releases/*-full.nupkg --title "Material System Care $env:BUILD_VERSION" --notes-file release-notes.txt
+          gh release create "v$env:BUILD_VERSION" artifacts/installer/releases/Setup.exe artifacts/installer/releases/RELEASES artifacts/installer/releases/*-full.nupkg $env:DIM_SUM_IMAGE --target "$env:GITHUB_SHA" --title "Material System Care $env:BUILD_VERSION" --notes-file release-notes.txt
           if ($LASTEXITCODE) { exit $LASTEXITCODE }
       - name: Collect safe build evidence
         if: always()

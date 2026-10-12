@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "entries": [
+    {
+      "id": "dim-sum-assortment-benreis-2010",
+      "dish": "Dim sum assortment",
+      "asset": "packaging/assets/dim-sum.jpg",
+      "creator": "Benreis",
+      "source": "https://commons.wikimedia.org/wiki/File:Dim_Sum.JPG",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "sha256": "6a24f2c853be69b708bedf0959790beccf7bc254dc339c932c3b29af83c282eb"
+    }
+  ]
+}

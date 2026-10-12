@@ -2,7 +2,7 @@
 
 ## Current implementation pass
 
-The required-feature inventory now tracks105 entries and 2374 per-surface rows. [Minecraft server management](docs/catalogue/universal/minecraft-server-manager.md) is explicitly required for the installed suite and remains unimplemented. The static website documents its scope and local mediation boundary. All 295 maintenance capabilities and their exclusions remain preserved. The broader suite and separate Material Companion work are in progress; no new installer release or browser-store submission is included.
+The required-feature inventory now tracks 105 entries and 2374 per-surface rows. [Minecraft server management](docs/catalogue/universal/minecraft-server-manager.md) is explicitly required for the installed suite and remains unimplemented. The static website documents its scope and local mediation boundary. All 295 maintenance capabilities and their exclusions remain preserved. The broader suite and separate Material Companion work are in progress. This source adds normal release publication after a successful `main` build; the new release and its attached installer assets remain pending remote verification.
 
 
 The recovery workspace now keeps its controls and receipt cards on one keyboard-scrollable surface. A real disposable round trip at 800 × 600 with doubled bilingual text verified complete path review, cancellation, selected-file movement and restoration of original bytes, identities and modification times. This later 1280 × 1061 painted view shows the two restored fixture files; no private paths are visible.
@@ -45,7 +45,7 @@ A Windows 11 x64 maintenance and diagnostics workspace built with Flutter, .NET 
 
 The typed [application and package workspace](docs/features/management/managed-packages.md) has bounded real discovery and keyboard-review evidence at 800×600 with doubled bilingual text. Paging reaches later cards, selected review actions accept keyboard activation, and explicit cancellation restores navigation. Its private inventory frames are source-bound; no package upgrade or removal was confirmed.
 
-**Development status:** implementation is in progress. No production installer or complete feature-parity claim is available yet.
+**Development status:** implementation is in progress. A successful `main` build is configured to publish a normal release with the unsigned Squirrel.Windows installer assets. This does not establish complete feature parity or verify actual installation, update, or uninstall behavior.
 
 [Public documentation and capability explorer](https://ding-ding-projects.github.io/material-system-care/)
 
@@ -98,7 +98,7 @@ This is an actual painted frame from the native build at `fb128bc4acf89d9fe14915
 
 ## Status and distribution
 
-Source and the documentation website are public. Anonymous homepage delivery, its linked assets and the 295-entry coverage data have been verified. The repository About homepage points to the exact deployed URL. Installer downloads remain unavailable until release verification is complete. This project is independently implemented and is not affiliated with IObit.
+Source and the documentation website are public. Anonymous homepage delivery, its linked assets and the 295-entry coverage data have been verified. The repository About homepage points to the exact deployed URL. Installer downloads become available through a normal release after a successful `main` build; the release created by this change is pending verification. This project is independently implemented and is not affiliated with IObit.
 
 ## GitHub Pages hosting
 
